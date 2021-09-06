@@ -124,6 +124,12 @@ public interface ImplementationGuide_ManifestBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImplementationGuide_ManifestBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param rendering */
     public ImplementationGuide_ManifestBuilder.Impl withRendering(@NonNull String rendering) {
       this.rendering = Optional.of(rendering);
@@ -165,6 +171,13 @@ public interface ImplementationGuide_ManifestBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ImplementationGuide_ManifestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param page */
     public ImplementationGuide_ManifestBuilder.Impl withPage(
         @NonNull ImplementationGuide$Manifest$Page... page) {
@@ -175,6 +188,12 @@ public interface ImplementationGuide_ManifestBuilder {
     public ImplementationGuide_ManifestBuilder.Impl withPage(
         @NonNull Collection<ImplementationGuide$Manifest$Page> page) {
       this.page = Collections.unmodifiableCollection(page);
+      return this;
+    }
+
+    public ImplementationGuide_ManifestBuilder.Impl withPage(
+        @NonNull ImplementationGuide_Manifest_PageBuilder... page) {
+      this.page = Arrays.stream(page).map(e -> e.build()).collect(toList());
       return this;
     }
 

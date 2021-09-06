@@ -295,6 +295,12 @@ public interface Observation_geneticsAlleleBuilder extends ExtensionBuilder {
       return this;
     }
 
+    public Observation_geneticsAlleleBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Observation_geneticsAllele build() {
       return new Observation_geneticsAllele(
           OptionConverters.toScala(id),

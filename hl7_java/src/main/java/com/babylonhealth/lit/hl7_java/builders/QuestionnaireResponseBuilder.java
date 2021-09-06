@@ -101,6 +101,11 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public QuestionnaireResponseBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -110,6 +115,11 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
      */
     public QuestionnaireResponseBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public QuestionnaireResponseBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -128,6 +138,11 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public QuestionnaireResponseBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - Person who received the answers to the questions in the QuestionnaireResponse
      *     and recorded them in the system.
@@ -136,9 +151,19 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       this.author = Optional.of(author);
       return this;
     }
+
+    public QuestionnaireResponseBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
+      return this;
+    }
     /** @param source - The person who answered the questions about the subject. */
     public QuestionnaireResponseBuilder.Impl withSource(@NonNull Reference source) {
       this.source = Optional.of(source);
+      return this;
+    }
+
+    public QuestionnaireResponseBuilder.Impl withSource(@NonNull ReferenceBuilder source) {
+      this.source = Optional.of(source.build());
       return this;
     }
     /**
@@ -159,6 +184,11 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public QuestionnaireResponseBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - The subject of the questionnaire response. This could be a patient,
      *     organization, practitioner, device, etc. This is who/what the answers apply to, but is
@@ -166,6 +196,11 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
      */
     public QuestionnaireResponseBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public QuestionnaireResponseBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -197,6 +232,11 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public QuestionnaireResponseBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -220,6 +260,11 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public QuestionnaireResponseBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this questionnaire response was created or to
      *     which the creation of this record is tightly associated.
@@ -228,12 +273,22 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       this.encounter = Optional.of(encounter);
       return this;
     }
+
+    public QuestionnaireResponseBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
     /**
      * @param identifier - A business identifier assigned to a particular completed (or partially
      *     completed) questionnaire.
      */
     public QuestionnaireResponseBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public QuestionnaireResponseBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /**
@@ -290,6 +345,13 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public QuestionnaireResponseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param item - A group or question item from the original questionnaire for which answers are
      *     provided.
@@ -305,6 +367,12 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
     public QuestionnaireResponseBuilder.Impl withItem(
         @NonNull Collection<QuestionnaireResponse.Item> item) {
       this.item = Collections.unmodifiableCollection(item);
+      return this;
+    }
+
+    public QuestionnaireResponseBuilder.Impl withItem(
+        @NonNull QuestionnaireResponse_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
       return this;
     }
 

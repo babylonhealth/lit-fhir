@@ -91,12 +91,22 @@ public interface AuditEvent_AgentBuilder {
       this.who = Optional.of(who);
       return this;
     }
+
+    public AuditEvent_AgentBuilder.Impl withWho(@NonNull ReferenceBuilder who) {
+      this.who = Optional.of(who.build());
+      return this;
+    }
     /**
      * @param _type - Identifier for a family of the event. For example, a menu item, program, rule,
      *     policy, function code, application name or URL. It identifies the performed function.
      */
     public AuditEvent_AgentBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public AuditEvent_AgentBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param role */
@@ -107,6 +117,11 @@ public interface AuditEvent_AgentBuilder {
     /** @param role */
     public AuditEvent_AgentBuilder.Impl withRole(@NonNull Collection<CodeableConcept> role) {
       this.role = Collections.unmodifiableCollection(role);
+      return this;
+    }
+
+    public AuditEvent_AgentBuilder.Impl withRole(@NonNull CodeableConceptBuilder... role) {
+      this.role = Arrays.stream(role).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param name */
@@ -124,6 +139,11 @@ public interface AuditEvent_AgentBuilder {
       this.media = Optional.of(media);
       return this;
     }
+
+    public AuditEvent_AgentBuilder.Impl withMedia(@NonNull CodingBuilder media) {
+      this.media = Optional.of(media.build());
+      return this;
+    }
     /** @param policy */
     public AuditEvent_AgentBuilder.Impl withPolicy(@NonNull String... policy) {
       this.policy = Arrays.asList(policy);
@@ -137,6 +157,11 @@ public interface AuditEvent_AgentBuilder {
     /** @param location */
     public AuditEvent_AgentBuilder.Impl withLocation(@NonNull Reference location) {
       this.location = Optional.of(location);
+      return this;
+    }
+
+    public AuditEvent_AgentBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
       return this;
     }
     /**
@@ -161,6 +186,11 @@ public interface AuditEvent_AgentBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AuditEvent_AgentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param purposeOfUse */
     public AuditEvent_AgentBuilder.Impl withPurposeOfUse(@NonNull CodeableConcept... purposeOfUse) {
       this.purposeOfUse = Arrays.asList(purposeOfUse);
@@ -170,6 +200,12 @@ public interface AuditEvent_AgentBuilder {
     public AuditEvent_AgentBuilder.Impl withPurposeOfUse(
         @NonNull Collection<CodeableConcept> purposeOfUse) {
       this.purposeOfUse = Collections.unmodifiableCollection(purposeOfUse);
+      return this;
+    }
+
+    public AuditEvent_AgentBuilder.Impl withPurposeOfUse(
+        @NonNull CodeableConceptBuilder... purposeOfUse) {
+      this.purposeOfUse = Arrays.stream(purposeOfUse).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -208,9 +244,22 @@ public interface AuditEvent_AgentBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public AuditEvent_AgentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param network */
     public AuditEvent_AgentBuilder.Impl withNetwork(@NonNull AuditEvent$Agent$Network network) {
       this.network = Optional.of(network);
+      return this;
+    }
+
+    public AuditEvent_AgentBuilder.Impl withNetwork(
+        @NonNull AuditEvent_Agent_NetworkBuilder network) {
+      this.network = Optional.of(network.build());
       return this;
     }
 

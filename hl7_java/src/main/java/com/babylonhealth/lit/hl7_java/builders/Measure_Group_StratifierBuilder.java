@@ -78,9 +78,19 @@ public interface Measure_Group_StratifierBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public Measure_Group_StratifierBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param criteria */
     public Measure_Group_StratifierBuilder.Impl withCriteria(@NonNull Expression criteria) {
       this.criteria = Optional.of(criteria);
+      return this;
+    }
+
+    public Measure_Group_StratifierBuilder.Impl withCriteria(@NonNull ExpressionBuilder criteria) {
+      this.criteria = Optional.of(criteria.build());
       return this;
     }
     /**
@@ -104,6 +114,12 @@ public interface Measure_Group_StratifierBuilder {
     public Measure_Group_StratifierBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Measure_Group_StratifierBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -150,6 +166,13 @@ public interface Measure_Group_StratifierBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Measure_Group_StratifierBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param component */
     public Measure_Group_StratifierBuilder.Impl withComponent(
         @NonNull Measure$Group$Stratifier$Component... component) {
@@ -160,6 +183,12 @@ public interface Measure_Group_StratifierBuilder {
     public Measure_Group_StratifierBuilder.Impl withComponent(
         @NonNull Collection<Measure$Group$Stratifier$Component> component) {
       this.component = Collections.unmodifiableCollection(component);
+      return this;
+    }
+
+    public Measure_Group_StratifierBuilder.Impl withComponent(
+        @NonNull Measure_Group_Stratifier_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
       return this;
     }
 

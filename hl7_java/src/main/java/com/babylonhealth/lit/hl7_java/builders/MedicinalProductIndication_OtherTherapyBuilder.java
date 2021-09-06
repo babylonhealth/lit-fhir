@@ -115,6 +115,12 @@ public interface MedicinalProductIndication_OtherTherapyBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductIndication_OtherTherapyBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -149,6 +155,13 @@ public interface MedicinalProductIndication_OtherTherapyBuilder {
     public MedicinalProductIndication_OtherTherapyBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicinalProductIndication_OtherTherapyBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

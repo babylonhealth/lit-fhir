@@ -114,6 +114,11 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MessageHeaderBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -123,6 +128,11 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
      */
     public MessageHeaderBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MessageHeaderBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -141,9 +151,19 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
       this.focus = Collections.unmodifiableCollection(focus);
       return this;
     }
+
+    public MessageHeaderBuilder.Impl withFocus(@NonNull ReferenceBuilder... focus) {
+      this.focus = Arrays.stream(focus).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param sender - Identifies the sending system to allow the use of a trust relationship. */
     public MessageHeaderBuilder.Impl withSender(@NonNull Reference sender) {
       this.sender = Optional.of(sender);
+      return this;
+    }
+
+    public MessageHeaderBuilder.Impl withSender(@NonNull ReferenceBuilder sender) {
+      this.sender = Optional.of(sender.build());
       return this;
     }
     /**
@@ -155,12 +175,22 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
       this.author = Optional.of(author);
       return this;
     }
+
+    public MessageHeaderBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
+      return this;
+    }
     /**
      * @param reason - Coded indication of the cause for the event - indicates a reason for the
      *     occurrence of the event that is a focus of this message.
      */
     public MessageHeaderBuilder.Impl withReason(@NonNull CodeableConcept reason) {
       this.reason = Optional.of(reason);
+      return this;
+    }
+
+    public MessageHeaderBuilder.Impl withReason(@NonNull CodeableConceptBuilder reason) {
+      this.reason = Optional.of(reason.build());
       return this;
     }
     /**
@@ -170,6 +200,11 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
      */
     public MessageHeaderBuilder.Impl withEnterer(@NonNull Reference enterer) {
       this.enterer = Optional.of(enterer);
+      return this;
+    }
+
+    public MessageHeaderBuilder.Impl withEnterer(@NonNull ReferenceBuilder enterer) {
+      this.enterer = Optional.of(enterer.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -195,6 +230,11 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MessageHeaderBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -217,6 +257,11 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MessageHeaderBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param definition - Permanent link to the MessageDefinition for this message. */
     public MessageHeaderBuilder.Impl withDefinition(@NonNull String definition) {
       this.definition = Optional.of(definition);
@@ -229,6 +274,11 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
      */
     public MessageHeaderBuilder.Impl withResponsible(@NonNull Reference responsible) {
       this.responsible = Optional.of(responsible);
+      return this;
+    }
+
+    public MessageHeaderBuilder.Impl withResponsible(@NonNull ReferenceBuilder responsible) {
+      this.responsible = Optional.of(responsible.build());
       return this;
     }
     /**
@@ -277,12 +327,24 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MessageHeaderBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param response - Information about the message that this message is a response to. Only
      *     present if this message is a response.
      */
     public MessageHeaderBuilder.Impl withResponse(@NonNull MessageHeader.Response response) {
       this.response = Optional.of(response);
+      return this;
+    }
+
+    public MessageHeaderBuilder.Impl withResponse(@NonNull MessageHeader_ResponseBuilder response) {
+      this.response = Optional.of(response.build());
       return this;
     }
     /** @param destination - The destination application which the message is intended for. */
@@ -295,6 +357,12 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
     public MessageHeaderBuilder.Impl withDestination(
         @NonNull Collection<MessageHeader.Destination> destination) {
       this.destination = Collections.unmodifiableCollection(destination);
+      return this;
+    }
+
+    public MessageHeaderBuilder.Impl withDestination(
+        @NonNull MessageHeader_DestinationBuilder... destination) {
+      this.destination = Arrays.stream(destination).map(e -> e.build()).collect(toList());
       return this;
     }
 

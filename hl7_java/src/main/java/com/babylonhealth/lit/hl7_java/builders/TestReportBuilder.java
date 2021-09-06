@@ -110,6 +110,11 @@ public interface TestReportBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public TestReportBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -119,6 +124,11 @@ public interface TestReportBuilder extends DomainResourceBuilder {
      */
     public TestReportBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public TestReportBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param name - A free text natural language name identifying the executed TestScript. */
@@ -167,6 +177,11 @@ public interface TestReportBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public TestReportBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -189,12 +204,22 @@ public interface TestReportBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TestReportBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Identifier for the TestScript assigned for external purposes outside the
      *     context of FHIR.
      */
     public TestReportBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public TestReportBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /**
@@ -242,6 +267,13 @@ public interface TestReportBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TestReportBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param participant - A participant in the test execution, either the execution engine, a
      *     client, or a server.
@@ -259,6 +291,12 @@ public interface TestReportBuilder extends DomainResourceBuilder {
       this.participant = Collections.unmodifiableCollection(participant);
       return this;
     }
+
+    public TestReportBuilder.Impl withParticipant(
+        @NonNull TestReport_ParticipantBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param test - A test executed from the test script. */
     public TestReportBuilder.Impl withTest(@NonNull TestReport.Test... test) {
       this.test = Arrays.asList(test);
@@ -269,6 +307,11 @@ public interface TestReportBuilder extends DomainResourceBuilder {
       this.test = Collections.unmodifiableCollection(test);
       return this;
     }
+
+    public TestReportBuilder.Impl withTest(@NonNull TestReport_TestBuilder... test) {
+      this.test = Arrays.stream(test).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param teardown - The results of the series of operations required to clean up after all the
      *     tests were executed (successfully or otherwise).
@@ -277,12 +320,22 @@ public interface TestReportBuilder extends DomainResourceBuilder {
       this.teardown = Optional.of(teardown);
       return this;
     }
+
+    public TestReportBuilder.Impl withTeardown(@NonNull TestReport_TeardownBuilder teardown) {
+      this.teardown = Optional.of(teardown.build());
+      return this;
+    }
     /**
      * @param setup - The results of the series of required setup operations before the tests were
      *     executed.
      */
     public TestReportBuilder.Impl withSetup(@NonNull TestReport.Setup setup) {
       this.setup = Optional.of(setup);
+      return this;
+    }
+
+    public TestReportBuilder.Impl withSetup(@NonNull TestReport_SetupBuilder setup) {
+      this.setup = Optional.of(setup.build());
       return this;
     }
 

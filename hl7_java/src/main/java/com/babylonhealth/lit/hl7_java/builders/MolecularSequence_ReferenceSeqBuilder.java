@@ -108,6 +108,12 @@ public interface MolecularSequence_ReferenceSeqBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MolecularSequence_ReferenceSeqBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param windowEnd */
     public MolecularSequence_ReferenceSeqBuilder.Impl withWindowEnd(@NonNull Integer windowEnd) {
       this.windowEnd = Optional.of(windowEnd);
@@ -117,6 +123,12 @@ public interface MolecularSequence_ReferenceSeqBuilder {
     public MolecularSequence_ReferenceSeqBuilder.Impl withChromosome(
         @NonNull CodeableConcept chromosome) {
       this.chromosome = Optional.of(chromosome);
+      return this;
+    }
+
+    public MolecularSequence_ReferenceSeqBuilder.Impl withChromosome(
+        @NonNull CodeableConceptBuilder chromosome) {
+      this.chromosome = Optional.of(chromosome.build());
       return this;
     }
     /** @param genomeBuild */
@@ -140,6 +152,12 @@ public interface MolecularSequence_ReferenceSeqBuilder {
     public MolecularSequence_ReferenceSeqBuilder.Impl withReferenceSeqId(
         @NonNull CodeableConcept referenceSeqId) {
       this.referenceSeqId = Optional.of(referenceSeqId);
+      return this;
+    }
+
+    public MolecularSequence_ReferenceSeqBuilder.Impl withReferenceSeqId(
+        @NonNull CodeableConceptBuilder referenceSeqId) {
+      this.referenceSeqId = Optional.of(referenceSeqId.build());
       return this;
     }
     /**
@@ -178,6 +196,13 @@ public interface MolecularSequence_ReferenceSeqBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MolecularSequence_ReferenceSeqBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param referenceSeqString */
     public MolecularSequence_ReferenceSeqBuilder.Impl withReferenceSeqString(
         @NonNull String referenceSeqString) {
@@ -188,6 +213,12 @@ public interface MolecularSequence_ReferenceSeqBuilder {
     public MolecularSequence_ReferenceSeqBuilder.Impl withReferenceSeqPointer(
         @NonNull Reference referenceSeqPointer) {
       this.referenceSeqPointer = Optional.of(referenceSeqPointer);
+      return this;
+    }
+
+    public MolecularSequence_ReferenceSeqBuilder.Impl withReferenceSeqPointer(
+        @NonNull ReferenceBuilder referenceSeqPointer) {
+      this.referenceSeqPointer = Optional.of(referenceSeqPointer.build());
       return this;
     }
 

@@ -126,6 +126,11 @@ public interface EndpointBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public EndpointBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -137,6 +142,11 @@ public interface EndpointBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public EndpointBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param name - A friendly name that this endpoint can be referred to with. */
     public EndpointBuilder.Impl withName(@NonNull String name) {
       this.name = Optional.of(name);
@@ -145,6 +155,11 @@ public interface EndpointBuilder extends DomainResourceBuilder {
     /** @param period - The interval during which the endpoint is expected to be operational. */
     public EndpointBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public EndpointBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /** @param header - Additional headers / information to send as part of the notification. */
@@ -173,6 +188,11 @@ public interface EndpointBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public EndpointBuilder.Impl withContact(@NonNull ContactPointBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public EndpointBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -194,6 +214,11 @@ public interface EndpointBuilder extends DomainResourceBuilder {
      */
     public EndpointBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public EndpointBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -218,6 +243,11 @@ public interface EndpointBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EndpointBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Identifier for the organization that is used to identify the endpoint
      *     across multiple disparate systems.
@@ -232,6 +262,11 @@ public interface EndpointBuilder extends DomainResourceBuilder {
      */
     public EndpointBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public EndpointBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -297,6 +332,13 @@ public interface EndpointBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public EndpointBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param managingOrganization - The organization that manages this endpoint (even if
      *     technically another organization is hosting this in the cloud, it is the organization
@@ -304,6 +346,12 @@ public interface EndpointBuilder extends DomainResourceBuilder {
      */
     public EndpointBuilder.Impl withManagingOrganization(@NonNull Reference managingOrganization) {
       this.managingOrganization = Optional.of(managingOrganization);
+      return this;
+    }
+
+    public EndpointBuilder.Impl withManagingOrganization(
+        @NonNull ReferenceBuilder managingOrganization) {
+      this.managingOrganization = Optional.of(managingOrganization.build());
       return this;
     }
 

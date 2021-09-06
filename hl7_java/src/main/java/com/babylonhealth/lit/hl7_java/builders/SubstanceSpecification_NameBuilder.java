@@ -91,9 +91,20 @@ public interface SubstanceSpecification_NameBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public SubstanceSpecification_NameBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param status - Status of substance within the catalogue e.g. approved. */
     public SubstanceSpecification_NameBuilder.Impl withStatus(@NonNull CodeableConcept status) {
       this.status = Optional.of(status);
+      return this;
+    }
+
+    public SubstanceSpecification_NameBuilder.Impl withStatus(
+        @NonNull CodeableConceptBuilder status) {
+      this.status = Optional.of(status.build());
       return this;
     }
     /** @param domain - If the substance applies to only human or veterinary use. */
@@ -107,6 +118,12 @@ public interface SubstanceSpecification_NameBuilder {
       this.domain = Collections.unmodifiableCollection(domain);
       return this;
     }
+
+    public SubstanceSpecification_NameBuilder.Impl withDomain(
+        @NonNull CodeableConceptBuilder... domain) {
+      this.domain = Arrays.stream(domain).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param source - Supporting literature. */
     public SubstanceSpecification_NameBuilder.Impl withSource(@NonNull Reference... source) {
       this.source = Arrays.asList(source);
@@ -116,6 +133,11 @@ public interface SubstanceSpecification_NameBuilder {
     public SubstanceSpecification_NameBuilder.Impl withSource(
         @NonNull Collection<Reference> source) {
       this.source = Collections.unmodifiableCollection(source);
+      return this;
+    }
+
+    public SubstanceSpecification_NameBuilder.Impl withSource(@NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param synonym */
@@ -130,6 +152,12 @@ public interface SubstanceSpecification_NameBuilder {
       this.synonym = Collections.unmodifiableCollection(synonym);
       return this;
     }
+
+    public SubstanceSpecification_NameBuilder.Impl withSynonym(
+        @NonNull SubstanceSpecification_NameBuilder... synonym) {
+      this.synonym = Arrays.stream(synonym).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public SubstanceSpecification_NameBuilder.Impl withLanguage(
         @NonNull CodeableConcept... language) {
@@ -140,6 +168,12 @@ public interface SubstanceSpecification_NameBuilder {
     public SubstanceSpecification_NameBuilder.Impl withLanguage(
         @NonNull Collection<CodeableConcept> language) {
       this.language = Collections.unmodifiableCollection(language);
+      return this;
+    }
+
+    public SubstanceSpecification_NameBuilder.Impl withLanguage(
+        @NonNull CodeableConceptBuilder... language) {
+      this.language = Arrays.stream(language).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -165,6 +199,12 @@ public interface SubstanceSpecification_NameBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSpecification_NameBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param preferred */
     public SubstanceSpecification_NameBuilder.Impl withPreferred(@NonNull Boolean preferred) {
       this.preferred = Optional.of(preferred);
@@ -182,6 +222,12 @@ public interface SubstanceSpecification_NameBuilder {
       this.translation = Collections.unmodifiableCollection(translation);
       return this;
     }
+
+    public SubstanceSpecification_NameBuilder.Impl withTranslation(
+        @NonNull SubstanceSpecification_NameBuilder... translation) {
+      this.translation = Arrays.stream(translation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param jurisdiction */
     public SubstanceSpecification_NameBuilder.Impl withJurisdiction(
         @NonNull CodeableConcept... jurisdiction) {
@@ -192,6 +238,12 @@ public interface SubstanceSpecification_NameBuilder {
     public SubstanceSpecification_NameBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public SubstanceSpecification_NameBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -230,6 +282,13 @@ public interface SubstanceSpecification_NameBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceSpecification_NameBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param official */
     public SubstanceSpecification_NameBuilder.Impl withOfficial(
         @NonNull SubstanceSpecification$Name$Official... official) {
@@ -240,6 +299,12 @@ public interface SubstanceSpecification_NameBuilder {
     public SubstanceSpecification_NameBuilder.Impl withOfficial(
         @NonNull Collection<SubstanceSpecification$Name$Official> official) {
       this.official = Collections.unmodifiableCollection(official);
+      return this;
+    }
+
+    public SubstanceSpecification_NameBuilder.Impl withOfficial(
+        @NonNull SubstanceSpecification_Name_OfficialBuilder... official) {
+      this.official = Arrays.stream(official).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -131,6 +131,12 @@ public interface StructureMap_Group_Rule_TargetBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public StructureMap_Group_Rule_TargetBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param transform */
     public StructureMap_Group_Rule_TargetBuilder.Impl withTransform(
         @NonNull MAP_TRANSFORM transform) {
@@ -184,6 +190,13 @@ public interface StructureMap_Group_Rule_TargetBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public StructureMap_Group_Rule_TargetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param parameter */
     public StructureMap_Group_Rule_TargetBuilder.Impl withParameter(
         @NonNull StructureMap$Group$Rule$Target$Parameter... parameter) {
@@ -194,6 +207,12 @@ public interface StructureMap_Group_Rule_TargetBuilder {
     public StructureMap_Group_Rule_TargetBuilder.Impl withParameter(
         @NonNull Collection<StructureMap$Group$Rule$Target$Parameter> parameter) {
       this.parameter = Collections.unmodifiableCollection(parameter);
+      return this;
+    }
+
+    public StructureMap_Group_Rule_TargetBuilder.Impl withParameter(
+        @NonNull StructureMap_Group_Rule_Target_ParameterBuilder... parameter) {
+      this.parameter = Arrays.stream(parameter).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -294,6 +294,11 @@ public interface Codesystem_historyBuilder extends ExtensionBuilder {
       return this;
     }
 
+    public Codesystem_historyBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Codesystem_history build() {
       return new Codesystem_history(
           OptionConverters.toScala(id),

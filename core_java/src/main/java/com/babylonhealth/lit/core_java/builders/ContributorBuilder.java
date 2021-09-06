@@ -92,6 +92,11 @@ public interface ContributorBuilder extends ElementBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public ContributorBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the element. To make the use of extensions safe and manageable, there
@@ -112,6 +117,11 @@ public interface ContributorBuilder extends ElementBuilder {
      */
     public ContributorBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ContributorBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
 

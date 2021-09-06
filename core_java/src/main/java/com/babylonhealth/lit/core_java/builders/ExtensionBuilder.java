@@ -311,6 +311,11 @@ public interface ExtensionBuilder extends ElementBuilder {
       return this;
     }
 
+    public ExtensionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Extension build() {
       return new Extension(
           OptionConverters.toScala(id),

@@ -106,10 +106,22 @@ public interface MedicinalProductIngredient_SpecifiedSubstanceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstanceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param confidentiality */
     public MedicinalProductIngredient_SpecifiedSubstanceBuilder.Impl withConfidentiality(
         @NonNull CodeableConcept confidentiality) {
       this.confidentiality = Optional.of(confidentiality);
+      return this;
+    }
+
+    public MedicinalProductIngredient_SpecifiedSubstanceBuilder.Impl withConfidentiality(
+        @NonNull CodeableConceptBuilder confidentiality) {
+      this.confidentiality = Optional.of(confidentiality.build());
       return this;
     }
     /**
@@ -148,6 +160,13 @@ public interface MedicinalProductIngredient_SpecifiedSubstanceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstanceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param strength */
     public MedicinalProductIngredient_SpecifiedSubstanceBuilder.Impl withStrength(
         @NonNull MedicinalProductIngredient$SpecifiedSubstance$Strength... strength) {
@@ -158,6 +177,12 @@ public interface MedicinalProductIngredient_SpecifiedSubstanceBuilder {
     public MedicinalProductIngredient_SpecifiedSubstanceBuilder.Impl withStrength(
         @NonNull Collection<MedicinalProductIngredient$SpecifiedSubstance$Strength> strength) {
       this.strength = Collections.unmodifiableCollection(strength);
+      return this;
+    }
+
+    public MedicinalProductIngredient_SpecifiedSubstanceBuilder.Impl withStrength(
+        @NonNull MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder... strength) {
+      this.strength = Arrays.stream(strength).map(e -> e.build()).collect(toList());
       return this;
     }
 

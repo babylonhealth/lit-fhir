@@ -83,6 +83,12 @@ public interface MedicationKnowledge_Regulatory_MaxDispenseBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public MedicationKnowledge_Regulatory_MaxDispenseBuilder.Impl withPeriod(
+        @NonNull DurationBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -105,6 +111,12 @@ public interface MedicationKnowledge_Regulatory_MaxDispenseBuilder {
     public MedicationKnowledge_Regulatory_MaxDispenseBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationKnowledge_Regulatory_MaxDispenseBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -141,6 +153,13 @@ public interface MedicationKnowledge_Regulatory_MaxDispenseBuilder {
     public MedicationKnowledge_Regulatory_MaxDispenseBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationKnowledge_Regulatory_MaxDispenseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

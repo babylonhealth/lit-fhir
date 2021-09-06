@@ -134,6 +134,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CodeSystemBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -143,6 +148,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
      */
     public CodeSystemBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public CodeSystemBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -205,6 +215,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public CodeSystemBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this code system is needed and why it has been designed
      *     as it has.
@@ -243,6 +258,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public CodeSystemBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -263,6 +283,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
      */
     public CodeSystemBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public CodeSystemBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -299,6 +324,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public CodeSystemBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -317,6 +347,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
      */
     public CodeSystemBuilder.Impl withUseContext(@NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public CodeSystemBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -359,6 +394,12 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
     public CodeSystemBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public CodeSystemBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -439,6 +480,13 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CodeSystemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param filter - A filter that can be used in a value set compose statement when selecting
      *     concepts using a filter.
@@ -453,6 +501,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
      */
     public CodeSystemBuilder.Impl withFilter(@NonNull Collection<CodeSystem.Filter> filter) {
       this.filter = Collections.unmodifiableCollection(filter);
+      return this;
+    }
+
+    public CodeSystemBuilder.Impl withFilter(@NonNull CodeSystem_FilterBuilder... filter) {
+      this.filter = Arrays.stream(filter).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -471,6 +524,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
       this.property = Collections.unmodifiableCollection(property);
       return this;
     }
+
+    public CodeSystemBuilder.Impl withProperty(@NonNull CodeSystem_PropertyBuilder... property) {
+      this.property = Arrays.stream(property).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param concept - Concepts that are in the code system. The concept definitions are inherently
      *     hierarchical, but the definitions must be consulted to determine what the meanings of the
@@ -487,6 +545,11 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
      */
     public CodeSystemBuilder.Impl withConcept(@NonNull Collection<CodeSystem.Concept> concept) {
       this.concept = Collections.unmodifiableCollection(concept);
+      return this;
+    }
+
+    public CodeSystemBuilder.Impl withConcept(@NonNull CodeSystem_ConceptBuilder... concept) {
+      this.concept = Arrays.stream(concept).map(e -> e.build()).collect(toList());
       return this;
     }
 

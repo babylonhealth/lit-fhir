@@ -128,6 +128,12 @@ public interface CapabilityStatement_Rest_ResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CapabilityStatement_Rest_ResourceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param versioning */
     public CapabilityStatement_Rest_ResourceBuilder.Impl withVersioning(
         @NonNull VERSIONING_POLICY versioning) {
@@ -242,6 +248,13 @@ public interface CapabilityStatement_Rest_ResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CapabilityStatement_Rest_ResourceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param conditionalCreate */
     public CapabilityStatement_Rest_ResourceBuilder.Impl withConditionalCreate(
         @NonNull Boolean conditionalCreate) {
@@ -272,6 +285,12 @@ public interface CapabilityStatement_Rest_ResourceBuilder {
       this.operation = Collections.unmodifiableCollection(operation);
       return this;
     }
+
+    public CapabilityStatement_Rest_ResourceBuilder.Impl withOperation(
+        @NonNull CapabilityStatement_Rest_Resource_OperationBuilder... operation) {
+      this.operation = Arrays.stream(operation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param interaction */
     public CapabilityStatement_Rest_ResourceBuilder.Impl withInteraction(
         @NonNull CapabilityStatement$Rest$Resource$Interaction... interaction) {
@@ -284,6 +303,12 @@ public interface CapabilityStatement_Rest_ResourceBuilder {
       this.interaction = Collections.unmodifiableCollection(interaction);
       return this;
     }
+
+    public CapabilityStatement_Rest_ResourceBuilder.Impl withInteraction(
+        @NonNull CapabilityStatement_Rest_Resource_InteractionBuilder... interaction) {
+      this.interaction = Arrays.stream(interaction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param searchParam */
     public CapabilityStatement_Rest_ResourceBuilder.Impl withSearchParam(
         @NonNull CapabilityStatement$Rest$Resource$SearchParam... searchParam) {
@@ -294,6 +319,12 @@ public interface CapabilityStatement_Rest_ResourceBuilder {
     public CapabilityStatement_Rest_ResourceBuilder.Impl withSearchParam(
         @NonNull Collection<CapabilityStatement$Rest$Resource$SearchParam> searchParam) {
       this.searchParam = Collections.unmodifiableCollection(searchParam);
+      return this;
+    }
+
+    public CapabilityStatement_Rest_ResourceBuilder.Impl withSearchParam(
+        @NonNull CapabilityStatement_Rest_Resource_SearchParamBuilder... searchParam) {
+      this.searchParam = Arrays.stream(searchParam).map(e -> e.build()).collect(toList());
       return this;
     }
 

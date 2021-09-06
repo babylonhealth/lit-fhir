@@ -101,6 +101,12 @@ public interface VerificationResult_ValidatorBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public VerificationResult_ValidatorBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -137,6 +143,13 @@ public interface VerificationResult_ValidatorBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public VerificationResult_ValidatorBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identityCertificate */
     public VerificationResult_ValidatorBuilder.Impl withIdentityCertificate(
         @NonNull String identityCertificate) {
@@ -147,6 +160,12 @@ public interface VerificationResult_ValidatorBuilder {
     public VerificationResult_ValidatorBuilder.Impl withAttestationSignature(
         @NonNull Signature attestationSignature) {
       this.attestationSignature = Optional.of(attestationSignature);
+      return this;
+    }
+
+    public VerificationResult_ValidatorBuilder.Impl withAttestationSignature(
+        @NonNull SignatureBuilder attestationSignature) {
+      this.attestationSignature = Optional.of(attestationSignature.build());
       return this;
     }
 

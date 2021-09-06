@@ -104,6 +104,11 @@ public interface GroupBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public GroupBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -115,12 +120,22 @@ public interface GroupBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public GroupBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param code - Provides a specific type of resource the group includes; e.g. "cow", "syringe",
      *     etc.
      */
     public GroupBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public GroupBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param name - A label assigned to the group for human identification and communication. */
@@ -164,6 +179,11 @@ public interface GroupBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public GroupBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -186,6 +206,11 @@ public interface GroupBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public GroupBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique business identifier for this group. */
     public GroupBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -194,6 +219,11 @@ public interface GroupBuilder extends DomainResourceBuilder {
     /** @param identifier - A unique business identifier for this group. */
     public GroupBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public GroupBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -212,6 +242,11 @@ public interface GroupBuilder extends DomainResourceBuilder {
      */
     public GroupBuilder.Impl withManagingEntity(@NonNull Reference managingEntity) {
       this.managingEntity = Optional.of(managingEntity);
+      return this;
+    }
+
+    public GroupBuilder.Impl withManagingEntity(@NonNull ReferenceBuilder managingEntity) {
+      this.managingEntity = Optional.of(managingEntity.build());
       return this;
     }
     /**
@@ -249,6 +284,12 @@ public interface GroupBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public GroupBuilder.Impl withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param member - Identifies the resource instances that are members of the group. */
     public GroupBuilder.Impl withMember(@NonNull Group.Member... member) {
       this.member = Arrays.asList(member);
@@ -257,6 +298,11 @@ public interface GroupBuilder extends DomainResourceBuilder {
     /** @param member - Identifies the resource instances that are members of the group. */
     public GroupBuilder.Impl withMember(@NonNull Collection<Group.Member> member) {
       this.member = Collections.unmodifiableCollection(member);
+      return this;
+    }
+
+    public GroupBuilder.Impl withMember(@NonNull Group_MemberBuilder... member) {
+      this.member = Arrays.stream(member).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -274,6 +320,12 @@ public interface GroupBuilder extends DomainResourceBuilder {
     public GroupBuilder.Impl withCharacteristic(
         @NonNull Collection<Group.Characteristic> characteristic) {
       this.characteristic = Collections.unmodifiableCollection(characteristic);
+      return this;
+    }
+
+    public GroupBuilder.Impl withCharacteristic(
+        @NonNull Group_CharacteristicBuilder... characteristic) {
+      this.characteristic = Arrays.stream(characteristic).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -95,9 +95,21 @@ public interface SubstanceReferenceInformation_TargetBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param target - Todo. */
     public SubstanceReferenceInformation_TargetBuilder.Impl withTarget(@NonNull Identifier target) {
       this.target = Optional.of(target);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withTarget(
+        @NonNull IdentifierBuilder target) {
+      this.target = Optional.of(target.build());
       return this;
     }
     /** @param source */
@@ -112,10 +124,22 @@ public interface SubstanceReferenceInformation_TargetBuilder {
       this.source = Collections.unmodifiableCollection(source);
       return this;
     }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withSource(
+        @NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param organism */
     public SubstanceReferenceInformation_TargetBuilder.Impl withOrganism(
         @NonNull CodeableConcept organism) {
       this.organism = Optional.of(organism);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withOrganism(
+        @NonNull CodeableConceptBuilder organism) {
+      this.organism = Optional.of(organism.build());
       return this;
     }
     /**
@@ -142,6 +166,12 @@ public interface SubstanceReferenceInformation_TargetBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param amount Field is a 'choice' field. Type should be one of Quantity, Range, String. To
      *     pass the value in, wrap with one of the
@@ -158,16 +188,34 @@ public interface SubstanceReferenceInformation_TargetBuilder {
       this.amountType = Optional.of(amountType);
       return this;
     }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withAmountType(
+        @NonNull CodeableConceptBuilder amountType) {
+      this.amountType = Optional.of(amountType.build());
+      return this;
+    }
     /** @param interaction */
     public SubstanceReferenceInformation_TargetBuilder.Impl withInteraction(
         @NonNull CodeableConcept interaction) {
       this.interaction = Optional.of(interaction);
       return this;
     }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withInteraction(
+        @NonNull CodeableConceptBuilder interaction) {
+      this.interaction = Optional.of(interaction.build());
+      return this;
+    }
     /** @param organismType */
     public SubstanceReferenceInformation_TargetBuilder.Impl withOrganismType(
         @NonNull CodeableConcept organismType) {
       this.organismType = Optional.of(organismType);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withOrganismType(
+        @NonNull CodeableConceptBuilder organismType) {
+      this.organismType = Optional.of(organismType.build());
       return this;
     }
     /**
@@ -204,6 +252,13 @@ public interface SubstanceReferenceInformation_TargetBuilder {
     public SubstanceReferenceInformation_TargetBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_TargetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

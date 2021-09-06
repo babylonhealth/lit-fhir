@@ -120,6 +120,12 @@ public interface ImplementationGuide_Manifest_PageBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImplementationGuide_Manifest_PageBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -154,6 +160,13 @@ public interface ImplementationGuide_Manifest_PageBuilder {
     public ImplementationGuide_Manifest_PageBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ImplementationGuide_Manifest_PageBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

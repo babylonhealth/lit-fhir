@@ -106,6 +106,11 @@ public interface Us_core_directBuilder extends ExtensionBuilder {
       return this;
     }
 
+    public Us_core_directBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Us_core_direct build() {
       return new Us_core_direct(
           OptionConverters.toScala(id),

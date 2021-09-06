@@ -116,6 +116,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public EncounterBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -125,6 +130,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
      */
     public EncounterBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -143,9 +153,19 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
+
+    public EncounterBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param period - The start and end time of the encounter. */
     public EncounterBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -156,6 +176,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.length = Optional.of(length);
       return this;
     }
+
+    public EncounterBuilder.Impl withLength(@NonNull DurationBuilder length) {
+      this.length = Optional.of(length.build());
+      return this;
+    }
     /**
      * @param partOf - Another Encounter of which this encounter is a part of (administratively or
      *     in time).
@@ -164,9 +189,19 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.partOf = Optional.of(partOf);
       return this;
     }
+
+    public EncounterBuilder.Impl withPartOf(@NonNull ReferenceBuilder partOf) {
+      this.partOf = Optional.of(partOf.build());
+      return this;
+    }
     /** @param subject - The patient or group present at the encounter. */
     public EncounterBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /**
@@ -185,6 +220,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public EncounterBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param account - The set of accounts that may be used for billing for this Encounter. */
     public EncounterBuilder.Impl withAccount(@NonNull Reference... account) {
       this.account = Arrays.asList(account);
@@ -195,6 +235,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.account = Collections.unmodifiableCollection(account);
       return this;
     }
+
+    public EncounterBuilder.Impl withAccount(@NonNull ReferenceBuilder... account) {
+      this.account = Arrays.stream(account).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public EncounterBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -203,6 +248,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     /** @param priority - Indicates the urgency of the encounter. */
     public EncounterBuilder.Impl withPriority(@NonNull CodeableConcept priority) {
       this.priority = Optional.of(priority);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withPriority(@NonNull CodeableConceptBuilder priority) {
+      this.priority = Optional.of(priority.build());
       return this;
     }
     /**
@@ -221,6 +271,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
      */
     public EncounterBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -245,6 +300,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EncounterBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Identifier(s) by which this encounter is known. */
     public EncounterBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -253,6 +313,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     /** @param identifier - Identifier(s) by which this encounter is known. */
     public EncounterBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -271,12 +336,22 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
       return this;
     }
+
+    public EncounterBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param serviceType - Broad categorization of the service that is to be provided (e.g.
      *     cardiology).
      */
     public EncounterBuilder.Impl withServiceType(@NonNull CodeableConcept serviceType) {
       this.serviceType = Optional.of(serviceType);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withServiceType(@NonNull CodeableConceptBuilder serviceType) {
+      this.serviceType = Optional.of(serviceType.build());
       return this;
     }
     /** @param appointment - The appointment that scheduled this encounter. */
@@ -287,6 +362,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     /** @param appointment - The appointment that scheduled this encounter. */
     public EncounterBuilder.Impl withAppointment(@NonNull Collection<Reference> appointment) {
       this.appointment = Collections.unmodifiableCollection(appointment);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withAppointment(@NonNull ReferenceBuilder... appointment) {
+      this.appointment = Arrays.stream(appointment).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -325,6 +405,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.episodeOfCare = Collections.unmodifiableCollection(episodeOfCare);
       return this;
     }
+
+    public EncounterBuilder.Impl withEpisodeOfCare(@NonNull ReferenceBuilder... episodeOfCare) {
+      this.episodeOfCare = Arrays.stream(episodeOfCare).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param reasonReference - Reason the encounter takes place, expressed as a code. For
      *     admissions, this can be used for a coded admission diagnosis.
@@ -342,6 +427,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public EncounterBuilder.Impl withReasonReference(@NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param serviceProvider - The organization that is primarily responsible for this Encounter's
      *     services. This MAY be the same as the organization on the Patient record, however it
@@ -351,6 +441,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
      */
     public EncounterBuilder.Impl withServiceProvider(@NonNull Reference serviceProvider) {
       this.serviceProvider = Optional.of(serviceProvider);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withServiceProvider(@NonNull ReferenceBuilder serviceProvider) {
+      this.serviceProvider = Optional.of(serviceProvider.build());
       return this;
     }
     /**
@@ -388,6 +483,13 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public EncounterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param location - List of locations where the patient has been during this encounter. */
     public EncounterBuilder.Impl withLocation(@NonNull Encounter.Location... location) {
       this.location = Arrays.asList(location);
@@ -396,6 +498,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     /** @param location - List of locations where the patient has been during this encounter. */
     public EncounterBuilder.Impl withLocation(@NonNull Collection<Encounter.Location> location) {
       this.location = Collections.unmodifiableCollection(location);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withLocation(@NonNull Encounter_LocationBuilder... location) {
+      this.location = Arrays.stream(location).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param diagnosis - The list of diagnosis relevant to this encounter. */
@@ -408,6 +515,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.diagnosis = Collections.unmodifiableCollection(diagnosis);
       return this;
     }
+
+    public EncounterBuilder.Impl withDiagnosis(@NonNull Encounter_DiagnosisBuilder... diagnosis) {
+      this.diagnosis = Arrays.stream(diagnosis).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param participant - The list of people responsible for providing the service. */
     public EncounterBuilder.Impl withParticipant(@NonNull Encounter.Participant... participant) {
       this.participant = Arrays.asList(participant);
@@ -417,6 +529,12 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     public EncounterBuilder.Impl withParticipant(
         @NonNull Collection<Encounter.Participant> participant) {
       this.participant = Collections.unmodifiableCollection(participant);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withParticipant(
+        @NonNull Encounter_ParticipantBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -444,6 +562,12 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.classHistory = Collections.unmodifiableCollection(classHistory);
       return this;
     }
+
+    public EncounterBuilder.Impl withClassHistory(
+        @NonNull Encounter_ClassHistoryBuilder... classHistory) {
+      this.classHistory = Arrays.stream(classHistory).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param statusHistory - The status history permits the encounter resource to contain the
      *     status history without needing to read through the historical versions of the resource,
@@ -464,10 +588,22 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       this.statusHistory = Collections.unmodifiableCollection(statusHistory);
       return this;
     }
+
+    public EncounterBuilder.Impl withStatusHistory(
+        @NonNull Encounter_StatusHistoryBuilder... statusHistory) {
+      this.statusHistory = Arrays.stream(statusHistory).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param hospitalization - Details about the admission to a healthcare service. */
     public EncounterBuilder.Impl withHospitalization(
         @NonNull Encounter.Hospitalization hospitalization) {
       this.hospitalization = Optional.of(hospitalization);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withHospitalization(
+        @NonNull Encounter_HospitalizationBuilder hospitalization) {
+      this.hospitalization = Optional.of(hospitalization.build());
       return this;
     }
 

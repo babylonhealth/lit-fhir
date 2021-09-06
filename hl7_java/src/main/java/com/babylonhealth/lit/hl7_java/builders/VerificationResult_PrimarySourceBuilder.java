@@ -81,6 +81,11 @@ public interface VerificationResult_PrimarySourceBuilder {
       this.who = Optional.of(who);
       return this;
     }
+
+    public VerificationResult_PrimarySourceBuilder.Impl withWho(@NonNull ReferenceBuilder who) {
+      this.who = Optional.of(who.build());
+      return this;
+    }
     /** @param _type */
     public VerificationResult_PrimarySourceBuilder.Impl withType(
         @NonNull CodeableConcept... _type) {
@@ -91,6 +96,12 @@ public interface VerificationResult_PrimarySourceBuilder {
     public VerificationResult_PrimarySourceBuilder.Impl withType(
         @NonNull Collection<CodeableConcept> _type) {
       this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public VerificationResult_PrimarySourceBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -117,6 +128,12 @@ public interface VerificationResult_PrimarySourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public VerificationResult_PrimarySourceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param validationDate */
     public VerificationResult_PrimarySourceBuilder.Impl withValidationDate(
         @NonNull FHIRDateTime validationDate) {
@@ -129,10 +146,22 @@ public interface VerificationResult_PrimarySourceBuilder {
       this.canPushUpdates = Optional.of(canPushUpdates);
       return this;
     }
+
+    public VerificationResult_PrimarySourceBuilder.Impl withCanPushUpdates(
+        @NonNull CodeableConceptBuilder canPushUpdates) {
+      this.canPushUpdates = Optional.of(canPushUpdates.build());
+      return this;
+    }
     /** @param validationStatus */
     public VerificationResult_PrimarySourceBuilder.Impl withValidationStatus(
         @NonNull CodeableConcept validationStatus) {
       this.validationStatus = Optional.of(validationStatus);
+      return this;
+    }
+
+    public VerificationResult_PrimarySourceBuilder.Impl withValidationStatus(
+        @NonNull CodeableConceptBuilder validationStatus) {
+      this.validationStatus = Optional.of(validationStatus.build());
       return this;
     }
     /**
@@ -171,6 +200,13 @@ public interface VerificationResult_PrimarySourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public VerificationResult_PrimarySourceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param pushTypeAvailable */
     public VerificationResult_PrimarySourceBuilder.Impl withPushTypeAvailable(
         @NonNull CodeableConcept... pushTypeAvailable) {
@@ -183,6 +219,13 @@ public interface VerificationResult_PrimarySourceBuilder {
       this.pushTypeAvailable = Collections.unmodifiableCollection(pushTypeAvailable);
       return this;
     }
+
+    public VerificationResult_PrimarySourceBuilder.Impl withPushTypeAvailable(
+        @NonNull CodeableConceptBuilder... pushTypeAvailable) {
+      this.pushTypeAvailable =
+          Arrays.stream(pushTypeAvailable).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param communicationMethod */
     public VerificationResult_PrimarySourceBuilder.Impl withCommunicationMethod(
         @NonNull CodeableConcept... communicationMethod) {
@@ -193,6 +236,13 @@ public interface VerificationResult_PrimarySourceBuilder {
     public VerificationResult_PrimarySourceBuilder.Impl withCommunicationMethod(
         @NonNull Collection<CodeableConcept> communicationMethod) {
       this.communicationMethod = Collections.unmodifiableCollection(communicationMethod);
+      return this;
+    }
+
+    public VerificationResult_PrimarySourceBuilder.Impl withCommunicationMethod(
+        @NonNull CodeableConceptBuilder... communicationMethod) {
+      this.communicationMethod =
+          Arrays.stream(communicationMethod).map(e -> e.build()).collect(toList());
       return this;
     }
 

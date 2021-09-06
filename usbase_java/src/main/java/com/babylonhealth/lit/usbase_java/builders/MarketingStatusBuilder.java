@@ -116,6 +116,11 @@ public interface MarketingStatusBuilder extends BackboneElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MarketingStatusBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param restoreDate - The date when the Medicinal Product is placed on the market by the
      *     Marketing Authorisation Holder (or where applicable, the manufacturer/distributor) in a
@@ -135,6 +140,12 @@ public interface MarketingStatusBuilder extends BackboneElementBuilder {
      */
     public MarketingStatusBuilder.Impl withJurisdiction(@NonNull CodeableConcept jurisdiction) {
       this.jurisdiction = Optional.of(jurisdiction);
+      return this;
+    }
+
+    public MarketingStatusBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder jurisdiction) {
+      this.jurisdiction = Optional.of(jurisdiction.build());
       return this;
     }
     /**
@@ -169,6 +180,13 @@ public interface MarketingStatusBuilder extends BackboneElementBuilder {
     public MarketingStatusBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MarketingStatusBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -82,6 +82,11 @@ public interface Procedure_FocalDeviceBuilder {
       this.action = Optional.of(action);
       return this;
     }
+
+    public Procedure_FocalDeviceBuilder.Impl withAction(@NonNull CodeableConceptBuilder action) {
+      this.action = Optional.of(action.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -103,6 +108,11 @@ public interface Procedure_FocalDeviceBuilder {
     public Procedure_FocalDeviceBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Procedure_FocalDeviceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -139,6 +149,13 @@ public interface Procedure_FocalDeviceBuilder {
     public Procedure_FocalDeviceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Procedure_FocalDeviceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

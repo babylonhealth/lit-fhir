@@ -346,6 +346,12 @@ public interface StructureMap_Group_Rule_SourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public StructureMap_Group_Rule_SourceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param condition */
     public StructureMap_Group_Rule_SourceBuilder.Impl withCondition(@NonNull String condition) {
       this.condition = Optional.of(condition);
@@ -405,6 +411,13 @@ public interface StructureMap_Group_Rule_SourceBuilder {
     public StructureMap_Group_Rule_SourceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public StructureMap_Group_Rule_SourceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

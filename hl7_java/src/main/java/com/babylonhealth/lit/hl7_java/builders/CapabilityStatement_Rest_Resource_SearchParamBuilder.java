@@ -107,6 +107,12 @@ public interface CapabilityStatement_Rest_Resource_SearchParamBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CapabilityStatement_Rest_Resource_SearchParamBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param definition */
     public CapabilityStatement_Rest_Resource_SearchParamBuilder.Impl withDefinition(
         @NonNull String definition) {
@@ -153,6 +159,13 @@ public interface CapabilityStatement_Rest_Resource_SearchParamBuilder {
     public CapabilityStatement_Rest_Resource_SearchParamBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CapabilityStatement_Rest_Resource_SearchParamBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

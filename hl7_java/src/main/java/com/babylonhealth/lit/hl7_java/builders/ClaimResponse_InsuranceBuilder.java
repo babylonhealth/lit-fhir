@@ -107,9 +107,21 @@ public interface ClaimResponse_InsuranceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClaimResponse_InsuranceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param claimResponse */
     public ClaimResponse_InsuranceBuilder.Impl withClaimResponse(@NonNull Reference claimResponse) {
       this.claimResponse = Optional.of(claimResponse);
+      return this;
+    }
+
+    public ClaimResponse_InsuranceBuilder.Impl withClaimResponse(
+        @NonNull ReferenceBuilder claimResponse) {
+      this.claimResponse = Optional.of(claimResponse.build());
       return this;
     }
     /**
@@ -146,6 +158,13 @@ public interface ClaimResponse_InsuranceBuilder {
     public ClaimResponse_InsuranceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ClaimResponse_InsuranceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param businessArrangement */

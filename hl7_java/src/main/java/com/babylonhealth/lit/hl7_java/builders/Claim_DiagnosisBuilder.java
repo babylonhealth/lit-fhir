@@ -108,6 +108,11 @@ public interface Claim_DiagnosisBuilder {
       this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
+
+    public Claim_DiagnosisBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -130,14 +135,31 @@ public interface Claim_DiagnosisBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Claim_DiagnosisBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param onAdmission */
     public Claim_DiagnosisBuilder.Impl withOnAdmission(@NonNull CodeableConcept onAdmission) {
       this.onAdmission = Optional.of(onAdmission);
       return this;
     }
+
+    public Claim_DiagnosisBuilder.Impl withOnAdmission(
+        @NonNull CodeableConceptBuilder onAdmission) {
+      this.onAdmission = Optional.of(onAdmission.build());
+      return this;
+    }
     /** @param packageCode */
     public Claim_DiagnosisBuilder.Impl withPackageCode(@NonNull CodeableConcept packageCode) {
       this.packageCode = Optional.of(packageCode);
+      return this;
+    }
+
+    public Claim_DiagnosisBuilder.Impl withPackageCode(
+        @NonNull CodeableConceptBuilder packageCode) {
+      this.packageCode = Optional.of(packageCode.build());
       return this;
     }
     /**
@@ -174,6 +196,13 @@ public interface Claim_DiagnosisBuilder {
     public Claim_DiagnosisBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Claim_DiagnosisBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

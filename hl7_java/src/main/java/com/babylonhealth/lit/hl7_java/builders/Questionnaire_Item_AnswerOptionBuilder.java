@@ -127,6 +127,12 @@ public interface Questionnaire_Item_AnswerOptionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Questionnaire_Item_AnswerOptionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param initialSelected */
     public Questionnaire_Item_AnswerOptionBuilder.Impl withInitialSelected(
         @NonNull Boolean initialSelected) {
@@ -167,6 +173,13 @@ public interface Questionnaire_Item_AnswerOptionBuilder {
     public Questionnaire_Item_AnswerOptionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Questionnaire_Item_AnswerOptionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

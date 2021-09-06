@@ -101,6 +101,12 @@ public interface MessageDefinition_AllowedResponseBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MessageDefinition_AllowedResponseBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param situation */
     public MessageDefinition_AllowedResponseBuilder.Impl withSituation(@NonNull String situation) {
       this.situation = Optional.of(situation);
@@ -140,6 +146,13 @@ public interface MessageDefinition_AllowedResponseBuilder {
     public MessageDefinition_AllowedResponseBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MessageDefinition_AllowedResponseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

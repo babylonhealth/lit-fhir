@@ -79,9 +79,20 @@ public interface SubstanceSpecification_CodeBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public SubstanceSpecification_CodeBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param status - Status of substance within the catalogue e.g. approved. */
     public SubstanceSpecification_CodeBuilder.Impl withStatus(@NonNull CodeableConcept status) {
       this.status = Optional.of(status);
+      return this;
+    }
+
+    public SubstanceSpecification_CodeBuilder.Impl withStatus(
+        @NonNull CodeableConceptBuilder status) {
+      this.status = Optional.of(status.build());
       return this;
     }
     /** @param source - Supporting literature. */
@@ -93,6 +104,11 @@ public interface SubstanceSpecification_CodeBuilder {
     public SubstanceSpecification_CodeBuilder.Impl withSource(
         @NonNull Collection<Reference> source) {
       this.source = Collections.unmodifiableCollection(source);
+      return this;
+    }
+
+    public SubstanceSpecification_CodeBuilder.Impl withSource(@NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param comment - Textual comment about this record of a substance. */
@@ -121,6 +137,12 @@ public interface SubstanceSpecification_CodeBuilder {
     public SubstanceSpecification_CodeBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstanceSpecification_CodeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param statusDate */
@@ -163,6 +185,13 @@ public interface SubstanceSpecification_CodeBuilder {
     public SubstanceSpecification_CodeBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSpecification_CodeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

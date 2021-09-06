@@ -89,6 +89,11 @@ public interface Bundle_LinkBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Bundle_LinkBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param modifierExtension */
     public Bundle_LinkBuilder.Impl withModifierExtension(@NonNull Extension... modifierExtension) {
       this.modifierExtension = Arrays.asList(modifierExtension);
@@ -98,6 +103,13 @@ public interface Bundle_LinkBuilder {
     public Bundle_LinkBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Bundle_LinkBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

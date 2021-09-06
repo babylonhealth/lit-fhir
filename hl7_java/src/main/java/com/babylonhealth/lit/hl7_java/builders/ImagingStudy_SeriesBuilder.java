@@ -121,9 +121,19 @@ public interface ImagingStudy_SeriesBuilder {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public ImagingStudy_SeriesBuilder.Impl withEndpoint(@NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param bodySite */
     public ImagingStudy_SeriesBuilder.Impl withBodySite(@NonNull Coding bodySite) {
       this.bodySite = Optional.of(bodySite);
+      return this;
+    }
+
+    public ImagingStudy_SeriesBuilder.Impl withBodySite(@NonNull CodingBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
       return this;
     }
     /** @param specimen */
@@ -134,6 +144,11 @@ public interface ImagingStudy_SeriesBuilder {
     /** @param specimen */
     public ImagingStudy_SeriesBuilder.Impl withSpecimen(@NonNull Collection<Reference> specimen) {
       this.specimen = Collections.unmodifiableCollection(specimen);
+      return this;
+    }
+
+    public ImagingStudy_SeriesBuilder.Impl withSpecimen(@NonNull ReferenceBuilder... specimen) {
+      this.specimen = Arrays.stream(specimen).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -158,9 +173,19 @@ public interface ImagingStudy_SeriesBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImagingStudy_SeriesBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param laterality */
     public ImagingStudy_SeriesBuilder.Impl withLaterality(@NonNull Coding laterality) {
       this.laterality = Optional.of(laterality);
+      return this;
+    }
+
+    public ImagingStudy_SeriesBuilder.Impl withLaterality(@NonNull CodingBuilder laterality) {
+      this.laterality = Optional.of(laterality.build());
       return this;
     }
     /**
@@ -207,6 +232,13 @@ public interface ImagingStudy_SeriesBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ImagingStudy_SeriesBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param numberOfInstances - Number of SOP Instances in Study. This value given may be larger
      *     than the number of instance elements this resource contains due to resource availability,
@@ -230,6 +262,12 @@ public interface ImagingStudy_SeriesBuilder {
       this.instance = Collections.unmodifiableCollection(instance);
       return this;
     }
+
+    public ImagingStudy_SeriesBuilder.Impl withInstance(
+        @NonNull ImagingStudy_Series_InstanceBuilder... instance) {
+      this.instance = Arrays.stream(instance).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performer */
     public ImagingStudy_SeriesBuilder.Impl withPerformer(
         @NonNull ImagingStudy$Series$Performer... performer) {
@@ -240,6 +278,12 @@ public interface ImagingStudy_SeriesBuilder {
     public ImagingStudy_SeriesBuilder.Impl withPerformer(
         @NonNull Collection<ImagingStudy$Series$Performer> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public ImagingStudy_SeriesBuilder.Impl withPerformer(
+        @NonNull ImagingStudy_Series_PerformerBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -144,6 +144,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public EventDefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -153,6 +158,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
      */
     public EventDefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -203,6 +213,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
       this.topic = Collections.unmodifiableCollection(topic);
       return this;
     }
+
+    public EventDefinitionBuilder.Impl withTopic(@NonNull CodeableConceptBuilder... topic) {
+      this.topic = Arrays.stream(topic).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - An individiual or organization primarily involved in the creation and
      *     maintenance of the content.
@@ -219,6 +234,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
       this.author = Collections.unmodifiableCollection(author);
       return this;
     }
+
+    public EventDefinitionBuilder.Impl withAuthor(@NonNull ContactDetailBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param editor - An individual or organization primarily responsible for internal coherence of
      *     the content.
@@ -233,6 +253,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
      */
     public EventDefinitionBuilder.Impl withEditor(@NonNull Collection<ContactDetail> editor) {
       this.editor = Collections.unmodifiableCollection(editor);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withEditor(@NonNull ContactDetailBuilder... editor) {
+      this.editor = Arrays.stream(editor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -261,6 +286,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
      */
     public EventDefinitionBuilder.Impl withContact(@NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -300,6 +330,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
       this.reviewer = Collections.unmodifiableCollection(reviewer);
       return this;
     }
+
+    public EventDefinitionBuilder.Impl withReviewer(@NonNull ContactDetailBuilder... reviewer) {
+      this.reviewer = Arrays.stream(reviewer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param endorser - An individual or organization responsible for officially endorsing the
      *     content for use in some setting.
@@ -314,6 +349,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
      */
     public EventDefinitionBuilder.Impl withEndorser(@NonNull Collection<ContactDetail> endorser) {
       this.endorser = Collections.unmodifiableCollection(endorser);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withEndorser(@NonNull ContactDetailBuilder... endorser) {
+      this.endorser = Arrays.stream(endorser).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -332,6 +372,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
      */
     public EventDefinitionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -354,6 +399,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
      */
     public EventDefinitionBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -391,6 +441,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public EventDefinitionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - A code or group definition that describes the intended subject of the event
      *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
@@ -419,6 +474,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
     public EventDefinitionBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -455,6 +515,12 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
       return this;
     }
+
+    public EventDefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param approvalDate - The date on which the resource content was approved by the publisher.
      *     Approval happens once when the content is officially approved for usage.
@@ -489,6 +555,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
       this.effectivePeriod = Optional.of(effectivePeriod);
       return this;
     }
+
+    public EventDefinitionBuilder.Impl withEffectivePeriod(@NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
+      return this;
+    }
     /**
      * @param relatedArtifact - Related resources such as additional documentation, justification,
      *     or bibliographic references.
@@ -505,6 +576,12 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
     public EventDefinitionBuilder.Impl withRelatedArtifact(
         @NonNull Collection<RelatedArtifact> relatedArtifact) {
       this.relatedArtifact = Collections.unmodifiableCollection(relatedArtifact);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withRelatedArtifact(
+        @NonNull RelatedArtifactBuilder... relatedArtifact) {
+      this.relatedArtifact = Arrays.stream(relatedArtifact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -541,6 +618,13 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
     public EventDefinitionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EventDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

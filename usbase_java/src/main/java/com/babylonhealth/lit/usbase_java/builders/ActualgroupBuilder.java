@@ -110,6 +110,11 @@ public interface ActualgroupBuilder extends GroupBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ActualgroupBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -121,12 +126,22 @@ public interface ActualgroupBuilder extends GroupBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ActualgroupBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param code - Provides a specific type of resource the group includes; e.g. "cow", "syringe",
      *     etc.
      */
     public ActualgroupBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public ActualgroupBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param name - A label assigned to the group for human identification and communication. */
@@ -170,6 +185,11 @@ public interface ActualgroupBuilder extends GroupBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ActualgroupBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -192,6 +212,11 @@ public interface ActualgroupBuilder extends GroupBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ActualgroupBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique business identifier for this group. */
     public ActualgroupBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -200,6 +225,11 @@ public interface ActualgroupBuilder extends GroupBuilder {
     /** @param identifier - A unique business identifier for this group. */
     public ActualgroupBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ActualgroupBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -218,6 +248,11 @@ public interface ActualgroupBuilder extends GroupBuilder {
      */
     public ActualgroupBuilder.Impl withManagingEntity(@NonNull Reference managingEntity) {
       this.managingEntity = Optional.of(managingEntity);
+      return this;
+    }
+
+    public ActualgroupBuilder.Impl withManagingEntity(@NonNull ReferenceBuilder managingEntity) {
+      this.managingEntity = Optional.of(managingEntity.build());
       return this;
     }
     /**
@@ -255,6 +290,13 @@ public interface ActualgroupBuilder extends GroupBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ActualgroupBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param member - Identifies the resource instances that are members of the group. */
     public ActualgroupBuilder.Impl withMember(@NonNull Group.Member... member) {
       this.member = Arrays.asList(member);
@@ -263,6 +305,11 @@ public interface ActualgroupBuilder extends GroupBuilder {
     /** @param member - Identifies the resource instances that are members of the group. */
     public ActualgroupBuilder.Impl withMember(@NonNull Collection<Group.Member> member) {
       this.member = Collections.unmodifiableCollection(member);
+      return this;
+    }
+
+    public ActualgroupBuilder.Impl withMember(@NonNull Group_MemberBuilder... member) {
+      this.member = Arrays.stream(member).map(e -> e.build()).collect(toList());
       return this;
     }
 

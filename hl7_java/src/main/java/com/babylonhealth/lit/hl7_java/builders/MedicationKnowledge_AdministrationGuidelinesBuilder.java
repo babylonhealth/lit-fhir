@@ -106,6 +106,12 @@ public interface MedicationKnowledge_AdministrationGuidelinesBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicationKnowledge_AdministrationGuidelinesBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param indication Field is a 'choice' field. Type should be one of CodeableConcept,
      *     Reference. To pass the value in, wrap with one of the
@@ -152,6 +158,13 @@ public interface MedicationKnowledge_AdministrationGuidelinesBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicationKnowledge_AdministrationGuidelinesBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dosage */
     public MedicationKnowledge_AdministrationGuidelinesBuilder.Impl withDosage(
         @NonNull MedicationKnowledge$AdministrationGuidelines$Dosage... dosage) {
@@ -162,6 +175,12 @@ public interface MedicationKnowledge_AdministrationGuidelinesBuilder {
     public MedicationKnowledge_AdministrationGuidelinesBuilder.Impl withDosage(
         @NonNull Collection<MedicationKnowledge$AdministrationGuidelines$Dosage> dosage) {
       this.dosage = Collections.unmodifiableCollection(dosage);
+      return this;
+    }
+
+    public MedicationKnowledge_AdministrationGuidelinesBuilder.Impl withDosage(
+        @NonNull MedicationKnowledge_AdministrationGuidelines_DosageBuilder... dosage) {
+      this.dosage = Arrays.stream(dosage).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param patientCharacteristics */
@@ -178,6 +197,15 @@ public interface MedicationKnowledge_AdministrationGuidelinesBuilder {
             Collection<MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics>
                 patientCharacteristics) {
       this.patientCharacteristics = Collections.unmodifiableCollection(patientCharacteristics);
+      return this;
+    }
+
+    public MedicationKnowledge_AdministrationGuidelinesBuilder.Impl withPatientCharacteristics(
+        @NonNull
+            MedicationKnowledge_AdministrationGuidelines_PatientCharacteristicsBuilder...
+                patientCharacteristics) {
+      this.patientCharacteristics =
+          Arrays.stream(patientCharacteristics).map(e -> e.build()).collect(toList());
       return this;
     }
 

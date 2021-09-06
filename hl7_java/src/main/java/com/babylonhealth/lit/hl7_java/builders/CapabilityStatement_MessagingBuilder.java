@@ -98,6 +98,12 @@ public interface CapabilityStatement_MessagingBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CapabilityStatement_MessagingBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reliableCache */
     public CapabilityStatement_MessagingBuilder.Impl withReliableCache(
         @NonNull Integer reliableCache) {
@@ -146,6 +152,13 @@ public interface CapabilityStatement_MessagingBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CapabilityStatement_MessagingBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param endpoint */
     public CapabilityStatement_MessagingBuilder.Impl withEndpoint(
         @NonNull CapabilityStatement$Messaging$Endpoint... endpoint) {
@@ -158,6 +171,12 @@ public interface CapabilityStatement_MessagingBuilder {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public CapabilityStatement_MessagingBuilder.Impl withEndpoint(
+        @NonNull CapabilityStatement_Messaging_EndpointBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param supportedMessage */
     public CapabilityStatement_MessagingBuilder.Impl withSupportedMessage(
         @NonNull CapabilityStatement$Messaging$SupportedMessage... supportedMessage) {
@@ -168,6 +187,12 @@ public interface CapabilityStatement_MessagingBuilder {
     public CapabilityStatement_MessagingBuilder.Impl withSupportedMessage(
         @NonNull Collection<CapabilityStatement$Messaging$SupportedMessage> supportedMessage) {
       this.supportedMessage = Collections.unmodifiableCollection(supportedMessage);
+      return this;
+    }
+
+    public CapabilityStatement_MessagingBuilder.Impl withSupportedMessage(
+        @NonNull CapabilityStatement_Messaging_SupportedMessageBuilder... supportedMessage) {
+      this.supportedMessage = Arrays.stream(supportedMessage).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -112,6 +112,12 @@ public interface RequestGroup_Action_RelatedActionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public RequestGroup_Action_RelatedActionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param offset Field is a 'choice' field. Type should be one of Duration, Range. To pass the
      *     value in, wrap with one of the RequestGroup_Action_RelatedActionBuilder.offset static
@@ -156,6 +162,13 @@ public interface RequestGroup_Action_RelatedActionBuilder {
     public RequestGroup_Action_RelatedActionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public RequestGroup_Action_RelatedActionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

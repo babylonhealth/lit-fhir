@@ -78,9 +78,19 @@ public interface InsurancePlan_ContactBuilder {
       this.name = Optional.of(name);
       return this;
     }
+
+    public InsurancePlan_ContactBuilder.Impl withName(@NonNull HumanNameBuilder name) {
+      this.name = Optional.of(name.build());
+      return this;
+    }
     /** @param purpose */
     public InsurancePlan_ContactBuilder.Impl withPurpose(@NonNull CodeableConcept purpose) {
       this.purpose = Optional.of(purpose);
+      return this;
+    }
+
+    public InsurancePlan_ContactBuilder.Impl withPurpose(@NonNull CodeableConceptBuilder purpose) {
+      this.purpose = Optional.of(purpose.build());
       return this;
     }
     /** @param telecom */
@@ -94,9 +104,19 @@ public interface InsurancePlan_ContactBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public InsurancePlan_ContactBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param address */
     public InsurancePlan_ContactBuilder.Impl withAddress(@NonNull Address address) {
       this.address = Optional.of(address);
+      return this;
+    }
+
+    public InsurancePlan_ContactBuilder.Impl withAddress(@NonNull AddressBuilder address) {
+      this.address = Optional.of(address.build());
       return this;
     }
     /**
@@ -120,6 +140,11 @@ public interface InsurancePlan_ContactBuilder {
     public InsurancePlan_ContactBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public InsurancePlan_ContactBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -156,6 +181,13 @@ public interface InsurancePlan_ContactBuilder {
     public InsurancePlan_ContactBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public InsurancePlan_ContactBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

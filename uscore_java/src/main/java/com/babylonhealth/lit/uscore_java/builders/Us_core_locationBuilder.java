@@ -118,6 +118,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_locationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -127,6 +132,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
      */
     public Us_core_locationBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -145,6 +155,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
     /** @param _type - Indicates the type of function performed at the location. */
     public Us_core_locationBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
       this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -177,6 +192,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
       this.partOf = Optional.of(partOf);
       return this;
     }
+
+    public Us_core_locationBuilder.Impl withPartOf(@NonNull ReferenceBuilder partOf) {
+      this.partOf = Optional.of(partOf.build());
+      return this;
+    }
     /**
      * @param telecom - The contact details of communication devices available at the location. This
      *     can include phone numbers, fax numbers, mobile numbers, email addresses and web sites.
@@ -191,6 +211,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
      */
     public Us_core_locationBuilder.Impl withTelecom(@NonNull Collection<ContactPoint> telecom) {
       this.telecom = Collections.unmodifiableCollection(telecom);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -212,6 +237,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public Us_core_locationBuilder.Impl withEndpoint(@NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -228,6 +258,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
      */
     public Us_core_locationBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -252,6 +287,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_locationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Unique code or number identifying the location to its users. */
     public Us_core_locationBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -260,6 +300,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
     /** @param identifier - Unique code or number identifying the location to its users. */
     public Us_core_locationBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -273,6 +318,12 @@ public interface Us_core_locationBuilder extends LocationBuilder {
     /** @param physicalType - Physical form of the location, e.g. building, room, vehicle, road. */
     public Us_core_locationBuilder.Impl withPhysicalType(@NonNull CodeableConcept physicalType) {
       this.physicalType = Optional.of(physicalType);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withPhysicalType(
+        @NonNull CodeableConceptBuilder physicalType) {
+      this.physicalType = Optional.of(physicalType.build());
       return this;
     }
     /**
@@ -321,6 +372,13 @@ public interface Us_core_locationBuilder extends LocationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_locationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param operationalStatus - The operational status covers operation values most relevant to
      *     beds (but can also apply to rooms/units/chairs/etc. such as an isolation unit/dialysis
@@ -331,9 +389,20 @@ public interface Us_core_locationBuilder extends LocationBuilder {
       this.operationalStatus = Optional.of(operationalStatus);
       return this;
     }
+
+    public Us_core_locationBuilder.Impl withOperationalStatus(
+        @NonNull CodingBuilder operationalStatus) {
+      this.operationalStatus = Optional.of(operationalStatus.build());
+      return this;
+    }
     /** @param address - Physical location. */
     public Us_core_locationBuilder.Impl withAddress(@NonNull Address address) {
       this.address = Optional.of(address);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withAddress(@NonNull AddressBuilder address) {
+      this.address = Optional.of(address.build());
       return this;
     }
     /**
@@ -343,6 +412,12 @@ public interface Us_core_locationBuilder extends LocationBuilder {
     public Us_core_locationBuilder.Impl withManagingOrganization(
         @NonNull Reference managingOrganization) {
       this.managingOrganization = Optional.of(managingOrganization);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withManagingOrganization(
+        @NonNull ReferenceBuilder managingOrganization) {
+      this.managingOrganization = Optional.of(managingOrganization.build());
       return this;
     }
     /**
@@ -363,6 +438,11 @@ public interface Us_core_locationBuilder extends LocationBuilder {
       this.position = Optional.of(position);
       return this;
     }
+
+    public Us_core_locationBuilder.Impl withPosition(@NonNull Location_PositionBuilder position) {
+      this.position = Optional.of(position.build());
+      return this;
+    }
     /** @param hoursOfOperation - What days/times during a week is this location usually open. */
     public Us_core_locationBuilder.Impl withHoursOfOperation(
         @NonNull Location.HoursOfOperation... hoursOfOperation) {
@@ -373,6 +453,12 @@ public interface Us_core_locationBuilder extends LocationBuilder {
     public Us_core_locationBuilder.Impl withHoursOfOperation(
         @NonNull Collection<Location.HoursOfOperation> hoursOfOperation) {
       this.hoursOfOperation = Collections.unmodifiableCollection(hoursOfOperation);
+      return this;
+    }
+
+    public Us_core_locationBuilder.Impl withHoursOfOperation(
+        @NonNull Location_HoursOfOperationBuilder... hoursOfOperation) {
+      this.hoursOfOperation = Arrays.stream(hoursOfOperation).map(e -> e.build()).collect(toList());
       return this;
     }
 

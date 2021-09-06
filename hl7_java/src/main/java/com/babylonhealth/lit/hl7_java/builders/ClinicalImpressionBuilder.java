@@ -120,6 +120,11 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -131,9 +136,19 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param code - Categorizes the type of clinical assessment performed. */
     public ClinicalImpressionBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param date - Indicates when the documentation of the assessment was complete. */
@@ -157,6 +172,11 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param problem - A list of the relevant problems/conditions for a patient. */
     public ClinicalImpressionBuilder.Impl withProblem(@NonNull Reference... problem) {
       this.problem = Arrays.asList(problem);
@@ -165,6 +185,11 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     /** @param problem - A list of the relevant problems/conditions for a patient. */
     public ClinicalImpressionBuilder.Impl withProblem(@NonNull Collection<Reference> problem) {
       this.problem = Collections.unmodifiableCollection(problem);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withProblem(@NonNull ReferenceBuilder... problem) {
+      this.problem = Arrays.stream(problem).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param summary - A text summary of the investigations and the diagnosis. */
@@ -182,6 +207,11 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.assessor = Optional.of(assessor);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withAssessor(@NonNull ReferenceBuilder assessor) {
+      this.assessor = Optional.of(assessor.build());
+      return this;
+    }
     /**
      * @param previous - A reference to the last assessment that was conducted on this patient.
      *     Assessments are often/usually ongoing in nature; a care provider (practitioner or team)
@@ -190,6 +220,11 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
      */
     public ClinicalImpressionBuilder.Impl withPrevious(@NonNull Reference previous) {
       this.previous = Optional.of(previous);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withPrevious(@NonNull ReferenceBuilder previous) {
+      this.previous = Optional.of(previous.build());
       return this;
     }
     /**
@@ -226,6 +261,11 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -248,12 +288,22 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this ClinicalImpression was created or to which
      *     the creation of this record is tightly associated.
      */
     public ClinicalImpressionBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -275,6 +325,11 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A summary of the context and/or cause of the assessment - why / where it
      *     was performed, and what patient events/status prompted it.
@@ -288,6 +343,12 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
      */
     public ClinicalImpressionBuilder.Impl withStatusReason(@NonNull CodeableConcept statusReason) {
       this.statusReason = Optional.of(statusReason);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withStatusReason(
+        @NonNull CodeableConceptBuilder statusReason) {
+      this.statusReason = Optional.of(statusReason.build());
       return this;
     }
     /**
@@ -318,6 +379,12 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     public ClinicalImpressionBuilder.Impl withSupportingInfo(
         @NonNull Collection<Reference> supportingInfo) {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withSupportingInfo(
+        @NonNull ReferenceBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -356,6 +423,13 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param prognosisReference - RiskAssessment expressing likely outcome. */
     public ClinicalImpressionBuilder.Impl withPrognosisReference(
         @NonNull Reference... prognosisReference) {
@@ -368,6 +442,13 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.prognosisReference = Collections.unmodifiableCollection(prognosisReference);
       return this;
     }
+
+    public ClinicalImpressionBuilder.Impl withPrognosisReference(
+        @NonNull ReferenceBuilder... prognosisReference) {
+      this.prognosisReference =
+          Arrays.stream(prognosisReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param prognosisCodeableConcept - Estimate of likely outcome. */
     public ClinicalImpressionBuilder.Impl withPrognosisCodeableConcept(
         @NonNull CodeableConcept... prognosisCodeableConcept) {
@@ -378,6 +459,13 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     public ClinicalImpressionBuilder.Impl withPrognosisCodeableConcept(
         @NonNull Collection<CodeableConcept> prognosisCodeableConcept) {
       this.prognosisCodeableConcept = Collections.unmodifiableCollection(prognosisCodeableConcept);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withPrognosisCodeableConcept(
+        @NonNull CodeableConceptBuilder... prognosisCodeableConcept) {
+      this.prognosisCodeableConcept =
+          Arrays.stream(prognosisCodeableConcept).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -396,6 +484,12 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     public ClinicalImpressionBuilder.Impl withFinding(
         @NonNull Collection<ClinicalImpression.Finding> finding) {
       this.finding = Collections.unmodifiableCollection(finding);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withFinding(
+        @NonNull ClinicalImpression_FindingBuilder... finding) {
+      this.finding = Arrays.stream(finding).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -418,6 +512,12 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     public ClinicalImpressionBuilder.Impl withInvestigation(
         @NonNull Collection<ClinicalImpression.Investigation> investigation) {
       this.investigation = Collections.unmodifiableCollection(investigation);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withInvestigation(
+        @NonNull ClinicalImpression_InvestigationBuilder... investigation) {
+      this.investigation = Arrays.stream(investigation).map(e -> e.build()).collect(toList());
       return this;
     }
 

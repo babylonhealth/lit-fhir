@@ -80,6 +80,11 @@ public interface ParametersBuilder extends ResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ParametersBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public ParametersBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -104,6 +109,11 @@ public interface ParametersBuilder extends ResourceBuilder {
     public ParametersBuilder.Impl withParameter(
         @NonNull Collection<Parameters.Parameter> parameter) {
       this.parameter = Collections.unmodifiableCollection(parameter);
+      return this;
+    }
+
+    public ParametersBuilder.Impl withParameter(@NonNull Parameters_ParameterBuilder... parameter) {
+      this.parameter = Arrays.stream(parameter).map(e -> e.build()).collect(toList());
       return this;
     }
 

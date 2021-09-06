@@ -99,6 +99,11 @@ public interface Person_LinkBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Person_LinkBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param assurance */
     public Person_LinkBuilder.Impl withAssurance(@NonNull IDENTITY_ASSURANCELEVEL assurance) {
       this.assurance = Optional.of(assurance);
@@ -137,6 +142,13 @@ public interface Person_LinkBuilder {
     public Person_LinkBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Person_LinkBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

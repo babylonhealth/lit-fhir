@@ -126,9 +126,21 @@ public interface Immunization_ProtocolAppliedBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Immunization_ProtocolAppliedBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param authority */
     public Immunization_ProtocolAppliedBuilder.Impl withAuthority(@NonNull Reference authority) {
       this.authority = Optional.of(authority);
+      return this;
+    }
+
+    public Immunization_ProtocolAppliedBuilder.Impl withAuthority(
+        @NonNull ReferenceBuilder authority) {
+      this.authority = Optional.of(authority.build());
       return this;
     }
     /** @param targetDisease */
@@ -141,6 +153,12 @@ public interface Immunization_ProtocolAppliedBuilder {
     public Immunization_ProtocolAppliedBuilder.Impl withTargetDisease(
         @NonNull Collection<CodeableConcept> targetDisease) {
       this.targetDisease = Collections.unmodifiableCollection(targetDisease);
+      return this;
+    }
+
+    public Immunization_ProtocolAppliedBuilder.Impl withTargetDisease(
+        @NonNull CodeableConceptBuilder... targetDisease) {
+      this.targetDisease = Arrays.stream(targetDisease).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -187,6 +205,13 @@ public interface Immunization_ProtocolAppliedBuilder {
     public Immunization_ProtocolAppliedBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Immunization_ProtocolAppliedBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

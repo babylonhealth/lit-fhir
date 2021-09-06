@@ -117,6 +117,11 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -128,9 +133,19 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param code - The type of the risk assessment performed. */
     public RiskAssessmentBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public RiskAssessmentBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param note - Additional comments about the risk assessment. */
@@ -141,6 +156,11 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     /** @param note - Additional comments about the risk assessment. */
     public RiskAssessmentBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public RiskAssessmentBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -159,6 +179,11 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.basis = Collections.unmodifiableCollection(basis);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withBasis(@NonNull ReferenceBuilder... basis) {
+      this.basis = Arrays.stream(basis).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param parent - A reference to a resource that this risk assessment is part of, such as a
      *     Procedure.
@@ -167,14 +192,29 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.parent = Optional.of(parent);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withParent(@NonNull ReferenceBuilder parent) {
+      this.parent = Optional.of(parent.build());
+      return this;
+    }
     /** @param method - The algorithm, process or mechanism used to evaluate the risk. */
     public RiskAssessmentBuilder.Impl withMethod(@NonNull CodeableConcept method) {
       this.method = Optional.of(method);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
+      return this;
+    }
     /** @param basedOn - A reference to the request that is fulfilled by this risk assessment. */
     public RiskAssessmentBuilder.Impl withBasedOn(@NonNull Reference basedOn) {
       this.basedOn = Optional.of(basedOn);
+      return this;
+    }
+
+    public RiskAssessmentBuilder.Impl withBasedOn(@NonNull ReferenceBuilder basedOn) {
+      this.basedOn = Optional.of(basedOn.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -200,6 +240,11 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -222,9 +267,19 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param encounter - The encounter where the assessment was performed. */
     public RiskAssessmentBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public RiskAssessmentBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -235,9 +290,19 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.condition = Optional.of(condition);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withCondition(@NonNull ReferenceBuilder condition) {
+      this.condition = Optional.of(condition.build());
+      return this;
+    }
     /** @param performer - The provider or software application that performed the assessment. */
     public RiskAssessmentBuilder.Impl withPerformer(@NonNull Reference performer) {
       this.performer = Optional.of(performer);
+      return this;
+    }
+
+    public RiskAssessmentBuilder.Impl withPerformer(@NonNull ReferenceBuilder performer) {
+      this.performer = Optional.of(performer.build());
       return this;
     }
     /** @param identifier - Business identifier assigned to the risk assessment. */
@@ -250,6 +315,11 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reasonCode - The reason the risk assessment was performed. */
     public RiskAssessmentBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
       this.reasonCode = Arrays.asList(reasonCode);
@@ -259,6 +329,12 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     public RiskAssessmentBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public RiskAssessmentBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -303,6 +379,12 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -339,6 +421,13 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public RiskAssessmentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param prediction - Describes the expected outcome for the subject. */
     public RiskAssessmentBuilder.Impl withPrediction(
         @NonNull RiskAssessment.Prediction... prediction) {
@@ -349,6 +438,12 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     public RiskAssessmentBuilder.Impl withPrediction(
         @NonNull Collection<RiskAssessment.Prediction> prediction) {
       this.prediction = Collections.unmodifiableCollection(prediction);
+      return this;
+    }
+
+    public RiskAssessmentBuilder.Impl withPrediction(
+        @NonNull RiskAssessment_PredictionBuilder... prediction) {
+      this.prediction = Arrays.stream(prediction).map(e -> e.build()).collect(toList());
       return this;
     }
 

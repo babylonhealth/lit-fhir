@@ -126,6 +126,11 @@ public interface Contract_Term_ActionBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public Contract_Term_ActionBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param linkId */
     public Contract_Term_ActionBuilder.Impl withLinkId(@NonNull String... linkId) {
       this.linkId = Arrays.asList(linkId);
@@ -151,6 +156,11 @@ public interface Contract_Term_ActionBuilder {
       this.context = Optional.of(context);
       return this;
     }
+
+    public Contract_Term_ActionBuilder.Impl withContext(@NonNull ReferenceBuilder context) {
+      this.context = Optional.of(context.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -174,6 +184,11 @@ public interface Contract_Term_ActionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Contract_Term_ActionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param requester */
     public Contract_Term_ActionBuilder.Impl withRequester(@NonNull Reference... requester) {
       this.requester = Arrays.asList(requester);
@@ -185,9 +200,19 @@ public interface Contract_Term_ActionBuilder {
       this.requester = Collections.unmodifiableCollection(requester);
       return this;
     }
+
+    public Contract_Term_ActionBuilder.Impl withRequester(@NonNull ReferenceBuilder... requester) {
+      this.requester = Arrays.stream(requester).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performer */
     public Contract_Term_ActionBuilder.Impl withPerformer(@NonNull Reference performer) {
       this.performer = Optional.of(performer);
+      return this;
+    }
+
+    public Contract_Term_ActionBuilder.Impl withPerformer(@NonNull ReferenceBuilder performer) {
+      this.performer = Optional.of(performer.build());
       return this;
     }
     /** @param reasonCode */
@@ -199,6 +224,12 @@ public interface Contract_Term_ActionBuilder {
     public Contract_Term_ActionBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public Contract_Term_ActionBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param doNotPerform */
@@ -249,10 +280,22 @@ public interface Contract_Term_ActionBuilder {
       this.performerType = Collections.unmodifiableCollection(performerType);
       return this;
     }
+
+    public Contract_Term_ActionBuilder.Impl withPerformerType(
+        @NonNull CodeableConceptBuilder... performerType) {
+      this.performerType = Arrays.stream(performerType).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performerRole */
     public Contract_Term_ActionBuilder.Impl withPerformerRole(
         @NonNull CodeableConcept performerRole) {
       this.performerRole = Optional.of(performerRole);
+      return this;
+    }
+
+    public Contract_Term_ActionBuilder.Impl withPerformerRole(
+        @NonNull CodeableConceptBuilder performerRole) {
+      this.performerRole = Optional.of(performerRole.build());
       return this;
     }
     /** @param requesterLinkId */
@@ -291,6 +334,12 @@ public interface Contract_Term_ActionBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public Contract_Term_ActionBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -327,6 +376,13 @@ public interface Contract_Term_ActionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Contract_Term_ActionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param securityLabelNumber */
     public Contract_Term_ActionBuilder.Impl withSecurityLabelNumber(
         @NonNull Integer... securityLabelNumber) {
@@ -353,6 +409,12 @@ public interface Contract_Term_ActionBuilder {
     public Contract_Term_ActionBuilder.Impl withSubject(
         @NonNull Collection<Contract$Term$Action$Subject> subject) {
       this.subject = Collections.unmodifiableCollection(subject);
+      return this;
+    }
+
+    public Contract_Term_ActionBuilder.Impl withSubject(
+        @NonNull Contract_Term_Action_SubjectBuilder... subject) {
+      this.subject = Arrays.stream(subject).map(e -> e.build()).collect(toList());
       return this;
     }
 

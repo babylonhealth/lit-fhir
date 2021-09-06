@@ -96,6 +96,12 @@ public interface EffectEvidenceSynthesis_SampleSizeBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EffectEvidenceSynthesis_SampleSizeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the effect evidence
      *     synthesis from a consumer's perspective.
@@ -145,6 +151,13 @@ public interface EffectEvidenceSynthesis_SampleSizeBuilder {
     public EffectEvidenceSynthesis_SampleSizeBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_SampleSizeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param numberOfParticipants */

@@ -113,6 +113,11 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -122,6 +127,11 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
      */
     public AdverseEventBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param date - The date (and perhaps time) when the adverse event occurred. */
@@ -137,6 +147,11 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.event = Optional.of(event);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withEvent(@NonNull CodeableConceptBuilder event) {
+      this.event = Optional.of(event.build());
+      return this;
+    }
     /** @param study - AdverseEvent.study. */
     public AdverseEventBuilder.Impl withStudy(@NonNull Reference... study) {
       this.study = Arrays.asList(study);
@@ -147,9 +162,19 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.study = Collections.unmodifiableCollection(study);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withStudy(@NonNull ReferenceBuilder... study) {
+      this.study = Arrays.stream(study).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param outcome - Describes the type of outcome from the adverse event. */
     public AdverseEventBuilder.Impl withOutcome(@NonNull CodeableConcept outcome) {
       this.outcome = Optional.of(outcome);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withOutcome(@NonNull CodeableConceptBuilder outcome) {
+      this.outcome = Optional.of(outcome.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -167,6 +192,11 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param detected - Estimated or actual date the AdverseEvent began, in the opinion of the
      *     reporter.
@@ -180,6 +210,11 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.location = Optional.of(location);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /**
      * @param severity - Describes the severity of the adverse event, in relation to the subject.
      *     Contrast to AdverseEvent.seriousness - a severe rash might not be serious, but a mild
@@ -189,12 +224,22 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.severity = Optional.of(severity);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withSeverity(@NonNull CodeableConceptBuilder severity) {
+      this.severity = Optional.of(severity.build());
+      return this;
+    }
     /**
      * @param recorder - Information on who recorded the adverse event. May be the patient or a
      *     practitioner.
      */
     public AdverseEventBuilder.Impl withRecorder(@NonNull Reference recorder) {
       this.recorder = Optional.of(recorder);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withRecorder(@NonNull ReferenceBuilder recorder) {
+      this.recorder = Optional.of(recorder.build());
       return this;
     }
     /**
@@ -213,6 +258,11 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
      */
     public AdverseEventBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -237,12 +287,22 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which AdverseEvent was created or to which the
      *     creation of this record is tightly associated.
      */
     public AdverseEventBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -254,9 +314,19 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.identifier = Optional.of(identifier);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
     /** @param seriousness - Assessment whether this event was of real importance. */
     public AdverseEventBuilder.Impl withSeriousness(@NonNull CodeableConcept seriousness) {
       this.seriousness = Optional.of(seriousness);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withSeriousness(@NonNull CodeableConceptBuilder seriousness) {
+      this.seriousness = Optional.of(seriousness.build());
       return this;
     }
     /**
@@ -281,6 +351,11 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
      */
     public AdverseEventBuilder.Impl withContributor(@NonNull Collection<Reference> contributor) {
       this.contributor = Collections.unmodifiableCollection(contributor);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withContributor(@NonNull ReferenceBuilder... contributor) {
+      this.contributor = Arrays.stream(contributor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -335,6 +410,13 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param referenceDocument - AdverseEvent.referenceDocument. */
     public AdverseEventBuilder.Impl withReferenceDocument(@NonNull Reference... referenceDocument) {
       this.referenceDocument = Arrays.asList(referenceDocument);
@@ -344,6 +426,13 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
     public AdverseEventBuilder.Impl withReferenceDocument(
         @NonNull Collection<Reference> referenceDocument) {
       this.referenceDocument = Collections.unmodifiableCollection(referenceDocument);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withReferenceDocument(
+        @NonNull ReferenceBuilder... referenceDocument) {
+      this.referenceDocument =
+          Arrays.stream(referenceDocument).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -364,6 +453,13 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.resultingCondition = Collections.unmodifiableCollection(resultingCondition);
       return this;
     }
+
+    public AdverseEventBuilder.Impl withResultingCondition(
+        @NonNull ReferenceBuilder... resultingCondition) {
+      this.resultingCondition =
+          Arrays.stream(resultingCondition).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subjectMedicalHistory - AdverseEvent.subjectMedicalHistory. */
     public AdverseEventBuilder.Impl withSubjectMedicalHistory(
         @NonNull Reference... subjectMedicalHistory) {
@@ -374,6 +470,13 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
     public AdverseEventBuilder.Impl withSubjectMedicalHistory(
         @NonNull Collection<Reference> subjectMedicalHistory) {
       this.subjectMedicalHistory = Collections.unmodifiableCollection(subjectMedicalHistory);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withSubjectMedicalHistory(
+        @NonNull ReferenceBuilder... subjectMedicalHistory) {
+      this.subjectMedicalHistory =
+          Arrays.stream(subjectMedicalHistory).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -392,6 +495,12 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
     public AdverseEventBuilder.Impl withSuspectEntity(
         @NonNull Collection<AdverseEvent.SuspectEntity> suspectEntity) {
       this.suspectEntity = Collections.unmodifiableCollection(suspectEntity);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withSuspectEntity(
+        @NonNull AdverseEvent_SuspectEntityBuilder... suspectEntity) {
+      this.suspectEntity = Arrays.stream(suspectEntity).map(e -> e.build()).collect(toList());
       return this;
     }
 

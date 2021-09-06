@@ -102,6 +102,11 @@ public interface Device_UdiCarrierBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Device_UdiCarrierBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param entryType */
     public Device_UdiCarrierBuilder.Impl withEntryType(@NonNull UDI_ENTRY_TYPE entryType) {
       this.entryType = Optional.of(entryType);
@@ -161,6 +166,13 @@ public interface Device_UdiCarrierBuilder {
     public Device_UdiCarrierBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Device_UdiCarrierBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

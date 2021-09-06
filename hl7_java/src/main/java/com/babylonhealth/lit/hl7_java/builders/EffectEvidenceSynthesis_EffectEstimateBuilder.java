@@ -82,6 +82,12 @@ public interface EffectEvidenceSynthesis_EffectEstimateBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param value */
     public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withValue(@NonNull BigDecimal value) {
       this.value = Optional.of(value);
@@ -111,6 +117,12 @@ public interface EffectEvidenceSynthesis_EffectEstimateBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the effect evidence
      *     synthesis from a consumer's perspective.
@@ -126,10 +138,22 @@ public interface EffectEvidenceSynthesis_EffectEstimateBuilder {
       this.variantState = Optional.of(variantState);
       return this;
     }
+
+    public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withVariantState(
+        @NonNull CodeableConceptBuilder variantState) {
+      this.variantState = Optional.of(variantState.build());
+      return this;
+    }
     /** @param unitOfMeasure */
     public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withUnitOfMeasure(
         @NonNull CodeableConcept unitOfMeasure) {
       this.unitOfMeasure = Optional.of(unitOfMeasure);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withUnitOfMeasure(
+        @NonNull CodeableConceptBuilder unitOfMeasure) {
+      this.unitOfMeasure = Optional.of(unitOfMeasure.build());
       return this;
     }
     /**
@@ -168,6 +192,13 @@ public interface EffectEvidenceSynthesis_EffectEstimateBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param precisionEstimate */
     public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withPrecisionEstimate(
         @NonNull EffectEvidenceSynthesis$EffectEstimate$PrecisionEstimate... precisionEstimate) {
@@ -180,6 +211,14 @@ public interface EffectEvidenceSynthesis_EffectEstimateBuilder {
             Collection<EffectEvidenceSynthesis$EffectEstimate$PrecisionEstimate>
                 precisionEstimate) {
       this.precisionEstimate = Collections.unmodifiableCollection(precisionEstimate);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_EffectEstimateBuilder.Impl withPrecisionEstimate(
+        @NonNull
+            EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder... precisionEstimate) {
+      this.precisionEstimate =
+          Arrays.stream(precisionEstimate).map(e -> e.build()).collect(toList());
       return this;
     }
 

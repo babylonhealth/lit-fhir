@@ -100,6 +100,12 @@ public interface AdverseEvent_SuspectEntityBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AdverseEvent_SuspectEntityBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -136,6 +142,13 @@ public interface AdverseEvent_SuspectEntityBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public AdverseEvent_SuspectEntityBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param causality */
     public AdverseEvent_SuspectEntityBuilder.Impl withCausality(
         @NonNull AdverseEvent$SuspectEntity$Causality... causality) {
@@ -146,6 +159,12 @@ public interface AdverseEvent_SuspectEntityBuilder {
     public AdverseEvent_SuspectEntityBuilder.Impl withCausality(
         @NonNull Collection<AdverseEvent$SuspectEntity$Causality> causality) {
       this.causality = Collections.unmodifiableCollection(causality);
+      return this;
+    }
+
+    public AdverseEvent_SuspectEntityBuilder.Impl withCausality(
+        @NonNull AdverseEvent_SuspectEntity_CausalityBuilder... causality) {
+      this.causality = Arrays.stream(causality).map(e -> e.build()).collect(toList());
       return this;
     }
 

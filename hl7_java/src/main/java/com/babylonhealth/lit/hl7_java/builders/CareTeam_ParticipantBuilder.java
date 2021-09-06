@@ -83,14 +83,29 @@ public interface CareTeam_ParticipantBuilder {
       this.role = Collections.unmodifiableCollection(role);
       return this;
     }
+
+    public CareTeam_ParticipantBuilder.Impl withRole(@NonNull CodeableConceptBuilder... role) {
+      this.role = Arrays.stream(role).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param member */
     public CareTeam_ParticipantBuilder.Impl withMember(@NonNull Reference member) {
       this.member = Optional.of(member);
       return this;
     }
+
+    public CareTeam_ParticipantBuilder.Impl withMember(@NonNull ReferenceBuilder member) {
+      this.member = Optional.of(member.build());
+      return this;
+    }
     /** @param period - Indicates when the team did (or is intended to) come into effect and end. */
     public CareTeam_ParticipantBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public CareTeam_ParticipantBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -116,9 +131,19 @@ public interface CareTeam_ParticipantBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CareTeam_ParticipantBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param onBehalfOf */
     public CareTeam_ParticipantBuilder.Impl withOnBehalfOf(@NonNull Reference onBehalfOf) {
       this.onBehalfOf = Optional.of(onBehalfOf);
+      return this;
+    }
+
+    public CareTeam_ParticipantBuilder.Impl withOnBehalfOf(@NonNull ReferenceBuilder onBehalfOf) {
+      this.onBehalfOf = Optional.of(onBehalfOf.build());
       return this;
     }
     /**
@@ -155,6 +180,13 @@ public interface CareTeam_ParticipantBuilder {
     public CareTeam_ParticipantBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CareTeam_ParticipantBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

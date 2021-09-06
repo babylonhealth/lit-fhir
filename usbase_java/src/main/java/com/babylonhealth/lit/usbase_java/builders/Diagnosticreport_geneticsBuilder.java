@@ -124,6 +124,11 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Diagnosticreport_geneticsBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -133,6 +138,11 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
      */
     public Diagnosticreport_geneticsBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -159,6 +169,11 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       this.result = Collections.unmodifiableCollection(result);
       return this;
     }
+
+    public Diagnosticreport_geneticsBuilder.Impl withResult(@NonNull ReferenceBuilder... result) {
+      this.result = Arrays.stream(result).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param basedOn - Details concerning a service requested. */
     public Diagnosticreport_geneticsBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
       this.basedOn = Arrays.asList(basedOn);
@@ -170,6 +185,11 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public Diagnosticreport_geneticsBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - The subject of the report. Usually, but not always, this is a patient.
      *     However, diagnostic services also perform analyses on specimens collected from a variety
@@ -177,6 +197,11 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
      */
     public Diagnosticreport_geneticsBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -204,6 +229,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public Diagnosticreport_geneticsBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param specimen - Details about the specimens on which this diagnostic report is based. */
     public Diagnosticreport_geneticsBuilder.Impl withSpecimen(@NonNull Reference... specimen) {
       this.specimen = Arrays.asList(specimen);
@@ -213,6 +244,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     public Diagnosticreport_geneticsBuilder.Impl withSpecimen(
         @NonNull Collection<Reference> specimen) {
       this.specimen = Collections.unmodifiableCollection(specimen);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withSpecimen(
+        @NonNull ReferenceBuilder... specimen) {
+      this.specimen = Arrays.stream(specimen).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -234,6 +271,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Diagnosticreport_geneticsBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param extension - An Extension */
     public Diagnosticreport_geneticsBuilder.Impl withExtension(@NonNull Extension... extension) {
       this.extension = Arrays.asList(extension);
@@ -245,12 +288,24 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Diagnosticreport_geneticsBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The healthcare event (e.g. a patient and healthcare provider interaction)
      *     which this DiagnosticReport is about.
      */
     public Diagnosticreport_geneticsBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withEncounter(
+        @NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /** @param performer - The diagnostic service that is responsible for issuing the report. */
@@ -262,6 +317,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     public Diagnosticreport_geneticsBuilder.Impl withPerformer(
         @NonNull Collection<Reference> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withPerformer(
+        @NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -277,6 +338,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     public Diagnosticreport_geneticsBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -322,6 +389,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       this.imagingStudy = Collections.unmodifiableCollection(imagingStudy);
       return this;
     }
+
+    public Diagnosticreport_geneticsBuilder.Impl withImagingStudy(
+        @NonNull ReferenceBuilder... imagingStudy) {
+      this.imagingStudy = Arrays.stream(imagingStudy).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -350,6 +423,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     public Diagnosticreport_geneticsBuilder.Impl withPresentedForm(
         @NonNull Collection<Attachment> presentedForm) {
       this.presentedForm = Collections.unmodifiableCollection(presentedForm);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withPresentedForm(
+        @NonNull AttachmentBuilder... presentedForm) {
+      this.presentedForm = Arrays.stream(presentedForm).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -388,6 +467,13 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Diagnosticreport_geneticsBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param resultsInterpreter - The practitioner or organization that is responsible for the
      *     report's conclusions and interpretations.
@@ -404,6 +490,13 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     public Diagnosticreport_geneticsBuilder.Impl withResultsInterpreter(
         @NonNull Collection<Reference> resultsInterpreter) {
       this.resultsInterpreter = Collections.unmodifiableCollection(resultsInterpreter);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withResultsInterpreter(
+        @NonNull ReferenceBuilder... resultsInterpreter) {
+      this.resultsInterpreter =
+          Arrays.stream(resultsInterpreter).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -424,6 +517,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     public Diagnosticreport_geneticsBuilder.Impl withMedia(
         @NonNull Collection<DiagnosticReport.Media> media) {
       this.media = Collections.unmodifiableCollection(media);
+      return this;
+    }
+
+    public Diagnosticreport_geneticsBuilder.Impl withMedia(
+        @NonNull DiagnosticReport_MediaBuilder... media) {
+      this.media = Arrays.stream(media).map(e -> e.build()).collect(toList());
       return this;
     }
 

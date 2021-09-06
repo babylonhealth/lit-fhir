@@ -126,6 +126,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public TestScriptBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -135,6 +140,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
      */
     public TestScriptBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -179,6 +189,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public TestScriptBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this test script is needed and why it has been designed
      *     as it has.
@@ -195,6 +210,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
     /** @param profile - Reference to the profile to be used for validation. */
     public TestScriptBuilder.Impl withProfile(@NonNull Collection<Reference> profile) {
       this.profile = Collections.unmodifiableCollection(profile);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withProfile(@NonNull ReferenceBuilder... profile) {
+      this.profile = Arrays.stream(profile).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -220,6 +240,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public TestScriptBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -240,6 +265,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
      */
     public TestScriptBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -267,6 +297,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.identifier = Optional.of(identifier);
       return this;
     }
+
+    public TestScriptBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -285,6 +320,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
      */
     public TestScriptBuilder.Impl withUseContext(@NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -319,6 +359,12 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
     public TestScriptBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -366,6 +412,13 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TestScriptBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param origin - An abstract server used in operations within this test script in the origin
      *     element.
@@ -380,6 +433,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
      */
     public TestScriptBuilder.Impl withOrigin(@NonNull Collection<TestScript.Origin> origin) {
       this.origin = Collections.unmodifiableCollection(origin);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withOrigin(@NonNull TestScript_OriginBuilder... origin) {
+      this.origin = Arrays.stream(origin).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -398,6 +456,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.fixture = Collections.unmodifiableCollection(fixture);
       return this;
     }
+
+    public TestScriptBuilder.Impl withFixture(@NonNull TestScript_FixtureBuilder... fixture) {
+      this.fixture = Arrays.stream(fixture).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param variable - Variable is set based either on element value in response body or on header
      *     field value in the response headers.
@@ -412,6 +475,11 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
      */
     public TestScriptBuilder.Impl withVariable(@NonNull Collection<TestScript.Variable> variable) {
       this.variable = Collections.unmodifiableCollection(variable);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withVariable(@NonNull TestScript_VariableBuilder... variable) {
+      this.variable = Arrays.stream(variable).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -431,6 +499,12 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.destination = Collections.unmodifiableCollection(destination);
       return this;
     }
+
+    public TestScriptBuilder.Impl withDestination(
+        @NonNull TestScript_DestinationBuilder... destination) {
+      this.destination = Arrays.stream(destination).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param test - A test in this script. */
     public TestScriptBuilder.Impl withTest(@NonNull TestScript.Test... test) {
       this.test = Arrays.asList(test);
@@ -441,12 +515,22 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.test = Collections.unmodifiableCollection(test);
       return this;
     }
+
+    public TestScriptBuilder.Impl withTest(@NonNull TestScript_TestBuilder... test) {
+      this.test = Arrays.stream(test).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param teardown - A series of operations required to clean up after all the tests are
      *     executed (successfully or otherwise).
      */
     public TestScriptBuilder.Impl withTeardown(@NonNull TestScript.Teardown teardown) {
       this.teardown = Optional.of(teardown);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withTeardown(@NonNull TestScript_TeardownBuilder teardown) {
+      this.teardown = Optional.of(teardown.build());
       return this;
     }
     /**
@@ -457,9 +541,19 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       this.metadata = Optional.of(metadata);
       return this;
     }
+
+    public TestScriptBuilder.Impl withMetadata(@NonNull TestScript_MetadataBuilder metadata) {
+      this.metadata = Optional.of(metadata.build());
+      return this;
+    }
     /** @param setup - A series of required setup operations before tests are executed. */
     public TestScriptBuilder.Impl withSetup(@NonNull TestScript.Setup setup) {
       this.setup = Optional.of(setup);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withSetup(@NonNull TestScript_SetupBuilder setup) {
+      this.setup = Optional.of(setup.build());
       return this;
     }
 

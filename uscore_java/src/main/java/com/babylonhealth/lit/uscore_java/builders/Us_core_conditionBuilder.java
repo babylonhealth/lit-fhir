@@ -165,6 +165,11 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_conditionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -174,6 +179,11 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
      */
     public Us_core_conditionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Us_core_conditionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -192,6 +202,11 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public Us_core_conditionBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public Us_core_conditionBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -205,6 +220,11 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
       this.severity = Optional.of(severity);
       return this;
     }
+
+    public Us_core_conditionBuilder.Impl withSeverity(@NonNull CodeableConceptBuilder severity) {
+      this.severity = Optional.of(severity.build());
+      return this;
+    }
     /** @param bodySite - The anatomical location where this condition manifests itself. */
     public Us_core_conditionBuilder.Impl withBodySite(@NonNull CodeableConcept... bodySite) {
       this.bodySite = Arrays.asList(bodySite);
@@ -214,6 +234,11 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
     public Us_core_conditionBuilder.Impl withBodySite(
         @NonNull Collection<CodeableConcept> bodySite) {
       this.bodySite = Collections.unmodifiableCollection(bodySite);
+      return this;
+    }
+
+    public Us_core_conditionBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder... bodySite) {
+      this.bodySite = Arrays.stream(bodySite).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -234,9 +259,19 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
       this.recorder = Optional.of(recorder);
       return this;
     }
+
+    public Us_core_conditionBuilder.Impl withRecorder(@NonNull ReferenceBuilder recorder) {
+      this.recorder = Optional.of(recorder.build());
+      return this;
+    }
     /** @param asserter - Individual who is making the condition statement. */
     public Us_core_conditionBuilder.Impl withAsserter(@NonNull Reference asserter) {
       this.asserter = Optional.of(asserter);
+      return this;
+    }
+
+    public Us_core_conditionBuilder.Impl withAsserter(@NonNull ReferenceBuilder asserter) {
+      this.asserter = Optional.of(asserter.build());
       return this;
     }
     /**
@@ -255,6 +290,11 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
      */
     public Us_core_conditionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_conditionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -279,12 +319,22 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_conditionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this Condition was created or to which the
      *     creation of this record is tightly associated.
      */
     public Us_core_conditionBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public Us_core_conditionBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -304,6 +354,11 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
     public Us_core_conditionBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Us_core_conditionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -342,6 +397,12 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
       this.clinicalStatus = Optional.of(clinicalStatus);
       return this;
     }
+
+    public Us_core_conditionBuilder.Impl withClinicalStatus(
+        @NonNull CodeableConceptBuilder clinicalStatus) {
+      this.clinicalStatus = Optional.of(clinicalStatus.build());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -378,6 +439,13 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_conditionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param verificationStatus - The verification status to support the clinical status of the
      *     condition.
@@ -385,6 +453,12 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
     public Us_core_conditionBuilder.Impl withVerificationStatus(
         @NonNull CodeableConcept verificationStatus) {
       this.verificationStatus = Optional.of(verificationStatus);
+      return this;
+    }
+
+    public Us_core_conditionBuilder.Impl withVerificationStatus(
+        @NonNull CodeableConceptBuilder verificationStatus) {
+      this.verificationStatus = Optional.of(verificationStatus.build());
       return this;
     }
     /**
@@ -403,6 +477,11 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
       this.stage = Collections.unmodifiableCollection(stage);
       return this;
     }
+
+    public Us_core_conditionBuilder.Impl withStage(@NonNull Condition_StageBuilder... stage) {
+      this.stage = Arrays.stream(stage).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param evidence - Supporting evidence / manifestations that are the basis of the Condition's
      *     verification status, such as evidence that confirmed or refuted the condition.
@@ -418,6 +497,12 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
     public Us_core_conditionBuilder.Impl withEvidence(
         @NonNull Collection<Condition.Evidence> evidence) {
       this.evidence = Collections.unmodifiableCollection(evidence);
+      return this;
+    }
+
+    public Us_core_conditionBuilder.Impl withEvidence(
+        @NonNull Condition_EvidenceBuilder... evidence) {
+      this.evidence = Arrays.stream(evidence).map(e -> e.build()).collect(toList());
       return this;
     }
 

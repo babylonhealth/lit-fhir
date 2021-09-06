@@ -88,6 +88,11 @@ public interface Account_GuarantorBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public Account_GuarantorBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -108,6 +113,11 @@ public interface Account_GuarantorBuilder {
      */
     public Account_GuarantorBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Account_GuarantorBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -144,6 +154,13 @@ public interface Account_GuarantorBuilder {
     public Account_GuarantorBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Account_GuarantorBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

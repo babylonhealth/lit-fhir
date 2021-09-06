@@ -111,6 +111,11 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_medicationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -122,9 +127,19 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Us_core_medicationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param form - Describes the form of the item. Powder; tablets; capsule. */
     public Us_core_medicationBuilder.Impl withForm(@NonNull CodeableConcept form) {
       this.form = Optional.of(form);
+      return this;
+    }
+
+    public Us_core_medicationBuilder.Impl withForm(@NonNull CodeableConceptBuilder form) {
+      this.form = Optional.of(form.build());
       return this;
     }
     /** @param status - A code to indicate if the medication is in active use. */
@@ -140,6 +155,11 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
      */
     public Us_core_medicationBuilder.Impl withAmount(@NonNull Ratio amount) {
       this.amount = Optional.of(amount);
+      return this;
+    }
+
+    public Us_core_medicationBuilder.Impl withAmount(@NonNull RatioBuilder amount) {
+      this.amount = Optional.of(amount.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -165,6 +185,11 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Us_core_medicationBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -187,6 +212,11 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_medicationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Business identifier for this medication. */
     public Us_core_medicationBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -198,12 +228,22 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public Us_core_medicationBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param manufacturer - Describes the details of the manufacturer of the medication product.
      *     This is not intended to represent the distributor of a medication product.
      */
     public Us_core_medicationBuilder.Impl withManufacturer(@NonNull Reference manufacturer) {
       this.manufacturer = Optional.of(manufacturer);
+      return this;
+    }
+
+    public Us_core_medicationBuilder.Impl withManufacturer(@NonNull ReferenceBuilder manufacturer) {
+      this.manufacturer = Optional.of(manufacturer.build());
       return this;
     }
     /**
@@ -252,9 +292,21 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_medicationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param batch - Information that only applies to packages (not products). */
     public Us_core_medicationBuilder.Impl withBatch(@NonNull Medication.Batch batch) {
       this.batch = Optional.of(batch);
+      return this;
+    }
+
+    public Us_core_medicationBuilder.Impl withBatch(@NonNull Medication_BatchBuilder batch) {
+      this.batch = Optional.of(batch.build());
       return this;
     }
     /** @param ingredient - Identifies a particular constituent of interest in the product. */
@@ -267,6 +319,12 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
     public Us_core_medicationBuilder.Impl withIngredient(
         @NonNull Collection<Medication.Ingredient> ingredient) {
       this.ingredient = Collections.unmodifiableCollection(ingredient);
+      return this;
+    }
+
+    public Us_core_medicationBuilder.Impl withIngredient(
+        @NonNull Medication_IngredientBuilder... ingredient) {
+      this.ingredient = Arrays.stream(ingredient).map(e -> e.build()).collect(toList());
       return this;
     }
 

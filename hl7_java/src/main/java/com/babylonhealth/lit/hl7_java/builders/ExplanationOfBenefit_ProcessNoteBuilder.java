@@ -103,6 +103,12 @@ public interface ExplanationOfBenefit_ProcessNoteBuilder {
       this.language = Optional.of(language);
       return this;
     }
+
+    public ExplanationOfBenefit_ProcessNoteBuilder.Impl withLanguage(
+        @NonNull CodeableConceptBuilder language) {
+      this.language = Optional.of(language.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -125,6 +131,12 @@ public interface ExplanationOfBenefit_ProcessNoteBuilder {
     public ExplanationOfBenefit_ProcessNoteBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ProcessNoteBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -161,6 +173,13 @@ public interface ExplanationOfBenefit_ProcessNoteBuilder {
     public ExplanationOfBenefit_ProcessNoteBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ProcessNoteBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

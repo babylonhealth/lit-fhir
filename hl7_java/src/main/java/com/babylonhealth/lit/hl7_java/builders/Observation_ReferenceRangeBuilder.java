@@ -80,9 +80,19 @@ public interface Observation_ReferenceRangeBuilder {
       this.low = Optional.of(low);
       return this;
     }
+
+    public Observation_ReferenceRangeBuilder.Impl withLow(@NonNull QuantityBuilder low) {
+      this.low = Optional.of(low.build());
+      return this;
+    }
     /** @param age */
     public Observation_ReferenceRangeBuilder.Impl withAge(@NonNull Range age) {
       this.age = Optional.of(age);
+      return this;
+    }
+
+    public Observation_ReferenceRangeBuilder.Impl withAge(@NonNull RangeBuilder age) {
+      this.age = Optional.of(age.build());
       return this;
     }
     /** @param high */
@@ -90,9 +100,19 @@ public interface Observation_ReferenceRangeBuilder {
       this.high = Optional.of(high);
       return this;
     }
+
+    public Observation_ReferenceRangeBuilder.Impl withHigh(@NonNull QuantityBuilder high) {
+      this.high = Optional.of(high.build());
+      return this;
+    }
     /** @param _type */
     public Observation_ReferenceRangeBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public Observation_ReferenceRangeBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -129,6 +149,12 @@ public interface Observation_ReferenceRangeBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Observation_ReferenceRangeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param appliesTo */
     public Observation_ReferenceRangeBuilder.Impl withAppliesTo(
         @NonNull CodeableConcept... appliesTo) {
@@ -139,6 +165,12 @@ public interface Observation_ReferenceRangeBuilder {
     public Observation_ReferenceRangeBuilder.Impl withAppliesTo(
         @NonNull Collection<CodeableConcept> appliesTo) {
       this.appliesTo = Collections.unmodifiableCollection(appliesTo);
+      return this;
+    }
+
+    public Observation_ReferenceRangeBuilder.Impl withAppliesTo(
+        @NonNull CodeableConceptBuilder... appliesTo) {
+      this.appliesTo = Arrays.stream(appliesTo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -175,6 +207,13 @@ public interface Observation_ReferenceRangeBuilder {
     public Observation_ReferenceRangeBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Observation_ReferenceRangeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -113,6 +113,11 @@ public interface ReferenceBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ReferenceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param reference - A reference to a location at which the other resource is found. The
      *     reference may be a relative reference, in which case it is relative to the service base
@@ -137,6 +142,11 @@ public interface ReferenceBuilder extends ElementBuilder {
      */
     public ReferenceBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public ReferenceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
 

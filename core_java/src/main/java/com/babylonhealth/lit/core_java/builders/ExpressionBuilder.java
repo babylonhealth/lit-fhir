@@ -106,6 +106,11 @@ public interface ExpressionBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExpressionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reference - A URI that defines where the expression is found. */
     public ExpressionBuilder.Impl withReference(@NonNull String reference) {
       this.reference = Optional.of(reference);

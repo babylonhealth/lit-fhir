@@ -111,6 +111,11 @@ public interface TestScript_Setup_Action_OperationBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public TestScript_Setup_Action_OperationBuilder.Impl withType(@NonNull CodingBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param label */
     public TestScript_Setup_Action_OperationBuilder.Impl withLabel(@NonNull String label) {
       this.label = Optional.of(label);
@@ -178,6 +183,12 @@ public interface TestScript_Setup_Action_OperationBuilder {
     public TestScript_Setup_Action_OperationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public TestScript_Setup_Action_OperationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param requestId */
@@ -251,6 +262,13 @@ public interface TestScript_Setup_Action_OperationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TestScript_Setup_Action_OperationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param requestHeader */
     public TestScript_Setup_Action_OperationBuilder.Impl withRequestHeader(
         @NonNull TestScript$Setup$Action$Operation$RequestHeader... requestHeader) {
@@ -261,6 +279,12 @@ public interface TestScript_Setup_Action_OperationBuilder {
     public TestScript_Setup_Action_OperationBuilder.Impl withRequestHeader(
         @NonNull Collection<TestScript$Setup$Action$Operation$RequestHeader> requestHeader) {
       this.requestHeader = Collections.unmodifiableCollection(requestHeader);
+      return this;
+    }
+
+    public TestScript_Setup_Action_OperationBuilder.Impl withRequestHeader(
+        @NonNull TestScript_Setup_Action_Operation_RequestHeaderBuilder... requestHeader) {
+      this.requestHeader = Arrays.stream(requestHeader).map(e -> e.build()).collect(toList());
       return this;
     }
 

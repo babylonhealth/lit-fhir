@@ -85,6 +85,12 @@ public interface InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder {
       this.value = Optional.of(value);
       return this;
     }
+
+    public InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder.Impl withValue(
+        @NonNull QuantityBuilder value) {
+      this.value = Optional.of(value.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -109,6 +115,12 @@ public interface InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param qualifiers */
     public InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder.Impl withQualifiers(
         @NonNull CodeableConcept... qualifiers) {
@@ -121,10 +133,22 @@ public interface InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder {
       this.qualifiers = Collections.unmodifiableCollection(qualifiers);
       return this;
     }
+
+    public InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder.Impl withQualifiers(
+        @NonNull CodeableConceptBuilder... qualifiers) {
+      this.qualifiers = Arrays.stream(qualifiers).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param applicability */
     public InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder.Impl withApplicability(
         @NonNull CodeableConcept applicability) {
       this.applicability = Optional.of(applicability);
+      return this;
+    }
+
+    public InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder.Impl withApplicability(
+        @NonNull CodeableConceptBuilder applicability) {
+      this.applicability = Optional.of(applicability.build());
       return this;
     }
     /**
@@ -161,6 +185,13 @@ public interface InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder {
     public InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

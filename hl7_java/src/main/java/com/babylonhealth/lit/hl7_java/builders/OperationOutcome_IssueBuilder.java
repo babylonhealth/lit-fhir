@@ -89,6 +89,11 @@ public interface OperationOutcome_IssueBuilder {
       this.details = Optional.of(details);
       return this;
     }
+
+    public OperationOutcome_IssueBuilder.Impl withDetails(@NonNull CodeableConceptBuilder details) {
+      this.details = Optional.of(details.build());
+      return this;
+    }
     /** @param location */
     public OperationOutcome_IssueBuilder.Impl withLocation(@NonNull String... location) {
       this.location = Arrays.asList(location);
@@ -120,6 +125,12 @@ public interface OperationOutcome_IssueBuilder {
     public OperationOutcome_IssueBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public OperationOutcome_IssueBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param expression */
@@ -172,6 +183,13 @@ public interface OperationOutcome_IssueBuilder {
     public OperationOutcome_IssueBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public OperationOutcome_IssueBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

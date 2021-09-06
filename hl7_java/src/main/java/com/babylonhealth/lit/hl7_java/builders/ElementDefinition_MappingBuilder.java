@@ -118,6 +118,12 @@ public interface ElementDefinition_MappingBuilder {
       return this;
     }
 
+    public ElementDefinition_MappingBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public ElementDefinition.Mapping build() {
       return new ElementDefinition.Mapping(
           OptionConverters.toScala(id),

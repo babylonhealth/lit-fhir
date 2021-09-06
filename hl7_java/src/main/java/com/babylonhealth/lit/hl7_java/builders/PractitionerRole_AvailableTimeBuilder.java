@@ -102,6 +102,12 @@ public interface PractitionerRole_AvailableTimeBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public PractitionerRole_AvailableTimeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param daysOfWeek */
     public PractitionerRole_AvailableTimeBuilder.Impl withDaysOfWeek(
         @NonNull DAYS_OF_WEEK... daysOfWeek) {
@@ -154,6 +160,13 @@ public interface PractitionerRole_AvailableTimeBuilder {
     public PractitionerRole_AvailableTimeBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public PractitionerRole_AvailableTimeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param availableStartTime */

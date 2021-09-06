@@ -77,6 +77,11 @@ public interface Task_RestrictionBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public Task_RestrictionBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -99,6 +104,11 @@ public interface Task_RestrictionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Task_RestrictionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param recipient */
     public Task_RestrictionBuilder.Impl withRecipient(@NonNull Reference... recipient) {
       this.recipient = Arrays.asList(recipient);
@@ -107,6 +117,11 @@ public interface Task_RestrictionBuilder {
     /** @param recipient */
     public Task_RestrictionBuilder.Impl withRecipient(@NonNull Collection<Reference> recipient) {
       this.recipient = Collections.unmodifiableCollection(recipient);
+      return this;
+    }
+
+    public Task_RestrictionBuilder.Impl withRecipient(@NonNull ReferenceBuilder... recipient) {
+      this.recipient = Arrays.stream(recipient).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param repetitions */
@@ -148,6 +163,13 @@ public interface Task_RestrictionBuilder {
     public Task_RestrictionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Task_RestrictionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

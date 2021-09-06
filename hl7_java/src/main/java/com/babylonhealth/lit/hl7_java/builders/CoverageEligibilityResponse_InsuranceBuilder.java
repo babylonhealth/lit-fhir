@@ -108,10 +108,22 @@ public interface CoverageEligibilityResponse_InsuranceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageEligibilityResponse_InsuranceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param benefitPeriod */
     public CoverageEligibilityResponse_InsuranceBuilder.Impl withBenefitPeriod(
         @NonNull Period benefitPeriod) {
       this.benefitPeriod = Optional.of(benefitPeriod);
+      return this;
+    }
+
+    public CoverageEligibilityResponse_InsuranceBuilder.Impl withBenefitPeriod(
+        @NonNull PeriodBuilder benefitPeriod) {
+      this.benefitPeriod = Optional.of(benefitPeriod.build());
       return this;
     }
     /**
@@ -150,6 +162,13 @@ public interface CoverageEligibilityResponse_InsuranceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CoverageEligibilityResponse_InsuranceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param item */
     public CoverageEligibilityResponse_InsuranceBuilder.Impl withItem(
         @NonNull CoverageEligibilityResponse$Insurance$Item... item) {
@@ -160,6 +179,12 @@ public interface CoverageEligibilityResponse_InsuranceBuilder {
     public CoverageEligibilityResponse_InsuranceBuilder.Impl withItem(
         @NonNull Collection<CoverageEligibilityResponse$Insurance$Item> item) {
       this.item = Collections.unmodifiableCollection(item);
+      return this;
+    }
+
+    public CoverageEligibilityResponse_InsuranceBuilder.Impl withItem(
+        @NonNull CoverageEligibilityResponse_Insurance_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -109,6 +109,11 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public FHIRListBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -120,9 +125,19 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public FHIRListBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param code - This code defines the purpose of the list - why it was created. */
     public FHIRListBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public FHIRListBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param date - The date that the list was prepared. */
@@ -140,6 +155,11 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public FHIRListBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param title - A label for the list assigned by the author. */
     public FHIRListBuilder.Impl withTitle(@NonNull String title) {
       this.title = Optional.of(title);
@@ -153,12 +173,22 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       this.source = Optional.of(source);
       return this;
     }
+
+    public FHIRListBuilder.Impl withSource(@NonNull ReferenceBuilder source) {
+      this.source = Optional.of(source.build());
+      return this;
+    }
     /**
      * @param subject - The common subject (or patient) of the resources that are in the list if
      *     there is one.
      */
     public FHIRListBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public FHIRListBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -184,6 +214,11 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public FHIRListBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -206,14 +241,29 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public FHIRListBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param encounter - The encounter that is the context in which this list was created. */
     public FHIRListBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
       return this;
     }
+
+    public FHIRListBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
     /** @param orderedBy - What order applies to the items in the list. */
     public FHIRListBuilder.Impl withOrderedBy(@NonNull CodeableConcept orderedBy) {
       this.orderedBy = Optional.of(orderedBy);
+      return this;
+    }
+
+    public FHIRListBuilder.Impl withOrderedBy(@NonNull CodeableConceptBuilder orderedBy) {
+      this.orderedBy = Optional.of(orderedBy.build());
       return this;
     }
     /**
@@ -232,9 +282,19 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public FHIRListBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param emptyReason - If the list is empty, why the list is empty. */
     public FHIRListBuilder.Impl withEmptyReason(@NonNull CodeableConcept emptyReason) {
       this.emptyReason = Optional.of(emptyReason);
+      return this;
+    }
+
+    public FHIRListBuilder.Impl withEmptyReason(@NonNull CodeableConceptBuilder emptyReason) {
+      this.emptyReason = Optional.of(emptyReason.build());
       return this;
     }
     /**
@@ -282,6 +342,13 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public FHIRListBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param entry - Entries in this list. */
     public FHIRListBuilder.Impl withEntry(@NonNull FHIRList.Entry... entry) {
       this.entry = Arrays.asList(entry);
@@ -290,6 +357,11 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
     /** @param entry - Entries in this list. */
     public FHIRListBuilder.Impl withEntry(@NonNull Collection<FHIRList.Entry> entry) {
       this.entry = Collections.unmodifiableCollection(entry);
+      return this;
+    }
+
+    public FHIRListBuilder.Impl withEntry(@NonNull FHIRList_EntryBuilder... entry) {
+      this.entry = Arrays.stream(entry).map(e -> e.build()).collect(toList());
       return this;
     }
 

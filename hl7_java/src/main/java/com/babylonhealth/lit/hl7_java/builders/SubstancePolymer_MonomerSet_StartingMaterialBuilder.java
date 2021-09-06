@@ -79,6 +79,12 @@ public interface SubstancePolymer_MonomerSet_StartingMaterialBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param amount */
     public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withAmount(
         @NonNull Choice amount) {
@@ -89,6 +95,12 @@ public interface SubstancePolymer_MonomerSet_StartingMaterialBuilder {
     public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withMaterial(
         @NonNull CodeableConcept material) {
       this.material = Optional.of(material);
+      return this;
+    }
+
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withMaterial(
+        @NonNull CodeableConceptBuilder material) {
+      this.material = Optional.of(material.build());
       return this;
     }
     /**
@@ -113,6 +125,12 @@ public interface SubstancePolymer_MonomerSet_StartingMaterialBuilder {
     public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param isDefining */
@@ -155,6 +173,13 @@ public interface SubstancePolymer_MonomerSet_StartingMaterialBuilder {
     public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

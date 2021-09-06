@@ -99,6 +99,11 @@ public interface TestScript_MetadataBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TestScript_MetadataBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -135,6 +140,13 @@ public interface TestScript_MetadataBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TestScript_MetadataBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param link */
     public TestScript_MetadataBuilder.Impl withLink(@NonNull TestScript$Metadata$Link... link) {
       this.link = Arrays.asList(link);
@@ -144,6 +156,12 @@ public interface TestScript_MetadataBuilder {
     public TestScript_MetadataBuilder.Impl withLink(
         @NonNull Collection<TestScript$Metadata$Link> link) {
       this.link = Collections.unmodifiableCollection(link);
+      return this;
+    }
+
+    public TestScript_MetadataBuilder.Impl withLink(
+        @NonNull TestScript_Metadata_LinkBuilder... link) {
+      this.link = Arrays.stream(link).map(e -> e.build()).collect(toList());
       return this;
     }
 

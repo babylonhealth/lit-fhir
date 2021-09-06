@@ -92,6 +92,11 @@ public interface DeviceRequest_ParameterBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public DeviceRequest_ParameterBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /**
      * @param value Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
      *     Quantity, Range. To pass the value in, wrap with one of the
@@ -122,6 +127,12 @@ public interface DeviceRequest_ParameterBuilder {
     public DeviceRequest_ParameterBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public DeviceRequest_ParameterBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -158,6 +169,13 @@ public interface DeviceRequest_ParameterBuilder {
     public DeviceRequest_ParameterBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public DeviceRequest_ParameterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

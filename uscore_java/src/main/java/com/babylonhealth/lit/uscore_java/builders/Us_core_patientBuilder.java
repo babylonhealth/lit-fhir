@@ -147,6 +147,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_patientBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -158,6 +163,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Us_core_patientBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param photo - Image of the patient. */
     public Us_core_patientBuilder.Impl withPhoto(@NonNull Attachment... photo) {
       this.photo = Arrays.asList(photo);
@@ -166,6 +176,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
     /** @param photo - Image of the patient. */
     public Us_core_patientBuilder.Impl withPhoto(@NonNull Collection<Attachment> photo) {
       this.photo = Collections.unmodifiableCollection(photo);
+      return this;
+    }
+
+    public Us_core_patientBuilder.Impl withPhoto(@NonNull AttachmentBuilder... photo) {
+      this.photo = Arrays.stream(photo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -203,6 +218,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Us_core_patientBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param extension - An Extension */
     public Us_core_patientBuilder.Impl withExtension(@NonNull Extension... extension) {
       this.extension = Arrays.asList(extension);
@@ -211,6 +231,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
     /** @param extension - An Extension */
     public Us_core_patientBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Us_core_patientBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param birthDate - The date of birth for the individual. */
@@ -242,6 +267,12 @@ public interface Us_core_patientBuilder extends PatientBuilder {
      */
     public Us_core_patientBuilder.Impl withMaritalStatus(@NonNull CodeableConcept maritalStatus) {
       this.maritalStatus = Optional.of(maritalStatus);
+      return this;
+    }
+
+    public Us_core_patientBuilder.Impl withMaritalStatus(
+        @NonNull CodeableConceptBuilder maritalStatus) {
+      this.maritalStatus = Optional.of(maritalStatus.build());
       return this;
     }
     /**
@@ -290,6 +321,13 @@ public interface Us_core_patientBuilder extends PatientBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_patientBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param telecom - A contact detail (e.g. a telephone number or an email address) by which the
      *     individual may be contacted.
@@ -306,6 +344,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public Us_core_patientBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param address - An address for the individual. */
     public Us_core_patientBuilder.Impl withAddress(@NonNull Address... address) {
       this.address = Arrays.asList(address);
@@ -314,6 +357,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
     /** @param address - An address for the individual. */
     public Us_core_patientBuilder.Impl withAddress(@NonNull Collection<Address> address) {
       this.address = Collections.unmodifiableCollection(address);
+      return this;
+    }
+
+    public Us_core_patientBuilder.Impl withAddress(@NonNull AddressBuilder... address) {
+      this.address = Arrays.stream(address).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param generalPractitioner - Patient's nominated care provider. */
@@ -328,10 +376,23 @@ public interface Us_core_patientBuilder extends PatientBuilder {
       this.generalPractitioner = Collections.unmodifiableCollection(generalPractitioner);
       return this;
     }
+
+    public Us_core_patientBuilder.Impl withGeneralPractitioner(
+        @NonNull ReferenceBuilder... generalPractitioner) {
+      this.generalPractitioner =
+          Arrays.stream(generalPractitioner).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param managingOrganization - Organization that is the custodian of the patient record. */
     public Us_core_patientBuilder.Impl withManagingOrganization(
         @NonNull Reference managingOrganization) {
       this.managingOrganization = Optional.of(managingOrganization);
+      return this;
+    }
+
+    public Us_core_patientBuilder.Impl withManagingOrganization(
+        @NonNull ReferenceBuilder managingOrganization) {
+      this.managingOrganization = Optional.of(managingOrganization.build());
       return this;
     }
     /** @param link - Link to another patient resource that concerns the same actual patient. */
@@ -344,6 +405,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
       this.link = Collections.unmodifiableCollection(link);
       return this;
     }
+
+    public Us_core_patientBuilder.Impl withLink(@NonNull Patient_LinkBuilder... link) {
+      this.link = Arrays.stream(link).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param contact - A contact party (e.g. guardian, partner, friend) for the patient. */
     public Us_core_patientBuilder.Impl withContact(@NonNull Patient.Contact... contact) {
       this.contact = Arrays.asList(contact);
@@ -352,6 +418,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
     /** @param contact - A contact party (e.g. guardian, partner, friend) for the patient. */
     public Us_core_patientBuilder.Impl withContact(@NonNull Collection<Patient.Contact> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public Us_core_patientBuilder.Impl withContact(@NonNull Patient_ContactBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -370,6 +441,12 @@ public interface Us_core_patientBuilder extends PatientBuilder {
     public Us_core_patientBuilder.Impl withCommunication(
         @NonNull Collection<Patient.Communication> communication) {
       this.communication = Collections.unmodifiableCollection(communication);
+      return this;
+    }
+
+    public Us_core_patientBuilder.Impl withCommunication(
+        @NonNull Patient_CommunicationBuilder... communication) {
+      this.communication = Arrays.stream(communication).map(e -> e.build()).collect(toList());
       return this;
     }
 

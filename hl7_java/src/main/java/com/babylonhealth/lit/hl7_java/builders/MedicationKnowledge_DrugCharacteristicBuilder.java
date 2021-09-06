@@ -93,6 +93,12 @@ public interface MedicationKnowledge_DrugCharacteristicBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public MedicationKnowledge_DrugCharacteristicBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param value Field is a 'choice' field. Type should be one of byte[], CodeableConcept,
      *     Quantity, String. To pass the value in, wrap with one of the
@@ -125,6 +131,12 @@ public interface MedicationKnowledge_DrugCharacteristicBuilder {
     public MedicationKnowledge_DrugCharacteristicBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationKnowledge_DrugCharacteristicBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -161,6 +173,13 @@ public interface MedicationKnowledge_DrugCharacteristicBuilder {
     public MedicationKnowledge_DrugCharacteristicBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationKnowledge_DrugCharacteristicBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

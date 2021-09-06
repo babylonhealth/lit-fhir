@@ -126,6 +126,11 @@ public interface ExplanationOfBenefit_ItemBuilder {
       this.net = Optional.of(net);
       return this;
     }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withNet(@NonNull MoneyBuilder net) {
+      this.net = Optional.of(net.build());
+      return this;
+    }
     /** @param udi */
     public ExplanationOfBenefit_ItemBuilder.Impl withUdi(@NonNull Reference... udi) {
       this.udi = Arrays.asList(udi);
@@ -136,6 +141,11 @@ public interface ExplanationOfBenefit_ItemBuilder {
       this.udi = Collections.unmodifiableCollection(udi);
       return this;
     }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withUdi(@NonNull ReferenceBuilder... udi) {
+      this.udi = Arrays.stream(udi).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param factor */
     public ExplanationOfBenefit_ItemBuilder.Impl withFactor(@NonNull BigDecimal factor) {
       this.factor = Optional.of(factor);
@@ -144,6 +154,12 @@ public interface ExplanationOfBenefit_ItemBuilder {
     /** @param revenue */
     public ExplanationOfBenefit_ItemBuilder.Impl withRevenue(@NonNull CodeableConcept revenue) {
       this.revenue = Optional.of(revenue);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withRevenue(
+        @NonNull CodeableConceptBuilder revenue) {
+      this.revenue = Optional.of(revenue.build());
       return this;
     }
     /** @param subSite */
@@ -157,9 +173,21 @@ public interface ExplanationOfBenefit_ItemBuilder {
       this.subSite = Collections.unmodifiableCollection(subSite);
       return this;
     }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withSubSite(
+        @NonNull CodeableConceptBuilder... subSite) {
+      this.subSite = Arrays.stream(subSite).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param category */
     public ExplanationOfBenefit_ItemBuilder.Impl withCategory(@NonNull CodeableConcept category) {
       this.category = Optional.of(category);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /** @param modifier */
@@ -174,14 +202,31 @@ public interface ExplanationOfBenefit_ItemBuilder {
       this.modifier = Collections.unmodifiableCollection(modifier);
       return this;
     }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withModifier(
+        @NonNull CodeableConceptBuilder... modifier) {
+      this.modifier = Arrays.stream(modifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param quantity */
     public ExplanationOfBenefit_ItemBuilder.Impl withQuantity(@NonNull Quantity quantity) {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /** @param bodySite */
     public ExplanationOfBenefit_ItemBuilder.Impl withBodySite(@NonNull CodeableConcept bodySite) {
       this.bodySite = Optional.of(bodySite);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withBodySite(
+        @NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
       return this;
     }
     /**
@@ -207,9 +252,20 @@ public interface ExplanationOfBenefit_ItemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param unitPrice */
     public ExplanationOfBenefit_ItemBuilder.Impl withUnitPrice(@NonNull Money unitPrice) {
       this.unitPrice = Optional.of(unitPrice);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withUnitPrice(@NonNull MoneyBuilder unitPrice) {
+      this.unitPrice = Optional.of(unitPrice.build());
       return this;
     }
     /** @param encounter */
@@ -221,6 +277,12 @@ public interface ExplanationOfBenefit_ItemBuilder {
     public ExplanationOfBenefit_ItemBuilder.Impl withEncounter(
         @NonNull Collection<Reference> encounter) {
       this.encounter = Collections.unmodifiableCollection(encounter);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withEncounter(
+        @NonNull ReferenceBuilder... encounter) {
+      this.encounter = Arrays.stream(encounter).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param noteNumber */
@@ -244,6 +306,12 @@ public interface ExplanationOfBenefit_ItemBuilder {
     public ExplanationOfBenefit_ItemBuilder.Impl withProgramCode(
         @NonNull Collection<CodeableConcept> programCode) {
       this.programCode = Collections.unmodifiableCollection(programCode);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withProgramCode(
+        @NonNull CodeableConceptBuilder... programCode) {
+      this.programCode = Arrays.stream(programCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -312,6 +380,13 @@ public interface ExplanationOfBenefit_ItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param diagnosisSequence */
     public ExplanationOfBenefit_ItemBuilder.Impl withDiagnosisSequence(
         @NonNull Integer... diagnosisSequence) {
@@ -366,6 +441,12 @@ public interface ExplanationOfBenefit_ItemBuilder {
       this.adjudication = Collections.unmodifiableCollection(adjudication);
       return this;
     }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withAdjudication(
+        @NonNull ExplanationOfBenefit_Item_AdjudicationBuilder... adjudication) {
+      this.adjudication = Arrays.stream(adjudication).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param detail */
     public ExplanationOfBenefit_ItemBuilder.Impl withDetail(
         @NonNull ExplanationOfBenefit$Item$Detail... detail) {
@@ -376,6 +457,12 @@ public interface ExplanationOfBenefit_ItemBuilder {
     public ExplanationOfBenefit_ItemBuilder.Impl withDetail(
         @NonNull Collection<ExplanationOfBenefit$Item$Detail> detail) {
       this.detail = Collections.unmodifiableCollection(detail);
+      return this;
+    }
+
+    public ExplanationOfBenefit_ItemBuilder.Impl withDetail(
+        @NonNull ExplanationOfBenefit_Item_DetailBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
       return this;
     }
 

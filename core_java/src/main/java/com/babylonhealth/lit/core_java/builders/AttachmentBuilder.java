@@ -136,6 +136,11 @@ public interface AttachmentBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AttachmentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contentType - Identifies the type of the data in the attachment and allows a method to
      *     be chosen to interpret or render the data. Includes mime type parameters such as charset

@@ -103,6 +103,12 @@ public interface ImplementationGuide_Definition_GroupingBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImplementationGuide_Definition_GroupingBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the implementation guide
      *     from a consumer's perspective.
@@ -146,6 +152,13 @@ public interface ImplementationGuide_Definition_GroupingBuilder {
     public ImplementationGuide_Definition_GroupingBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ImplementationGuide_Definition_GroupingBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

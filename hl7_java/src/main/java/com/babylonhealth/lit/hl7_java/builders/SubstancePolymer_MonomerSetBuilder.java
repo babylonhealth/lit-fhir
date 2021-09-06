@@ -95,10 +95,22 @@ public interface SubstancePolymer_MonomerSetBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstancePolymer_MonomerSetBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param ratioType */
     public SubstancePolymer_MonomerSetBuilder.Impl withRatioType(
         @NonNull CodeableConcept ratioType) {
       this.ratioType = Optional.of(ratioType);
+      return this;
+    }
+
+    public SubstancePolymer_MonomerSetBuilder.Impl withRatioType(
+        @NonNull CodeableConceptBuilder ratioType) {
+      this.ratioType = Optional.of(ratioType.build());
       return this;
     }
     /**
@@ -137,6 +149,13 @@ public interface SubstancePolymer_MonomerSetBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstancePolymer_MonomerSetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param startingMaterial */
     public SubstancePolymer_MonomerSetBuilder.Impl withStartingMaterial(
         @NonNull SubstancePolymer$MonomerSet$StartingMaterial... startingMaterial) {
@@ -147,6 +166,12 @@ public interface SubstancePolymer_MonomerSetBuilder {
     public SubstancePolymer_MonomerSetBuilder.Impl withStartingMaterial(
         @NonNull Collection<SubstancePolymer$MonomerSet$StartingMaterial> startingMaterial) {
       this.startingMaterial = Collections.unmodifiableCollection(startingMaterial);
+      return this;
+    }
+
+    public SubstancePolymer_MonomerSetBuilder.Impl withStartingMaterial(
+        @NonNull SubstancePolymer_MonomerSet_StartingMaterialBuilder... startingMaterial) {
+      this.startingMaterial = Arrays.stream(startingMaterial).map(e -> e.build()).collect(toList());
       return this;
     }
 

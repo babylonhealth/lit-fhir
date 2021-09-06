@@ -80,6 +80,11 @@ public interface InsurancePlan_PlanBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public InsurancePlan_PlanBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param network - Reference to the network included in the health insurance product. */
     public InsurancePlan_PlanBuilder.Impl withNetwork(@NonNull Reference... network) {
       this.network = Arrays.asList(network);
@@ -88,6 +93,11 @@ public interface InsurancePlan_PlanBuilder {
     /** @param network - Reference to the network included in the health insurance product. */
     public InsurancePlan_PlanBuilder.Impl withNetwork(@NonNull Collection<Reference> network) {
       this.network = Collections.unmodifiableCollection(network);
+      return this;
+    }
+
+    public InsurancePlan_PlanBuilder.Impl withNetwork(@NonNull ReferenceBuilder... network) {
+      this.network = Arrays.stream(network).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -112,6 +122,11 @@ public interface InsurancePlan_PlanBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public InsurancePlan_PlanBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Business identifiers assigned to this health insurance product which
      *     remain constant as the resource is updated and propagates from server to server.
@@ -129,6 +144,11 @@ public interface InsurancePlan_PlanBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public InsurancePlan_PlanBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param coverageArea - The geographic region in which a health insurance product's benefits
      *     apply.
@@ -144,6 +164,12 @@ public interface InsurancePlan_PlanBuilder {
     public InsurancePlan_PlanBuilder.Impl withCoverageArea(
         @NonNull Collection<Reference> coverageArea) {
       this.coverageArea = Collections.unmodifiableCollection(coverageArea);
+      return this;
+    }
+
+    public InsurancePlan_PlanBuilder.Impl withCoverageArea(
+        @NonNull ReferenceBuilder... coverageArea) {
+      this.coverageArea = Arrays.stream(coverageArea).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -182,6 +208,13 @@ public interface InsurancePlan_PlanBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public InsurancePlan_PlanBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param generalCost */
     public InsurancePlan_PlanBuilder.Impl withGeneralCost(
         @NonNull InsurancePlan$Plan$GeneralCost... generalCost) {
@@ -194,6 +227,12 @@ public interface InsurancePlan_PlanBuilder {
       this.generalCost = Collections.unmodifiableCollection(generalCost);
       return this;
     }
+
+    public InsurancePlan_PlanBuilder.Impl withGeneralCost(
+        @NonNull InsurancePlan_Plan_GeneralCostBuilder... generalCost) {
+      this.generalCost = Arrays.stream(generalCost).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param specificCost */
     public InsurancePlan_PlanBuilder.Impl withSpecificCost(
         @NonNull InsurancePlan$Plan$SpecificCost... specificCost) {
@@ -204,6 +243,12 @@ public interface InsurancePlan_PlanBuilder {
     public InsurancePlan_PlanBuilder.Impl withSpecificCost(
         @NonNull Collection<InsurancePlan$Plan$SpecificCost> specificCost) {
       this.specificCost = Collections.unmodifiableCollection(specificCost);
+      return this;
+    }
+
+    public InsurancePlan_PlanBuilder.Impl withSpecificCost(
+        @NonNull InsurancePlan_Plan_SpecificCostBuilder... specificCost) {
+      this.specificCost = Arrays.stream(specificCost).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -88,6 +88,12 @@ public interface SpecimenDefinition_TypeTestedBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public SpecimenDefinition_TypeTestedBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -112,6 +118,12 @@ public interface SpecimenDefinition_TypeTestedBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SpecimenDefinition_TypeTestedBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param isDerived */
     public SpecimenDefinition_TypeTestedBuilder.Impl withIsDerived(@NonNull Boolean isDerived) {
       this.isDerived = Optional.of(isDerived);
@@ -126,6 +138,12 @@ public interface SpecimenDefinition_TypeTestedBuilder {
     public SpecimenDefinition_TypeTestedBuilder.Impl withRetentionTime(
         @NonNull Duration retentionTime) {
       this.retentionTime = Optional.of(retentionTime);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTestedBuilder.Impl withRetentionTime(
+        @NonNull DurationBuilder retentionTime) {
+      this.retentionTime = Optional.of(retentionTime.build());
       return this;
     }
     /**
@@ -164,6 +182,13 @@ public interface SpecimenDefinition_TypeTestedBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SpecimenDefinition_TypeTestedBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param rejectionCriterion */
     public SpecimenDefinition_TypeTestedBuilder.Impl withRejectionCriterion(
         @NonNull CodeableConcept... rejectionCriterion) {
@@ -174,6 +199,13 @@ public interface SpecimenDefinition_TypeTestedBuilder {
     public SpecimenDefinition_TypeTestedBuilder.Impl withRejectionCriterion(
         @NonNull Collection<CodeableConcept> rejectionCriterion) {
       this.rejectionCriterion = Collections.unmodifiableCollection(rejectionCriterion);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTestedBuilder.Impl withRejectionCriterion(
+        @NonNull CodeableConceptBuilder... rejectionCriterion) {
+      this.rejectionCriterion =
+          Arrays.stream(rejectionCriterion).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param handling */
@@ -188,10 +220,22 @@ public interface SpecimenDefinition_TypeTestedBuilder {
       this.handling = Collections.unmodifiableCollection(handling);
       return this;
     }
+
+    public SpecimenDefinition_TypeTestedBuilder.Impl withHandling(
+        @NonNull SpecimenDefinition_TypeTested_HandlingBuilder... handling) {
+      this.handling = Arrays.stream(handling).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param container */
     public SpecimenDefinition_TypeTestedBuilder.Impl withContainer(
         @NonNull SpecimenDefinition$TypeTested$Container container) {
       this.container = Optional.of(container);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTestedBuilder.Impl withContainer(
+        @NonNull SpecimenDefinition_TypeTested_ContainerBuilder container) {
+      this.container = Optional.of(container.build());
       return this;
     }
 

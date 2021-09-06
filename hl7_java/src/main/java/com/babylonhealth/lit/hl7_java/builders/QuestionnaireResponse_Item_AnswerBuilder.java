@@ -137,6 +137,12 @@ public interface QuestionnaireResponse_Item_AnswerBuilder {
       this.item = Collections.unmodifiableCollection(item);
       return this;
     }
+
+    public QuestionnaireResponse_Item_AnswerBuilder.Impl withItem(
+        @NonNull QuestionnaireResponse_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param value Field is a 'choice' field. Type should be one of Attachment, BigDecimal,
      *     Boolean, Coding, FHIRDate, FHIRDateTime, Integer, LocalTime, Quantity, Reference, String.
@@ -170,6 +176,12 @@ public interface QuestionnaireResponse_Item_AnswerBuilder {
     public QuestionnaireResponse_Item_AnswerBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public QuestionnaireResponse_Item_AnswerBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -206,6 +218,13 @@ public interface QuestionnaireResponse_Item_AnswerBuilder {
     public QuestionnaireResponse_Item_AnswerBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public QuestionnaireResponse_Item_AnswerBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

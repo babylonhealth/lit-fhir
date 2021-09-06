@@ -90,6 +90,11 @@ public interface Bundle_Entry_ResponseBuilder {
       this.outcome = Optional.of(outcome);
       return this;
     }
+
+    public Bundle_Entry_ResponseBuilder.Impl withOutcome(@NonNull ResourceBuilder outcome) {
+      this.outcome = Optional.of(outcome.build());
+      return this;
+    }
     /** @param location */
     public Bundle_Entry_ResponseBuilder.Impl withLocation(@NonNull String location) {
       this.location = Optional.of(location);
@@ -104,6 +109,11 @@ public interface Bundle_Entry_ResponseBuilder {
     public Bundle_Entry_ResponseBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Bundle_Entry_ResponseBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param lastModified */
@@ -121,6 +131,13 @@ public interface Bundle_Entry_ResponseBuilder {
     public Bundle_Entry_ResponseBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Bundle_Entry_ResponseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

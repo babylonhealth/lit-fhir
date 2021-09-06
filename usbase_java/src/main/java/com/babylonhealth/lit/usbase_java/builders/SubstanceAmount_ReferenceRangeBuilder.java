@@ -78,6 +78,12 @@ public interface SubstanceAmount_ReferenceRangeBuilder {
       this.lowLimit = Optional.of(lowLimit);
       return this;
     }
+
+    public SubstanceAmount_ReferenceRangeBuilder.Impl withLowLimit(
+        @NonNull QuantityBuilder lowLimit) {
+      this.lowLimit = Optional.of(lowLimit.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the element. To make the use of extensions safe and manageable, there
@@ -102,9 +108,21 @@ public interface SubstanceAmount_ReferenceRangeBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceAmount_ReferenceRangeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param highLimit */
     public SubstanceAmount_ReferenceRangeBuilder.Impl withHighLimit(@NonNull Quantity highLimit) {
       this.highLimit = Optional.of(highLimit);
+      return this;
+    }
+
+    public SubstanceAmount_ReferenceRangeBuilder.Impl withHighLimit(
+        @NonNull QuantityBuilder highLimit) {
+      this.highLimit = Optional.of(highLimit.build());
       return this;
     }
 

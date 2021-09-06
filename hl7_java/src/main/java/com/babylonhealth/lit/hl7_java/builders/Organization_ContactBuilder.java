@@ -78,9 +78,19 @@ public interface Organization_ContactBuilder {
       this.name = Optional.of(name);
       return this;
     }
+
+    public Organization_ContactBuilder.Impl withName(@NonNull HumanNameBuilder name) {
+      this.name = Optional.of(name.build());
+      return this;
+    }
     /** @param purpose */
     public Organization_ContactBuilder.Impl withPurpose(@NonNull CodeableConcept purpose) {
       this.purpose = Optional.of(purpose);
+      return this;
+    }
+
+    public Organization_ContactBuilder.Impl withPurpose(@NonNull CodeableConceptBuilder purpose) {
+      this.purpose = Optional.of(purpose.build());
       return this;
     }
     /** @param telecom - A contact detail for the organization. */
@@ -93,9 +103,19 @@ public interface Organization_ContactBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public Organization_ContactBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param address - An address for the organization. */
     public Organization_ContactBuilder.Impl withAddress(@NonNull Address address) {
       this.address = Optional.of(address);
+      return this;
+    }
+
+    public Organization_ContactBuilder.Impl withAddress(@NonNull AddressBuilder address) {
+      this.address = Optional.of(address.build());
       return this;
     }
     /**
@@ -119,6 +139,11 @@ public interface Organization_ContactBuilder {
     public Organization_ContactBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Organization_ContactBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -155,6 +180,13 @@ public interface Organization_ContactBuilder {
     public Organization_ContactBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Organization_ContactBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

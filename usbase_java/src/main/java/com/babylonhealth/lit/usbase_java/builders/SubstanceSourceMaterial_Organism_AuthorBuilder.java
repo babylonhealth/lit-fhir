@@ -98,10 +98,22 @@ public interface SubstanceSourceMaterial_Organism_AuthorBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSourceMaterial_Organism_AuthorBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param authorType */
     public SubstanceSourceMaterial_Organism_AuthorBuilder.Impl withAuthorType(
         @NonNull CodeableConcept authorType) {
       this.authorType = Optional.of(authorType);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_Organism_AuthorBuilder.Impl withAuthorType(
+        @NonNull CodeableConceptBuilder authorType) {
+      this.authorType = Optional.of(authorType.build());
       return this;
     }
     /**
@@ -138,6 +150,13 @@ public interface SubstanceSourceMaterial_Organism_AuthorBuilder {
     public SubstanceSourceMaterial_Organism_AuthorBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_Organism_AuthorBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param authorDescription */

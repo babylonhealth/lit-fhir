@@ -162,6 +162,11 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CapabilityStatementBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -171,6 +176,11 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
      */
     public CapabilityStatementBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public CapabilityStatementBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -213,6 +223,11 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
      */
     public CapabilityStatementBuilder.Impl withContact(@NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public CapabilityStatementBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -266,6 +281,11 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public CapabilityStatementBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -286,6 +306,11 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
      */
     public CapabilityStatementBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public CapabilityStatementBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -324,6 +349,12 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
     public CapabilityStatementBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public CapabilityStatementBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -378,6 +409,12 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
     public CapabilityStatementBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public CapabilityStatementBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -449,6 +486,13 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CapabilityStatementBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implementationGuide - A list of implementation guides that the server does (or should)
      *     support in their entirety.
@@ -477,6 +521,12 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
       this.software = Optional.of(software);
       return this;
     }
+
+    public CapabilityStatementBuilder.Impl withSoftware(
+        @NonNull CapabilityStatement_SoftwareBuilder software) {
+      this.software = Optional.of(software.build());
+      return this;
+    }
     /** @param document - A document definition. */
     public CapabilityStatementBuilder.Impl withDocument(
         @NonNull CapabilityStatement.Document... document) {
@@ -489,6 +539,12 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
       this.document = Collections.unmodifiableCollection(document);
       return this;
     }
+
+    public CapabilityStatementBuilder.Impl withDocument(
+        @NonNull CapabilityStatement_DocumentBuilder... document) {
+      this.document = Arrays.stream(document).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implementation - Identifies a specific implementation instance that is described by
      *     the capability statement - i.e. a particular installation, rather than the capabilities
@@ -497,6 +553,12 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
     public CapabilityStatementBuilder.Impl withImplementation(
         @NonNull CapabilityStatement.Implementation implementation) {
       this.implementation = Optional.of(implementation);
+      return this;
+    }
+
+    public CapabilityStatementBuilder.Impl withImplementation(
+        @NonNull CapabilityStatement_ImplementationBuilder implementation) {
+      this.implementation = Optional.of(implementation.build());
       return this;
     }
     /** @param rest - A definition of the restful capabilities of the solution, if any. */
@@ -510,6 +572,12 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
       this.rest = Collections.unmodifiableCollection(rest);
       return this;
     }
+
+    public CapabilityStatementBuilder.Impl withRest(
+        @NonNull CapabilityStatement_RestBuilder... rest) {
+      this.rest = Arrays.stream(rest).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param messaging - A description of the messaging capabilities of the solution. */
     public CapabilityStatementBuilder.Impl withMessaging(
         @NonNull CapabilityStatement.Messaging... messaging) {
@@ -520,6 +588,12 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
     public CapabilityStatementBuilder.Impl withMessaging(
         @NonNull Collection<CapabilityStatement.Messaging> messaging) {
       this.messaging = Collections.unmodifiableCollection(messaging);
+      return this;
+    }
+
+    public CapabilityStatementBuilder.Impl withMessaging(
+        @NonNull CapabilityStatement_MessagingBuilder... messaging) {
+      this.messaging = Arrays.stream(messaging).map(e -> e.build()).collect(toList());
       return this;
     }
 

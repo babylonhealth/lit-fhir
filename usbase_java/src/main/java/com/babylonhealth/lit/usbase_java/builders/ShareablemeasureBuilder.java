@@ -196,6 +196,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -205,6 +210,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
      */
     public ShareablemeasureBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -230,6 +240,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
      */
     public ShareablemeasureBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
       this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param title - A short, descriptive, user-friendly title for the measure. */
@@ -263,6 +278,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.topic = Collections.unmodifiableCollection(topic);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withTopic(@NonNull CodeableConceptBuilder... topic) {
+      this.topic = Arrays.stream(topic).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - An individiual or organization primarily involved in the creation and
      *     maintenance of the content.
@@ -277,6 +297,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
      */
     public ShareablemeasureBuilder.Impl withAuthor(@NonNull Collection<ContactDetail> author) {
       this.author = Collections.unmodifiableCollection(author);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withAuthor(@NonNull ContactDetailBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -295,6 +320,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.editor = Collections.unmodifiableCollection(editor);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withEditor(@NonNull ContactDetailBuilder... editor) {
+      this.editor = Arrays.stream(editor).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contact - Contact details to assist a user in finding and communicating with the
      *     publisher.
@@ -309,6 +339,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
      */
     public ShareablemeasureBuilder.Impl withContact(@NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -344,6 +379,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.scoring = Optional.of(scoring);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withScoring(@NonNull CodeableConceptBuilder scoring) {
+      this.scoring = Optional.of(scoring.build());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public ShareablemeasureBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -373,6 +413,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.reviewer = Collections.unmodifiableCollection(reviewer);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withReviewer(@NonNull ContactDetailBuilder... reviewer) {
+      this.reviewer = Arrays.stream(reviewer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param endorser - An individual or organization responsible for officially endorsing the
      *     content for use in some setting.
@@ -387,6 +432,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
      */
     public ShareablemeasureBuilder.Impl withEndorser(@NonNull Collection<ContactDetail> endorser) {
       this.endorser = Collections.unmodifiableCollection(endorser);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withEndorser(@NonNull ContactDetailBuilder... endorser) {
+      this.endorser = Arrays.stream(endorser).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -415,6 +465,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -435,6 +490,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
      */
     public ShareablemeasureBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -473,6 +533,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - The intended subjects for the measure. If this element is not provided, a
      *     Patient subject is assumed, but the subject of the measure can be anything. Field is a
@@ -502,6 +567,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
     public ShareablemeasureBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -537,6 +607,12 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
     public ShareablemeasureBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -582,6 +658,12 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.effectivePeriod = Optional.of(effectivePeriod);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withEffectivePeriod(
+        @NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
+      return this;
+    }
     /**
      * @param relatedArtifact - Related artifacts such as additional documentation, justification,
      *     or bibliographic references.
@@ -600,6 +682,12 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.relatedArtifact = Collections.unmodifiableCollection(relatedArtifact);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withRelatedArtifact(
+        @NonNull RelatedArtifactBuilder... relatedArtifact) {
+      this.relatedArtifact = Arrays.stream(relatedArtifact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param rateAggregation - Describes how to combine the information calculated, based on logic
      *     in each of several populations, into one summarized result.
@@ -615,6 +703,12 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
     public ShareablemeasureBuilder.Impl withCompositeScoring(
         @NonNull CodeableConcept compositeScoring) {
       this.compositeScoring = Optional.of(compositeScoring);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withCompositeScoring(
+        @NonNull CodeableConceptBuilder compositeScoring) {
+      this.compositeScoring = Optional.of(compositeScoring.build());
       return this;
     }
     /**
@@ -653,6 +747,13 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param improvementNotation - Information on whether an increase or decrease in score is the
      *     preferred result (e.g., a higher score indicates better quality OR a lower score
@@ -661,6 +762,12 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
     public ShareablemeasureBuilder.Impl withImprovementNotation(
         @NonNull CodeableConcept improvementNotation) {
       this.improvementNotation = Optional.of(improvementNotation);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withImprovementNotation(
+        @NonNull CodeableConceptBuilder improvementNotation) {
+      this.improvementNotation = Optional.of(improvementNotation.build());
       return this;
     }
     /**
@@ -692,6 +799,12 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       this.supplementalData = Collections.unmodifiableCollection(supplementalData);
       return this;
     }
+
+    public ShareablemeasureBuilder.Impl withSupplementalData(
+        @NonNull Measure_SupplementalDataBuilder... supplementalData) {
+      this.supplementalData = Arrays.stream(supplementalData).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param group - A group of population criteria for the measure. */
     public ShareablemeasureBuilder.Impl withGroup(@NonNull Measure.Group... group) {
       this.group = Arrays.asList(group);
@@ -700,6 +813,11 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
     /** @param group - A group of population criteria for the measure. */
     public ShareablemeasureBuilder.Impl withGroup(@NonNull Collection<Measure.Group> group) {
       this.group = Collections.unmodifiableCollection(group);
+      return this;
+    }
+
+    public ShareablemeasureBuilder.Impl withGroup(@NonNull Measure_GroupBuilder... group) {
+      this.group = Arrays.stream(group).map(e -> e.build()).collect(toList());
       return this;
     }
 

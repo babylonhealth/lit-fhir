@@ -294,6 +294,11 @@ public interface Patient_proficiencyBuilder extends ExtensionBuilder {
       return this;
     }
 
+    public Patient_proficiencyBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Patient_proficiency build() {
       return new Patient_proficiency(
           OptionConverters.toScala(id),

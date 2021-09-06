@@ -92,6 +92,12 @@ public interface GraphDefinition_Link_TargetBuilder {
       this.link = Collections.unmodifiableCollection(link);
       return this;
     }
+
+    public GraphDefinition_Link_TargetBuilder.Impl withLink(
+        @NonNull GraphDefinition_LinkBuilder... link) {
+      this.link = Arrays.stream(link).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param params */
     public GraphDefinition_Link_TargetBuilder.Impl withParams(@NonNull String params) {
       this.params = Optional.of(params);
@@ -123,6 +129,12 @@ public interface GraphDefinition_Link_TargetBuilder {
     public GraphDefinition_Link_TargetBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public GraphDefinition_Link_TargetBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -161,6 +173,13 @@ public interface GraphDefinition_Link_TargetBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public GraphDefinition_Link_TargetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param compartment */
     public GraphDefinition_Link_TargetBuilder.Impl withCompartment(
         @NonNull GraphDefinition$Link$Target$Compartment... compartment) {
@@ -171,6 +190,12 @@ public interface GraphDefinition_Link_TargetBuilder {
     public GraphDefinition_Link_TargetBuilder.Impl withCompartment(
         @NonNull Collection<GraphDefinition$Link$Target$Compartment> compartment) {
       this.compartment = Collections.unmodifiableCollection(compartment);
+      return this;
+    }
+
+    public GraphDefinition_Link_TargetBuilder.Impl withCompartment(
+        @NonNull GraphDefinition_Link_Target_CompartmentBuilder... compartment) {
+      this.compartment = Arrays.stream(compartment).map(e -> e.build()).collect(toList());
       return this;
     }
 

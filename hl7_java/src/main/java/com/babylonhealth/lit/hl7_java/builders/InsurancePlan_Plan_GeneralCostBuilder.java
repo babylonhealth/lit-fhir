@@ -78,9 +78,20 @@ public interface InsurancePlan_Plan_GeneralCostBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public InsurancePlan_Plan_GeneralCostBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param cost */
     public InsurancePlan_Plan_GeneralCostBuilder.Impl withCost(@NonNull Money cost) {
       this.cost = Optional.of(cost);
+      return this;
+    }
+
+    public InsurancePlan_Plan_GeneralCostBuilder.Impl withCost(@NonNull MoneyBuilder cost) {
+      this.cost = Optional.of(cost.build());
       return this;
     }
     /** @param comment */
@@ -110,6 +121,12 @@ public interface InsurancePlan_Plan_GeneralCostBuilder {
     public InsurancePlan_Plan_GeneralCostBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public InsurancePlan_Plan_GeneralCostBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param groupSize */
@@ -151,6 +168,13 @@ public interface InsurancePlan_Plan_GeneralCostBuilder {
     public InsurancePlan_Plan_GeneralCostBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public InsurancePlan_Plan_GeneralCostBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

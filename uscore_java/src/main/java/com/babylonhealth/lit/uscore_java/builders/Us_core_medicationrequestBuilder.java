@@ -188,6 +188,11 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -197,6 +202,11 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
      */
     public Us_core_medicationrequestBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -215,6 +225,11 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param basedOn - A plan or request that is fulfilled in whole or in part by this medication
      *     request.
@@ -230,6 +245,11 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withBasedOn(
         @NonNull Collection<Reference> basedOn) {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -255,6 +275,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param priority - Indicates how quickly the Medication Request should be addressed with
      *     respect to other requests.
@@ -269,6 +295,11 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
      */
     public Us_core_medicationrequestBuilder.Impl withRecorder(@NonNull Reference recorder) {
       this.recorder = Optional.of(recorder);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withRecorder(@NonNull ReferenceBuilder recorder) {
+      this.recorder = Optional.of(recorder.build());
       return this;
     }
     /**
@@ -288,6 +319,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -313,6 +350,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this [x] was created or to which the creation
      *     of this record is tightly associated.
@@ -321,12 +364,24 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.encounter = Optional.of(encounter);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withEncounter(
+        @NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
     /**
      * @param performer - The specified desired performer of the medication treatment (e.g. the
      *     performer of the medication administration).
      */
     public Us_core_medicationrequestBuilder.Impl withPerformer(@NonNull Reference performer) {
       this.performer = Optional.of(performer);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withPerformer(
+        @NonNull ReferenceBuilder performer) {
+      this.performer = Optional.of(performer.build());
       return this;
     }
     /**
@@ -344,6 +399,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withInsurance(
         @NonNull Collection<Reference> insurance) {
       this.insurance = Collections.unmodifiableCollection(insurance);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withInsurance(
+        @NonNull ReferenceBuilder... insurance) {
+      this.insurance = Arrays.stream(insurance).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -369,6 +430,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param reasonCode - The reason or the indication for ordering or not ordering the medication.
      */
@@ -383,6 +450,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -400,6 +473,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withStatusReason(
         @NonNull CodeableConcept statusReason) {
       this.statusReason = Optional.of(statusReason);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withStatusReason(
+        @NonNull CodeableConceptBuilder statusReason) {
+      this.statusReason = Optional.of(statusReason.build());
       return this;
     }
     /**
@@ -430,6 +509,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.eventHistory = Collections.unmodifiableCollection(eventHistory);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withEventHistory(
+        @NonNull ReferenceBuilder... eventHistory) {
+      this.eventHistory = Arrays.stream(eventHistory).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -447,6 +532,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withPerformerType(
         @NonNull CodeableConcept performerType) {
       this.performerType = Optional.of(performerType);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withPerformerType(
+        @NonNull CodeableConceptBuilder performerType) {
+      this.performerType = Optional.of(performerType.build());
       return this;
     }
     /**
@@ -469,6 +560,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.detectedIssue = Collections.unmodifiableCollection(detectedIssue);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withDetectedIssue(
+        @NonNull ReferenceBuilder... detectedIssue) {
+      this.detectedIssue = Arrays.stream(detectedIssue).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param reasonReference - Condition or observation that supports why the medication was
      *     ordered.
@@ -485,6 +582,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withReasonReference(
         @NonNull Collection<Reference> reasonReference) {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -515,6 +618,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withGroupIdentifier(
         @NonNull Identifier groupIdentifier) {
       this.groupIdentifier = Optional.of(groupIdentifier);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withGroupIdentifier(
+        @NonNull IdentifierBuilder groupIdentifier) {
+      this.groupIdentifier = Optional.of(groupIdentifier.build());
       return this;
     }
     /**
@@ -553,6 +662,13 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param priorPrescription - A link to a resource representing an earlier order related order
      *     or prescription.
@@ -562,6 +678,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.priorPrescription = Optional.of(priorPrescription);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withPriorPrescription(
+        @NonNull ReferenceBuilder priorPrescription) {
+      this.priorPrescription = Optional.of(priorPrescription.build());
+      return this;
+    }
     /**
      * @param courseOfTherapyType - The description of the overall patte3rn of the administration of
      *     the medication to the patient.
@@ -569,6 +691,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withCourseOfTherapyType(
         @NonNull CodeableConcept courseOfTherapyType) {
       this.courseOfTherapyType = Optional.of(courseOfTherapyType);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withCourseOfTherapyType(
+        @NonNull CodeableConceptBuilder courseOfTherapyType) {
+      this.courseOfTherapyType = Optional.of(courseOfTherapyType.build());
       return this;
     }
     /**
@@ -587,6 +715,13 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withSupportingInformation(
         @NonNull Collection<Reference> supportingInformation) {
       this.supportingInformation = Collections.unmodifiableCollection(supportingInformation);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withSupportingInformation(
+        @NonNull ReferenceBuilder... supportingInformation) {
+      this.supportingInformation =
+          Arrays.stream(supportingInformation).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -618,6 +753,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.substitution = Optional.of(substitution);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withSubstitution(
+        @NonNull MedicationRequest_SubstitutionBuilder substitution) {
+      this.substitution = Optional.of(substitution.build());
+      return this;
+    }
     /** @param dosageInstruction - Indicates how the medication is to be used by the patient. */
     public Us_core_medicationrequestBuilder.Impl withDosageInstruction(
         @NonNull Dosage... dosageInstruction) {
@@ -630,6 +771,13 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       this.dosageInstruction = Collections.unmodifiableCollection(dosageInstruction);
       return this;
     }
+
+    public Us_core_medicationrequestBuilder.Impl withDosageInstruction(
+        @NonNull DosageBuilder... dosageInstruction) {
+      this.dosageInstruction =
+          Arrays.stream(dosageInstruction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dispenseRequest - Indicates the specific details for the dispense or medication supply
      *     part of a medication request (also known as a Medication Prescription or Medication
@@ -640,6 +788,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     public Us_core_medicationrequestBuilder.Impl withDispenseRequest(
         @NonNull MedicationRequest.DispenseRequest dispenseRequest) {
       this.dispenseRequest = Optional.of(dispenseRequest);
+      return this;
+    }
+
+    public Us_core_medicationrequestBuilder.Impl withDispenseRequest(
+        @NonNull MedicationRequest_DispenseRequestBuilder dispenseRequest) {
+      this.dispenseRequest = Optional.of(dispenseRequest.build());
       return this;
     }
 

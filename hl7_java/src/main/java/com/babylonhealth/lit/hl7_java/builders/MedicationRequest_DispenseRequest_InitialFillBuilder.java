@@ -77,10 +77,22 @@ public interface MedicationRequest_DispenseRequest_InitialFillBuilder {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public MedicationRequest_DispenseRequest_InitialFillBuilder.Impl withQuantity(
+        @NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /** @param duration */
     public MedicationRequest_DispenseRequest_InitialFillBuilder.Impl withDuration(
         @NonNull Duration duration) {
       this.duration = Optional.of(duration);
+      return this;
+    }
+
+    public MedicationRequest_DispenseRequest_InitialFillBuilder.Impl withDuration(
+        @NonNull DurationBuilder duration) {
+      this.duration = Optional.of(duration.build());
       return this;
     }
     /**
@@ -105,6 +117,12 @@ public interface MedicationRequest_DispenseRequest_InitialFillBuilder {
     public MedicationRequest_DispenseRequest_InitialFillBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationRequest_DispenseRequest_InitialFillBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -141,6 +159,13 @@ public interface MedicationRequest_DispenseRequest_InitialFillBuilder {
     public MedicationRequest_DispenseRequest_InitialFillBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationRequest_DispenseRequest_InitialFillBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

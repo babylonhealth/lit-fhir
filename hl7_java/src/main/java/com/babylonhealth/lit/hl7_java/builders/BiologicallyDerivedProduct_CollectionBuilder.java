@@ -85,6 +85,12 @@ public interface BiologicallyDerivedProduct_CollectionBuilder {
       this.source = Optional.of(source);
       return this;
     }
+
+    public BiologicallyDerivedProduct_CollectionBuilder.Impl withSource(
+        @NonNull ReferenceBuilder source) {
+      this.source = Optional.of(source.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -109,10 +115,22 @@ public interface BiologicallyDerivedProduct_CollectionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public BiologicallyDerivedProduct_CollectionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param collector */
     public BiologicallyDerivedProduct_CollectionBuilder.Impl withCollector(
         @NonNull Reference collector) {
       this.collector = Optional.of(collector);
+      return this;
+    }
+
+    public BiologicallyDerivedProduct_CollectionBuilder.Impl withCollector(
+        @NonNull ReferenceBuilder collector) {
+      this.collector = Optional.of(collector.build());
       return this;
     }
     /**
@@ -159,6 +177,13 @@ public interface BiologicallyDerivedProduct_CollectionBuilder {
     public BiologicallyDerivedProduct_CollectionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public BiologicallyDerivedProduct_CollectionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

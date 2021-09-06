@@ -78,6 +78,12 @@ public interface SubstanceSpecification_Structure_RepresentationBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public SubstanceSpecification_Structure_RepresentationBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -102,10 +108,22 @@ public interface SubstanceSpecification_Structure_RepresentationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSpecification_Structure_RepresentationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param attachment */
     public SubstanceSpecification_Structure_RepresentationBuilder.Impl withAttachment(
         @NonNull Attachment attachment) {
       this.attachment = Optional.of(attachment);
+      return this;
+    }
+
+    public SubstanceSpecification_Structure_RepresentationBuilder.Impl withAttachment(
+        @NonNull AttachmentBuilder attachment) {
+      this.attachment = Optional.of(attachment.build());
       return this;
     }
     /** @param representation */
@@ -148,6 +166,13 @@ public interface SubstanceSpecification_Structure_RepresentationBuilder {
     public SubstanceSpecification_Structure_RepresentationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSpecification_Structure_RepresentationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

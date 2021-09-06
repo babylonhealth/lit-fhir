@@ -92,10 +92,22 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
       this.cap = Optional.of(cap);
       return this;
     }
+
+    public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withCap(
+        @NonNull CodeableConceptBuilder cap) {
+      this.cap = Optional.of(cap.build());
+      return this;
+    }
     /** @param _type */
     public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withType(
         @NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param material */
@@ -104,10 +116,22 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
       this.material = Optional.of(material);
       return this;
     }
+
+    public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withMaterial(
+        @NonNull CodeableConceptBuilder material) {
+      this.material = Optional.of(material.build());
+      return this;
+    }
     /** @param capacity */
     public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withCapacity(
         @NonNull Quantity capacity) {
       this.capacity = Optional.of(capacity);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withCapacity(
+        @NonNull QuantityBuilder capacity) {
+      this.capacity = Optional.of(capacity.build());
       return this;
     }
     /**
@@ -132,6 +156,12 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
     public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description */
@@ -192,6 +222,13 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param additive */
     public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withAdditive(
         @NonNull SpecimenDefinition$TypeTested$Container$Additive... additive) {
@@ -202,6 +239,12 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
     public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withAdditive(
         @NonNull Collection<SpecimenDefinition$TypeTested$Container$Additive> additive) {
       this.additive = Collections.unmodifiableCollection(additive);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withAdditive(
+        @NonNull SpecimenDefinition_TypeTested_Container_AdditiveBuilder... additive) {
+      this.additive = Arrays.stream(additive).map(e -> e.build()).collect(toList());
       return this;
     }
 

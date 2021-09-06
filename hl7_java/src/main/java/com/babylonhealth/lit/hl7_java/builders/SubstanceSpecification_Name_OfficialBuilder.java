@@ -83,6 +83,12 @@ public interface SubstanceSpecification_Name_OfficialBuilder {
       this.status = Optional.of(status);
       return this;
     }
+
+    public SubstanceSpecification_Name_OfficialBuilder.Impl withStatus(
+        @NonNull CodeableConceptBuilder status) {
+      this.status = Optional.of(status.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -107,10 +113,22 @@ public interface SubstanceSpecification_Name_OfficialBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSpecification_Name_OfficialBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param authority */
     public SubstanceSpecification_Name_OfficialBuilder.Impl withAuthority(
         @NonNull CodeableConcept authority) {
       this.authority = Optional.of(authority);
+      return this;
+    }
+
+    public SubstanceSpecification_Name_OfficialBuilder.Impl withAuthority(
+        @NonNull CodeableConceptBuilder authority) {
+      this.authority = Optional.of(authority.build());
       return this;
     }
     /**
@@ -147,6 +165,13 @@ public interface SubstanceSpecification_Name_OfficialBuilder {
     public SubstanceSpecification_Name_OfficialBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSpecification_Name_OfficialBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

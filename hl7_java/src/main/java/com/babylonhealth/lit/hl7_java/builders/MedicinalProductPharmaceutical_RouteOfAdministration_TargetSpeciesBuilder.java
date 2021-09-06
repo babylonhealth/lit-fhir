@@ -106,6 +106,12 @@ public interface MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpec
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpeciesBuilder.Impl
+        withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -142,6 +148,13 @@ public interface MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpec
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpeciesBuilder.Impl
+        withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param withdrawalPeriod */
     public MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpeciesBuilder.Impl
         withWithdrawalPeriod(
@@ -160,6 +173,16 @@ public interface MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpec
                         MedicinalProductPharmaceutical$RouteOfAdministration$TargetSpecies$WithdrawalPeriod>
                     withdrawalPeriod) {
       this.withdrawalPeriod = Collections.unmodifiableCollection(withdrawalPeriod);
+      return this;
+    }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpeciesBuilder.Impl
+        withWithdrawalPeriod(
+            @NonNull
+                MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_WithdrawalPeriodBuilder
+                        ...
+                    withdrawalPeriod) {
+      this.withdrawalPeriod = Arrays.stream(withdrawalPeriod).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -84,6 +84,11 @@ public interface Provenance_AgentBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public Provenance_AgentBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param role */
     public Provenance_AgentBuilder.Impl withRole(@NonNull CodeableConcept... role) {
       this.role = Arrays.asList(role);
@@ -92,6 +97,11 @@ public interface Provenance_AgentBuilder {
     /** @param role */
     public Provenance_AgentBuilder.Impl withRole(@NonNull Collection<CodeableConcept> role) {
       this.role = Collections.unmodifiableCollection(role);
+      return this;
+    }
+
+    public Provenance_AgentBuilder.Impl withRole(@NonNull CodeableConceptBuilder... role) {
+      this.role = Arrays.stream(role).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -116,9 +126,19 @@ public interface Provenance_AgentBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Provenance_AgentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param onBehalfOf */
     public Provenance_AgentBuilder.Impl withOnBehalfOf(@NonNull Reference onBehalfOf) {
       this.onBehalfOf = Optional.of(onBehalfOf);
+      return this;
+    }
+
+    public Provenance_AgentBuilder.Impl withOnBehalfOf(@NonNull ReferenceBuilder onBehalfOf) {
+      this.onBehalfOf = Optional.of(onBehalfOf.build());
       return this;
     }
     /**
@@ -155,6 +175,13 @@ public interface Provenance_AgentBuilder {
     public Provenance_AgentBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Provenance_AgentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

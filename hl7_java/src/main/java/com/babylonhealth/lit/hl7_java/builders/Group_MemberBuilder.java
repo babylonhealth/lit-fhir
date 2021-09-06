@@ -83,6 +83,11 @@ public interface Group_MemberBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public Group_MemberBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param inactive */
     public Group_MemberBuilder.Impl withInactive(@NonNull Boolean inactive) {
       this.inactive = Optional.of(inactive);
@@ -108,6 +113,11 @@ public interface Group_MemberBuilder {
      */
     public Group_MemberBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Group_MemberBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -143,6 +153,13 @@ public interface Group_MemberBuilder {
     public Group_MemberBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Group_MemberBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

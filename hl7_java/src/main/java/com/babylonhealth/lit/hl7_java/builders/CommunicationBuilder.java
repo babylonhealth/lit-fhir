@@ -114,6 +114,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CommunicationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -123,6 +128,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
      */
     public CommunicationBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param sent - The time when this communication was sent. */
@@ -146,9 +156,19 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public CommunicationBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param topic - Description of the purpose/content, similar to a subject line in an email. */
     public CommunicationBuilder.Impl withTopic(@NonNull CodeableConcept topic) {
       this.topic = Optional.of(topic);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withTopic(@NonNull CodeableConceptBuilder topic) {
+      this.topic = Optional.of(topic.build());
       return this;
     }
     /**
@@ -167,6 +187,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.about = Collections.unmodifiableCollection(about);
       return this;
     }
+
+    public CommunicationBuilder.Impl withAbout(@NonNull ReferenceBuilder... about) {
+      this.about = Arrays.stream(about).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param partOf - Part of this action. */
     public CommunicationBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
@@ -175,6 +200,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     /** @param partOf - Part of this action. */
     public CommunicationBuilder.Impl withPartOf(@NonNull Collection<Reference> partOf) {
       this.partOf = Collections.unmodifiableCollection(partOf);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param medium - A channel that was used for this communication (e.g. email, fax). */
@@ -187,12 +217,22 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.medium = Collections.unmodifiableCollection(medium);
       return this;
     }
+
+    public CommunicationBuilder.Impl withMedium(@NonNull CodeableConceptBuilder... medium) {
+      this.medium = Arrays.stream(medium).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param sender - The entity (e.g. person, organization, clinical information system, or
      *     device) which was the source of the communication.
      */
     public CommunicationBuilder.Impl withSender(@NonNull Reference sender) {
       this.sender = Optional.of(sender);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withSender(@NonNull ReferenceBuilder sender) {
+      this.sender = Optional.of(sender.build());
       return this;
     }
     /**
@@ -211,9 +251,19 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public CommunicationBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subject - The patient or group that was the focus of this communication. */
     public CommunicationBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -235,6 +285,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
      */
     public CommunicationBuilder.Impl withCategory(@NonNull Collection<CodeableConcept> category) {
       this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -268,6 +323,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public CommunicationBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -290,12 +350,22 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CommunicationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this Communication was created or to which the
      *     creation of this record is tightly associated.
      */
     public CommunicationBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -322,6 +392,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.recipient = Collections.unmodifiableCollection(recipient);
       return this;
     }
+
+    public CommunicationBuilder.Impl withRecipient(@NonNull ReferenceBuilder... recipient) {
+      this.recipient = Arrays.stream(recipient).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Business identifiers assigned to this communication by the performer or
      *     other systems which remain constant as the resource is updated and propagates from server
@@ -340,6 +415,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public CommunicationBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reasonCode - The reason or justification for the communication. */
     public CommunicationBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
       this.reasonCode = Arrays.asList(reasonCode);
@@ -349,6 +429,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     public CommunicationBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param inResponseTo - Prior communication that this communication is in response to. */
@@ -361,9 +446,20 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.inResponseTo = Collections.unmodifiableCollection(inResponseTo);
       return this;
     }
+
+    public CommunicationBuilder.Impl withInResponseTo(@NonNull ReferenceBuilder... inResponseTo) {
+      this.inResponseTo = Arrays.stream(inResponseTo).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param statusReason - Captures the reason for the current state of the Communication. */
     public CommunicationBuilder.Impl withStatusReason(@NonNull CodeableConcept statusReason) {
       this.statusReason = Optional.of(statusReason);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withStatusReason(
+        @NonNull CodeableConceptBuilder statusReason) {
+      this.statusReason = Optional.of(statusReason.build());
       return this;
     }
     /**
@@ -412,6 +508,12 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public CommunicationBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -448,6 +550,13 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CommunicationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param instantiatesCanonical - The URL pointing to a FHIR-defined protocol, guideline,
      *     orderset or other definition that is adhered to in whole or in part by this
@@ -481,6 +590,11 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     public CommunicationBuilder.Impl withPayload(
         @NonNull Collection<Communication.Payload> payload) {
       this.payload = Collections.unmodifiableCollection(payload);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withPayload(@NonNull Communication_PayloadBuilder... payload) {
+      this.payload = Arrays.stream(payload).map(e -> e.build()).collect(toList());
       return this;
     }
 

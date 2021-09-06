@@ -123,6 +123,11 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ConsentBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -134,9 +139,19 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ConsentBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param patient - The patient/healthcare consumer to whom this consent applies. */
     public ConsentBuilder.Impl withPatient(@NonNull Reference patient) {
       this.patient = Optional.of(patient);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withPatient(@NonNull ReferenceBuilder patient) {
+      this.patient = Optional.of(patient.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -167,6 +182,11 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ConsentBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -189,6 +209,11 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ConsentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param performer - Either the Grantor, which is the entity responsible for granting the
      *     rights listed in a Consent Directive or the Grantee, which is the entity responsible for
@@ -207,6 +232,11 @@ public interface ConsentBuilder extends DomainResourceBuilder {
      */
     public ConsentBuilder.Impl withPerformer(@NonNull Collection<Reference> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withPerformer(@NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -230,9 +260,19 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ConsentBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param policyRule - A reference to the specific base computable regulation or policy. */
     public ConsentBuilder.Impl withPolicyRule(@NonNull CodeableConcept policyRule) {
       this.policyRule = Optional.of(policyRule);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withPolicyRule(@NonNull CodeableConceptBuilder policyRule) {
+      this.policyRule = Optional.of(policyRule.build());
       return this;
     }
     /**
@@ -249,6 +289,11 @@ public interface ConsentBuilder extends DomainResourceBuilder {
      */
     public ConsentBuilder.Impl withOrganization(@NonNull Collection<Reference> organization) {
       this.organization = Collections.unmodifiableCollection(organization);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withOrganization(@NonNull ReferenceBuilder... organization) {
+      this.organization = Arrays.stream(organization).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -296,6 +341,13 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ConsentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param policy - The references to the policies that are included in this consent scope.
      *     Policies may be organizational, but are often defined jurisdictionally, or in law.
@@ -310,6 +362,11 @@ public interface ConsentBuilder extends DomainResourceBuilder {
      */
     public ConsentBuilder.Impl withPolicy(@NonNull Collection<Consent.Policy> policy) {
       this.policy = Collections.unmodifiableCollection(policy);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withPolicy(@NonNull Consent_PolicyBuilder... policy) {
+      this.policy = Arrays.stream(policy).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -329,12 +386,23 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.verification = Collections.unmodifiableCollection(verification);
       return this;
     }
+
+    public ConsentBuilder.Impl withVerification(
+        @NonNull Consent_VerificationBuilder... verification) {
+      this.verification = Arrays.stream(verification).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param provision - An exception to the base policy of this consent. An exception can be an
      *     addition or removal of access permissions.
      */
     public ConsentBuilder.Impl withProvision(@NonNull Consent.Provision provision) {
       this.provision = Optional.of(provision);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withProvision(@NonNull Consent_ProvisionBuilder provision) {
+      this.provision = Optional.of(provision.build());
       return this;
     }
 

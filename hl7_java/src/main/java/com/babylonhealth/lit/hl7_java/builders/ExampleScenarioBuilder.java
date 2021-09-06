@@ -120,6 +120,11 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ExampleScenarioBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -129,6 +134,11 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
      */
     public ExampleScenarioBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ExampleScenarioBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -178,6 +188,11 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public ExampleScenarioBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - What the example scenario resource is created for. This should not be used
      *     to show the business purpose of the scenario itself, but the purpose of documenting a
@@ -220,6 +235,11 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ExampleScenarioBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -240,6 +260,11 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
      */
     public ExampleScenarioBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExampleScenarioBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -277,6 +302,11 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ExampleScenarioBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -296,6 +326,11 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
     public ExampleScenarioBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public ExampleScenarioBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -322,6 +357,12 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
     public ExampleScenarioBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public ExampleScenarioBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -370,6 +411,13 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ExampleScenarioBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param actor - Actor participating in the resource. */
     public ExampleScenarioBuilder.Impl withActor(@NonNull ExampleScenario.Actor... actor) {
       this.actor = Arrays.asList(actor);
@@ -378,6 +426,11 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
     /** @param actor - Actor participating in the resource. */
     public ExampleScenarioBuilder.Impl withActor(@NonNull Collection<ExampleScenario.Actor> actor) {
       this.actor = Collections.unmodifiableCollection(actor);
+      return this;
+    }
+
+    public ExampleScenarioBuilder.Impl withActor(@NonNull ExampleScenario_ActorBuilder... actor) {
+      this.actor = Arrays.stream(actor).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param process - Each major process - a group of operations. */
@@ -391,6 +444,12 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
       this.process = Collections.unmodifiableCollection(process);
       return this;
     }
+
+    public ExampleScenarioBuilder.Impl withProcess(
+        @NonNull ExampleScenario_ProcessBuilder... process) {
+      this.process = Arrays.stream(process).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param instance - Each resource and each version that is present in the workflow. */
     public ExampleScenarioBuilder.Impl withInstance(@NonNull ExampleScenario.Instance... instance) {
       this.instance = Arrays.asList(instance);
@@ -400,6 +459,12 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
     public ExampleScenarioBuilder.Impl withInstance(
         @NonNull Collection<ExampleScenario.Instance> instance) {
       this.instance = Collections.unmodifiableCollection(instance);
+      return this;
+    }
+
+    public ExampleScenarioBuilder.Impl withInstance(
+        @NonNull ExampleScenario_InstanceBuilder... instance) {
+      this.instance = Arrays.stream(instance).map(e -> e.build()).collect(toList());
       return this;
     }
 

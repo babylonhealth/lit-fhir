@@ -142,6 +142,11 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -153,6 +158,11 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param subject - Who or what the composition is about. The composition can be about a person,
      *     (patient or healthcare practitioner), a device (e.g. a machine) or even a group of
@@ -161,6 +171,11 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
      */
     public ClinicaldocumentBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -187,6 +202,11 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -205,6 +225,11 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param extension - An Extension */
     public ClinicaldocumentBuilder.Impl withExtension(@NonNull Extension... extension) {
       this.extension = Arrays.asList(extension);
@@ -215,12 +240,22 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - Describes the clinical encounter or type of care this documentation is
      *     associated with.
      */
     public ClinicaldocumentBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -231,12 +266,22 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.custodian = Optional.of(custodian);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withCustodian(@NonNull ReferenceBuilder custodian) {
+      this.custodian = Optional.of(custodian.build());
+      return this;
+    }
     /**
      * @param identifier - A version-independent identifier for the Composition. This identifier
      *     stays constant as the composition is changed over time.
      */
     public ClinicaldocumentBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /**
@@ -293,6 +338,13 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param event - The clinical service, such as a colonoscopy or an appendectomy, being
      *     documented.
@@ -309,6 +361,11 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.event = Collections.unmodifiableCollection(event);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withEvent(@NonNull Composition_EventBuilder... event) {
+      this.event = Arrays.stream(event).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param section - The root of the sections that make up the composition. */
     public ClinicaldocumentBuilder.Impl withSection(@NonNull Composition.Section... section) {
       this.section = Arrays.asList(section);
@@ -318,6 +375,12 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
     public ClinicaldocumentBuilder.Impl withSection(
         @NonNull Collection<Composition.Section> section) {
       this.section = Collections.unmodifiableCollection(section);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withSection(
+        @NonNull Composition_SectionBuilder... section) {
+      this.section = Arrays.stream(section).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -335,6 +398,12 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       this.attester = Collections.unmodifiableCollection(attester);
       return this;
     }
+
+    public ClinicaldocumentBuilder.Impl withAttester(
+        @NonNull Composition_AttesterBuilder... attester) {
+      this.attester = Arrays.stream(attester).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param relatesTo - Relationships that this composition has with other compositions or
      *     documents that already exist.
@@ -350,6 +419,12 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
     public ClinicaldocumentBuilder.Impl withRelatesTo(
         @NonNull Collection<Composition.RelatesTo> relatesTo) {
       this.relatesTo = Collections.unmodifiableCollection(relatesTo);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withRelatesTo(
+        @NonNull Composition_RelatesToBuilder... relatesTo) {
+      this.relatesTo = Arrays.stream(relatesTo).map(e -> e.build()).collect(toList());
       return this;
     }
 

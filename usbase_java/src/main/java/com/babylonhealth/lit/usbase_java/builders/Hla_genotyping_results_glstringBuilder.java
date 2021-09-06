@@ -296,6 +296,12 @@ public interface Hla_genotyping_results_glstringBuilder extends ExtensionBuilder
       return this;
     }
 
+    public Hla_genotyping_results_glstringBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Hla_genotyping_results_glstring build() {
       return new Hla_genotyping_results_glstring(
           OptionConverters.toScala(id),

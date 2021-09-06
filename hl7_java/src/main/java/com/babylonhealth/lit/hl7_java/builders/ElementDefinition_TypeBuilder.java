@@ -113,6 +113,12 @@ public interface ElementDefinition_TypeBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ElementDefinition_TypeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param versioning */
     public ElementDefinition_TypeBuilder.Impl withVersioning(
         @NonNull REFERENCE_VERSION_RULES versioning) {

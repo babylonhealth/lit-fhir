@@ -96,6 +96,11 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public BiologicallyDerivedProductBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -105,6 +110,11 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
      */
     public BiologicallyDerivedProductBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public BiologicallyDerivedProductBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param status - Whether the product is currently available. */
@@ -123,6 +133,11 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       this.parent = Collections.unmodifiableCollection(parent);
       return this;
     }
+
+    public BiologicallyDerivedProductBuilder.Impl withParent(@NonNull ReferenceBuilder... parent) {
+      this.parent = Arrays.stream(parent).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param request - Procedure request to obtain this biologically derived product. */
     public BiologicallyDerivedProductBuilder.Impl withRequest(@NonNull Reference... request) {
       this.request = Arrays.asList(request);
@@ -132,6 +147,12 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
     public BiologicallyDerivedProductBuilder.Impl withRequest(
         @NonNull Collection<Reference> request) {
       this.request = Collections.unmodifiableCollection(request);
+      return this;
+    }
+
+    public BiologicallyDerivedProductBuilder.Impl withRequest(
+        @NonNull ReferenceBuilder... request) {
+      this.request = Arrays.stream(request).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -163,6 +184,12 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public BiologicallyDerivedProductBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -184,6 +211,12 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
     public BiologicallyDerivedProductBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public BiologicallyDerivedProductBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -208,6 +241,12 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public BiologicallyDerivedProductBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param productCode - A code that identifies the kind of this biologically derived product
      *     (SNOMED Ctcode).
@@ -215,6 +254,12 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
     public BiologicallyDerivedProductBuilder.Impl withProductCode(
         @NonNull CodeableConcept productCode) {
       this.productCode = Optional.of(productCode);
+      return this;
+    }
+
+    public BiologicallyDerivedProductBuilder.Impl withProductCode(
+        @NonNull CodeableConceptBuilder productCode) {
+      this.productCode = Optional.of(productCode.build());
       return this;
     }
     /**
@@ -269,6 +314,13 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public BiologicallyDerivedProductBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param storage - Product storage. */
     public BiologicallyDerivedProductBuilder.Impl withStorage(
         @NonNull BiologicallyDerivedProduct.Storage... storage) {
@@ -281,10 +333,22 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       this.storage = Collections.unmodifiableCollection(storage);
       return this;
     }
+
+    public BiologicallyDerivedProductBuilder.Impl withStorage(
+        @NonNull BiologicallyDerivedProduct_StorageBuilder... storage) {
+      this.storage = Arrays.stream(storage).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param collection - How this product was collected. */
     public BiologicallyDerivedProductBuilder.Impl withCollection(
         @NonNull BiologicallyDerivedProduct.Collection collection) {
       this.collection = Optional.of(collection);
+      return this;
+    }
+
+    public BiologicallyDerivedProductBuilder.Impl withCollection(
+        @NonNull BiologicallyDerivedProduct_CollectionBuilder collection) {
+      this.collection = Optional.of(collection.build());
       return this;
     }
     /**
@@ -307,6 +371,12 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       this.processing = Collections.unmodifiableCollection(processing);
       return this;
     }
+
+    public BiologicallyDerivedProductBuilder.Impl withProcessing(
+        @NonNull BiologicallyDerivedProduct_ProcessingBuilder... processing) {
+      this.processing = Arrays.stream(processing).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param manipulation - Any manipulation of product post-collection that is intended to alter
      *     the product. For example a buffy-coat enrichment or CD8 reduction of Peripheral Blood
@@ -315,6 +385,12 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
     public BiologicallyDerivedProductBuilder.Impl withManipulation(
         @NonNull BiologicallyDerivedProduct.Manipulation manipulation) {
       this.manipulation = Optional.of(manipulation);
+      return this;
+    }
+
+    public BiologicallyDerivedProductBuilder.Impl withManipulation(
+        @NonNull BiologicallyDerivedProduct_ManipulationBuilder manipulation) {
+      this.manipulation = Optional.of(manipulation.build());
       return this;
     }
 

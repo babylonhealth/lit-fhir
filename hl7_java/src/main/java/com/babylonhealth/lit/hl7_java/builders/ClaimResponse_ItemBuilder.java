@@ -108,6 +108,11 @@ public interface ClaimResponse_ItemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClaimResponse_ItemBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param noteNumber */
     public ClaimResponse_ItemBuilder.Impl withNoteNumber(@NonNull Integer... noteNumber) {
       this.noteNumber = Arrays.asList(noteNumber);
@@ -154,6 +159,13 @@ public interface ClaimResponse_ItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ClaimResponse_ItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param detail */
     public ClaimResponse_ItemBuilder.Impl withDetail(@NonNull ClaimResponse$Item$Detail... detail) {
       this.detail = Arrays.asList(detail);
@@ -163,6 +175,12 @@ public interface ClaimResponse_ItemBuilder {
     public ClaimResponse_ItemBuilder.Impl withDetail(
         @NonNull Collection<ClaimResponse$Item$Detail> detail) {
       this.detail = Collections.unmodifiableCollection(detail);
+      return this;
+    }
+
+    public ClaimResponse_ItemBuilder.Impl withDetail(
+        @NonNull ClaimResponse_Item_DetailBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
       return this;
     }
 

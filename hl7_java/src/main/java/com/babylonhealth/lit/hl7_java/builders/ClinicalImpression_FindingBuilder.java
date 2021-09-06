@@ -100,10 +100,22 @@ public interface ClinicalImpression_FindingBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClinicalImpression_FindingBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param itemReference */
     public ClinicalImpression_FindingBuilder.Impl withItemReference(
         @NonNull Reference itemReference) {
       this.itemReference = Optional.of(itemReference);
+      return this;
+    }
+
+    public ClinicalImpression_FindingBuilder.Impl withItemReference(
+        @NonNull ReferenceBuilder itemReference) {
+      this.itemReference = Optional.of(itemReference.build());
       return this;
     }
     /**
@@ -142,10 +154,23 @@ public interface ClinicalImpression_FindingBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ClinicalImpression_FindingBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param itemCodeableConcept */
     public ClinicalImpression_FindingBuilder.Impl withItemCodeableConcept(
         @NonNull CodeableConcept itemCodeableConcept) {
       this.itemCodeableConcept = Optional.of(itemCodeableConcept);
+      return this;
+    }
+
+    public ClinicalImpression_FindingBuilder.Impl withItemCodeableConcept(
+        @NonNull CodeableConceptBuilder itemCodeableConcept) {
+      this.itemCodeableConcept = Optional.of(itemCodeableConcept.build());
       return this;
     }
 

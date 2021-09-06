@@ -130,6 +130,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_goalBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -141,6 +146,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Us_core_goalBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param note - Any comments related to the goal. */
     public Us_core_goalBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
@@ -149,6 +159,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
     /** @param note - Any comments related to the goal. */
     public Us_core_goalBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public Us_core_goalBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -166,12 +181,22 @@ public interface Us_core_goalBuilder extends GoalBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public Us_core_goalBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param priority - Identifies the mutually agreed level of importance associated with
      *     reaching/sustaining the goal.
      */
     public Us_core_goalBuilder.Impl withPriority(@NonNull CodeableConcept priority) {
       this.priority = Optional.of(priority);
+      return this;
+    }
+
+    public Us_core_goalBuilder.Impl withPriority(@NonNull CodeableConceptBuilder priority) {
+      this.priority = Optional.of(priority.build());
       return this;
     }
     /**
@@ -201,6 +226,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Us_core_goalBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -223,6 +253,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_goalBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param addresses - The identified conditions and other health record elements that are
      *     intended to be addressed by the goal.
@@ -237,6 +272,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
      */
     public Us_core_goalBuilder.Impl withAddresses(@NonNull Collection<Reference> addresses) {
       this.addresses = Collections.unmodifiableCollection(addresses);
+      return this;
+    }
+
+    public Us_core_goalBuilder.Impl withAddresses(@NonNull ReferenceBuilder... addresses) {
+      this.addresses = Arrays.stream(addresses).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -257,6 +297,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public Us_core_goalBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param statusDate - Identifies when the current status. I.e. When initially created, when
      *     achieved, when cancelled, etc.
@@ -268,6 +313,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
     /** @param expressedBy - Indicates whose goal this is - patient goal, practitioner goal, etc. */
     public Us_core_goalBuilder.Impl withExpressedBy(@NonNull Reference expressedBy) {
       this.expressedBy = Optional.of(expressedBy);
+      return this;
+    }
+
+    public Us_core_goalBuilder.Impl withExpressedBy(@NonNull ReferenceBuilder expressedBy) {
+      this.expressedBy = Optional.of(expressedBy.build());
       return this;
     }
     /**
@@ -285,6 +335,12 @@ public interface Us_core_goalBuilder extends GoalBuilder {
     public Us_core_goalBuilder.Impl withOutcomeCode(
         @NonNull Collection<CodeableConcept> outcomeCode) {
       this.outcomeCode = Collections.unmodifiableCollection(outcomeCode);
+      return this;
+    }
+
+    public Us_core_goalBuilder.Impl withOutcomeCode(
+        @NonNull CodeableConceptBuilder... outcomeCode) {
+      this.outcomeCode = Arrays.stream(outcomeCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param statusReason - Captures the reason for the current status. */
@@ -311,6 +367,12 @@ public interface Us_core_goalBuilder extends GoalBuilder {
     public Us_core_goalBuilder.Impl withOutcomeReference(
         @NonNull Collection<Reference> outcomeReference) {
       this.outcomeReference = Collections.unmodifiableCollection(outcomeReference);
+      return this;
+    }
+
+    public Us_core_goalBuilder.Impl withOutcomeReference(
+        @NonNull ReferenceBuilder... outcomeReference) {
+      this.outcomeReference = Arrays.stream(outcomeReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -348,6 +410,13 @@ public interface Us_core_goalBuilder extends GoalBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_goalBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param achievementStatus - Describes the progression, or lack thereof, towards the goal
      *     against the target.
@@ -355,6 +424,12 @@ public interface Us_core_goalBuilder extends GoalBuilder {
     public Us_core_goalBuilder.Impl withAchievementStatus(
         @NonNull CodeableConcept achievementStatus) {
       this.achievementStatus = Optional.of(achievementStatus);
+      return this;
+    }
+
+    public Us_core_goalBuilder.Impl withAchievementStatus(
+        @NonNull CodeableConceptBuilder achievementStatus) {
+      this.achievementStatus = Optional.of(achievementStatus.build());
       return this;
     }
     /** @param target - Indicates what should be done by when. */
@@ -365,6 +440,11 @@ public interface Us_core_goalBuilder extends GoalBuilder {
     /** @param target - Indicates what should be done by when. */
     public Us_core_goalBuilder.Impl withTarget(@NonNull Collection<Goal.Target> target) {
       this.target = Collections.unmodifiableCollection(target);
+      return this;
+    }
+
+    public Us_core_goalBuilder.Impl withTarget(@NonNull Goal_TargetBuilder... target) {
+      this.target = Arrays.stream(target).map(e -> e.build()).collect(toList());
       return this;
     }
 

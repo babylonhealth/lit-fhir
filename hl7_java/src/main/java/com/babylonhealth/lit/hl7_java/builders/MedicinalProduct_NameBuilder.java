@@ -102,6 +102,11 @@ public interface MedicinalProduct_NameBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProduct_NameBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -138,6 +143,13 @@ public interface MedicinalProduct_NameBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProduct_NameBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param namePart */
     public MedicinalProduct_NameBuilder.Impl withNamePart(
         @NonNull MedicinalProduct$Name$NamePart... namePart) {
@@ -150,6 +162,12 @@ public interface MedicinalProduct_NameBuilder {
       this.namePart = Collections.unmodifiableCollection(namePart);
       return this;
     }
+
+    public MedicinalProduct_NameBuilder.Impl withNamePart(
+        @NonNull MedicinalProduct_Name_NamePartBuilder... namePart) {
+      this.namePart = Arrays.stream(namePart).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param countryLanguage */
     public MedicinalProduct_NameBuilder.Impl withCountryLanguage(
         @NonNull MedicinalProduct$Name$CountryLanguage... countryLanguage) {
@@ -160,6 +178,12 @@ public interface MedicinalProduct_NameBuilder {
     public MedicinalProduct_NameBuilder.Impl withCountryLanguage(
         @NonNull Collection<MedicinalProduct$Name$CountryLanguage> countryLanguage) {
       this.countryLanguage = Collections.unmodifiableCollection(countryLanguage);
+      return this;
+    }
+
+    public MedicinalProduct_NameBuilder.Impl withCountryLanguage(
+        @NonNull MedicinalProduct_Name_CountryLanguageBuilder... countryLanguage) {
+      this.countryLanguage = Arrays.stream(countryLanguage).map(e -> e.build()).collect(toList());
       return this;
     }
 

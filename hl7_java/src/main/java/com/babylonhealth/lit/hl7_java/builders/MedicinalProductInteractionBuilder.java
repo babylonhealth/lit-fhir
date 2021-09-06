@@ -91,6 +91,11 @@ public interface MedicinalProductInteractionBuilder extends DomainResourceBuilde
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicinalProductInteractionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -102,6 +107,11 @@ public interface MedicinalProductInteractionBuilder extends DomainResourceBuilde
       this.text = Optional.of(text);
       return this;
     }
+
+    public MedicinalProductInteractionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param _type - The type of the interaction e.g. drug-drug interaction, drug-food interaction,
      *     drug-lab test interaction.
@@ -110,12 +120,23 @@ public interface MedicinalProductInteractionBuilder extends DomainResourceBuilde
       this._type = Optional.of(_type);
       return this;
     }
+
+    public MedicinalProductInteractionBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param effect - The effect of the interaction, for example "reduced gastric absorption of
      *     primary medication".
      */
     public MedicinalProductInteractionBuilder.Impl withEffect(@NonNull CodeableConcept effect) {
       this.effect = Optional.of(effect);
+      return this;
+    }
+
+    public MedicinalProductInteractionBuilder.Impl withEffect(
+        @NonNull CodeableConceptBuilder effect) {
+      this.effect = Optional.of(effect.build());
       return this;
     }
     /** @param subject - The medication for which this is a described interaction. */
@@ -127,6 +148,12 @@ public interface MedicinalProductInteractionBuilder extends DomainResourceBuilde
     public MedicinalProductInteractionBuilder.Impl withSubject(
         @NonNull Collection<Reference> subject) {
       this.subject = Collections.unmodifiableCollection(subject);
+      return this;
+    }
+
+    public MedicinalProductInteractionBuilder.Impl withSubject(
+        @NonNull ReferenceBuilder... subject) {
+      this.subject = Arrays.stream(subject).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -153,6 +180,12 @@ public interface MedicinalProductInteractionBuilder extends DomainResourceBuilde
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MedicinalProductInteractionBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -176,16 +209,34 @@ public interface MedicinalProductInteractionBuilder extends DomainResourceBuilde
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductInteractionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param incidence - The incidence of the interaction, e.g. theoretical, observed. */
     public MedicinalProductInteractionBuilder.Impl withIncidence(
         @NonNull CodeableConcept incidence) {
       this.incidence = Optional.of(incidence);
       return this;
     }
+
+    public MedicinalProductInteractionBuilder.Impl withIncidence(
+        @NonNull CodeableConceptBuilder incidence) {
+      this.incidence = Optional.of(incidence.build());
+      return this;
+    }
     /** @param management - Actions for managing the interaction. */
     public MedicinalProductInteractionBuilder.Impl withManagement(
         @NonNull CodeableConcept management) {
       this.management = Optional.of(management);
+      return this;
+    }
+
+    public MedicinalProductInteractionBuilder.Impl withManagement(
+        @NonNull CodeableConceptBuilder management) {
+      this.management = Optional.of(management.build());
       return this;
     }
     /** @param description - The interaction described. */
@@ -240,6 +291,13 @@ public interface MedicinalProductInteractionBuilder extends DomainResourceBuilde
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductInteractionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param interactant - The specific medication, food or laboratory test that interacts. */
     public MedicinalProductInteractionBuilder.Impl withInteractant(
         @NonNull MedicinalProductInteraction.Interactant... interactant) {
@@ -250,6 +308,12 @@ public interface MedicinalProductInteractionBuilder extends DomainResourceBuilde
     public MedicinalProductInteractionBuilder.Impl withInteractant(
         @NonNull Collection<MedicinalProductInteraction.Interactant> interactant) {
       this.interactant = Collections.unmodifiableCollection(interactant);
+      return this;
+    }
+
+    public MedicinalProductInteractionBuilder.Impl withInteractant(
+        @NonNull MedicinalProductInteraction_InteractantBuilder... interactant) {
+      this.interactant = Arrays.stream(interactant).map(e -> e.build()).collect(toList());
       return this;
     }
 

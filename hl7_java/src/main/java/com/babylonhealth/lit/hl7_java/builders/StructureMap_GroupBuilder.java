@@ -132,6 +132,11 @@ public interface StructureMap_GroupBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public StructureMap_GroupBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param documentation */
     public StructureMap_GroupBuilder.Impl withDocumentation(@NonNull String documentation) {
       this.documentation = Optional.of(documentation);
@@ -171,6 +176,13 @@ public interface StructureMap_GroupBuilder {
     public StructureMap_GroupBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public StructureMap_GroupBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

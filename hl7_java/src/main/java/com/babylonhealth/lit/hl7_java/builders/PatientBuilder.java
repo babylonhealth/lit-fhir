@@ -116,6 +116,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public PatientBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -125,6 +130,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
      */
     public PatientBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public PatientBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param name - A name associated with the individual. */
@@ -137,6 +147,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
       this.name = Collections.unmodifiableCollection(name);
       return this;
     }
+
+    public PatientBuilder.Impl withName(@NonNull HumanNameBuilder... name) {
+      this.name = Arrays.stream(name).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param photo - Image of the patient. */
     public PatientBuilder.Impl withPhoto(@NonNull Attachment... photo) {
       this.photo = Arrays.asList(photo);
@@ -145,6 +160,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
     /** @param photo - Image of the patient. */
     public PatientBuilder.Impl withPhoto(@NonNull Collection<Attachment> photo) {
       this.photo = Collections.unmodifiableCollection(photo);
+      return this;
+    }
+
+    public PatientBuilder.Impl withPhoto(@NonNull AttachmentBuilder... photo) {
+      this.photo = Arrays.stream(photo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -183,6 +203,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public PatientBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param address - An address for the individual. */
     public PatientBuilder.Impl withAddress(@NonNull Address... address) {
       this.address = Arrays.asList(address);
@@ -191,6 +216,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
     /** @param address - An address for the individual. */
     public PatientBuilder.Impl withAddress(@NonNull Collection<Address> address) {
       this.address = Collections.unmodifiableCollection(address);
+      return this;
+    }
+
+    public PatientBuilder.Impl withAddress(@NonNull AddressBuilder... address) {
+      this.address = Arrays.stream(address).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -216,6 +246,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public PatientBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -238,6 +273,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public PatientBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param birthDate - The date of birth for the individual. */
     public PatientBuilder.Impl withBirthDate(@NonNull FHIRDate birthDate) {
       this.birthDate = Optional.of(birthDate);
@@ -251,6 +291,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
     /** @param identifier - An identifier for this patient. */
     public PatientBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public PatientBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -277,6 +322,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
      */
     public PatientBuilder.Impl withMaritalStatus(@NonNull CodeableConcept maritalStatus) {
       this.maritalStatus = Optional.of(maritalStatus);
+      return this;
+    }
+
+    public PatientBuilder.Impl withMaritalStatus(@NonNull CodeableConceptBuilder maritalStatus) {
+      this.maritalStatus = Optional.of(maritalStatus.build());
       return this;
     }
     /**
@@ -324,6 +374,13 @@ public interface PatientBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public PatientBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param generalPractitioner - Patient's nominated care provider. */
     public PatientBuilder.Impl withGeneralPractitioner(@NonNull Reference... generalPractitioner) {
       this.generalPractitioner = Arrays.asList(generalPractitioner);
@@ -335,9 +392,22 @@ public interface PatientBuilder extends DomainResourceBuilder {
       this.generalPractitioner = Collections.unmodifiableCollection(generalPractitioner);
       return this;
     }
+
+    public PatientBuilder.Impl withGeneralPractitioner(
+        @NonNull ReferenceBuilder... generalPractitioner) {
+      this.generalPractitioner =
+          Arrays.stream(generalPractitioner).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param managingOrganization - Organization that is the custodian of the patient record. */
     public PatientBuilder.Impl withManagingOrganization(@NonNull Reference managingOrganization) {
       this.managingOrganization = Optional.of(managingOrganization);
+      return this;
+    }
+
+    public PatientBuilder.Impl withManagingOrganization(
+        @NonNull ReferenceBuilder managingOrganization) {
+      this.managingOrganization = Optional.of(managingOrganization.build());
       return this;
     }
     /** @param link - Link to another patient resource that concerns the same actual patient. */
@@ -350,6 +420,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
       this.link = Collections.unmodifiableCollection(link);
       return this;
     }
+
+    public PatientBuilder.Impl withLink(@NonNull Patient_LinkBuilder... link) {
+      this.link = Arrays.stream(link).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param contact - A contact party (e.g. guardian, partner, friend) for the patient. */
     public PatientBuilder.Impl withContact(@NonNull Patient.Contact... contact) {
       this.contact = Arrays.asList(contact);
@@ -358,6 +433,11 @@ public interface PatientBuilder extends DomainResourceBuilder {
     /** @param contact - A contact party (e.g. guardian, partner, friend) for the patient. */
     public PatientBuilder.Impl withContact(@NonNull Collection<Patient.Contact> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public PatientBuilder.Impl withContact(@NonNull Patient_ContactBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -375,6 +455,12 @@ public interface PatientBuilder extends DomainResourceBuilder {
     public PatientBuilder.Impl withCommunication(
         @NonNull Collection<Patient.Communication> communication) {
       this.communication = Collections.unmodifiableCollection(communication);
+      return this;
+    }
+
+    public PatientBuilder.Impl withCommunication(
+        @NonNull Patient_CommunicationBuilder... communication) {
+      this.communication = Arrays.stream(communication).map(e -> e.build()).collect(toList());
       return this;
     }
 

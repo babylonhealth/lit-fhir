@@ -96,6 +96,11 @@ public interface Provenance_EntityBuilder {
       this.agent = Collections.unmodifiableCollection(agent);
       return this;
     }
+
+    public Provenance_EntityBuilder.Impl withAgent(@NonNull Provenance_AgentBuilder... agent) {
+      this.agent = Arrays.stream(agent).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -116,6 +121,11 @@ public interface Provenance_EntityBuilder {
      */
     public Provenance_EntityBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Provenance_EntityBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -152,6 +162,13 @@ public interface Provenance_EntityBuilder {
     public Provenance_EntityBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Provenance_EntityBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

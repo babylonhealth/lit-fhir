@@ -115,6 +115,12 @@ public interface CapabilityStatement_SoftwareBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CapabilityStatement_SoftwareBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param releaseDate */
     public CapabilityStatement_SoftwareBuilder.Impl withReleaseDate(
         @NonNull FHIRDateTime releaseDate) {
@@ -155,6 +161,13 @@ public interface CapabilityStatement_SoftwareBuilder {
     public CapabilityStatement_SoftwareBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CapabilityStatement_SoftwareBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -83,6 +83,11 @@ public interface Device_VersionBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public Device_VersionBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -105,9 +110,19 @@ public interface Device_VersionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Device_VersionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param component */
     public Device_VersionBuilder.Impl withComponent(@NonNull Identifier component) {
       this.component = Optional.of(component);
+      return this;
+    }
+
+    public Device_VersionBuilder.Impl withComponent(@NonNull IdentifierBuilder component) {
+      this.component = Optional.of(component.build());
       return this;
     }
     /**
@@ -144,6 +159,13 @@ public interface Device_VersionBuilder {
     public Device_VersionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Device_VersionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

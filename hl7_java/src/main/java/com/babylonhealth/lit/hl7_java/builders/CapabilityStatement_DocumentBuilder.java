@@ -103,6 +103,12 @@ public interface CapabilityStatement_DocumentBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CapabilityStatement_DocumentBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param documentation */
     public CapabilityStatement_DocumentBuilder.Impl withDocumentation(
         @NonNull String documentation) {
@@ -143,6 +149,13 @@ public interface CapabilityStatement_DocumentBuilder {
     public CapabilityStatement_DocumentBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CapabilityStatement_DocumentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

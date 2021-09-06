@@ -86,6 +86,11 @@ public interface NutritionOrder_OralDietBuilder {
       this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
+
+    public NutritionOrder_OralDietBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param schedule */
     public NutritionOrder_OralDietBuilder.Impl withSchedule(@NonNull Timing... schedule) {
       this.schedule = Arrays.asList(schedule);
@@ -94,6 +99,11 @@ public interface NutritionOrder_OralDietBuilder {
     /** @param schedule */
     public NutritionOrder_OralDietBuilder.Impl withSchedule(@NonNull Collection<Timing> schedule) {
       this.schedule = Collections.unmodifiableCollection(schedule);
+      return this;
+    }
+
+    public NutritionOrder_OralDietBuilder.Impl withSchedule(@NonNull TimingBuilder... schedule) {
+      this.schedule = Arrays.stream(schedule).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -117,6 +127,12 @@ public interface NutritionOrder_OralDietBuilder {
     public NutritionOrder_OralDietBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public NutritionOrder_OralDietBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param instruction */
@@ -160,6 +176,13 @@ public interface NutritionOrder_OralDietBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public NutritionOrder_OralDietBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param fluidConsistencyType */
     public NutritionOrder_OralDietBuilder.Impl withFluidConsistencyType(
         @NonNull CodeableConcept... fluidConsistencyType) {
@@ -170,6 +193,13 @@ public interface NutritionOrder_OralDietBuilder {
     public NutritionOrder_OralDietBuilder.Impl withFluidConsistencyType(
         @NonNull Collection<CodeableConcept> fluidConsistencyType) {
       this.fluidConsistencyType = Collections.unmodifiableCollection(fluidConsistencyType);
+      return this;
+    }
+
+    public NutritionOrder_OralDietBuilder.Impl withFluidConsistencyType(
+        @NonNull CodeableConceptBuilder... fluidConsistencyType) {
+      this.fluidConsistencyType =
+          Arrays.stream(fluidConsistencyType).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param texture */
@@ -184,6 +214,12 @@ public interface NutritionOrder_OralDietBuilder {
       this.texture = Collections.unmodifiableCollection(texture);
       return this;
     }
+
+    public NutritionOrder_OralDietBuilder.Impl withTexture(
+        @NonNull NutritionOrder_OralDiet_TextureBuilder... texture) {
+      this.texture = Arrays.stream(texture).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param nutrient */
     public NutritionOrder_OralDietBuilder.Impl withNutrient(
         @NonNull NutritionOrder$OralDiet$Nutrient... nutrient) {
@@ -194,6 +230,12 @@ public interface NutritionOrder_OralDietBuilder {
     public NutritionOrder_OralDietBuilder.Impl withNutrient(
         @NonNull Collection<NutritionOrder$OralDiet$Nutrient> nutrient) {
       this.nutrient = Collections.unmodifiableCollection(nutrient);
+      return this;
+    }
+
+    public NutritionOrder_OralDietBuilder.Impl withNutrient(
+        @NonNull NutritionOrder_OralDiet_NutrientBuilder... nutrient) {
+      this.nutrient = Arrays.stream(nutrient).map(e -> e.build()).collect(toList());
       return this;
     }
 

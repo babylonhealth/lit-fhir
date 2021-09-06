@@ -114,6 +114,12 @@ public interface ImplementationGuide_DependsOnBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImplementationGuide_DependsOnBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param packageId - The NPM package name for this Implementation Guide, used in the NPM
      *     package distribution, which is the primary mechanism by which FHIR based tooling manages
@@ -157,6 +163,13 @@ public interface ImplementationGuide_DependsOnBuilder {
     public ImplementationGuide_DependsOnBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ImplementationGuide_DependsOnBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

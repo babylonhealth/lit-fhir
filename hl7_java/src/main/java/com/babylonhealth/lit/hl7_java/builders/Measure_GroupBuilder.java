@@ -78,6 +78,11 @@ public interface Measure_GroupBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public Measure_GroupBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -98,6 +103,11 @@ public interface Measure_GroupBuilder {
      */
     public Measure_GroupBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Measure_GroupBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -144,6 +154,13 @@ public interface Measure_GroupBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Measure_GroupBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param population */
     public Measure_GroupBuilder.Impl withPopulation(
         @NonNull Measure$Group$Population... population) {
@@ -156,6 +173,12 @@ public interface Measure_GroupBuilder {
       this.population = Collections.unmodifiableCollection(population);
       return this;
     }
+
+    public Measure_GroupBuilder.Impl withPopulation(
+        @NonNull Measure_Group_PopulationBuilder... population) {
+      this.population = Arrays.stream(population).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param stratifier */
     public Measure_GroupBuilder.Impl withStratifier(
         @NonNull Measure$Group$Stratifier... stratifier) {
@@ -166,6 +189,12 @@ public interface Measure_GroupBuilder {
     public Measure_GroupBuilder.Impl withStratifier(
         @NonNull Collection<Measure$Group$Stratifier> stratifier) {
       this.stratifier = Collections.unmodifiableCollection(stratifier);
+      return this;
+    }
+
+    public Measure_GroupBuilder.Impl withStratifier(
+        @NonNull Measure_Group_StratifierBuilder... stratifier) {
+      this.stratifier = Arrays.stream(stratifier).map(e -> e.build()).collect(toList());
       return this;
     }
 

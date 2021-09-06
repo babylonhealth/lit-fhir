@@ -117,10 +117,22 @@ public interface CapabilityStatement_ImplementationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CapabilityStatement_ImplementationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param custodian */
     public CapabilityStatement_ImplementationBuilder.Impl withCustodian(
         @NonNull Reference custodian) {
       this.custodian = Optional.of(custodian);
+      return this;
+    }
+
+    public CapabilityStatement_ImplementationBuilder.Impl withCustodian(
+        @NonNull ReferenceBuilder custodian) {
+      this.custodian = Optional.of(custodian.build());
       return this;
     }
     /**
@@ -157,6 +169,13 @@ public interface CapabilityStatement_ImplementationBuilder {
     public CapabilityStatement_ImplementationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CapabilityStatement_ImplementationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

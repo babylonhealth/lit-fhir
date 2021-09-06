@@ -91,10 +91,22 @@ public interface CoverageEligibilityRequest_ItemBuilder {
       this.detail = Collections.unmodifiableCollection(detail);
       return this;
     }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withDetail(
+        @NonNull ReferenceBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param category */
     public CoverageEligibilityRequest_ItemBuilder.Impl withCategory(
         @NonNull CodeableConcept category) {
       this.category = Optional.of(category);
+      return this;
+    }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /** @param modifier */
@@ -109,9 +121,21 @@ public interface CoverageEligibilityRequest_ItemBuilder {
       this.modifier = Collections.unmodifiableCollection(modifier);
       return this;
     }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withModifier(
+        @NonNull CodeableConceptBuilder... modifier) {
+      this.modifier = Arrays.stream(modifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param provider - The provider which is responsible for the request. */
     public CoverageEligibilityRequest_ItemBuilder.Impl withProvider(@NonNull Reference provider) {
       this.provider = Optional.of(provider);
+      return this;
+    }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withProvider(
+        @NonNull ReferenceBuilder provider) {
+      this.provider = Optional.of(provider.build());
       return this;
     }
     /** @param quantity */
@@ -119,9 +143,21 @@ public interface CoverageEligibilityRequest_ItemBuilder {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withQuantity(
+        @NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /** @param facility - Facility where the services are intended to be provided. */
     public CoverageEligibilityRequest_ItemBuilder.Impl withFacility(@NonNull Reference facility) {
       this.facility = Optional.of(facility);
+      return this;
+    }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withFacility(
+        @NonNull ReferenceBuilder facility) {
+      this.facility = Optional.of(facility.build());
       return this;
     }
     /**
@@ -148,15 +184,33 @@ public interface CoverageEligibilityRequest_ItemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param unitPrice */
     public CoverageEligibilityRequest_ItemBuilder.Impl withUnitPrice(@NonNull Money unitPrice) {
       this.unitPrice = Optional.of(unitPrice);
+      return this;
+    }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withUnitPrice(
+        @NonNull MoneyBuilder unitPrice) {
+      this.unitPrice = Optional.of(unitPrice.build());
       return this;
     }
     /** @param productOrService */
     public CoverageEligibilityRequest_ItemBuilder.Impl withProductOrService(
         @NonNull CodeableConcept productOrService) {
       this.productOrService = Optional.of(productOrService);
+      return this;
+    }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withProductOrService(
+        @NonNull CodeableConceptBuilder productOrService) {
+      this.productOrService = Optional.of(productOrService.build());
       return this;
     }
     /**
@@ -195,6 +249,13 @@ public interface CoverageEligibilityRequest_ItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param supportingInfoSequence */
     public CoverageEligibilityRequest_ItemBuilder.Impl withSupportingInfoSequence(
         @NonNull Integer... supportingInfoSequence) {
@@ -217,6 +278,12 @@ public interface CoverageEligibilityRequest_ItemBuilder {
     public CoverageEligibilityRequest_ItemBuilder.Impl withDiagnosis(
         @NonNull Collection<CoverageEligibilityRequest$Item$Diagnosis> diagnosis) {
       this.diagnosis = Collections.unmodifiableCollection(diagnosis);
+      return this;
+    }
+
+    public CoverageEligibilityRequest_ItemBuilder.Impl withDiagnosis(
+        @NonNull CoverageEligibilityRequest_Item_DiagnosisBuilder... diagnosis) {
+      this.diagnosis = Arrays.stream(diagnosis).map(e -> e.build()).collect(toList());
       return this;
     }
 

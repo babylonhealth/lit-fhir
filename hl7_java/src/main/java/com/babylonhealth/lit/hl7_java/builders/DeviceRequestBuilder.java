@@ -144,6 +144,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -153,6 +158,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
      */
     public DeviceRequestBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -173,6 +183,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param status - The status of the request. */
     public DeviceRequestBuilder.Impl withStatus(@NonNull REQUEST_STATUS status) {
       this.status = Optional.of(status);
@@ -186,6 +201,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     /** @param basedOn - Plan/proposal/order fulfilled by this request. */
     public DeviceRequestBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -219,6 +239,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -241,12 +266,22 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - An encounter that provides additional context in which this request is
      *     made.
      */
     public DeviceRequestBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -257,9 +292,19 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.requester = Optional.of(requester);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withRequester(@NonNull ReferenceBuilder requester) {
+      this.requester = Optional.of(requester.build());
+      return this;
+    }
     /** @param performer - The desired performer for doing the diagnostic testing. */
     public DeviceRequestBuilder.Impl withPerformer(@NonNull Reference performer) {
       this.performer = Optional.of(performer);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withPerformer(@NonNull ReferenceBuilder performer) {
+      this.performer = Optional.of(performer.build());
       return this;
     }
     /**
@@ -278,6 +323,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.insurance = Collections.unmodifiableCollection(insurance);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withInsurance(@NonNull ReferenceBuilder... insurance) {
+      this.insurance = Arrays.stream(insurance).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Identifiers assigned to this order by the orderer or by the receiver. */
     public DeviceRequestBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -286,6 +336,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     /** @param identifier - Identifiers assigned to this order by the orderer or by the receiver. */
     public DeviceRequestBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param authoredOn - When the request transitioned to being actionable. */
@@ -304,6 +359,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param priorRequest - The request takes the place of the referenced completed or terminated
      *     request(s).
@@ -318,6 +378,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
      */
     public DeviceRequestBuilder.Impl withPriorRequest(@NonNull Collection<Reference> priorRequest) {
       this.priorRequest = Collections.unmodifiableCollection(priorRequest);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withPriorRequest(@NonNull ReferenceBuilder... priorRequest) {
+      this.priorRequest = Arrays.stream(priorRequest).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -347,6 +412,12 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.performerType = Optional.of(performerType);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withPerformerType(
+        @NonNull CodeableConceptBuilder performerType) {
+      this.performerType = Optional.of(performerType.build());
+      return this;
+    }
     /**
      * @param supportingInfo - Additional clinical information about the patient that may influence
      *     the request fulfilment. For example, this may include where on the subject's body the
@@ -364,6 +435,12 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     public DeviceRequestBuilder.Impl withSupportingInfo(
         @NonNull Collection<Reference> supportingInfo) {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withSupportingInfo(
+        @NonNull ReferenceBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -390,6 +467,12 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.groupIdentifier = Optional.of(groupIdentifier);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withGroupIdentifier(
+        @NonNull IdentifierBuilder groupIdentifier) {
+      this.groupIdentifier = Optional.of(groupIdentifier.build());
+      return this;
+    }
     /** @param reasonReference - Reason or justification for the use of this device. */
     public DeviceRequestBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
       this.reasonReference = Arrays.asList(reasonReference);
@@ -401,6 +484,12 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param relevantHistory - Key events in the history of the request. */
     public DeviceRequestBuilder.Impl withRelevantHistory(@NonNull Reference... relevantHistory) {
       this.relevantHistory = Arrays.asList(relevantHistory);
@@ -410,6 +499,12 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     public DeviceRequestBuilder.Impl withRelevantHistory(
         @NonNull Collection<Reference> relevantHistory) {
       this.relevantHistory = Collections.unmodifiableCollection(relevantHistory);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withRelevantHistory(
+        @NonNull ReferenceBuilder... relevantHistory) {
+      this.relevantHistory = Arrays.stream(relevantHistory).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -448,6 +543,13 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DeviceRequestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param instantiatesCanonical - The URL pointing to a FHIR-defined protocol, guideline,
      *     orderset or other definition that is adhered to in whole or in part by this
@@ -483,6 +585,12 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     public DeviceRequestBuilder.Impl withParameter(
         @NonNull Collection<DeviceRequest.Parameter> parameter) {
       this.parameter = Collections.unmodifiableCollection(parameter);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withParameter(
+        @NonNull DeviceRequest_ParameterBuilder... parameter) {
+      this.parameter = Arrays.stream(parameter).map(e -> e.build()).collect(toList());
       return this;
     }
 

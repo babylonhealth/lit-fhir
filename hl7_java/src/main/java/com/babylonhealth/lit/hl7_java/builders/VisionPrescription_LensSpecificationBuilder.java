@@ -112,6 +112,12 @@ public interface VisionPrescription_LensSpecificationBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public VisionPrescription_LensSpecificationBuilder.Impl withNote(
+        @NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param power */
     public VisionPrescription_LensSpecificationBuilder.Impl withPower(@NonNull BigDecimal power) {
       this.power = Optional.of(power);
@@ -150,6 +156,12 @@ public interface VisionPrescription_LensSpecificationBuilder {
       this.duration = Optional.of(duration);
       return this;
     }
+
+    public VisionPrescription_LensSpecificationBuilder.Impl withDuration(
+        @NonNull QuantityBuilder duration) {
+      this.duration = Optional.of(duration.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -172,6 +184,12 @@ public interface VisionPrescription_LensSpecificationBuilder {
     public VisionPrescription_LensSpecificationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public VisionPrescription_LensSpecificationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param backCurve */
@@ -216,6 +234,13 @@ public interface VisionPrescription_LensSpecificationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public VisionPrescription_LensSpecificationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param prism */
     public VisionPrescription_LensSpecificationBuilder.Impl withPrism(
         @NonNull VisionPrescription$LensSpecification$Prism... prism) {
@@ -226,6 +251,12 @@ public interface VisionPrescription_LensSpecificationBuilder {
     public VisionPrescription_LensSpecificationBuilder.Impl withPrism(
         @NonNull Collection<VisionPrescription$LensSpecification$Prism> prism) {
       this.prism = Collections.unmodifiableCollection(prism);
+      return this;
+    }
+
+    public VisionPrescription_LensSpecificationBuilder.Impl withPrism(
+        @NonNull VisionPrescription_LensSpecification_PrismBuilder... prism) {
+      this.prism = Arrays.stream(prism).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -111,6 +111,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_organizationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -122,6 +127,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Us_core_organizationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - The kind(s) of organization that this is. */
     public Us_core_organizationBuilder.Impl withType(@NonNull CodeableConcept... _type) {
       this._type = Arrays.asList(_type);
@@ -130,6 +140,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
     /** @param _type - The kind(s) of organization that this is. */
     public Us_core_organizationBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
       this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public Us_core_organizationBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -153,6 +168,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
       this.partOf = Optional.of(partOf);
       return this;
     }
+
+    public Us_core_organizationBuilder.Impl withPartOf(@NonNull ReferenceBuilder partOf) {
+      this.partOf = Optional.of(partOf.build());
+      return this;
+    }
     /** @param telecom - A contact detail for the organization. */
     public Us_core_organizationBuilder.Impl withTelecom(@NonNull ContactPoint... telecom) {
       this.telecom = Arrays.asList(telecom);
@@ -161,6 +181,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
     /** @param telecom - A contact detail for the organization. */
     public Us_core_organizationBuilder.Impl withTelecom(@NonNull Collection<ContactPoint> telecom) {
       this.telecom = Collections.unmodifiableCollection(telecom);
+      return this;
+    }
+
+    public Us_core_organizationBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -184,6 +209,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public Us_core_organizationBuilder.Impl withEndpoint(@NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -200,6 +230,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
      */
     public Us_core_organizationBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_organizationBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -223,6 +258,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
     public Us_core_organizationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Us_core_organizationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -271,6 +311,13 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_organizationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param address - An address for the organization. */
     public Us_core_organizationBuilder.Impl withAddress(@NonNull Address... address) {
       this.address = Arrays.asList(address);
@@ -279,6 +326,11 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
     /** @param address - An address for the organization. */
     public Us_core_organizationBuilder.Impl withAddress(@NonNull Collection<Address> address) {
       this.address = Collections.unmodifiableCollection(address);
+      return this;
+    }
+
+    public Us_core_organizationBuilder.Impl withAddress(@NonNull AddressBuilder... address) {
+      this.address = Arrays.stream(address).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -298,6 +350,12 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public Us_core_organizationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param contact - Contact for the organization for a certain purpose. */
     public Us_core_organizationBuilder.Impl withContact(@NonNull Organization.Contact... contact) {
       this.contact = Arrays.asList(contact);
@@ -307,6 +365,12 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
     public Us_core_organizationBuilder.Impl withContact(
         @NonNull Collection<Organization.Contact> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public Us_core_organizationBuilder.Impl withContact(
+        @NonNull Organization_ContactBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
 

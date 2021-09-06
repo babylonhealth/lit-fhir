@@ -93,6 +93,11 @@ public interface Dosage_DoseAndRateBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public Dosage_DoseAndRateBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param dose Field is a 'choice' field. Type should be one of Quantity, Range. To pass the
      *     value in, wrap with one of the Dosage_DoseAndRateBuilder.dose static methods
@@ -129,6 +134,11 @@ public interface Dosage_DoseAndRateBuilder {
      */
     public Dosage_DoseAndRateBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Dosage_DoseAndRateBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
 

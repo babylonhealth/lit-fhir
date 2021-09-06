@@ -83,6 +83,12 @@ public interface ExplanationOfBenefit_PaymentBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public ExplanationOfBenefit_PaymentBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param date */
     public ExplanationOfBenefit_PaymentBuilder.Impl withDate(@NonNull FHIRDate date) {
       this.date = Optional.of(date);
@@ -91,6 +97,11 @@ public interface ExplanationOfBenefit_PaymentBuilder {
     /** @param amount */
     public ExplanationOfBenefit_PaymentBuilder.Impl withAmount(@NonNull Money amount) {
       this.amount = Optional.of(amount);
+      return this;
+    }
+
+    public ExplanationOfBenefit_PaymentBuilder.Impl withAmount(@NonNull MoneyBuilder amount) {
+      this.amount = Optional.of(amount.build());
       return this;
     }
     /**
@@ -116,9 +127,21 @@ public interface ExplanationOfBenefit_PaymentBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExplanationOfBenefit_PaymentBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param adjustment */
     public ExplanationOfBenefit_PaymentBuilder.Impl withAdjustment(@NonNull Money adjustment) {
       this.adjustment = Optional.of(adjustment);
+      return this;
+    }
+
+    public ExplanationOfBenefit_PaymentBuilder.Impl withAdjustment(
+        @NonNull MoneyBuilder adjustment) {
+      this.adjustment = Optional.of(adjustment.build());
       return this;
     }
     /** @param identifier - A unique identifier assigned to this explanation of benefit. */
@@ -126,10 +149,22 @@ public interface ExplanationOfBenefit_PaymentBuilder {
       this.identifier = Optional.of(identifier);
       return this;
     }
+
+    public ExplanationOfBenefit_PaymentBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
     /** @param adjustmentReason */
     public ExplanationOfBenefit_PaymentBuilder.Impl withAdjustmentReason(
         @NonNull CodeableConcept adjustmentReason) {
       this.adjustmentReason = Optional.of(adjustmentReason);
+      return this;
+    }
+
+    public ExplanationOfBenefit_PaymentBuilder.Impl withAdjustmentReason(
+        @NonNull CodeableConceptBuilder adjustmentReason) {
+      this.adjustmentReason = Optional.of(adjustmentReason.build());
       return this;
     }
     /**
@@ -166,6 +201,13 @@ public interface ExplanationOfBenefit_PaymentBuilder {
     public ExplanationOfBenefit_PaymentBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_PaymentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

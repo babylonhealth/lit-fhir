@@ -105,6 +105,11 @@ public interface Contract_TermBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public Contract_TermBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -126,6 +131,11 @@ public interface Contract_TermBuilder {
       this.group = Collections.unmodifiableCollection(group);
       return this;
     }
+
+    public Contract_TermBuilder.Impl withGroup(@NonNull Contract_TermBuilder... group) {
+      this.group = Arrays.stream(group).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param issued - When this Contract was issued. */
     public Contract_TermBuilder.Impl withIssued(@NonNull FHIRDateTime issued) {
       this.issued = Optional.of(issued);
@@ -136,12 +146,22 @@ public interface Contract_TermBuilder {
       this.applies = Optional.of(applies);
       return this;
     }
+
+    public Contract_TermBuilder.Impl withApplies(@NonNull PeriodBuilder applies) {
+      this.applies = Optional.of(applies.build());
+      return this;
+    }
     /**
      * @param subType - Sub-category for the Contract that distinguishes the kinds of systems that
      *     would be interested in the Contract within the context of the Contract's scope.
      */
     public Contract_TermBuilder.Impl withSubType(@NonNull CodeableConcept subType) {
       this.subType = Optional.of(subType);
+      return this;
+    }
+
+    public Contract_TermBuilder.Impl withSubType(@NonNull CodeableConceptBuilder subType) {
+      this.subType = Optional.of(subType.build());
       return this;
     }
     /**
@@ -176,12 +196,22 @@ public interface Contract_TermBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Contract_TermBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Unique identifier for this Contract or a derivative that references a
      *     Source Contract.
      */
     public Contract_TermBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public Contract_TermBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /**
@@ -220,6 +250,13 @@ public interface Contract_TermBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Contract_TermBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param securityLabel */
     public Contract_TermBuilder.Impl withSecurityLabel(
         @NonNull Contract$Term$SecurityLabel... securityLabel) {
@@ -232,6 +269,12 @@ public interface Contract_TermBuilder {
       this.securityLabel = Collections.unmodifiableCollection(securityLabel);
       return this;
     }
+
+    public Contract_TermBuilder.Impl withSecurityLabel(
+        @NonNull Contract_Term_SecurityLabelBuilder... securityLabel) {
+      this.securityLabel = Arrays.stream(securityLabel).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param action */
     public Contract_TermBuilder.Impl withAction(@NonNull Contract$Term$Action... action) {
       this.action = Arrays.asList(action);
@@ -242,6 +285,11 @@ public interface Contract_TermBuilder {
       this.action = Collections.unmodifiableCollection(action);
       return this;
     }
+
+    public Contract_TermBuilder.Impl withAction(@NonNull Contract_Term_ActionBuilder... action) {
+      this.action = Arrays.stream(action).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param asset */
     public Contract_TermBuilder.Impl withAsset(@NonNull Contract$Term$Asset... asset) {
       this.asset = Arrays.asList(asset);
@@ -250,6 +298,11 @@ public interface Contract_TermBuilder {
     /** @param asset */
     public Contract_TermBuilder.Impl withAsset(@NonNull Collection<Contract$Term$Asset> asset) {
       this.asset = Collections.unmodifiableCollection(asset);
+      return this;
+    }
+
+    public Contract_TermBuilder.Impl withAsset(@NonNull Contract_Term_AssetBuilder... asset) {
+      this.asset = Arrays.stream(asset).map(e -> e.build()).collect(toList());
       return this;
     }
 

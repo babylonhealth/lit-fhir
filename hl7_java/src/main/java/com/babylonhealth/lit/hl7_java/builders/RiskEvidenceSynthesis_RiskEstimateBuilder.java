@@ -82,6 +82,12 @@ public interface RiskEvidenceSynthesis_RiskEstimateBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public RiskEvidenceSynthesis_RiskEstimateBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param value */
     public RiskEvidenceSynthesis_RiskEstimateBuilder.Impl withValue(@NonNull BigDecimal value) {
       this.value = Optional.of(value);
@@ -111,6 +117,12 @@ public interface RiskEvidenceSynthesis_RiskEstimateBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public RiskEvidenceSynthesis_RiskEstimateBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the risk evidence synthesis
      *     from a consumer's perspective.
@@ -124,6 +136,12 @@ public interface RiskEvidenceSynthesis_RiskEstimateBuilder {
     public RiskEvidenceSynthesis_RiskEstimateBuilder.Impl withUnitOfMeasure(
         @NonNull CodeableConcept unitOfMeasure) {
       this.unitOfMeasure = Optional.of(unitOfMeasure);
+      return this;
+    }
+
+    public RiskEvidenceSynthesis_RiskEstimateBuilder.Impl withUnitOfMeasure(
+        @NonNull CodeableConceptBuilder unitOfMeasure) {
+      this.unitOfMeasure = Optional.of(unitOfMeasure.build());
       return this;
     }
     /** @param numeratorCount */
@@ -174,6 +192,13 @@ public interface RiskEvidenceSynthesis_RiskEstimateBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public RiskEvidenceSynthesis_RiskEstimateBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param precisionEstimate */
     public RiskEvidenceSynthesis_RiskEstimateBuilder.Impl withPrecisionEstimate(
         @NonNull RiskEvidenceSynthesis$RiskEstimate$PrecisionEstimate... precisionEstimate) {
@@ -185,6 +210,13 @@ public interface RiskEvidenceSynthesis_RiskEstimateBuilder {
         @NonNull
             Collection<RiskEvidenceSynthesis$RiskEstimate$PrecisionEstimate> precisionEstimate) {
       this.precisionEstimate = Collections.unmodifiableCollection(precisionEstimate);
+      return this;
+    }
+
+    public RiskEvidenceSynthesis_RiskEstimateBuilder.Impl withPrecisionEstimate(
+        @NonNull RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimateBuilder... precisionEstimate) {
+      this.precisionEstimate =
+          Arrays.stream(precisionEstimate).map(e -> e.build()).collect(toList());
       return this;
     }
 

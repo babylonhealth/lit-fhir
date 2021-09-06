@@ -88,6 +88,11 @@ public interface MedicinalProductUndesirableEffectBuilder extends DomainResource
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -97,6 +102,11 @@ public interface MedicinalProductUndesirableEffectBuilder extends DomainResource
      */
     public MedicinalProductUndesirableEffectBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param subject - The medication for which this is an indication. */
@@ -109,6 +119,12 @@ public interface MedicinalProductUndesirableEffectBuilder extends DomainResource
     public MedicinalProductUndesirableEffectBuilder.Impl withSubject(
         @NonNull Collection<Reference> subject) {
       this.subject = Collections.unmodifiableCollection(subject);
+      return this;
+    }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withSubject(
+        @NonNull ReferenceBuilder... subject) {
+      this.subject = Arrays.stream(subject).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -136,6 +152,12 @@ public interface MedicinalProductUndesirableEffectBuilder extends DomainResource
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -158,6 +180,12 @@ public interface MedicinalProductUndesirableEffectBuilder extends DomainResource
     public MedicinalProductUndesirableEffectBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param population - The population group to which this applies. */
@@ -187,6 +215,12 @@ public interface MedicinalProductUndesirableEffectBuilder extends DomainResource
     public MedicinalProductUndesirableEffectBuilder.Impl withClassification(
         @NonNull CodeableConcept classification) {
       this.classification = Optional.of(classification);
+      return this;
+    }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withClassification(
+        @NonNull CodeableConceptBuilder classification) {
+      this.classification = Optional.of(classification.build());
       return this;
     }
     /**
@@ -225,16 +259,35 @@ public interface MedicinalProductUndesirableEffectBuilder extends DomainResource
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param frequencyOfOccurrence - The frequency of occurrence of the effect. */
     public MedicinalProductUndesirableEffectBuilder.Impl withFrequencyOfOccurrence(
         @NonNull CodeableConcept frequencyOfOccurrence) {
       this.frequencyOfOccurrence = Optional.of(frequencyOfOccurrence);
       return this;
     }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withFrequencyOfOccurrence(
+        @NonNull CodeableConceptBuilder frequencyOfOccurrence) {
+      this.frequencyOfOccurrence = Optional.of(frequencyOfOccurrence.build());
+      return this;
+    }
     /** @param symptomConditionEffect - The symptom, condition or undesirable effect. */
     public MedicinalProductUndesirableEffectBuilder.Impl withSymptomConditionEffect(
         @NonNull CodeableConcept symptomConditionEffect) {
       this.symptomConditionEffect = Optional.of(symptomConditionEffect);
+      return this;
+    }
+
+    public MedicinalProductUndesirableEffectBuilder.Impl withSymptomConditionEffect(
+        @NonNull CodeableConceptBuilder symptomConditionEffect) {
+      this.symptomConditionEffect = Optional.of(symptomConditionEffect.build());
       return this;
     }
 

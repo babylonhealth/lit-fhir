@@ -110,6 +110,11 @@ public interface SlotBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SlotBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -119,6 +124,11 @@ public interface SlotBuilder extends DomainResourceBuilder {
      */
     public SlotBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SlotBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -152,6 +162,11 @@ public interface SlotBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SlotBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -174,6 +189,11 @@ public interface SlotBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SlotBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param specialty - The specialty of a practitioner that would be required to perform the
      *     service requested in this appointment.
@@ -190,6 +210,11 @@ public interface SlotBuilder extends DomainResourceBuilder {
       this.specialty = Collections.unmodifiableCollection(specialty);
       return this;
     }
+
+    public SlotBuilder.Impl withSpecialty(@NonNull CodeableConceptBuilder... specialty) {
+      this.specialty = Arrays.stream(specialty).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - External Ids for this item. */
     public SlotBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -198,6 +223,11 @@ public interface SlotBuilder extends DomainResourceBuilder {
     /** @param identifier - External Ids for this item. */
     public SlotBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public SlotBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -224,6 +254,11 @@ public interface SlotBuilder extends DomainResourceBuilder {
      */
     public SlotBuilder.Impl withServiceType(@NonNull Collection<CodeableConcept> serviceType) {
       this.serviceType = Collections.unmodifiableCollection(serviceType);
+      return this;
+    }
+
+    public SlotBuilder.Impl withServiceType(@NonNull CodeableConceptBuilder... serviceType) {
+      this.serviceType = Arrays.stream(serviceType).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -253,12 +288,23 @@ public interface SlotBuilder extends DomainResourceBuilder {
       this.serviceCategory = Collections.unmodifiableCollection(serviceCategory);
       return this;
     }
+
+    public SlotBuilder.Impl withServiceCategory(
+        @NonNull CodeableConceptBuilder... serviceCategory) {
+      this.serviceCategory = Arrays.stream(serviceCategory).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param appointmentType - The style of appointment or patient that may be booked in the slot
      *     (not service type).
      */
     public SlotBuilder.Impl withAppointmentType(@NonNull CodeableConcept appointmentType) {
       this.appointmentType = Optional.of(appointmentType);
+      return this;
+    }
+
+    public SlotBuilder.Impl withAppointmentType(@NonNull CodeableConceptBuilder appointmentType) {
+      this.appointmentType = Optional.of(appointmentType.build());
       return this;
     }
     /**
@@ -294,6 +340,12 @@ public interface SlotBuilder extends DomainResourceBuilder {
     public SlotBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SlotBuilder.Impl withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

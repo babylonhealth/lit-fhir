@@ -124,6 +124,11 @@ public interface CarePlan_Activity_DetailBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public CarePlan_Activity_DetailBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param goal - Describes the intended objective(s) of carrying out the care plan. */
     public CarePlan_Activity_DetailBuilder.Impl withGoal(@NonNull Reference... goal) {
       this.goal = Arrays.asList(goal);
@@ -134,14 +139,29 @@ public interface CarePlan_Activity_DetailBuilder {
       this.goal = Collections.unmodifiableCollection(goal);
       return this;
     }
+
+    public CarePlan_Activity_DetailBuilder.Impl withGoal(@NonNull ReferenceBuilder... goal) {
+      this.goal = Arrays.stream(goal).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param location */
     public CarePlan_Activity_DetailBuilder.Impl withLocation(@NonNull Reference location) {
       this.location = Optional.of(location);
       return this;
     }
+
+    public CarePlan_Activity_DetailBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /** @param quantity */
     public CarePlan_Activity_DetailBuilder.Impl withQuantity(@NonNull Quantity quantity) {
       this.quantity = Optional.of(quantity);
+      return this;
+    }
+
+    public CarePlan_Activity_DetailBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
       return this;
     }
     /**
@@ -167,6 +187,12 @@ public interface CarePlan_Activity_DetailBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CarePlan_Activity_DetailBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performer */
     public CarePlan_Activity_DetailBuilder.Impl withPerformer(@NonNull Reference... performer) {
       this.performer = Arrays.asList(performer);
@@ -176,6 +202,12 @@ public interface CarePlan_Activity_DetailBuilder {
     public CarePlan_Activity_DetailBuilder.Impl withPerformer(
         @NonNull Collection<Reference> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public CarePlan_Activity_DetailBuilder.Impl withPerformer(
+        @NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param reasonCode */
@@ -188,6 +220,12 @@ public interface CarePlan_Activity_DetailBuilder {
     public CarePlan_Activity_DetailBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public CarePlan_Activity_DetailBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -204,6 +242,12 @@ public interface CarePlan_Activity_DetailBuilder {
       this.dailyAmount = Optional.of(dailyAmount);
       return this;
     }
+
+    public CarePlan_Activity_DetailBuilder.Impl withDailyAmount(
+        @NonNull QuantityBuilder dailyAmount) {
+      this.dailyAmount = Optional.of(dailyAmount.build());
+      return this;
+    }
     /** @param description - A description of the scope and nature of the plan. */
     public CarePlan_Activity_DetailBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
@@ -213,6 +257,12 @@ public interface CarePlan_Activity_DetailBuilder {
     public CarePlan_Activity_DetailBuilder.Impl withStatusReason(
         @NonNull CodeableConcept statusReason) {
       this.statusReason = Optional.of(statusReason);
+      return this;
+    }
+
+    public CarePlan_Activity_DetailBuilder.Impl withStatusReason(
+        @NonNull CodeableConceptBuilder statusReason) {
+      this.statusReason = Optional.of(statusReason.build());
       return this;
     }
     /** @param doNotPerform */
@@ -262,6 +312,12 @@ public interface CarePlan_Activity_DetailBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public CarePlan_Activity_DetailBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -296,6 +352,13 @@ public interface CarePlan_Activity_DetailBuilder {
     public CarePlan_Activity_DetailBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CarePlan_Activity_DetailBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**

@@ -92,6 +92,11 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
       this.width = Optional.of(width);
       return this;
     }
+
+    public ProdCharacteristicBuilder.Impl withWidth(@NonNull QuantityBuilder width) {
+      this.width = Optional.of(width.build());
+      return this;
+    }
     /**
      * @param depth - Where applicable, the depth can be specified using a numerical value and its
      *     unit of measurement The unit of measurement shall be specified in accordance with ISO
@@ -99,6 +104,11 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
      */
     public ProdCharacteristicBuilder.Impl withDepth(@NonNull Quantity depth) {
       this.depth = Optional.of(depth);
+      return this;
+    }
+
+    public ProdCharacteristicBuilder.Impl withDepth(@NonNull QuantityBuilder depth) {
+      this.depth = Optional.of(depth.build());
       return this;
     }
     /**
@@ -141,6 +151,11 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
       this.image = Collections.unmodifiableCollection(image);
       return this;
     }
+
+    public ProdCharacteristicBuilder.Impl withImage(@NonNull AttachmentBuilder... image) {
+      this.image = Arrays.stream(image).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param height - Where applicable, the height can be specified using a numerical value and its
      *     unit of measurement The unit of measurement shall be specified in accordance with ISO
@@ -150,6 +165,11 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
       this.height = Optional.of(height);
       return this;
     }
+
+    public ProdCharacteristicBuilder.Impl withHeight(@NonNull QuantityBuilder height) {
+      this.height = Optional.of(height.build());
+      return this;
+    }
     /**
      * @param weight - Where applicable, the weight can be specified using a numerical value and its
      *     unit of measurement The unit of measurement shall be specified in accordance with ISO
@@ -157,6 +177,11 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
      */
     public ProdCharacteristicBuilder.Impl withWeight(@NonNull Quantity weight) {
       this.weight = Optional.of(weight);
+      return this;
+    }
+
+    public ProdCharacteristicBuilder.Impl withWeight(@NonNull QuantityBuilder weight) {
+      this.weight = Optional.of(weight.build());
       return this;
     }
     /** @param imprint - Where applicable, the imprint can be specified as text. */
@@ -175,6 +200,11 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
      */
     public ProdCharacteristicBuilder.Impl withScoring(@NonNull CodeableConcept scoring) {
       this.scoring = Optional.of(scoring);
+      return this;
+    }
+
+    public ProdCharacteristicBuilder.Impl withScoring(@NonNull CodeableConceptBuilder scoring) {
+      this.scoring = Optional.of(scoring.build());
       return this;
     }
     /**
@@ -199,6 +229,11 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ProdCharacteristicBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param nominalVolume - Where applicable, the nominal volume can be specified using a
      *     numerical value and its unit of measurement The unit of measurement shall be specified in
@@ -209,6 +244,12 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
       this.nominalVolume = Optional.of(nominalVolume);
       return this;
     }
+
+    public ProdCharacteristicBuilder.Impl withNominalVolume(
+        @NonNull QuantityBuilder nominalVolume) {
+      this.nominalVolume = Optional.of(nominalVolume.build());
+      return this;
+    }
     /**
      * @param externalDiameter - Where applicable, the external diameter can be specified using a
      *     numerical value and its unit of measurement The unit of measurement shall be specified in
@@ -217,6 +258,12 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
      */
     public ProdCharacteristicBuilder.Impl withExternalDiameter(@NonNull Quantity externalDiameter) {
       this.externalDiameter = Optional.of(externalDiameter);
+      return this;
+    }
+
+    public ProdCharacteristicBuilder.Impl withExternalDiameter(
+        @NonNull QuantityBuilder externalDiameter) {
+      this.externalDiameter = Optional.of(externalDiameter.build());
       return this;
     }
     /**
@@ -251,6 +298,13 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
     public ProdCharacteristicBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ProdCharacteristicBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

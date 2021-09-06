@@ -95,6 +95,12 @@ public interface Contract_ContentDefinitionBuilder {
       this.subType = Optional.of(subType);
       return this;
     }
+
+    public Contract_ContentDefinitionBuilder.Impl withSubType(
+        @NonNull CodeableConceptBuilder subType) {
+      this.subType = Optional.of(subType.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -118,9 +124,21 @@ public interface Contract_ContentDefinitionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Contract_ContentDefinitionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param publisher */
     public Contract_ContentDefinitionBuilder.Impl withPublisher(@NonNull Reference publisher) {
       this.publisher = Optional.of(publisher);
+      return this;
+    }
+
+    public Contract_ContentDefinitionBuilder.Impl withPublisher(
+        @NonNull ReferenceBuilder publisher) {
+      this.publisher = Optional.of(publisher.build());
       return this;
     }
     /** @param copyright */
@@ -168,6 +186,13 @@ public interface Contract_ContentDefinitionBuilder {
     public Contract_ContentDefinitionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Contract_ContentDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

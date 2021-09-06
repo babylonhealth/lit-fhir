@@ -79,16 +79,34 @@ public interface SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder
       this._type = Optional.of(_type);
       return this;
     }
+
+    public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param method */
     public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl withMethod(
         @NonNull CodeableConcept method) {
       this.method = Optional.of(method);
       return this;
     }
+
+    public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl withMethod(
+        @NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
+      return this;
+    }
     /** @param amount */
     public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl withAmount(
         @NonNull Quantity amount) {
       this.amount = Optional.of(amount);
+      return this;
+    }
+
+    public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl withAmount(
+        @NonNull QuantityBuilder amount) {
+      this.amount = Optional.of(amount.build());
       return this;
     }
     /**
@@ -113,6 +131,12 @@ public interface SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder
     public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -149,6 +173,13 @@ public interface SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder
     public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl
         withModifierExtension(@NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder.Impl
+        withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

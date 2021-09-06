@@ -105,6 +105,11 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public DeviceMetricBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -116,12 +121,22 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public DeviceMetricBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param unit - Describes the unit that an observed value determined for this metric will have.
      *     For example: Percent, Seconds, etc.
      */
     public DeviceMetricBuilder.Impl withUnit(@NonNull CodeableConcept unit) {
       this.unit = Optional.of(unit);
+      return this;
+    }
+
+    public DeviceMetricBuilder.Impl withUnit(@NonNull CodeableConceptBuilder unit) {
+      this.unit = Optional.of(unit.build());
       return this;
     }
     /**
@@ -142,6 +157,11 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
       this.source = Optional.of(source);
       return this;
     }
+
+    public DeviceMetricBuilder.Impl withSource(@NonNull ReferenceBuilder source) {
+      this.source = Optional.of(source.build());
+      return this;
+    }
     /**
      * @param parent - Describes the link to the Device that this DeviceMetric belongs to and that
      *     provide information about the location of this DeviceMetric in the containment structure
@@ -151,6 +171,11 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
      */
     public DeviceMetricBuilder.Impl withParent(@NonNull Reference parent) {
       this.parent = Optional.of(parent);
+      return this;
+    }
+
+    public DeviceMetricBuilder.Impl withParent(@NonNull ReferenceBuilder parent) {
+      this.parent = Optional.of(parent.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -176,6 +201,11 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public DeviceMetricBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -198,6 +228,11 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DeviceMetricBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Unique instance identifiers assigned to a device by the device or gateway
      *     software, manufacturers, other organizations or owners. For example: handle ID.
@@ -212,6 +247,11 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
      */
     public DeviceMetricBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public DeviceMetricBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -259,6 +299,13 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DeviceMetricBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param operationalStatus - Indicates current operational state of the device. For example:
      *     On, Off, Standby, etc.
@@ -281,6 +328,12 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
       this.measurementPeriod = Optional.of(measurementPeriod);
       return this;
     }
+
+    public DeviceMetricBuilder.Impl withMeasurementPeriod(
+        @NonNull TimingBuilder measurementPeriod) {
+      this.measurementPeriod = Optional.of(measurementPeriod.build());
+      return this;
+    }
     /**
      * @param calibration - Describes the calibrations that have been performed or that are required
      *     to be performed.
@@ -297,6 +350,12 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
     public DeviceMetricBuilder.Impl withCalibration(
         @NonNull Collection<DeviceMetric.Calibration> calibration) {
       this.calibration = Collections.unmodifiableCollection(calibration);
+      return this;
+    }
+
+    public DeviceMetricBuilder.Impl withCalibration(
+        @NonNull DeviceMetric_CalibrationBuilder... calibration) {
+      this.calibration = Arrays.stream(calibration).map(e -> e.build()).collect(toList());
       return this;
     }
 

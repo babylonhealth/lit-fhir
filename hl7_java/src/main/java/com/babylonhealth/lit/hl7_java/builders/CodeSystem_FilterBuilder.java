@@ -105,6 +105,11 @@ public interface CodeSystem_FilterBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CodeSystem_FilterBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the code system from a
      *     consumer's perspective.
@@ -147,6 +152,13 @@ public interface CodeSystem_FilterBuilder {
     public CodeSystem_FilterBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CodeSystem_FilterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

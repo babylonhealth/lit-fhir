@@ -104,10 +104,22 @@ public interface SubstanceSourceMaterial_FractionDescriptionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSourceMaterial_FractionDescriptionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param materialType */
     public SubstanceSourceMaterial_FractionDescriptionBuilder.Impl withMaterialType(
         @NonNull CodeableConcept materialType) {
       this.materialType = Optional.of(materialType);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_FractionDescriptionBuilder.Impl withMaterialType(
+        @NonNull CodeableConceptBuilder materialType) {
+      this.materialType = Optional.of(materialType.build());
       return this;
     }
     /**
@@ -144,6 +156,13 @@ public interface SubstanceSourceMaterial_FractionDescriptionBuilder {
     public SubstanceSourceMaterial_FractionDescriptionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_FractionDescriptionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

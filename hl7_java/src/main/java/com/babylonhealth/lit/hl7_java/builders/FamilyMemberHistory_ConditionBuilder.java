@@ -115,9 +115,20 @@ public interface FamilyMemberHistory_ConditionBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public FamilyMemberHistory_ConditionBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param outcome */
     public FamilyMemberHistory_ConditionBuilder.Impl withOutcome(@NonNull CodeableConcept outcome) {
       this.outcome = Optional.of(outcome);
+      return this;
+    }
+
+    public FamilyMemberHistory_ConditionBuilder.Impl withOutcome(
+        @NonNull CodeableConceptBuilder outcome) {
+      this.outcome = Optional.of(outcome.build());
       return this;
     }
     /**
@@ -151,6 +162,12 @@ public interface FamilyMemberHistory_ConditionBuilder {
     public FamilyMemberHistory_ConditionBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public FamilyMemberHistory_ConditionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -187,6 +204,13 @@ public interface FamilyMemberHistory_ConditionBuilder {
     public FamilyMemberHistory_ConditionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public FamilyMemberHistory_ConditionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param contributedToDeath */

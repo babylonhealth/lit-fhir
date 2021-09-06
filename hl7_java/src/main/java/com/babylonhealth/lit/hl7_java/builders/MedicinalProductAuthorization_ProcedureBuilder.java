@@ -122,6 +122,12 @@ public interface MedicinalProductAuthorization_ProcedureBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductAuthorization_ProcedureBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Business identifier for the marketing authorization, as assigned by a
      *     regulator.
@@ -129,6 +135,12 @@ public interface MedicinalProductAuthorization_ProcedureBuilder {
     public MedicinalProductAuthorization_ProcedureBuilder.Impl withIdentifier(
         @NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public MedicinalProductAuthorization_ProcedureBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /** @param application */
@@ -141,6 +153,12 @@ public interface MedicinalProductAuthorization_ProcedureBuilder {
     public MedicinalProductAuthorization_ProcedureBuilder.Impl withApplication(
         @NonNull Collection<MedicinalProductAuthorization.Procedure> application) {
       this.application = Collections.unmodifiableCollection(application);
+      return this;
+    }
+
+    public MedicinalProductAuthorization_ProcedureBuilder.Impl withApplication(
+        @NonNull MedicinalProductAuthorization_ProcedureBuilder... application) {
+      this.application = Arrays.stream(application).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -177,6 +195,13 @@ public interface MedicinalProductAuthorization_ProcedureBuilder {
     public MedicinalProductAuthorization_ProcedureBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicinalProductAuthorization_ProcedureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

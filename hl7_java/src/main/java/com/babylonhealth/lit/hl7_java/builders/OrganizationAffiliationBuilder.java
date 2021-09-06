@@ -95,6 +95,11 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -104,6 +109,11 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
      */
     public OrganizationAffiliationBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public OrganizationAffiliationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -120,6 +130,11 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param active - Whether this organization affiliation record is in active use. */
     public OrganizationAffiliationBuilder.Impl withActive(@NonNull Boolean active) {
       this.active = Optional.of(active);
@@ -131,6 +146,11 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
      */
     public OrganizationAffiliationBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public OrganizationAffiliationBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -147,6 +167,11 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
      */
     public OrganizationAffiliationBuilder.Impl withNetwork(@NonNull Collection<Reference> network) {
       this.network = Collections.unmodifiableCollection(network);
+      return this;
+    }
+
+    public OrganizationAffiliationBuilder.Impl withNetwork(@NonNull ReferenceBuilder... network) {
+      this.network = Arrays.stream(network).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -166,6 +191,12 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withTelecom(
+        @NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public OrganizationAffiliationBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -182,6 +213,11 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.location = Collections.unmodifiableCollection(location);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withLocation(@NonNull ReferenceBuilder... location) {
+      this.location = Arrays.stream(location).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param endpoint - Technical endpoints providing access to services operated for this role.
      */
@@ -195,6 +231,11 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
     public OrganizationAffiliationBuilder.Impl withEndpoint(
         @NonNull Collection<Reference> endpoint) {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
+      return this;
+    }
+
+    public OrganizationAffiliationBuilder.Impl withEndpoint(@NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -214,6 +255,12 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
     public OrganizationAffiliationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public OrganizationAffiliationBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -239,6 +286,12 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param specialty - Specific specialty of the participatingOrganization in the context of the
      *     role.
@@ -257,6 +310,12 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.specialty = Collections.unmodifiableCollection(specialty);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withSpecialty(
+        @NonNull CodeableConceptBuilder... specialty) {
+      this.specialty = Arrays.stream(specialty).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Business identifiers that are specific to this role. */
     public OrganizationAffiliationBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -268,12 +327,24 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param organization - Organization where the role is available (primary organization/has
      *     members).
      */
     public OrganizationAffiliationBuilder.Impl withOrganization(@NonNull Reference organization) {
       this.organization = Optional.of(organization);
+      return this;
+    }
+
+    public OrganizationAffiliationBuilder.Impl withOrganization(
+        @NonNull ReferenceBuilder organization) {
+      this.organization = Optional.of(organization.build());
       return this;
     }
     /**
@@ -322,6 +393,13 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param healthcareService - Healthcare services provided through the role. */
     public OrganizationAffiliationBuilder.Impl withHealthcareService(
         @NonNull Reference... healthcareService) {
@@ -334,6 +412,13 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       this.healthcareService = Collections.unmodifiableCollection(healthcareService);
       return this;
     }
+
+    public OrganizationAffiliationBuilder.Impl withHealthcareService(
+        @NonNull ReferenceBuilder... healthcareService) {
+      this.healthcareService =
+          Arrays.stream(healthcareService).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param participatingOrganization - The Participating Organization provides/performs the
      *     role(s) defined by the code to the Primary Organization (e.g. providing services or is a
@@ -342,6 +427,12 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
     public OrganizationAffiliationBuilder.Impl withParticipatingOrganization(
         @NonNull Reference participatingOrganization) {
       this.participatingOrganization = Optional.of(participatingOrganization);
+      return this;
+    }
+
+    public OrganizationAffiliationBuilder.Impl withParticipatingOrganization(
+        @NonNull ReferenceBuilder participatingOrganization) {
+      this.participatingOrganization = Optional.of(participatingOrganization.build());
       return this;
     }
 

@@ -114,6 +114,11 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public PaymentReconciliationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -125,6 +130,11 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public PaymentReconciliationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param period - The period of time for which payments have been gathered into this bulk
      *     payment for settlement.
@@ -133,9 +143,19 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public PaymentReconciliationBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param request - Original request resource reference. */
     public PaymentReconciliationBuilder.Impl withRequest(@NonNull Reference request) {
       this.request = Optional.of(request);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withRequest(@NonNull ReferenceBuilder request) {
+      this.request = Optional.of(request.build());
       return this;
     }
     /** @param outcome - The outcome of a request for a reconciliation. */
@@ -151,6 +171,12 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     /** @param formCode - A code for the form to be used for printing the content. */
     public PaymentReconciliationBuilder.Impl withFormCode(@NonNull CodeableConcept formCode) {
       this.formCode = Optional.of(formCode);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withFormCode(
+        @NonNull CodeableConceptBuilder formCode) {
+      this.formCode = Optional.of(formCode.build());
       return this;
     }
     /**
@@ -170,6 +196,11 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     public PaymentReconciliationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -195,12 +226,22 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public PaymentReconciliationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param requestor - The practitioner who is responsible for the services rendered to the
      *     patient.
      */
     public PaymentReconciliationBuilder.Impl withRequestor(@NonNull Reference requestor) {
       this.requestor = Optional.of(requestor);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withRequestor(@NonNull ReferenceBuilder requestor) {
+      this.requestor = Optional.of(requestor.build());
       return this;
     }
     /** @param identifier - A unique identifier assigned to this payment reconciliation. */
@@ -212,6 +253,12 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     public PaymentReconciliationBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -235,6 +282,12 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     /** @param paymentIssuer - The party who generated the payment. */
     public PaymentReconciliationBuilder.Impl withPaymentIssuer(@NonNull Reference paymentIssuer) {
       this.paymentIssuer = Optional.of(paymentIssuer);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withPaymentIssuer(
+        @NonNull ReferenceBuilder paymentIssuer) {
+      this.paymentIssuer = Optional.of(paymentIssuer.build());
       return this;
     }
     /**
@@ -273,10 +326,23 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public PaymentReconciliationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param paymentIdentifier - Issuer's unique identifier for the payment instrument. */
     public PaymentReconciliationBuilder.Impl withPaymentIdentifier(
         @NonNull Identifier paymentIdentifier) {
       this.paymentIdentifier = Optional.of(paymentIdentifier);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withPaymentIdentifier(
+        @NonNull IdentifierBuilder paymentIdentifier) {
+      this.paymentIdentifier = Optional.of(paymentIdentifier.build());
       return this;
     }
     /** @param detail - Distribution of the payment amount for a previously acknowledged payable. */
@@ -289,6 +355,12 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     public PaymentReconciliationBuilder.Impl withDetail(
         @NonNull Collection<PaymentReconciliation.Detail> detail) {
       this.detail = Collections.unmodifiableCollection(detail);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withDetail(
+        @NonNull PaymentReconciliation_DetailBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -307,6 +379,12 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     public PaymentReconciliationBuilder.Impl withProcessNote(
         @NonNull Collection<PaymentReconciliation.ProcessNote> processNote) {
       this.processNote = Collections.unmodifiableCollection(processNote);
+      return this;
+    }
+
+    public PaymentReconciliationBuilder.Impl withProcessNote(
+        @NonNull PaymentReconciliation_ProcessNoteBuilder... processNote) {
+      this.processNote = Arrays.stream(processNote).map(e -> e.build()).collect(toList());
       return this;
     }
 

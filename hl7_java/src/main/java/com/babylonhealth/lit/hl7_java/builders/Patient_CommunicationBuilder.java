@@ -100,6 +100,11 @@ public interface Patient_CommunicationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Patient_CommunicationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param preferred */
     public Patient_CommunicationBuilder.Impl withPreferred(@NonNull Boolean preferred) {
       this.preferred = Optional.of(preferred);
@@ -139,6 +144,13 @@ public interface Patient_CommunicationBuilder {
     public Patient_CommunicationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Patient_CommunicationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

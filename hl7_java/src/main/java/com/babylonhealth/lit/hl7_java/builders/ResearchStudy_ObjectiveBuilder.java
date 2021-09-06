@@ -81,6 +81,11 @@ public interface ResearchStudy_ObjectiveBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public ResearchStudy_ObjectiveBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -102,6 +107,12 @@ public interface ResearchStudy_ObjectiveBuilder {
     public ResearchStudy_ObjectiveBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ResearchStudy_ObjectiveBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -138,6 +149,13 @@ public interface ResearchStudy_ObjectiveBuilder {
     public ResearchStudy_ObjectiveBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ResearchStudy_ObjectiveBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -123,6 +123,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MediaBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -134,6 +139,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public MediaBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param _type - A code that classifies whether the media is an image, video or audio recording
      *     or some other media category.
@@ -142,9 +152,19 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public MediaBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param view - The name of the imaging view e.g. Lateral or Antero-posterior (AP). */
     public MediaBuilder.Impl withView(@NonNull CodeableConcept view) {
       this.view = Optional.of(view);
+      return this;
+    }
+
+    public MediaBuilder.Impl withView(@NonNull CodeableConceptBuilder view) {
+      this.view = Optional.of(view.build());
       return this;
     }
     /**
@@ -159,6 +179,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
      */
     public MediaBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public MediaBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param width - Width of the image in pixels (photo/video). */
@@ -176,6 +201,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public MediaBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param issued - The date and time this version of the media was made available to providers,
      *     typically after having been reviewed.
@@ -187,6 +217,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
     /** @param device - The device used to collect the media. */
     public MediaBuilder.Impl withDevice(@NonNull Reference device) {
       this.device = Optional.of(device);
+      return this;
+    }
+
+    public MediaBuilder.Impl withDevice(@NonNull ReferenceBuilder device) {
+      this.device = Optional.of(device.build());
       return this;
     }
     /** @param height - Height of the image in pixels (photo/video). */
@@ -220,9 +255,19 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public MediaBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subject - Who/What this Media is a record of. */
     public MediaBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public MediaBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -239,9 +284,19 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this.modality = Optional.of(modality);
       return this;
     }
+
+    public MediaBuilder.Impl withModality(@NonNull CodeableConceptBuilder modality) {
+      this.modality = Optional.of(modality.build());
+      return this;
+    }
     /** @param operator - The person who administered the collection of the image. */
     public MediaBuilder.Impl withOperator(@NonNull Reference operator) {
       this.operator = Optional.of(operator);
+      return this;
+    }
+
+    public MediaBuilder.Impl withOperator(@NonNull ReferenceBuilder operator) {
+      this.operator = Optional.of(operator.build());
       return this;
     }
     /**
@@ -250,6 +305,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
      */
     public MediaBuilder.Impl withBodySite(@NonNull CodeableConcept bodySite) {
       this.bodySite = Optional.of(bodySite);
+      return this;
+    }
+
+    public MediaBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
       return this;
     }
     /** @param duration - The duration of the recording in seconds - for audio and video. */
@@ -275,6 +335,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MediaBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -297,9 +362,19 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MediaBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param encounter - The encounter that establishes the context for this media. */
     public MediaBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public MediaBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -320,6 +395,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MediaBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param created - The date and time(s) at which the media was collected. Field is a 'choice'
      *     field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of
@@ -337,6 +417,11 @@ public interface MediaBuilder extends DomainResourceBuilder {
     /** @param reasonCode - Describes why the event occurred in coded or textual form. */
     public MediaBuilder.Impl withReasonCode(@NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public MediaBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -390,6 +475,12 @@ public interface MediaBuilder extends DomainResourceBuilder {
     public MediaBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MediaBuilder.Impl withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

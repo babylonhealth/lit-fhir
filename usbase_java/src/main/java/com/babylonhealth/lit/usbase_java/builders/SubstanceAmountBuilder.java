@@ -110,6 +110,11 @@ public interface SubstanceAmountBuilder extends BackboneElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceAmountBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param amount - Used to capture quantitative values for a variety of elements. If only limits
      *     are given, the arithmetic mean would be the average. If only a single definite value for
@@ -131,6 +136,11 @@ public interface SubstanceAmountBuilder extends BackboneElementBuilder {
      */
     public SubstanceAmountBuilder.Impl withAmountType(@NonNull CodeableConcept amountType) {
       this.amountType = Optional.of(amountType);
+      return this;
+    }
+
+    public SubstanceAmountBuilder.Impl withAmountType(@NonNull CodeableConceptBuilder amountType) {
+      this.amountType = Optional.of(amountType.build());
       return this;
     }
     /** @param amountText - A textual comment on a numeric value. */
@@ -172,10 +182,23 @@ public interface SubstanceAmountBuilder extends BackboneElementBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceAmountBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param referenceRange - Reference range of possible or expected values. */
     public SubstanceAmountBuilder.Impl withReferenceRange(
         @NonNull SubstanceAmount.ReferenceRange referenceRange) {
       this.referenceRange = Optional.of(referenceRange);
+      return this;
+    }
+
+    public SubstanceAmountBuilder.Impl withReferenceRange(
+        @NonNull SubstanceAmount_ReferenceRangeBuilder referenceRange) {
+      this.referenceRange = Optional.of(referenceRange.build());
       return this;
     }
 

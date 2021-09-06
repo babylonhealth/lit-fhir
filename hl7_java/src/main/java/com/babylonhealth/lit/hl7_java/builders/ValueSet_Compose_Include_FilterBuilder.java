@@ -106,6 +106,12 @@ public interface ValueSet_Compose_Include_FilterBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ValueSet_Compose_Include_FilterBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -140,6 +146,13 @@ public interface ValueSet_Compose_Include_FilterBuilder {
     public ValueSet_Compose_Include_FilterBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ValueSet_Compose_Include_FilterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

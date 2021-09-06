@@ -102,6 +102,12 @@ public interface TerminologyCapabilities_CodeSystemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TerminologyCapabilities_CodeSystemBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subsumption */
     public TerminologyCapabilities_CodeSystemBuilder.Impl withSubsumption(
         @NonNull Boolean subsumption) {
@@ -144,6 +150,13 @@ public interface TerminologyCapabilities_CodeSystemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TerminologyCapabilities_CodeSystemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param version - The identifier that is used to identify this version of the terminology
      *     capabilities when it is referenced in a specification, model, design or instance. This is
@@ -168,6 +181,12 @@ public interface TerminologyCapabilities_CodeSystemBuilder {
     public TerminologyCapabilities_CodeSystemBuilder.Impl withVersion(
         @NonNull Collection<TerminologyCapabilities$CodeSystem$Version> version) {
       this.version = Collections.unmodifiableCollection(version);
+      return this;
+    }
+
+    public TerminologyCapabilities_CodeSystemBuilder.Impl withVersion(
+        @NonNull TerminologyCapabilities_CodeSystem_VersionBuilder... version) {
+      this.version = Arrays.stream(version).map(e -> e.build()).collect(toList());
       return this;
     }
 

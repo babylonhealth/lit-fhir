@@ -91,6 +91,11 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicinalProductContraindicationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -100,6 +105,11 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
      */
     public MedicinalProductContraindicationBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MedicinalProductContraindicationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param subject - The medication for which this is an indication. */
@@ -113,10 +123,22 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
       this.subject = Collections.unmodifiableCollection(subject);
       return this;
     }
+
+    public MedicinalProductContraindicationBuilder.Impl withSubject(
+        @NonNull ReferenceBuilder... subject) {
+      this.subject = Arrays.stream(subject).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param disease - The disease, symptom or procedure for the contraindication. */
     public MedicinalProductContraindicationBuilder.Impl withDisease(
         @NonNull CodeableConcept disease) {
       this.disease = Optional.of(disease);
+      return this;
+    }
+
+    public MedicinalProductContraindicationBuilder.Impl withDisease(
+        @NonNull CodeableConceptBuilder disease) {
+      this.disease = Optional.of(disease.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -144,6 +166,12 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MedicinalProductContraindicationBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -166,6 +194,12 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
     public MedicinalProductContraindicationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicinalProductContraindicationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param population - The population group to which this applies. */
@@ -192,6 +226,12 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
       this.comorbidity = Collections.unmodifiableCollection(comorbidity);
       return this;
     }
+
+    public MedicinalProductContraindicationBuilder.Impl withComorbidity(
+        @NonNull CodeableConceptBuilder... comorbidity) {
+      this.comorbidity = Arrays.stream(comorbidity).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -207,6 +247,12 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
     public MedicinalProductContraindicationBuilder.Impl withDiseaseStatus(
         @NonNull CodeableConcept diseaseStatus) {
       this.diseaseStatus = Optional.of(diseaseStatus);
+      return this;
+    }
+
+    public MedicinalProductContraindicationBuilder.Impl withDiseaseStatus(
+        @NonNull CodeableConceptBuilder diseaseStatus) {
+      this.diseaseStatus = Optional.of(diseaseStatus.build());
       return this;
     }
     /**
@@ -245,6 +291,13 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductContraindicationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param therapeuticIndication - Information about the use of the medicinal product in relation
      *     to other therapies as part of the indication.
@@ -263,6 +316,13 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
       this.therapeuticIndication = Collections.unmodifiableCollection(therapeuticIndication);
       return this;
     }
+
+    public MedicinalProductContraindicationBuilder.Impl withTherapeuticIndication(
+        @NonNull ReferenceBuilder... therapeuticIndication) {
+      this.therapeuticIndication =
+          Arrays.stream(therapeuticIndication).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param otherTherapy - Information about the use of the medicinal product in relation to other
      *     therapies described as part of the indication.
@@ -279,6 +339,12 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
     public MedicinalProductContraindicationBuilder.Impl withOtherTherapy(
         @NonNull Collection<MedicinalProductContraindication.OtherTherapy> otherTherapy) {
       this.otherTherapy = Collections.unmodifiableCollection(otherTherapy);
+      return this;
+    }
+
+    public MedicinalProductContraindicationBuilder.Impl withOtherTherapy(
+        @NonNull MedicinalProductContraindication_OtherTherapyBuilder... otherTherapy) {
+      this.otherTherapy = Arrays.stream(otherTherapy).map(e -> e.build()).collect(toList());
       return this;
     }
 

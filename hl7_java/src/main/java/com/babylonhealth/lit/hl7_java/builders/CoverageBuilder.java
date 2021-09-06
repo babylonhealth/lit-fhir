@@ -114,6 +114,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CoverageBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -125,12 +130,22 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public CoverageBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param _type - The type of coverage: social program, medical plan, accident coverage (workers
      *     compensation, auto), group health or payment by an individual or organization.
      */
     public CoverageBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public CoverageBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -150,6 +165,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
      */
     public CoverageBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public CoverageBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -176,6 +196,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       this.contract = Collections.unmodifiableCollection(contract);
       return this;
     }
+
+    public CoverageBuilder.Impl withContract(@NonNull ReferenceBuilder... contract) {
+      this.contract = Arrays.stream(contract).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -192,6 +217,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
      */
     public CoverageBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public CoverageBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -216,6 +246,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dependent - A unique identifier for a dependent under the coverage. */
     public CoverageBuilder.Impl withDependent(@NonNull String dependent) {
       this.dependent = Optional.of(dependent);
@@ -231,6 +266,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public CoverageBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subscriber - The party who has signed-up for or 'owns' the contractual relationship to
      *     the policy or to whom the benefit of the policy for services rendered to them or their
@@ -238,6 +278,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
      */
     public CoverageBuilder.Impl withSubscriber(@NonNull Reference subscriber) {
       this.subscriber = Optional.of(subscriber);
+      return this;
+    }
+
+    public CoverageBuilder.Impl withSubscriber(@NonNull ReferenceBuilder subscriber) {
+      this.subscriber = Optional.of(subscriber.build());
       return this;
     }
     /**
@@ -253,6 +298,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       this.policyHolder = Optional.of(policyHolder);
       return this;
     }
+
+    public CoverageBuilder.Impl withPolicyHolder(@NonNull ReferenceBuilder policyHolder) {
+      this.policyHolder = Optional.of(policyHolder.build());
+      return this;
+    }
     /** @param subscriberId - The insurer assigned ID for the Subscriber. */
     public CoverageBuilder.Impl withSubscriberId(@NonNull String subscriberId) {
       this.subscriberId = Optional.of(subscriberId);
@@ -261,6 +311,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
     /** @param relationship - The relationship of beneficiary (patient) to the subscriber. */
     public CoverageBuilder.Impl withRelationship(@NonNull CodeableConcept relationship) {
       this.relationship = Optional.of(relationship);
+      return this;
+    }
+
+    public CoverageBuilder.Impl withRelationship(@NonNull CodeableConceptBuilder relationship) {
+      this.relationship = Optional.of(relationship.build());
       return this;
     }
     /**
@@ -308,6 +363,13 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CoverageBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param _class - A suite of underwriter specific classifiers. */
     public CoverageBuilder.Impl withClass(@NonNull Coverage.Class... _class) {
       this._class = Arrays.asList(_class);
@@ -316,6 +378,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
     /** @param _class - A suite of underwriter specific classifiers. */
     public CoverageBuilder.Impl withClass(@NonNull Collection<Coverage.Class> _class) {
       this._class = Collections.unmodifiableCollection(_class);
+      return this;
+    }
+
+    public CoverageBuilder.Impl withClass(@NonNull Coverage_ClassBuilder... _class) {
+      this._class = Arrays.stream(_class).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -336,6 +403,13 @@ public interface CoverageBuilder extends DomainResourceBuilder {
     public CoverageBuilder.Impl withCostToBeneficiary(
         @NonNull Collection<Coverage.CostToBeneficiary> costToBeneficiary) {
       this.costToBeneficiary = Collections.unmodifiableCollection(costToBeneficiary);
+      return this;
+    }
+
+    public CoverageBuilder.Impl withCostToBeneficiary(
+        @NonNull Coverage_CostToBeneficiaryBuilder... costToBeneficiary) {
+      this.costToBeneficiary =
+          Arrays.stream(costToBeneficiary).map(e -> e.build()).collect(toList());
       return this;
     }
 

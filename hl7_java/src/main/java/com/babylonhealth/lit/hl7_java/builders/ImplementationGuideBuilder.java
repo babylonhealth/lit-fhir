@@ -148,6 +148,11 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ImplementationGuideBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -157,6 +162,11 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
      */
     public ImplementationGuideBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ImplementationGuideBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -202,6 +212,11 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public ImplementationGuideBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param license - The license that applies to this Implementation Guide, using an SPDX license
      *     code, or 'not-open-source'.
@@ -233,6 +248,11 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ImplementationGuideBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -253,6 +273,11 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
      */
     public ImplementationGuideBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ImplementationGuideBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -293,6 +318,12 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
       this.useContext = Collections.unmodifiableCollection(useContext);
       return this;
     }
+
+    public ImplementationGuideBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the implementation guide
      *     from a consumer's perspective.
@@ -326,6 +357,12 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
     public ImplementationGuideBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public ImplementationGuideBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -374,6 +411,13 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ImplementationGuideBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param global - A set of profiles that all resources covered by this implementation guide
      *     must conform to.
@@ -390,6 +434,12 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
     public ImplementationGuideBuilder.Impl withGlobal(
         @NonNull Collection<ImplementationGuide.Global> global) {
       this.global = Collections.unmodifiableCollection(global);
+      return this;
+    }
+
+    public ImplementationGuideBuilder.Impl withGlobal(
+        @NonNull ImplementationGuide_GlobalBuilder... global) {
+      this.global = Arrays.stream(global).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -412,6 +462,12 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
       this.dependsOn = Collections.unmodifiableCollection(dependsOn);
       return this;
     }
+
+    public ImplementationGuideBuilder.Impl withDependsOn(
+        @NonNull ImplementationGuide_DependsOnBuilder... dependsOn) {
+      this.dependsOn = Arrays.stream(dependsOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param manifest - Information about an assembled implementation guide, created by the
      *     publication tooling.
@@ -421,6 +477,12 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
       this.manifest = Optional.of(manifest);
       return this;
     }
+
+    public ImplementationGuideBuilder.Impl withManifest(
+        @NonNull ImplementationGuide_ManifestBuilder manifest) {
+      this.manifest = Optional.of(manifest.build());
+      return this;
+    }
     /**
      * @param definition - The information needed by an IG publisher tool to publish the whole
      *     implementation guide.
@@ -428,6 +490,12 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
     public ImplementationGuideBuilder.Impl withDefinition(
         @NonNull ImplementationGuide.Definition definition) {
       this.definition = Optional.of(definition);
+      return this;
+    }
+
+    public ImplementationGuideBuilder.Impl withDefinition(
+        @NonNull ImplementationGuide_DefinitionBuilder definition) {
+      this.definition = Optional.of(definition.build());
       return this;
     }
 

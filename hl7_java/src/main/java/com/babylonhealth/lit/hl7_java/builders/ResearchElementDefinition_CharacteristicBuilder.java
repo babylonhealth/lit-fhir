@@ -168,6 +168,12 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ResearchElementDefinition_CharacteristicBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param usageContext */
     public ResearchElementDefinition_CharacteristicBuilder.Impl withUsageContext(
         @NonNull UsageContext... usageContext) {
@@ -180,10 +186,22 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
       this.usageContext = Collections.unmodifiableCollection(usageContext);
       return this;
     }
+
+    public ResearchElementDefinition_CharacteristicBuilder.Impl withUsageContext(
+        @NonNull UsageContextBuilder... usageContext) {
+      this.usageContext = Arrays.stream(usageContext).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param unitOfMeasure */
     public ResearchElementDefinition_CharacteristicBuilder.Impl withUnitOfMeasure(
         @NonNull CodeableConcept unitOfMeasure) {
       this.unitOfMeasure = Optional.of(unitOfMeasure);
+      return this;
+    }
+
+    public ResearchElementDefinition_CharacteristicBuilder.Impl withUnitOfMeasure(
+        @NonNull CodeableConceptBuilder unitOfMeasure) {
+      this.unitOfMeasure = Optional.of(unitOfMeasure.build());
       return this;
     }
     /**
@@ -220,6 +238,13 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
     public ResearchElementDefinition_CharacteristicBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ResearchElementDefinition_CharacteristicBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -260,6 +285,12 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
       this.studyEffectiveTimeFromStart = Optional.of(studyEffectiveTimeFromStart);
       return this;
     }
+
+    public ResearchElementDefinition_CharacteristicBuilder.Impl withStudyEffectiveTimeFromStart(
+        @NonNull DurationBuilder studyEffectiveTimeFromStart) {
+      this.studyEffectiveTimeFromStart = Optional.of(studyEffectiveTimeFromStart.build());
+      return this;
+    }
     /** @param participantEffectiveDescription */
     public ResearchElementDefinition_CharacteristicBuilder.Impl withParticipantEffectiveDescription(
         @NonNull String participantEffectiveDescription) {
@@ -277,6 +308,14 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
     public ResearchElementDefinition_CharacteristicBuilder.Impl
         withParticipantEffectiveTimeFromStart(@NonNull Duration participantEffectiveTimeFromStart) {
       this.participantEffectiveTimeFromStart = Optional.of(participantEffectiveTimeFromStart);
+      return this;
+    }
+
+    public ResearchElementDefinition_CharacteristicBuilder.Impl
+        withParticipantEffectiveTimeFromStart(
+            @NonNull DurationBuilder participantEffectiveTimeFromStart) {
+      this.participantEffectiveTimeFromStart =
+          Optional.of(participantEffectiveTimeFromStart.build());
       return this;
     }
 

@@ -86,6 +86,12 @@ public interface EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder
       this._type = Optional.of(_type);
       return this;
     }
+
+    public EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param from */
     public EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder.Impl withFrom(
         @NonNull BigDecimal from) {
@@ -122,6 +128,12 @@ public interface EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -156,6 +168,13 @@ public interface EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder
     public EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder.Impl
         withModifierExtension(@NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder.Impl
+        withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

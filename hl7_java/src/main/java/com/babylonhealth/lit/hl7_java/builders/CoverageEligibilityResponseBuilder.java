@@ -154,6 +154,11 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CoverageEligibilityResponseBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -165,9 +170,19 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
       this.text = Optional.of(text);
       return this;
     }
+
+    public CoverageEligibilityResponseBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param form - A code for the form to be used for printing the content. */
     public CoverageEligibilityResponseBuilder.Impl withForm(@NonNull CodeableConcept form) {
       this.form = Optional.of(form);
+      return this;
+    }
+
+    public CoverageEligibilityResponseBuilder.Impl withForm(@NonNull CodeableConceptBuilder form) {
+      this.form = Optional.of(form.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -194,6 +209,12 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public CoverageEligibilityResponseBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -217,9 +238,21 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageEligibilityResponseBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param requestor - The provider which is responsible for the request. */
     public CoverageEligibilityResponseBuilder.Impl withRequestor(@NonNull Reference requestor) {
       this.requestor = Optional.of(requestor);
+      return this;
+    }
+
+    public CoverageEligibilityResponseBuilder.Impl withRequestor(
+        @NonNull ReferenceBuilder requestor) {
+      this.requestor = Optional.of(requestor.build());
       return this;
     }
     /** @param identifier - A unique identifier assigned to this coverage eligiblity request. */
@@ -232,6 +265,12 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
     public CoverageEligibilityResponseBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public CoverageEligibilityResponseBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -304,6 +343,13 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CoverageEligibilityResponseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param error - Errors encountered during the processing of the request. */
     public CoverageEligibilityResponseBuilder.Impl withError(
         @NonNull CoverageEligibilityResponse.Error... error) {
@@ -314,6 +360,12 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
     public CoverageEligibilityResponseBuilder.Impl withError(
         @NonNull Collection<CoverageEligibilityResponse.Error> error) {
       this.error = Collections.unmodifiableCollection(error);
+      return this;
+    }
+
+    public CoverageEligibilityResponseBuilder.Impl withError(
+        @NonNull CoverageEligibilityResponse_ErrorBuilder... error) {
+      this.error = Arrays.stream(error).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -332,6 +384,12 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
     public CoverageEligibilityResponseBuilder.Impl withInsurance(
         @NonNull Collection<CoverageEligibilityResponse.Insurance> insurance) {
       this.insurance = Collections.unmodifiableCollection(insurance);
+      return this;
+    }
+
+    public CoverageEligibilityResponseBuilder.Impl withInsurance(
+        @NonNull CoverageEligibilityResponse_InsuranceBuilder... insurance) {
+      this.insurance = Arrays.stream(insurance).map(e -> e.build()).collect(toList());
       return this;
     }
 

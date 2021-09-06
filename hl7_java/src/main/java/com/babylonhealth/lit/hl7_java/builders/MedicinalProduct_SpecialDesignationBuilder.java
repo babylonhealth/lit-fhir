@@ -90,6 +90,12 @@ public interface MedicinalProduct_SpecialDesignationBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public MedicinalProduct_SpecialDesignationBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param date */
     public MedicinalProduct_SpecialDesignationBuilder.Impl withDate(@NonNull FHIRDateTime date) {
       this.date = Optional.of(date);
@@ -101,10 +107,22 @@ public interface MedicinalProduct_SpecialDesignationBuilder {
       this.status = Optional.of(status);
       return this;
     }
+
+    public MedicinalProduct_SpecialDesignationBuilder.Impl withStatus(
+        @NonNull CodeableConceptBuilder status) {
+      this.status = Optional.of(status.build());
+      return this;
+    }
     /** @param species */
     public MedicinalProduct_SpecialDesignationBuilder.Impl withSpecies(
         @NonNull CodeableConcept species) {
       this.species = Optional.of(species);
+      return this;
+    }
+
+    public MedicinalProduct_SpecialDesignationBuilder.Impl withSpecies(
+        @NonNull CodeableConceptBuilder species) {
+      this.species = Optional.of(species.build());
       return this;
     }
     /**
@@ -131,6 +149,12 @@ public interface MedicinalProduct_SpecialDesignationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProduct_SpecialDesignationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Business identifier for this product. Could be an MPID. */
     public MedicinalProduct_SpecialDesignationBuilder.Impl withIdentifier(
         @NonNull Identifier... identifier) {
@@ -143,10 +167,22 @@ public interface MedicinalProduct_SpecialDesignationBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MedicinalProduct_SpecialDesignationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param intendedUse */
     public MedicinalProduct_SpecialDesignationBuilder.Impl withIntendedUse(
         @NonNull CodeableConcept intendedUse) {
       this.intendedUse = Optional.of(intendedUse);
+      return this;
+    }
+
+    public MedicinalProduct_SpecialDesignationBuilder.Impl withIntendedUse(
+        @NonNull CodeableConceptBuilder intendedUse) {
+      this.intendedUse = Optional.of(intendedUse.build());
       return this;
     }
     /**
@@ -193,6 +229,13 @@ public interface MedicinalProduct_SpecialDesignationBuilder {
     public MedicinalProduct_SpecialDesignationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicinalProduct_SpecialDesignationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

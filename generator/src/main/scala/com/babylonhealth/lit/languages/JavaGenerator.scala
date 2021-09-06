@@ -62,7 +62,8 @@ trait JavaGenerator extends Commonish {
         if (builder) x.split("\\.").mkString("_") + "Builder"
         else x.split("\\.").mkString("$")
       case x if x.contains('"') => "Choice"
-      case x                    => x + (if (builder) "Builder" else "")
+      case x if builder         => x.replace('.', '_') + "Builder"
+      case x                    => x
     }
     def eraseUninferrableChoices(f: BaseField, builder: Boolean = false) = {
       f.types match {
@@ -73,11 +74,15 @@ trait JavaGenerator extends Commonish {
     def toJavaType(f: BaseField, builder: Boolean = false): String = {
       f.cardinality.wrapJavaType(eraseUninferrableChoices(f, builder = builder))
     }
-    def toBuilderMutatorType(f: BaseField, wrapInOptional: Boolean = true, asCollection: Boolean = false): String = {
+    def toBuilderMutatorType(
+        f: BaseField,
+        builder: Boolean,
+        wrapInOptional: Boolean = true,
+        asCollection: Boolean = false): String = {
       if (asCollection) {
-        f.cardinality.collectionJavaType(eraseUninferrableChoices(f))
+        f.cardinality.collectionJavaType(eraseUninferrableChoices(f, builder = builder))
       } else {
-        f.cardinality.varArgJavaType(eraseUninferrableChoices(f))
+        f.cardinality.varArgJavaType(eraseUninferrableChoices(f, builder = builder))
       }
     }
 
@@ -170,7 +175,10 @@ trait JavaGenerator extends Commonish {
                |  * ${paramStr(f, isRequired = false, builderName)}
                |  */
                |""".stripMargin
-          s"""${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
+          s"""${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
+            f,
+            builder = false,
+            wrapInOptional = false)} ${f.javaName}) {
              |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName)};
              |  return this;
              |}""".stripMargin +
@@ -178,6 +186,7 @@ trait JavaGenerator extends Commonish {
           (if (f.cardinality.max > 1) {
              s"""\n${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
                f,
+               builder = false,
                wrapInOptional = false,
                asCollection = true)} ${f.javaName}) {
                 |  this.${f.javaName} = Collections.unmodifiableCollection(${f.javaName});
@@ -185,7 +194,17 @@ trait JavaGenerator extends Commonish {
                 |}""".stripMargin
            } else {
              ""
-           })
+           }) +
+          // For non-primitive types, include another method which takes a Builder (or builder varargs if applicable)
+          (if (f.isBuildableFHIRType) {
+             s"""public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
+               f,
+               builder = true,
+               wrapInOptional = false)} ${f.javaName}) {
+                |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName, build = true)};
+                |  return this;
+                |}""".stripMargin
+           } else "")
         }
         .mkString("\n")
 

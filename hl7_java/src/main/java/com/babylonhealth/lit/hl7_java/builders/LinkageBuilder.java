@@ -94,6 +94,11 @@ public interface LinkageBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public LinkageBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -103,6 +108,11 @@ public interface LinkageBuilder extends DomainResourceBuilder {
      */
     public LinkageBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public LinkageBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -120,6 +130,11 @@ public interface LinkageBuilder extends DomainResourceBuilder {
      */
     public LinkageBuilder.Impl withAuthor(@NonNull Reference author) {
       this.author = Optional.of(author);
+      return this;
+    }
+
+    public LinkageBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -145,6 +160,11 @@ public interface LinkageBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public LinkageBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -165,6 +185,11 @@ public interface LinkageBuilder extends DomainResourceBuilder {
      */
     public LinkageBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public LinkageBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -210,6 +235,13 @@ public interface LinkageBuilder extends DomainResourceBuilder {
     public LinkageBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public LinkageBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -101,6 +101,12 @@ public interface Location_HoursOfOperationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Location_HoursOfOperationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param daysOfWeek */
     public Location_HoursOfOperationBuilder.Impl withDaysOfWeek(
         @NonNull DAYS_OF_WEEK... daysOfWeek) {
@@ -157,6 +163,13 @@ public interface Location_HoursOfOperationBuilder {
     public Location_HoursOfOperationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Location_HoursOfOperationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

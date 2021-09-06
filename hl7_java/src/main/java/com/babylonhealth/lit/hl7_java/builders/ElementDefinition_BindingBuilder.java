@@ -105,6 +105,12 @@ public interface ElementDefinition_BindingBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ElementDefinition_BindingBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public ElementDefinition_BindingBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);

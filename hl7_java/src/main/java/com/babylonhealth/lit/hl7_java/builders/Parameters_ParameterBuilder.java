@@ -290,6 +290,11 @@ public interface Parameters_ParameterBuilder {
       this.part = Collections.unmodifiableCollection(part);
       return this;
     }
+
+    public Parameters_ParameterBuilder.Impl withPart(@NonNull Parameters_ParameterBuilder... part) {
+      this.part = Arrays.stream(part).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param value Field is a 'choice' field. Type should be one of Address, Age, Annotation,
      *     Attachment, byte[], BigDecimal, Boolean, String, CodeableConcept, Coding, ContactDetail,
@@ -308,6 +313,11 @@ public interface Parameters_ParameterBuilder {
       this.resource = Optional.of(resource);
       return this;
     }
+
+    public Parameters_ParameterBuilder.Impl withResource(@NonNull ResourceBuilder resource) {
+      this.resource = Optional.of(resource.build());
+      return this;
+    }
     /** @param extension */
     public Parameters_ParameterBuilder.Impl withExtension(@NonNull Extension... extension) {
       this.extension = Arrays.asList(extension);
@@ -317,6 +327,11 @@ public interface Parameters_ParameterBuilder {
     public Parameters_ParameterBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Parameters_ParameterBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param modifierExtension */
@@ -329,6 +344,13 @@ public interface Parameters_ParameterBuilder {
     public Parameters_ParameterBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Parameters_ParameterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

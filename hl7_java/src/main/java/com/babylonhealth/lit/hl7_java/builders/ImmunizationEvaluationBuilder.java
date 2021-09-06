@@ -149,6 +149,11 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ImmunizationEvaluationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -158,6 +163,11 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
      */
     public ImmunizationEvaluationBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ImmunizationEvaluationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param date - The date the evaluation of the vaccine administration event was performed. */
@@ -197,6 +207,11 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ImmunizationEvaluationBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -220,9 +235,20 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImmunizationEvaluationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param authority - Indicates the authority who published the protocol (e.g. ACIP). */
     public ImmunizationEvaluationBuilder.Impl withAuthority(@NonNull Reference authority) {
       this.authority = Optional.of(authority);
+      return this;
+    }
+
+    public ImmunizationEvaluationBuilder.Impl withAuthority(@NonNull ReferenceBuilder authority) {
+      this.authority = Optional.of(authority.build());
       return this;
     }
     /** @param identifier - A unique identifier assigned to this immunization evaluation record. */
@@ -234,6 +260,12 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     public ImmunizationEvaluationBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ImmunizationEvaluationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description - Additional information about the evaluation. */
@@ -289,6 +321,12 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
       this.doseStatusReason = Collections.unmodifiableCollection(doseStatusReason);
       return this;
     }
+
+    public ImmunizationEvaluationBuilder.Impl withDoseStatusReason(
+        @NonNull CodeableConceptBuilder... doseStatusReason) {
+      this.doseStatusReason = Arrays.stream(doseStatusReason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -323,6 +361,13 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     public ImmunizationEvaluationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ImmunizationEvaluationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

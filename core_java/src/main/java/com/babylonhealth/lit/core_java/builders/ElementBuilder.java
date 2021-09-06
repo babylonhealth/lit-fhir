@@ -88,6 +88,11 @@ public interface ElementBuilder {
       return this;
     }
 
+    public ElementBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Element build() {
       return new Element(
           OptionConverters.toScala(id),

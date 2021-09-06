@@ -96,6 +96,12 @@ public interface ChargeItemDefinition_PropertyGroupBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ChargeItemDefinition_PropertyGroupBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param applicability - Expressions that describe applicability criteria for the billing code.
      */
@@ -110,6 +116,12 @@ public interface ChargeItemDefinition_PropertyGroupBuilder {
     public ChargeItemDefinition_PropertyGroupBuilder.Impl withApplicability(
         @NonNull Collection<ChargeItemDefinition.Applicability> applicability) {
       this.applicability = Collections.unmodifiableCollection(applicability);
+      return this;
+    }
+
+    public ChargeItemDefinition_PropertyGroupBuilder.Impl withApplicability(
+        @NonNull ChargeItemDefinition_ApplicabilityBuilder... applicability) {
+      this.applicability = Arrays.stream(applicability).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -148,6 +160,13 @@ public interface ChargeItemDefinition_PropertyGroupBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ChargeItemDefinition_PropertyGroupBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param priceComponent */
     public ChargeItemDefinition_PropertyGroupBuilder.Impl withPriceComponent(
         @NonNull ChargeItemDefinition$PropertyGroup$PriceComponent... priceComponent) {
@@ -158,6 +177,12 @@ public interface ChargeItemDefinition_PropertyGroupBuilder {
     public ChargeItemDefinition_PropertyGroupBuilder.Impl withPriceComponent(
         @NonNull Collection<ChargeItemDefinition$PropertyGroup$PriceComponent> priceComponent) {
       this.priceComponent = Collections.unmodifiableCollection(priceComponent);
+      return this;
+    }
+
+    public ChargeItemDefinition_PropertyGroupBuilder.Impl withPriceComponent(
+        @NonNull ChargeItemDefinition_PropertyGroup_PriceComponentBuilder... priceComponent) {
+      this.priceComponent = Arrays.stream(priceComponent).map(e -> e.build()).collect(toList());
       return this;
     }
 

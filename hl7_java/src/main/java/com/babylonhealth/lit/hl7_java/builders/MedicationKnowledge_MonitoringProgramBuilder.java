@@ -77,6 +77,12 @@ public interface MedicationKnowledge_MonitoringProgramBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public MedicationKnowledge_MonitoringProgramBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param name */
     public MedicationKnowledge_MonitoringProgramBuilder.Impl withName(@NonNull String name) {
       this.name = Optional.of(name);
@@ -104,6 +110,12 @@ public interface MedicationKnowledge_MonitoringProgramBuilder {
     public MedicationKnowledge_MonitoringProgramBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationKnowledge_MonitoringProgramBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -140,6 +152,13 @@ public interface MedicationKnowledge_MonitoringProgramBuilder {
     public MedicationKnowledge_MonitoringProgramBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationKnowledge_MonitoringProgramBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -125,6 +125,11 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public GraphDefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -134,6 +139,11 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
      */
     public GraphDefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public GraphDefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -174,6 +184,11 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public GraphDefinitionBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this graph definition is needed and why it has been
      *     designed as it has.
@@ -210,6 +225,11 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public GraphDefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -230,6 +250,11 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
      */
     public GraphDefinitionBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public GraphDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -259,6 +284,11 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
     public GraphDefinitionBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public GraphDefinitionBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -293,6 +323,12 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
     public GraphDefinitionBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public GraphDefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -341,6 +377,13 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public GraphDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param link - Links this graph makes rules about. */
     public GraphDefinitionBuilder.Impl withLink(@NonNull GraphDefinition.Link... link) {
       this.link = Arrays.asList(link);
@@ -349,6 +392,11 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
     /** @param link - Links this graph makes rules about. */
     public GraphDefinitionBuilder.Impl withLink(@NonNull Collection<GraphDefinition.Link> link) {
       this.link = Collections.unmodifiableCollection(link);
+      return this;
+    }
+
+    public GraphDefinitionBuilder.Impl withLink(@NonNull GraphDefinition_LinkBuilder... link) {
+      this.link = Arrays.stream(link).map(e -> e.build()).collect(toList());
       return this;
     }
 

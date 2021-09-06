@@ -103,6 +103,11 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -114,9 +119,19 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - High level categorization, e.g. polymer or nucleic acid. */
     public SubstanceSpecificationBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param status - Status of substance within the catalogue e.g. approved. */
@@ -124,9 +139,19 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.status = Optional.of(status);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withStatus(@NonNull CodeableConceptBuilder status) {
+      this.status = Optional.of(status.build());
+      return this;
+    }
     /** @param domain - If the substance applies to only human or veterinary use. */
     public SubstanceSpecificationBuilder.Impl withDomain(@NonNull CodeableConcept domain) {
       this.domain = Optional.of(domain);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withDomain(@NonNull CodeableConceptBuilder domain) {
+      this.domain = Optional.of(domain.build());
       return this;
     }
     /** @param source - Supporting literature. */
@@ -139,6 +164,11 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.source = Collections.unmodifiableCollection(source);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withSource(@NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param comment - Textual comment about this record of a substance. */
     public SubstanceSpecificationBuilder.Impl withComment(@NonNull String comment) {
       this.comment = Optional.of(comment);
@@ -149,9 +179,19 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.polymer = Optional.of(polymer);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withPolymer(@NonNull ReferenceBuilder polymer) {
+      this.polymer = Optional.of(polymer.build());
+      return this;
+    }
     /** @param protein - Data items specific to proteins. */
     public SubstanceSpecificationBuilder.Impl withProtein(@NonNull Reference protein) {
       this.protein = Optional.of(protein);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withProtein(@NonNull ReferenceBuilder protein) {
+      this.protein = Optional.of(protein.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -178,6 +218,11 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -201,9 +246,21 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Identifier by which this substance is known. */
     public SubstanceSpecificationBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /** @param description - Textual description of the substance. */
@@ -214,6 +271,12 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
     /** @param nucleicAcid - Data items specific to nucleic acids. */
     public SubstanceSpecificationBuilder.Impl withNucleicAcid(@NonNull Reference nucleicAcid) {
       this.nucleicAcid = Optional.of(nucleicAcid);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withNucleicAcid(
+        @NonNull ReferenceBuilder nucleicAcid) {
+      this.nucleicAcid = Optional.of(nucleicAcid.build());
       return this;
     }
     /**
@@ -230,6 +293,12 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
     public SubstanceSpecificationBuilder.Impl withSourceMaterial(
         @NonNull Reference sourceMaterial) {
       this.sourceMaterial = Optional.of(sourceMaterial);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withSourceMaterial(
+        @NonNull ReferenceBuilder sourceMaterial) {
+      this.sourceMaterial = Optional.of(sourceMaterial.build());
       return this;
     }
     /**
@@ -249,6 +318,13 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
         @NonNull
             Collection<SubstanceSpecification$Structure$Isotope$MolecularWeight> molecularWeight) {
       this.molecularWeight = Collections.unmodifiableCollection(molecularWeight);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withMolecularWeight(
+        @NonNull
+            SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder... molecularWeight) {
+      this.molecularWeight = Arrays.stream(molecularWeight).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -287,10 +363,23 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param referenceInformation - General information detailing this substance. */
     public SubstanceSpecificationBuilder.Impl withReferenceInformation(
         @NonNull Reference referenceInformation) {
       this.referenceInformation = Optional.of(referenceInformation);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withReferenceInformation(
+        @NonNull ReferenceBuilder referenceInformation) {
+      this.referenceInformation = Optional.of(referenceInformation.build());
       return this;
     }
     /** @param code - Codes associated with the substance. */
@@ -305,6 +394,12 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withCode(
+        @NonNull SubstanceSpecification_CodeBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param moiety - Moiety, for structural modifications. */
     public SubstanceSpecificationBuilder.Impl withMoiety(
         @NonNull SubstanceSpecification.Moiety... moiety) {
@@ -315,6 +410,12 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
     public SubstanceSpecificationBuilder.Impl withMoiety(
         @NonNull Collection<SubstanceSpecification.Moiety> moiety) {
       this.moiety = Collections.unmodifiableCollection(moiety);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withMoiety(
+        @NonNull SubstanceSpecification_MoietyBuilder... moiety) {
+      this.moiety = Arrays.stream(moiety).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -335,6 +436,12 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.property = Collections.unmodifiableCollection(property);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withProperty(
+        @NonNull SubstanceSpecification_PropertyBuilder... property) {
+      this.property = Arrays.stream(property).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param name - Names applicable to this substance. */
     public SubstanceSpecificationBuilder.Impl withName(
         @NonNull SubstanceSpecification.Name... name) {
@@ -345,6 +452,12 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
     public SubstanceSpecificationBuilder.Impl withName(
         @NonNull Collection<SubstanceSpecification.Name> name) {
       this.name = Collections.unmodifiableCollection(name);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withName(
+        @NonNull SubstanceSpecification_NameBuilder... name) {
+      this.name = Arrays.stream(name).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -365,10 +478,22 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       this.relationship = Collections.unmodifiableCollection(relationship);
       return this;
     }
+
+    public SubstanceSpecificationBuilder.Impl withRelationship(
+        @NonNull SubstanceSpecification_RelationshipBuilder... relationship) {
+      this.relationship = Arrays.stream(relationship).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param structure - Structural information. */
     public SubstanceSpecificationBuilder.Impl withStructure(
         @NonNull SubstanceSpecification.Structure structure) {
       this.structure = Optional.of(structure);
+      return this;
+    }
+
+    public SubstanceSpecificationBuilder.Impl withStructure(
+        @NonNull SubstanceSpecification_StructureBuilder structure) {
+      this.structure = Optional.of(structure.build());
       return this;
     }
 

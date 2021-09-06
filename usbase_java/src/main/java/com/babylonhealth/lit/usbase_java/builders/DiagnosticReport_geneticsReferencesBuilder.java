@@ -296,6 +296,12 @@ public interface DiagnosticReport_geneticsReferencesBuilder extends ExtensionBui
       return this;
     }
 
+    public DiagnosticReport_geneticsReferencesBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public DiagnosticReport_geneticsReferences build() {
       return new DiagnosticReport_geneticsReferences(
           OptionConverters.toScala(id),

@@ -77,6 +77,11 @@ public interface Claim_RelatedBuilder {
       this.claim = Optional.of(claim);
       return this;
     }
+
+    public Claim_RelatedBuilder.Impl withClaim(@NonNull ReferenceBuilder claim) {
+      this.claim = Optional.of(claim.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -99,14 +104,30 @@ public interface Claim_RelatedBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Claim_RelatedBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reference */
     public Claim_RelatedBuilder.Impl withReference(@NonNull Identifier reference) {
       this.reference = Optional.of(reference);
       return this;
     }
+
+    public Claim_RelatedBuilder.Impl withReference(@NonNull IdentifierBuilder reference) {
+      this.reference = Optional.of(reference.build());
+      return this;
+    }
     /** @param relationship */
     public Claim_RelatedBuilder.Impl withRelationship(@NonNull CodeableConcept relationship) {
       this.relationship = Optional.of(relationship);
+      return this;
+    }
+
+    public Claim_RelatedBuilder.Impl withRelationship(
+        @NonNull CodeableConceptBuilder relationship) {
+      this.relationship = Optional.of(relationship.build());
       return this;
     }
     /**
@@ -143,6 +164,13 @@ public interface Claim_RelatedBuilder {
     public Claim_RelatedBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Claim_RelatedBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

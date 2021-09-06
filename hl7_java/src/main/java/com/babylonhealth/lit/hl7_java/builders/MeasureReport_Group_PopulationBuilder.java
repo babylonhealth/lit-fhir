@@ -77,6 +77,12 @@ public interface MeasureReport_Group_PopulationBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public MeasureReport_Group_PopulationBuilder.Impl withCode(
+        @NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param count */
     public MeasureReport_Group_PopulationBuilder.Impl withCount(@NonNull Integer count) {
       this.count = Optional.of(count);
@@ -106,10 +112,22 @@ public interface MeasureReport_Group_PopulationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MeasureReport_Group_PopulationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subjectResults */
     public MeasureReport_Group_PopulationBuilder.Impl withSubjectResults(
         @NonNull Reference subjectResults) {
       this.subjectResults = Optional.of(subjectResults);
+      return this;
+    }
+
+    public MeasureReport_Group_PopulationBuilder.Impl withSubjectResults(
+        @NonNull ReferenceBuilder subjectResults) {
+      this.subjectResults = Optional.of(subjectResults.build());
       return this;
     }
     /**
@@ -146,6 +164,13 @@ public interface MeasureReport_Group_PopulationBuilder {
     public MeasureReport_Group_PopulationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MeasureReport_Group_PopulationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

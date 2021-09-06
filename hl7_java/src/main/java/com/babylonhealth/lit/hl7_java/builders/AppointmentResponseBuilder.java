@@ -112,6 +112,11 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public AppointmentResponseBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -121,6 +126,11 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
      */
     public AppointmentResponseBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public AppointmentResponseBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -136,6 +146,11 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
      */
     public AppointmentResponseBuilder.Impl withActor(@NonNull Reference actor) {
       this.actor = Optional.of(actor);
+      return this;
+    }
+
+    public AppointmentResponseBuilder.Impl withActor(@NonNull ReferenceBuilder actor) {
+      this.actor = Optional.of(actor.build());
       return this;
     }
     /** @param comment - Additional comments about the appointment. */
@@ -166,6 +181,11 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public AppointmentResponseBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -188,6 +208,11 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AppointmentResponseBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - This records identifiers associated with this appointment response
      *     concern that are defined by business processes and/ or used to refer to it when a direct
@@ -205,6 +230,12 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
     public AppointmentResponseBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public AppointmentResponseBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -227,6 +258,12 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
     public AppointmentResponseBuilder.Impl withParticipantType(
         @NonNull Collection<CodeableConcept> participantType) {
       this.participantType = Collections.unmodifiableCollection(participantType);
+      return this;
+    }
+
+    public AppointmentResponseBuilder.Impl withParticipantType(
+        @NonNull CodeableConceptBuilder... participantType) {
+      this.participantType = Arrays.stream(participantType).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -263,6 +300,13 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
     public AppointmentResponseBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public AppointmentResponseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

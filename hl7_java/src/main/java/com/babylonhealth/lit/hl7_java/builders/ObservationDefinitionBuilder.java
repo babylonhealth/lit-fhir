@@ -106,6 +106,11 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ObservationDefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -117,9 +122,19 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ObservationDefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param method - The method or technique used to perform the observation. */
     public ObservationDefinitionBuilder.Impl withMethod(@NonNull CodeableConcept method) {
       this.method = Optional.of(method);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -136,6 +151,12 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
     public ObservationDefinitionBuilder.Impl withCategory(
         @NonNull Collection<CodeableConcept> category) {
       this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -155,6 +176,11 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
     public ObservationDefinitionBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -180,6 +206,11 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ObservationDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this ObservationDefinition artifact. */
     public ObservationDefinitionBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -189,6 +220,12 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
     public ObservationDefinitionBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -237,6 +274,13 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ObservationDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param permittedDataType - The data types allowed for the value element of the instance
      *     observations conforming to this ObservationDefinition.
@@ -264,6 +308,12 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.validCodedValueSet = Optional.of(validCodedValueSet);
       return this;
     }
+
+    public ObservationDefinitionBuilder.Impl withValidCodedValueSet(
+        @NonNull ReferenceBuilder validCodedValueSet) {
+      this.validCodedValueSet = Optional.of(validCodedValueSet.build());
+      return this;
+    }
     /**
      * @param preferredReportName - The preferred name to be used when reporting the results of
      *     observations conforming to this ObservationDefinition.
@@ -282,6 +332,12 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.normalCodedValueSet = Optional.of(normalCodedValueSet);
       return this;
     }
+
+    public ObservationDefinitionBuilder.Impl withNormalCodedValueSet(
+        @NonNull ReferenceBuilder normalCodedValueSet) {
+      this.normalCodedValueSet = Optional.of(normalCodedValueSet.build());
+      return this;
+    }
     /**
      * @param abnormalCodedValueSet - The set of abnormal coded results for the observation
      *     conforming to this ObservationDefinition.
@@ -291,6 +347,12 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.abnormalCodedValueSet = Optional.of(abnormalCodedValueSet);
       return this;
     }
+
+    public ObservationDefinitionBuilder.Impl withAbnormalCodedValueSet(
+        @NonNull ReferenceBuilder abnormalCodedValueSet) {
+      this.abnormalCodedValueSet = Optional.of(abnormalCodedValueSet.build());
+      return this;
+    }
     /**
      * @param criticalCodedValueSet - The set of critical coded results for the observation
      *     conforming to this ObservationDefinition.
@@ -298,6 +360,12 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
     public ObservationDefinitionBuilder.Impl withCriticalCodedValueSet(
         @NonNull Reference criticalCodedValueSet) {
       this.criticalCodedValueSet = Optional.of(criticalCodedValueSet);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withCriticalCodedValueSet(
+        @NonNull ReferenceBuilder criticalCodedValueSet) {
+      this.criticalCodedValueSet = Optional.of(criticalCodedValueSet.build());
       return this;
     }
     /**
@@ -327,12 +395,25 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.qualifiedInterval = Collections.unmodifiableCollection(qualifiedInterval);
       return this;
     }
+
+    public ObservationDefinitionBuilder.Impl withQualifiedInterval(
+        @NonNull ObservationDefinition_QualifiedIntervalBuilder... qualifiedInterval) {
+      this.qualifiedInterval =
+          Arrays.stream(qualifiedInterval).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param quantitativeDetails - Characteristics for quantitative results of this observation.
      */
     public ObservationDefinitionBuilder.Impl withQuantitativeDetails(
         @NonNull ObservationDefinition.QuantitativeDetails quantitativeDetails) {
       this.quantitativeDetails = Optional.of(quantitativeDetails);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withQuantitativeDetails(
+        @NonNull ObservationDefinition_QuantitativeDetailsBuilder quantitativeDetails) {
+      this.quantitativeDetails = Optional.of(quantitativeDetails.build());
       return this;
     }
 

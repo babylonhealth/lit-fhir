@@ -101,6 +101,12 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
       this.device = Collections.unmodifiableCollection(device);
       return this;
     }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withDevice(
+        @NonNull ReferenceBuilder... device) {
+      this.device = Arrays.stream(device).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param material */
     public MedicinalProductPackaged_PackageItemBuilder.Impl withMaterial(
         @NonNull CodeableConcept... material) {
@@ -111,6 +117,12 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
     public MedicinalProductPackaged_PackageItemBuilder.Impl withMaterial(
         @NonNull Collection<CodeableConcept> material) {
       this.material = Collections.unmodifiableCollection(material);
+      return this;
+    }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withMaterial(
+        @NonNull CodeableConceptBuilder... material) {
+      this.material = Arrays.stream(material).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -137,6 +149,12 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Unique identifier. */
     public MedicinalProductPackaged_PackageItemBuilder.Impl withIdentifier(
         @NonNull Identifier... identifier) {
@@ -147,6 +165,12 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
     public MedicinalProductPackaged_PackageItemBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -167,6 +191,12 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
       this.packageItem = Collections.unmodifiableCollection(packageItem);
       return this;
     }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withPackageItem(
+        @NonNull MedicinalProductPackaged_PackageItemBuilder... packageItem) {
+      this.packageItem = Arrays.stream(packageItem).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param manufacturer - Manufacturer of this Package Item. */
     public MedicinalProductPackaged_PackageItemBuilder.Impl withManufacturer(
         @NonNull Reference... manufacturer) {
@@ -179,6 +209,12 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
       this.manufacturer = Collections.unmodifiableCollection(manufacturer);
       return this;
     }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withManufacturer(
+        @NonNull ReferenceBuilder... manufacturer) {
+      this.manufacturer = Arrays.stream(manufacturer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param manufacturedItem */
     public MedicinalProductPackaged_PackageItemBuilder.Impl withManufacturedItem(
         @NonNull Reference... manufacturedItem) {
@@ -189,6 +225,12 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
     public MedicinalProductPackaged_PackageItemBuilder.Impl withManufacturedItem(
         @NonNull Collection<Reference> manufacturedItem) {
       this.manufacturedItem = Collections.unmodifiableCollection(manufacturedItem);
+      return this;
+    }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withManufacturedItem(
+        @NonNull ReferenceBuilder... manufacturedItem) {
+      this.manufacturedItem = Arrays.stream(manufacturedItem).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param shelfLifeStorage */
@@ -239,6 +281,13 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param alternateMaterial */
     public MedicinalProductPackaged_PackageItemBuilder.Impl withAlternateMaterial(
         @NonNull CodeableConcept... alternateMaterial) {
@@ -251,6 +300,13 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
       this.alternateMaterial = Collections.unmodifiableCollection(alternateMaterial);
       return this;
     }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withAlternateMaterial(
+        @NonNull CodeableConceptBuilder... alternateMaterial) {
+      this.alternateMaterial =
+          Arrays.stream(alternateMaterial).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param otherCharacteristics */
     public MedicinalProductPackaged_PackageItemBuilder.Impl withOtherCharacteristics(
         @NonNull CodeableConcept... otherCharacteristics) {
@@ -261,6 +317,13 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
     public MedicinalProductPackaged_PackageItemBuilder.Impl withOtherCharacteristics(
         @NonNull Collection<CodeableConcept> otherCharacteristics) {
       this.otherCharacteristics = Collections.unmodifiableCollection(otherCharacteristics);
+      return this;
+    }
+
+    public MedicinalProductPackaged_PackageItemBuilder.Impl withOtherCharacteristics(
+        @NonNull CodeableConceptBuilder... otherCharacteristics) {
+      this.otherCharacteristics =
+          Arrays.stream(otherCharacteristics).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param physicalCharacteristics */

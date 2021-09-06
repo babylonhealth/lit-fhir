@@ -98,6 +98,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public InsurancePlanBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -109,6 +114,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public InsurancePlanBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - The kind of health insurance product. */
     public InsurancePlanBuilder.Impl withType(@NonNull CodeableConcept... _type) {
       this._type = Arrays.asList(_type);
@@ -117,6 +127,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
     /** @param _type - The kind of health insurance product. */
     public InsurancePlanBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
       this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public InsurancePlanBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param name - Official name of the health insurance product as designated by the owner. */
@@ -150,6 +165,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public InsurancePlanBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /**
      * @param ownedBy - The entity that is providing the health insurance product and underwriting
      *     the risk. This is typically an insurance carriers, other third-party payers, or health
@@ -157,6 +177,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
      */
     public InsurancePlanBuilder.Impl withOwnedBy(@NonNull Reference ownedBy) {
       this.ownedBy = Optional.of(ownedBy);
+      return this;
+    }
+
+    public InsurancePlanBuilder.Impl withOwnedBy(@NonNull ReferenceBuilder ownedBy) {
+      this.ownedBy = Optional.of(ownedBy.build());
       return this;
     }
     /** @param network - Reference to the network included in the health insurance product. */
@@ -167,6 +192,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
     /** @param network - Reference to the network included in the health insurance product. */
     public InsurancePlanBuilder.Impl withNetwork(@NonNull Collection<Reference> network) {
       this.network = Collections.unmodifiableCollection(network);
+      return this;
+    }
+
+    public InsurancePlanBuilder.Impl withNetwork(@NonNull ReferenceBuilder... network) {
+      this.network = Arrays.stream(network).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -190,6 +220,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public InsurancePlanBuilder.Impl withEndpoint(@NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -206,6 +241,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
      */
     public InsurancePlanBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public InsurancePlanBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -230,6 +270,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public InsurancePlanBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Business identifiers assigned to this health insurance product which
      *     remain constant as the resource is updated and propagates from server to server.
@@ -246,6 +291,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public InsurancePlanBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param coverageArea - The geographic region in which a health insurance product's benefits
      *     apply.
@@ -260,6 +310,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
      */
     public InsurancePlanBuilder.Impl withCoverageArea(@NonNull Collection<Reference> coverageArea) {
       this.coverageArea = Collections.unmodifiableCollection(coverageArea);
+      return this;
+    }
+
+    public InsurancePlanBuilder.Impl withCoverageArea(@NonNull ReferenceBuilder... coverageArea) {
+      this.coverageArea = Arrays.stream(coverageArea).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -279,6 +334,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
      */
     public InsurancePlanBuilder.Impl withAdministeredBy(@NonNull Reference administeredBy) {
       this.administeredBy = Optional.of(administeredBy);
+      return this;
+    }
+
+    public InsurancePlanBuilder.Impl withAdministeredBy(@NonNull ReferenceBuilder administeredBy) {
+      this.administeredBy = Optional.of(administeredBy.build());
       return this;
     }
     /**
@@ -317,6 +377,13 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public InsurancePlanBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param contact - The contact for the health insurance product for a certain purpose. */
     public InsurancePlanBuilder.Impl withContact(@NonNull InsurancePlan.Contact... contact) {
       this.contact = Arrays.asList(contact);
@@ -326,6 +393,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
     public InsurancePlanBuilder.Impl withContact(
         @NonNull Collection<InsurancePlan.Contact> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public InsurancePlanBuilder.Impl withContact(@NonNull InsurancePlan_ContactBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param coverage - Details about the coverage offered by the insurance product. */
@@ -339,6 +411,12 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       this.coverage = Collections.unmodifiableCollection(coverage);
       return this;
     }
+
+    public InsurancePlanBuilder.Impl withCoverage(
+        @NonNull InsurancePlan_CoverageBuilder... coverage) {
+      this.coverage = Arrays.stream(coverage).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param plan - Details about an insurance plan. */
     public InsurancePlanBuilder.Impl withPlan(@NonNull InsurancePlan.Plan... plan) {
       this.plan = Arrays.asList(plan);
@@ -347,6 +425,11 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
     /** @param plan - Details about an insurance plan. */
     public InsurancePlanBuilder.Impl withPlan(@NonNull Collection<InsurancePlan.Plan> plan) {
       this.plan = Collections.unmodifiableCollection(plan);
+      return this;
+    }
+
+    public InsurancePlanBuilder.Impl withPlan(@NonNull InsurancePlan_PlanBuilder... plan) {
+      this.plan = Arrays.stream(plan).map(e -> e.build()).collect(toList());
       return this;
     }
 

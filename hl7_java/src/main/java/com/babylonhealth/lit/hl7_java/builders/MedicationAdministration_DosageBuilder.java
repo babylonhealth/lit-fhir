@@ -99,9 +99,20 @@ public interface MedicationAdministration_DosageBuilder {
       this.site = Optional.of(site);
       return this;
     }
+
+    public MedicationAdministration_DosageBuilder.Impl withSite(
+        @NonNull CodeableConceptBuilder site) {
+      this.site = Optional.of(site.build());
+      return this;
+    }
     /** @param dose */
     public MedicationAdministration_DosageBuilder.Impl withDose(@NonNull Quantity dose) {
       this.dose = Optional.of(dose);
+      return this;
+    }
+
+    public MedicationAdministration_DosageBuilder.Impl withDose(@NonNull QuantityBuilder dose) {
+      this.dose = Optional.of(dose.build());
       return this;
     }
     /** @param route */
@@ -109,9 +120,21 @@ public interface MedicationAdministration_DosageBuilder {
       this.route = Optional.of(route);
       return this;
     }
+
+    public MedicationAdministration_DosageBuilder.Impl withRoute(
+        @NonNull CodeableConceptBuilder route) {
+      this.route = Optional.of(route.build());
+      return this;
+    }
     /** @param method */
     public MedicationAdministration_DosageBuilder.Impl withMethod(@NonNull CodeableConcept method) {
       this.method = Optional.of(method);
+      return this;
+    }
+
+    public MedicationAdministration_DosageBuilder.Impl withMethod(
+        @NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
       return this;
     }
     /**
@@ -144,6 +167,12 @@ public interface MedicationAdministration_DosageBuilder {
     public MedicationAdministration_DosageBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationAdministration_DosageBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -180,6 +209,13 @@ public interface MedicationAdministration_DosageBuilder {
     public MedicationAdministration_DosageBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationAdministration_DosageBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

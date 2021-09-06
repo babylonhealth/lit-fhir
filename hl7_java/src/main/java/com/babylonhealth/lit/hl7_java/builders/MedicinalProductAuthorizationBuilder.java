@@ -100,6 +100,11 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -111,9 +116,20 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.text = Optional.of(text);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param status - The status of the marketing authorization. */
     public MedicinalProductAuthorizationBuilder.Impl withStatus(@NonNull CodeableConcept status) {
       this.status = Optional.of(status);
+      return this;
+    }
+
+    public MedicinalProductAuthorizationBuilder.Impl withStatus(
+        @NonNull CodeableConceptBuilder status) {
+      this.status = Optional.of(status.build());
       return this;
     }
     /** @param holder - Marketing Authorization Holder. */
@@ -121,9 +137,20 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.holder = Optional.of(holder);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withHolder(@NonNull ReferenceBuilder holder) {
+      this.holder = Optional.of(holder.build());
+      return this;
+    }
     /** @param subject - The medicinal product that is being authorized. */
     public MedicinalProductAuthorizationBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public MedicinalProductAuthorizationBuilder.Impl withSubject(
+        @NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param country - The country in which the marketing authorization has been granted. */
@@ -136,6 +163,12 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
     public MedicinalProductAuthorizationBuilder.Impl withCountry(
         @NonNull Collection<CodeableConcept> country) {
       this.country = Collections.unmodifiableCollection(country);
+      return this;
+    }
+
+    public MedicinalProductAuthorizationBuilder.Impl withCountry(
+        @NonNull CodeableConceptBuilder... country) {
+      this.country = Arrays.stream(country).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -162,6 +195,12 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -186,9 +225,21 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param regulator - Medicines Regulatory Agency. */
     public MedicinalProductAuthorizationBuilder.Impl withRegulator(@NonNull Reference regulator) {
       this.regulator = Optional.of(regulator);
+      return this;
+    }
+
+    public MedicinalProductAuthorizationBuilder.Impl withRegulator(
+        @NonNull ReferenceBuilder regulator) {
+      this.regulator = Optional.of(regulator.build());
       return this;
     }
     /**
@@ -209,6 +260,12 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param statusDate - The date at which the given status has become applicable. */
     public MedicinalProductAuthorizationBuilder.Impl withStatusDate(
         @NonNull FHIRDateTime statusDate) {
@@ -219,6 +276,12 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
     public MedicinalProductAuthorizationBuilder.Impl withLegalBasis(
         @NonNull CodeableConcept legalBasis) {
       this.legalBasis = Optional.of(legalBasis);
+      return this;
+    }
+
+    public MedicinalProductAuthorizationBuilder.Impl withLegalBasis(
+        @NonNull CodeableConceptBuilder legalBasis) {
+      this.legalBasis = Optional.of(legalBasis.build());
       return this;
     }
     /**
@@ -242,6 +305,12 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -261,6 +330,12 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
     public MedicinalProductAuthorizationBuilder.Impl withValidityPeriod(
         @NonNull Period validityPeriod) {
       this.validityPeriod = Optional.of(validityPeriod);
+      return this;
+    }
+
+    public MedicinalProductAuthorizationBuilder.Impl withValidityPeriod(
+        @NonNull PeriodBuilder validityPeriod) {
+      this.validityPeriod = Optional.of(validityPeriod.build());
       return this;
     }
     /**
@@ -299,6 +374,13 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dataExclusivityPeriod - A period of time after authorization before generic product
      *     applicatiosn can be submitted.
@@ -306,6 +388,12 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
     public MedicinalProductAuthorizationBuilder.Impl withDataExclusivityPeriod(
         @NonNull Period dataExclusivityPeriod) {
       this.dataExclusivityPeriod = Optional.of(dataExclusivityPeriod);
+      return this;
+    }
+
+    public MedicinalProductAuthorizationBuilder.Impl withDataExclusivityPeriod(
+        @NonNull PeriodBuilder dataExclusivityPeriod) {
+      this.dataExclusivityPeriod = Optional.of(dataExclusivityPeriod.build());
       return this;
     }
     /**
@@ -335,6 +423,12 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       this.procedure = Optional.of(procedure);
       return this;
     }
+
+    public MedicinalProductAuthorizationBuilder.Impl withProcedure(
+        @NonNull MedicinalProductAuthorization_ProcedureBuilder procedure) {
+      this.procedure = Optional.of(procedure.build());
+      return this;
+    }
     /** @param jurisdictionalAuthorization - Authorization in areas within a country. */
     public MedicinalProductAuthorizationBuilder.Impl withJurisdictionalAuthorization(
         @NonNull
@@ -350,6 +444,15 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
                 jurisdictionalAuthorization) {
       this.jurisdictionalAuthorization =
           Collections.unmodifiableCollection(jurisdictionalAuthorization);
+      return this;
+    }
+
+    public MedicinalProductAuthorizationBuilder.Impl withJurisdictionalAuthorization(
+        @NonNull
+            MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder...
+                jurisdictionalAuthorization) {
+      this.jurisdictionalAuthorization =
+          Arrays.stream(jurisdictionalAuthorization).map(e -> e.build()).collect(toList());
       return this;
     }
 

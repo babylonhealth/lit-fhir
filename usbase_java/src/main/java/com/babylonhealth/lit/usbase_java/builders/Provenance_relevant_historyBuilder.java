@@ -138,6 +138,11 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Provenance_relevant_historyBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -147,6 +152,11 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
      */
     public Provenance_relevant_historyBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Provenance_relevant_historyBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -178,6 +188,12 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
       this.reason = Collections.unmodifiableCollection(reason);
       return this;
     }
+
+    public Provenance_relevant_historyBuilder.Impl withReason(
+        @NonNull CodeableConceptBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public Provenance_relevant_historyBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -186,6 +202,12 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
     /** @param location - Where the activity occurred, if relevant. */
     public Provenance_relevant_historyBuilder.Impl withLocation(@NonNull Reference location) {
       this.location = Optional.of(location);
+      return this;
+    }
+
+    public Provenance_relevant_historyBuilder.Impl withLocation(
+        @NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
       return this;
     }
     /**
@@ -205,6 +227,12 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
     public Provenance_relevant_historyBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Provenance_relevant_historyBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -230,6 +258,12 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Provenance_relevant_historyBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param signature - A digital signature on the target Reference(s). The signer should match a
      *     Provenance.agent. The purpose of the signature is indicated.
@@ -245,6 +279,12 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
     public Provenance_relevant_historyBuilder.Impl withSignature(
         @NonNull Collection<Signature> signature) {
       this.signature = Collections.unmodifiableCollection(signature);
+      return this;
+    }
+
+    public Provenance_relevant_historyBuilder.Impl withSignature(
+        @NonNull SignatureBuilder... signature) {
+      this.signature = Arrays.stream(signature).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -294,6 +334,13 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Provenance_relevant_historyBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param entity - An entity used in this activity. */
     public Provenance_relevant_historyBuilder.Impl withEntity(
         @NonNull Provenance.Entity... entity) {
@@ -304,6 +351,12 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
     public Provenance_relevant_historyBuilder.Impl withEntity(
         @NonNull Collection<Provenance.Entity> entity) {
       this.entity = Collections.unmodifiableCollection(entity);
+      return this;
+    }
+
+    public Provenance_relevant_historyBuilder.Impl withEntity(
+        @NonNull Provenance_EntityBuilder... entity) {
+      this.entity = Arrays.stream(entity).map(e -> e.build()).collect(toList());
       return this;
     }
 

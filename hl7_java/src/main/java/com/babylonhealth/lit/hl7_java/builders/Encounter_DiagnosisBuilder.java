@@ -83,6 +83,11 @@ public interface Encounter_DiagnosisBuilder {
       this.use = Optional.of(use);
       return this;
     }
+
+    public Encounter_DiagnosisBuilder.Impl withUse(@NonNull CodeableConceptBuilder use) {
+      this.use = Optional.of(use.build());
+      return this;
+    }
     /** @param rank */
     public Encounter_DiagnosisBuilder.Impl withRank(@NonNull Integer rank) {
       this.rank = Optional.of(rank);
@@ -108,6 +113,11 @@ public interface Encounter_DiagnosisBuilder {
      */
     public Encounter_DiagnosisBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Encounter_DiagnosisBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -144,6 +154,13 @@ public interface Encounter_DiagnosisBuilder {
     public Encounter_DiagnosisBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Encounter_DiagnosisBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

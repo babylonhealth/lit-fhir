@@ -113,6 +113,12 @@ public interface MolecularSequence_VariantBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MolecularSequence_VariantBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param observedAllele */
     public MolecularSequence_VariantBuilder.Impl withObservedAllele(
         @NonNull String observedAllele) {
@@ -123,6 +129,12 @@ public interface MolecularSequence_VariantBuilder {
     public MolecularSequence_VariantBuilder.Impl withVariantPointer(
         @NonNull Reference variantPointer) {
       this.variantPointer = Optional.of(variantPointer);
+      return this;
+    }
+
+    public MolecularSequence_VariantBuilder.Impl withVariantPointer(
+        @NonNull ReferenceBuilder variantPointer) {
+      this.variantPointer = Optional.of(variantPointer.build());
       return this;
     }
     /** @param referenceAllele */
@@ -165,6 +177,13 @@ public interface MolecularSequence_VariantBuilder {
     public MolecularSequence_VariantBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MolecularSequence_VariantBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

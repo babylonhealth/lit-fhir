@@ -98,6 +98,11 @@ public interface AllergyIntolerance_ReactionBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public AllergyIntolerance_ReactionBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param onset - Estimated or actual date, date-time, or age when allergy or intolerance was
      *     identified.
@@ -135,10 +140,22 @@ public interface AllergyIntolerance_ReactionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AllergyIntolerance_ReactionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param substance */
     public AllergyIntolerance_ReactionBuilder.Impl withSubstance(
         @NonNull CodeableConcept substance) {
       this.substance = Optional.of(substance);
+      return this;
+    }
+
+    public AllergyIntolerance_ReactionBuilder.Impl withSubstance(
+        @NonNull CodeableConceptBuilder substance) {
+      this.substance = Optional.of(substance.build());
       return this;
     }
     /** @param description */
@@ -150,6 +167,12 @@ public interface AllergyIntolerance_ReactionBuilder {
     public AllergyIntolerance_ReactionBuilder.Impl withExposureRoute(
         @NonNull CodeableConcept exposureRoute) {
       this.exposureRoute = Optional.of(exposureRoute);
+      return this;
+    }
+
+    public AllergyIntolerance_ReactionBuilder.Impl withExposureRoute(
+        @NonNull CodeableConceptBuilder exposureRoute) {
+      this.exposureRoute = Optional.of(exposureRoute.build());
       return this;
     }
     /**
@@ -186,6 +209,13 @@ public interface AllergyIntolerance_ReactionBuilder {
     public AllergyIntolerance_ReactionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public AllergyIntolerance_ReactionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

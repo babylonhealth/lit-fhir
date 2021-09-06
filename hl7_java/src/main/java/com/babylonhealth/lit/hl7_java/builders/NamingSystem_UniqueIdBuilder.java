@@ -88,6 +88,11 @@ public interface NamingSystem_UniqueIdBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public NamingSystem_UniqueIdBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param comment */
     public NamingSystem_UniqueIdBuilder.Impl withComment(@NonNull String comment) {
       this.comment = Optional.of(comment);
@@ -114,6 +119,11 @@ public interface NamingSystem_UniqueIdBuilder {
     public NamingSystem_UniqueIdBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public NamingSystem_UniqueIdBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param preferred */
@@ -155,6 +165,13 @@ public interface NamingSystem_UniqueIdBuilder {
     public NamingSystem_UniqueIdBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public NamingSystem_UniqueIdBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

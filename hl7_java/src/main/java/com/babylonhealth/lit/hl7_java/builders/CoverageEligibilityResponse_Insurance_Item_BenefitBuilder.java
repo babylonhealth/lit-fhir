@@ -137,6 +137,12 @@ public interface CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageEligibilityResponse_Insurance_Item_BenefitBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. To
      *     pass the value in, wrap with one of the
@@ -181,6 +187,13 @@ public interface CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
     public CoverageEligibilityResponse_Insurance_Item_BenefitBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CoverageEligibilityResponse_Insurance_Item_BenefitBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -110,6 +110,12 @@ public interface ImplementationGuide_Manifest_ResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImplementationGuide_Manifest_ResourceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param example Field is a 'choice' field. Type should be one of Boolean, String. To pass the
      *     value in, wrap with one of the ImplementationGuide_Manifest_ResourceBuilder.example
@@ -160,6 +166,13 @@ public interface ImplementationGuide_Manifest_ResourceBuilder {
     public ImplementationGuide_Manifest_ResourceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ImplementationGuide_Manifest_ResourceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -111,6 +111,11 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public DetectedIssueBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -122,9 +127,19 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public DetectedIssueBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param code - Identifies the general type of issue identified. */
     public DetectedIssueBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public DetectedIssueBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /**
@@ -133,6 +148,11 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
      */
     public DetectedIssueBuilder.Impl withAuthor(@NonNull Reference author) {
       this.author = Optional.of(author);
+      return this;
+    }
+
+    public DetectedIssueBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
       return this;
     }
     /** @param detail - A textual explanation of the detected issue. */
@@ -145,6 +165,11 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
      */
     public DetectedIssueBuilder.Impl withPatient(@NonNull Reference patient) {
       this.patient = Optional.of(patient);
+      return this;
+    }
+
+    public DetectedIssueBuilder.Impl withPatient(@NonNull ReferenceBuilder patient) {
+      this.patient = Optional.of(patient.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -178,6 +203,11 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public DetectedIssueBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -200,6 +230,11 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DetectedIssueBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param reference - The literature, knowledge-base or similar reference that describes the
      *     propensity for the detected issue identified.
@@ -218,6 +253,11 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public DetectedIssueBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicated - Indicates the resource representing the current activity or proposed
      *     activity that is potentially problematic.
@@ -232,6 +272,11 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
      */
     public DetectedIssueBuilder.Impl withImplicated(@NonNull Collection<Reference> implicated) {
       this.implicated = Collections.unmodifiableCollection(implicated);
+      return this;
+    }
+
+    public DetectedIssueBuilder.Impl withImplicated(@NonNull ReferenceBuilder... implicated) {
+      this.implicated = Arrays.stream(implicated).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -289,6 +334,13 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DetectedIssueBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param evidence - Supporting evidence or manifestations that provide the basis for
      *     identifying the detected issue such as a GuidanceResponse or MeasureReport.
@@ -304,6 +356,12 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
     public DetectedIssueBuilder.Impl withEvidence(
         @NonNull Collection<DetectedIssue.Evidence> evidence) {
       this.evidence = Collections.unmodifiableCollection(evidence);
+      return this;
+    }
+
+    public DetectedIssueBuilder.Impl withEvidence(
+        @NonNull DetectedIssue_EvidenceBuilder... evidence) {
+      this.evidence = Arrays.stream(evidence).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -326,6 +384,12 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
     public DetectedIssueBuilder.Impl withMitigation(
         @NonNull Collection<DetectedIssue.Mitigation> mitigation) {
       this.mitigation = Collections.unmodifiableCollection(mitigation);
+      return this;
+    }
+
+    public DetectedIssueBuilder.Impl withMitigation(
+        @NonNull DetectedIssue_MitigationBuilder... mitigation) {
+      this.mitigation = Arrays.stream(mitigation).map(e -> e.build()).collect(toList());
       return this;
     }
 

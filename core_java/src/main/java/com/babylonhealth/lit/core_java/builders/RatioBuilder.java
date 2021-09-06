@@ -89,14 +89,29 @@ public interface RatioBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public RatioBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param numerator - The value of the numerator. */
     public RatioBuilder.Impl withNumerator(@NonNull Quantity numerator) {
       this.numerator = Optional.of(numerator);
       return this;
     }
+
+    public RatioBuilder.Impl withNumerator(@NonNull QuantityBuilder numerator) {
+      this.numerator = Optional.of(numerator.build());
+      return this;
+    }
     /** @param denominator - The value of the denominator. */
     public RatioBuilder.Impl withDenominator(@NonNull Quantity denominator) {
       this.denominator = Optional.of(denominator);
+      return this;
+    }
+
+    public RatioBuilder.Impl withDenominator(@NonNull QuantityBuilder denominator) {
+      this.denominator = Optional.of(denominator.build());
       return this;
     }
 

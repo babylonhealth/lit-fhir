@@ -163,6 +163,12 @@ public interface TestScript_Setup_Action_AssertBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TestScript_Setup_Action_AssertBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param direction */
     public TestScript_Setup_Action_AssertBuilder.Impl withDirection(
         @NonNull ASSERT_DIRECTION_CODES direction) {
@@ -254,6 +260,13 @@ public interface TestScript_Setup_Action_AssertBuilder {
     public TestScript_Setup_Action_AssertBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public TestScript_Setup_Action_AssertBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param compareToSourceId */

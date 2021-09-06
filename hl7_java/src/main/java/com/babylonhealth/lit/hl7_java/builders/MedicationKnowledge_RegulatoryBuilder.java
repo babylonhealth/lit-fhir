@@ -104,6 +104,12 @@ public interface MedicationKnowledge_RegulatoryBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicationKnowledge_RegulatoryBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -140,6 +146,13 @@ public interface MedicationKnowledge_RegulatoryBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicationKnowledge_RegulatoryBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param schedule */
     public MedicationKnowledge_RegulatoryBuilder.Impl withSchedule(
         @NonNull MedicationKnowledge$Regulatory$Schedule... schedule) {
@@ -152,10 +165,22 @@ public interface MedicationKnowledge_RegulatoryBuilder {
       this.schedule = Collections.unmodifiableCollection(schedule);
       return this;
     }
+
+    public MedicationKnowledge_RegulatoryBuilder.Impl withSchedule(
+        @NonNull MedicationKnowledge_Regulatory_ScheduleBuilder... schedule) {
+      this.schedule = Arrays.stream(schedule).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param maxDispense */
     public MedicationKnowledge_RegulatoryBuilder.Impl withMaxDispense(
         @NonNull MedicationKnowledge$Regulatory$MaxDispense maxDispense) {
       this.maxDispense = Optional.of(maxDispense);
+      return this;
+    }
+
+    public MedicationKnowledge_RegulatoryBuilder.Impl withMaxDispense(
+        @NonNull MedicationKnowledge_Regulatory_MaxDispenseBuilder maxDispense) {
+      this.maxDispense = Optional.of(maxDispense.build());
       return this;
     }
     /** @param substitution */
@@ -168,6 +193,12 @@ public interface MedicationKnowledge_RegulatoryBuilder {
     public MedicationKnowledge_RegulatoryBuilder.Impl withSubstitution(
         @NonNull Collection<MedicationKnowledge$Regulatory$Substitution> substitution) {
       this.substitution = Collections.unmodifiableCollection(substitution);
+      return this;
+    }
+
+    public MedicationKnowledge_RegulatoryBuilder.Impl withSubstitution(
+        @NonNull MedicationKnowledge_Regulatory_SubstitutionBuilder... substitution) {
+      this.substitution = Arrays.stream(substitution).map(e -> e.build()).collect(toList());
       return this;
     }
 

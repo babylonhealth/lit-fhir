@@ -163,6 +163,11 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -174,9 +179,19 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param site - Body site where vaccine was administered. */
     public Us_core_immunizationBuilder.Impl withSite(@NonNull CodeableConcept site) {
       this.site = Optional.of(site);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withSite(@NonNull CodeableConceptBuilder site) {
+      this.site = Optional.of(site.build());
       return this;
     }
     /**
@@ -195,9 +210,19 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param route - The path by which the vaccine product is taken into the body. */
     public Us_core_immunizationBuilder.Impl withRoute(@NonNull CodeableConcept route) {
       this.route = Optional.of(route);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withRoute(@NonNull CodeableConceptBuilder route) {
+      this.route = Optional.of(route.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -220,6 +245,11 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.location = Optional.of(location);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -236,6 +266,11 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
      */
     public Us_core_immunizationBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -261,12 +296,22 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The visit or admission or other contact between patient and health care
      *     provider the immunization was performed as part of.
      */
     public Us_core_immunizationBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /** @param lotNumber - Lot number of the vaccine product. */
@@ -285,6 +330,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reasonCode - Reasons why the vaccine was administered. */
     public Us_core_immunizationBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
       this.reasonCode = Arrays.asList(reasonCode);
@@ -294,6 +345,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
     public Us_core_immunizationBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -310,6 +367,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.statusReason = Optional.of(statusReason);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withStatusReason(
+        @NonNull CodeableConceptBuilder statusReason) {
+      this.statusReason = Optional.of(statusReason.build());
+      return this;
+    }
     /**
      * @param reportOrigin - The source of the data when the report of the immunization event is not
      *     based on information from the person who administered the vaccine.
@@ -319,14 +382,32 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.reportOrigin = Optional.of(reportOrigin);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withReportOrigin(
+        @NonNull CodeableConceptBuilder reportOrigin) {
+      this.reportOrigin = Optional.of(reportOrigin.build());
+      return this;
+    }
     /** @param manufacturer - Name of vaccine manufacturer. */
     public Us_core_immunizationBuilder.Impl withManufacturer(@NonNull Reference manufacturer) {
       this.manufacturer = Optional.of(manufacturer);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withManufacturer(
+        @NonNull ReferenceBuilder manufacturer) {
+      this.manufacturer = Optional.of(manufacturer.build());
+      return this;
+    }
     /** @param doseQuantity - The quantity of vaccine product that was administered. */
     public Us_core_immunizationBuilder.Impl withDoseQuantity(@NonNull Quantity doseQuantity) {
       this.doseQuantity = Optional.of(doseQuantity);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withDoseQuantity(
+        @NonNull QuantityBuilder doseQuantity) {
+      this.doseQuantity = Optional.of(doseQuantity.build());
       return this;
     }
     /**
@@ -348,6 +429,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
     public Us_core_immunizationBuilder.Impl withFundingSource(
         @NonNull CodeableConcept fundingSource) {
       this.fundingSource = Optional.of(fundingSource);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withFundingSource(
+        @NonNull CodeableConceptBuilder fundingSource) {
+      this.fundingSource = Optional.of(fundingSource.build());
       return this;
     }
     /** @param expirationDate - Date vaccine batch expires. */
@@ -373,6 +460,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subpotentReason - Reason why a dose is considered to be subpotent. */
     public Us_core_immunizationBuilder.Impl withSubpotentReason(
         @NonNull CodeableConcept... subpotentReason) {
@@ -383,6 +476,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
     public Us_core_immunizationBuilder.Impl withSubpotentReason(
         @NonNull Collection<CodeableConcept> subpotentReason) {
       this.subpotentReason = Collections.unmodifiableCollection(subpotentReason);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withSubpotentReason(
+        @NonNull CodeableConceptBuilder... subpotentReason) {
+      this.subpotentReason = Arrays.stream(subpotentReason).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -421,6 +520,13 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param programEligibility - Indicates a patient's eligibility for a funding program. */
     public Us_core_immunizationBuilder.Impl withProgramEligibility(
         @NonNull CodeableConcept... programEligibility) {
@@ -431,6 +537,13 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
     public Us_core_immunizationBuilder.Impl withProgramEligibility(
         @NonNull Collection<CodeableConcept> programEligibility) {
       this.programEligibility = Collections.unmodifiableCollection(programEligibility);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withProgramEligibility(
+        @NonNull CodeableConceptBuilder... programEligibility) {
+      this.programEligibility =
+          Arrays.stream(programEligibility).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -451,6 +564,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.reaction = Collections.unmodifiableCollection(reaction);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withReaction(
+        @NonNull Immunization_ReactionBuilder... reaction) {
+      this.reaction = Arrays.stream(reaction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performer - Indicates who performed the immunization event. */
     public Us_core_immunizationBuilder.Impl withPerformer(
         @NonNull Immunization.Performer... performer) {
@@ -461,6 +580,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
     public Us_core_immunizationBuilder.Impl withPerformer(
         @NonNull Collection<Immunization.Performer> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withPerformer(
+        @NonNull Immunization_PerformerBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -481,6 +606,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       this.education = Collections.unmodifiableCollection(education);
       return this;
     }
+
+    public Us_core_immunizationBuilder.Impl withEducation(
+        @NonNull Immunization_EducationBuilder... education) {
+      this.education = Arrays.stream(education).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param protocolApplied - The protocol (set of recommendations) being followed by the provider
      *     who administered the dose.
@@ -497,6 +628,12 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
     public Us_core_immunizationBuilder.Impl withProtocolApplied(
         @NonNull Collection<Immunization.ProtocolApplied> protocolApplied) {
       this.protocolApplied = Collections.unmodifiableCollection(protocolApplied);
+      return this;
+    }
+
+    public Us_core_immunizationBuilder.Impl withProtocolApplied(
+        @NonNull Immunization_ProtocolAppliedBuilder... protocolApplied) {
+      this.protocolApplied = Arrays.stream(protocolApplied).map(e -> e.build()).collect(toList());
       return this;
     }
 

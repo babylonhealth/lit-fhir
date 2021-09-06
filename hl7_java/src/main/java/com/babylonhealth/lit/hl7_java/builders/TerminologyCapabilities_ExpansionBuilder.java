@@ -104,6 +104,12 @@ public interface TerminologyCapabilities_ExpansionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TerminologyCapabilities_ExpansionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param incomplete */
     public TerminologyCapabilities_ExpansionBuilder.Impl withIncomplete(
         @NonNull Boolean incomplete) {
@@ -158,6 +164,13 @@ public interface TerminologyCapabilities_ExpansionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TerminologyCapabilities_ExpansionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param parameter */
     public TerminologyCapabilities_ExpansionBuilder.Impl withParameter(
         @NonNull TerminologyCapabilities$Expansion$Parameter... parameter) {
@@ -168,6 +181,12 @@ public interface TerminologyCapabilities_ExpansionBuilder {
     public TerminologyCapabilities_ExpansionBuilder.Impl withParameter(
         @NonNull Collection<TerminologyCapabilities$Expansion$Parameter> parameter) {
       this.parameter = Collections.unmodifiableCollection(parameter);
+      return this;
+    }
+
+    public TerminologyCapabilities_ExpansionBuilder.Impl withParameter(
+        @NonNull TerminologyCapabilities_Expansion_ParameterBuilder... parameter) {
+      this.parameter = Arrays.stream(parameter).map(e -> e.build()).collect(toList());
       return this;
     }
 

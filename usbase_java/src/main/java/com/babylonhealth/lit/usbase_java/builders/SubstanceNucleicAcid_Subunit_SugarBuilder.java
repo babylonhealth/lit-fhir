@@ -104,10 +104,22 @@ public interface SubstanceNucleicAcid_Subunit_SugarBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceNucleicAcid_Subunit_SugarBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier */
     public SubstanceNucleicAcid_Subunit_SugarBuilder.Impl withIdentifier(
         @NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public SubstanceNucleicAcid_Subunit_SugarBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /** @param residueSite */
@@ -150,6 +162,13 @@ public interface SubstanceNucleicAcid_Subunit_SugarBuilder {
     public SubstanceNucleicAcid_Subunit_SugarBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceNucleicAcid_Subunit_SugarBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -183,6 +183,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -194,6 +199,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param note - Comments about the observation or the results. */
     public Observation_geneticsBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
@@ -202,6 +212,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
     /** @param note - Comments about the observation or the results. */
     public Observation_geneticsBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -232,6 +247,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.focus = Collections.unmodifiableCollection(focus);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withFocus(@NonNull ReferenceBuilder... focus) {
+      this.focus = Arrays.stream(focus).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param partOf - A larger event of which this particular Observation is a component or step.
      *     For example, an observation as part of a procedure.
@@ -248,6 +268,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param issued - The date and time this version of the observation was made available to
      *     providers, typically after the results have been reviewed and verified.
@@ -261,9 +286,19 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.method = Optional.of(method);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
+      return this;
+    }
     /** @param device - The device used to generate the observation data. */
     public Observation_geneticsBuilder.Impl withDevice(@NonNull Reference device) {
       this.device = Optional.of(device);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withDevice(@NonNull ReferenceBuilder device) {
+      this.device = Optional.of(device.build());
       return this;
     }
     /**
@@ -284,6 +319,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - The patient, or group of patients, location, or device this observation is
      *     about and into whose record the observation is placed. If the actual focus of the
@@ -293,6 +333,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
      */
     public Observation_geneticsBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -309,6 +354,12 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
     public Observation_geneticsBuilder.Impl withCategory(
         @NonNull Collection<CodeableConcept> category) {
       this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -330,9 +381,19 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.bodySite = Optional.of(bodySite);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
+      return this;
+    }
     /** @param specimen - The specimen that was used when this observation was made. */
     public Observation_geneticsBuilder.Impl withSpecimen(@NonNull Reference specimen) {
       this.specimen = Optional.of(specimen);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withSpecimen(@NonNull ReferenceBuilder specimen) {
+      this.specimen = Optional.of(specimen.build());
       return this;
     }
     /**
@@ -353,6 +414,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param extension - An Extension */
     public Observation_geneticsBuilder.Impl withExtension(@NonNull Extension... extension) {
       this.extension = Arrays.asList(extension);
@@ -364,12 +430,22 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The healthcare event (e.g. a patient and healthcare provider interaction)
      *     during which this observation is made.
      */
     public Observation_geneticsBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /** @param performer - Who was responsible for asserting the observed value as "true". */
@@ -381,6 +457,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
     public Observation_geneticsBuilder.Impl withPerformer(
         @NonNull Collection<Reference> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withPerformer(@NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -400,6 +481,11 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.hasMember = Collections.unmodifiableCollection(hasMember);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withHasMember(@NonNull ReferenceBuilder... hasMember) {
+      this.hasMember = Arrays.stream(hasMember).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this observation. */
     public Observation_geneticsBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -409,6 +495,12 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
     public Observation_geneticsBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -428,6 +520,12 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
     public Observation_geneticsBuilder.Impl withDerivedFrom(
         @NonNull Collection<Reference> derivedFrom) {
       this.derivedFrom = Collections.unmodifiableCollection(derivedFrom);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withDerivedFrom(
+        @NonNull ReferenceBuilder... derivedFrom) {
+      this.derivedFrom = Arrays.stream(derivedFrom).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -471,6 +569,12 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.interpretation = Collections.unmodifiableCollection(interpretation);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withInterpretation(
+        @NonNull CodeableConceptBuilder... interpretation) {
+      this.interpretation = Arrays.stream(interpretation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dataAbsentReason - Provides a reason why the expected value in the element
      *     Observation.value[x] is missing.
@@ -478,6 +582,12 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
     public Observation_geneticsBuilder.Impl withDataAbsentReason(
         @NonNull CodeableConcept dataAbsentReason) {
       this.dataAbsentReason = Optional.of(dataAbsentReason);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withDataAbsentReason(
+        @NonNull CodeableConceptBuilder dataAbsentReason) {
+      this.dataAbsentReason = Optional.of(dataAbsentReason.build());
       return this;
     }
     /**
@@ -516,6 +626,13 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param component - Some observations have multiple component observations. These component
      *     observations are expressed as separate code value pairs that share the same attributes.
@@ -538,6 +655,12 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
       this.component = Collections.unmodifiableCollection(component);
       return this;
     }
+
+    public Observation_geneticsBuilder.Impl withComponent(
+        @NonNull Observation_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param referenceRange - Guidance on how to interpret the value by comparison to a normal or
      *     recommended range. Multiple reference ranges are interpreted as an "OR". In other words,
@@ -558,6 +681,12 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
     public Observation_geneticsBuilder.Impl withReferenceRange(
         @NonNull Collection<Observation.ReferenceRange> referenceRange) {
       this.referenceRange = Collections.unmodifiableCollection(referenceRange);
+      return this;
+    }
+
+    public Observation_geneticsBuilder.Impl withReferenceRange(
+        @NonNull Observation_ReferenceRangeBuilder... referenceRange) {
+      this.referenceRange = Arrays.stream(referenceRange).map(e -> e.build()).collect(toList());
       return this;
     }
 

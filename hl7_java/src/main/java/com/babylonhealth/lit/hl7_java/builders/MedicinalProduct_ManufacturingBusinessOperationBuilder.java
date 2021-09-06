@@ -99,10 +99,22 @@ public interface MedicinalProduct_ManufacturingBusinessOperationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param regulator */
     public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withRegulator(
         @NonNull Reference regulator) {
       this.regulator = Optional.of(regulator);
+      return this;
+    }
+
+    public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withRegulator(
+        @NonNull ReferenceBuilder regulator) {
+      this.regulator = Optional.of(regulator.build());
       return this;
     }
     /** @param manufacturer */
@@ -117,10 +129,22 @@ public interface MedicinalProduct_ManufacturingBusinessOperationBuilder {
       this.manufacturer = Collections.unmodifiableCollection(manufacturer);
       return this;
     }
+
+    public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withManufacturer(
+        @NonNull ReferenceBuilder... manufacturer) {
+      this.manufacturer = Arrays.stream(manufacturer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param operationType */
     public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withOperationType(
         @NonNull CodeableConcept operationType) {
       this.operationType = Optional.of(operationType);
+      return this;
+    }
+
+    public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withOperationType(
+        @NonNull CodeableConceptBuilder operationType) {
+      this.operationType = Optional.of(operationType.build());
       return this;
     }
     /** @param effectiveDate */
@@ -165,16 +189,35 @@ public interface MedicinalProduct_ManufacturingBusinessOperationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param confidentialityIndicator */
     public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withConfidentialityIndicator(
         @NonNull CodeableConcept confidentialityIndicator) {
       this.confidentialityIndicator = Optional.of(confidentialityIndicator);
       return this;
     }
+
+    public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl withConfidentialityIndicator(
+        @NonNull CodeableConceptBuilder confidentialityIndicator) {
+      this.confidentialityIndicator = Optional.of(confidentialityIndicator.build());
+      return this;
+    }
     /** @param authorisationReferenceNumber */
     public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl
         withAuthorisationReferenceNumber(@NonNull Identifier authorisationReferenceNumber) {
       this.authorisationReferenceNumber = Optional.of(authorisationReferenceNumber);
+      return this;
+    }
+
+    public MedicinalProduct_ManufacturingBusinessOperationBuilder.Impl
+        withAuthorisationReferenceNumber(@NonNull IdentifierBuilder authorisationReferenceNumber) {
+      this.authorisationReferenceNumber = Optional.of(authorisationReferenceNumber.build());
       return this;
     }
 

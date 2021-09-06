@@ -93,6 +93,11 @@ public interface BundleBuilder extends ResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public BundleBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param total - If a set of search matches, this is the total number of entries of type
      *     'match' across all pages in the search. It does not include search.mode = 'include' or
@@ -120,12 +125,22 @@ public interface BundleBuilder extends ResourceBuilder {
       this.signature = Optional.of(signature);
       return this;
     }
+
+    public BundleBuilder.Impl withSignature(@NonNull SignatureBuilder signature) {
+      this.signature = Optional.of(signature.build());
+      return this;
+    }
     /**
      * @param identifier - A persistent identifier for the bundle that won't change as a bundle is
      *     copied from server to server.
      */
     public BundleBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public BundleBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /**
@@ -148,6 +163,11 @@ public interface BundleBuilder extends ResourceBuilder {
       this.link = Collections.unmodifiableCollection(link);
       return this;
     }
+
+    public BundleBuilder.Impl withLink(@NonNull Bundle_LinkBuilder... link) {
+      this.link = Arrays.stream(link).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param entry - An entry in a bundle resource - will either contain a resource or information
      *     about a resource (transactions and history only).
@@ -162,6 +182,11 @@ public interface BundleBuilder extends ResourceBuilder {
      */
     public BundleBuilder.Impl withEntry(@NonNull Collection<Bundle.Entry> entry) {
       this.entry = Collections.unmodifiableCollection(entry);
+      return this;
+    }
+
+    public BundleBuilder.Impl withEntry(@NonNull Bundle_EntryBuilder... entry) {
+      this.entry = Arrays.stream(entry).map(e -> e.build()).collect(toList());
       return this;
     }
 

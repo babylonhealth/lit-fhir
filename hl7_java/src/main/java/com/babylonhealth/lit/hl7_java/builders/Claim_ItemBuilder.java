@@ -123,6 +123,11 @@ public interface Claim_ItemBuilder {
       this.net = Optional.of(net);
       return this;
     }
+
+    public Claim_ItemBuilder.Impl withNet(@NonNull MoneyBuilder net) {
+      this.net = Optional.of(net.build());
+      return this;
+    }
     /** @param udi */
     public Claim_ItemBuilder.Impl withUdi(@NonNull Reference... udi) {
       this.udi = Arrays.asList(udi);
@@ -131,6 +136,11 @@ public interface Claim_ItemBuilder {
     /** @param udi */
     public Claim_ItemBuilder.Impl withUdi(@NonNull Collection<Reference> udi) {
       this.udi = Collections.unmodifiableCollection(udi);
+      return this;
+    }
+
+    public Claim_ItemBuilder.Impl withUdi(@NonNull ReferenceBuilder... udi) {
+      this.udi = Arrays.stream(udi).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param factor */
@@ -143,6 +153,11 @@ public interface Claim_ItemBuilder {
       this.revenue = Optional.of(revenue);
       return this;
     }
+
+    public Claim_ItemBuilder.Impl withRevenue(@NonNull CodeableConceptBuilder revenue) {
+      this.revenue = Optional.of(revenue.build());
+      return this;
+    }
     /** @param subSite */
     public Claim_ItemBuilder.Impl withSubSite(@NonNull CodeableConcept... subSite) {
       this.subSite = Arrays.asList(subSite);
@@ -153,9 +168,19 @@ public interface Claim_ItemBuilder {
       this.subSite = Collections.unmodifiableCollection(subSite);
       return this;
     }
+
+    public Claim_ItemBuilder.Impl withSubSite(@NonNull CodeableConceptBuilder... subSite) {
+      this.subSite = Arrays.stream(subSite).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param category */
     public Claim_ItemBuilder.Impl withCategory(@NonNull CodeableConcept category) {
       this.category = Optional.of(category);
+      return this;
+    }
+
+    public Claim_ItemBuilder.Impl withCategory(@NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /** @param modifier */
@@ -168,14 +193,29 @@ public interface Claim_ItemBuilder {
       this.modifier = Collections.unmodifiableCollection(modifier);
       return this;
     }
+
+    public Claim_ItemBuilder.Impl withModifier(@NonNull CodeableConceptBuilder... modifier) {
+      this.modifier = Arrays.stream(modifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param quantity */
     public Claim_ItemBuilder.Impl withQuantity(@NonNull Quantity quantity) {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public Claim_ItemBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /** @param bodySite */
     public Claim_ItemBuilder.Impl withBodySite(@NonNull CodeableConcept bodySite) {
       this.bodySite = Optional.of(bodySite);
+      return this;
+    }
+
+    public Claim_ItemBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
       return this;
     }
     /**
@@ -200,9 +240,19 @@ public interface Claim_ItemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Claim_ItemBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param unitPrice */
     public Claim_ItemBuilder.Impl withUnitPrice(@NonNull Money unitPrice) {
       this.unitPrice = Optional.of(unitPrice);
+      return this;
+    }
+
+    public Claim_ItemBuilder.Impl withUnitPrice(@NonNull MoneyBuilder unitPrice) {
+      this.unitPrice = Optional.of(unitPrice.build());
       return this;
     }
     /** @param encounter */
@@ -215,6 +265,11 @@ public interface Claim_ItemBuilder {
       this.encounter = Collections.unmodifiableCollection(encounter);
       return this;
     }
+
+    public Claim_ItemBuilder.Impl withEncounter(@NonNull ReferenceBuilder... encounter) {
+      this.encounter = Arrays.stream(encounter).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param programCode */
     public Claim_ItemBuilder.Impl withProgramCode(@NonNull CodeableConcept... programCode) {
       this.programCode = Arrays.asList(programCode);
@@ -224,6 +279,11 @@ public interface Claim_ItemBuilder {
     public Claim_ItemBuilder.Impl withProgramCode(
         @NonNull Collection<CodeableConcept> programCode) {
       this.programCode = Collections.unmodifiableCollection(programCode);
+      return this;
+    }
+
+    public Claim_ItemBuilder.Impl withProgramCode(@NonNull CodeableConceptBuilder... programCode) {
+      this.programCode = Arrays.stream(programCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -289,6 +349,13 @@ public interface Claim_ItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Claim_ItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param diagnosisSequence */
     public Claim_ItemBuilder.Impl withDiagnosisSequence(@NonNull Integer... diagnosisSequence) {
       this.diagnosisSequence = Arrays.asList(diagnosisSequence);
@@ -330,6 +397,11 @@ public interface Claim_ItemBuilder {
     /** @param detail */
     public Claim_ItemBuilder.Impl withDetail(@NonNull Collection<Claim$Item$Detail> detail) {
       this.detail = Collections.unmodifiableCollection(detail);
+      return this;
+    }
+
+    public Claim_ItemBuilder.Impl withDetail(@NonNull Claim_Item_DetailBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
       return this;
     }
 

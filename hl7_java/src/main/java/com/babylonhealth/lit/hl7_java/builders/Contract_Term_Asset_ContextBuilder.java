@@ -83,6 +83,12 @@ public interface Contract_Term_Asset_ContextBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public Contract_Term_Asset_ContextBuilder.Impl withCode(
+        @NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -117,9 +123,21 @@ public interface Contract_Term_Asset_ContextBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Contract_Term_Asset_ContextBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reference */
     public Contract_Term_Asset_ContextBuilder.Impl withReference(@NonNull Reference reference) {
       this.reference = Optional.of(reference);
+      return this;
+    }
+
+    public Contract_Term_Asset_ContextBuilder.Impl withReference(
+        @NonNull ReferenceBuilder reference) {
+      this.reference = Optional.of(reference.build());
       return this;
     }
     /**
@@ -156,6 +174,13 @@ public interface Contract_Term_Asset_ContextBuilder {
     public Contract_Term_Asset_ContextBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Contract_Term_Asset_ContextBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

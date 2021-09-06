@@ -100,6 +100,11 @@ public interface Contract_Term_SecurityLabelBuilder {
       this.control = Collections.unmodifiableCollection(control);
       return this;
     }
+
+    public Contract_Term_SecurityLabelBuilder.Impl withControl(@NonNull CodingBuilder... control) {
+      this.control = Arrays.stream(control).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param category */
     public Contract_Term_SecurityLabelBuilder.Impl withCategory(@NonNull Coding... category) {
       this.category = Arrays.asList(category);
@@ -109,6 +114,12 @@ public interface Contract_Term_SecurityLabelBuilder {
     public Contract_Term_SecurityLabelBuilder.Impl withCategory(
         @NonNull Collection<Coding> category) {
       this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public Contract_Term_SecurityLabelBuilder.Impl withCategory(
+        @NonNull CodingBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -132,6 +143,12 @@ public interface Contract_Term_SecurityLabelBuilder {
     public Contract_Term_SecurityLabelBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Contract_Term_SecurityLabelBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -168,6 +185,13 @@ public interface Contract_Term_SecurityLabelBuilder {
     public Contract_Term_SecurityLabelBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Contract_Term_SecurityLabelBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

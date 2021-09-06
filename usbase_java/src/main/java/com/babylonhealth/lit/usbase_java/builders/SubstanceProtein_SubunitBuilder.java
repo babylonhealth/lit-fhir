@@ -126,6 +126,12 @@ public interface SubstanceProtein_SubunitBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceProtein_SubunitBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -162,10 +168,23 @@ public interface SubstanceProtein_SubunitBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceProtein_SubunitBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param sequenceAttachment */
     public SubstanceProtein_SubunitBuilder.Impl withSequenceAttachment(
         @NonNull Attachment sequenceAttachment) {
       this.sequenceAttachment = Optional.of(sequenceAttachment);
+      return this;
+    }
+
+    public SubstanceProtein_SubunitBuilder.Impl withSequenceAttachment(
+        @NonNull AttachmentBuilder sequenceAttachment) {
+      this.sequenceAttachment = Optional.of(sequenceAttachment.build());
       return this;
     }
     /** @param nTerminalModification */
@@ -186,10 +205,22 @@ public interface SubstanceProtein_SubunitBuilder {
       this.nTerminalModificationId = Optional.of(nTerminalModificationId);
       return this;
     }
+
+    public SubstanceProtein_SubunitBuilder.Impl withNTerminalModificationId(
+        @NonNull IdentifierBuilder nTerminalModificationId) {
+      this.nTerminalModificationId = Optional.of(nTerminalModificationId.build());
+      return this;
+    }
     /** @param cTerminalModificationId */
     public SubstanceProtein_SubunitBuilder.Impl withCTerminalModificationId(
         @NonNull Identifier cTerminalModificationId) {
       this.cTerminalModificationId = Optional.of(cTerminalModificationId);
+      return this;
+    }
+
+    public SubstanceProtein_SubunitBuilder.Impl withCTerminalModificationId(
+        @NonNull IdentifierBuilder cTerminalModificationId) {
+      this.cTerminalModificationId = Optional.of(cTerminalModificationId.build());
       return this;
     }
 

@@ -97,6 +97,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CareTeamBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -106,6 +111,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
      */
     public CareTeamBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -126,6 +136,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public CareTeamBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param status - Indicates the current state of the care team. */
     public CareTeamBuilder.Impl withStatus(@NonNull CARE_TEAM_STATUS status) {
       this.status = Optional.of(status);
@@ -136,11 +151,21 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public CareTeamBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /**
      * @param subject - Identifies the patient or group whose intended care is handled by the team.
      */
     public CareTeamBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /**
@@ -155,6 +180,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
      */
     public CareTeamBuilder.Impl withTelecom(@NonNull Collection<ContactPoint> telecom) {
       this.telecom = Collections.unmodifiableCollection(telecom);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -180,6 +210,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public CareTeamBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -196,6 +231,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
      */
     public CareTeamBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -220,12 +260,22 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CareTeamBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this CareTeam was created or to which the
      *     creation of this record is tightly associated.
      */
     public CareTeamBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -246,6 +296,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public CareTeamBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reasonCode - Describes why the care team exists. */
     public CareTeamBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
       this.reasonCode = Arrays.asList(reasonCode);
@@ -254,6 +309,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
     /** @param reasonCode - Describes why the care team exists. */
     public CareTeamBuilder.Impl withReasonCode(@NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -275,6 +335,11 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
     public CareTeamBuilder.Impl withReasonReference(
         @NonNull Collection<Reference> reasonReference) {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withReasonReference(@NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -312,6 +377,13 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CareTeamBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param managingOrganization - The organization responsible for the care team. */
     public CareTeamBuilder.Impl withManagingOrganization(
         @NonNull Reference... managingOrganization) {
@@ -322,6 +394,13 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
     public CareTeamBuilder.Impl withManagingOrganization(
         @NonNull Collection<Reference> managingOrganization) {
       this.managingOrganization = Collections.unmodifiableCollection(managingOrganization);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withManagingOrganization(
+        @NonNull ReferenceBuilder... managingOrganization) {
+      this.managingOrganization =
+          Arrays.stream(managingOrganization).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -339,6 +418,12 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
     public CareTeamBuilder.Impl withParticipant(
         @NonNull Collection<CareTeam.Participant> participant) {
       this.participant = Collections.unmodifiableCollection(participant);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withParticipant(
+        @NonNull CareTeam_ParticipantBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
       return this;
     }
 

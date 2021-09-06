@@ -125,6 +125,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this._for = Optional.of(_for);
       return this;
     }
+
+    public TaskBuilder.Impl withFor(@NonNull ReferenceBuilder _for) {
+      this._for = Optional.of(_for.build());
+      return this;
+    }
     /**
      * @param meta - The metadata about the resource. This is content that is maintained by the
      *     infrastructure. Changes to the content might not always be associated with version
@@ -132,6 +137,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
      */
     public TaskBuilder.Impl withMeta(@NonNull Meta meta) {
       this.meta = Optional.of(meta);
+      return this;
+    }
+
+    public TaskBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
       return this;
     }
     /**
@@ -145,9 +155,19 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public TaskBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param code - A name or code (or both) briefly describing what the task involves. */
     public TaskBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public TaskBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param note - Free-text information captured about the task as it progresses. */
@@ -160,9 +180,19 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public TaskBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param focus - The request being actioned or the resource being manipulated by this task. */
     public TaskBuilder.Impl withFocus(@NonNull Reference focus) {
       this.focus = Optional.of(focus);
+      return this;
+    }
+
+    public TaskBuilder.Impl withFocus(@NonNull ReferenceBuilder focus) {
+      this.focus = Optional.of(focus.build());
       return this;
     }
     /**
@@ -170,6 +200,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
      */
     public TaskBuilder.Impl withOwner(@NonNull Reference owner) {
       this.owner = Optional.of(owner);
+      return this;
+    }
+
+    public TaskBuilder.Impl withOwner(@NonNull ReferenceBuilder owner) {
+      this.owner = Optional.of(owner.build());
       return this;
     }
     /** @param partOf - Task that this particular task is part of. */
@@ -180,6 +215,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
     /** @param partOf - Task that this particular task is part of. */
     public TaskBuilder.Impl withPartOf(@NonNull Collection<Reference> partOf) {
       this.partOf = Collections.unmodifiableCollection(partOf);
+      return this;
+    }
+
+    public TaskBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -206,6 +246,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public TaskBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public TaskBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -224,6 +269,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.location = Optional.of(location);
       return this;
     }
+
+    public TaskBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -240,6 +290,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
      */
     public TaskBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public TaskBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -264,6 +319,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TaskBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The healthcare event (e.g. a patient and healthcare provider interaction)
      *     during which this task was created.
@@ -272,9 +332,19 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.encounter = Optional.of(encounter);
       return this;
     }
+
+    public TaskBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
     /** @param requester - The creator of the task. */
     public TaskBuilder.Impl withRequester(@NonNull Reference requester) {
       this.requester = Optional.of(requester);
+      return this;
+    }
+
+    public TaskBuilder.Impl withRequester(@NonNull ReferenceBuilder requester) {
+      this.requester = Optional.of(requester.build());
       return this;
     }
     /**
@@ -293,6 +363,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.insurance = Collections.unmodifiableCollection(insurance);
       return this;
     }
+
+    public TaskBuilder.Impl withInsurance(@NonNull ReferenceBuilder... insurance) {
+      this.insurance = Arrays.stream(insurance).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - The business identifier for this task. */
     public TaskBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -301,6 +376,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
     /** @param identifier - The business identifier for this task. */
     public TaskBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public TaskBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param authoredOn - The date and time this task was created. */
@@ -313,6 +393,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.reasonCode = Optional.of(reasonCode);
       return this;
     }
+
+    public TaskBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder reasonCode) {
+      this.reasonCode = Optional.of(reasonCode.build());
+      return this;
+    }
     /** @param description - A free-text description of what is to be performed. */
     public TaskBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
@@ -323,6 +408,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
      */
     public TaskBuilder.Impl withStatusReason(@NonNull CodeableConcept statusReason) {
       this.statusReason = Optional.of(statusReason);
+      return this;
+    }
+
+    public TaskBuilder.Impl withStatusReason(@NonNull CodeableConceptBuilder statusReason) {
+      this.statusReason = Optional.of(statusReason.build());
       return this;
     }
     /** @param lastModified - The date and time of last modification to this task. */
@@ -350,9 +440,19 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.performerType = Collections.unmodifiableCollection(performerType);
       return this;
     }
+
+    public TaskBuilder.Impl withPerformerType(@NonNull CodeableConceptBuilder... performerType) {
+      this.performerType = Arrays.stream(performerType).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param businessStatus - Contains business-specific nuances of the business state. */
     public TaskBuilder.Impl withBusinessStatus(@NonNull CodeableConcept businessStatus) {
       this.businessStatus = Optional.of(businessStatus);
+      return this;
+    }
+
+    public TaskBuilder.Impl withBusinessStatus(@NonNull CodeableConceptBuilder businessStatus) {
+      this.businessStatus = Optional.of(businessStatus.build());
       return this;
     }
     /**
@@ -371,6 +471,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.groupIdentifier = Optional.of(groupIdentifier);
       return this;
     }
+
+    public TaskBuilder.Impl withGroupIdentifier(@NonNull IdentifierBuilder groupIdentifier) {
+      this.groupIdentifier = Optional.of(groupIdentifier.build());
+      return this;
+    }
     /**
      * @param executionPeriod - Identifies the time action was first taken against the task (start)
      *     and/or the time final action was taken against the task prior to marking it as completed
@@ -380,11 +485,21 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.executionPeriod = Optional.of(executionPeriod);
       return this;
     }
+
+    public TaskBuilder.Impl withExecutionPeriod(@NonNull PeriodBuilder executionPeriod) {
+      this.executionPeriod = Optional.of(executionPeriod.build());
+      return this;
+    }
     /**
      * @param reasonReference - A resource reference indicating why this task needs to be performed.
      */
     public TaskBuilder.Impl withReasonReference(@NonNull Reference reasonReference) {
       this.reasonReference = Optional.of(reasonReference);
+      return this;
+    }
+
+    public TaskBuilder.Impl withReasonReference(@NonNull ReferenceBuilder reasonReference) {
+      this.reasonReference = Optional.of(reasonReference.build());
       return this;
     }
     /**
@@ -403,6 +518,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
      */
     public TaskBuilder.Impl withRelevantHistory(@NonNull Collection<Reference> relevantHistory) {
       this.relevantHistory = Collections.unmodifiableCollection(relevantHistory);
+      return this;
+    }
+
+    public TaskBuilder.Impl withRelevantHistory(@NonNull ReferenceBuilder... relevantHistory) {
+      this.relevantHistory = Arrays.stream(relevantHistory).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -440,6 +560,12 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TaskBuilder.Impl withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param instantiatesCanonical - The URL pointing to a *FHIR*-defined protocol, guideline,
      *     orderset or other definition that is adhered to in whole or in part by this Task.
@@ -458,6 +584,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.input = Collections.unmodifiableCollection(input);
       return this;
     }
+
+    public TaskBuilder.Impl withInput(@NonNull Task_InputBuilder... input) {
+      this.input = Arrays.stream(input).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param output - Outputs produced by the Task. */
     public TaskBuilder.Impl withOutput(@NonNull Task.Output... output) {
       this.output = Arrays.asList(output);
@@ -468,6 +599,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
       this.output = Collections.unmodifiableCollection(output);
       return this;
     }
+
+    public TaskBuilder.Impl withOutput(@NonNull Task_OutputBuilder... output) {
+      this.output = Arrays.stream(output).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param restriction - If the Task.focus is a request resource and the task is seeking
      *     fulfillment (i.e. is asking for the request to be actioned), this element identifies any
@@ -475,6 +611,11 @@ public interface TaskBuilder extends DomainResourceBuilder {
      */
     public TaskBuilder.Impl withRestriction(@NonNull Task.Restriction restriction) {
       this.restriction = Optional.of(restriction);
+      return this;
+    }
+
+    public TaskBuilder.Impl withRestriction(@NonNull Task_RestrictionBuilder restriction) {
+      this.restriction = Optional.of(restriction.build());
       return this;
     }
 

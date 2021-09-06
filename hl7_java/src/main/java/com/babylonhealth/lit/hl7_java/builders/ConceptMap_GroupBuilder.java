@@ -120,6 +120,11 @@ public interface ConceptMap_GroupBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ConceptMap_GroupBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param sourceVersion */
     public ConceptMap_GroupBuilder.Impl withSourceVersion(@NonNull String sourceVersion) {
       this.sourceVersion = Optional.of(sourceVersion);
@@ -166,9 +171,22 @@ public interface ConceptMap_GroupBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ConceptMap_GroupBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param unmapped */
     public ConceptMap_GroupBuilder.Impl withUnmapped(@NonNull ConceptMap$Group$Unmapped unmapped) {
       this.unmapped = Optional.of(unmapped);
+      return this;
+    }
+
+    public ConceptMap_GroupBuilder.Impl withUnmapped(
+        @NonNull ConceptMap_Group_UnmappedBuilder unmapped) {
+      this.unmapped = Optional.of(unmapped.build());
       return this;
     }
 

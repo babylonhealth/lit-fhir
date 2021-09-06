@@ -89,6 +89,11 @@ public interface PopulationBuilder extends BackboneElementBuilder {
       this.race = Optional.of(race);
       return this;
     }
+
+    public PopulationBuilder.Impl withRace(@NonNull CodeableConceptBuilder race) {
+      this.race = Optional.of(race.build());
+      return this;
+    }
     /**
      * @param age - The age of the specific population. Field is a 'choice' field. Type should be
      *     one of CodeableConcept, Range. To pass the value in, wrap with one of the
@@ -101,6 +106,11 @@ public interface PopulationBuilder extends BackboneElementBuilder {
     /** @param gender - The gender of the specific population. */
     public PopulationBuilder.Impl withGender(@NonNull CodeableConcept gender) {
       this.gender = Optional.of(gender);
+      return this;
+    }
+
+    public PopulationBuilder.Impl withGender(@NonNull CodeableConceptBuilder gender) {
+      this.gender = Optional.of(gender.build());
       return this;
     }
     /**
@@ -123,6 +133,11 @@ public interface PopulationBuilder extends BackboneElementBuilder {
      */
     public PopulationBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public PopulationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -158,6 +173,13 @@ public interface PopulationBuilder extends BackboneElementBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public PopulationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param physiologicalCondition - The existing physiological conditions of the specific
      *     population to which this applies.
@@ -165,6 +187,12 @@ public interface PopulationBuilder extends BackboneElementBuilder {
     public PopulationBuilder.Impl withPhysiologicalCondition(
         @NonNull CodeableConcept physiologicalCondition) {
       this.physiologicalCondition = Optional.of(physiologicalCondition);
+      return this;
+    }
+
+    public PopulationBuilder.Impl withPhysiologicalCondition(
+        @NonNull CodeableConceptBuilder physiologicalCondition) {
+      this.physiologicalCondition = Optional.of(physiologicalCondition.build());
       return this;
     }
 

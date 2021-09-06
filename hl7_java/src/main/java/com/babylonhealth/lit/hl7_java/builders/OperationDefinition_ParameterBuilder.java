@@ -118,6 +118,12 @@ public interface OperationDefinition_ParameterBuilder {
       this.part = Collections.unmodifiableCollection(part);
       return this;
     }
+
+    public OperationDefinition_ParameterBuilder.Impl withPart(
+        @NonNull OperationDefinition_ParameterBuilder... part) {
+      this.part = Arrays.stream(part).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -140,6 +146,12 @@ public interface OperationDefinition_ParameterBuilder {
     public OperationDefinition_ParameterBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public OperationDefinition_ParameterBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param searchType */
@@ -202,10 +214,23 @@ public interface OperationDefinition_ParameterBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public OperationDefinition_ParameterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param binding */
     public OperationDefinition_ParameterBuilder.Impl withBinding(
         @NonNull OperationDefinition$Parameter$Binding binding) {
       this.binding = Optional.of(binding);
+      return this;
+    }
+
+    public OperationDefinition_ParameterBuilder.Impl withBinding(
+        @NonNull OperationDefinition_Parameter_BindingBuilder binding) {
+      this.binding = Optional.of(binding.build());
       return this;
     }
     /** @param referencedFrom */
@@ -218,6 +243,12 @@ public interface OperationDefinition_ParameterBuilder {
     public OperationDefinition_ParameterBuilder.Impl withReferencedFrom(
         @NonNull Collection<OperationDefinition$Parameter$ReferencedFrom> referencedFrom) {
       this.referencedFrom = Collections.unmodifiableCollection(referencedFrom);
+      return this;
+    }
+
+    public OperationDefinition_ParameterBuilder.Impl withReferencedFrom(
+        @NonNull OperationDefinition_Parameter_ReferencedFromBuilder... referencedFrom) {
+      this.referencedFrom = Arrays.stream(referencedFrom).map(e -> e.build()).collect(toList());
       return this;
     }
 

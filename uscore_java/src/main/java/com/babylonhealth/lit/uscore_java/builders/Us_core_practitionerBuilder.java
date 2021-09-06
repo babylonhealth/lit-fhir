@@ -115,6 +115,11 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_practitionerBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -126,6 +131,11 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Us_core_practitionerBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param photo - Image of the person. */
     public Us_core_practitionerBuilder.Impl withPhoto(@NonNull Attachment... photo) {
       this.photo = Arrays.asList(photo);
@@ -134,6 +144,11 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
     /** @param photo - Image of the person. */
     public Us_core_practitionerBuilder.Impl withPhoto(@NonNull Collection<Attachment> photo) {
       this.photo = Collections.unmodifiableCollection(photo);
+      return this;
+    }
+
+    public Us_core_practitionerBuilder.Impl withPhoto(@NonNull AttachmentBuilder... photo) {
+      this.photo = Arrays.stream(photo).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param active - Whether this practitioner's record is in active use. */
@@ -165,6 +180,11 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public Us_core_practitionerBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param address - Address(es) of the practitioner that are not role specific (typically home
      *     address). Work addresses are not typically entered in this property as they are usually
@@ -181,6 +201,11 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
      */
     public Us_core_practitionerBuilder.Impl withAddress(@NonNull Collection<Address> address) {
       this.address = Collections.unmodifiableCollection(address);
+      return this;
+    }
+
+    public Us_core_practitionerBuilder.Impl withAddress(@NonNull AddressBuilder... address) {
+      this.address = Arrays.stream(address).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -206,6 +231,11 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Us_core_practitionerBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -227,6 +257,11 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
     public Us_core_practitionerBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Us_core_practitionerBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param birthDate - The date of birth for the practitioner. */
@@ -254,6 +289,12 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
     public Us_core_practitionerBuilder.Impl withCommunication(
         @NonNull Collection<CodeableConcept> communication) {
       this.communication = Collections.unmodifiableCollection(communication);
+      return this;
+    }
+
+    public Us_core_practitionerBuilder.Impl withCommunication(
+        @NonNull CodeableConceptBuilder... communication) {
+      this.communication = Arrays.stream(communication).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -292,6 +333,13 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_practitionerBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param qualification - The official certifications, training, and licenses that authorize or
      *     otherwise pertain to the provision of care by the practitioner. For example, a medical
@@ -312,6 +360,12 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
     public Us_core_practitionerBuilder.Impl withQualification(
         @NonNull Collection<Practitioner.Qualification> qualification) {
       this.qualification = Collections.unmodifiableCollection(qualification);
+      return this;
+    }
+
+    public Us_core_practitionerBuilder.Impl withQualification(
+        @NonNull Practitioner_QualificationBuilder... qualification) {
+      this.qualification = Arrays.stream(qualification).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -90,6 +90,11 @@ public interface SubstanceProteinBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SubstanceProteinBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -99,6 +104,11 @@ public interface SubstanceProteinBuilder extends DomainResourceBuilder {
      */
     public SubstanceProteinBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SubstanceProteinBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -124,6 +134,11 @@ public interface SubstanceProteinBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SubstanceProteinBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -146,6 +161,11 @@ public interface SubstanceProteinBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceProteinBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param sequenceType - The SubstanceProtein descriptive elements will only be used when a
      *     complete or partial amino acid sequence is available or derivable from a nucleic acid
@@ -153,6 +173,12 @@ public interface SubstanceProteinBuilder extends DomainResourceBuilder {
      */
     public SubstanceProteinBuilder.Impl withSequenceType(@NonNull CodeableConcept sequenceType) {
       this.sequenceType = Optional.of(sequenceType);
+      return this;
+    }
+
+    public SubstanceProteinBuilder.Impl withSequenceType(
+        @NonNull CodeableConceptBuilder sequenceType) {
+      this.sequenceType = Optional.of(sequenceType.build());
       return this;
     }
     /**
@@ -235,6 +261,13 @@ public interface SubstanceProteinBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceProteinBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subunit - This subclause refers to the description of each subunit constituting the
      *     SubstanceProtein. A subunit is a linear sequence of amino acids linked through peptide
@@ -260,6 +293,12 @@ public interface SubstanceProteinBuilder extends DomainResourceBuilder {
     public SubstanceProteinBuilder.Impl withSubunit(
         @NonNull Collection<SubstanceProtein.Subunit> subunit) {
       this.subunit = Collections.unmodifiableCollection(subunit);
+      return this;
+    }
+
+    public SubstanceProteinBuilder.Impl withSubunit(
+        @NonNull SubstanceProtein_SubunitBuilder... subunit) {
+      this.subunit = Arrays.stream(subunit).map(e -> e.build()).collect(toList());
       return this;
     }
 

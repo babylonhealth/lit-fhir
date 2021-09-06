@@ -79,6 +79,12 @@ public interface SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuil
       this._type = Optional.of(_type);
       return this;
     }
+
+    public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -103,10 +109,22 @@ public interface SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuil
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param attachment */
     public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl withAttachment(
         @NonNull Attachment attachment) {
       this.attachment = Optional.of(attachment);
+      return this;
+    }
+
+    public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl withAttachment(
+        @NonNull AttachmentBuilder attachment) {
+      this.attachment = Optional.of(attachment.build());
       return this;
     }
     /** @param representation */
@@ -149,6 +167,13 @@ public interface SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuil
     public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl
         withModifierExtension(@NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl
+        withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

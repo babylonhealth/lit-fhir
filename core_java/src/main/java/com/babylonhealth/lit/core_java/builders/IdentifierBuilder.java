@@ -84,6 +84,11 @@ public interface IdentifierBuilder extends ElementBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public IdentifierBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param value - The portion of the identifier typically relevant to the user and which is
      *     unique within the context of the system.
@@ -105,9 +110,19 @@ public interface IdentifierBuilder extends ElementBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public IdentifierBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param assigner - Organization that issued/manages the identifier. */
     public IdentifierBuilder.Impl withAssigner(@NonNull Reference assigner) {
       this.assigner = Optional.of(assigner);
+      return this;
+    }
+
+    public IdentifierBuilder.Impl withAssigner(@NonNull ReferenceBuilder assigner) {
+      this.assigner = Optional.of(assigner.build());
       return this;
     }
     /**
@@ -130,6 +145,11 @@ public interface IdentifierBuilder extends ElementBuilder {
      */
     public IdentifierBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public IdentifierBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
 

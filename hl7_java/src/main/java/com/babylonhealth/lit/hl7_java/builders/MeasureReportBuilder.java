@@ -120,6 +120,11 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MeasureReportBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -129,6 +134,11 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
      */
     public MeasureReportBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MeasureReportBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param date - The date this measure report was generated. */
@@ -144,6 +154,11 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
       this.subject = Optional.of(subject);
       return this;
     }
+
+    public MeasureReportBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public MeasureReportBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -152,6 +167,11 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
     /** @param reporter - The individual, location, or organization that is reporting the data. */
     public MeasureReportBuilder.Impl withReporter(@NonNull Reference reporter) {
       this.reporter = Optional.of(reporter);
+      return this;
+    }
+
+    public MeasureReportBuilder.Impl withReporter(@NonNull ReferenceBuilder reporter) {
+      this.reporter = Optional.of(reporter.build());
       return this;
     }
     /**
@@ -170,6 +190,11 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
      */
     public MeasureReportBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public MeasureReportBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -194,6 +219,11 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MeasureReportBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - A formal identifier that is used to identify this MeasureReport when it
      *     is represented in other formats or referenced in a specification, model, design or an
@@ -210,6 +240,11 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
      */
     public MeasureReportBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public MeasureReportBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -258,6 +293,13 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MeasureReportBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param evaluatedResource - A reference to a Bundle containing the Resources that were used in
      *     the calculation of this measure.
@@ -276,6 +318,13 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
       this.evaluatedResource = Collections.unmodifiableCollection(evaluatedResource);
       return this;
     }
+
+    public MeasureReportBuilder.Impl withEvaluatedResource(
+        @NonNull ReferenceBuilder... evaluatedResource) {
+      this.evaluatedResource =
+          Arrays.stream(evaluatedResource).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param improvementNotation - Whether improvement in the measure is noted by an increase or
      *     decrease in the measure score.
@@ -283,6 +332,12 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
     public MeasureReportBuilder.Impl withImprovementNotation(
         @NonNull CodeableConcept improvementNotation) {
       this.improvementNotation = Optional.of(improvementNotation);
+      return this;
+    }
+
+    public MeasureReportBuilder.Impl withImprovementNotation(
+        @NonNull CodeableConceptBuilder improvementNotation) {
+      this.improvementNotation = Optional.of(improvementNotation.build());
       return this;
     }
     /**
@@ -297,6 +352,11 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
      */
     public MeasureReportBuilder.Impl withGroup(@NonNull Collection<MeasureReport.Group> group) {
       this.group = Collections.unmodifiableCollection(group);
+      return this;
+    }
+
+    public MeasureReportBuilder.Impl withGroup(@NonNull MeasureReport_GroupBuilder... group) {
+      this.group = Arrays.stream(group).map(e -> e.build()).collect(toList());
       return this;
     }
 

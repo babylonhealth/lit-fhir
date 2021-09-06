@@ -77,10 +77,22 @@ public interface NutritionOrder_OralDiet_TextureBuilder {
       this.modifier = Optional.of(modifier);
       return this;
     }
+
+    public NutritionOrder_OralDiet_TextureBuilder.Impl withModifier(
+        @NonNull CodeableConceptBuilder modifier) {
+      this.modifier = Optional.of(modifier.build());
+      return this;
+    }
     /** @param foodType */
     public NutritionOrder_OralDiet_TextureBuilder.Impl withFoodType(
         @NonNull CodeableConcept foodType) {
       this.foodType = Optional.of(foodType);
+      return this;
+    }
+
+    public NutritionOrder_OralDiet_TextureBuilder.Impl withFoodType(
+        @NonNull CodeableConceptBuilder foodType) {
+      this.foodType = Optional.of(foodType.build());
       return this;
     }
     /**
@@ -105,6 +117,12 @@ public interface NutritionOrder_OralDiet_TextureBuilder {
     public NutritionOrder_OralDiet_TextureBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public NutritionOrder_OralDiet_TextureBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -141,6 +159,13 @@ public interface NutritionOrder_OralDiet_TextureBuilder {
     public NutritionOrder_OralDiet_TextureBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public NutritionOrder_OralDiet_TextureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

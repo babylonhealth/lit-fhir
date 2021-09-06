@@ -95,10 +95,22 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
       this.unit = Optional.of(unit);
       return this;
     }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withUnit(
+        @NonNull CodeableConceptBuilder unit) {
+      this.unit = Optional.of(unit.build());
+      return this;
+    }
     /** @param term */
     public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withTerm(
         @NonNull CodeableConcept term) {
       this.term = Optional.of(term);
+      return this;
+    }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withTerm(
+        @NonNull CodeableConceptBuilder term) {
+      this.term = Optional.of(term.build());
       return this;
     }
     /** @param network */
@@ -107,10 +119,22 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
       this.network = Optional.of(network);
       return this;
     }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withNetwork(
+        @NonNull CodeableConceptBuilder network) {
+      this.network = Optional.of(network.build());
+      return this;
+    }
     /** @param category */
     public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withCategory(
         @NonNull CodeableConcept category) {
       this.category = Optional.of(category);
+      return this;
+    }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /** @param modifier */
@@ -125,10 +149,22 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
       this.modifier = Collections.unmodifiableCollection(modifier);
       return this;
     }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withModifier(
+        @NonNull CodeableConceptBuilder... modifier) {
+      this.modifier = Arrays.stream(modifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param provider */
     public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withProvider(
         @NonNull Reference provider) {
       this.provider = Optional.of(provider);
+      return this;
+    }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withProvider(
+        @NonNull ReferenceBuilder provider) {
+      this.provider = Optional.of(provider.build());
       return this;
     }
     /** @param excluded */
@@ -161,6 +197,12 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withDescription(
         @NonNull String description) {
@@ -171,6 +213,12 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
     public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withProductOrService(
         @NonNull CodeableConcept productOrService) {
       this.productOrService = Optional.of(productOrService);
+      return this;
+    }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withProductOrService(
+        @NonNull CodeableConceptBuilder productOrService) {
+      this.productOrService = Optional.of(productOrService.build());
       return this;
     }
     /** @param authorizationUrl */
@@ -215,6 +263,13 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param authorizationRequired */
     public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withAuthorizationRequired(
         @NonNull Boolean authorizationRequired) {
@@ -233,6 +288,13 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
       this.authorizationSupporting = Collections.unmodifiableCollection(authorizationSupporting);
       return this;
     }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withAuthorizationSupporting(
+        @NonNull CodeableConceptBuilder... authorizationSupporting) {
+      this.authorizationSupporting =
+          Arrays.stream(authorizationSupporting).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param benefit */
     public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withBenefit(
         @NonNull CoverageEligibilityResponse$Insurance$Item$Benefit... benefit) {
@@ -243,6 +305,12 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
     public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withBenefit(
         @NonNull Collection<CoverageEligibilityResponse$Insurance$Item$Benefit> benefit) {
       this.benefit = Collections.unmodifiableCollection(benefit);
+      return this;
+    }
+
+    public CoverageEligibilityResponse_Insurance_ItemBuilder.Impl withBenefit(
+        @NonNull CoverageEligibilityResponse_Insurance_Item_BenefitBuilder... benefit) {
+      this.benefit = Arrays.stream(benefit).map(e -> e.build()).collect(toList());
       return this;
     }
 

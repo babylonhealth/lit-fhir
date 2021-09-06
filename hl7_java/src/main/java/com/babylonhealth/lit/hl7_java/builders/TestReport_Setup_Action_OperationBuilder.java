@@ -112,6 +112,12 @@ public interface TestReport_Setup_Action_OperationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TestReport_Setup_Action_OperationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -146,6 +152,13 @@ public interface TestReport_Setup_Action_OperationBuilder {
     public TestReport_Setup_Action_OperationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public TestReport_Setup_Action_OperationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -170,6 +170,11 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -181,6 +186,11 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param note - Comments about the observation or the results. */
     public Us_core_smokingstatusBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
@@ -189,6 +199,11 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     /** @param note - Comments about the observation or the results. */
     public Us_core_smokingstatusBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -219,6 +234,11 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.focus = Collections.unmodifiableCollection(focus);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withFocus(@NonNull ReferenceBuilder... focus) {
+      this.focus = Arrays.stream(focus).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param partOf - A larger event of which this particular Observation is a component or step.
      *     For example, an observation as part of a procedure.
@@ -235,14 +255,29 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param method - Indicates the mechanism used to perform the observation. */
     public Us_core_smokingstatusBuilder.Impl withMethod(@NonNull CodeableConcept method) {
       this.method = Optional.of(method);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
+      return this;
+    }
     /** @param device - The device used to generate the observation data. */
     public Us_core_smokingstatusBuilder.Impl withDevice(@NonNull Reference device) {
       this.device = Optional.of(device);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withDevice(@NonNull ReferenceBuilder device) {
+      this.device = Optional.of(device.build());
       return this;
     }
     /**
@@ -263,6 +298,11 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public Us_core_smokingstatusBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -279,6 +319,12 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param bodySite - Indicates the site on the subject's body where the observation was made
      *     (i.e. the target site).
@@ -287,9 +333,20 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.bodySite = Optional.of(bodySite);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withBodySite(
+        @NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
+      return this;
+    }
     /** @param specimen - The specimen that was used when this observation was made. */
     public Us_core_smokingstatusBuilder.Impl withSpecimen(@NonNull Reference specimen) {
       this.specimen = Optional.of(specimen);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withSpecimen(@NonNull ReferenceBuilder specimen) {
+      this.specimen = Optional.of(specimen.build());
       return this;
     }
     /**
@@ -309,6 +366,11 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     public Us_core_smokingstatusBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -334,12 +396,22 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The healthcare event (e.g. a patient and healthcare provider interaction)
      *     during which this observation is made.
      */
     public Us_core_smokingstatusBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /** @param performer - Who was responsible for asserting the observed value as "true". */
@@ -351,6 +423,11 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     public Us_core_smokingstatusBuilder.Impl withPerformer(
         @NonNull Collection<Reference> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withPerformer(@NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -370,6 +447,11 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.hasMember = Collections.unmodifiableCollection(hasMember);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withHasMember(@NonNull ReferenceBuilder... hasMember) {
+      this.hasMember = Arrays.stream(hasMember).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this observation. */
     public Us_core_smokingstatusBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -379,6 +461,12 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     public Us_core_smokingstatusBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -398,6 +486,12 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     public Us_core_smokingstatusBuilder.Impl withDerivedFrom(
         @NonNull Collection<Reference> derivedFrom) {
       this.derivedFrom = Collections.unmodifiableCollection(derivedFrom);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withDerivedFrom(
+        @NonNull ReferenceBuilder... derivedFrom) {
+      this.derivedFrom = Arrays.stream(derivedFrom).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -441,6 +535,12 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.interpretation = Collections.unmodifiableCollection(interpretation);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withInterpretation(
+        @NonNull CodeableConceptBuilder... interpretation) {
+      this.interpretation = Arrays.stream(interpretation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dataAbsentReason - Provides a reason why the expected value in the element
      *     Observation.value[x] is missing.
@@ -448,6 +548,12 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     public Us_core_smokingstatusBuilder.Impl withDataAbsentReason(
         @NonNull CodeableConcept dataAbsentReason) {
       this.dataAbsentReason = Optional.of(dataAbsentReason);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withDataAbsentReason(
+        @NonNull CodeableConceptBuilder dataAbsentReason) {
+      this.dataAbsentReason = Optional.of(dataAbsentReason.build());
       return this;
     }
     /**
@@ -486,6 +592,13 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param component - Some observations have multiple component observations. These component
      *     observations are expressed as separate code value pairs that share the same attributes.
@@ -508,6 +621,12 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       this.component = Collections.unmodifiableCollection(component);
       return this;
     }
+
+    public Us_core_smokingstatusBuilder.Impl withComponent(
+        @NonNull Observation_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param referenceRange - Guidance on how to interpret the value by comparison to a normal or
      *     recommended range. Multiple reference ranges are interpreted as an "OR". In other words,
@@ -528,6 +647,12 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     public Us_core_smokingstatusBuilder.Impl withReferenceRange(
         @NonNull Collection<Observation.ReferenceRange> referenceRange) {
       this.referenceRange = Collections.unmodifiableCollection(referenceRange);
+      return this;
+    }
+
+    public Us_core_smokingstatusBuilder.Impl withReferenceRange(
+        @NonNull Observation_ReferenceRangeBuilder... referenceRange) {
+      this.referenceRange = Arrays.stream(referenceRange).map(e -> e.build()).collect(toList());
       return this;
     }
 

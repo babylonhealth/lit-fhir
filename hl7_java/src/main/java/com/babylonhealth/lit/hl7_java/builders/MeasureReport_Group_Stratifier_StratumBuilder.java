@@ -81,6 +81,12 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
       this.value = Optional.of(value);
       return this;
     }
+
+    public MeasureReport_Group_Stratifier_StratumBuilder.Impl withValue(
+        @NonNull CodeableConceptBuilder value) {
+      this.value = Optional.of(value.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -105,10 +111,22 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MeasureReport_Group_Stratifier_StratumBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param measureScore */
     public MeasureReport_Group_Stratifier_StratumBuilder.Impl withMeasureScore(
         @NonNull Quantity measureScore) {
       this.measureScore = Optional.of(measureScore);
+      return this;
+    }
+
+    public MeasureReport_Group_Stratifier_StratumBuilder.Impl withMeasureScore(
+        @NonNull QuantityBuilder measureScore) {
+      this.measureScore = Optional.of(measureScore.build());
       return this;
     }
     /**
@@ -147,6 +165,13 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MeasureReport_Group_Stratifier_StratumBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param component */
     public MeasureReport_Group_Stratifier_StratumBuilder.Impl withComponent(
         @NonNull MeasureReport$Group$Stratifier$Stratum$Component... component) {
@@ -159,6 +184,12 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
       this.component = Collections.unmodifiableCollection(component);
       return this;
     }
+
+    public MeasureReport_Group_Stratifier_StratumBuilder.Impl withComponent(
+        @NonNull MeasureReport_Group_Stratifier_Stratum_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param population */
     public MeasureReport_Group_Stratifier_StratumBuilder.Impl withPopulation(
         @NonNull MeasureReport$Group$Stratifier$Stratum$Population... population) {
@@ -169,6 +200,12 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
     public MeasureReport_Group_Stratifier_StratumBuilder.Impl withPopulation(
         @NonNull Collection<MeasureReport$Group$Stratifier$Stratum$Population> population) {
       this.population = Collections.unmodifiableCollection(population);
+      return this;
+    }
+
+    public MeasureReport_Group_Stratifier_StratumBuilder.Impl withPopulation(
+        @NonNull MeasureReport_Group_Stratifier_Stratum_PopulationBuilder... population) {
+      this.population = Arrays.stream(population).map(e -> e.build()).collect(toList());
       return this;
     }
 

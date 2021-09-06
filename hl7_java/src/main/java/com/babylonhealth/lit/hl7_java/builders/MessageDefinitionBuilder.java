@@ -144,6 +144,11 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MessageDefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -153,6 +158,11 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
      */
     public MessageDefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MessageDefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -238,6 +248,11 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public MessageDefinitionBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this message definition is needed and why it has been
      *     designed as it has.
@@ -285,6 +300,11 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MessageDefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -305,6 +325,11 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
      */
     public MessageDefinitionBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MessageDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -343,6 +368,11 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MessageDefinitionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -362,6 +392,12 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
     public MessageDefinitionBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public MessageDefinitionBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -397,6 +433,12 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
     public MessageDefinitionBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public MessageDefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -454,6 +496,13 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MessageDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param focus - Identifies the resource (or resources) that are being addressed by the event.
      *     For example, the Encounter for an admit message or two Account records for a merge.
@@ -469,6 +518,12 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
     public MessageDefinitionBuilder.Impl withFocus(
         @NonNull Collection<MessageDefinition.Focus> focus) {
       this.focus = Collections.unmodifiableCollection(focus);
+      return this;
+    }
+
+    public MessageDefinitionBuilder.Impl withFocus(
+        @NonNull MessageDefinition_FocusBuilder... focus) {
+      this.focus = Arrays.stream(focus).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -487,6 +542,12 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
     public MessageDefinitionBuilder.Impl withAllowedResponse(
         @NonNull Collection<MessageDefinition.AllowedResponse> allowedResponse) {
       this.allowedResponse = Collections.unmodifiableCollection(allowedResponse);
+      return this;
+    }
+
+    public MessageDefinitionBuilder.Impl withAllowedResponse(
+        @NonNull MessageDefinition_AllowedResponseBuilder... allowedResponse) {
+      this.allowedResponse = Arrays.stream(allowedResponse).map(e -> e.build()).collect(toList());
       return this;
     }
 

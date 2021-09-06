@@ -104,6 +104,12 @@ public interface CoverageEligibilityRequest_SupportingInfoBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageEligibilityRequest_SupportingInfoBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param appliesToAll */
     public CoverageEligibilityRequest_SupportingInfoBuilder.Impl withAppliesToAll(
         @NonNull Boolean appliesToAll) {
@@ -144,6 +150,13 @@ public interface CoverageEligibilityRequest_SupportingInfoBuilder {
     public CoverageEligibilityRequest_SupportingInfoBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CoverageEligibilityRequest_SupportingInfoBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

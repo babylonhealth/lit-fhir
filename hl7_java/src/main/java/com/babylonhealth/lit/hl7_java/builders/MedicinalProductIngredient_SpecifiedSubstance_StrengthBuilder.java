@@ -96,6 +96,12 @@ public interface MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder {
       this.country = Collections.unmodifiableCollection(country);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl withCountry(
+        @NonNull CodeableConceptBuilder... country) {
+      this.country = Arrays.stream(country).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -120,10 +126,22 @@ public interface MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param concentration */
     public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl withConcentration(
         @NonNull Ratio concentration) {
       this.concentration = Optional.of(concentration);
+      return this;
+    }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl withConcentration(
+        @NonNull RatioBuilder concentration) {
+      this.concentration = Optional.of(concentration.build());
       return this;
     }
     /** @param measurementPoint */
@@ -168,16 +186,35 @@ public interface MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param presentationLowLimit */
     public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl
         withPresentationLowLimit(@NonNull Ratio presentationLowLimit) {
       this.presentationLowLimit = Optional.of(presentationLowLimit);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl
+        withPresentationLowLimit(@NonNull RatioBuilder presentationLowLimit) {
+      this.presentationLowLimit = Optional.of(presentationLowLimit.build());
+      return this;
+    }
     /** @param concentrationLowLimit */
     public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl
         withConcentrationLowLimit(@NonNull Ratio concentrationLowLimit) {
       this.concentrationLowLimit = Optional.of(concentrationLowLimit);
+      return this;
+    }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl
+        withConcentrationLowLimit(@NonNull RatioBuilder concentrationLowLimit) {
+      this.concentrationLowLimit = Optional.of(concentrationLowLimit.build());
       return this;
     }
     /** @param referenceStrength */
@@ -194,6 +231,15 @@ public interface MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder {
             Collection<MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength>
                 referenceStrength) {
       this.referenceStrength = Collections.unmodifiableCollection(referenceStrength);
+      return this;
+    }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder.Impl withReferenceStrength(
+        @NonNull
+            MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder...
+                referenceStrength) {
+      this.referenceStrength =
+          Arrays.stream(referenceStrength).map(e -> e.build()).collect(toList());
       return this;
     }
 

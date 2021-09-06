@@ -310,6 +310,12 @@ public interface ElementDefinition_ExampleBuilder {
       return this;
     }
 
+    public ElementDefinition_ExampleBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public ElementDefinition.Example build() {
       return new ElementDefinition.Example(
           OptionConverters.toScala(id),

@@ -95,6 +95,12 @@ public interface MedicationKnowledge_KineticsBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicationKnowledge_KineticsBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param lethalDose50 */
     public MedicationKnowledge_KineticsBuilder.Impl withLethalDose50(
         @NonNull Quantity... lethalDose50) {
@@ -105,6 +111,12 @@ public interface MedicationKnowledge_KineticsBuilder {
     public MedicationKnowledge_KineticsBuilder.Impl withLethalDose50(
         @NonNull Collection<Quantity> lethalDose50) {
       this.lethalDose50 = Collections.unmodifiableCollection(lethalDose50);
+      return this;
+    }
+
+    public MedicationKnowledge_KineticsBuilder.Impl withLethalDose50(
+        @NonNull QuantityBuilder... lethalDose50) {
+      this.lethalDose50 = Arrays.stream(lethalDose50).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param areaUnderCurve */
@@ -119,10 +131,22 @@ public interface MedicationKnowledge_KineticsBuilder {
       this.areaUnderCurve = Collections.unmodifiableCollection(areaUnderCurve);
       return this;
     }
+
+    public MedicationKnowledge_KineticsBuilder.Impl withAreaUnderCurve(
+        @NonNull QuantityBuilder... areaUnderCurve) {
+      this.areaUnderCurve = Arrays.stream(areaUnderCurve).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param halfLifePeriod */
     public MedicationKnowledge_KineticsBuilder.Impl withHalfLifePeriod(
         @NonNull Duration halfLifePeriod) {
       this.halfLifePeriod = Optional.of(halfLifePeriod);
+      return this;
+    }
+
+    public MedicationKnowledge_KineticsBuilder.Impl withHalfLifePeriod(
+        @NonNull DurationBuilder halfLifePeriod) {
+      this.halfLifePeriod = Optional.of(halfLifePeriod.build());
       return this;
     }
     /**
@@ -159,6 +183,13 @@ public interface MedicationKnowledge_KineticsBuilder {
     public MedicationKnowledge_KineticsBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationKnowledge_KineticsBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

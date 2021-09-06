@@ -101,6 +101,12 @@ public interface CapabilityStatement_Rest_Resource_InteractionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CapabilityStatement_Rest_Resource_InteractionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param documentation */
     public CapabilityStatement_Rest_Resource_InteractionBuilder.Impl withDocumentation(
         @NonNull String documentation) {
@@ -141,6 +147,13 @@ public interface CapabilityStatement_Rest_Resource_InteractionBuilder {
     public CapabilityStatement_Rest_Resource_InteractionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CapabilityStatement_Rest_Resource_InteractionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

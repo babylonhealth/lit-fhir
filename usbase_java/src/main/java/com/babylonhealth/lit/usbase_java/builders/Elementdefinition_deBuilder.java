@@ -803,6 +803,11 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public Elementdefinition_deBuilder.Impl withCode(@NonNull CodingBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param label - A single preferred label which is the text to display beside the element
      *     indicating its meaning or to use to prompt for the element in a user display or form.
@@ -851,6 +856,11 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
     public Elementdefinition_deBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Elementdefinition_deBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -962,6 +972,11 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
       this.base = Optional.of(base);
       return this;
     }
+
+    public Elementdefinition_deBuilder.Impl withBase(@NonNull ElementDefinition_BaseBuilder base) {
+      this.base = Optional.of(base.build());
+      return this;
+    }
     /**
      * @param defaultValue - The value that should be used if there is no value stated in the
      *     instance (e.g. 'if not otherwise specified, the abstract is false'). Field is a 'choice'
@@ -1020,6 +1035,13 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Elementdefinition_deBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param example - A sample value for this element demonstrating the type of information that
      *     would typically be found in the element.
@@ -1036,6 +1058,12 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
     public Elementdefinition_deBuilder.Impl withExample(
         @NonNull Collection<ElementDefinition.Example> example) {
       this.example = Collections.unmodifiableCollection(example);
+      return this;
+    }
+
+    public Elementdefinition_deBuilder.Impl withExample(
+        @NonNull ElementDefinition_ExampleBuilder... example) {
+      this.example = Arrays.stream(example).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -1056,6 +1084,12 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
       this.mapping = Collections.unmodifiableCollection(mapping);
       return this;
     }
+
+    public Elementdefinition_deBuilder.Impl withMapping(
+        @NonNull ElementDefinition_MappingBuilder... mapping) {
+      this.mapping = Arrays.stream(mapping).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param _type - The data type or resource that the value of this element is permitted to be.
      */
@@ -1069,6 +1103,12 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
     public Elementdefinition_deBuilder.Impl withType(
         @NonNull Collection<ElementDefinition.Type> _type) {
       this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public Elementdefinition_deBuilder.Impl withType(
+        @NonNull ElementDefinition_TypeBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -1100,6 +1140,12 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
       this.binding = Optional.of(binding);
       return this;
     }
+
+    public Elementdefinition_deBuilder.Impl withBinding(
+        @NonNull ElementDefinition_BindingBuilder binding) {
+      this.binding = Optional.of(binding.build());
+      return this;
+    }
     /**
      * @param constraint - Formal constraints such as co-occurrence and other constraints that can
      *     be computationally evaluated within the context of the instance.
@@ -1116,6 +1162,12 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
     public Elementdefinition_deBuilder.Impl withConstraint(
         @NonNull Collection<ElementDefinition.Constraint> constraint) {
       this.constraint = Collections.unmodifiableCollection(constraint);
+      return this;
+    }
+
+    public Elementdefinition_deBuilder.Impl withConstraint(
+        @NonNull ElementDefinition_ConstraintBuilder... constraint) {
+      this.constraint = Arrays.stream(constraint).map(e -> e.build()).collect(toList());
       return this;
     }
 

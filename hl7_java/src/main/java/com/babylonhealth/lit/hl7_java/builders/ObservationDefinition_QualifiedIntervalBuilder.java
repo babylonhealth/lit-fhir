@@ -83,9 +83,20 @@ public interface ObservationDefinition_QualifiedIntervalBuilder {
       this.age = Optional.of(age);
       return this;
     }
+
+    public ObservationDefinition_QualifiedIntervalBuilder.Impl withAge(@NonNull RangeBuilder age) {
+      this.age = Optional.of(age.build());
+      return this;
+    }
     /** @param range */
     public ObservationDefinition_QualifiedIntervalBuilder.Impl withRange(@NonNull Range range) {
       this.range = Optional.of(range);
+      return this;
+    }
+
+    public ObservationDefinition_QualifiedIntervalBuilder.Impl withRange(
+        @NonNull RangeBuilder range) {
+      this.range = Optional.of(range.build());
       return this;
     }
     /** @param gender */
@@ -98,6 +109,12 @@ public interface ObservationDefinition_QualifiedIntervalBuilder {
     public ObservationDefinition_QualifiedIntervalBuilder.Impl withContext(
         @NonNull CodeableConcept context) {
       this.context = Optional.of(context);
+      return this;
+    }
+
+    public ObservationDefinition_QualifiedIntervalBuilder.Impl withContext(
+        @NonNull CodeableConceptBuilder context) {
+      this.context = Optional.of(context.build());
       return this;
     }
     /** @param category - A code that classifies the general type of observation. */
@@ -130,6 +147,12 @@ public interface ObservationDefinition_QualifiedIntervalBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ObservationDefinition_QualifiedIntervalBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param appliesTo */
     public ObservationDefinition_QualifiedIntervalBuilder.Impl withAppliesTo(
         @NonNull CodeableConcept... appliesTo) {
@@ -142,6 +165,12 @@ public interface ObservationDefinition_QualifiedIntervalBuilder {
       this.appliesTo = Collections.unmodifiableCollection(appliesTo);
       return this;
     }
+
+    public ObservationDefinition_QualifiedIntervalBuilder.Impl withAppliesTo(
+        @NonNull CodeableConceptBuilder... appliesTo) {
+      this.appliesTo = Arrays.stream(appliesTo).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param condition */
     public ObservationDefinition_QualifiedIntervalBuilder.Impl withCondition(
         @NonNull String condition) {
@@ -152,6 +181,12 @@ public interface ObservationDefinition_QualifiedIntervalBuilder {
     public ObservationDefinition_QualifiedIntervalBuilder.Impl withGestationalAge(
         @NonNull Range gestationalAge) {
       this.gestationalAge = Optional.of(gestationalAge);
+      return this;
+    }
+
+    public ObservationDefinition_QualifiedIntervalBuilder.Impl withGestationalAge(
+        @NonNull RangeBuilder gestationalAge) {
+      this.gestationalAge = Optional.of(gestationalAge.build());
       return this;
     }
     /**
@@ -188,6 +223,13 @@ public interface ObservationDefinition_QualifiedIntervalBuilder {
     public ObservationDefinition_QualifiedIntervalBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ObservationDefinition_QualifiedIntervalBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

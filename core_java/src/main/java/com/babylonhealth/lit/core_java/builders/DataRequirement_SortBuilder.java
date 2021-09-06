@@ -99,6 +99,11 @@ public interface DataRequirement_SortBuilder {
       return this;
     }
 
+    public DataRequirement_SortBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public DataRequirement.Sort build() {
       return new DataRequirement.Sort(
           OptionConverters.toScala(id),

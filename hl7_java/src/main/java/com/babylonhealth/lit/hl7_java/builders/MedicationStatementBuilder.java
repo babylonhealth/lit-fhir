@@ -142,6 +142,11 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicationStatementBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -151,6 +156,11 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
      */
     public MedicationStatementBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -169,6 +179,11 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public MedicationStatementBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param partOf - A larger event of which this particular event is a component or step. */
     public MedicationStatementBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
@@ -179,6 +194,11 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public MedicationStatementBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dosage - Indicates how the medication is/was or should be taken by the patient. */
     public MedicationStatementBuilder.Impl withDosage(@NonNull Dosage... dosage) {
       this.dosage = Arrays.asList(dosage);
@@ -187,6 +207,11 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     /** @param dosage - Indicates how the medication is/was or should be taken by the patient. */
     public MedicationStatementBuilder.Impl withDosage(@NonNull Collection<Dosage> dosage) {
       this.dosage = Collections.unmodifiableCollection(dosage);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withDosage(@NonNull DosageBuilder... dosage) {
+      this.dosage = Arrays.stream(dosage).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -205,12 +230,22 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public MedicationStatementBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param context - The encounter or episode of care that establishes the context for this
      *     MedicationStatement.
      */
     public MedicationStatementBuilder.Impl withContext(@NonNull Reference context) {
       this.context = Optional.of(context);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withContext(@NonNull ReferenceBuilder context) {
+      this.context = Optional.of(context.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -223,6 +258,11 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
      */
     public MedicationStatementBuilder.Impl withCategory(@NonNull CodeableConcept category) {
       this.category = Optional.of(category);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withCategory(@NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /**
@@ -241,6 +281,11 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
      */
     public MedicationStatementBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -263,6 +308,11 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
      */
     public MedicationStatementBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -288,6 +338,12 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MedicationStatementBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reasonCode - A reason for why the medication is being/was taken. */
     public MedicationStatementBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
       this.reasonCode = Arrays.asList(reasonCode);
@@ -297,6 +353,12 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     public MedicationStatementBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -318,6 +380,12 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       this.derivedFrom = Collections.unmodifiableCollection(derivedFrom);
       return this;
     }
+
+    public MedicationStatementBuilder.Impl withDerivedFrom(
+        @NonNull ReferenceBuilder... derivedFrom) {
+      this.derivedFrom = Arrays.stream(derivedFrom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param statusReason - Captures the reason for the current state of the MedicationStatement.
      */
@@ -332,6 +400,12 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     public MedicationStatementBuilder.Impl withStatusReason(
         @NonNull Collection<CodeableConcept> statusReason) {
       this.statusReason = Collections.unmodifiableCollection(statusReason);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withStatusReason(
+        @NonNull CodeableConceptBuilder... statusReason) {
+      this.statusReason = Arrays.stream(statusReason).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -381,6 +455,12 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public MedicationStatementBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -417,6 +497,13 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicationStatementBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param informationSource - The person or organization that provided the information about the
      *     taking of this medication. Note: Use derivedFrom when a MedicationStatement is derived
@@ -425,6 +512,12 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     public MedicationStatementBuilder.Impl withInformationSource(
         @NonNull Reference informationSource) {
       this.informationSource = Optional.of(informationSource);
+      return this;
+    }
+
+    public MedicationStatementBuilder.Impl withInformationSource(
+        @NonNull ReferenceBuilder informationSource) {
+      this.informationSource = Optional.of(informationSource.build());
       return this;
     }
 

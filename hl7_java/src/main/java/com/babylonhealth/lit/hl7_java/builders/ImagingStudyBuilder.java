@@ -112,6 +112,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ImagingStudyBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -121,6 +126,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
      */
     public ImagingStudyBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -139,6 +149,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
      */
     public ImagingStudyBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param started - Date and time the study started. */
@@ -160,6 +175,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
      */
     public ImagingStudyBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -185,9 +205,19 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.modality = Collections.unmodifiableCollection(modality);
       return this;
     }
+
+    public ImagingStudyBuilder.Impl withModality(@NonNull CodingBuilder... modality) {
+      this.modality = Arrays.stream(modality).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param referrer - The requesting/referring physician. */
     public ImagingStudyBuilder.Impl withReferrer(@NonNull Reference referrer) {
       this.referrer = Optional.of(referrer);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withReferrer(@NonNull ReferenceBuilder referrer) {
+      this.referrer = Optional.of(referrer.build());
       return this;
     }
     /**
@@ -210,9 +240,19 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public ImagingStudyBuilder.Impl withEndpoint(@NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param location - The principal physical location where the ImagingStudy was performed. */
     public ImagingStudyBuilder.Impl withLocation(@NonNull Reference location) {
       this.location = Optional.of(location);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
       return this;
     }
     /**
@@ -231,6 +271,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
      */
     public ImagingStudyBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -255,12 +300,22 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImagingStudyBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The healthcare event (e.g. a patient and healthcare provider interaction)
      *     during which this ImagingStudy is made.
      */
     public ImagingStudyBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -277,6 +332,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
      */
     public ImagingStudyBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -296,6 +356,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
       return this;
     }
+
+    public ImagingStudyBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param interpreter - Who read the study and interpreted the images or other content. */
     public ImagingStudyBuilder.Impl withInterpreter(@NonNull Reference... interpreter) {
       this.interpreter = Arrays.asList(interpreter);
@@ -304,6 +369,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
     /** @param interpreter - Who read the study and interpreted the images or other content. */
     public ImagingStudyBuilder.Impl withInterpreter(@NonNull Collection<Reference> interpreter) {
       this.interpreter = Collections.unmodifiableCollection(interpreter);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withInterpreter(@NonNull ReferenceBuilder... interpreter) {
+      this.interpreter = Arrays.stream(interpreter).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -335,6 +405,12 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.procedureCode = Collections.unmodifiableCollection(procedureCode);
       return this;
     }
+
+    public ImagingStudyBuilder.Impl withProcedureCode(
+        @NonNull CodeableConceptBuilder... procedureCode) {
+      this.procedureCode = Arrays.stream(procedureCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param numberOfSeries - Number of Series in the Study. This value given may be larger than
      *     the number of series elements this Resource contains due to resource availability,
@@ -354,6 +430,12 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
     public ImagingStudyBuilder.Impl withReasonReference(
         @NonNull Collection<Reference> reasonReference) {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -391,6 +473,13 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ImagingStudyBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param numberOfInstances - Number of SOP Instances in Study. This value given may be larger
      *     than the number of instance elements this resource contains due to resource availability,
@@ -406,6 +495,12 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.procedureReference = Optional.of(procedureReference);
       return this;
     }
+
+    public ImagingStudyBuilder.Impl withProcedureReference(
+        @NonNull ReferenceBuilder procedureReference) {
+      this.procedureReference = Optional.of(procedureReference.build());
+      return this;
+    }
     /** @param series - Each study has one or more series of images or other content. */
     public ImagingStudyBuilder.Impl withSeries(@NonNull ImagingStudy.Series... series) {
       this.series = Arrays.asList(series);
@@ -414,6 +509,11 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
     /** @param series - Each study has one or more series of images or other content. */
     public ImagingStudyBuilder.Impl withSeries(@NonNull Collection<ImagingStudy.Series> series) {
       this.series = Collections.unmodifiableCollection(series);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withSeries(@NonNull ImagingStudy_SeriesBuilder... series) {
+      this.series = Arrays.stream(series).map(e -> e.build()).collect(toList());
       return this;
     }
 

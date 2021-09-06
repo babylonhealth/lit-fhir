@@ -110,9 +110,20 @@ public interface MolecularSequence_QualityBuilder {
       this.score = Optional.of(score);
       return this;
     }
+
+    public MolecularSequence_QualityBuilder.Impl withScore(@NonNull QuantityBuilder score) {
+      this.score = Optional.of(score.build());
+      return this;
+    }
     /** @param method */
     public MolecularSequence_QualityBuilder.Impl withMethod(@NonNull CodeableConcept method) {
       this.method = Optional.of(method);
+      return this;
+    }
+
+    public MolecularSequence_QualityBuilder.Impl withMethod(
+        @NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
       return this;
     }
     /** @param recall */
@@ -168,6 +179,12 @@ public interface MolecularSequence_QualityBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MolecularSequence_QualityBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param precision */
     public MolecularSequence_QualityBuilder.Impl withPrecision(@NonNull BigDecimal precision) {
       this.precision = Optional.of(precision);
@@ -177,6 +194,12 @@ public interface MolecularSequence_QualityBuilder {
     public MolecularSequence_QualityBuilder.Impl withStandardSequence(
         @NonNull CodeableConcept standardSequence) {
       this.standardSequence = Optional.of(standardSequence);
+      return this;
+    }
+
+    public MolecularSequence_QualityBuilder.Impl withStandardSequence(
+        @NonNull CodeableConceptBuilder standardSequence) {
+      this.standardSequence = Optional.of(standardSequence.build());
       return this;
     }
     /**
@@ -215,10 +238,23 @@ public interface MolecularSequence_QualityBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MolecularSequence_QualityBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param roc */
     public MolecularSequence_QualityBuilder.Impl withRoc(
         @NonNull MolecularSequence$Quality$Roc roc) {
       this.roc = Optional.of(roc);
+      return this;
+    }
+
+    public MolecularSequence_QualityBuilder.Impl withRoc(
+        @NonNull MolecularSequence_Quality_RocBuilder roc) {
+      this.roc = Optional.of(roc.build());
       return this;
     }
 

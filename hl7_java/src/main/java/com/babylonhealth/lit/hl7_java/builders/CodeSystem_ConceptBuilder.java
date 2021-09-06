@@ -105,6 +105,12 @@ public interface CodeSystem_ConceptBuilder {
       this.concept = Collections.unmodifiableCollection(concept);
       return this;
     }
+
+    public CodeSystem_ConceptBuilder.Impl withConcept(
+        @NonNull CodeSystem_ConceptBuilder... concept) {
+      this.concept = Arrays.stream(concept).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -125,6 +131,11 @@ public interface CodeSystem_ConceptBuilder {
      */
     public CodeSystem_ConceptBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public CodeSystem_ConceptBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param definition */
@@ -168,6 +179,13 @@ public interface CodeSystem_ConceptBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CodeSystem_ConceptBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param property - A property defines an additional slot through which additional information
      *     can be provided about a concept.
@@ -186,6 +204,12 @@ public interface CodeSystem_ConceptBuilder {
       this.property = Collections.unmodifiableCollection(property);
       return this;
     }
+
+    public CodeSystem_ConceptBuilder.Impl withProperty(
+        @NonNull CodeSystem_Concept_PropertyBuilder... property) {
+      this.property = Arrays.stream(property).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param designation */
     public CodeSystem_ConceptBuilder.Impl withDesignation(
         @NonNull CodeSystem$Concept$Designation... designation) {
@@ -196,6 +220,12 @@ public interface CodeSystem_ConceptBuilder {
     public CodeSystem_ConceptBuilder.Impl withDesignation(
         @NonNull Collection<CodeSystem$Concept$Designation> designation) {
       this.designation = Collections.unmodifiableCollection(designation);
+      return this;
+    }
+
+    public CodeSystem_ConceptBuilder.Impl withDesignation(
+        @NonNull CodeSystem_Concept_DesignationBuilder... designation) {
+      this.designation = Arrays.stream(designation).map(e -> e.build()).collect(toList());
       return this;
     }
 

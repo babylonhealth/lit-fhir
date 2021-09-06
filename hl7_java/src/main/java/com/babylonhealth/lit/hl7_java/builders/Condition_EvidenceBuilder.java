@@ -81,6 +81,11 @@ public interface Condition_EvidenceBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public Condition_EvidenceBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param detail */
     public Condition_EvidenceBuilder.Impl withDetail(@NonNull Reference... detail) {
       this.detail = Arrays.asList(detail);
@@ -89,6 +94,11 @@ public interface Condition_EvidenceBuilder {
     /** @param detail */
     public Condition_EvidenceBuilder.Impl withDetail(@NonNull Collection<Reference> detail) {
       this.detail = Collections.unmodifiableCollection(detail);
+      return this;
+    }
+
+    public Condition_EvidenceBuilder.Impl withDetail(@NonNull ReferenceBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -111,6 +121,11 @@ public interface Condition_EvidenceBuilder {
      */
     public Condition_EvidenceBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Condition_EvidenceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -147,6 +162,13 @@ public interface Condition_EvidenceBuilder {
     public Condition_EvidenceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Condition_EvidenceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

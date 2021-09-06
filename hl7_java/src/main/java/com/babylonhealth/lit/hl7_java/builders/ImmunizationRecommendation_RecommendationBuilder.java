@@ -134,6 +134,12 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param vaccineCode */
     public ImmunizationRecommendation_RecommendationBuilder.Impl withVaccineCode(
         @NonNull CodeableConcept... vaccineCode) {
@@ -146,6 +152,12 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
       this.vaccineCode = Collections.unmodifiableCollection(vaccineCode);
       return this;
     }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withVaccineCode(
+        @NonNull CodeableConceptBuilder... vaccineCode) {
+      this.vaccineCode = Arrays.stream(vaccineCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public ImmunizationRecommendation_RecommendationBuilder.Impl withDescription(
         @NonNull String description) {
@@ -156,6 +168,12 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
     public ImmunizationRecommendation_RecommendationBuilder.Impl withTargetDisease(
         @NonNull CodeableConcept targetDisease) {
       this.targetDisease = Optional.of(targetDisease);
+      return this;
+    }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withTargetDisease(
+        @NonNull CodeableConceptBuilder targetDisease) {
+      this.targetDisease = Optional.of(targetDisease.build());
       return this;
     }
     /**
@@ -178,6 +196,12 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
     public ImmunizationRecommendation_RecommendationBuilder.Impl withForecastReason(
         @NonNull Collection<CodeableConcept> forecastReason) {
       this.forecastReason = Collections.unmodifiableCollection(forecastReason);
+      return this;
+    }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withForecastReason(
+        @NonNull CodeableConceptBuilder... forecastReason) {
+      this.forecastReason = Arrays.stream(forecastReason).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -226,6 +250,13 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param supportingImmunization */
     public ImmunizationRecommendation_RecommendationBuilder.Impl withSupportingImmunization(
         @NonNull Reference... supportingImmunization) {
@@ -236,6 +267,13 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
     public ImmunizationRecommendation_RecommendationBuilder.Impl withSupportingImmunization(
         @NonNull Collection<Reference> supportingImmunization) {
       this.supportingImmunization = Collections.unmodifiableCollection(supportingImmunization);
+      return this;
+    }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withSupportingImmunization(
+        @NonNull ReferenceBuilder... supportingImmunization) {
+      this.supportingImmunization =
+          Arrays.stream(supportingImmunization).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param contraindicatedVaccineCode */
@@ -251,6 +289,13 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
           Collections.unmodifiableCollection(contraindicatedVaccineCode);
       return this;
     }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withContraindicatedVaccineCode(
+        @NonNull CodeableConceptBuilder... contraindicatedVaccineCode) {
+      this.contraindicatedVaccineCode =
+          Arrays.stream(contraindicatedVaccineCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param supportingPatientInformation */
     public ImmunizationRecommendation_RecommendationBuilder.Impl withSupportingPatientInformation(
         @NonNull Reference... supportingPatientInformation) {
@@ -264,6 +309,13 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
           Collections.unmodifiableCollection(supportingPatientInformation);
       return this;
     }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withSupportingPatientInformation(
+        @NonNull ReferenceBuilder... supportingPatientInformation) {
+      this.supportingPatientInformation =
+          Arrays.stream(supportingPatientInformation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dateCriterion */
     public ImmunizationRecommendation_RecommendationBuilder.Impl withDateCriterion(
         @NonNull ImmunizationRecommendation$Recommendation$DateCriterion... dateCriterion) {
@@ -275,6 +327,12 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
         @NonNull
             Collection<ImmunizationRecommendation$Recommendation$DateCriterion> dateCriterion) {
       this.dateCriterion = Collections.unmodifiableCollection(dateCriterion);
+      return this;
+    }
+
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withDateCriterion(
+        @NonNull ImmunizationRecommendation_Recommendation_DateCriterionBuilder... dateCriterion) {
+      this.dateCriterion = Arrays.stream(dateCriterion).map(e -> e.build()).collect(toList());
       return this;
     }
 

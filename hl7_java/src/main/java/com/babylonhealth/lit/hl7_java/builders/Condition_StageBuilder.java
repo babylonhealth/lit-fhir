@@ -77,9 +77,19 @@ public interface Condition_StageBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public Condition_StageBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param summary */
     public Condition_StageBuilder.Impl withSummary(@NonNull CodeableConcept summary) {
       this.summary = Optional.of(summary);
+      return this;
+    }
+
+    public Condition_StageBuilder.Impl withSummary(@NonNull CodeableConceptBuilder summary) {
+      this.summary = Optional.of(summary.build());
       return this;
     }
     /**
@@ -104,6 +114,11 @@ public interface Condition_StageBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Condition_StageBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param assessment */
     public Condition_StageBuilder.Impl withAssessment(@NonNull Reference... assessment) {
       this.assessment = Arrays.asList(assessment);
@@ -112,6 +127,11 @@ public interface Condition_StageBuilder {
     /** @param assessment */
     public Condition_StageBuilder.Impl withAssessment(@NonNull Collection<Reference> assessment) {
       this.assessment = Collections.unmodifiableCollection(assessment);
+      return this;
+    }
+
+    public Condition_StageBuilder.Impl withAssessment(@NonNull ReferenceBuilder... assessment) {
+      this.assessment = Arrays.stream(assessment).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -148,6 +168,13 @@ public interface Condition_StageBuilder {
     public Condition_StageBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Condition_StageBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

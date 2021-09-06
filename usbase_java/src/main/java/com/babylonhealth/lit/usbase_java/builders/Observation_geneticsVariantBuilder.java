@@ -295,6 +295,12 @@ public interface Observation_geneticsVariantBuilder extends ExtensionBuilder {
       return this;
     }
 
+    public Observation_geneticsVariantBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Observation_geneticsVariant build() {
       return new Observation_geneticsVariant(
           OptionConverters.toScala(id),

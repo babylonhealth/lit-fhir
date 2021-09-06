@@ -78,6 +78,12 @@ public interface SubstanceReferenceInformation_GeneElementBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public SubstanceReferenceInformation_GeneElementBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param source */
     public SubstanceReferenceInformation_GeneElementBuilder.Impl withSource(
         @NonNull Reference... source) {
@@ -90,10 +96,22 @@ public interface SubstanceReferenceInformation_GeneElementBuilder {
       this.source = Collections.unmodifiableCollection(source);
       return this;
     }
+
+    public SubstanceReferenceInformation_GeneElementBuilder.Impl withSource(
+        @NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param element */
     public SubstanceReferenceInformation_GeneElementBuilder.Impl withElement(
         @NonNull Identifier element) {
       this.element = Optional.of(element);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_GeneElementBuilder.Impl withElement(
+        @NonNull IdentifierBuilder element) {
+      this.element = Optional.of(element.build());
       return this;
     }
     /**
@@ -118,6 +136,12 @@ public interface SubstanceReferenceInformation_GeneElementBuilder {
     public SubstanceReferenceInformation_GeneElementBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_GeneElementBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -154,6 +178,13 @@ public interface SubstanceReferenceInformation_GeneElementBuilder {
     public SubstanceReferenceInformation_GeneElementBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_GeneElementBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

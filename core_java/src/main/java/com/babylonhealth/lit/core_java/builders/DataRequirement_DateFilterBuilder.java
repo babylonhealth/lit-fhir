@@ -117,6 +117,12 @@ public interface DataRequirement_DateFilterBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DataRequirement_DateFilterBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param searchParam */
     public DataRequirement_DateFilterBuilder.Impl withSearchParam(@NonNull String searchParam) {
       this.searchParam = Optional.of(searchParam);

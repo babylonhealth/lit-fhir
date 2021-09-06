@@ -109,6 +109,11 @@ public interface AnnotationBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AnnotationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - The individual responsible for making the annotation. Field is a 'choice'
      *     field. Type should be one of Reference, String. To pass the value in, wrap with one of

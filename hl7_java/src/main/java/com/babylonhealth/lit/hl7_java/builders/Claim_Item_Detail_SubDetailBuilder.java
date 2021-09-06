@@ -93,6 +93,11 @@ public interface Claim_Item_Detail_SubDetailBuilder {
       this.net = Optional.of(net);
       return this;
     }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withNet(@NonNull MoneyBuilder net) {
+      this.net = Optional.of(net.build());
+      return this;
+    }
     /** @param udi */
     public Claim_Item_Detail_SubDetailBuilder.Impl withUdi(@NonNull Reference... udi) {
       this.udi = Arrays.asList(udi);
@@ -101,6 +106,11 @@ public interface Claim_Item_Detail_SubDetailBuilder {
     /** @param udi */
     public Claim_Item_Detail_SubDetailBuilder.Impl withUdi(@NonNull Collection<Reference> udi) {
       this.udi = Collections.unmodifiableCollection(udi);
+      return this;
+    }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withUdi(@NonNull ReferenceBuilder... udi) {
+      this.udi = Arrays.stream(udi).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param factor */
@@ -113,9 +123,21 @@ public interface Claim_Item_Detail_SubDetailBuilder {
       this.revenue = Optional.of(revenue);
       return this;
     }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withRevenue(
+        @NonNull CodeableConceptBuilder revenue) {
+      this.revenue = Optional.of(revenue.build());
+      return this;
+    }
     /** @param category */
     public Claim_Item_Detail_SubDetailBuilder.Impl withCategory(@NonNull CodeableConcept category) {
       this.category = Optional.of(category);
+      return this;
+    }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /** @param modifier */
@@ -130,9 +152,20 @@ public interface Claim_Item_Detail_SubDetailBuilder {
       this.modifier = Collections.unmodifiableCollection(modifier);
       return this;
     }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withModifier(
+        @NonNull CodeableConceptBuilder... modifier) {
+      this.modifier = Arrays.stream(modifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param quantity */
     public Claim_Item_Detail_SubDetailBuilder.Impl withQuantity(@NonNull Quantity quantity) {
       this.quantity = Optional.of(quantity);
+      return this;
+    }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
       return this;
     }
     /**
@@ -158,9 +191,20 @@ public interface Claim_Item_Detail_SubDetailBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param unitPrice */
     public Claim_Item_Detail_SubDetailBuilder.Impl withUnitPrice(@NonNull Money unitPrice) {
       this.unitPrice = Optional.of(unitPrice);
+      return this;
+    }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withUnitPrice(@NonNull MoneyBuilder unitPrice) {
+      this.unitPrice = Optional.of(unitPrice.build());
       return this;
     }
     /** @param programCode */
@@ -173,6 +217,12 @@ public interface Claim_Item_Detail_SubDetailBuilder {
     public Claim_Item_Detail_SubDetailBuilder.Impl withProgramCode(
         @NonNull Collection<CodeableConcept> programCode) {
       this.programCode = Collections.unmodifiableCollection(programCode);
+      return this;
+    }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withProgramCode(
+        @NonNull CodeableConceptBuilder... programCode) {
+      this.programCode = Arrays.stream(programCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -209,6 +259,13 @@ public interface Claim_Item_Detail_SubDetailBuilder {
     public Claim_Item_Detail_SubDetailBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Claim_Item_Detail_SubDetailBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

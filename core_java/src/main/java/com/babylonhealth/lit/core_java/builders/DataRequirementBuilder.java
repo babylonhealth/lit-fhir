@@ -134,6 +134,11 @@ public interface DataRequirementBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DataRequirementBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - The intended subjects of the data requirement. If this element is not
      *     provided, a Patient subject is assumed. Field is a 'choice' field. Type should be one of
@@ -182,6 +187,11 @@ public interface DataRequirementBuilder extends ElementBuilder {
       this.sort = Collections.unmodifiableCollection(sort);
       return this;
     }
+
+    public DataRequirementBuilder.Impl withSort(@NonNull DataRequirement_SortBuilder... sort) {
+      this.sort = Arrays.stream(sort).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param codeFilter - Code filters specify additional constraints on the data, specifying the
      *     value set of interest for a particular element of the data. Each code filter defines an
@@ -202,6 +212,12 @@ public interface DataRequirementBuilder extends ElementBuilder {
       this.codeFilter = Collections.unmodifiableCollection(codeFilter);
       return this;
     }
+
+    public DataRequirementBuilder.Impl withCodeFilter(
+        @NonNull DataRequirement_CodeFilterBuilder... codeFilter) {
+      this.codeFilter = Arrays.stream(codeFilter).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dateFilter - Date filters specify additional constraints on the data in terms of the
      *     applicable date range for specific elements. Each date filter specifies an additional
@@ -220,6 +236,12 @@ public interface DataRequirementBuilder extends ElementBuilder {
     public DataRequirementBuilder.Impl withDateFilter(
         @NonNull Collection<DataRequirement.DateFilter> dateFilter) {
       this.dateFilter = Collections.unmodifiableCollection(dateFilter);
+      return this;
+    }
+
+    public DataRequirementBuilder.Impl withDateFilter(
+        @NonNull DataRequirement_DateFilterBuilder... dateFilter) {
+      this.dateFilter = Arrays.stream(dateFilter).map(e -> e.build()).collect(toList());
       return this;
     }
 

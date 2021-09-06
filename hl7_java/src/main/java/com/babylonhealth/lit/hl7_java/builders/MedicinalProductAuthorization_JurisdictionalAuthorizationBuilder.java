@@ -81,6 +81,12 @@ public interface MedicinalProductAuthorization_JurisdictionalAuthorizationBuilde
       this.country = Optional.of(country);
       return this;
     }
+
+    public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl withCountry(
+        @NonNull CodeableConceptBuilder country) {
+      this.country = Optional.of(country.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -105,6 +111,12 @@ public interface MedicinalProductAuthorization_JurisdictionalAuthorizationBuilde
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Business identifier for the marketing authorization, as assigned by a
      *     regulator.
@@ -123,6 +135,12 @@ public interface MedicinalProductAuthorization_JurisdictionalAuthorizationBuilde
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param jurisdiction - Jurisdiction within a country. */
     public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl withJurisdiction(
         @NonNull CodeableConcept... jurisdiction) {
@@ -135,6 +153,12 @@ public interface MedicinalProductAuthorization_JurisdictionalAuthorizationBuilde
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
       return this;
     }
+
+    public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param validityPeriod - The beginning of the time period in which the marketing authorization
      *     is in the specific status shall be specified A complete date consisting of day, month and
@@ -143,6 +167,12 @@ public interface MedicinalProductAuthorization_JurisdictionalAuthorizationBuilde
     public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl withValidityPeriod(
         @NonNull Period validityPeriod) {
       this.validityPeriod = Optional.of(validityPeriod);
+      return this;
+    }
+
+    public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl withValidityPeriod(
+        @NonNull PeriodBuilder validityPeriod) {
+      this.validityPeriod = Optional.of(validityPeriod.build());
       return this;
     }
     /**
@@ -181,10 +211,23 @@ public interface MedicinalProductAuthorization_JurisdictionalAuthorizationBuilde
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl
+        withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param legalStatusOfSupply */
     public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl
         withLegalStatusOfSupply(@NonNull CodeableConcept legalStatusOfSupply) {
       this.legalStatusOfSupply = Optional.of(legalStatusOfSupply);
+      return this;
+    }
+
+    public MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder.Impl
+        withLegalStatusOfSupply(@NonNull CodeableConceptBuilder legalStatusOfSupply) {
+      this.legalStatusOfSupply = Optional.of(legalStatusOfSupply.build());
       return this;
     }
 

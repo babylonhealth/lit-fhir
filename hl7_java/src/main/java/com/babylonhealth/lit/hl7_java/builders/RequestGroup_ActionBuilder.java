@@ -127,9 +127,19 @@ public interface RequestGroup_ActionBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public RequestGroup_ActionBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param _type */
     public RequestGroup_ActionBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public RequestGroup_ActionBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param title */
@@ -153,6 +163,12 @@ public interface RequestGroup_ActionBuilder {
       this.action = Collections.unmodifiableCollection(action);
       return this;
     }
+
+    public RequestGroup_ActionBuilder.Impl withAction(
+        @NonNull RequestGroup_ActionBuilder... action) {
+      this.action = Arrays.stream(action).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param priority - Indicates how quickly the request should be addressed with respect to other
      *     requests.
@@ -164,6 +180,11 @@ public interface RequestGroup_ActionBuilder {
     /** @param resource */
     public RequestGroup_ActionBuilder.Impl withResource(@NonNull Reference resource) {
       this.resource = Optional.of(resource);
+      return this;
+    }
+
+    public RequestGroup_ActionBuilder.Impl withResource(@NonNull ReferenceBuilder resource) {
+      this.resource = Optional.of(resource.build());
       return this;
     }
     /**
@@ -186,6 +207,11 @@ public interface RequestGroup_ActionBuilder {
      */
     public RequestGroup_ActionBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public RequestGroup_ActionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -213,6 +239,12 @@ public interface RequestGroup_ActionBuilder {
       this.participant = Collections.unmodifiableCollection(participant);
       return this;
     }
+
+    public RequestGroup_ActionBuilder.Impl withParticipant(
+        @NonNull ReferenceBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param documentation */
     public RequestGroup_ActionBuilder.Impl withDocumentation(
         @NonNull RelatedArtifact... documentation) {
@@ -223,6 +255,12 @@ public interface RequestGroup_ActionBuilder {
     public RequestGroup_ActionBuilder.Impl withDocumentation(
         @NonNull Collection<RelatedArtifact> documentation) {
       this.documentation = Collections.unmodifiableCollection(documentation);
+      return this;
+    }
+
+    public RequestGroup_ActionBuilder.Impl withDocumentation(
+        @NonNull RelatedArtifactBuilder... documentation) {
+      this.documentation = Arrays.stream(documentation).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param textEquivalent */
@@ -284,6 +322,13 @@ public interface RequestGroup_ActionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public RequestGroup_ActionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param selectionBehavior */
     public RequestGroup_ActionBuilder.Impl withSelectionBehavior(
         @NonNull ACTION_SELECTION_BEHAVIOR selectionBehavior) {
@@ -308,6 +353,12 @@ public interface RequestGroup_ActionBuilder {
       this.condition = Collections.unmodifiableCollection(condition);
       return this;
     }
+
+    public RequestGroup_ActionBuilder.Impl withCondition(
+        @NonNull RequestGroup_Action_ConditionBuilder... condition) {
+      this.condition = Arrays.stream(condition).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param relatedAction */
     public RequestGroup_ActionBuilder.Impl withRelatedAction(
         @NonNull RequestGroup$Action$RelatedAction... relatedAction) {
@@ -318,6 +369,12 @@ public interface RequestGroup_ActionBuilder {
     public RequestGroup_ActionBuilder.Impl withRelatedAction(
         @NonNull Collection<RequestGroup$Action$RelatedAction> relatedAction) {
       this.relatedAction = Collections.unmodifiableCollection(relatedAction);
+      return this;
+    }
+
+    public RequestGroup_ActionBuilder.Impl withRelatedAction(
+        @NonNull RequestGroup_Action_RelatedActionBuilder... relatedAction) {
+      this.relatedAction = Arrays.stream(relatedAction).map(e -> e.build()).collect(toList());
       return this;
     }
 

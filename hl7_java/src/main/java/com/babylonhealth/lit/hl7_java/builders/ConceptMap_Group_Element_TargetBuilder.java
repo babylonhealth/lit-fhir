@@ -109,6 +109,12 @@ public interface ConceptMap_Group_Element_TargetBuilder {
       this.product = Collections.unmodifiableCollection(product);
       return this;
     }
+
+    public ConceptMap_Group_Element_TargetBuilder.Impl withProduct(
+        @NonNull ConceptMap_Group_Element_Target_DependsOnBuilder... product) {
+      this.product = Arrays.stream(product).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -131,6 +137,12 @@ public interface ConceptMap_Group_Element_TargetBuilder {
     public ConceptMap_Group_Element_TargetBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ConceptMap_Group_Element_TargetBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -169,6 +181,13 @@ public interface ConceptMap_Group_Element_TargetBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ConceptMap_Group_Element_TargetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dependsOn */
     public ConceptMap_Group_Element_TargetBuilder.Impl withDependsOn(
         @NonNull ConceptMap$Group$Element$Target$DependsOn... dependsOn) {
@@ -179,6 +198,12 @@ public interface ConceptMap_Group_Element_TargetBuilder {
     public ConceptMap_Group_Element_TargetBuilder.Impl withDependsOn(
         @NonNull Collection<ConceptMap$Group$Element$Target$DependsOn> dependsOn) {
       this.dependsOn = Collections.unmodifiableCollection(dependsOn);
+      return this;
+    }
+
+    public ConceptMap_Group_Element_TargetBuilder.Impl withDependsOn(
+        @NonNull ConceptMap_Group_Element_Target_DependsOnBuilder... dependsOn) {
+      this.dependsOn = Arrays.stream(dependsOn).map(e -> e.build()).collect(toList());
       return this;
     }
 

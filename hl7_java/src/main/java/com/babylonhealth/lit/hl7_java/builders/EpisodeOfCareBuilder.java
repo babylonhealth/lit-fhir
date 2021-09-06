@@ -104,6 +104,11 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public EpisodeOfCareBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -113,6 +118,11 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
      */
     public EpisodeOfCareBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public EpisodeOfCareBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -131,6 +141,11 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
       this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
+
+    public EpisodeOfCareBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param team - The list of practitioners that may be facilitating this episode of care for
      *     specific purposes.
@@ -147,12 +162,22 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
       this.team = Collections.unmodifiableCollection(team);
       return this;
     }
+
+    public EpisodeOfCareBuilder.Impl withTeam(@NonNull ReferenceBuilder... team) {
+      this.team = Arrays.stream(team).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param period - The interval during which the managing organization assumes the defined
      *     responsibility.
      */
     public EpisodeOfCareBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public EpisodeOfCareBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /** @param account - The set of accounts that may be used for billing for this EpisodeOfCare. */
@@ -163,6 +188,11 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
     /** @param account - The set of accounts that may be used for billing for this EpisodeOfCare. */
     public EpisodeOfCareBuilder.Impl withAccount(@NonNull Collection<Reference> account) {
       this.account = Collections.unmodifiableCollection(account);
+      return this;
+    }
+
+    public EpisodeOfCareBuilder.Impl withAccount(@NonNull ReferenceBuilder... account) {
+      this.account = Arrays.stream(account).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -188,6 +218,11 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public EpisodeOfCareBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -210,6 +245,11 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EpisodeOfCareBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - The EpisodeOfCare may be known by different identifiers for different
      *     contexts of use, such as when an external agency is tracking the Episode for funding
@@ -228,12 +268,22 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public EpisodeOfCareBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param careManager - The practitioner that is the care manager/care coordinator for this
      *     patient.
      */
     public EpisodeOfCareBuilder.Impl withCareManager(@NonNull Reference careManager) {
       this.careManager = Optional.of(careManager);
+      return this;
+    }
+
+    public EpisodeOfCareBuilder.Impl withCareManager(@NonNull ReferenceBuilder careManager) {
+      this.careManager = Optional.of(careManager.build());
       return this;
     }
     /**
@@ -261,6 +311,12 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
     public EpisodeOfCareBuilder.Impl withReferralRequest(
         @NonNull Collection<Reference> referralRequest) {
       this.referralRequest = Collections.unmodifiableCollection(referralRequest);
+      return this;
+    }
+
+    public EpisodeOfCareBuilder.Impl withReferralRequest(
+        @NonNull ReferenceBuilder... referralRequest) {
+      this.referralRequest = Arrays.stream(referralRequest).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -299,6 +355,13 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public EpisodeOfCareBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param managingOrganization - The organization that has assumed the specific responsibilities
      *     for the specified duration.
@@ -306,6 +369,12 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
     public EpisodeOfCareBuilder.Impl withManagingOrganization(
         @NonNull Reference managingOrganization) {
       this.managingOrganization = Optional.of(managingOrganization);
+      return this;
+    }
+
+    public EpisodeOfCareBuilder.Impl withManagingOrganization(
+        @NonNull ReferenceBuilder managingOrganization) {
+      this.managingOrganization = Optional.of(managingOrganization.build());
       return this;
     }
     /** @param diagnosis - The list of diagnosis relevant to this episode of care. */
@@ -317,6 +386,12 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
     public EpisodeOfCareBuilder.Impl withDiagnosis(
         @NonNull Collection<EpisodeOfCare.Diagnosis> diagnosis) {
       this.diagnosis = Collections.unmodifiableCollection(diagnosis);
+      return this;
+    }
+
+    public EpisodeOfCareBuilder.Impl withDiagnosis(
+        @NonNull EpisodeOfCare_DiagnosisBuilder... diagnosis) {
+      this.diagnosis = Arrays.stream(diagnosis).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -335,6 +410,12 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
     public EpisodeOfCareBuilder.Impl withStatusHistory(
         @NonNull Collection<EpisodeOfCare.StatusHistory> statusHistory) {
       this.statusHistory = Collections.unmodifiableCollection(statusHistory);
+      return this;
+    }
+
+    public EpisodeOfCareBuilder.Impl withStatusHistory(
+        @NonNull EpisodeOfCare_StatusHistoryBuilder... statusHistory) {
+      this.statusHistory = Arrays.stream(statusHistory).map(e -> e.build()).collect(toList());
       return this;
     }
 

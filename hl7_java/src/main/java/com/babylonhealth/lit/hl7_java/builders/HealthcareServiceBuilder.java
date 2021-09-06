@@ -107,6 +107,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -118,6 +123,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - The specific type of service that may be delivered or performed. */
     public HealthcareServiceBuilder.Impl withType(@NonNull CodeableConcept... _type) {
       this._type = Arrays.asList(_type);
@@ -126,6 +136,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
     /** @param _type - The specific type of service that may be delivered or performed. */
     public HealthcareServiceBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
       this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -142,6 +157,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
      */
     public HealthcareServiceBuilder.Impl withPhoto(@NonNull Attachment photo) {
       this.photo = Optional.of(photo);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withPhoto(@NonNull AttachmentBuilder photo) {
+      this.photo = Optional.of(photo.build());
       return this;
     }
     /**
@@ -172,6 +192,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param program - Programs that this service is applicable to. */
     public HealthcareServiceBuilder.Impl withProgram(@NonNull CodeableConcept... program) {
       this.program = Arrays.asList(program);
@@ -180,6 +205,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
     /** @param program - Programs that this service is applicable to. */
     public HealthcareServiceBuilder.Impl withProgram(@NonNull Collection<CodeableConcept> program) {
       this.program = Collections.unmodifiableCollection(program);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withProgram(@NonNull CodeableConceptBuilder... program) {
+      this.program = Arrays.stream(program).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -198,6 +228,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param location - The location(s) where this healthcare service may be provided. */
     public HealthcareServiceBuilder.Impl withLocation(@NonNull Reference... location) {
       this.location = Arrays.asList(location);
@@ -206,6 +241,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
     /** @param location - The location(s) where this healthcare service may be provided. */
     public HealthcareServiceBuilder.Impl withLocation(@NonNull Collection<Reference> location) {
       this.location = Collections.unmodifiableCollection(location);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withLocation(@NonNull ReferenceBuilder... location) {
+      this.location = Arrays.stream(location).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -224,6 +264,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withEndpoint(@NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -240,6 +285,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
      */
     public HealthcareServiceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -264,6 +314,11 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param specialty - Collection of specialties handled by the service site. This is more of a
      *     medical term.
@@ -281,6 +336,12 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.specialty = Collections.unmodifiableCollection(specialty);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withSpecialty(
+        @NonNull CodeableConceptBuilder... specialty) {
+      this.specialty = Arrays.stream(specialty).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - External identifiers for this item. */
     public HealthcareServiceBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -292,9 +353,19 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param providedBy - The organization that provides this healthcare service. */
     public HealthcareServiceBuilder.Impl withProvidedBy(@NonNull Reference providedBy) {
       this.providedBy = Optional.of(providedBy);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withProvidedBy(@NonNull ReferenceBuilder providedBy) {
+      this.providedBy = Optional.of(providedBy.build());
       return this;
     }
     /**
@@ -320,6 +391,12 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
     public HealthcareServiceBuilder.Impl withCoverageArea(
         @NonNull Collection<Reference> coverageArea) {
       this.coverageArea = Collections.unmodifiableCollection(coverageArea);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withCoverageArea(
+        @NonNull ReferenceBuilder... coverageArea) {
+      this.coverageArea = Arrays.stream(coverageArea).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -352,6 +429,12 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.communication = Collections.unmodifiableCollection(communication);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withCommunication(
+        @NonNull CodeableConceptBuilder... communication) {
+      this.communication = Arrays.stream(communication).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param characteristic - Collection of characteristics (attributes). */
     public HealthcareServiceBuilder.Impl withCharacteristic(
         @NonNull CodeableConcept... characteristic) {
@@ -362,6 +445,12 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
     public HealthcareServiceBuilder.Impl withCharacteristic(
         @NonNull Collection<CodeableConcept> characteristic) {
       this.characteristic = Collections.unmodifiableCollection(characteristic);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withCharacteristic(
+        @NonNull CodeableConceptBuilder... characteristic) {
+      this.characteristic = Arrays.stream(characteristic).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -380,6 +469,12 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
     public HealthcareServiceBuilder.Impl withReferralMethod(
         @NonNull Collection<CodeableConcept> referralMethod) {
       this.referralMethod = Collections.unmodifiableCollection(referralMethod);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withReferralMethod(
+        @NonNull CodeableConceptBuilder... referralMethod) {
+      this.referralMethod = Arrays.stream(referralMethod).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -418,6 +513,13 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param appointmentRequired - Indicates whether or not a prospective consumer will require an
      *     appointment for a particular service at a site to be provided by the Organization.
@@ -444,6 +546,13 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
     public HealthcareServiceBuilder.Impl withServiceProvisionCode(
         @NonNull Collection<CodeableConcept> serviceProvisionCode) {
       this.serviceProvisionCode = Collections.unmodifiableCollection(serviceProvisionCode);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withServiceProvisionCode(
+        @NonNull CodeableConceptBuilder... serviceProvisionCode) {
+      this.serviceProvisionCode =
+          Arrays.stream(serviceProvisionCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -474,6 +583,12 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.eligibility = Collections.unmodifiableCollection(eligibility);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withEligibility(
+        @NonNull HealthcareService_EligibilityBuilder... eligibility) {
+      this.eligibility = Arrays.stream(eligibility).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param notAvailable - The HealthcareService is not available during this period of time due
      *     to the provided reason.
@@ -492,6 +607,12 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       this.notAvailable = Collections.unmodifiableCollection(notAvailable);
       return this;
     }
+
+    public HealthcareServiceBuilder.Impl withNotAvailable(
+        @NonNull HealthcareService_NotAvailableBuilder... notAvailable) {
+      this.notAvailable = Arrays.stream(notAvailable).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param availableTime - A collection of times that the Service Site is available. */
     public HealthcareServiceBuilder.Impl withAvailableTime(
         @NonNull HealthcareService.AvailableTime... availableTime) {
@@ -502,6 +623,12 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
     public HealthcareServiceBuilder.Impl withAvailableTime(
         @NonNull Collection<HealthcareService.AvailableTime> availableTime) {
       this.availableTime = Collections.unmodifiableCollection(availableTime);
+      return this;
+    }
+
+    public HealthcareServiceBuilder.Impl withAvailableTime(
+        @NonNull HealthcareService_AvailableTimeBuilder... availableTime) {
+      this.availableTime = Arrays.stream(availableTime).map(e -> e.build()).collect(toList());
       return this;
     }
 

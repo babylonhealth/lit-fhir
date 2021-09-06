@@ -124,6 +124,11 @@ public interface SampledDataBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SampledDataBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param lowerLimit - The lower limit of detection of the measured points. This is needed if
      *     any of the data points have the value "L" (lower than detection limit).

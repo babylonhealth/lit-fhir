@@ -83,6 +83,12 @@ public interface MedicinalProductPharmaceutical_CharacteristicsBuilder {
       this.status = Optional.of(status);
       return this;
     }
+
+    public MedicinalProductPharmaceutical_CharacteristicsBuilder.Impl withStatus(
+        @NonNull CodeableConceptBuilder status) {
+      this.status = Optional.of(status.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -105,6 +111,12 @@ public interface MedicinalProductPharmaceutical_CharacteristicsBuilder {
     public MedicinalProductPharmaceutical_CharacteristicsBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicinalProductPharmaceutical_CharacteristicsBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -141,6 +153,13 @@ public interface MedicinalProductPharmaceutical_CharacteristicsBuilder {
     public MedicinalProductPharmaceutical_CharacteristicsBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicinalProductPharmaceutical_CharacteristicsBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

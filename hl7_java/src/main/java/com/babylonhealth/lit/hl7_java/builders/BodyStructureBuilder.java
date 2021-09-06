@@ -97,6 +97,11 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public BodyStructureBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -108,6 +113,11 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public BodyStructureBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param image - Image or images used to identify a location. */
     public BodyStructureBuilder.Impl withImage(@NonNull Attachment... image) {
       this.image = Arrays.asList(image);
@@ -116,6 +126,11 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
     /** @param image - Image or images used to identify a location. */
     public BodyStructureBuilder.Impl withImage(@NonNull Collection<Attachment> image) {
       this.image = Collections.unmodifiableCollection(image);
+      return this;
+    }
+
+    public BodyStructureBuilder.Impl withImage(@NonNull AttachmentBuilder... image) {
+      this.image = Arrays.stream(image).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param active - Whether this body site is in active use. */
@@ -136,6 +151,11 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
       this.location = Optional.of(location);
       return this;
     }
+
+    public BodyStructureBuilder.Impl withLocation(@NonNull CodeableConceptBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -152,6 +172,11 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
      */
     public BodyStructureBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public BodyStructureBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -176,6 +201,11 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public BodyStructureBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Identifier for this instance of the anatomical structure. */
     public BodyStructureBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -186,12 +216,22 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public BodyStructureBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param morphology - The kind of structure being represented by the body structure at
      *     `BodyStructure.location`. This can define both normal and abnormal morphologies.
      */
     public BodyStructureBuilder.Impl withMorphology(@NonNull CodeableConcept morphology) {
       this.morphology = Optional.of(morphology);
+      return this;
+    }
+
+    public BodyStructureBuilder.Impl withMorphology(@NonNull CodeableConceptBuilder morphology) {
+      this.morphology = Optional.of(morphology.build());
       return this;
     }
     /** @param description - A summary, characterization or explanation of the body structure. */
@@ -245,6 +285,13 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public BodyStructureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param locationQualifier - Qualifier to refine the anatomical location. These include
      *     qualifiers for laterality, relative location, directionality, number, and plane.
@@ -261,6 +308,13 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
     public BodyStructureBuilder.Impl withLocationQualifier(
         @NonNull Collection<CodeableConcept> locationQualifier) {
       this.locationQualifier = Collections.unmodifiableCollection(locationQualifier);
+      return this;
+    }
+
+    public BodyStructureBuilder.Impl withLocationQualifier(
+        @NonNull CodeableConceptBuilder... locationQualifier) {
+      this.locationQualifier =
+          Arrays.stream(locationQualifier).map(e -> e.build()).collect(toList());
       return this;
     }
 

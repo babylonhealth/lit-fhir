@@ -169,6 +169,11 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -178,6 +183,11 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
      */
     public Us_core_diagnosticreport_labBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -197,6 +207,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
       this.result = Collections.unmodifiableCollection(result);
       return this;
     }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withResult(
+        @NonNull ReferenceBuilder... result) {
+      this.result = Arrays.stream(result).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param basedOn - Details concerning a service requested. */
     public Us_core_diagnosticreport_labBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
       this.basedOn = Arrays.asList(basedOn);
@@ -206,6 +222,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withBasedOn(
         @NonNull Collection<Reference> basedOn) {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withBasedOn(
+        @NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -222,6 +244,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withSpecimen(
         @NonNull Collection<Reference> specimen) {
       this.specimen = Collections.unmodifiableCollection(specimen);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withSpecimen(
+        @NonNull ReferenceBuilder... specimen) {
+      this.specimen = Arrays.stream(specimen).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -241,6 +269,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -266,12 +300,24 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The healthcare event (e.g. a patient and healthcare provider interaction)
      *     which this DiagnosticReport is about.
      */
     public Us_core_diagnosticreport_labBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withEncounter(
+        @NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /** @param performer - The diagnostic service that is responsible for issuing the report. */
@@ -283,6 +329,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withPerformer(
         @NonNull Collection<Reference> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withPerformer(
+        @NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -299,6 +351,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -329,6 +387,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withImagingStudy(
         @NonNull Collection<Reference> imagingStudy) {
       this.imagingStudy = Collections.unmodifiableCollection(imagingStudy);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withImagingStudy(
+        @NonNull ReferenceBuilder... imagingStudy) {
+      this.imagingStudy = Arrays.stream(imagingStudy).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -362,6 +426,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
       this.presentedForm = Collections.unmodifiableCollection(presentedForm);
       return this;
     }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withPresentedForm(
+        @NonNull AttachmentBuilder... presentedForm) {
+      this.presentedForm = Arrays.stream(presentedForm).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param conclusionCode - One or more codes that represent the summary conclusion
      *     (interpretation/impression) of the diagnostic report.
@@ -378,6 +448,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withConclusionCode(
         @NonNull Collection<CodeableConcept> conclusionCode) {
       this.conclusionCode = Collections.unmodifiableCollection(conclusionCode);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withConclusionCode(
+        @NonNull CodeableConceptBuilder... conclusionCode) {
+      this.conclusionCode = Arrays.stream(conclusionCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -416,6 +492,13 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param resultsInterpreter - The practitioner or organization that is responsible for the
      *     report's conclusions and interpretations.
@@ -432,6 +515,13 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withResultsInterpreter(
         @NonNull Collection<Reference> resultsInterpreter) {
       this.resultsInterpreter = Collections.unmodifiableCollection(resultsInterpreter);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withResultsInterpreter(
+        @NonNull ReferenceBuilder... resultsInterpreter) {
+      this.resultsInterpreter =
+          Arrays.stream(resultsInterpreter).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -452,6 +542,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     public Us_core_diagnosticreport_labBuilder.Impl withMedia(
         @NonNull Collection<DiagnosticReport.Media> media) {
       this.media = Collections.unmodifiableCollection(media);
+      return this;
+    }
+
+    public Us_core_diagnosticreport_labBuilder.Impl withMedia(
+        @NonNull DiagnosticReport_MediaBuilder... media) {
+      this.media = Arrays.stream(media).map(e -> e.build()).collect(toList());
       return this;
     }
 

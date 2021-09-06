@@ -113,6 +113,11 @@ public interface GraphDefinition_LinkBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public GraphDefinition_LinkBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param sliceName */
     public GraphDefinition_LinkBuilder.Impl withSliceName(@NonNull String sliceName) {
       this.sliceName = Optional.of(sliceName);
@@ -162,6 +167,13 @@ public interface GraphDefinition_LinkBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public GraphDefinition_LinkBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param target */
     public GraphDefinition_LinkBuilder.Impl withTarget(
         @NonNull GraphDefinition$Link$Target... target) {
@@ -172,6 +184,12 @@ public interface GraphDefinition_LinkBuilder {
     public GraphDefinition_LinkBuilder.Impl withTarget(
         @NonNull Collection<GraphDefinition$Link$Target> target) {
       this.target = Collections.unmodifiableCollection(target);
+      return this;
+    }
+
+    public GraphDefinition_LinkBuilder.Impl withTarget(
+        @NonNull GraphDefinition_Link_TargetBuilder... target) {
+      this.target = Arrays.stream(target).map(e -> e.build()).collect(toList());
       return this;
     }
 

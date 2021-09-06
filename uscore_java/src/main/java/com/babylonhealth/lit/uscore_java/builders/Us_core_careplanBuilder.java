@@ -158,6 +158,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_careplanBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /** @param goal - Describes the intended objective(s) of carrying out the care plan. */
     public Us_core_careplanBuilder.Impl withGoal(@NonNull Reference... goal) {
       this.goal = Arrays.asList(goal);
@@ -168,6 +173,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       this.goal = Collections.unmodifiableCollection(goal);
       return this;
     }
+
+    public Us_core_careplanBuilder.Impl withGoal(@NonNull ReferenceBuilder... goal) {
+      this.goal = Arrays.stream(goal).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param note - General notes about the care plan not covered elsewhere. */
     public Us_core_careplanBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
@@ -176,6 +186,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
     /** @param note - General notes about the care plan not covered elsewhere. */
     public Us_core_careplanBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param title - Human-friendly name for the care plan. */
@@ -197,9 +212,19 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public Us_core_careplanBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param period - Indicates when the plan did (or is intended to) come into effect and end. */
     public Us_core_careplanBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -210,6 +235,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       this.author = Optional.of(author);
       return this;
     }
+
+    public Us_core_careplanBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
+      return this;
+    }
     /** @param basedOn - A care plan that is fulfilled in whole or in part by this care plan. */
     public Us_core_careplanBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
       this.basedOn = Arrays.asList(basedOn);
@@ -218,6 +248,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
     /** @param basedOn - A care plan that is fulfilled in whole or in part by this care plan. */
     public Us_core_careplanBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -249,6 +284,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       this.replaces = Collections.unmodifiableCollection(replaces);
       return this;
     }
+
+    public Us_core_careplanBuilder.Impl withReplaces(@NonNull ReferenceBuilder... replaces) {
+      this.replaces = Arrays.stream(replaces).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param careTeam - Identifies all people and organizations who are expected to be involved in
      *     the care envisioned by this plan.
@@ -263,6 +303,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
      */
     public Us_core_careplanBuilder.Impl withCareTeam(@NonNull Collection<Reference> careTeam) {
       this.careTeam = Collections.unmodifiableCollection(careTeam);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withCareTeam(@NonNull ReferenceBuilder... careTeam) {
+      this.careTeam = Arrays.stream(careTeam).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -281,6 +326,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
      */
     public Us_core_careplanBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -305,12 +355,22 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_careplanBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this CarePlan was created or to which the
      *     creation of this record is tightly associated.
      */
     public Us_core_careplanBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -329,6 +389,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       this.addresses = Collections.unmodifiableCollection(addresses);
       return this;
     }
+
+    public Us_core_careplanBuilder.Impl withAddresses(@NonNull ReferenceBuilder... addresses) {
+      this.addresses = Arrays.stream(addresses).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Business identifiers assigned to this care plan by the performer or other
      *     systems which remain constant as the resource is updated and propagates from server to
@@ -345,6 +410,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
      */
     public Us_core_careplanBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description - A description of the scope and nature of the plan. */
@@ -367,6 +437,11 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
     public Us_core_careplanBuilder.Impl withContributor(
         @NonNull Collection<Reference> contributor) {
       this.contributor = Collections.unmodifiableCollection(contributor);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withContributor(@NonNull ReferenceBuilder... contributor) {
+      this.contributor = Arrays.stream(contributor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -396,6 +471,12 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
     public Us_core_careplanBuilder.Impl withSupportingInfo(
         @NonNull Collection<Reference> supportingInfo) {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withSupportingInfo(
+        @NonNull ReferenceBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -453,6 +534,13 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_careplanBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param instantiatesCanonical - The URL pointing to a FHIR-defined protocol, guideline,
      *     questionnaire or other definition that is adhered to in whole or in part by this
@@ -488,6 +576,12 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
     public Us_core_careplanBuilder.Impl withActivity(
         @NonNull Collection<CarePlan.Activity> activity) {
       this.activity = Collections.unmodifiableCollection(activity);
+      return this;
+    }
+
+    public Us_core_careplanBuilder.Impl withActivity(
+        @NonNull CarePlan_ActivityBuilder... activity) {
+      this.activity = Arrays.stream(activity).map(e -> e.build()).collect(toList());
       return this;
     }
 

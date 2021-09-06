@@ -83,6 +83,11 @@ public interface CodeSystem_Concept_DesignationBuilder {
       this.use = Optional.of(use);
       return this;
     }
+
+    public CodeSystem_Concept_DesignationBuilder.Impl withUse(@NonNull CodingBuilder use) {
+      this.use = Optional.of(use.build());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public CodeSystem_Concept_DesignationBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -110,6 +115,12 @@ public interface CodeSystem_Concept_DesignationBuilder {
     public CodeSystem_Concept_DesignationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public CodeSystem_Concept_DesignationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -146,6 +157,13 @@ public interface CodeSystem_Concept_DesignationBuilder {
     public CodeSystem_Concept_DesignationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CodeSystem_Concept_DesignationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

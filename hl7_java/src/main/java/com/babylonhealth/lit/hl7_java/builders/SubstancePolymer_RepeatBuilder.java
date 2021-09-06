@@ -96,6 +96,12 @@ public interface SubstancePolymer_RepeatBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstancePolymer_RepeatBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param numberOfUnits */
     public SubstancePolymer_RepeatBuilder.Impl withNumberOfUnits(@NonNull Integer numberOfUnits) {
       this.numberOfUnits = Optional.of(numberOfUnits);
@@ -137,10 +143,23 @@ public interface SubstancePolymer_RepeatBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstancePolymer_RepeatBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param repeatUnitAmountType */
     public SubstancePolymer_RepeatBuilder.Impl withRepeatUnitAmountType(
         @NonNull CodeableConcept repeatUnitAmountType) {
       this.repeatUnitAmountType = Optional.of(repeatUnitAmountType);
+      return this;
+    }
+
+    public SubstancePolymer_RepeatBuilder.Impl withRepeatUnitAmountType(
+        @NonNull CodeableConceptBuilder repeatUnitAmountType) {
+      this.repeatUnitAmountType = Optional.of(repeatUnitAmountType.build());
       return this;
     }
     /** @param averageMolecularFormula */
@@ -159,6 +178,12 @@ public interface SubstancePolymer_RepeatBuilder {
     public SubstancePolymer_RepeatBuilder.Impl withRepeatUnit(
         @NonNull Collection<SubstancePolymer$Repeat$RepeatUnit> repeatUnit) {
       this.repeatUnit = Collections.unmodifiableCollection(repeatUnit);
+      return this;
+    }
+
+    public SubstancePolymer_RepeatBuilder.Impl withRepeatUnit(
+        @NonNull SubstancePolymer_Repeat_RepeatUnitBuilder... repeatUnit) {
+      this.repeatUnit = Arrays.stream(repeatUnit).map(e -> e.build()).collect(toList());
       return this;
     }
 

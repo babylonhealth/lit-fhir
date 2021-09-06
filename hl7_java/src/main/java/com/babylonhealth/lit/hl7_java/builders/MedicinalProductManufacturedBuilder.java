@@ -100,6 +100,11 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicinalProductManufacturedBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -109,6 +114,11 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
      */
     public MedicinalProductManufacturedBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MedicinalProductManufacturedBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -135,6 +145,12 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MedicinalProductManufacturedBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -158,6 +174,12 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductManufacturedBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param ingredient - Ingredient. */
     public MedicinalProductManufacturedBuilder.Impl withIngredient(
         @NonNull Reference... ingredient) {
@@ -168,6 +190,12 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
     public MedicinalProductManufacturedBuilder.Impl withIngredient(
         @NonNull Collection<Reference> ingredient) {
       this.ingredient = Collections.unmodifiableCollection(ingredient);
+      return this;
+    }
+
+    public MedicinalProductManufacturedBuilder.Impl withIngredient(
+        @NonNull ReferenceBuilder... ingredient) {
+      this.ingredient = Arrays.stream(ingredient).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -186,6 +214,12 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
     public MedicinalProductManufacturedBuilder.Impl withManufacturer(
         @NonNull Collection<Reference> manufacturer) {
       this.manufacturer = Collections.unmodifiableCollection(manufacturer);
+      return this;
+    }
+
+    public MedicinalProductManufacturedBuilder.Impl withManufacturer(
+        @NonNull ReferenceBuilder... manufacturer) {
+      this.manufacturer = Arrays.stream(manufacturer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -235,6 +269,13 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductManufacturedBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param unitOfPresentation - The “real world” units in which the quantity of the manufactured
      *     item is described.
@@ -242,6 +283,12 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
     public MedicinalProductManufacturedBuilder.Impl withUnitOfPresentation(
         @NonNull CodeableConcept unitOfPresentation) {
       this.unitOfPresentation = Optional.of(unitOfPresentation);
+      return this;
+    }
+
+    public MedicinalProductManufacturedBuilder.Impl withUnitOfPresentation(
+        @NonNull CodeableConceptBuilder unitOfPresentation) {
+      this.unitOfPresentation = Optional.of(unitOfPresentation.build());
       return this;
     }
     /** @param otherCharacteristics - Other codeable characteristics. */
@@ -254,6 +301,13 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
     public MedicinalProductManufacturedBuilder.Impl withOtherCharacteristics(
         @NonNull Collection<CodeableConcept> otherCharacteristics) {
       this.otherCharacteristics = Collections.unmodifiableCollection(otherCharacteristics);
+      return this;
+    }
+
+    public MedicinalProductManufacturedBuilder.Impl withOtherCharacteristics(
+        @NonNull CodeableConceptBuilder... otherCharacteristics) {
+      this.otherCharacteristics =
+          Arrays.stream(otherCharacteristics).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param physicalCharacteristics - Dimensions, color etc. */

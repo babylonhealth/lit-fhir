@@ -84,6 +84,11 @@ public interface DataRequirement_CodeFilterBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public DataRequirement_CodeFilterBuilder.Impl withCode(@NonNull CodingBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param valueSet */
     public DataRequirement_CodeFilterBuilder.Impl withValueSet(@NonNull String valueSet) {
       this.valueSet = Optional.of(valueSet);
@@ -110,6 +115,12 @@ public interface DataRequirement_CodeFilterBuilder {
     public DataRequirement_CodeFilterBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public DataRequirement_CodeFilterBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param searchParam */

@@ -108,10 +108,22 @@ public interface MolecularSequence_StructureVariantBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MolecularSequence_StructureVariantBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param variantType */
     public MolecularSequence_StructureVariantBuilder.Impl withVariantType(
         @NonNull CodeableConcept variantType) {
       this.variantType = Optional.of(variantType);
+      return this;
+    }
+
+    public MolecularSequence_StructureVariantBuilder.Impl withVariantType(
+        @NonNull CodeableConceptBuilder variantType) {
+      this.variantType = Optional.of(variantType.build());
       return this;
     }
     /**
@@ -150,16 +162,35 @@ public interface MolecularSequence_StructureVariantBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MolecularSequence_StructureVariantBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param outer */
     public MolecularSequence_StructureVariantBuilder.Impl withOuter(
         @NonNull MolecularSequence$StructureVariant$Outer outer) {
       this.outer = Optional.of(outer);
       return this;
     }
+
+    public MolecularSequence_StructureVariantBuilder.Impl withOuter(
+        @NonNull MolecularSequence_StructureVariant_OuterBuilder outer) {
+      this.outer = Optional.of(outer.build());
+      return this;
+    }
     /** @param inner */
     public MolecularSequence_StructureVariantBuilder.Impl withInner(
         @NonNull MolecularSequence$StructureVariant$Inner inner) {
       this.inner = Optional.of(inner);
+      return this;
+    }
+
+    public MolecularSequence_StructureVariantBuilder.Impl withInner(
+        @NonNull MolecularSequence_StructureVariant_InnerBuilder inner) {
+      this.inner = Optional.of(inner.build());
       return this;
     }
 

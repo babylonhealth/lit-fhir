@@ -78,10 +78,22 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
       this.author = Optional.of(author);
       return this;
     }
+
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withAuthor(
+        @NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
+      return this;
+    }
     /** @param method */
     public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withMethod(
         @NonNull CodeableConcept method) {
       this.method = Optional.of(method);
+      return this;
+    }
+
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withMethod(
+        @NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
       return this;
     }
     /**
@@ -108,10 +120,22 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param assessment */
     public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withAssessment(
         @NonNull CodeableConcept assessment) {
       this.assessment = Optional.of(assessment);
+      return this;
+    }
+
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withAssessment(
+        @NonNull CodeableConceptBuilder assessment) {
+      this.assessment = Optional.of(assessment.build());
       return this;
     }
     /**
@@ -148,6 +172,13 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
     public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param productRelatedness */

@@ -105,6 +105,12 @@ public interface ExampleScenario_Process_Step_OperationBuilder {
       this.request = Optional.of(request);
       return this;
     }
+
+    public ExampleScenario_Process_Step_OperationBuilder.Impl withRequest(
+        @NonNull ExampleScenario_Instance_ContainedInstanceBuilder request) {
+      this.request = Optional.of(request.build());
+      return this;
+    }
     /** @param receiver */
     public ExampleScenario_Process_Step_OperationBuilder.Impl withReceiver(
         @NonNull String receiver) {
@@ -115,6 +121,12 @@ public interface ExampleScenario_Process_Step_OperationBuilder {
     public ExampleScenario_Process_Step_OperationBuilder.Impl withResponse(
         @NonNull ExampleScenario$Instance$ContainedInstance response) {
       this.response = Optional.of(response);
+      return this;
+    }
+
+    public ExampleScenario_Process_Step_OperationBuilder.Impl withResponse(
+        @NonNull ExampleScenario_Instance_ContainedInstanceBuilder response) {
+      this.response = Optional.of(response.build());
       return this;
     }
     /**
@@ -139,6 +151,12 @@ public interface ExampleScenario_Process_Step_OperationBuilder {
     public ExampleScenario_Process_Step_OperationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExampleScenario_Process_Step_OperationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param initiator */
@@ -199,6 +217,13 @@ public interface ExampleScenario_Process_Step_OperationBuilder {
     public ExampleScenario_Process_Step_OperationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExampleScenario_Process_Step_OperationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -105,6 +105,11 @@ public interface PeriodBuilder extends ElementBuilder {
       return this;
     }
 
+    public PeriodBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Period build() {
       return new Period(
           OptionConverters.toScala(id),

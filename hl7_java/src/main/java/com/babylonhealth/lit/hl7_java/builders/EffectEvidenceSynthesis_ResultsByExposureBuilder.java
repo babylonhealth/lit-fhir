@@ -103,6 +103,12 @@ public interface EffectEvidenceSynthesis_ResultsByExposureBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EffectEvidenceSynthesis_ResultsByExposureBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the effect evidence
      *     synthesis from a consumer's perspective.
@@ -116,6 +122,12 @@ public interface EffectEvidenceSynthesis_ResultsByExposureBuilder {
     public EffectEvidenceSynthesis_ResultsByExposureBuilder.Impl withVariantState(
         @NonNull CodeableConcept variantState) {
       this.variantState = Optional.of(variantState);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_ResultsByExposureBuilder.Impl withVariantState(
+        @NonNull CodeableConceptBuilder variantState) {
+      this.variantState = Optional.of(variantState.build());
       return this;
     }
     /** @param exposureState */
@@ -158,6 +170,13 @@ public interface EffectEvidenceSynthesis_ResultsByExposureBuilder {
     public EffectEvidenceSynthesis_ResultsByExposureBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_ResultsByExposureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

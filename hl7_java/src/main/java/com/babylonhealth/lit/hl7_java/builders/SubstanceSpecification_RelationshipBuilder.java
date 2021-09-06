@@ -112,6 +112,12 @@ public interface SubstanceSpecification_RelationshipBuilder {
       this.source = Collections.unmodifiableCollection(source);
       return this;
     }
+
+    public SubstanceSpecification_RelationshipBuilder.Impl withSource(
+        @NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -136,6 +142,12 @@ public interface SubstanceSpecification_RelationshipBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSpecification_RelationshipBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param amount Field is a 'choice' field. Type should be one of Quantity, Range, Ratio,
      *     String. To pass the value in, wrap with one of the
@@ -158,6 +170,12 @@ public interface SubstanceSpecification_RelationshipBuilder {
       this.amountType = Optional.of(amountType);
       return this;
     }
+
+    public SubstanceSpecification_RelationshipBuilder.Impl withAmountType(
+        @NonNull CodeableConceptBuilder amountType) {
+      this.amountType = Optional.of(amountType.build());
+      return this;
+    }
     /**
      * @param substance Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
      *     To pass the value in, wrap with one of the
@@ -175,6 +193,12 @@ public interface SubstanceSpecification_RelationshipBuilder {
     public SubstanceSpecification_RelationshipBuilder.Impl withRelationship(
         @NonNull CodeableConcept relationship) {
       this.relationship = Optional.of(relationship);
+      return this;
+    }
+
+    public SubstanceSpecification_RelationshipBuilder.Impl withRelationship(
+        @NonNull CodeableConceptBuilder relationship) {
+      this.relationship = Optional.of(relationship.build());
       return this;
     }
     /**
@@ -213,10 +237,23 @@ public interface SubstanceSpecification_RelationshipBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceSpecification_RelationshipBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param amountRatioLowLimit */
     public SubstanceSpecification_RelationshipBuilder.Impl withAmountRatioLowLimit(
         @NonNull Ratio amountRatioLowLimit) {
       this.amountRatioLowLimit = Optional.of(amountRatioLowLimit);
+      return this;
+    }
+
+    public SubstanceSpecification_RelationshipBuilder.Impl withAmountRatioLowLimit(
+        @NonNull RatioBuilder amountRatioLowLimit) {
+      this.amountRatioLowLimit = Optional.of(amountRatioLowLimit.build());
       return this;
     }
 

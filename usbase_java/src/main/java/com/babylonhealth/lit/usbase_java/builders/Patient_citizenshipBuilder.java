@@ -294,6 +294,11 @@ public interface Patient_citizenshipBuilder extends ExtensionBuilder {
       return this;
     }
 
+    public Patient_citizenshipBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Patient_citizenship build() {
       return new Patient_citizenship(
           OptionConverters.toScala(id),

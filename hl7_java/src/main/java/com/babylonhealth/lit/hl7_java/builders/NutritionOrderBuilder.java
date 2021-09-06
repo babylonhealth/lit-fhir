@@ -122,6 +122,11 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public NutritionOrderBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -131,6 +136,11 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
      */
     public NutritionOrderBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public NutritionOrderBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -149,12 +159,22 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public NutritionOrderBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param orderer - The practitioner that holds legal responsibility for ordering the diet,
      *     nutritional supplement, or formula feedings.
      */
     public NutritionOrderBuilder.Impl withOrderer(@NonNull Reference orderer) {
       this.orderer = Optional.of(orderer);
+      return this;
+    }
+
+    public NutritionOrderBuilder.Impl withOrderer(@NonNull ReferenceBuilder orderer) {
+      this.orderer = Optional.of(orderer.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -180,6 +200,11 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public NutritionOrderBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -202,12 +227,22 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public NutritionOrderBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - An encounter that provides additional information about the healthcare
      *     context in which this request is made.
      */
     public NutritionOrderBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public NutritionOrderBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -224,6 +259,11 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
      */
     public NutritionOrderBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public NutritionOrderBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -307,6 +347,13 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public NutritionOrderBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param allergyIntolerance - A link to a record of allergies or intolerances which should be
      *     included in the nutrition order.
@@ -323,6 +370,13 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
     public NutritionOrderBuilder.Impl withAllergyIntolerance(
         @NonNull Collection<Reference> allergyIntolerance) {
       this.allergyIntolerance = Collections.unmodifiableCollection(allergyIntolerance);
+      return this;
+    }
+
+    public NutritionOrderBuilder.Impl withAllergyIntolerance(
+        @NonNull ReferenceBuilder... allergyIntolerance) {
+      this.allergyIntolerance =
+          Arrays.stream(allergyIntolerance).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -355,6 +409,13 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
     public NutritionOrderBuilder.Impl withExcludeFoodModifier(
         @NonNull Collection<CodeableConcept> excludeFoodModifier) {
       this.excludeFoodModifier = Collections.unmodifiableCollection(excludeFoodModifier);
+      return this;
+    }
+
+    public NutritionOrderBuilder.Impl withExcludeFoodModifier(
+        @NonNull CodeableConceptBuilder... excludeFoodModifier) {
+      this.excludeFoodModifier =
+          Arrays.stream(excludeFoodModifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -401,6 +462,13 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
       this.foodPreferenceModifier = Collections.unmodifiableCollection(foodPreferenceModifier);
       return this;
     }
+
+    public NutritionOrderBuilder.Impl withFoodPreferenceModifier(
+        @NonNull CodeableConceptBuilder... foodPreferenceModifier) {
+      this.foodPreferenceModifier =
+          Arrays.stream(foodPreferenceModifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param supplement - Oral nutritional products given in order to add further nutritional value
      *     to the patient's diet.
@@ -419,9 +487,21 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
       this.supplement = Collections.unmodifiableCollection(supplement);
       return this;
     }
+
+    public NutritionOrderBuilder.Impl withSupplement(
+        @NonNull NutritionOrder_SupplementBuilder... supplement) {
+      this.supplement = Arrays.stream(supplement).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param oralDiet - Diet given orally in contrast to enteral (tube) feeding. */
     public NutritionOrderBuilder.Impl withOralDiet(@NonNull NutritionOrder.OralDiet oralDiet) {
       this.oralDiet = Optional.of(oralDiet);
+      return this;
+    }
+
+    public NutritionOrderBuilder.Impl withOralDiet(
+        @NonNull NutritionOrder_OralDietBuilder oralDiet) {
+      this.oralDiet = Optional.of(oralDiet.build());
       return this;
     }
     /**
@@ -431,6 +511,12 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
     public NutritionOrderBuilder.Impl withEnteralFormula(
         @NonNull NutritionOrder.EnteralFormula enteralFormula) {
       this.enteralFormula = Optional.of(enteralFormula);
+      return this;
+    }
+
+    public NutritionOrderBuilder.Impl withEnteralFormula(
+        @NonNull NutritionOrder_EnteralFormulaBuilder enteralFormula) {
+      this.enteralFormula = Optional.of(enteralFormula.build());
       return this;
     }
 

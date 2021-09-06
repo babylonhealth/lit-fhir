@@ -110,6 +110,11 @@ public interface Questionnaire_ItemBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public Questionnaire_ItemBuilder.Impl withCode(@NonNull CodingBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -135,6 +140,11 @@ public interface Questionnaire_ItemBuilder {
      */
     public Questionnaire_ItemBuilder.Impl withItem(@NonNull Collection<Questionnaire.Item> item) {
       this.item = Collections.unmodifiableCollection(item);
+      return this;
+    }
+
+    public Questionnaire_ItemBuilder.Impl withItem(@NonNull Questionnaire_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param prefix */
@@ -177,6 +187,11 @@ public interface Questionnaire_ItemBuilder {
      */
     public Questionnaire_ItemBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Questionnaire_ItemBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param maxLength */
@@ -236,6 +251,13 @@ public interface Questionnaire_ItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Questionnaire_ItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param initial */
     public Questionnaire_ItemBuilder.Impl withInitial(
         @NonNull Questionnaire$Item$Initial... initial) {
@@ -246,6 +268,12 @@ public interface Questionnaire_ItemBuilder {
     public Questionnaire_ItemBuilder.Impl withInitial(
         @NonNull Collection<Questionnaire$Item$Initial> initial) {
       this.initial = Collections.unmodifiableCollection(initial);
+      return this;
+    }
+
+    public Questionnaire_ItemBuilder.Impl withInitial(
+        @NonNull Questionnaire_Item_InitialBuilder... initial) {
+      this.initial = Arrays.stream(initial).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param enableWhen */
@@ -260,6 +288,12 @@ public interface Questionnaire_ItemBuilder {
       this.enableWhen = Collections.unmodifiableCollection(enableWhen);
       return this;
     }
+
+    public Questionnaire_ItemBuilder.Impl withEnableWhen(
+        @NonNull Questionnaire_Item_EnableWhenBuilder... enableWhen) {
+      this.enableWhen = Arrays.stream(enableWhen).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param answerOption */
     public Questionnaire_ItemBuilder.Impl withAnswerOption(
         @NonNull Questionnaire$Item$AnswerOption... answerOption) {
@@ -270,6 +304,12 @@ public interface Questionnaire_ItemBuilder {
     public Questionnaire_ItemBuilder.Impl withAnswerOption(
         @NonNull Collection<Questionnaire$Item$AnswerOption> answerOption) {
       this.answerOption = Collections.unmodifiableCollection(answerOption);
+      return this;
+    }
+
+    public Questionnaire_ItemBuilder.Impl withAnswerOption(
+        @NonNull Questionnaire_Item_AnswerOptionBuilder... answerOption) {
+      this.answerOption = Arrays.stream(answerOption).map(e -> e.build()).collect(toList());
       return this;
     }
 

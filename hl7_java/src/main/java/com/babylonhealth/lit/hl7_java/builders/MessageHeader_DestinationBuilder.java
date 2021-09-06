@@ -89,9 +89,19 @@ public interface MessageHeader_DestinationBuilder {
       this.target = Optional.of(target);
       return this;
     }
+
+    public MessageHeader_DestinationBuilder.Impl withTarget(@NonNull ReferenceBuilder target) {
+      this.target = Optional.of(target.build());
+      return this;
+    }
     /** @param receiver */
     public MessageHeader_DestinationBuilder.Impl withReceiver(@NonNull Reference receiver) {
       this.receiver = Optional.of(receiver);
+      return this;
+    }
+
+    public MessageHeader_DestinationBuilder.Impl withReceiver(@NonNull ReferenceBuilder receiver) {
+      this.receiver = Optional.of(receiver.build());
       return this;
     }
     /**
@@ -115,6 +125,12 @@ public interface MessageHeader_DestinationBuilder {
     public MessageHeader_DestinationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MessageHeader_DestinationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -151,6 +167,13 @@ public interface MessageHeader_DestinationBuilder {
     public MessageHeader_DestinationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MessageHeader_DestinationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

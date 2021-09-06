@@ -165,6 +165,11 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SearchParameterBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -174,6 +179,11 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
      */
     public SearchParameterBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SearchParameterBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -253,6 +263,11 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public SearchParameterBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this search parameter is needed and why it has been
      *     designed as it has.
@@ -295,6 +310,11 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SearchParameterBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -315,6 +335,11 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
      */
     public SearchParameterBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SearchParameterBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -344,6 +369,11 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
     public SearchParameterBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public SearchParameterBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -425,6 +455,12 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
       return this;
     }
+
+    public SearchParameterBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -471,6 +507,13 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SearchParameterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param component - Used to define the parts of a composite search parameter. */
     public SearchParameterBuilder.Impl withComponent(
         @NonNull SearchParameter.Component... component) {
@@ -481,6 +524,12 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
     public SearchParameterBuilder.Impl withComponent(
         @NonNull Collection<SearchParameter.Component> component) {
       this.component = Collections.unmodifiableCollection(component);
+      return this;
+    }
+
+    public SearchParameterBuilder.Impl withComponent(
+        @NonNull SearchParameter_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
       return this;
     }
 

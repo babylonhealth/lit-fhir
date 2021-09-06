@@ -140,6 +140,11 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public TerminologyCapabilitiesBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -149,6 +154,11 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
      */
     public TerminologyCapabilitiesBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public TerminologyCapabilitiesBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -196,6 +206,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public TerminologyCapabilitiesBuilder.Impl withContact(
+        @NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this terminology capabilities is needed and why it has
      *     been designed as it has.
@@ -228,6 +244,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public TerminologyCapabilitiesBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -249,6 +271,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     public TerminologyCapabilitiesBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public TerminologyCapabilitiesBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -287,6 +315,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     public TerminologyCapabilitiesBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public TerminologyCapabilitiesBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param lockedDate - Whether the server supports lockedDate. */
@@ -340,6 +374,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
       return this;
     }
+
+    public TerminologyCapabilitiesBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -386,10 +426,23 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TerminologyCapabilitiesBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param closure - Whether the $closure operation is supported. */
     public TerminologyCapabilitiesBuilder.Impl withClosure(
         @NonNull TerminologyCapabilities.Closure closure) {
       this.closure = Optional.of(closure);
+      return this;
+    }
+
+    public TerminologyCapabilitiesBuilder.Impl withClosure(
+        @NonNull TerminologyCapabilities_ClosureBuilder closure) {
+      this.closure = Optional.of(closure.build());
       return this;
     }
     /**
@@ -402,6 +455,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       this.software = Optional.of(software);
       return this;
     }
+
+    public TerminologyCapabilitiesBuilder.Impl withSoftware(
+        @NonNull TerminologyCapabilities_SoftwareBuilder software) {
+      this.software = Optional.of(software.build());
+      return this;
+    }
     /**
      * @param translation - Information about the
      *     [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
@@ -411,6 +470,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       this.translation = Optional.of(translation);
       return this;
     }
+
+    public TerminologyCapabilitiesBuilder.Impl withTranslation(
+        @NonNull TerminologyCapabilities_TranslationBuilder translation) {
+      this.translation = Optional.of(translation.build());
+      return this;
+    }
     /**
      * @param validateCode - Information about the
      *     [ValueSet/$validate-code](valueset-operation-validate-code.html) operation.
@@ -418,6 +483,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     public TerminologyCapabilitiesBuilder.Impl withValidateCode(
         @NonNull TerminologyCapabilities.ValidateCode validateCode) {
       this.validateCode = Optional.of(validateCode);
+      return this;
+    }
+
+    public TerminologyCapabilitiesBuilder.Impl withValidateCode(
+        @NonNull TerminologyCapabilities_ValidateCodeBuilder validateCode) {
+      this.validateCode = Optional.of(validateCode.build());
       return this;
     }
     /**
@@ -430,6 +501,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       this.implementation = Optional.of(implementation);
       return this;
     }
+
+    public TerminologyCapabilitiesBuilder.Impl withImplementation(
+        @NonNull TerminologyCapabilities_ImplementationBuilder implementation) {
+      this.implementation = Optional.of(implementation.build());
+      return this;
+    }
     /**
      * @param expansion - Information about the [ValueSet/$expand](valueset-operation-expand.html)
      *     operation.
@@ -437,6 +514,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     public TerminologyCapabilitiesBuilder.Impl withExpansion(
         @NonNull TerminologyCapabilities.Expansion expansion) {
       this.expansion = Optional.of(expansion);
+      return this;
+    }
+
+    public TerminologyCapabilitiesBuilder.Impl withExpansion(
+        @NonNull TerminologyCapabilities_ExpansionBuilder expansion) {
+      this.expansion = Optional.of(expansion.build());
       return this;
     }
     /**
@@ -457,6 +540,12 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     public TerminologyCapabilitiesBuilder.Impl withCodeSystem(
         @NonNull Collection<TerminologyCapabilities.CodeSystem> codeSystem) {
       this.codeSystem = Collections.unmodifiableCollection(codeSystem);
+      return this;
+    }
+
+    public TerminologyCapabilitiesBuilder.Impl withCodeSystem(
+        @NonNull TerminologyCapabilities_CodeSystemBuilder... codeSystem) {
+      this.codeSystem = Arrays.stream(codeSystem).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -94,6 +94,12 @@ public interface TerminologyCapabilities_ClosureBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TerminologyCapabilities_ClosureBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param translation - Information about the
      *     [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
@@ -137,6 +143,13 @@ public interface TerminologyCapabilities_ClosureBuilder {
     public TerminologyCapabilities_ClosureBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public TerminologyCapabilities_ClosureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

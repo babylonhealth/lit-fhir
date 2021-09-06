@@ -83,6 +83,11 @@ public interface AuditEvent_EntityBuilder {
       this.what = Optional.of(what);
       return this;
     }
+
+    public AuditEvent_EntityBuilder.Impl withWhat(@NonNull ReferenceBuilder what) {
+      this.what = Optional.of(what.build());
+      return this;
+    }
     /**
      * @param _type - Identifier for a family of the event. For example, a menu item, program, rule,
      *     policy, function code, application name or URL. It identifies the performed function.
@@ -91,9 +96,19 @@ public interface AuditEvent_EntityBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public AuditEvent_EntityBuilder.Impl withType(@NonNull CodingBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param role */
     public AuditEvent_EntityBuilder.Impl withRole(@NonNull Coding role) {
       this.role = Optional.of(role);
+      return this;
+    }
+
+    public AuditEvent_EntityBuilder.Impl withRole(@NonNull CodingBuilder role) {
+      this.role = Optional.of(role.build());
       return this;
     }
     /** @param name */
@@ -128,9 +143,19 @@ public interface AuditEvent_EntityBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AuditEvent_EntityBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param lifecycle */
     public AuditEvent_EntityBuilder.Impl withLifecycle(@NonNull Coding lifecycle) {
       this.lifecycle = Optional.of(lifecycle);
+      return this;
+    }
+
+    public AuditEvent_EntityBuilder.Impl withLifecycle(@NonNull CodingBuilder lifecycle) {
+      this.lifecycle = Optional.of(lifecycle.build());
       return this;
     }
     /** @param description */
@@ -147,6 +172,12 @@ public interface AuditEvent_EntityBuilder {
     public AuditEvent_EntityBuilder.Impl withSecurityLabel(
         @NonNull Collection<Coding> securityLabel) {
       this.securityLabel = Collections.unmodifiableCollection(securityLabel);
+      return this;
+    }
+
+    public AuditEvent_EntityBuilder.Impl withSecurityLabel(
+        @NonNull CodingBuilder... securityLabel) {
+      this.securityLabel = Arrays.stream(securityLabel).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -185,6 +216,13 @@ public interface AuditEvent_EntityBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public AuditEvent_EntityBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param detail */
     public AuditEvent_EntityBuilder.Impl withDetail(@NonNull AuditEvent$Entity$Detail... detail) {
       this.detail = Arrays.asList(detail);
@@ -194,6 +232,12 @@ public interface AuditEvent_EntityBuilder {
     public AuditEvent_EntityBuilder.Impl withDetail(
         @NonNull Collection<AuditEvent$Entity$Detail> detail) {
       this.detail = Collections.unmodifiableCollection(detail);
+      return this;
+    }
+
+    public AuditEvent_EntityBuilder.Impl withDetail(
+        @NonNull AuditEvent_Entity_DetailBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
       return this;
     }
 

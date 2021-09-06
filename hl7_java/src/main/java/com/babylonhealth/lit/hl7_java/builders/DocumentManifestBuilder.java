@@ -105,6 +105,11 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public DocumentManifestBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -116,12 +121,22 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public DocumentManifestBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param _type - The code specifying the type of clinical activity that resulted in placing the
      *     associated content into the DocumentManifest.
      */
     public DocumentManifestBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public DocumentManifestBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -138,6 +153,11 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
      */
     public DocumentManifestBuilder.Impl withAuthor(@NonNull Collection<Reference> author) {
       this.author = Collections.unmodifiableCollection(author);
+      return this;
+    }
+
+    public DocumentManifestBuilder.Impl withAuthor(@NonNull ReferenceBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -157,6 +177,11 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
      */
     public DocumentManifestBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public DocumentManifestBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /**
@@ -191,6 +216,11 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public DocumentManifestBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -213,6 +243,11 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DocumentManifestBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param recipient - A patient, practitioner, or organization for which this set of documents
      *     is intended.
@@ -229,6 +264,11 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
       this.recipient = Collections.unmodifiableCollection(recipient);
       return this;
     }
+
+    public DocumentManifestBuilder.Impl withRecipient(@NonNull ReferenceBuilder... recipient) {
+      this.recipient = Arrays.stream(recipient).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Other identifiers associated with the document manifest, including
      *     version independent identifiers.
@@ -243,6 +283,11 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
      */
     public DocumentManifestBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public DocumentManifestBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -269,6 +314,12 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
      */
     public DocumentManifestBuilder.Impl withMasterIdentifier(@NonNull Identifier masterIdentifier) {
       this.masterIdentifier = Optional.of(masterIdentifier);
+      return this;
+    }
+
+    public DocumentManifestBuilder.Impl withMasterIdentifier(
+        @NonNull IdentifierBuilder masterIdentifier) {
+      this.masterIdentifier = Optional.of(masterIdentifier.build());
       return this;
     }
     /**
@@ -307,6 +358,13 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DocumentManifestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param related - Related identifiers or resources associated with the DocumentManifest. */
     public DocumentManifestBuilder.Impl withRelated(@NonNull DocumentManifest.Related... related) {
       this.related = Arrays.asList(related);
@@ -316,6 +374,12 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
     public DocumentManifestBuilder.Impl withRelated(
         @NonNull Collection<DocumentManifest.Related> related) {
       this.related = Collections.unmodifiableCollection(related);
+      return this;
+    }
+
+    public DocumentManifestBuilder.Impl withRelated(
+        @NonNull DocumentManifest_RelatedBuilder... related) {
+      this.related = Arrays.stream(related).map(e -> e.build()).collect(toList());
       return this;
     }
 

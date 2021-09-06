@@ -97,9 +97,19 @@ public interface Specimen_CollectionBuilder {
       this.method = Optional.of(method);
       return this;
     }
+
+    public Specimen_CollectionBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
+      return this;
+    }
     /** @param duration */
     public Specimen_CollectionBuilder.Impl withDuration(@NonNull Duration duration) {
       this.duration = Optional.of(duration);
+      return this;
+    }
+
+    public Specimen_CollectionBuilder.Impl withDuration(@NonNull DurationBuilder duration) {
+      this.duration = Optional.of(duration.build());
       return this;
     }
     /** @param quantity */
@@ -107,9 +117,19 @@ public interface Specimen_CollectionBuilder {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public Specimen_CollectionBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /** @param bodySite */
     public Specimen_CollectionBuilder.Impl withBodySite(@NonNull CodeableConcept bodySite) {
       this.bodySite = Optional.of(bodySite);
+      return this;
+    }
+
+    public Specimen_CollectionBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
       return this;
     }
     /**
@@ -134,9 +154,19 @@ public interface Specimen_CollectionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Specimen_CollectionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param collector */
     public Specimen_CollectionBuilder.Impl withCollector(@NonNull Reference collector) {
       this.collector = Optional.of(collector);
+      return this;
+    }
+
+    public Specimen_CollectionBuilder.Impl withCollector(@NonNull ReferenceBuilder collector) {
+      this.collector = Optional.of(collector.build());
       return this;
     }
     /**
@@ -192,6 +222,13 @@ public interface Specimen_CollectionBuilder {
     public Specimen_CollectionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Specimen_CollectionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

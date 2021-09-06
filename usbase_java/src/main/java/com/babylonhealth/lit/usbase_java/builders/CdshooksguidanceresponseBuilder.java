@@ -151,6 +151,11 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CdshooksguidanceresponseBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -160,6 +165,11 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
      */
     public CdshooksguidanceresponseBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public CdshooksguidanceresponseBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -176,14 +186,29 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public CdshooksguidanceresponseBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param result - The actions, if any, produced by the evaluation of the artifact. */
     public CdshooksguidanceresponseBuilder.Impl withResult(@NonNull Reference result) {
       this.result = Optional.of(result);
       return this;
     }
+
+    public CdshooksguidanceresponseBuilder.Impl withResult(@NonNull ReferenceBuilder result) {
+      this.result = Optional.of(result.build());
+      return this;
+    }
     /** @param subject - The patient for which the request was processed. */
     public CdshooksguidanceresponseBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public CdshooksguidanceresponseBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -210,6 +235,12 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public CdshooksguidanceresponseBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The encounter during which this response was created or to which the
      *     creation of this record is tightly associated.
@@ -218,9 +249,19 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
       this.encounter = Optional.of(encounter);
       return this;
     }
+
+    public CdshooksguidanceresponseBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
     /** @param performer - Provides a reference to the device that performed the guidance. */
     public CdshooksguidanceresponseBuilder.Impl withPerformer(@NonNull Reference performer) {
       this.performer = Optional.of(performer);
+      return this;
+    }
+
+    public CdshooksguidanceresponseBuilder.Impl withPerformer(@NonNull ReferenceBuilder performer) {
+      this.performer = Optional.of(performer.build());
       return this;
     }
     /**
@@ -237,6 +278,12 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
     public CdshooksguidanceresponseBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public CdshooksguidanceresponseBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -271,6 +318,12 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public CdshooksguidanceresponseBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dataRequirement - If the evaluation could not be completed due to lack of information,
      *     or additional information would potentially result in a more accurate response, this
@@ -293,6 +346,12 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
       this.dataRequirement = Collections.unmodifiableCollection(dataRequirement);
       return this;
     }
+
+    public CdshooksguidanceresponseBuilder.Impl withDataRequirement(
+        @NonNull DataRequirementBuilder... dataRequirement) {
+      this.dataRequirement = Arrays.stream(dataRequirement).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param outputParameters - The output parameters of the evaluation, if any. Many modules will
      *     result in the return of specific resources such as procedure or communication requests
@@ -303,6 +362,12 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
     public CdshooksguidanceresponseBuilder.Impl withOutputParameters(
         @NonNull Reference outputParameters) {
       this.outputParameters = Optional.of(outputParameters);
+      return this;
+    }
+
+    public CdshooksguidanceresponseBuilder.Impl withOutputParameters(
+        @NonNull ReferenceBuilder outputParameters) {
+      this.outputParameters = Optional.of(outputParameters.build());
       return this;
     }
     /**
@@ -341,6 +406,13 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CdshooksguidanceresponseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param evaluationMessage - Messages resulting from the evaluation of the artifact or
      *     artifacts. As part of evaluating the request, the engine may produce informational or
@@ -359,6 +431,13 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
     public CdshooksguidanceresponseBuilder.Impl withEvaluationMessage(
         @NonNull Collection<Reference> evaluationMessage) {
       this.evaluationMessage = Collections.unmodifiableCollection(evaluationMessage);
+      return this;
+    }
+
+    public CdshooksguidanceresponseBuilder.Impl withEvaluationMessage(
+        @NonNull ReferenceBuilder... evaluationMessage) {
+      this.evaluationMessage =
+          Arrays.stream(evaluationMessage).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param occurrenceDateTime - Indicates when the guidance response was processed. */

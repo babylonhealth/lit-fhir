@@ -90,11 +90,12 @@ case class BaseField(
     case squareReg(n) => n
     case n            => n
   }
-  def capitalName         = noParensName.capitalize
-  val backtickRegex       = """`(.+)`""".r
-  def javaName: String    = CodegenUtils.fieldJavaName(noParensName)
-  def isFHIRType: Boolean = isGenerated || (types.size == 1 && !isPrimitiveSuffix(inverseTypeLookup(types.head)))
-  def javaBuildName(getBuilderName: (String, BaseField) => String): String = (isFHIRType, cardinality) match {
+  def capitalName      = noParensName.capitalize
+  val backtickRegex    = """`(.+)`""".r
+  def javaName: String = CodegenUtils.fieldJavaName(noParensName)
+  def isBuildableFHIRType: Boolean =
+    isGenerated || (types.size == 1 && !isPrimitiveSuffix(inverseTypeLookup(types.head)) && !types.head.contains('"'))
+  def javaBuildName(getBuilderName: (String, BaseField) => String): String = (isBuildableFHIRType, cardinality) match {
     case (false, _)  => CodegenUtils.fieldJavaName(noParensName)
     case (true, One) => CodegenUtils.fieldJavaName(noParensName) + ".build()"
     case (true, AtLeastOne) =>

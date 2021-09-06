@@ -77,6 +77,12 @@ public interface TestReport_Test_ActionBuilder {
       this._assert = Optional.of(_assert);
       return this;
     }
+
+    public TestReport_Test_ActionBuilder.Impl withAssert(
+        @NonNull TestReport_Setup_Action_AssertBuilder _assert) {
+      this._assert = Optional.of(_assert.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -100,10 +106,22 @@ public interface TestReport_Test_ActionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TestReport_Test_ActionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param operation */
     public TestReport_Test_ActionBuilder.Impl withOperation(
         @NonNull TestReport$Setup$Action$Operation operation) {
       this.operation = Optional.of(operation);
+      return this;
+    }
+
+    public TestReport_Test_ActionBuilder.Impl withOperation(
+        @NonNull TestReport_Setup_Action_OperationBuilder operation) {
+      this.operation = Optional.of(operation.build());
       return this;
     }
     /**
@@ -140,6 +158,13 @@ public interface TestReport_Test_ActionBuilder {
     public TestReport_Test_ActionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public TestReport_Test_ActionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

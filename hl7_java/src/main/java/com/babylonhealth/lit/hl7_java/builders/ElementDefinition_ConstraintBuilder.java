@@ -118,6 +118,12 @@ public interface ElementDefinition_ConstraintBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ElementDefinition_ConstraintBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param expression */
     public ElementDefinition_ConstraintBuilder.Impl withExpression(@NonNull String expression) {
       this.expression = Optional.of(expression);

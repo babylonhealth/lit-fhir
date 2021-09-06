@@ -118,6 +118,11 @@ public interface UsageContextBuilder extends ElementBuilder {
       return this;
     }
 
+    public UsageContextBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public UsageContext build() {
       return new UsageContext(
           OptionConverters.toScala(id),

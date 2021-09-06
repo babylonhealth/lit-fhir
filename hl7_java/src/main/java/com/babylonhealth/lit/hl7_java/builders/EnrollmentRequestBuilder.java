@@ -91,6 +91,11 @@ public interface EnrollmentRequestBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public EnrollmentRequestBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -100,6 +105,11 @@ public interface EnrollmentRequestBuilder extends DomainResourceBuilder {
      */
     public EnrollmentRequestBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public EnrollmentRequestBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param status - The status of the resource instance. */
@@ -117,6 +127,11 @@ public interface EnrollmentRequestBuilder extends DomainResourceBuilder {
       this.insurer = Optional.of(insurer);
       return this;
     }
+
+    public EnrollmentRequestBuilder.Impl withInsurer(@NonNull ReferenceBuilder insurer) {
+      this.insurer = Optional.of(insurer.build());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public EnrollmentRequestBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -130,9 +145,19 @@ public interface EnrollmentRequestBuilder extends DomainResourceBuilder {
       this.provider = Optional.of(provider);
       return this;
     }
+
+    public EnrollmentRequestBuilder.Impl withProvider(@NonNull ReferenceBuilder provider) {
+      this.provider = Optional.of(provider.build());
+      return this;
+    }
     /** @param coverage - Reference to the program or plan identification, underwriter or payor. */
     public EnrollmentRequestBuilder.Impl withCoverage(@NonNull Reference coverage) {
       this.coverage = Optional.of(coverage);
+      return this;
+    }
+
+    public EnrollmentRequestBuilder.Impl withCoverage(@NonNull ReferenceBuilder coverage) {
+      this.coverage = Optional.of(coverage.build());
       return this;
     }
     /**
@@ -151,6 +176,11 @@ public interface EnrollmentRequestBuilder extends DomainResourceBuilder {
      */
     public EnrollmentRequestBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public EnrollmentRequestBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -175,9 +205,19 @@ public interface EnrollmentRequestBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EnrollmentRequestBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param candidate - Patient Resource. */
     public EnrollmentRequestBuilder.Impl withCandidate(@NonNull Reference candidate) {
       this.candidate = Optional.of(candidate);
+      return this;
+    }
+
+    public EnrollmentRequestBuilder.Impl withCandidate(@NonNull ReferenceBuilder candidate) {
+      this.candidate = Optional.of(candidate.build());
       return this;
     }
     /** @param identifier - The Response business identifier. */
@@ -189,6 +229,11 @@ public interface EnrollmentRequestBuilder extends DomainResourceBuilder {
     public EnrollmentRequestBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public EnrollmentRequestBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -235,6 +280,13 @@ public interface EnrollmentRequestBuilder extends DomainResourceBuilder {
     public EnrollmentRequestBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EnrollmentRequestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

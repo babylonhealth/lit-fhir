@@ -83,6 +83,11 @@ public interface EpisodeOfCare_DiagnosisBuilder {
       this.role = Optional.of(role);
       return this;
     }
+
+    public EpisodeOfCare_DiagnosisBuilder.Impl withRole(@NonNull CodeableConceptBuilder role) {
+      this.role = Optional.of(role.build());
+      return this;
+    }
     /** @param rank */
     public EpisodeOfCare_DiagnosisBuilder.Impl withRank(@NonNull Integer rank) {
       this.rank = Optional.of(rank);
@@ -109,6 +114,12 @@ public interface EpisodeOfCare_DiagnosisBuilder {
     public EpisodeOfCare_DiagnosisBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public EpisodeOfCare_DiagnosisBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -145,6 +156,13 @@ public interface EpisodeOfCare_DiagnosisBuilder {
     public EpisodeOfCare_DiagnosisBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EpisodeOfCare_DiagnosisBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

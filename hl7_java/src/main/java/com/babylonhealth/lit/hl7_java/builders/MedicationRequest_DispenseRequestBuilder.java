@@ -81,6 +81,12 @@ public interface MedicationRequest_DispenseRequestBuilder {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withQuantity(
+        @NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -105,6 +111,12 @@ public interface MedicationRequest_DispenseRequestBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param performer - The specified desired performer of the medication treatment (e.g. the
      *     performer of the medication administration).
@@ -114,16 +126,34 @@ public interface MedicationRequest_DispenseRequestBuilder {
       this.performer = Optional.of(performer);
       return this;
     }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withPerformer(
+        @NonNull ReferenceBuilder performer) {
+      this.performer = Optional.of(performer.build());
+      return this;
+    }
     /** @param validityPeriod */
     public MedicationRequest_DispenseRequestBuilder.Impl withValidityPeriod(
         @NonNull Period validityPeriod) {
       this.validityPeriod = Optional.of(validityPeriod);
       return this;
     }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withValidityPeriod(
+        @NonNull PeriodBuilder validityPeriod) {
+      this.validityPeriod = Optional.of(validityPeriod.build());
+      return this;
+    }
     /** @param dispenseInterval */
     public MedicationRequest_DispenseRequestBuilder.Impl withDispenseInterval(
         @NonNull Duration dispenseInterval) {
       this.dispenseInterval = Optional.of(dispenseInterval);
+      return this;
+    }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withDispenseInterval(
+        @NonNull DurationBuilder dispenseInterval) {
+      this.dispenseInterval = Optional.of(dispenseInterval.build());
       return this;
     }
     /**
@@ -162,6 +192,13 @@ public interface MedicationRequest_DispenseRequestBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param numberOfRepeatsAllowed */
     public MedicationRequest_DispenseRequestBuilder.Impl withNumberOfRepeatsAllowed(
         @NonNull Integer numberOfRepeatsAllowed) {
@@ -174,10 +211,22 @@ public interface MedicationRequest_DispenseRequestBuilder {
       this.expectedSupplyDuration = Optional.of(expectedSupplyDuration);
       return this;
     }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withExpectedSupplyDuration(
+        @NonNull DurationBuilder expectedSupplyDuration) {
+      this.expectedSupplyDuration = Optional.of(expectedSupplyDuration.build());
+      return this;
+    }
     /** @param initialFill */
     public MedicationRequest_DispenseRequestBuilder.Impl withInitialFill(
         @NonNull MedicationRequest$DispenseRequest$InitialFill initialFill) {
       this.initialFill = Optional.of(initialFill);
+      return this;
+    }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withInitialFill(
+        @NonNull MedicationRequest_DispenseRequest_InitialFillBuilder initialFill) {
+      this.initialFill = Optional.of(initialFill.build());
       return this;
     }
 

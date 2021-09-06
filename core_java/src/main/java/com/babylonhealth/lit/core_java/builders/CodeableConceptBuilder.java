@@ -85,6 +85,11 @@ public interface CodeableConceptBuilder extends ElementBuilder {
       this.coding = Collections.unmodifiableCollection(coding);
       return this;
     }
+
+    public CodeableConceptBuilder.Impl withCoding(@NonNull CodingBuilder... coding) {
+      this.coding = Arrays.stream(coding).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the element. To make the use of extensions safe and manageable, there
@@ -105,6 +110,11 @@ public interface CodeableConceptBuilder extends ElementBuilder {
      */
     public CodeableConceptBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public CodeableConceptBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
 

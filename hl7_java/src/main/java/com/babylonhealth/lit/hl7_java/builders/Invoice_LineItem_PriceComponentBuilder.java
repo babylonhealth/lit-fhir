@@ -85,6 +85,12 @@ public interface Invoice_LineItem_PriceComponentBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public Invoice_LineItem_PriceComponentBuilder.Impl withCode(
+        @NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param factor */
     public Invoice_LineItem_PriceComponentBuilder.Impl withFactor(@NonNull BigDecimal factor) {
       this.factor = Optional.of(factor);
@@ -93,6 +99,11 @@ public interface Invoice_LineItem_PriceComponentBuilder {
     /** @param amount */
     public Invoice_LineItem_PriceComponentBuilder.Impl withAmount(@NonNull Money amount) {
       this.amount = Optional.of(amount);
+      return this;
+    }
+
+    public Invoice_LineItem_PriceComponentBuilder.Impl withAmount(@NonNull MoneyBuilder amount) {
+      this.amount = Optional.of(amount.build());
       return this;
     }
     /**
@@ -117,6 +128,12 @@ public interface Invoice_LineItem_PriceComponentBuilder {
     public Invoice_LineItem_PriceComponentBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Invoice_LineItem_PriceComponentBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -153,6 +170,13 @@ public interface Invoice_LineItem_PriceComponentBuilder {
     public Invoice_LineItem_PriceComponentBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Invoice_LineItem_PriceComponentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

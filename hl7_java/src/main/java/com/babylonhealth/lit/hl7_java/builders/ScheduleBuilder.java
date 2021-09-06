@@ -98,6 +98,11 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ScheduleBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -107,6 +112,11 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
      */
     public ScheduleBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ScheduleBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -148,6 +158,11 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ScheduleBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -170,6 +185,11 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ScheduleBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param specialty - The specialty of a practitioner that would be required to perform the
      *     service requested in this appointment.
@@ -186,6 +206,11 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
       this.specialty = Collections.unmodifiableCollection(specialty);
       return this;
     }
+
+    public ScheduleBuilder.Impl withSpecialty(@NonNull CodeableConceptBuilder... specialty) {
+      this.specialty = Arrays.stream(specialty).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - External Ids for this item. */
     public ScheduleBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -194,6 +219,11 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
     /** @param identifier - External Ids for this item. */
     public ScheduleBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ScheduleBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -208,6 +238,11 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
      */
     public ScheduleBuilder.Impl withServiceType(@NonNull Collection<CodeableConcept> serviceType) {
       this.serviceType = Collections.unmodifiableCollection(serviceType);
+      return this;
+    }
+
+    public ScheduleBuilder.Impl withServiceType(@NonNull CodeableConceptBuilder... serviceType) {
+      this.serviceType = Arrays.stream(serviceType).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -237,6 +272,12 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
       this.serviceCategory = Collections.unmodifiableCollection(serviceCategory);
       return this;
     }
+
+    public ScheduleBuilder.Impl withServiceCategory(
+        @NonNull CodeableConceptBuilder... serviceCategory) {
+      this.serviceCategory = Arrays.stream(serviceCategory).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param planningHorizon - The period of time that the slots that reference this Schedule
      *     resource cover (even if none exist). These cover the amount of time that an
@@ -245,6 +286,11 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
      */
     public ScheduleBuilder.Impl withPlanningHorizon(@NonNull Period planningHorizon) {
       this.planningHorizon = Optional.of(planningHorizon);
+      return this;
+    }
+
+    public ScheduleBuilder.Impl withPlanningHorizon(@NonNull PeriodBuilder planningHorizon) {
+      this.planningHorizon = Optional.of(planningHorizon.build());
       return this;
     }
     /**
@@ -280,6 +326,13 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
     public ScheduleBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ScheduleBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

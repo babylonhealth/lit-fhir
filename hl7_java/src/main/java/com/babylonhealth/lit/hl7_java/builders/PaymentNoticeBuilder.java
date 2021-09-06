@@ -125,6 +125,11 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public PaymentNoticeBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -136,6 +141,11 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public PaymentNoticeBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param payee - The party who will receive or has received payment that is the subject of this
      *     notification.
@@ -144,9 +154,19 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
       this.payee = Optional.of(payee);
       return this;
     }
+
+    public PaymentNoticeBuilder.Impl withPayee(@NonNull ReferenceBuilder payee) {
+      this.payee = Optional.of(payee.build());
+      return this;
+    }
     /** @param request - Reference of resource for which payment is being made. */
     public PaymentNoticeBuilder.Impl withRequest(@NonNull Reference request) {
       this.request = Optional.of(request);
+      return this;
+    }
+
+    public PaymentNoticeBuilder.Impl withRequest(@NonNull ReferenceBuilder request) {
+      this.request = Optional.of(request.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -159,12 +179,22 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
       this.response = Optional.of(response);
       return this;
     }
+
+    public PaymentNoticeBuilder.Impl withResponse(@NonNull ReferenceBuilder response) {
+      this.response = Optional.of(response.build());
+      return this;
+    }
     /**
      * @param provider - The practitioner who is responsible for the services rendered to the
      *     patient.
      */
     public PaymentNoticeBuilder.Impl withProvider(@NonNull Reference provider) {
       this.provider = Optional.of(provider);
+      return this;
+    }
+
+    public PaymentNoticeBuilder.Impl withProvider(@NonNull ReferenceBuilder provider) {
+      this.provider = Optional.of(provider.build());
       return this;
     }
     /**
@@ -183,6 +213,11 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
      */
     public PaymentNoticeBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public PaymentNoticeBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -207,6 +242,11 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public PaymentNoticeBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this payment notice. */
     public PaymentNoticeBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -215,6 +255,11 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
     /** @param identifier - A unique identifier assigned to this payment notice. */
     public PaymentNoticeBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public PaymentNoticeBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param paymentDate - The date when the above payment action occurred. */
@@ -235,6 +280,12 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
     /** @param paymentStatus - A code indicating whether payment has been sent or cleared. */
     public PaymentNoticeBuilder.Impl withPaymentStatus(@NonNull CodeableConcept paymentStatus) {
       this.paymentStatus = Optional.of(paymentStatus);
+      return this;
+    }
+
+    public PaymentNoticeBuilder.Impl withPaymentStatus(
+        @NonNull CodeableConceptBuilder paymentStatus) {
+      this.paymentStatus = Optional.of(paymentStatus.build());
       return this;
     }
     /**
@@ -271,6 +322,13 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
     public PaymentNoticeBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public PaymentNoticeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -98,6 +98,11 @@ public interface Consent_PolicyBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Consent_PolicyBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param authority */
     public Consent_PolicyBuilder.Impl withAuthority(@NonNull String authority) {
       this.authority = Optional.of(authority);
@@ -137,6 +142,13 @@ public interface Consent_PolicyBuilder {
     public Consent_PolicyBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Consent_PolicyBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

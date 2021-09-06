@@ -107,6 +107,12 @@ public interface ElementDefinition_SlicingBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ElementDefinition_SlicingBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public ElementDefinition_SlicingBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
@@ -122,6 +128,12 @@ public interface ElementDefinition_SlicingBuilder {
     public ElementDefinition_SlicingBuilder.Impl withDiscriminator(
         @NonNull Collection<ElementDefinition$Slicing$Discriminator> discriminator) {
       this.discriminator = Collections.unmodifiableCollection(discriminator);
+      return this;
+    }
+
+    public ElementDefinition_SlicingBuilder.Impl withDiscriminator(
+        @NonNull ElementDefinition_Slicing_DiscriminatorBuilder... discriminator) {
+      this.discriminator = Arrays.stream(discriminator).map(e -> e.build()).collect(toList());
       return this;
     }
 

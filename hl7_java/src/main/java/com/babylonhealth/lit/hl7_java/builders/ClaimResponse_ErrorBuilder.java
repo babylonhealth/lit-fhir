@@ -101,6 +101,11 @@ public interface ClaimResponse_ErrorBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClaimResponse_ErrorBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param itemSequence */
     public ClaimResponse_ErrorBuilder.Impl withItemSequence(@NonNull Integer itemSequence) {
       this.itemSequence = Optional.of(itemSequence);
@@ -145,6 +150,13 @@ public interface ClaimResponse_ErrorBuilder {
     public ClaimResponse_ErrorBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ClaimResponse_ErrorBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param subDetailSequence */

@@ -106,6 +106,12 @@ public interface ImplementationGuide_DefinitionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ImplementationGuide_DefinitionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -142,10 +148,23 @@ public interface ImplementationGuide_DefinitionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ImplementationGuide_DefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param page */
     public ImplementationGuide_DefinitionBuilder.Impl withPage(
         @NonNull ImplementationGuide$Definition$Page page) {
       this.page = Optional.of(page);
+      return this;
+    }
+
+    public ImplementationGuide_DefinitionBuilder.Impl withPage(
+        @NonNull ImplementationGuide_Definition_PageBuilder page) {
+      this.page = Optional.of(page.build());
       return this;
     }
     /** @param grouping */
@@ -160,6 +179,12 @@ public interface ImplementationGuide_DefinitionBuilder {
       this.grouping = Collections.unmodifiableCollection(grouping);
       return this;
     }
+
+    public ImplementationGuide_DefinitionBuilder.Impl withGrouping(
+        @NonNull ImplementationGuide_Definition_GroupingBuilder... grouping) {
+      this.grouping = Arrays.stream(grouping).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param template */
     public ImplementationGuide_DefinitionBuilder.Impl withTemplate(
         @NonNull ImplementationGuide$Definition$Template... template) {
@@ -172,6 +197,12 @@ public interface ImplementationGuide_DefinitionBuilder {
       this.template = Collections.unmodifiableCollection(template);
       return this;
     }
+
+    public ImplementationGuide_DefinitionBuilder.Impl withTemplate(
+        @NonNull ImplementationGuide_Definition_TemplateBuilder... template) {
+      this.template = Arrays.stream(template).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param parameter */
     public ImplementationGuide_DefinitionBuilder.Impl withParameter(
         @NonNull ImplementationGuide$Definition$Parameter... parameter) {
@@ -182,6 +213,12 @@ public interface ImplementationGuide_DefinitionBuilder {
     public ImplementationGuide_DefinitionBuilder.Impl withParameter(
         @NonNull Collection<ImplementationGuide$Definition$Parameter> parameter) {
       this.parameter = Collections.unmodifiableCollection(parameter);
+      return this;
+    }
+
+    public ImplementationGuide_DefinitionBuilder.Impl withParameter(
+        @NonNull ImplementationGuide_Definition_ParameterBuilder... parameter) {
+      this.parameter = Arrays.stream(parameter).map(e -> e.build()).collect(toList());
       return this;
     }
 

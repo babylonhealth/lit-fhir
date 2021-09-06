@@ -100,6 +100,12 @@ public interface DeviceDefinition_CapabilityBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DeviceDefinition_CapabilityBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public DeviceDefinition_CapabilityBuilder.Impl withDescription(
         @NonNull CodeableConcept... description) {
@@ -110,6 +116,12 @@ public interface DeviceDefinition_CapabilityBuilder {
     public DeviceDefinition_CapabilityBuilder.Impl withDescription(
         @NonNull Collection<CodeableConcept> description) {
       this.description = Collections.unmodifiableCollection(description);
+      return this;
+    }
+
+    public DeviceDefinition_CapabilityBuilder.Impl withDescription(
+        @NonNull CodeableConceptBuilder... description) {
+      this.description = Arrays.stream(description).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -146,6 +158,13 @@ public interface DeviceDefinition_CapabilityBuilder {
     public DeviceDefinition_CapabilityBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public DeviceDefinition_CapabilityBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

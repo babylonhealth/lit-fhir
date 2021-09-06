@@ -134,6 +134,11 @@ public interface AddressBuilder extends ElementBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public AddressBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param country - Country - a nation as commonly understood or generally accepted. */
     public AddressBuilder.Impl withCountry(@NonNull String country) {
       this.country = Optional.of(country);
@@ -164,6 +169,11 @@ public interface AddressBuilder extends ElementBuilder {
      */
     public AddressBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public AddressBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param postalCode - A postal code designating a region defined by the postal service. */

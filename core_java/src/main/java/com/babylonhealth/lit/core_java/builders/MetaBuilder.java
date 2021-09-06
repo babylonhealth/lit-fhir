@@ -89,6 +89,11 @@ public interface MetaBuilder extends ElementBuilder {
       this.tag = Collections.unmodifiableCollection(tag);
       return this;
     }
+
+    public MetaBuilder.Impl withTag(@NonNull CodingBuilder... tag) {
+      this.tag = Arrays.stream(tag).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param source - A uri that identifies the source system of the resource. This provides a
      *     minimal amount of [Provenance](provenance.html#) information that can be used to track or
@@ -135,6 +140,11 @@ public interface MetaBuilder extends ElementBuilder {
       this.security = Collections.unmodifiableCollection(security);
       return this;
     }
+
+    public MetaBuilder.Impl withSecurity(@NonNull CodingBuilder... security) {
+      this.security = Arrays.stream(security).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the element. To make the use of extensions safe and manageable, there
@@ -155,6 +165,11 @@ public interface MetaBuilder extends ElementBuilder {
      */
     public MetaBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MetaBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**

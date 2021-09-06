@@ -97,6 +97,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -106,6 +111,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
      */
     public PractitionerRoleBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public PractitionerRoleBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -122,6 +132,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param active - Whether this practitioner role record is in active use. */
     public PractitionerRoleBuilder.Impl withActive(@NonNull Boolean active) {
       this.active = Optional.of(active);
@@ -135,6 +150,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param telecom - Contact details that are specific to the role/location/service. */
     public PractitionerRoleBuilder.Impl withTelecom(@NonNull ContactPoint... telecom) {
       this.telecom = Arrays.asList(telecom);
@@ -143,6 +163,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
     /** @param telecom - Contact details that are specific to the role/location/service. */
     public PractitionerRoleBuilder.Impl withTelecom(@NonNull Collection<ContactPoint> telecom) {
       this.telecom = Collections.unmodifiableCollection(telecom);
+      return this;
+    }
+
+    public PractitionerRoleBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -158,6 +183,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
     /** @param location - The location(s) at which this practitioner provides care. */
     public PractitionerRoleBuilder.Impl withLocation(@NonNull Collection<Reference> location) {
       this.location = Collections.unmodifiableCollection(location);
+      return this;
+    }
+
+    public PractitionerRoleBuilder.Impl withLocation(@NonNull ReferenceBuilder... location) {
+      this.location = Arrays.stream(location).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -176,6 +206,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withEndpoint(@NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -192,6 +227,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
      */
     public PractitionerRoleBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public PractitionerRoleBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -216,6 +256,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param specialty - Specific specialty of the practitioner. */
     public PractitionerRoleBuilder.Impl withSpecialty(@NonNull CodeableConcept... specialty) {
       this.specialty = Arrays.asList(specialty);
@@ -225,6 +270,12 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
     public PractitionerRoleBuilder.Impl withSpecialty(
         @NonNull Collection<CodeableConcept> specialty) {
       this.specialty = Collections.unmodifiableCollection(specialty);
+      return this;
+    }
+
+    public PractitionerRoleBuilder.Impl withSpecialty(
+        @NonNull CodeableConceptBuilder... specialty) {
+      this.specialty = Arrays.stream(specialty).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param identifier - Business Identifiers that are specific to a role/location. */
@@ -237,6 +288,11 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param practitioner - Practitioner that is able to provide the defined services for the
      *     organization.
@@ -245,11 +301,21 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.practitioner = Optional.of(practitioner);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withPractitioner(@NonNull ReferenceBuilder practitioner) {
+      this.practitioner = Optional.of(practitioner.build());
+      return this;
+    }
     /**
      * @param organization - The organization where the Practitioner performs the roles associated.
      */
     public PractitionerRoleBuilder.Impl withOrganization(@NonNull Reference organization) {
       this.organization = Optional.of(organization);
+      return this;
+    }
+
+    public PractitionerRoleBuilder.Impl withOrganization(@NonNull ReferenceBuilder organization) {
+      this.organization = Optional.of(organization.build());
       return this;
     }
     /**
@@ -298,6 +364,13 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param healthcareService - The list of healthcare services that this worker provides for this
      *     role's Organization/Location(s).
@@ -314,6 +387,13 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
     public PractitionerRoleBuilder.Impl withHealthcareService(
         @NonNull Collection<Reference> healthcareService) {
       this.healthcareService = Collections.unmodifiableCollection(healthcareService);
+      return this;
+    }
+
+    public PractitionerRoleBuilder.Impl withHealthcareService(
+        @NonNull ReferenceBuilder... healthcareService) {
+      this.healthcareService =
+          Arrays.stream(healthcareService).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -344,6 +424,12 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       this.notAvailable = Collections.unmodifiableCollection(notAvailable);
       return this;
     }
+
+    public PractitionerRoleBuilder.Impl withNotAvailable(
+        @NonNull PractitionerRole_NotAvailableBuilder... notAvailable) {
+      this.notAvailable = Arrays.stream(notAvailable).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param availableTime - A collection of times the practitioner is available or performing this
      *     role at the location and/or healthcareservice.
@@ -360,6 +446,12 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
     public PractitionerRoleBuilder.Impl withAvailableTime(
         @NonNull Collection<PractitionerRole.AvailableTime> availableTime) {
       this.availableTime = Collections.unmodifiableCollection(availableTime);
+      return this;
+    }
+
+    public PractitionerRoleBuilder.Impl withAvailableTime(
+        @NonNull PractitionerRole_AvailableTimeBuilder... availableTime) {
+      this.availableTime = Arrays.stream(availableTime).map(e -> e.build()).collect(toList());
       return this;
     }
 

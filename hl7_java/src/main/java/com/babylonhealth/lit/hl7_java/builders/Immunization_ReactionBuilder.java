@@ -82,6 +82,11 @@ public interface Immunization_ReactionBuilder {
       this.detail = Optional.of(detail);
       return this;
     }
+
+    public Immunization_ReactionBuilder.Impl withDetail(@NonNull ReferenceBuilder detail) {
+      this.detail = Optional.of(detail.build());
+      return this;
+    }
     /** @param reported */
     public Immunization_ReactionBuilder.Impl withReported(@NonNull Boolean reported) {
       this.reported = Optional.of(reported);
@@ -108,6 +113,11 @@ public interface Immunization_ReactionBuilder {
     public Immunization_ReactionBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Immunization_ReactionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -144,6 +154,13 @@ public interface Immunization_ReactionBuilder {
     public Immunization_ReactionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Immunization_ReactionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -154,6 +154,11 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -163,6 +168,11 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
      */
     public MedicationAdministrationBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -181,6 +191,11 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param partOf - A larger event of which this particular event is a component or step. */
     public MedicationAdministrationBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
@@ -189,6 +204,11 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     /** @param partOf - A larger event of which this particular event is a component or step. */
     public MedicationAdministrationBuilder.Impl withPartOf(@NonNull Collection<Reference> partOf) {
       this.partOf = Collections.unmodifiableCollection(partOf);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -207,6 +227,11 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.device = Collections.unmodifiableCollection(device);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withDevice(@NonNull ReferenceBuilder... device) {
+      this.device = Arrays.stream(device).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param context - The visit, admission, or other contact between patient and health care
      *     provider during which the medication administration was performed.
@@ -215,12 +240,22 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.context = Optional.of(context);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withContext(@NonNull ReferenceBuilder context) {
+      this.context = Optional.of(context.build());
+      return this;
+    }
     /**
      * @param request - The original request, instruction or authority to perform the
      *     administration.
      */
     public MedicationAdministrationBuilder.Impl withRequest(@NonNull Reference request) {
       this.request = Optional.of(request);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withRequest(@NonNull ReferenceBuilder request) {
+      this.request = Optional.of(request.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -233,6 +268,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
      */
     public MedicationAdministrationBuilder.Impl withCategory(@NonNull CodeableConcept category) {
       this.category = Optional.of(category);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /**
@@ -252,6 +293,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public MedicationAdministrationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -277,6 +324,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Identifiers associated with this Medication Administration that are
      *     defined by business processes and/or used to refer to it when a direct URL reference to
@@ -300,6 +353,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param reasonCode - A code indicating why the medication was given. */
     public MedicationAdministrationBuilder.Impl withReasonCode(
         @NonNull CodeableConcept... reasonCode) {
@@ -310,6 +369,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public MedicationAdministrationBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -341,6 +406,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.statusReason = Collections.unmodifiableCollection(statusReason);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withStatusReason(
+        @NonNull CodeableConceptBuilder... statusReason) {
+      this.statusReason = Arrays.stream(statusReason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param eventHistory - A summary of the events of interest that have occurred, such as when
      *     the administration was verified.
@@ -357,6 +428,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public MedicationAdministrationBuilder.Impl withEventHistory(
         @NonNull Collection<Reference> eventHistory) {
       this.eventHistory = Collections.unmodifiableCollection(eventHistory);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withEventHistory(
+        @NonNull ReferenceBuilder... eventHistory) {
+      this.eventHistory = Arrays.stream(eventHistory).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -385,6 +462,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public MedicationAdministrationBuilder.Impl withReasonReference(
         @NonNull Collection<Reference> reasonReference) {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -423,6 +506,13 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param supportingInformation - Additional information (for example, patient height and
      *     weight) that supports the administration of the medication.
@@ -441,6 +531,13 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       this.supportingInformation = Collections.unmodifiableCollection(supportingInformation);
       return this;
     }
+
+    public MedicationAdministrationBuilder.Impl withSupportingInformation(
+        @NonNull ReferenceBuilder... supportingInformation) {
+      this.supportingInformation =
+          Arrays.stream(supportingInformation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dosage - Describes the medication dosage information details e.g. dose, rate, site,
      *     route, etc.
@@ -448,6 +545,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public MedicationAdministrationBuilder.Impl withDosage(
         @NonNull MedicationAdministration.Dosage dosage) {
       this.dosage = Optional.of(dosage);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withDosage(
+        @NonNull MedicationAdministration_DosageBuilder dosage) {
+      this.dosage = Optional.of(dosage.build());
       return this;
     }
     /**
@@ -466,6 +569,12 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public MedicationAdministrationBuilder.Impl withPerformer(
         @NonNull Collection<MedicationAdministration.Performer> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withPerformer(
+        @NonNull MedicationAdministration_PerformerBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
 

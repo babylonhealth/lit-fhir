@@ -79,9 +79,19 @@ public interface ExplanationOfBenefit_PayeeBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public ExplanationOfBenefit_PayeeBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param party */
     public ExplanationOfBenefit_PayeeBuilder.Impl withParty(@NonNull Reference party) {
       this.party = Optional.of(party);
+      return this;
+    }
+
+    public ExplanationOfBenefit_PayeeBuilder.Impl withParty(@NonNull ReferenceBuilder party) {
+      this.party = Optional.of(party.build());
       return this;
     }
     /**
@@ -105,6 +115,12 @@ public interface ExplanationOfBenefit_PayeeBuilder {
     public ExplanationOfBenefit_PayeeBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_PayeeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -141,6 +157,13 @@ public interface ExplanationOfBenefit_PayeeBuilder {
     public ExplanationOfBenefit_PayeeBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_PayeeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

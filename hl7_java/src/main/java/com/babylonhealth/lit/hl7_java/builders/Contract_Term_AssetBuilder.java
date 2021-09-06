@@ -104,6 +104,11 @@ public interface Contract_Term_AssetBuilder {
       this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
+
+    public Contract_Term_AssetBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -123,6 +128,11 @@ public interface Contract_Term_AssetBuilder {
       this.scope = Optional.of(scope);
       return this;
     }
+
+    public Contract_Term_AssetBuilder.Impl withScope(@NonNull CodeableConceptBuilder scope) {
+      this.scope = Optional.of(scope.build());
+      return this;
+    }
     /** @param period */
     public Contract_Term_AssetBuilder.Impl withPeriod(@NonNull Period... period) {
       this.period = Arrays.asList(period);
@@ -131,6 +141,11 @@ public interface Contract_Term_AssetBuilder {
     /** @param period */
     public Contract_Term_AssetBuilder.Impl withPeriod(@NonNull Collection<Period> period) {
       this.period = Collections.unmodifiableCollection(period);
+      return this;
+    }
+
+    public Contract_Term_AssetBuilder.Impl withPeriod(@NonNull PeriodBuilder... period) {
+      this.period = Arrays.stream(period).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param linkId */
@@ -155,6 +170,12 @@ public interface Contract_Term_AssetBuilder {
       this.answer = Collections.unmodifiableCollection(answer);
       return this;
     }
+
+    public Contract_Term_AssetBuilder.Impl withAnswer(
+        @NonNull Contract_Term_Offer_AnswerBuilder... answer) {
+      this.answer = Arrays.stream(answer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subtype */
     public Contract_Term_AssetBuilder.Impl withSubtype(@NonNull CodeableConcept... subtype) {
       this.subtype = Arrays.asList(subtype);
@@ -164,6 +185,11 @@ public interface Contract_Term_AssetBuilder {
     public Contract_Term_AssetBuilder.Impl withSubtype(
         @NonNull Collection<CodeableConcept> subtype) {
       this.subtype = Collections.unmodifiableCollection(subtype);
+      return this;
+    }
+
+    public Contract_Term_AssetBuilder.Impl withSubtype(@NonNull CodeableConceptBuilder... subtype) {
+      this.subtype = Arrays.stream(subtype).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -188,6 +214,11 @@ public interface Contract_Term_AssetBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Contract_Term_AssetBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param condition */
     public Contract_Term_AssetBuilder.Impl withCondition(@NonNull String condition) {
       this.condition = Optional.of(condition);
@@ -203,6 +234,11 @@ public interface Contract_Term_AssetBuilder {
       this.usePeriod = Collections.unmodifiableCollection(usePeriod);
       return this;
     }
+
+    public Contract_Term_AssetBuilder.Impl withUsePeriod(@NonNull PeriodBuilder... usePeriod) {
+      this.usePeriod = Arrays.stream(usePeriod).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param periodType */
     public Contract_Term_AssetBuilder.Impl withPeriodType(@NonNull CodeableConcept... periodType) {
       this.periodType = Arrays.asList(periodType);
@@ -214,9 +250,20 @@ public interface Contract_Term_AssetBuilder {
       this.periodType = Collections.unmodifiableCollection(periodType);
       return this;
     }
+
+    public Contract_Term_AssetBuilder.Impl withPeriodType(
+        @NonNull CodeableConceptBuilder... periodType) {
+      this.periodType = Arrays.stream(periodType).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param relationship */
     public Contract_Term_AssetBuilder.Impl withRelationship(@NonNull Coding relationship) {
       this.relationship = Optional.of(relationship);
+      return this;
+    }
+
+    public Contract_Term_AssetBuilder.Impl withRelationship(@NonNull CodingBuilder relationship) {
+      this.relationship = Optional.of(relationship.build());
       return this;
     }
     /** @param typeReference */
@@ -228,6 +275,12 @@ public interface Contract_Term_AssetBuilder {
     public Contract_Term_AssetBuilder.Impl withTypeReference(
         @NonNull Collection<Reference> typeReference) {
       this.typeReference = Collections.unmodifiableCollection(typeReference);
+      return this;
+    }
+
+    public Contract_Term_AssetBuilder.Impl withTypeReference(
+        @NonNull ReferenceBuilder... typeReference) {
+      this.typeReference = Arrays.stream(typeReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -266,6 +319,13 @@ public interface Contract_Term_AssetBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Contract_Term_AssetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param securityLabelNumber */
     public Contract_Term_AssetBuilder.Impl withSecurityLabelNumber(
         @NonNull Integer... securityLabelNumber) {
@@ -290,6 +350,12 @@ public interface Contract_Term_AssetBuilder {
       this.context = Collections.unmodifiableCollection(context);
       return this;
     }
+
+    public Contract_Term_AssetBuilder.Impl withContext(
+        @NonNull Contract_Term_Asset_ContextBuilder... context) {
+      this.context = Arrays.stream(context).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param valuedItem */
     public Contract_Term_AssetBuilder.Impl withValuedItem(
         @NonNull Contract$Term$Asset$ValuedItem... valuedItem) {
@@ -300,6 +366,12 @@ public interface Contract_Term_AssetBuilder {
     public Contract_Term_AssetBuilder.Impl withValuedItem(
         @NonNull Collection<Contract$Term$Asset$ValuedItem> valuedItem) {
       this.valuedItem = Collections.unmodifiableCollection(valuedItem);
+      return this;
+    }
+
+    public Contract_Term_AssetBuilder.Impl withValuedItem(
+        @NonNull Contract_Term_Asset_ValuedItemBuilder... valuedItem) {
+      this.valuedItem = Arrays.stream(valuedItem).map(e -> e.build()).collect(toList());
       return this;
     }
 

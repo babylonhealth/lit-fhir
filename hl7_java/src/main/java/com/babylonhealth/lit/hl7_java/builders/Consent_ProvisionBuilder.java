@@ -95,6 +95,11 @@ public interface Consent_ProvisionBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public Consent_ProvisionBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param _class */
     public Consent_ProvisionBuilder.Impl withClass(@NonNull Coding... _class) {
       this._class = Arrays.asList(_class);
@@ -105,9 +110,19 @@ public interface Consent_ProvisionBuilder {
       this._class = Collections.unmodifiableCollection(_class);
       return this;
     }
+
+    public Consent_ProvisionBuilder.Impl withClass(@NonNull CodingBuilder... _class) {
+      this._class = Arrays.stream(_class).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param period */
     public Consent_ProvisionBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public Consent_ProvisionBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /** @param action */
@@ -120,6 +135,11 @@ public interface Consent_ProvisionBuilder {
       this.action = Collections.unmodifiableCollection(action);
       return this;
     }
+
+    public Consent_ProvisionBuilder.Impl withAction(@NonNull CodeableConceptBuilder... action) {
+      this.action = Arrays.stream(action).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param purpose */
     public Consent_ProvisionBuilder.Impl withPurpose(@NonNull Coding... purpose) {
       this.purpose = Arrays.asList(purpose);
@@ -128,6 +148,11 @@ public interface Consent_ProvisionBuilder {
     /** @param purpose */
     public Consent_ProvisionBuilder.Impl withPurpose(@NonNull Collection<Coding> purpose) {
       this.purpose = Collections.unmodifiableCollection(purpose);
+      return this;
+    }
+
+    public Consent_ProvisionBuilder.Impl withPurpose(@NonNull CodingBuilder... purpose) {
+      this.purpose = Arrays.stream(purpose).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -152,6 +177,11 @@ public interface Consent_ProvisionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Consent_ProvisionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param provision - An exception to the base policy of this consent. An exception can be an
      *     addition or removal of access permissions.
@@ -169,9 +199,20 @@ public interface Consent_ProvisionBuilder {
       this.provision = Collections.unmodifiableCollection(provision);
       return this;
     }
+
+    public Consent_ProvisionBuilder.Impl withProvision(
+        @NonNull Consent_ProvisionBuilder... provision) {
+      this.provision = Arrays.stream(provision).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dataPeriod */
     public Consent_ProvisionBuilder.Impl withDataPeriod(@NonNull Period dataPeriod) {
       this.dataPeriod = Optional.of(dataPeriod);
+      return this;
+    }
+
+    public Consent_ProvisionBuilder.Impl withDataPeriod(@NonNull PeriodBuilder dataPeriod) {
+      this.dataPeriod = Optional.of(dataPeriod.build());
       return this;
     }
     /** @param securityLabel */
@@ -183,6 +224,12 @@ public interface Consent_ProvisionBuilder {
     public Consent_ProvisionBuilder.Impl withSecurityLabel(
         @NonNull Collection<Coding> securityLabel) {
       this.securityLabel = Collections.unmodifiableCollection(securityLabel);
+      return this;
+    }
+
+    public Consent_ProvisionBuilder.Impl withSecurityLabel(
+        @NonNull CodingBuilder... securityLabel) {
+      this.securityLabel = Arrays.stream(securityLabel).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -221,6 +268,13 @@ public interface Consent_ProvisionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Consent_ProvisionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param data */
     public Consent_ProvisionBuilder.Impl withData(@NonNull Consent$Provision$Data... data) {
       this.data = Arrays.asList(data);
@@ -232,6 +286,11 @@ public interface Consent_ProvisionBuilder {
       this.data = Collections.unmodifiableCollection(data);
       return this;
     }
+
+    public Consent_ProvisionBuilder.Impl withData(@NonNull Consent_Provision_DataBuilder... data) {
+      this.data = Arrays.stream(data).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param actor */
     public Consent_ProvisionBuilder.Impl withActor(@NonNull Consent$Provision$Actor... actor) {
       this.actor = Arrays.asList(actor);
@@ -241,6 +300,12 @@ public interface Consent_ProvisionBuilder {
     public Consent_ProvisionBuilder.Impl withActor(
         @NonNull Collection<Consent$Provision$Actor> actor) {
       this.actor = Collections.unmodifiableCollection(actor);
+      return this;
+    }
+
+    public Consent_ProvisionBuilder.Impl withActor(
+        @NonNull Consent_Provision_ActorBuilder... actor) {
+      this.actor = Arrays.stream(actor).map(e -> e.build()).collect(toList());
       return this;
     }
 

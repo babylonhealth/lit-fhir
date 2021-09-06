@@ -172,6 +172,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ClaimBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -183,9 +188,19 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ClaimBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param total - The total value of the all the items in the claim. */
     public ClaimBuilder.Impl withTotal(@NonNull Money total) {
       this.total = Optional.of(total);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withTotal(@NonNull MoneyBuilder total) {
+      this.total = Optional.of(total.build());
       return this;
     }
     /**
@@ -196,14 +211,29 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.subType = Optional.of(subType);
       return this;
     }
+
+    public ClaimBuilder.Impl withSubType(@NonNull CodeableConceptBuilder subType) {
+      this.subType = Optional.of(subType.build());
+      return this;
+    }
     /** @param enterer - Individual who created the claim, predetermination or preauthorization. */
     public ClaimBuilder.Impl withEnterer(@NonNull Reference enterer) {
       this.enterer = Optional.of(enterer);
       return this;
     }
+
+    public ClaimBuilder.Impl withEnterer(@NonNull ReferenceBuilder enterer) {
+      this.enterer = Optional.of(enterer.build());
+      return this;
+    }
     /** @param insurer - The Insurer who is target of the request. */
     public ClaimBuilder.Impl withInsurer(@NonNull Reference insurer) {
       this.insurer = Optional.of(insurer);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withInsurer(@NonNull ReferenceBuilder insurer) {
+      this.insurer = Optional.of(insurer.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -216,9 +246,19 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.referral = Optional.of(referral);
       return this;
     }
+
+    public ClaimBuilder.Impl withReferral(@NonNull ReferenceBuilder referral) {
+      this.referral = Optional.of(referral.build());
+      return this;
+    }
     /** @param facility - Facility where the services were provided. */
     public ClaimBuilder.Impl withFacility(@NonNull Reference facility) {
       this.facility = Optional.of(facility);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withFacility(@NonNull ReferenceBuilder facility) {
+      this.facility = Optional.of(facility.build());
       return this;
     }
     /**
@@ -237,6 +277,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
      */
     public ClaimBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -261,6 +306,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClaimBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this claim. */
     public ClaimBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -271,6 +321,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ClaimBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param fundsReserve - A code to indicate whether and for whom funds are to be reserved for
      *     future claims.
@@ -279,12 +334,22 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.fundsReserve = Optional.of(fundsReserve);
       return this;
     }
+
+    public ClaimBuilder.Impl withFundsReserve(@NonNull CodeableConceptBuilder fundsReserve) {
+      this.fundsReserve = Optional.of(fundsReserve.build());
+      return this;
+    }
     /**
      * @param prescription - Prescription to support the dispensing of pharmacy, device or vision
      *     products.
      */
     public ClaimBuilder.Impl withPrescription(@NonNull Reference prescription) {
       this.prescription = Optional.of(prescription);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withPrescription(@NonNull ReferenceBuilder prescription) {
+      this.prescription = Optional.of(prescription.build());
       return this;
     }
     /**
@@ -300,6 +365,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
     /** @param billablePeriod - The period for which charges are being submitted. */
     public ClaimBuilder.Impl withBillablePeriod(@NonNull Period billablePeriod) {
       this.billablePeriod = Optional.of(billablePeriod);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withBillablePeriod(@NonNull PeriodBuilder billablePeriod) {
+      this.billablePeriod = Optional.of(billablePeriod.build());
       return this;
     }
     /**
@@ -337,6 +407,12 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ClaimBuilder.Impl withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param originalPrescription - Original prescription which has been superseded by this
      *     prescription to support the dispensing of pharmacy services, medications or products.
@@ -345,12 +421,23 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.originalPrescription = Optional.of(originalPrescription);
       return this;
     }
+
+    public ClaimBuilder.Impl withOriginalPrescription(
+        @NonNull ReferenceBuilder originalPrescription) {
+      this.originalPrescription = Optional.of(originalPrescription.build());
+      return this;
+    }
     /**
      * @param payee - The party to be reimbursed for cost of the products and services according to
      *     the terms of the policy.
      */
     public ClaimBuilder.Impl withPayee(@NonNull Claim.Payee payee) {
       this.payee = Optional.of(payee);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withPayee(@NonNull Claim_PayeeBuilder payee) {
+      this.payee = Optional.of(payee.build());
       return this;
     }
     /**
@@ -369,6 +456,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.related = Collections.unmodifiableCollection(related);
       return this;
     }
+
+    public ClaimBuilder.Impl withRelated(@NonNull Claim_RelatedBuilder... related) {
+      this.related = Arrays.stream(related).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param careTeam - The members of the team who provided the products and services. */
     public ClaimBuilder.Impl withCareTeam(@NonNull Claim.CareTeam... careTeam) {
       this.careTeam = Arrays.asList(careTeam);
@@ -379,12 +471,22 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.careTeam = Collections.unmodifiableCollection(careTeam);
       return this;
     }
+
+    public ClaimBuilder.Impl withCareTeam(@NonNull Claim_CareTeamBuilder... careTeam) {
+      this.careTeam = Arrays.stream(careTeam).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param accident - Details of an accident which resulted in injuries which required the
      *     products and services listed in the claim.
      */
     public ClaimBuilder.Impl withAccident(@NonNull Claim.Accident accident) {
       this.accident = Optional.of(accident);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withAccident(@NonNull Claim_AccidentBuilder accident) {
+      this.accident = Optional.of(accident.build());
       return this;
     }
     /** @param diagnosis - Information about diagnoses relevant to the claim items. */
@@ -395,6 +497,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
     /** @param diagnosis - Information about diagnoses relevant to the claim items. */
     public ClaimBuilder.Impl withDiagnosis(@NonNull Collection<Claim.Diagnosis> diagnosis) {
       this.diagnosis = Collections.unmodifiableCollection(diagnosis);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withDiagnosis(@NonNull Claim_DiagnosisBuilder... diagnosis) {
+      this.diagnosis = Arrays.stream(diagnosis).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -411,6 +518,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
      */
     public ClaimBuilder.Impl withProcedure(@NonNull Collection<Claim.Procedure> procedure) {
       this.procedure = Collections.unmodifiableCollection(procedure);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withProcedure(@NonNull Claim_ProcedureBuilder... procedure) {
+      this.procedure = Arrays.stream(procedure).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -430,6 +542,12 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
       return this;
     }
+
+    public ClaimBuilder.Impl withSupportingInfo(
+        @NonNull Claim_SupportingInfoBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param item - A claim line. Either a simple product or service or a 'group' of details which
      *     can each be a simple items or groups of sub-details.
@@ -444,6 +562,11 @@ public interface ClaimBuilder extends DomainResourceBuilder {
      */
     public ClaimBuilder.Impl withItem(@NonNull Collection<Claim.Item> item) {
       this.item = Collections.unmodifiableCollection(item);
+      return this;
+    }
+
+    public ClaimBuilder.Impl withItem(@NonNull Claim_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -103,6 +103,11 @@ public interface NarrativeBuilder extends ElementBuilder {
       return this;
     }
 
+    public NarrativeBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Narrative build() {
       return new Narrative(
           OptionConverters.toScala(id),

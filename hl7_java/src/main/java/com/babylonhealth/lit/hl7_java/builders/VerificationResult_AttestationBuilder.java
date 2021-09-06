@@ -82,6 +82,11 @@ public interface VerificationResult_AttestationBuilder {
       this.who = Optional.of(who);
       return this;
     }
+
+    public VerificationResult_AttestationBuilder.Impl withWho(@NonNull ReferenceBuilder who) {
+      this.who = Optional.of(who.build());
+      return this;
+    }
     /** @param date */
     public VerificationResult_AttestationBuilder.Impl withDate(@NonNull FHIRDate date) {
       this.date = Optional.of(date);
@@ -111,10 +116,22 @@ public interface VerificationResult_AttestationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public VerificationResult_AttestationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param onBehalfOf */
     public VerificationResult_AttestationBuilder.Impl withOnBehalfOf(
         @NonNull Reference onBehalfOf) {
       this.onBehalfOf = Optional.of(onBehalfOf);
+      return this;
+    }
+
+    public VerificationResult_AttestationBuilder.Impl withOnBehalfOf(
+        @NonNull ReferenceBuilder onBehalfOf) {
+      this.onBehalfOf = Optional.of(onBehalfOf.build());
       return this;
     }
     /** @param proxySignature */
@@ -123,10 +140,22 @@ public interface VerificationResult_AttestationBuilder {
       this.proxySignature = Optional.of(proxySignature);
       return this;
     }
+
+    public VerificationResult_AttestationBuilder.Impl withProxySignature(
+        @NonNull SignatureBuilder proxySignature) {
+      this.proxySignature = Optional.of(proxySignature.build());
+      return this;
+    }
     /** @param sourceSignature */
     public VerificationResult_AttestationBuilder.Impl withSourceSignature(
         @NonNull Signature sourceSignature) {
       this.sourceSignature = Optional.of(sourceSignature);
+      return this;
+    }
+
+    public VerificationResult_AttestationBuilder.Impl withSourceSignature(
+        @NonNull SignatureBuilder sourceSignature) {
+      this.sourceSignature = Optional.of(sourceSignature.build());
       return this;
     }
     /**
@@ -165,10 +194,23 @@ public interface VerificationResult_AttestationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public VerificationResult_AttestationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param communicationMethod */
     public VerificationResult_AttestationBuilder.Impl withCommunicationMethod(
         @NonNull CodeableConcept communicationMethod) {
       this.communicationMethod = Optional.of(communicationMethod);
+      return this;
+    }
+
+    public VerificationResult_AttestationBuilder.Impl withCommunicationMethod(
+        @NonNull CodeableConceptBuilder communicationMethod) {
+      this.communicationMethod = Optional.of(communicationMethod.build());
       return this;
     }
     /** @param proxyIdentityCertificate */

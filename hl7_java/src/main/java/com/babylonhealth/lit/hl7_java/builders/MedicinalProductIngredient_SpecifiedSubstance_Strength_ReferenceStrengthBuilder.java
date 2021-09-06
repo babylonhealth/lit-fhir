@@ -95,6 +95,12 @@ public interface MedicinalProductIngredient_SpecifiedSubstance_Strength_Referenc
       this.country = Collections.unmodifiableCollection(country);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withCountry(@NonNull CodeableConceptBuilder... country) {
+      this.country = Arrays.stream(country).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -119,16 +125,34 @@ public interface MedicinalProductIngredient_SpecifiedSubstance_Strength_Referenc
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param substance - The ingredient substance. */
     public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
         withSubstance(@NonNull CodeableConcept substance) {
       this.substance = Optional.of(substance);
       return this;
     }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withSubstance(@NonNull CodeableConceptBuilder substance) {
+      this.substance = Optional.of(substance.build());
+      return this;
+    }
     /** @param strengthLowLimit */
     public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
         withStrengthLowLimit(@NonNull Ratio strengthLowLimit) {
       this.strengthLowLimit = Optional.of(strengthLowLimit);
+      return this;
+    }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withStrengthLowLimit(@NonNull RatioBuilder strengthLowLimit) {
+      this.strengthLowLimit = Optional.of(strengthLowLimit.build());
       return this;
     }
     /** @param measurementPoint */
@@ -171,6 +195,13 @@ public interface MedicinalProductIngredient_SpecifiedSubstance_Strength_Referenc
     public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
         withModifierExtension(@NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

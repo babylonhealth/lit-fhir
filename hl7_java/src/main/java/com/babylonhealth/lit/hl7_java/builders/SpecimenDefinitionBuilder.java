@@ -89,6 +89,11 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SpecimenDefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -98,6 +103,11 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
      */
     public SpecimenDefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SpecimenDefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -123,6 +133,11 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SpecimenDefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -145,9 +160,19 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SpecimenDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A business identifier associated with the kind of specimen. */
     public SpecimenDefinitionBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public SpecimenDefinitionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /** @param timeAspect - Time aspect of specimen collection (duration or offset). */
@@ -166,6 +191,12 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
       this.collection = Collections.unmodifiableCollection(collection);
       return this;
     }
+
+    public SpecimenDefinitionBuilder.Impl withCollection(
+        @NonNull CodeableConceptBuilder... collection) {
+      this.collection = Arrays.stream(collection).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -180,6 +211,12 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
     public SpecimenDefinitionBuilder.Impl withTypeCollected(
         @NonNull CodeableConcept typeCollected) {
       this.typeCollected = Optional.of(typeCollected);
+      return this;
+    }
+
+    public SpecimenDefinitionBuilder.Impl withTypeCollected(
+        @NonNull CodeableConceptBuilder typeCollected) {
+      this.typeCollected = Optional.of(typeCollected.build());
       return this;
     }
     /**
@@ -218,6 +255,13 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SpecimenDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param patientPreparation - Preparation of the patient for specimen collection. */
     public SpecimenDefinitionBuilder.Impl withPatientPreparation(
         @NonNull CodeableConcept... patientPreparation) {
@@ -228,6 +272,13 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
     public SpecimenDefinitionBuilder.Impl withPatientPreparation(
         @NonNull Collection<CodeableConcept> patientPreparation) {
       this.patientPreparation = Collections.unmodifiableCollection(patientPreparation);
+      return this;
+    }
+
+    public SpecimenDefinitionBuilder.Impl withPatientPreparation(
+        @NonNull CodeableConceptBuilder... patientPreparation) {
+      this.patientPreparation =
+          Arrays.stream(patientPreparation).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -246,6 +297,12 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
     public SpecimenDefinitionBuilder.Impl withTypeTested(
         @NonNull Collection<SpecimenDefinition.TypeTested> typeTested) {
       this.typeTested = Collections.unmodifiableCollection(typeTested);
+      return this;
+    }
+
+    public SpecimenDefinitionBuilder.Impl withTypeTested(
+        @NonNull SpecimenDefinition_TypeTestedBuilder... typeTested) {
+      this.typeTested = Arrays.stream(typeTested).map(e -> e.build()).collect(toList());
       return this;
     }
 

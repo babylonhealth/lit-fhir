@@ -132,6 +132,11 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Ehrsrle_auditeventBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -141,6 +146,11 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
      */
     public Ehrsrle_auditeventBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Ehrsrle_auditeventBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -156,6 +166,11 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public Ehrsrle_auditeventBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param subtype - Identifier for the category of event. */
     public Ehrsrle_auditeventBuilder.Impl withSubtype(@NonNull Coding... subtype) {
       this.subtype = Arrays.asList(subtype);
@@ -164,6 +179,11 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
     /** @param subtype - Identifier for the category of event. */
     public Ehrsrle_auditeventBuilder.Impl withSubtype(@NonNull Collection<Coding> subtype) {
       this.subtype = Collections.unmodifiableCollection(subtype);
+      return this;
+    }
+
+    public Ehrsrle_auditeventBuilder.Impl withSubtype(@NonNull CodingBuilder... subtype) {
+      this.subtype = Arrays.stream(subtype).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param outcome - Indicates whether the event succeeded or failed. */
@@ -194,6 +214,11 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Ehrsrle_auditeventBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -214,6 +239,11 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
      */
     public Ehrsrle_auditeventBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Ehrsrle_auditeventBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param outcomeDesc - A free text description of the outcome of the event. */
@@ -247,6 +277,12 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
     public Ehrsrle_auditeventBuilder.Impl withPurposeOfEvent(
         @NonNull Collection<CodeableConcept> purposeOfEvent) {
       this.purposeOfEvent = Collections.unmodifiableCollection(purposeOfEvent);
+      return this;
+    }
+
+    public Ehrsrle_auditeventBuilder.Impl withPurposeOfEvent(
+        @NonNull CodeableConceptBuilder... purposeOfEvent) {
+      this.purposeOfEvent = Arrays.stream(purposeOfEvent).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -285,6 +321,13 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Ehrsrle_auditeventBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param entity - Specific instances of data or objects that have been accessed. */
     public Ehrsrle_auditeventBuilder.Impl withEntity(@NonNull AuditEvent.Entity... entity) {
       this.entity = Arrays.asList(entity);
@@ -294,6 +337,11 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
     public Ehrsrle_auditeventBuilder.Impl withEntity(
         @NonNull Collection<AuditEvent.Entity> entity) {
       this.entity = Collections.unmodifiableCollection(entity);
+      return this;
+    }
+
+    public Ehrsrle_auditeventBuilder.Impl withEntity(@NonNull AuditEvent_EntityBuilder... entity) {
+      this.entity = Arrays.stream(entity).map(e -> e.build()).collect(toList());
       return this;
     }
 

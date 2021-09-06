@@ -80,6 +80,12 @@ public interface SubstanceSourceMaterial_PartDescriptionBuilder {
       this.part = Optional.of(part);
       return this;
     }
+
+    public SubstanceSourceMaterial_PartDescriptionBuilder.Impl withPart(
+        @NonNull CodeableConceptBuilder part) {
+      this.part = Optional.of(part.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -104,10 +110,22 @@ public interface SubstanceSourceMaterial_PartDescriptionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSourceMaterial_PartDescriptionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param partLocation */
     public SubstanceSourceMaterial_PartDescriptionBuilder.Impl withPartLocation(
         @NonNull CodeableConcept partLocation) {
       this.partLocation = Optional.of(partLocation);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_PartDescriptionBuilder.Impl withPartLocation(
+        @NonNull CodeableConceptBuilder partLocation) {
+      this.partLocation = Optional.of(partLocation.build());
       return this;
     }
     /**
@@ -144,6 +162,13 @@ public interface SubstanceSourceMaterial_PartDescriptionBuilder {
     public SubstanceSourceMaterial_PartDescriptionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_PartDescriptionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

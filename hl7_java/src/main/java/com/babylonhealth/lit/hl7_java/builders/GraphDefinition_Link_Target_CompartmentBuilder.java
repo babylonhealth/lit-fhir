@@ -112,6 +112,12 @@ public interface GraphDefinition_Link_Target_CompartmentBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public GraphDefinition_Link_Target_CompartmentBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param expression */
     public GraphDefinition_Link_Target_CompartmentBuilder.Impl withExpression(
         @NonNull String expression) {
@@ -161,6 +167,13 @@ public interface GraphDefinition_Link_Target_CompartmentBuilder {
     public GraphDefinition_Link_Target_CompartmentBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public GraphDefinition_Link_Target_CompartmentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

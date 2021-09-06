@@ -122,16 +122,34 @@ public interface SubstanceNucleicAcid_SubunitBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceNucleicAcid_SubunitBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param fivePrime */
     public SubstanceNucleicAcid_SubunitBuilder.Impl withFivePrime(
         @NonNull CodeableConcept fivePrime) {
       this.fivePrime = Optional.of(fivePrime);
       return this;
     }
+
+    public SubstanceNucleicAcid_SubunitBuilder.Impl withFivePrime(
+        @NonNull CodeableConceptBuilder fivePrime) {
+      this.fivePrime = Optional.of(fivePrime.build());
+      return this;
+    }
     /** @param threePrime */
     public SubstanceNucleicAcid_SubunitBuilder.Impl withThreePrime(
         @NonNull CodeableConcept threePrime) {
       this.threePrime = Optional.of(threePrime);
+      return this;
+    }
+
+    public SubstanceNucleicAcid_SubunitBuilder.Impl withThreePrime(
+        @NonNull CodeableConceptBuilder threePrime) {
+      this.threePrime = Optional.of(threePrime.build());
       return this;
     }
     /**
@@ -170,10 +188,23 @@ public interface SubstanceNucleicAcid_SubunitBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceNucleicAcid_SubunitBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param sequenceAttachment */
     public SubstanceNucleicAcid_SubunitBuilder.Impl withSequenceAttachment(
         @NonNull Attachment sequenceAttachment) {
       this.sequenceAttachment = Optional.of(sequenceAttachment);
+      return this;
+    }
+
+    public SubstanceNucleicAcid_SubunitBuilder.Impl withSequenceAttachment(
+        @NonNull AttachmentBuilder sequenceAttachment) {
+      this.sequenceAttachment = Optional.of(sequenceAttachment.build());
       return this;
     }
     /** @param sugar */
@@ -188,6 +219,12 @@ public interface SubstanceNucleicAcid_SubunitBuilder {
       this.sugar = Collections.unmodifiableCollection(sugar);
       return this;
     }
+
+    public SubstanceNucleicAcid_SubunitBuilder.Impl withSugar(
+        @NonNull SubstanceNucleicAcid_Subunit_SugarBuilder... sugar) {
+      this.sugar = Arrays.stream(sugar).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param linkage */
     public SubstanceNucleicAcid_SubunitBuilder.Impl withLinkage(
         @NonNull SubstanceNucleicAcid$Subunit$Linkage... linkage) {
@@ -198,6 +235,12 @@ public interface SubstanceNucleicAcid_SubunitBuilder {
     public SubstanceNucleicAcid_SubunitBuilder.Impl withLinkage(
         @NonNull Collection<SubstanceNucleicAcid$Subunit$Linkage> linkage) {
       this.linkage = Collections.unmodifiableCollection(linkage);
+      return this;
+    }
+
+    public SubstanceNucleicAcid_SubunitBuilder.Impl withLinkage(
+        @NonNull SubstanceNucleicAcid_Subunit_LinkageBuilder... linkage) {
+      this.linkage = Arrays.stream(linkage).map(e -> e.build()).collect(toList());
       return this;
     }
 

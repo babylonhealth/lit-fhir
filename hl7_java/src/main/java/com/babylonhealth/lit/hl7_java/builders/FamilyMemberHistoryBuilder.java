@@ -155,6 +155,11 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       this.sex = Optional.of(sex);
       return this;
     }
+
+    public FamilyMemberHistoryBuilder.Impl withSex(@NonNull CodeableConceptBuilder sex) {
+      this.sex = Optional.of(sex.build());
+      return this;
+    }
     /**
      * @param meta - The metadata about the resource. This is content that is maintained by the
      *     infrastructure. Changes to the content might not always be associated with version
@@ -162,6 +167,11 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
      */
     public FamilyMemberHistoryBuilder.Impl withMeta(@NonNull Meta meta) {
       this.meta = Optional.of(meta);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
       return this;
     }
     /**
@@ -173,6 +183,11 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
      */
     public FamilyMemberHistoryBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -207,6 +222,11 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
      */
     public FamilyMemberHistoryBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -250,6 +270,11 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public FamilyMemberHistoryBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -272,6 +297,11 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public FamilyMemberHistoryBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Business identifiers assigned to this family member history by the
      *     performer or other systems which remain constant as the resource is updated and
@@ -291,6 +321,12 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public FamilyMemberHistoryBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param reasonCode - Describes why the family member history occurred in coded or textual
      *     form.
@@ -306,6 +342,12 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     public FamilyMemberHistoryBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -372,10 +414,22 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public FamilyMemberHistoryBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dataAbsentReason - Describes why the family member's history is not available. */
     public FamilyMemberHistoryBuilder.Impl withDataAbsentReason(
         @NonNull CodeableConcept dataAbsentReason) {
       this.dataAbsentReason = Optional.of(dataAbsentReason);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withDataAbsentReason(
+        @NonNull CodeableConceptBuilder dataAbsentReason) {
+      this.dataAbsentReason = Optional.of(dataAbsentReason.build());
       return this;
     }
     /**
@@ -412,6 +466,13 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     public FamilyMemberHistoryBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -452,6 +513,12 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     public FamilyMemberHistoryBuilder.Impl withCondition(
         @NonNull Collection<FamilyMemberHistory.Condition> condition) {
       this.condition = Collections.unmodifiableCollection(condition);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withCondition(
+        @NonNull FamilyMemberHistory_ConditionBuilder... condition) {
+      this.condition = Arrays.stream(condition).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -83,6 +83,11 @@ public interface Encounter_HospitalizationBuilder {
       this.origin = Optional.of(origin);
       return this;
     }
+
+    public Encounter_HospitalizationBuilder.Impl withOrigin(@NonNull ReferenceBuilder origin) {
+      this.origin = Optional.of(origin.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -106,10 +111,22 @@ public interface Encounter_HospitalizationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Encounter_HospitalizationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param admitSource */
     public Encounter_HospitalizationBuilder.Impl withAdmitSource(
         @NonNull CodeableConcept admitSource) {
       this.admitSource = Optional.of(admitSource);
+      return this;
+    }
+
+    public Encounter_HospitalizationBuilder.Impl withAdmitSource(
+        @NonNull CodeableConceptBuilder admitSource) {
+      this.admitSource = Optional.of(admitSource.build());
       return this;
     }
     /** @param reAdmission */
@@ -118,9 +135,21 @@ public interface Encounter_HospitalizationBuilder {
       this.reAdmission = Optional.of(reAdmission);
       return this;
     }
+
+    public Encounter_HospitalizationBuilder.Impl withReAdmission(
+        @NonNull CodeableConceptBuilder reAdmission) {
+      this.reAdmission = Optional.of(reAdmission.build());
+      return this;
+    }
     /** @param destination */
     public Encounter_HospitalizationBuilder.Impl withDestination(@NonNull Reference destination) {
       this.destination = Optional.of(destination);
+      return this;
+    }
+
+    public Encounter_HospitalizationBuilder.Impl withDestination(
+        @NonNull ReferenceBuilder destination) {
+      this.destination = Optional.of(destination.build());
       return this;
     }
     /** @param dietPreference */
@@ -135,6 +164,12 @@ public interface Encounter_HospitalizationBuilder {
       this.dietPreference = Collections.unmodifiableCollection(dietPreference);
       return this;
     }
+
+    public Encounter_HospitalizationBuilder.Impl withDietPreference(
+        @NonNull CodeableConceptBuilder... dietPreference) {
+      this.dietPreference = Arrays.stream(dietPreference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param specialCourtesy */
     public Encounter_HospitalizationBuilder.Impl withSpecialCourtesy(
         @NonNull CodeableConcept... specialCourtesy) {
@@ -145,6 +180,12 @@ public interface Encounter_HospitalizationBuilder {
     public Encounter_HospitalizationBuilder.Impl withSpecialCourtesy(
         @NonNull Collection<CodeableConcept> specialCourtesy) {
       this.specialCourtesy = Collections.unmodifiableCollection(specialCourtesy);
+      return this;
+    }
+
+    public Encounter_HospitalizationBuilder.Impl withSpecialCourtesy(
+        @NonNull CodeableConceptBuilder... specialCourtesy) {
+      this.specialCourtesy = Arrays.stream(specialCourtesy).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -183,6 +224,13 @@ public interface Encounter_HospitalizationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Encounter_HospitalizationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param specialArrangement */
     public Encounter_HospitalizationBuilder.Impl withSpecialArrangement(
         @NonNull CodeableConcept... specialArrangement) {
@@ -195,16 +243,35 @@ public interface Encounter_HospitalizationBuilder {
       this.specialArrangement = Collections.unmodifiableCollection(specialArrangement);
       return this;
     }
+
+    public Encounter_HospitalizationBuilder.Impl withSpecialArrangement(
+        @NonNull CodeableConceptBuilder... specialArrangement) {
+      this.specialArrangement =
+          Arrays.stream(specialArrangement).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dischargeDisposition */
     public Encounter_HospitalizationBuilder.Impl withDischargeDisposition(
         @NonNull CodeableConcept dischargeDisposition) {
       this.dischargeDisposition = Optional.of(dischargeDisposition);
       return this;
     }
+
+    public Encounter_HospitalizationBuilder.Impl withDischargeDisposition(
+        @NonNull CodeableConceptBuilder dischargeDisposition) {
+      this.dischargeDisposition = Optional.of(dischargeDisposition.build());
+      return this;
+    }
     /** @param preAdmissionIdentifier */
     public Encounter_HospitalizationBuilder.Impl withPreAdmissionIdentifier(
         @NonNull Identifier preAdmissionIdentifier) {
       this.preAdmissionIdentifier = Optional.of(preAdmissionIdentifier);
+      return this;
+    }
+
+    public Encounter_HospitalizationBuilder.Impl withPreAdmissionIdentifier(
+        @NonNull IdentifierBuilder preAdmissionIdentifier) {
+      this.preAdmissionIdentifier = Optional.of(preAdmissionIdentifier.build());
       return this;
     }
 

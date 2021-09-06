@@ -105,6 +105,11 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public VerificationResultBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -116,12 +121,22 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public VerificationResultBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param need - The frequency with which the target must be validated (none; initial;
      *     periodic).
      */
     public VerificationResultBuilder.Impl withNeed(@NonNull CodeableConcept need) {
       this.need = Optional.of(need);
+      return this;
+    }
+
+    public VerificationResultBuilder.Impl withNeed(@NonNull CodeableConceptBuilder need) {
+      this.need = Optional.of(need.build());
       return this;
     }
     /** @param target - A resource that was validated. */
@@ -132,6 +147,11 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
     /** @param target - A resource that was validated. */
     public VerificationResultBuilder.Impl withTarget(@NonNull Collection<Reference> target) {
       this.target = Collections.unmodifiableCollection(target);
+      return this;
+    }
+
+    public VerificationResultBuilder.Impl withTarget(@NonNull ReferenceBuilder... target) {
+      this.target = Arrays.stream(target).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -157,6 +177,11 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public VerificationResultBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -179,9 +204,19 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public VerificationResultBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param frequency - Frequency of revalidation. */
     public VerificationResultBuilder.Impl withFrequency(@NonNull Timing frequency) {
       this.frequency = Optional.of(frequency);
+      return this;
+    }
+
+    public VerificationResultBuilder.Impl withFrequency(@NonNull TimingBuilder frequency) {
+      this.frequency = Optional.of(frequency.build());
       return this;
     }
     /** @param statusDate - When the validation status was updated. */
@@ -220,6 +255,12 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       this.failureAction = Optional.of(failureAction);
       return this;
     }
+
+    public VerificationResultBuilder.Impl withFailureAction(
+        @NonNull CodeableConceptBuilder failureAction) {
+      this.failureAction = Optional.of(failureAction.build());
+      return this;
+    }
     /** @param targetLocation - The fhirpath location(s) within the resource that was validated. */
     public VerificationResultBuilder.Impl withTargetLocation(@NonNull String... targetLocation) {
       this.targetLocation = Arrays.asList(targetLocation);
@@ -238,6 +279,12 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
     public VerificationResultBuilder.Impl withValidationType(
         @NonNull CodeableConcept validationType) {
       this.validationType = Optional.of(validationType);
+      return this;
+    }
+
+    public VerificationResultBuilder.Impl withValidationType(
+        @NonNull CodeableConceptBuilder validationType) {
+      this.validationType = Optional.of(validationType.build());
       return this;
     }
     /**
@@ -276,6 +323,13 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public VerificationResultBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param validationProcess - The primary process by which the target is validated (edit check;
      *     value set; primary source; multiple sources; standalone; in context).
@@ -294,6 +348,13 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       this.validationProcess = Collections.unmodifiableCollection(validationProcess);
       return this;
     }
+
+    public VerificationResultBuilder.Impl withValidationProcess(
+        @NonNull CodeableConceptBuilder... validationProcess) {
+      this.validationProcess =
+          Arrays.stream(validationProcess).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param validator - Information about the entity validating information. */
     public VerificationResultBuilder.Impl withValidator(
         @NonNull VerificationResult.Validator... validator) {
@@ -304,6 +365,12 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
     public VerificationResultBuilder.Impl withValidator(
         @NonNull Collection<VerificationResult.Validator> validator) {
       this.validator = Collections.unmodifiableCollection(validator);
+      return this;
+    }
+
+    public VerificationResultBuilder.Impl withValidator(
+        @NonNull VerificationResult_ValidatorBuilder... validator) {
+      this.validator = Arrays.stream(validator).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param primarySource - Information about the primary source(s) involved in validation. */
@@ -318,10 +385,22 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       this.primarySource = Collections.unmodifiableCollection(primarySource);
       return this;
     }
+
+    public VerificationResultBuilder.Impl withPrimarySource(
+        @NonNull VerificationResult_PrimarySourceBuilder... primarySource) {
+      this.primarySource = Arrays.stream(primarySource).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param attestation - Information about the entity attesting to information. */
     public VerificationResultBuilder.Impl withAttestation(
         @NonNull VerificationResult.Attestation attestation) {
       this.attestation = Optional.of(attestation);
+      return this;
+    }
+
+    public VerificationResultBuilder.Impl withAttestation(
+        @NonNull VerificationResult_AttestationBuilder attestation) {
+      this.attestation = Optional.of(attestation.build());
       return this;
     }
 

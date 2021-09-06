@@ -101,9 +101,20 @@ public interface Consent_VerificationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Consent_VerificationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param verifiedWith */
     public Consent_VerificationBuilder.Impl withVerifiedWith(@NonNull Reference verifiedWith) {
       this.verifiedWith = Optional.of(verifiedWith);
+      return this;
+    }
+
+    public Consent_VerificationBuilder.Impl withVerifiedWith(
+        @NonNull ReferenceBuilder verifiedWith) {
+      this.verifiedWith = Optional.of(verifiedWith.build());
       return this;
     }
     /** @param verificationDate */
@@ -146,6 +157,13 @@ public interface Consent_VerificationBuilder {
     public Consent_VerificationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Consent_VerificationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

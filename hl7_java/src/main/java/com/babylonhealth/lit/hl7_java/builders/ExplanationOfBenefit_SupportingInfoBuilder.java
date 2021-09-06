@@ -116,9 +116,21 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public ExplanationOfBenefit_SupportingInfoBuilder.Impl withCode(
+        @NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param reason */
     public ExplanationOfBenefit_SupportingInfoBuilder.Impl withReason(@NonNull Coding reason) {
       this.reason = Optional.of(reason);
+      return this;
+    }
+
+    public ExplanationOfBenefit_SupportingInfoBuilder.Impl withReason(
+        @NonNull CodingBuilder reason) {
+      this.reason = Optional.of(reason.build());
       return this;
     }
     /**
@@ -153,6 +165,12 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
     public ExplanationOfBenefit_SupportingInfoBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_SupportingInfoBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -199,6 +217,13 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
     public ExplanationOfBenefit_SupportingInfoBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_SupportingInfoBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -115,6 +115,11 @@ public interface RelatedArtifactBuilder extends ElementBuilder {
       this.document = Optional.of(document);
       return this;
     }
+
+    public RelatedArtifactBuilder.Impl withDocument(@NonNull AttachmentBuilder document) {
+      this.document = Optional.of(document.build());
+      return this;
+    }
     /**
      * @param resource - The related resource, such as a library, value set, profile, or other
      *     knowledge resource.
@@ -143,6 +148,11 @@ public interface RelatedArtifactBuilder extends ElementBuilder {
      */
     public RelatedArtifactBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public RelatedArtifactBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
 

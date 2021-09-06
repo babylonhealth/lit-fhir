@@ -85,6 +85,11 @@ public interface Bundle_EntryBuilder {
       this.link = Collections.unmodifiableCollection(link);
       return this;
     }
+
+    public Bundle_EntryBuilder.Impl withLink(@NonNull Bundle_LinkBuilder... link) {
+      this.link = Arrays.stream(link).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param fullUrl */
     public Bundle_EntryBuilder.Impl withFullUrl(@NonNull String fullUrl) {
       this.fullUrl = Optional.of(fullUrl);
@@ -95,6 +100,11 @@ public interface Bundle_EntryBuilder {
       this.resource = Optional.of(resource);
       return this;
     }
+
+    public Bundle_EntryBuilder.Impl withResource(@NonNull ResourceBuilder resource) {
+      this.resource = Optional.of(resource.build());
+      return this;
+    }
     /** @param extension */
     public Bundle_EntryBuilder.Impl withExtension(@NonNull Extension... extension) {
       this.extension = Arrays.asList(extension);
@@ -103,6 +113,11 @@ public interface Bundle_EntryBuilder {
     /** @param extension */
     public Bundle_EntryBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Bundle_EntryBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param modifierExtension */
@@ -116,9 +131,21 @@ public interface Bundle_EntryBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Bundle_EntryBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param search */
     public Bundle_EntryBuilder.Impl withSearch(@NonNull Bundle$Entry$Search search) {
       this.search = Optional.of(search);
+      return this;
+    }
+
+    public Bundle_EntryBuilder.Impl withSearch(@NonNull Bundle_Entry_SearchBuilder search) {
+      this.search = Optional.of(search.build());
       return this;
     }
     /** @param request */
@@ -126,9 +153,19 @@ public interface Bundle_EntryBuilder {
       this.request = Optional.of(request);
       return this;
     }
+
+    public Bundle_EntryBuilder.Impl withRequest(@NonNull Bundle_Entry_RequestBuilder request) {
+      this.request = Optional.of(request.build());
+      return this;
+    }
     /** @param response */
     public Bundle_EntryBuilder.Impl withResponse(@NonNull Bundle$Entry$Response response) {
       this.response = Optional.of(response);
+      return this;
+    }
+
+    public Bundle_EntryBuilder.Impl withResponse(@NonNull Bundle_Entry_ResponseBuilder response) {
+      this.response = Optional.of(response.build());
       return this;
     }
 

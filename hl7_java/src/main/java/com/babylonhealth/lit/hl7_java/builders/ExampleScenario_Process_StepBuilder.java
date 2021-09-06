@@ -91,6 +91,12 @@ public interface ExampleScenario_Process_StepBuilder {
       this.process = Collections.unmodifiableCollection(process);
       return this;
     }
+
+    public ExampleScenario_Process_StepBuilder.Impl withProcess(
+        @NonNull ExampleScenario_ProcessBuilder... process) {
+      this.process = Arrays.stream(process).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -112,6 +118,12 @@ public interface ExampleScenario_Process_StepBuilder {
     public ExampleScenario_Process_StepBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExampleScenario_Process_StepBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -150,10 +162,23 @@ public interface ExampleScenario_Process_StepBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ExampleScenario_Process_StepBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param operation */
     public ExampleScenario_Process_StepBuilder.Impl withOperation(
         @NonNull ExampleScenario$Process$Step$Operation operation) {
       this.operation = Optional.of(operation);
+      return this;
+    }
+
+    public ExampleScenario_Process_StepBuilder.Impl withOperation(
+        @NonNull ExampleScenario_Process_Step_OperationBuilder operation) {
+      this.operation = Optional.of(operation.build());
       return this;
     }
     /** @param alternative */
@@ -166,6 +191,12 @@ public interface ExampleScenario_Process_StepBuilder {
     public ExampleScenario_Process_StepBuilder.Impl withAlternative(
         @NonNull Collection<ExampleScenario$Process$Step$Alternative> alternative) {
       this.alternative = Collections.unmodifiableCollection(alternative);
+      return this;
+    }
+
+    public ExampleScenario_Process_StepBuilder.Impl withAlternative(
+        @NonNull ExampleScenario_Process_Step_AlternativeBuilder... alternative) {
+      this.alternative = Arrays.stream(alternative).map(e -> e.build()).collect(toList());
       return this;
     }
 

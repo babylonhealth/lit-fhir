@@ -104,6 +104,12 @@ public interface ExplanationOfBenefit_InsuranceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExplanationOfBenefit_InsuranceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param preAuthRef - Reference from the Insurer which is used in later communications which
      *     refers to this adjudication.
@@ -156,6 +162,13 @@ public interface ExplanationOfBenefit_InsuranceBuilder {
     public ExplanationOfBenefit_InsuranceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_InsuranceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

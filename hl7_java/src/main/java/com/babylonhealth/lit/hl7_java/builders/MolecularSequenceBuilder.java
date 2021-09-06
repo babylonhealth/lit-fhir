@@ -109,6 +109,11 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MolecularSequenceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -118,6 +123,11 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
      */
     public MolecularSequenceBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param _type - Amino Acid Sequence/ DNA Sequence / RNA Sequence. */
@@ -130,9 +140,19 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       this.device = Optional.of(device);
       return this;
     }
+
+    public MolecularSequenceBuilder.Impl withDevice(@NonNull ReferenceBuilder device) {
+      this.device = Optional.of(device.build());
+      return this;
+    }
     /** @param patient - The patient whose sequencing results are described by this resource. */
     public MolecularSequenceBuilder.Impl withPatient(@NonNull Reference patient) {
       this.patient = Optional.of(patient);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withPatient(@NonNull ReferenceBuilder patient) {
+      this.patient = Optional.of(patient.build());
       return this;
     }
     /** @param pointer - Pointer to next atomic sequence which at most contains one variant. */
@@ -145,6 +165,11 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       this.pointer = Collections.unmodifiableCollection(pointer);
       return this;
     }
+
+    public MolecularSequenceBuilder.Impl withPointer(@NonNull ReferenceBuilder... pointer) {
+      this.pointer = Arrays.stream(pointer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public MolecularSequenceBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -155,9 +180,19 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       this.specimen = Optional.of(specimen);
       return this;
     }
+
+    public MolecularSequenceBuilder.Impl withSpecimen(@NonNull ReferenceBuilder specimen) {
+      this.specimen = Optional.of(specimen.build());
+      return this;
+    }
     /** @param quantity - The number of copies of the sequence of interest. (RNASeq). */
     public MolecularSequenceBuilder.Impl withQuantity(@NonNull Quantity quantity) {
       this.quantity = Optional.of(quantity);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
       return this;
     }
     /**
@@ -176,6 +211,11 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
      */
     public MolecularSequenceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -200,9 +240,19 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MolecularSequenceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performer - The organization or lab that should be responsible for this result. */
     public MolecularSequenceBuilder.Impl withPerformer(@NonNull Reference performer) {
       this.performer = Optional.of(performer);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withPerformer(@NonNull ReferenceBuilder performer) {
+      this.performer = Optional.of(performer.build());
       return this;
     }
     /**
@@ -220,6 +270,11 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
     public MolecularSequenceBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -285,6 +340,13 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MolecularSequenceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param variant - The definition of variant here originates from Sequence ontology
      *     ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This
@@ -309,6 +371,12 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       this.variant = Collections.unmodifiableCollection(variant);
       return this;
     }
+
+    public MolecularSequenceBuilder.Impl withVariant(
+        @NonNull MolecularSequence_VariantBuilder... variant) {
+      this.variant = Arrays.stream(variant).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param repository - Configurations of the external repository. The repository shall store
      *     target's observedSeq or records related with target's observedSeq.
@@ -325,6 +393,12 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
     public MolecularSequenceBuilder.Impl withRepository(
         @NonNull Collection<MolecularSequence.Repository> repository) {
       this.repository = Collections.unmodifiableCollection(repository);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withRepository(
+        @NonNull MolecularSequence_RepositoryBuilder... repository) {
+      this.repository = Arrays.stream(repository).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -347,6 +421,12 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       this.quality = Collections.unmodifiableCollection(quality);
       return this;
     }
+
+    public MolecularSequenceBuilder.Impl withQuality(
+        @NonNull MolecularSequence_QualityBuilder... quality) {
+      this.quality = Arrays.stream(quality).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param referenceSeq - A sequence that is used as a reference to describe variants that are
      *     present in a sequence analyzed.
@@ -354,6 +434,12 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
     public MolecularSequenceBuilder.Impl withReferenceSeq(
         @NonNull MolecularSequence.ReferenceSeq referenceSeq) {
       this.referenceSeq = Optional.of(referenceSeq);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withReferenceSeq(
+        @NonNull MolecularSequence_ReferenceSeqBuilder referenceSeq) {
+      this.referenceSeq = Optional.of(referenceSeq.build());
       return this;
     }
     /** @param structureVariant - Information about chromosome structure variation. */
@@ -366,6 +452,12 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
     public MolecularSequenceBuilder.Impl withStructureVariant(
         @NonNull Collection<MolecularSequence.StructureVariant> structureVariant) {
       this.structureVariant = Collections.unmodifiableCollection(structureVariant);
+      return this;
+    }
+
+    public MolecularSequenceBuilder.Impl withStructureVariant(
+        @NonNull MolecularSequence_StructureVariantBuilder... structureVariant) {
+      this.structureVariant = Arrays.stream(structureVariant).map(e -> e.build()).collect(toList());
       return this;
     }
 

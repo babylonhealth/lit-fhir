@@ -140,6 +140,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ContractBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -151,6 +156,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ContractBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param site - Sites in which the contract is complied with, exercised, or in force. */
     public ContractBuilder.Impl withSite(@NonNull Reference... site) {
       this.site = Arrays.asList(site);
@@ -159,6 +169,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
     /** @param site - Sites in which the contract is complied with, exercised, or in force. */
     public ContractBuilder.Impl withSite(@NonNull Collection<Reference> site) {
       this.site = Collections.unmodifiableCollection(site);
+      return this;
+    }
+
+    public ContractBuilder.Impl withSite(@NonNull ReferenceBuilder... site) {
+      this.site = Arrays.stream(site).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -179,6 +194,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
      */
     public ContractBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public ContractBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -216,6 +236,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.scope = Optional.of(scope);
       return this;
     }
+
+    public ContractBuilder.Impl withScope(@NonNull CodeableConceptBuilder scope) {
+      this.scope = Optional.of(scope.build());
+      return this;
+    }
     /** @param status - The status of the resource instance. */
     public ContractBuilder.Impl withStatus(@NonNull CONTRACT_STATUS status) {
       this.status = Optional.of(status);
@@ -244,12 +269,22 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.domain = Collections.unmodifiableCollection(domain);
       return this;
     }
+
+    public ContractBuilder.Impl withDomain(@NonNull ReferenceBuilder... domain) {
+      this.domain = Arrays.stream(domain).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - The individual or organization that authored the Contract definition,
      *     derivative, or instance in any legal state.
      */
     public ContractBuilder.Impl withAuthor(@NonNull Reference author) {
       this.author = Optional.of(author);
+      return this;
+    }
+
+    public ContractBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
       return this;
     }
     /**
@@ -263,6 +298,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
     /** @param applies - Relevant time or time-period when this Contract is applicable. */
     public ContractBuilder.Impl withApplies(@NonNull Period applies) {
       this.applies = Optional.of(applies);
+      return this;
+    }
+
+    public ContractBuilder.Impl withApplies(@NonNull PeriodBuilder applies) {
+      this.applies = Optional.of(applies.build());
       return this;
     }
     /**
@@ -279,6 +319,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.subject = Collections.unmodifiableCollection(subject);
       return this;
     }
+
+    public ContractBuilder.Impl withSubject(@NonNull ReferenceBuilder... subject) {
+      this.subject = Arrays.stream(subject).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subType - Sub-category for the Contract that distinguishes the kinds of systems that
      *     would be interested in the Contract within the context of the Contract's scope.
@@ -293,6 +338,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
      */
     public ContractBuilder.Impl withSubType(@NonNull Collection<CodeableConcept> subType) {
       this.subType = Collections.unmodifiableCollection(subType);
+      return this;
+    }
+
+    public ContractBuilder.Impl withSubType(@NonNull CodeableConceptBuilder... subType) {
+      this.subType = Arrays.stream(subType).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -337,6 +387,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ContractBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -359,6 +414,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ContractBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param authority - A formally or informally recognized grouping of people, principals,
      *     organizations, or jurisdictions formed for the purpose of achieving some form of
@@ -379,6 +439,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.authority = Collections.unmodifiableCollection(authority);
       return this;
     }
+
+    public ContractBuilder.Impl withAuthority(@NonNull ReferenceBuilder... authority) {
+      this.authority = Arrays.stream(authority).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Unique identifier for this Contract or a derivative that references a
      *     Source Contract.
@@ -395,6 +460,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ContractBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param legalState - Legal states of the formation of a legal instrument, which is a formally
      *     executed written document that can be formally attributed to its author, records and
@@ -403,6 +473,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
      */
     public ContractBuilder.Impl withLegalState(@NonNull CodeableConcept legalState) {
       this.legalState = Optional.of(legalState);
+      return this;
+    }
+
+    public ContractBuilder.Impl withLegalState(@NonNull CodeableConceptBuilder legalState) {
+      this.legalState = Optional.of(legalState.build());
       return this;
     }
     /**
@@ -423,6 +498,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.expirationType = Optional.of(expirationType);
       return this;
     }
+
+    public ContractBuilder.Impl withExpirationType(@NonNull CodeableConceptBuilder expirationType) {
+      this.expirationType = Optional.of(expirationType.build());
+      return this;
+    }
     /**
      * @param supportingInfo - Information that may be needed by/relevant to the performer in their
      *     execution of this term action.
@@ -437,6 +517,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
      */
     public ContractBuilder.Impl withSupportingInfo(@NonNull Collection<Reference> supportingInfo) {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
+      return this;
+    }
+
+    public ContractBuilder.Impl withSupportingInfo(@NonNull ReferenceBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -468,6 +553,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
     public ContractBuilder.Impl withRelevantHistory(
         @NonNull Collection<Reference> relevantHistory) {
       this.relevantHistory = Collections.unmodifiableCollection(relevantHistory);
+      return this;
+    }
+
+    public ContractBuilder.Impl withRelevantHistory(@NonNull ReferenceBuilder... relevantHistory) {
+      this.relevantHistory = Arrays.stream(relevantHistory).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -505,12 +595,25 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ContractBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contentDerivative - The minimal content derived from the basal information source at a
      *     specific stage in its lifecycle.
      */
     public ContractBuilder.Impl withContentDerivative(@NonNull CodeableConcept contentDerivative) {
       this.contentDerivative = Optional.of(contentDerivative);
+      return this;
+    }
+
+    public ContractBuilder.Impl withContentDerivative(
+        @NonNull CodeableConceptBuilder contentDerivative) {
+      this.contentDerivative = Optional.of(contentDerivative.build());
       return this;
     }
     /**
@@ -533,6 +636,12 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.instantiatesCanonical = Optional.of(instantiatesCanonical);
       return this;
     }
+
+    public ContractBuilder.Impl withInstantiatesCanonical(
+        @NonNull ReferenceBuilder instantiatesCanonical) {
+      this.instantiatesCanonical = Optional.of(instantiatesCanonical.build());
+      return this;
+    }
     /** @param rule - List of Computable Policy Rule Language Representations of this Contract. */
     public ContractBuilder.Impl withRule(@NonNull Contract.Rule... rule) {
       this.rule = Arrays.asList(rule);
@@ -543,6 +652,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.rule = Collections.unmodifiableCollection(rule);
       return this;
     }
+
+    public ContractBuilder.Impl withRule(@NonNull Contract_RuleBuilder... rule) {
+      this.rule = Arrays.stream(rule).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param legal - List of Legal expressions or representations of this Contract. */
     public ContractBuilder.Impl withLegal(@NonNull Contract.Legal... legal) {
       this.legal = Arrays.asList(legal);
@@ -551,6 +665,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
     /** @param legal - List of Legal expressions or representations of this Contract. */
     public ContractBuilder.Impl withLegal(@NonNull Collection<Contract.Legal> legal) {
       this.legal = Collections.unmodifiableCollection(legal);
+      return this;
+    }
+
+    public ContractBuilder.Impl withLegal(@NonNull Contract_LegalBuilder... legal) {
+      this.legal = Arrays.stream(legal).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -571,6 +690,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
      */
     public ContractBuilder.Impl withSigner(@NonNull Collection<Contract.Signer> signer) {
       this.signer = Collections.unmodifiableCollection(signer);
+      return this;
+    }
+
+    public ContractBuilder.Impl withSigner(@NonNull Contract_SignerBuilder... signer) {
+      this.signer = Arrays.stream(signer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -597,6 +721,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
       this.friendly = Collections.unmodifiableCollection(friendly);
       return this;
     }
+
+    public ContractBuilder.Impl withFriendly(@NonNull Contract_FriendlyBuilder... friendly) {
+      this.friendly = Arrays.stream(friendly).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contentDefinition - Precusory content developed with a focus and intent of supporting
      *     the formation a Contract instance, which may be associated with and transformable into a
@@ -605,6 +734,12 @@ public interface ContractBuilder extends DomainResourceBuilder {
     public ContractBuilder.Impl withContentDefinition(
         @NonNull Contract.ContentDefinition contentDefinition) {
       this.contentDefinition = Optional.of(contentDefinition);
+      return this;
+    }
+
+    public ContractBuilder.Impl withContentDefinition(
+        @NonNull Contract_ContentDefinitionBuilder contentDefinition) {
+      this.contentDefinition = Optional.of(contentDefinition.build());
       return this;
     }
     /**
@@ -621,6 +756,11 @@ public interface ContractBuilder extends DomainResourceBuilder {
      */
     public ContractBuilder.Impl withTerm(@NonNull Collection<Contract.Term> term) {
       this.term = Collections.unmodifiableCollection(term);
+      return this;
+    }
+
+    public ContractBuilder.Impl withTerm(@NonNull Contract_TermBuilder... term) {
+      this.term = Arrays.stream(term).map(e -> e.build()).collect(toList());
       return this;
     }
 

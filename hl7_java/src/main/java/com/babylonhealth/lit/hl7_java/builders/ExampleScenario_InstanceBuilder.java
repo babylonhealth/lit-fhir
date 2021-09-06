@@ -116,6 +116,12 @@ public interface ExampleScenario_InstanceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExampleScenario_InstanceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public ExampleScenario_InstanceBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
@@ -157,6 +163,13 @@ public interface ExampleScenario_InstanceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ExampleScenario_InstanceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param version - The identifier that is used to identify this version of the example scenario
      *     when it is referenced in a specification, model, design or instance. This is an arbitrary
@@ -183,6 +196,12 @@ public interface ExampleScenario_InstanceBuilder {
       this.version = Collections.unmodifiableCollection(version);
       return this;
     }
+
+    public ExampleScenario_InstanceBuilder.Impl withVersion(
+        @NonNull ExampleScenario_Instance_VersionBuilder... version) {
+      this.version = Arrays.stream(version).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param containedInstance */
     public ExampleScenario_InstanceBuilder.Impl withContainedInstance(
         @NonNull ExampleScenario$Instance$ContainedInstance... containedInstance) {
@@ -193,6 +212,13 @@ public interface ExampleScenario_InstanceBuilder {
     public ExampleScenario_InstanceBuilder.Impl withContainedInstance(
         @NonNull Collection<ExampleScenario$Instance$ContainedInstance> containedInstance) {
       this.containedInstance = Collections.unmodifiableCollection(containedInstance);
+      return this;
+    }
+
+    public ExampleScenario_InstanceBuilder.Impl withContainedInstance(
+        @NonNull ExampleScenario_Instance_ContainedInstanceBuilder... containedInstance) {
+      this.containedInstance =
+          Arrays.stream(containedInstance).map(e -> e.build()).collect(toList());
       return this;
     }
 

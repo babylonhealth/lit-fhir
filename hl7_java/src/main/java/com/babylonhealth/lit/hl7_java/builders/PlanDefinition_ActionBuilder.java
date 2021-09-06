@@ -151,12 +151,22 @@ public interface PlanDefinition_ActionBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public PlanDefinition_ActionBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param _type - A high-level category for the plan definition that distinguishes the kinds of
      *     systems that would be interested in the plan definition.
      */
     public PlanDefinition_ActionBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param title - A short, descriptive, user-friendly title for the plan definition. */
@@ -174,6 +184,11 @@ public interface PlanDefinition_ActionBuilder {
       this.input = Collections.unmodifiableCollection(input);
       return this;
     }
+
+    public PlanDefinition_ActionBuilder.Impl withInput(@NonNull DataRequirementBuilder... input) {
+      this.input = Arrays.stream(input).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param prefix */
     public PlanDefinition_ActionBuilder.Impl withPrefix(@NonNull String prefix) {
       this.prefix = Optional.of(prefix);
@@ -188,6 +203,11 @@ public interface PlanDefinition_ActionBuilder {
     public PlanDefinition_ActionBuilder.Impl withReason(
         @NonNull Collection<CodeableConcept> reason) {
       this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withReason(@NonNull CodeableConceptBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param goalId */
@@ -211,6 +231,11 @@ public interface PlanDefinition_ActionBuilder {
       this.output = Collections.unmodifiableCollection(output);
       return this;
     }
+
+    public PlanDefinition_ActionBuilder.Impl withOutput(@NonNull DataRequirementBuilder... output) {
+      this.output = Arrays.stream(output).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param action - An action or group of actions to be taken as part of the plan. */
     public PlanDefinition_ActionBuilder.Impl withAction(@NonNull PlanDefinition.Action... action) {
       this.action = Arrays.asList(action);
@@ -222,6 +247,12 @@ public interface PlanDefinition_ActionBuilder {
       this.action = Collections.unmodifiableCollection(action);
       return this;
     }
+
+    public PlanDefinition_ActionBuilder.Impl withAction(
+        @NonNull PlanDefinition_ActionBuilder... action) {
+      this.action = Arrays.stream(action).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param trigger */
     public PlanDefinition_ActionBuilder.Impl withTrigger(@NonNull TriggerDefinition... trigger) {
       this.trigger = Arrays.asList(trigger);
@@ -231,6 +262,12 @@ public interface PlanDefinition_ActionBuilder {
     public PlanDefinition_ActionBuilder.Impl withTrigger(
         @NonNull Collection<TriggerDefinition> trigger) {
       this.trigger = Collections.unmodifiableCollection(trigger);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withTrigger(
+        @NonNull TriggerDefinitionBuilder... trigger) {
+      this.trigger = Arrays.stream(trigger).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param priority */
@@ -259,6 +296,11 @@ public interface PlanDefinition_ActionBuilder {
     public PlanDefinition_ActionBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -303,6 +345,12 @@ public interface PlanDefinition_ActionBuilder {
     public PlanDefinition_ActionBuilder.Impl withDocumentation(
         @NonNull Collection<RelatedArtifact> documentation) {
       this.documentation = Collections.unmodifiableCollection(documentation);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withDocumentation(
+        @NonNull RelatedArtifactBuilder... documentation) {
+      this.documentation = Arrays.stream(documentation).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -372,6 +420,13 @@ public interface PlanDefinition_ActionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public PlanDefinition_ActionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param selectionBehavior */
     public PlanDefinition_ActionBuilder.Impl withSelectionBehavior(
         @NonNull ACTION_SELECTION_BEHAVIOR selectionBehavior) {
@@ -396,6 +451,12 @@ public interface PlanDefinition_ActionBuilder {
       this.condition = Collections.unmodifiableCollection(condition);
       return this;
     }
+
+    public PlanDefinition_ActionBuilder.Impl withCondition(
+        @NonNull PlanDefinition_Action_ConditionBuilder... condition) {
+      this.condition = Arrays.stream(condition).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param participant */
     public PlanDefinition_ActionBuilder.Impl withParticipant(
         @NonNull PlanDefinition$Action$Participant... participant) {
@@ -406,6 +467,12 @@ public interface PlanDefinition_ActionBuilder {
     public PlanDefinition_ActionBuilder.Impl withParticipant(
         @NonNull Collection<PlanDefinition$Action$Participant> participant) {
       this.participant = Collections.unmodifiableCollection(participant);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withParticipant(
+        @NonNull PlanDefinition_Action_ParticipantBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param dynamicValue */
@@ -420,6 +487,12 @@ public interface PlanDefinition_ActionBuilder {
       this.dynamicValue = Collections.unmodifiableCollection(dynamicValue);
       return this;
     }
+
+    public PlanDefinition_ActionBuilder.Impl withDynamicValue(
+        @NonNull PlanDefinition_Action_DynamicValueBuilder... dynamicValue) {
+      this.dynamicValue = Arrays.stream(dynamicValue).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param relatedAction */
     public PlanDefinition_ActionBuilder.Impl withRelatedAction(
         @NonNull PlanDefinition$Action$RelatedAction... relatedAction) {
@@ -430,6 +503,12 @@ public interface PlanDefinition_ActionBuilder {
     public PlanDefinition_ActionBuilder.Impl withRelatedAction(
         @NonNull Collection<PlanDefinition$Action$RelatedAction> relatedAction) {
       this.relatedAction = Collections.unmodifiableCollection(relatedAction);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withRelatedAction(
+        @NonNull PlanDefinition_Action_RelatedActionBuilder... relatedAction) {
+      this.relatedAction = Arrays.stream(relatedAction).map(e -> e.build()).collect(toList());
       return this;
     }
 

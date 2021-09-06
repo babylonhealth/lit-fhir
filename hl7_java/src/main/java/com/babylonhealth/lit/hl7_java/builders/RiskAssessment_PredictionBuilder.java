@@ -96,6 +96,12 @@ public interface RiskAssessment_PredictionBuilder {
       this.outcome = Optional.of(outcome);
       return this;
     }
+
+    public RiskAssessment_PredictionBuilder.Impl withOutcome(
+        @NonNull CodeableConceptBuilder outcome) {
+      this.outcome = Optional.of(outcome.build());
+      return this;
+    }
     /**
      * @param when Field is a 'choice' field. Type should be one of Period, Range. To pass the value
      *     in, wrap with one of the RiskAssessment_PredictionBuilder.when static methods
@@ -127,6 +133,12 @@ public interface RiskAssessment_PredictionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public RiskAssessment_PredictionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param rationale */
     public RiskAssessment_PredictionBuilder.Impl withRationale(@NonNull String rationale) {
       this.rationale = Optional.of(rationale);
@@ -152,6 +164,12 @@ public interface RiskAssessment_PredictionBuilder {
     public RiskAssessment_PredictionBuilder.Impl withQualitativeRisk(
         @NonNull CodeableConcept qualitativeRisk) {
       this.qualitativeRisk = Optional.of(qualitativeRisk);
+      return this;
+    }
+
+    public RiskAssessment_PredictionBuilder.Impl withQualitativeRisk(
+        @NonNull CodeableConceptBuilder qualitativeRisk) {
+      this.qualitativeRisk = Optional.of(qualitativeRisk.build());
       return this;
     }
     /**
@@ -188,6 +206,13 @@ public interface RiskAssessment_PredictionBuilder {
     public RiskAssessment_PredictionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public RiskAssessment_PredictionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

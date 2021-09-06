@@ -94,6 +94,12 @@ public interface TestScript_Setup_ActionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TestScript_Setup_ActionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -130,16 +136,35 @@ public interface TestScript_Setup_ActionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TestScript_Setup_ActionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param _assert */
     public TestScript_Setup_ActionBuilder.Impl withAssert(
         @NonNull TestScript$Setup$Action$Assert _assert) {
       this._assert = Optional.of(_assert);
       return this;
     }
+
+    public TestScript_Setup_ActionBuilder.Impl withAssert(
+        @NonNull TestScript_Setup_Action_AssertBuilder _assert) {
+      this._assert = Optional.of(_assert.build());
+      return this;
+    }
     /** @param operation */
     public TestScript_Setup_ActionBuilder.Impl withOperation(
         @NonNull TestScript$Setup$Action$Operation operation) {
       this.operation = Optional.of(operation);
+      return this;
+    }
+
+    public TestScript_Setup_ActionBuilder.Impl withOperation(
+        @NonNull TestScript_Setup_Action_OperationBuilder operation) {
+      this.operation = Optional.of(operation.build());
       return this;
     }
 

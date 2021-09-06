@@ -96,6 +96,11 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
       this.net = Optional.of(net);
       return this;
     }
+
+    public Contract_Term_Asset_ValuedItemBuilder.Impl withNet(@NonNull MoneyBuilder net) {
+      this.net = Optional.of(net.build());
+      return this;
+    }
     /** @param factor */
     public Contract_Term_Asset_ValuedItemBuilder.Impl withFactor(@NonNull BigDecimal factor) {
       this.factor = Optional.of(factor);
@@ -127,6 +132,12 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public Contract_Term_Asset_ValuedItemBuilder.Impl withQuantity(
+        @NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -151,6 +162,12 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Contract_Term_Asset_ValuedItemBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param entity Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
      *     pass the value in, wrap with one of the Contract_Term_Asset_ValuedItemBuilder.entity
@@ -166,9 +183,21 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
       this.unitPrice = Optional.of(unitPrice);
       return this;
     }
+
+    public Contract_Term_Asset_ValuedItemBuilder.Impl withUnitPrice(
+        @NonNull MoneyBuilder unitPrice) {
+      this.unitPrice = Optional.of(unitPrice.build());
+      return this;
+    }
     /** @param recipient */
     public Contract_Term_Asset_ValuedItemBuilder.Impl withRecipient(@NonNull Reference recipient) {
       this.recipient = Optional.of(recipient);
+      return this;
+    }
+
+    public Contract_Term_Asset_ValuedItemBuilder.Impl withRecipient(
+        @NonNull ReferenceBuilder recipient) {
+      this.recipient = Optional.of(recipient.build());
       return this;
     }
     /**
@@ -178,6 +207,12 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
     public Contract_Term_Asset_ValuedItemBuilder.Impl withIdentifier(
         @NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public Contract_Term_Asset_ValuedItemBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /** @param paymentDate */
@@ -190,6 +225,12 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
     public Contract_Term_Asset_ValuedItemBuilder.Impl withResponsible(
         @NonNull Reference responsible) {
       this.responsible = Optional.of(responsible);
+      return this;
+    }
+
+    public Contract_Term_Asset_ValuedItemBuilder.Impl withResponsible(
+        @NonNull ReferenceBuilder responsible) {
+      this.responsible = Optional.of(responsible.build());
       return this;
     }
     /** @param effectiveTime */
@@ -232,6 +273,13 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
     public Contract_Term_Asset_ValuedItemBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Contract_Term_Asset_ValuedItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param securityLabelNumber */

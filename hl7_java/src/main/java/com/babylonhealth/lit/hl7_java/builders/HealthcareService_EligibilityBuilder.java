@@ -76,6 +76,12 @@ public interface HealthcareService_EligibilityBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public HealthcareService_EligibilityBuilder.Impl withCode(
+        @NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /**
      * @param comment - Any additional description of the service and/or any specific issues not
      *     covered by the other attributes, which can be displayed as further detail under the
@@ -107,6 +113,12 @@ public interface HealthcareService_EligibilityBuilder {
     public HealthcareService_EligibilityBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public HealthcareService_EligibilityBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -143,6 +155,13 @@ public interface HealthcareService_EligibilityBuilder {
     public HealthcareService_EligibilityBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public HealthcareService_EligibilityBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

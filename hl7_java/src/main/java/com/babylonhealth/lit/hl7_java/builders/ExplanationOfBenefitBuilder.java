@@ -198,6 +198,11 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -209,11 +214,21 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param form - The actual form, by reference or inclusion, for printing the content or an EOB.
      */
     public ExplanationOfBenefitBuilder.Impl withForm(@NonNull Attachment form) {
       this.form = Optional.of(form);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withForm(@NonNull AttachmentBuilder form) {
+      this.form = Optional.of(form.build());
       return this;
     }
     /**
@@ -224,6 +239,11 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.claim = Optional.of(claim);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withClaim(@NonNull ReferenceBuilder claim) {
+      this.claim = Optional.of(claim.build());
+      return this;
+    }
     /**
      * @param subType - A finer grained suite of claim type codes which may convey additional
      *     information such as Inpatient vs Outpatient and/or a specialty service.
@@ -232,9 +252,19 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.subType = Optional.of(subType);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withSubType(@NonNull CodeableConceptBuilder subType) {
+      this.subType = Optional.of(subType.build());
+      return this;
+    }
     /** @param enterer - Individual who created the claim, predetermination or preauthorization. */
     public ExplanationOfBenefitBuilder.Impl withEnterer(@NonNull Reference enterer) {
       this.enterer = Optional.of(enterer);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withEnterer(@NonNull ReferenceBuilder enterer) {
+      this.enterer = Optional.of(enterer.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -250,9 +280,19 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.priority = Optional.of(priority);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withPriority(@NonNull CodeableConceptBuilder priority) {
+      this.priority = Optional.of(priority.build());
+      return this;
+    }
     /** @param referral - A reference to a referral resource. */
     public ExplanationOfBenefitBuilder.Impl withReferral(@NonNull Reference referral) {
       this.referral = Optional.of(referral);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withReferral(@NonNull ReferenceBuilder referral) {
+      this.referral = Optional.of(referral.build());
       return this;
     }
     /** @param facility - Facility where the services were provided. */
@@ -260,9 +300,19 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.facility = Optional.of(facility);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withFacility(@NonNull ReferenceBuilder facility) {
+      this.facility = Optional.of(facility.build());
+      return this;
+    }
     /** @param formCode - A code for the form to be used for printing the content. */
     public ExplanationOfBenefitBuilder.Impl withFormCode(@NonNull CodeableConcept formCode) {
       this.formCode = Optional.of(formCode);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withFormCode(@NonNull CodeableConceptBuilder formCode) {
+      this.formCode = Optional.of(formCode.build());
       return this;
     }
     /**
@@ -281,6 +331,11 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
      */
     public ExplanationOfBenefitBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -306,6 +361,11 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this explanation of benefit. */
     public ExplanationOfBenefitBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -315,6 +375,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -355,12 +421,24 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.fundsReserve = Optional.of(fundsReserve);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withFundsReserve(
+        @NonNull CodeableConceptBuilder fundsReserve) {
+      this.fundsReserve = Optional.of(fundsReserve.build());
+      return this;
+    }
     /**
      * @param prescription - Prescription to support the dispensing of pharmacy, device or vision
      *     products.
      */
     public ExplanationOfBenefitBuilder.Impl withPrescription(@NonNull Reference prescription) {
       this.prescription = Optional.of(prescription);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withPrescription(
+        @NonNull ReferenceBuilder prescription) {
+      this.prescription = Optional.of(prescription.build());
       return this;
     }
     /**
@@ -381,6 +459,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.adjudication = Collections.unmodifiableCollection(adjudication);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withAdjudication(
+        @NonNull ExplanationOfBenefit_Item_AdjudicationBuilder... adjudication) {
+      this.adjudication = Arrays.stream(adjudication).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -399,14 +483,32 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.claimResponse = Optional.of(claimResponse);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withClaimResponse(
+        @NonNull ReferenceBuilder claimResponse) {
+      this.claimResponse = Optional.of(claimResponse.build());
+      return this;
+    }
     /** @param benefitPeriod - The term of the benefits documented in this response. */
     public ExplanationOfBenefitBuilder.Impl withBenefitPeriod(@NonNull Period benefitPeriod) {
       this.benefitPeriod = Optional.of(benefitPeriod);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withBenefitPeriod(
+        @NonNull PeriodBuilder benefitPeriod) {
+      this.benefitPeriod = Optional.of(benefitPeriod.build());
+      return this;
+    }
     /** @param billablePeriod - The period for which charges are being submitted. */
     public ExplanationOfBenefitBuilder.Impl withBillablePeriod(@NonNull Period billablePeriod) {
       this.billablePeriod = Optional.of(billablePeriod);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withBillablePeriod(
+        @NonNull PeriodBuilder billablePeriod) {
+      this.billablePeriod = Optional.of(billablePeriod.build());
       return this;
     }
     /**
@@ -425,6 +527,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withPreAuthRefPeriod(
         @NonNull Collection<Period> preAuthRefPeriod) {
       this.preAuthRefPeriod = Collections.unmodifiableCollection(preAuthRefPeriod);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withPreAuthRefPeriod(
+        @NonNull PeriodBuilder... preAuthRefPeriod) {
+      this.preAuthRefPeriod = Arrays.stream(preAuthRefPeriod).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -463,6 +571,13 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param originalPrescription - Original prescription which has been superseded by this
      *     prescription to support the dispensing of pharmacy services, medications or products.
@@ -470,6 +585,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withOriginalPrescription(
         @NonNull Reference originalPrescription) {
       this.originalPrescription = Optional.of(originalPrescription);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withOriginalPrescription(
+        @NonNull ReferenceBuilder originalPrescription) {
+      this.originalPrescription = Optional.of(originalPrescription.build());
       return this;
     }
     /**
@@ -481,12 +602,24 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.fundsReserveRequested = Optional.of(fundsReserveRequested);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withFundsReserveRequested(
+        @NonNull CodeableConceptBuilder fundsReserveRequested) {
+      this.fundsReserveRequested = Optional.of(fundsReserveRequested.build());
+      return this;
+    }
     /**
      * @param payee - The party to be reimbursed for cost of the products and services according to
      *     the terms of the policy.
      */
     public ExplanationOfBenefitBuilder.Impl withPayee(@NonNull ExplanationOfBenefit.Payee payee) {
       this.payee = Optional.of(payee);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withPayee(
+        @NonNull ExplanationOfBenefit_PayeeBuilder payee) {
+      this.payee = Optional.of(payee.build());
       return this;
     }
     /** @param total - Categorized monetary totals for the adjudication. */
@@ -499,6 +632,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withTotal(
         @NonNull Collection<ExplanationOfBenefit.Total> total) {
       this.total = Collections.unmodifiableCollection(total);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withTotal(
+        @NonNull ExplanationOfBenefit_TotalBuilder... total) {
+      this.total = Arrays.stream(total).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -519,10 +658,22 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.related = Collections.unmodifiableCollection(related);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withRelated(
+        @NonNull ExplanationOfBenefit_RelatedBuilder... related) {
+      this.related = Arrays.stream(related).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param payment - Payment details for the adjudication of the claim. */
     public ExplanationOfBenefitBuilder.Impl withPayment(
         @NonNull ExplanationOfBenefit.Payment payment) {
       this.payment = Optional.of(payment);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withPayment(
+        @NonNull ExplanationOfBenefit_PaymentBuilder payment) {
+      this.payment = Optional.of(payment.build());
       return this;
     }
     /** @param careTeam - The members of the team who provided the products and services. */
@@ -537,6 +688,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.careTeam = Collections.unmodifiableCollection(careTeam);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withCareTeam(
+        @NonNull ExplanationOfBenefit_CareTeamBuilder... careTeam) {
+      this.careTeam = Arrays.stream(careTeam).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param accident - Details of a accident which resulted in injuries which required the
      *     products and services listed in the claim.
@@ -544,6 +701,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withAccident(
         @NonNull ExplanationOfBenefit.Accident accident) {
       this.accident = Optional.of(accident);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withAccident(
+        @NonNull ExplanationOfBenefit_AccidentBuilder accident) {
+      this.accident = Optional.of(accident.build());
       return this;
     }
     /** @param diagnosis - Information about diagnoses relevant to the claim items. */
@@ -556,6 +719,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withDiagnosis(
         @NonNull Collection<ExplanationOfBenefit.Diagnosis> diagnosis) {
       this.diagnosis = Collections.unmodifiableCollection(diagnosis);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withDiagnosis(
+        @NonNull ExplanationOfBenefit_DiagnosisBuilder... diagnosis) {
+      this.diagnosis = Arrays.stream(diagnosis).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -576,6 +745,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.procedure = Collections.unmodifiableCollection(procedure);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withProcedure(
+        @NonNull ExplanationOfBenefit_ProcedureBuilder... procedure) {
+      this.procedure = Arrays.stream(procedure).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param processNote - A note that describes or explains adjudication results in a human
      *     readable form.
@@ -592,6 +767,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withProcessNote(
         @NonNull Collection<ExplanationOfBenefit.ProcessNote> processNote) {
       this.processNote = Collections.unmodifiableCollection(processNote);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withProcessNote(
+        @NonNull ExplanationOfBenefit_ProcessNoteBuilder... processNote) {
+      this.processNote = Arrays.stream(processNote).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -612,6 +793,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withSupportingInfo(
+        @NonNull ExplanationOfBenefit_SupportingInfoBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param item - A claim line. Either a simple (a product or service) or a 'group' of details
      *     which can also be a simple items or groups of sub-details.
@@ -627,6 +814,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withItem(
         @NonNull Collection<ExplanationOfBenefit.Item> item) {
       this.item = Collections.unmodifiableCollection(item);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withItem(
+        @NonNull ExplanationOfBenefit_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -647,6 +840,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       this.addItem = Collections.unmodifiableCollection(addItem);
       return this;
     }
+
+    public ExplanationOfBenefitBuilder.Impl withAddItem(
+        @NonNull ExplanationOfBenefit_AddItemBuilder... addItem) {
+      this.addItem = Arrays.stream(addItem).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param benefitBalance - Balance by Benefit Category. */
     public ExplanationOfBenefitBuilder.Impl withBenefitBalance(
         @NonNull ExplanationOfBenefit.BenefitBalance... benefitBalance) {
@@ -657,6 +856,12 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     public ExplanationOfBenefitBuilder.Impl withBenefitBalance(
         @NonNull Collection<ExplanationOfBenefit.BenefitBalance> benefitBalance) {
       this.benefitBalance = Collections.unmodifiableCollection(benefitBalance);
+      return this;
+    }
+
+    public ExplanationOfBenefitBuilder.Impl withBenefitBalance(
+        @NonNull ExplanationOfBenefit_BenefitBalanceBuilder... benefitBalance) {
+      this.benefitBalance = Arrays.stream(benefitBalance).map(e -> e.build()).collect(toList());
       return this;
     }
 

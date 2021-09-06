@@ -111,6 +111,11 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -122,14 +127,29 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - Regulatory type, e.g. Investigational or Authorized. */
     public MedicinalProductBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param domain - If this medicine applies to human or veterinary uses. */
     public MedicinalProductBuilder.Impl withDomain(@NonNull Coding domain) {
       this.domain = Optional.of(domain);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withDomain(@NonNull CodingBuilder domain) {
+      this.domain = Optional.of(domain.build());
       return this;
     }
     /** @param contact - A product specific contact, person (in a role), or an organization. */
@@ -140,6 +160,11 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
     /** @param contact - A product specific contact, person (in a role), or an organization. */
     public MedicinalProductBuilder.Impl withContact(@NonNull Collection<Reference> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withContact(@NonNull ReferenceBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -165,6 +190,11 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -187,6 +217,11 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Business identifier for this product. Could be an MPID. */
     public MedicinalProductBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -195,6 +230,11 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
     /** @param identifier - Business identifier for this product. Could be an MPID. */
     public MedicinalProductBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -211,6 +251,11 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
      */
     public MedicinalProductBuilder.Impl withMasterFile(@NonNull Collection<Reference> masterFile) {
       this.masterFile = Collections.unmodifiableCollection(masterFile);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withMasterFile(@NonNull ReferenceBuilder... masterFile) {
+      this.masterFile = Arrays.stream(masterFile).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -234,6 +279,12 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.clinicalTrial = Collections.unmodifiableCollection(clinicalTrial);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withClinicalTrial(
+        @NonNull ReferenceBuilder... clinicalTrial) {
+      this.clinicalTrial = Arrays.stream(clinicalTrial).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param crossReference - Reference to another product, e.g. for linking authorised to
      *     investigational product.
@@ -249,6 +300,12 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
     public MedicinalProductBuilder.Impl withCrossReference(
         @NonNull Collection<Identifier> crossReference) {
       this.crossReference = Collections.unmodifiableCollection(crossReference);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withCrossReference(
+        @NonNull IdentifierBuilder... crossReference) {
+      this.crossReference = Arrays.stream(crossReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -297,6 +354,12 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.attachedDocument = Collections.unmodifiableCollection(attachedDocument);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withAttachedDocument(
+        @NonNull ReferenceBuilder... attachedDocument) {
+      this.attachedDocument = Arrays.stream(attachedDocument).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -333,6 +396,13 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param legalStatusOfSupply - The legal status of supply of the medicinal product as
      *     classified by the regulator.
@@ -340,6 +410,12 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
     public MedicinalProductBuilder.Impl withLegalStatusOfSupply(
         @NonNull CodeableConcept legalStatusOfSupply) {
       this.legalStatusOfSupply = Optional.of(legalStatusOfSupply);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withLegalStatusOfSupply(
+        @NonNull CodeableConceptBuilder legalStatusOfSupply) {
+      this.legalStatusOfSupply = Optional.of(legalStatusOfSupply.build());
       return this;
     }
     /** @param productClassification - Allows the product to be classified by various systems. */
@@ -354,6 +430,13 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.productClassification = Collections.unmodifiableCollection(productClassification);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withProductClassification(
+        @NonNull CodeableConceptBuilder... productClassification) {
+      this.productClassification =
+          Arrays.stream(productClassification).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param pharmaceuticalProduct - Pharmaceutical aspects of product. */
     public MedicinalProductBuilder.Impl withPharmaceuticalProduct(
         @NonNull Reference... pharmaceuticalProduct) {
@@ -366,10 +449,23 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.pharmaceuticalProduct = Collections.unmodifiableCollection(pharmaceuticalProduct);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withPharmaceuticalProduct(
+        @NonNull ReferenceBuilder... pharmaceuticalProduct) {
+      this.pharmaceuticalProduct =
+          Arrays.stream(pharmaceuticalProduct).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param paediatricUseIndicator - If authorised for use in children. */
     public MedicinalProductBuilder.Impl withPaediatricUseIndicator(
         @NonNull CodeableConcept paediatricUseIndicator) {
       this.paediatricUseIndicator = Optional.of(paediatricUseIndicator);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withPaediatricUseIndicator(
+        @NonNull CodeableConceptBuilder paediatricUseIndicator) {
+      this.paediatricUseIndicator = Optional.of(paediatricUseIndicator.build());
       return this;
     }
     /** @param packagedMedicinalProduct - Package representation for the product. */
@@ -384,6 +480,13 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.packagedMedicinalProduct = Collections.unmodifiableCollection(packagedMedicinalProduct);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withPackagedMedicinalProduct(
+        @NonNull ReferenceBuilder... packagedMedicinalProduct) {
+      this.packagedMedicinalProduct =
+          Arrays.stream(packagedMedicinalProduct).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param additionalMonitoringIndicator - Whether the Medicinal Product is subject to additional
      *     monitoring for regulatory reasons.
@@ -393,6 +496,12 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
       this.additionalMonitoringIndicator = Optional.of(additionalMonitoringIndicator);
       return this;
     }
+
+    public MedicinalProductBuilder.Impl withAdditionalMonitoringIndicator(
+        @NonNull CodeableConceptBuilder additionalMonitoringIndicator) {
+      this.additionalMonitoringIndicator = Optional.of(additionalMonitoringIndicator.build());
+      return this;
+    }
     /**
      * @param combinedPharmaceuticalDoseForm - The dose form for a single part product, or combined
      *     form of a multiple part product.
@@ -400,6 +509,12 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
     public MedicinalProductBuilder.Impl withCombinedPharmaceuticalDoseForm(
         @NonNull CodeableConcept combinedPharmaceuticalDoseForm) {
       this.combinedPharmaceuticalDoseForm = Optional.of(combinedPharmaceuticalDoseForm);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withCombinedPharmaceuticalDoseForm(
+        @NonNull CodeableConceptBuilder combinedPharmaceuticalDoseForm) {
+      this.combinedPharmaceuticalDoseForm = Optional.of(combinedPharmaceuticalDoseForm.build());
       return this;
     }
     /**
@@ -418,6 +533,13 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
     public MedicinalProductBuilder.Impl withSpecialDesignation(
         @NonNull Collection<MedicinalProduct.SpecialDesignation> specialDesignation) {
       this.specialDesignation = Collections.unmodifiableCollection(specialDesignation);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withSpecialDesignation(
+        @NonNull MedicinalProduct_SpecialDesignationBuilder... specialDesignation) {
+      this.specialDesignation =
+          Arrays.stream(specialDesignation).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -440,6 +562,15 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
                 manufacturingBusinessOperation) {
       this.manufacturingBusinessOperation =
           Collections.unmodifiableCollection(manufacturingBusinessOperation);
+      return this;
+    }
+
+    public MedicinalProductBuilder.Impl withManufacturingBusinessOperation(
+        @NonNull
+            MedicinalProduct_ManufacturingBusinessOperationBuilder...
+                manufacturingBusinessOperation) {
+      this.manufacturingBusinessOperation =
+          Arrays.stream(manufacturingBusinessOperation).map(e -> e.build()).collect(toList());
       return this;
     }
 

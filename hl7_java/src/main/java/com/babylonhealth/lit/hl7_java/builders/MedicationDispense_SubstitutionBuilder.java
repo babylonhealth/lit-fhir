@@ -87,6 +87,12 @@ public interface MedicationDispense_SubstitutionBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public MedicationDispense_SubstitutionBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param reason */
     public MedicationDispense_SubstitutionBuilder.Impl withReason(
         @NonNull CodeableConcept... reason) {
@@ -97,6 +103,12 @@ public interface MedicationDispense_SubstitutionBuilder {
     public MedicationDispense_SubstitutionBuilder.Impl withReason(
         @NonNull Collection<CodeableConcept> reason) {
       this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public MedicationDispense_SubstitutionBuilder.Impl withReason(
+        @NonNull CodeableConceptBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -123,6 +135,12 @@ public interface MedicationDispense_SubstitutionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicationDispense_SubstitutionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param responsibleParty */
     public MedicationDispense_SubstitutionBuilder.Impl withResponsibleParty(
         @NonNull Reference... responsibleParty) {
@@ -133,6 +151,12 @@ public interface MedicationDispense_SubstitutionBuilder {
     public MedicationDispense_SubstitutionBuilder.Impl withResponsibleParty(
         @NonNull Collection<Reference> responsibleParty) {
       this.responsibleParty = Collections.unmodifiableCollection(responsibleParty);
+      return this;
+    }
+
+    public MedicationDispense_SubstitutionBuilder.Impl withResponsibleParty(
+        @NonNull ReferenceBuilder... responsibleParty) {
+      this.responsibleParty = Arrays.stream(responsibleParty).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -169,6 +193,13 @@ public interface MedicationDispense_SubstitutionBuilder {
     public MedicationDispense_SubstitutionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationDispense_SubstitutionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -78,6 +78,12 @@ public interface SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilde
       this.degree = Optional.of(degree);
       return this;
     }
+
+    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withDegree(
+        @NonNull CodeableConceptBuilder degree) {
+      this.degree = Optional.of(degree.build());
+      return this;
+    }
     /** @param amount */
     public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withAmount(
         @NonNull Choice amount) {
@@ -106,6 +112,12 @@ public interface SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilde
     public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -142,6 +154,13 @@ public interface SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilde
     public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl
         withModifierExtension(@NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl
+        withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

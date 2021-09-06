@@ -109,6 +109,12 @@ public interface QuestionnaireResponse_ItemBuilder {
       this.item = Collections.unmodifiableCollection(item);
       return this;
     }
+
+    public QuestionnaireResponse_ItemBuilder.Impl withItem(
+        @NonNull QuestionnaireResponse_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -130,6 +136,12 @@ public interface QuestionnaireResponse_ItemBuilder {
     public QuestionnaireResponse_ItemBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public QuestionnaireResponse_ItemBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param definition */
@@ -173,6 +185,13 @@ public interface QuestionnaireResponse_ItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public QuestionnaireResponse_ItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param answer */
     public QuestionnaireResponse_ItemBuilder.Impl withAnswer(
         @NonNull QuestionnaireResponse$Item$Answer... answer) {
@@ -183,6 +202,12 @@ public interface QuestionnaireResponse_ItemBuilder {
     public QuestionnaireResponse_ItemBuilder.Impl withAnswer(
         @NonNull Collection<QuestionnaireResponse$Item$Answer> answer) {
       this.answer = Collections.unmodifiableCollection(answer);
+      return this;
+    }
+
+    public QuestionnaireResponse_ItemBuilder.Impl withAnswer(
+        @NonNull QuestionnaireResponse_Item_AnswerBuilder... answer) {
+      this.answer = Arrays.stream(answer).map(e -> e.build()).collect(toList());
       return this;
     }
 

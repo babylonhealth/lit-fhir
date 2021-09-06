@@ -102,6 +102,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public RelatedPersonBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -111,6 +116,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
      */
     public RelatedPersonBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public RelatedPersonBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param name - A name associated with the person. */
@@ -123,6 +133,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
       this.name = Collections.unmodifiableCollection(name);
       return this;
     }
+
+    public RelatedPersonBuilder.Impl withName(@NonNull HumanNameBuilder... name) {
+      this.name = Arrays.stream(name).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param photo - Image of the person. */
     public RelatedPersonBuilder.Impl withPhoto(@NonNull Attachment... photo) {
       this.photo = Arrays.asList(photo);
@@ -131,6 +146,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
     /** @param photo - Image of the person. */
     public RelatedPersonBuilder.Impl withPhoto(@NonNull Collection<Attachment> photo) {
       this.photo = Collections.unmodifiableCollection(photo);
+      return this;
+    }
+
+    public RelatedPersonBuilder.Impl withPhoto(@NonNull AttachmentBuilder... photo) {
+      this.photo = Arrays.stream(photo).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param active - Whether this related person record is in active use. */
@@ -154,6 +174,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public RelatedPersonBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /**
      * @param telecom - A contact detail for the person, e.g. a telephone number or an email
      *     address.
@@ -170,6 +195,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public RelatedPersonBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param address - Address where the related person can be contacted or visited. */
     public RelatedPersonBuilder.Impl withAddress(@NonNull Address... address) {
       this.address = Arrays.asList(address);
@@ -178,6 +208,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
     /** @param address - Address where the related person can be contacted or visited. */
     public RelatedPersonBuilder.Impl withAddress(@NonNull Collection<Address> address) {
       this.address = Collections.unmodifiableCollection(address);
+      return this;
+    }
+
+    public RelatedPersonBuilder.Impl withAddress(@NonNull AddressBuilder... address) {
+      this.address = Arrays.stream(address).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -203,6 +238,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public RelatedPersonBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -225,6 +265,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public RelatedPersonBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param birthDate - The date on which the related person was born. */
     public RelatedPersonBuilder.Impl withBirthDate(@NonNull FHIRDate birthDate) {
       this.birthDate = Optional.of(birthDate);
@@ -238,6 +283,11 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
     /** @param identifier - Identifier for a person within a particular scope. */
     public RelatedPersonBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public RelatedPersonBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -255,6 +305,12 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
     public RelatedPersonBuilder.Impl withRelationship(
         @NonNull Collection<CodeableConcept> relationship) {
       this.relationship = Collections.unmodifiableCollection(relationship);
+      return this;
+    }
+
+    public RelatedPersonBuilder.Impl withRelationship(
+        @NonNull CodeableConceptBuilder... relationship) {
+      this.relationship = Arrays.stream(relationship).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -303,6 +359,13 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public RelatedPersonBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param communication - A language which may be used to communicate with about the patient's
      *     health.
@@ -319,6 +382,12 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
     public RelatedPersonBuilder.Impl withCommunication(
         @NonNull Collection<RelatedPerson.Communication> communication) {
       this.communication = Collections.unmodifiableCollection(communication);
+      return this;
+    }
+
+    public RelatedPersonBuilder.Impl withCommunication(
+        @NonNull RelatedPerson_CommunicationBuilder... communication) {
+      this.communication = Arrays.stream(communication).map(e -> e.build()).collect(toList());
       return this;
     }
 

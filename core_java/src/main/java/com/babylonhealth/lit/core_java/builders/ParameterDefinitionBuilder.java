@@ -135,6 +135,11 @@ public interface ParameterDefinitionBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ParameterDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param documentation - A brief discussion of what the parameter is for and how it is used by
      *     the module.

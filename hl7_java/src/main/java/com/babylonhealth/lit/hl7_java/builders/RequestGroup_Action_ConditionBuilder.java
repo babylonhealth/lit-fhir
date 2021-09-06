@@ -101,10 +101,22 @@ public interface RequestGroup_Action_ConditionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public RequestGroup_Action_ConditionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param expression */
     public RequestGroup_Action_ConditionBuilder.Impl withExpression(
         @NonNull Expression expression) {
       this.expression = Optional.of(expression);
+      return this;
+    }
+
+    public RequestGroup_Action_ConditionBuilder.Impl withExpression(
+        @NonNull ExpressionBuilder expression) {
+      this.expression = Optional.of(expression.build());
       return this;
     }
     /**
@@ -141,6 +153,13 @@ public interface RequestGroup_Action_ConditionBuilder {
     public RequestGroup_Action_ConditionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public RequestGroup_Action_ConditionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

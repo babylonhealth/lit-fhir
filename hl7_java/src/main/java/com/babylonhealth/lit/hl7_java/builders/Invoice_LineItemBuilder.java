@@ -115,6 +115,11 @@ public interface Invoice_LineItemBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Invoice_LineItemBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -151,6 +156,13 @@ public interface Invoice_LineItemBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Invoice_LineItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param priceComponent */
     public Invoice_LineItemBuilder.Impl withPriceComponent(
         @NonNull Invoice$LineItem$PriceComponent... priceComponent) {
@@ -161,6 +173,12 @@ public interface Invoice_LineItemBuilder {
     public Invoice_LineItemBuilder.Impl withPriceComponent(
         @NonNull Collection<Invoice$LineItem$PriceComponent> priceComponent) {
       this.priceComponent = Collections.unmodifiableCollection(priceComponent);
+      return this;
+    }
+
+    public Invoice_LineItemBuilder.Impl withPriceComponent(
+        @NonNull Invoice_LineItem_PriceComponentBuilder... priceComponent) {
+      this.priceComponent = Arrays.stream(priceComponent).map(e -> e.build()).collect(toList());
       return this;
     }
 

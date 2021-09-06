@@ -114,6 +114,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -125,6 +130,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param site - A facility in which study activities are conducted. */
     public ResearchStudyBuilder.Impl withSite(@NonNull Reference... site) {
       this.site = Arrays.asList(site);
@@ -133,6 +143,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
     /** @param site - A facility in which study activities are conducted. */
     public ResearchStudyBuilder.Impl withSite(@NonNull Collection<Reference> site) {
       this.site = Collections.unmodifiableCollection(site);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withSite(@NonNull ReferenceBuilder... site) {
+      this.site = Arrays.stream(site).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -149,6 +164,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param title - A short, descriptive user-friendly label for the study. */
     public ResearchStudyBuilder.Impl withTitle(@NonNull String title) {
       this.title = Optional.of(title);
@@ -160,6 +180,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
      */
     public ResearchStudyBuilder.Impl withPhase(@NonNull CodeableConcept phase) {
       this.phase = Optional.of(phase);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withPhase(@NonNull CodeableConceptBuilder phase) {
+      this.phase = Optional.of(phase.build());
       return this;
     }
     /**
@@ -178,6 +203,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.focus = Collections.unmodifiableCollection(focus);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withFocus(@NonNull CodeableConceptBuilder... focus) {
+      this.focus = Arrays.stream(focus).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param partOf - A larger research study of which this particular study is a component or
      *     step.
@@ -194,12 +224,22 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param period - Identifies the start date and the expected (or actual, depending on status)
      *     end date for the study.
      */
     public ResearchStudyBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -218,6 +258,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param keyword - Key terms to aid in searching for or filtering the study. */
     public ResearchStudyBuilder.Impl withKeyword(@NonNull CodeableConcept... keyword) {
       this.keyword = Arrays.asList(keyword);
@@ -228,12 +273,22 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.keyword = Collections.unmodifiableCollection(keyword);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withKeyword(@NonNull CodeableConceptBuilder... keyword) {
+      this.keyword = Arrays.stream(keyword).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param sponsor - An organization that initiates the investigation and is legally responsible
      *     for the study.
      */
     public ResearchStudyBuilder.Impl withSponsor(@NonNull Reference sponsor) {
       this.sponsor = Optional.of(sponsor);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withSponsor(@NonNull ReferenceBuilder sponsor) {
+      this.sponsor = Optional.of(sponsor.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -257,6 +312,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.protocol = Collections.unmodifiableCollection(protocol);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withProtocol(@NonNull ReferenceBuilder... protocol) {
+      this.protocol = Arrays.stream(protocol).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param category - Codes categorizing the type of study such as investigational vs.
      *     observational, type of blinding, type of randomization, safety vs. efficacy, etc.
@@ -273,6 +333,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param location - Indicates a country, state or other region where the study is taking place.
      */
@@ -285,6 +350,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
      */
     public ResearchStudyBuilder.Impl withLocation(@NonNull Collection<CodeableConcept> location) {
       this.location = Collections.unmodifiableCollection(location);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withLocation(@NonNull CodeableConceptBuilder... location) {
+      this.location = Arrays.stream(location).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -303,6 +373,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
      */
     public ResearchStudyBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -327,6 +402,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param condition - The condition that is the focus of the study. For example, In a study to
      *     examine risk factors for Lupus, might have as an inclusion criterion "healthy volunteer",
@@ -345,6 +425,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.condition = Collections.unmodifiableCollection(condition);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withCondition(@NonNull CodeableConceptBuilder... condition) {
+      this.condition = Arrays.stream(condition).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Identifiers assigned to this research study by the sponsor or other
      *     systems.
@@ -359,6 +444,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
      */
     public ResearchStudyBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -377,6 +467,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
      */
     public ResearchStudyBuilder.Impl withEnrollment(@NonNull Collection<Reference> enrollment) {
       this.enrollment = Collections.unmodifiableCollection(enrollment);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withEnrollment(@NonNull ReferenceBuilder... enrollment) {
+      this.enrollment = Arrays.stream(enrollment).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description - A full description of how the study is being conducted. */
@@ -402,6 +497,12 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.reasonStopped = Optional.of(reasonStopped);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withReasonStopped(
+        @NonNull CodeableConceptBuilder reasonStopped) {
+      this.reasonStopped = Optional.of(reasonStopped.build());
+      return this;
+    }
     /** @param relatedArtifact - Citations, references and other related documents. */
     public ResearchStudyBuilder.Impl withRelatedArtifact(
         @NonNull RelatedArtifact... relatedArtifact) {
@@ -412,6 +513,12 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
     public ResearchStudyBuilder.Impl withRelatedArtifact(
         @NonNull Collection<RelatedArtifact> relatedArtifact) {
       this.relatedArtifact = Collections.unmodifiableCollection(relatedArtifact);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withRelatedArtifact(
+        @NonNull RelatedArtifactBuilder... relatedArtifact) {
+      this.relatedArtifact = Arrays.stream(relatedArtifact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -450,6 +557,13 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param primaryPurposeType - The type of study based upon the intent of the study's
      *     activities. A classification of the intent of the study.
@@ -457,6 +571,12 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
     public ResearchStudyBuilder.Impl withPrimaryPurposeType(
         @NonNull CodeableConcept primaryPurposeType) {
       this.primaryPurposeType = Optional.of(primaryPurposeType);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withPrimaryPurposeType(
+        @NonNull CodeableConceptBuilder primaryPurposeType) {
+      this.primaryPurposeType = Optional.of(primaryPurposeType.build());
       return this;
     }
     /**
@@ -468,6 +588,12 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
     public ResearchStudyBuilder.Impl withPrincipalInvestigator(
         @NonNull Reference principalInvestigator) {
       this.principalInvestigator = Optional.of(principalInvestigator);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withPrincipalInvestigator(
+        @NonNull ReferenceBuilder principalInvestigator) {
+      this.principalInvestigator = Optional.of(principalInvestigator.build());
       return this;
     }
     /**
@@ -486,6 +612,11 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       this.arm = Collections.unmodifiableCollection(arm);
       return this;
     }
+
+    public ResearchStudyBuilder.Impl withArm(@NonNull ResearchStudy_ArmBuilder... arm) {
+      this.arm = Arrays.stream(arm).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param objective - A goal that the study is aiming to achieve in terms of a scientific
      *     question to be answered by the analysis of data collected during the study.
@@ -501,6 +632,12 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
     public ResearchStudyBuilder.Impl withObjective(
         @NonNull Collection<ResearchStudy.Objective> objective) {
       this.objective = Collections.unmodifiableCollection(objective);
+      return this;
+    }
+
+    public ResearchStudyBuilder.Impl withObjective(
+        @NonNull ResearchStudy_ObjectiveBuilder... objective) {
+      this.objective = Arrays.stream(objective).map(e -> e.build()).collect(toList());
       return this;
     }
 

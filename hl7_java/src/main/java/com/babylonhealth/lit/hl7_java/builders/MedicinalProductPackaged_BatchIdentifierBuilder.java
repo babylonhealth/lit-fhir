@@ -101,6 +101,12 @@ public interface MedicinalProductPackaged_BatchIdentifierBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductPackaged_BatchIdentifierBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -137,10 +143,23 @@ public interface MedicinalProductPackaged_BatchIdentifierBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductPackaged_BatchIdentifierBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param immediatePackaging */
     public MedicinalProductPackaged_BatchIdentifierBuilder.Impl withImmediatePackaging(
         @NonNull Identifier immediatePackaging) {
       this.immediatePackaging = Optional.of(immediatePackaging);
+      return this;
+    }
+
+    public MedicinalProductPackaged_BatchIdentifierBuilder.Impl withImmediatePackaging(
+        @NonNull IdentifierBuilder immediatePackaging) {
+      this.immediatePackaging = Optional.of(immediatePackaging.build());
       return this;
     }
 

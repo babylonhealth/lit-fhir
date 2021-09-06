@@ -100,6 +100,11 @@ public interface Device_PropertyBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Device_PropertyBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param valueCode */
     public Device_PropertyBuilder.Impl withValueCode(@NonNull CodeableConcept... valueCode) {
       this.valueCode = Arrays.asList(valueCode);
@@ -111,6 +116,11 @@ public interface Device_PropertyBuilder {
       this.valueCode = Collections.unmodifiableCollection(valueCode);
       return this;
     }
+
+    public Device_PropertyBuilder.Impl withValueCode(@NonNull CodeableConceptBuilder... valueCode) {
+      this.valueCode = Arrays.stream(valueCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param valueQuantity */
     public Device_PropertyBuilder.Impl withValueQuantity(@NonNull Quantity... valueQuantity) {
       this.valueQuantity = Arrays.asList(valueQuantity);
@@ -120,6 +130,12 @@ public interface Device_PropertyBuilder {
     public Device_PropertyBuilder.Impl withValueQuantity(
         @NonNull Collection<Quantity> valueQuantity) {
       this.valueQuantity = Collections.unmodifiableCollection(valueQuantity);
+      return this;
+    }
+
+    public Device_PropertyBuilder.Impl withValueQuantity(
+        @NonNull QuantityBuilder... valueQuantity) {
+      this.valueQuantity = Arrays.stream(valueQuantity).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -156,6 +172,13 @@ public interface Device_PropertyBuilder {
     public Device_PropertyBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Device_PropertyBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

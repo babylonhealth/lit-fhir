@@ -84,6 +84,11 @@ public interface Measure_SupplementalDataBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public Measure_SupplementalDataBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /**
      * @param usage - A detailed description, from a clinical perspective, of how the measure is
      *     used.
@@ -99,6 +104,12 @@ public interface Measure_SupplementalDataBuilder {
     public Measure_SupplementalDataBuilder.Impl withUsage(
         @NonNull Collection<CodeableConcept> usage) {
       this.usage = Collections.unmodifiableCollection(usage);
+      return this;
+    }
+
+    public Measure_SupplementalDataBuilder.Impl withUsage(
+        @NonNull CodeableConceptBuilder... usage) {
+      this.usage = Arrays.stream(usage).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -122,6 +133,12 @@ public interface Measure_SupplementalDataBuilder {
     public Measure_SupplementalDataBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Measure_SupplementalDataBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -166,6 +183,13 @@ public interface Measure_SupplementalDataBuilder {
     public Measure_SupplementalDataBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Measure_SupplementalDataBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

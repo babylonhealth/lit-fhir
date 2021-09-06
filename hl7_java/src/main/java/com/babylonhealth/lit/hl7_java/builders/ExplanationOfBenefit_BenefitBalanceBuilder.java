@@ -94,15 +94,33 @@ public interface ExplanationOfBenefit_BenefitBalanceBuilder {
       this.unit = Optional.of(unit);
       return this;
     }
+
+    public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withUnit(
+        @NonNull CodeableConceptBuilder unit) {
+      this.unit = Optional.of(unit.build());
+      return this;
+    }
     /** @param term */
     public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withTerm(@NonNull CodeableConcept term) {
       this.term = Optional.of(term);
+      return this;
+    }
+
+    public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withTerm(
+        @NonNull CodeableConceptBuilder term) {
+      this.term = Optional.of(term.build());
       return this;
     }
     /** @param network */
     public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withNetwork(
         @NonNull CodeableConcept network) {
       this.network = Optional.of(network);
+      return this;
+    }
+
+    public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withNetwork(
+        @NonNull CodeableConceptBuilder network) {
+      this.network = Optional.of(network.build());
       return this;
     }
     /** @param excluded */
@@ -132,6 +150,12 @@ public interface ExplanationOfBenefit_BenefitBalanceBuilder {
     public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description */
@@ -176,6 +200,13 @@ public interface ExplanationOfBenefit_BenefitBalanceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param financial */
     public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withFinancial(
         @NonNull ExplanationOfBenefit$BenefitBalance$Financial... financial) {
@@ -186,6 +217,12 @@ public interface ExplanationOfBenefit_BenefitBalanceBuilder {
     public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withFinancial(
         @NonNull Collection<ExplanationOfBenefit$BenefitBalance$Financial> financial) {
       this.financial = Collections.unmodifiableCollection(financial);
+      return this;
+    }
+
+    public ExplanationOfBenefit_BenefitBalanceBuilder.Impl withFinancial(
+        @NonNull ExplanationOfBenefit_BenefitBalance_FinancialBuilder... financial) {
+      this.financial = Arrays.stream(financial).map(e -> e.build()).collect(toList());
       return this;
     }
 

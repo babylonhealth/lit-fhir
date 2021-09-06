@@ -131,6 +131,11 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SupplyRequestBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -140,6 +145,11 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
      */
     public SupplyRequestBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SupplyRequestBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param status - Status of the supply request. */
@@ -160,6 +170,11 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.category = Optional.of(category);
       return this;
     }
+
+    public SupplyRequestBuilder.Impl withCategory(@NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
+      return this;
+    }
     /**
      * @param priority - Indicates how quickly this SupplyRequest should be addressed with respect
      *     to other requests.
@@ -178,6 +193,11 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.supplier = Collections.unmodifiableCollection(supplier);
       return this;
     }
+
+    public SupplyRequestBuilder.Impl withSupplier(@NonNull ReferenceBuilder... supplier) {
+      this.supplier = Arrays.stream(supplier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -194,6 +214,11 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
      */
     public SupplyRequestBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public SupplyRequestBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -218,14 +243,29 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SupplyRequestBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param requester - The device, practitioner, etc. who initiated the request. */
     public SupplyRequestBuilder.Impl withRequester(@NonNull Reference requester) {
       this.requester = Optional.of(requester);
       return this;
     }
+
+    public SupplyRequestBuilder.Impl withRequester(@NonNull ReferenceBuilder requester) {
+      this.requester = Optional.of(requester.build());
+      return this;
+    }
     /** @param deliverTo - Where the supply is destined to go. */
     public SupplyRequestBuilder.Impl withDeliverTo(@NonNull Reference deliverTo) {
       this.deliverTo = Optional.of(deliverTo);
+      return this;
+    }
+
+    public SupplyRequestBuilder.Impl withDeliverTo(@NonNull ReferenceBuilder deliverTo) {
+      this.deliverTo = Optional.of(deliverTo.build());
       return this;
     }
     /**
@@ -246,6 +286,11 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public SupplyRequestBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param authoredOn - When the request was made. */
     public SupplyRequestBuilder.Impl withAuthoredOn(@NonNull FHIRDateTime authoredOn) {
       this.authoredOn = Optional.of(authoredOn);
@@ -262,9 +307,19 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
       return this;
     }
+
+    public SupplyRequestBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param deliverFrom - Where the supply is expected to come from. */
     public SupplyRequestBuilder.Impl withDeliverFrom(@NonNull Reference deliverFrom) {
       this.deliverFrom = Optional.of(deliverFrom);
+      return this;
+    }
+
+    public SupplyRequestBuilder.Impl withDeliverFrom(@NonNull ReferenceBuilder deliverFrom) {
+      this.deliverFrom = Optional.of(deliverFrom.build());
       return this;
     }
     /**
@@ -295,6 +350,12 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     public SupplyRequestBuilder.Impl withReasonReference(
         @NonNull Collection<Reference> reasonReference) {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
+      return this;
+    }
+
+    public SupplyRequestBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -333,6 +394,13 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SupplyRequestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param parameter - Specific parameters for the ordered item. For example, the size of the
      *     indicated item.
@@ -348,6 +416,12 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     public SupplyRequestBuilder.Impl withParameter(
         @NonNull Collection<SupplyRequest.Parameter> parameter) {
       this.parameter = Collections.unmodifiableCollection(parameter);
+      return this;
+    }
+
+    public SupplyRequestBuilder.Impl withParameter(
+        @NonNull SupplyRequest_ParameterBuilder... parameter) {
+      this.parameter = Arrays.stream(parameter).map(e -> e.build()).collect(toList());
       return this;
     }
 

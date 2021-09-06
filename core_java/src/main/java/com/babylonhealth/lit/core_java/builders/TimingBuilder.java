@@ -81,6 +81,11 @@ public interface TimingBuilder extends BackboneElementBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public TimingBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param event - Identifies specific times when the event occurs. */
     public TimingBuilder.Impl withEvent(@NonNull FHIRDateTime... event) {
       this.event = Arrays.asList(event);
@@ -111,6 +116,11 @@ public interface TimingBuilder extends BackboneElementBuilder {
      */
     public TimingBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public TimingBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -146,9 +156,21 @@ public interface TimingBuilder extends BackboneElementBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TimingBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param repeat - A set of rules that describe when the event is scheduled. */
     public TimingBuilder.Impl withRepeat(@NonNull Timing.Repeat repeat) {
       this.repeat = Optional.of(repeat);
+      return this;
+    }
+
+    public TimingBuilder.Impl withRepeat(@NonNull Timing_RepeatBuilder repeat) {
+      this.repeat = Optional.of(repeat.build());
       return this;
     }
 

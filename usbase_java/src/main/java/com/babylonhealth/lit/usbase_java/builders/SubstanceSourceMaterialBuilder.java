@@ -101,6 +101,11 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -110,6 +115,11 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
      */
     public SubstanceSourceMaterialBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SubstanceSourceMaterialBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -136,6 +146,12 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -159,12 +175,24 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param organismId - The unique identifier associated with the source material parent organism
      *     shall be specified.
      */
     public SubstanceSourceMaterialBuilder.Impl withOrganismId(@NonNull Identifier organismId) {
       this.organismId = Optional.of(organismId);
+      return this;
+    }
+
+    public SubstanceSourceMaterialBuilder.Impl withOrganismId(
+        @NonNull IdentifierBuilder organismId) {
+      this.organismId = Optional.of(organismId.build());
       return this;
     }
     /**
@@ -207,6 +235,12 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.countryOfOrigin = Collections.unmodifiableCollection(countryOfOrigin);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withCountryOfOrigin(
+        @NonNull CodeableConceptBuilder... countryOfOrigin) {
+      this.countryOfOrigin = Arrays.stream(countryOfOrigin).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param developmentStage - Stage of life for animals, plants, insects and microorganisms. This
      *     information shall be provided only when the substance is significantly different in these
@@ -215,6 +249,12 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
     public SubstanceSourceMaterialBuilder.Impl withDevelopmentStage(
         @NonNull CodeableConcept developmentStage) {
       this.developmentStage = Optional.of(developmentStage);
+      return this;
+    }
+
+    public SubstanceSourceMaterialBuilder.Impl withDevelopmentStage(
+        @NonNull CodeableConceptBuilder developmentStage) {
+      this.developmentStage = Optional.of(developmentStage.build());
       return this;
     }
     /**
@@ -253,6 +293,13 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param parentSubstanceId - The parent of the herbal drug Ginkgo biloba, Leaf is the substance
      *     ID of the substance (fresh) of Ginkgo biloba L. or Ginkgo biloba L. (Whole plant).
@@ -271,6 +318,13 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.parentSubstanceId = Collections.unmodifiableCollection(parentSubstanceId);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withParentSubstanceId(
+        @NonNull IdentifierBuilder... parentSubstanceId) {
+      this.parentSubstanceId =
+          Arrays.stream(parentSubstanceId).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param sourceMaterialType - The type of the source material shall be specified based on a
      *     controlled vocabulary. For vaccines, this subclause refers to the class of infectious
@@ -279,6 +333,12 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
     public SubstanceSourceMaterialBuilder.Impl withSourceMaterialType(
         @NonNull CodeableConcept sourceMaterialType) {
       this.sourceMaterialType = Optional.of(sourceMaterialType);
+      return this;
+    }
+
+    public SubstanceSourceMaterialBuilder.Impl withSourceMaterialType(
+        @NonNull CodeableConceptBuilder sourceMaterialType) {
+      this.sourceMaterialType = Optional.of(sourceMaterialType.build());
       return this;
     }
     /**
@@ -290,10 +350,22 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.sourceMaterialClass = Optional.of(sourceMaterialClass);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withSourceMaterialClass(
+        @NonNull CodeableConceptBuilder sourceMaterialClass) {
+      this.sourceMaterialClass = Optional.of(sourceMaterialClass.build());
+      return this;
+    }
     /** @param sourceMaterialState - The state of the source material when extracted. */
     public SubstanceSourceMaterialBuilder.Impl withSourceMaterialState(
         @NonNull CodeableConcept sourceMaterialState) {
       this.sourceMaterialState = Optional.of(sourceMaterialState);
+      return this;
+    }
+
+    public SubstanceSourceMaterialBuilder.Impl withSourceMaterialState(
+        @NonNull CodeableConceptBuilder sourceMaterialState) {
+      this.sourceMaterialState = Optional.of(sourceMaterialState.build());
       return this;
     }
     /**
@@ -342,6 +414,12 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.partDescription = Collections.unmodifiableCollection(partDescription);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withPartDescription(
+        @NonNull SubstanceSourceMaterial_PartDescriptionBuilder... partDescription) {
+      this.partDescription = Arrays.stream(partDescription).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param fractionDescription - Many complex materials are fractions of parts of plants,
      *     animals, or minerals. Fraction elements are often necessary to define both Substances and
@@ -372,6 +450,13 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       this.fractionDescription = Collections.unmodifiableCollection(fractionDescription);
       return this;
     }
+
+    public SubstanceSourceMaterialBuilder.Impl withFractionDescription(
+        @NonNull SubstanceSourceMaterial_FractionDescriptionBuilder... fractionDescription) {
+      this.fractionDescription =
+          Arrays.stream(fractionDescription).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param organism - This subclause describes the organism which the substance is derived from.
      *     For vaccines, the parent organism shall be specified based on these subclause elements.
@@ -380,6 +465,12 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
     public SubstanceSourceMaterialBuilder.Impl withOrganism(
         @NonNull SubstanceSourceMaterial.Organism organism) {
       this.organism = Optional.of(organism);
+      return this;
+    }
+
+    public SubstanceSourceMaterialBuilder.Impl withOrganism(
+        @NonNull SubstanceSourceMaterial_OrganismBuilder organism) {
+      this.organism = Optional.of(organism.build());
       return this;
     }
 

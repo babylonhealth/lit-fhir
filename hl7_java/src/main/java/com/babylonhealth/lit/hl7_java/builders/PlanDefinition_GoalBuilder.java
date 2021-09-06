@@ -88,14 +88,29 @@ public interface PlanDefinition_GoalBuilder {
       this.start = Optional.of(start);
       return this;
     }
+
+    public PlanDefinition_GoalBuilder.Impl withStart(@NonNull CodeableConceptBuilder start) {
+      this.start = Optional.of(start.build());
+      return this;
+    }
     /** @param category */
     public PlanDefinition_GoalBuilder.Impl withCategory(@NonNull CodeableConcept category) {
       this.category = Optional.of(category);
       return this;
     }
+
+    public PlanDefinition_GoalBuilder.Impl withCategory(@NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
+      return this;
+    }
     /** @param priority */
     public PlanDefinition_GoalBuilder.Impl withPriority(@NonNull CodeableConcept priority) {
       this.priority = Optional.of(priority);
+      return this;
+    }
+
+    public PlanDefinition_GoalBuilder.Impl withPriority(@NonNull CodeableConceptBuilder priority) {
+      this.priority = Optional.of(priority.build());
       return this;
     }
     /**
@@ -120,6 +135,11 @@ public interface PlanDefinition_GoalBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public PlanDefinition_GoalBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param addresses */
     public PlanDefinition_GoalBuilder.Impl withAddresses(@NonNull CodeableConcept... addresses) {
       this.addresses = Arrays.asList(addresses);
@@ -129,6 +149,12 @@ public interface PlanDefinition_GoalBuilder {
     public PlanDefinition_GoalBuilder.Impl withAddresses(
         @NonNull Collection<CodeableConcept> addresses) {
       this.addresses = Collections.unmodifiableCollection(addresses);
+      return this;
+    }
+
+    public PlanDefinition_GoalBuilder.Impl withAddresses(
+        @NonNull CodeableConceptBuilder... addresses) {
+      this.addresses = Arrays.stream(addresses).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param documentation */
@@ -141,6 +167,12 @@ public interface PlanDefinition_GoalBuilder {
     public PlanDefinition_GoalBuilder.Impl withDocumentation(
         @NonNull Collection<RelatedArtifact> documentation) {
       this.documentation = Collections.unmodifiableCollection(documentation);
+      return this;
+    }
+
+    public PlanDefinition_GoalBuilder.Impl withDocumentation(
+        @NonNull RelatedArtifactBuilder... documentation) {
+      this.documentation = Arrays.stream(documentation).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -179,6 +211,13 @@ public interface PlanDefinition_GoalBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public PlanDefinition_GoalBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param target */
     public PlanDefinition_GoalBuilder.Impl withTarget(
         @NonNull PlanDefinition$Goal$Target... target) {
@@ -189,6 +228,12 @@ public interface PlanDefinition_GoalBuilder {
     public PlanDefinition_GoalBuilder.Impl withTarget(
         @NonNull Collection<PlanDefinition$Goal$Target> target) {
       this.target = Collections.unmodifiableCollection(target);
+      return this;
+    }
+
+    public PlanDefinition_GoalBuilder.Impl withTarget(
+        @NonNull PlanDefinition_Goal_TargetBuilder... target) {
+      this.target = Arrays.stream(target).map(e -> e.build()).collect(toList());
       return this;
     }
 

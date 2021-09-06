@@ -142,6 +142,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -151,6 +156,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
      */
     public ChargeItemBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -167,6 +177,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param partOf - ChargeItems can be grouped to larger ChargeItems covering the whole set. */
     public ChargeItemBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
@@ -175,6 +190,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     /** @param partOf - ChargeItems can be grouped to larger ChargeItems covering the whole set. */
     public ChargeItemBuilder.Impl withPartOf(@NonNull Collection<Reference> partOf) {
       this.partOf = Collections.unmodifiableCollection(partOf);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param reason - Describes why the event occurred in coded or textual form. */
@@ -187,6 +207,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.reason = Collections.unmodifiableCollection(reason);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withReason(@NonNull CodeableConceptBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param context - The encounter or episode of care that establishes the context for this
      *     event.
@@ -195,9 +220,19 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.context = Optional.of(context);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withContext(@NonNull ReferenceBuilder context) {
+      this.context = Optional.of(context.build());
+      return this;
+    }
     /** @param enterer - The device, practitioner, etc. who entered the charge item. */
     public ChargeItemBuilder.Impl withEnterer(@NonNull Reference enterer) {
       this.enterer = Optional.of(enterer);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withEnterer(@NonNull ReferenceBuilder enterer) {
+      this.enterer = Optional.of(enterer.build());
       return this;
     }
     /** @param service - Indicated the rendered service that caused this charge. */
@@ -210,6 +245,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.service = Collections.unmodifiableCollection(service);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withService(@NonNull ReferenceBuilder... service) {
+      this.service = Arrays.stream(service).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param account - Account into which this ChargeItems belongs. */
     public ChargeItemBuilder.Impl withAccount(@NonNull Reference... account) {
       this.account = Arrays.asList(account);
@@ -218,6 +258,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     /** @param account - Account into which this ChargeItems belongs. */
     public ChargeItemBuilder.Impl withAccount(@NonNull Collection<Reference> account) {
       this.account = Collections.unmodifiableCollection(account);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withAccount(@NonNull ReferenceBuilder... account) {
+      this.account = Arrays.stream(account).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -230,6 +275,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /** @param bodysite - The anatomical location where the related service has been applied. */
     public ChargeItemBuilder.Impl withBodysite(@NonNull CodeableConcept... bodysite) {
       this.bodysite = Arrays.asList(bodysite);
@@ -238,6 +288,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     /** @param bodysite - The anatomical location where the related service has been applied. */
     public ChargeItemBuilder.Impl withBodysite(@NonNull Collection<CodeableConcept> bodysite) {
       this.bodysite = Collections.unmodifiableCollection(bodysite);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withBodysite(@NonNull CodeableConceptBuilder... bodysite) {
+      this.bodysite = Arrays.stream(bodysite).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -256,6 +311,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
      */
     public ChargeItemBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -280,6 +340,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Identifiers assigned to this event performer or other systems. */
     public ChargeItemBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -290,9 +355,19 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param costCenter - The financial cost center permits the tracking of charge attribution. */
     public ChargeItemBuilder.Impl withCostCenter(@NonNull Reference costCenter) {
       this.costCenter = Optional.of(costCenter);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withCostCenter(@NonNull ReferenceBuilder costCenter) {
+      this.costCenter = Optional.of(costCenter.build());
       return this;
     }
     /**
@@ -353,6 +428,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.priceOverride = Optional.of(priceOverride);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withPriceOverride(@NonNull MoneyBuilder priceOverride) {
+      this.priceOverride = Optional.of(priceOverride.build());
+      return this;
+    }
     /**
      * @param factorOverride - Factor overriding the factor determined by the rules associated with
      *     the code.
@@ -404,6 +484,13 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param definitionCanonical - References the source of pricing information, rules of
      *     application for the code this ChargeItem uses.
@@ -433,16 +520,35 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       this.supportingInformation = Collections.unmodifiableCollection(supportingInformation);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withSupportingInformation(
+        @NonNull ReferenceBuilder... supportingInformation) {
+      this.supportingInformation =
+          Arrays.stream(supportingInformation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performingOrganization - The organization requesting the service. */
     public ChargeItemBuilder.Impl withPerformingOrganization(
         @NonNull Reference performingOrganization) {
       this.performingOrganization = Optional.of(performingOrganization);
       return this;
     }
+
+    public ChargeItemBuilder.Impl withPerformingOrganization(
+        @NonNull ReferenceBuilder performingOrganization) {
+      this.performingOrganization = Optional.of(performingOrganization.build());
+      return this;
+    }
     /** @param requestingOrganization - The organization performing the service. */
     public ChargeItemBuilder.Impl withRequestingOrganization(
         @NonNull Reference requestingOrganization) {
       this.requestingOrganization = Optional.of(requestingOrganization);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withRequestingOrganization(
+        @NonNull ReferenceBuilder requestingOrganization) {
+      this.requestingOrganization = Optional.of(requestingOrganization.build());
       return this;
     }
     /**
@@ -458,6 +564,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     public ChargeItemBuilder.Impl withPerformer(
         @NonNull Collection<ChargeItem.Performer> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public ChargeItemBuilder.Impl withPerformer(@NonNull ChargeItem_PerformerBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -98,6 +98,11 @@ public interface MedicationKnowledge_IngredientBuilder {
       this.strength = Optional.of(strength);
       return this;
     }
+
+    public MedicationKnowledge_IngredientBuilder.Impl withStrength(@NonNull RatioBuilder strength) {
+      this.strength = Optional.of(strength.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -120,6 +125,12 @@ public interface MedicationKnowledge_IngredientBuilder {
     public MedicationKnowledge_IngredientBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationKnowledge_IngredientBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -156,6 +167,13 @@ public interface MedicationKnowledge_IngredientBuilder {
     public MedicationKnowledge_IngredientBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationKnowledge_IngredientBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

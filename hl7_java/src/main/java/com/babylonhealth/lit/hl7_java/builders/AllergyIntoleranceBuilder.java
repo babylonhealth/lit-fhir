@@ -128,6 +128,11 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public AllergyIntoleranceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -137,6 +142,11 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
      */
     public AllergyIntoleranceBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -167,6 +177,11 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public AllergyIntoleranceBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /**
      * @param note - Additional narrative about the propensity for the Adverse Reaction, not
      *     captured in other fields.
@@ -181,6 +196,11 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
      */
     public AllergyIntoleranceBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -218,9 +238,19 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
       this.recorder = Optional.of(recorder);
       return this;
     }
+
+    public AllergyIntoleranceBuilder.Impl withRecorder(@NonNull ReferenceBuilder recorder) {
+      this.recorder = Optional.of(recorder.build());
+      return this;
+    }
     /** @param asserter - The source of the information about the allergy that is recorded. */
     public AllergyIntoleranceBuilder.Impl withAsserter(@NonNull Reference asserter) {
       this.asserter = Optional.of(asserter);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withAsserter(@NonNull ReferenceBuilder asserter) {
+      this.asserter = Optional.of(asserter.build());
       return this;
     }
     /**
@@ -239,6 +269,11 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
      */
     public AllergyIntoleranceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -263,9 +298,19 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AllergyIntoleranceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param encounter - The encounter when the allergy or intolerance was asserted. */
     public AllergyIntoleranceBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -285,6 +330,11 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
     public AllergyIntoleranceBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -318,6 +368,12 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
     public AllergyIntoleranceBuilder.Impl withClinicalStatus(
         @NonNull CodeableConcept clinicalStatus) {
       this.clinicalStatus = Optional.of(clinicalStatus);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withClinicalStatus(
+        @NonNull CodeableConceptBuilder clinicalStatus) {
+      this.clinicalStatus = Optional.of(clinicalStatus.build());
       return this;
     }
     /**
@@ -364,6 +420,13 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public AllergyIntoleranceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param verificationStatus - Assertion about certainty associated with the propensity, or
      *     potential risk, of a reaction to the identified substance (including pharmaceutical
@@ -372,6 +435,12 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
     public AllergyIntoleranceBuilder.Impl withVerificationStatus(
         @NonNull CodeableConcept verificationStatus) {
       this.verificationStatus = Optional.of(verificationStatus);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withVerificationStatus(
+        @NonNull CodeableConceptBuilder verificationStatus) {
+      this.verificationStatus = Optional.of(verificationStatus.build());
       return this;
     }
     /**
@@ -390,6 +459,12 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
     public AllergyIntoleranceBuilder.Impl withReaction(
         @NonNull Collection<AllergyIntolerance.Reaction> reaction) {
       this.reaction = Collections.unmodifiableCollection(reaction);
+      return this;
+    }
+
+    public AllergyIntoleranceBuilder.Impl withReaction(
+        @NonNull AllergyIntolerance_ReactionBuilder... reaction) {
+      this.reaction = Arrays.stream(reaction).map(e -> e.build()).collect(toList());
       return this;
     }
 

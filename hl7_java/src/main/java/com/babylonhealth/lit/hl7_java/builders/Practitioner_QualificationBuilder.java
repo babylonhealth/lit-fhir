@@ -84,9 +84,19 @@ public interface Practitioner_QualificationBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public Practitioner_QualificationBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param issuer */
     public Practitioner_QualificationBuilder.Impl withIssuer(@NonNull Reference issuer) {
       this.issuer = Optional.of(issuer);
+      return this;
+    }
+
+    public Practitioner_QualificationBuilder.Impl withIssuer(@NonNull ReferenceBuilder issuer) {
+      this.issuer = Optional.of(issuer.build());
       return this;
     }
     /**
@@ -112,6 +122,12 @@ public interface Practitioner_QualificationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Practitioner_QualificationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - An identifier that applies to this person in this role. */
     public Practitioner_QualificationBuilder.Impl withIdentifier(
         @NonNull Identifier... identifier) {
@@ -122,6 +138,12 @@ public interface Practitioner_QualificationBuilder {
     public Practitioner_QualificationBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Practitioner_QualificationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -158,6 +180,13 @@ public interface Practitioner_QualificationBuilder {
     public Practitioner_QualificationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Practitioner_QualificationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

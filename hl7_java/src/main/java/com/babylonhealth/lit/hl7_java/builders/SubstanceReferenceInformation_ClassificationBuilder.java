@@ -79,6 +79,12 @@ public interface SubstanceReferenceInformation_ClassificationBuilder {
       this.domain = Optional.of(domain);
       return this;
     }
+
+    public SubstanceReferenceInformation_ClassificationBuilder.Impl withDomain(
+        @NonNull CodeableConceptBuilder domain) {
+      this.domain = Optional.of(domain.build());
+      return this;
+    }
     /** @param source */
     public SubstanceReferenceInformation_ClassificationBuilder.Impl withSource(
         @NonNull Reference... source) {
@@ -91,6 +97,12 @@ public interface SubstanceReferenceInformation_ClassificationBuilder {
       this.source = Collections.unmodifiableCollection(source);
       return this;
     }
+
+    public SubstanceReferenceInformation_ClassificationBuilder.Impl withSource(
+        @NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subtype */
     public SubstanceReferenceInformation_ClassificationBuilder.Impl withSubtype(
         @NonNull CodeableConcept... subtype) {
@@ -101,6 +113,12 @@ public interface SubstanceReferenceInformation_ClassificationBuilder {
     public SubstanceReferenceInformation_ClassificationBuilder.Impl withSubtype(
         @NonNull Collection<CodeableConcept> subtype) {
       this.subtype = Collections.unmodifiableCollection(subtype);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_ClassificationBuilder.Impl withSubtype(
+        @NonNull CodeableConceptBuilder... subtype) {
+      this.subtype = Arrays.stream(subtype).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -127,10 +145,22 @@ public interface SubstanceReferenceInformation_ClassificationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceReferenceInformation_ClassificationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param classification - Todo. */
     public SubstanceReferenceInformation_ClassificationBuilder.Impl withClassification(
         @NonNull CodeableConcept classification) {
       this.classification = Optional.of(classification);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_ClassificationBuilder.Impl withClassification(
+        @NonNull CodeableConceptBuilder classification) {
+      this.classification = Optional.of(classification.build());
       return this;
     }
     /**
@@ -167,6 +197,13 @@ public interface SubstanceReferenceInformation_ClassificationBuilder {
     public SubstanceReferenceInformation_ClassificationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_ClassificationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

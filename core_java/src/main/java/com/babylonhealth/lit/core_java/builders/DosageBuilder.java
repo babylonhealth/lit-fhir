@@ -97,9 +97,19 @@ public interface DosageBuilder extends BackboneElementBuilder {
       this.site = Optional.of(site);
       return this;
     }
+
+    public DosageBuilder.Impl withSite(@NonNull CodeableConceptBuilder site) {
+      this.site = Optional.of(site.build());
+      return this;
+    }
     /** @param route - How drug should enter body. */
     public DosageBuilder.Impl withRoute(@NonNull CodeableConcept route) {
       this.route = Optional.of(route);
+      return this;
+    }
+
+    public DosageBuilder.Impl withRoute(@NonNull CodeableConceptBuilder route) {
+      this.route = Optional.of(route.build());
       return this;
     }
     /** @param timing - When medication should be administered. */
@@ -107,9 +117,19 @@ public interface DosageBuilder extends BackboneElementBuilder {
       this.timing = Optional.of(timing);
       return this;
     }
+
+    public DosageBuilder.Impl withTiming(@NonNull TimingBuilder timing) {
+      this.timing = Optional.of(timing.build());
+      return this;
+    }
     /** @param method - Technique for administering medication. */
     public DosageBuilder.Impl withMethod(@NonNull CodeableConcept method) {
       this.method = Optional.of(method);
+      return this;
+    }
+
+    public DosageBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
       return this;
     }
     /**
@@ -142,6 +162,11 @@ public interface DosageBuilder extends BackboneElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DosageBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param asNeeded - Indicates whether the Medication is only taken when needed within a
      *     specific dosing schedule (Boolean option), or it indicates the precondition for taking
@@ -156,6 +181,11 @@ public interface DosageBuilder extends BackboneElementBuilder {
     /** @param maxDosePerPeriod - Upper limit on medication per unit of time. */
     public DosageBuilder.Impl withMaxDosePerPeriod(@NonNull Ratio maxDosePerPeriod) {
       this.maxDosePerPeriod = Optional.of(maxDosePerPeriod);
+      return this;
+    }
+
+    public DosageBuilder.Impl withMaxDosePerPeriod(@NonNull RatioBuilder maxDosePerPeriod) {
+      this.maxDosePerPeriod = Optional.of(maxDosePerPeriod.build());
       return this;
     }
     /**
@@ -191,6 +221,13 @@ public interface DosageBuilder extends BackboneElementBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DosageBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param patientInstruction - Instructions in terms that are understood by the patient or
      *     consumer.
@@ -202,6 +239,11 @@ public interface DosageBuilder extends BackboneElementBuilder {
     /** @param maxDosePerLifetime - Upper limit on medication per lifetime of the patient. */
     public DosageBuilder.Impl withMaxDosePerLifetime(@NonNull Quantity maxDosePerLifetime) {
       this.maxDosePerLifetime = Optional.of(maxDosePerLifetime);
+      return this;
+    }
+
+    public DosageBuilder.Impl withMaxDosePerLifetime(@NonNull QuantityBuilder maxDosePerLifetime) {
+      this.maxDosePerLifetime = Optional.of(maxDosePerLifetime.build());
       return this;
     }
     /**
@@ -226,6 +268,13 @@ public interface DosageBuilder extends BackboneElementBuilder {
       this.additionalInstruction = Collections.unmodifiableCollection(additionalInstruction);
       return this;
     }
+
+    public DosageBuilder.Impl withAdditionalInstruction(
+        @NonNull CodeableConceptBuilder... additionalInstruction) {
+      this.additionalInstruction =
+          Arrays.stream(additionalInstruction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param doseAndRate - The amount of medication administered. */
     public DosageBuilder.Impl withDoseAndRate(@NonNull Dosage.DoseAndRate... doseAndRate) {
       this.doseAndRate = Arrays.asList(doseAndRate);
@@ -236,10 +285,21 @@ public interface DosageBuilder extends BackboneElementBuilder {
       this.doseAndRate = Collections.unmodifiableCollection(doseAndRate);
       return this;
     }
+
+    public DosageBuilder.Impl withDoseAndRate(@NonNull Dosage_DoseAndRateBuilder... doseAndRate) {
+      this.doseAndRate = Arrays.stream(doseAndRate).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param maxDosePerAdministration - Upper limit on medication per administration. */
     public DosageBuilder.Impl withMaxDosePerAdministration(
         @NonNull Quantity maxDosePerAdministration) {
       this.maxDosePerAdministration = Optional.of(maxDosePerAdministration);
+      return this;
+    }
+
+    public DosageBuilder.Impl withMaxDosePerAdministration(
+        @NonNull QuantityBuilder maxDosePerAdministration) {
+      this.maxDosePerAdministration = Optional.of(maxDosePerAdministration.build());
       return this;
     }
 

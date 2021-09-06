@@ -117,6 +117,11 @@ public interface TriggerDefinitionBuilder extends ElementBuilder {
       this.data = Collections.unmodifiableCollection(data);
       return this;
     }
+
+    public TriggerDefinitionBuilder.Impl withData(@NonNull DataRequirementBuilder... data) {
+      this.data = Arrays.stream(data).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the element. To make the use of extensions safe and manageable, there
@@ -139,6 +144,11 @@ public interface TriggerDefinitionBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TriggerDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param timing - The timing of the event (if this is a periodic trigger). Field is a 'choice'
      *     field. Type should be one of FHIRDate, FHIRDateTime, Reference, Timing. To pass the value
@@ -154,6 +164,11 @@ public interface TriggerDefinitionBuilder extends ElementBuilder {
      */
     public TriggerDefinitionBuilder.Impl withCondition(@NonNull Expression condition) {
       this.condition = Optional.of(condition);
+      return this;
+    }
+
+    public TriggerDefinitionBuilder.Impl withCondition(@NonNull ExpressionBuilder condition) {
+      this.condition = Optional.of(condition.build());
       return this;
     }
 

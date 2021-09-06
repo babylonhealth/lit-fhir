@@ -113,6 +113,11 @@ public interface ExampleScenario_ActorBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExampleScenario_ActorBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public ExampleScenario_ActorBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
@@ -152,6 +157,13 @@ public interface ExampleScenario_ActorBuilder {
     public ExampleScenario_ActorBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExampleScenario_ActorBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

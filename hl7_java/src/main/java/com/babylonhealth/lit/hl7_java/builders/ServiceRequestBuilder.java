@@ -164,6 +164,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -175,12 +180,22 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param code - A code that identifies a particular service (i.e., procedure, diagnostic
      *     investigation, or panel of investigations) that have been requested.
      */
     public ServiceRequestBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /**
@@ -199,6 +214,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param basedOn - Plan/proposal/order fulfilled by this request. */
     public ServiceRequestBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
       this.basedOn = Arrays.asList(basedOn);
@@ -207,6 +227,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     /** @param basedOn - Plan/proposal/order fulfilled by this request. */
     public ServiceRequestBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -230,6 +255,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.replaces = Collections.unmodifiableCollection(replaces);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withReplaces(@NonNull ReferenceBuilder... replaces) {
+      this.replaces = Arrays.stream(replaces).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param category - A code that classifies the service for searching, sorting and display
      *     purposes (e.g. "Surgical Procedure").
@@ -244,6 +274,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
      */
     public ServiceRequestBuilder.Impl withCategory(@NonNull Collection<CodeableConcept> category) {
       this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -264,6 +299,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.specimen = Collections.unmodifiableCollection(specimen);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withSpecimen(@NonNull ReferenceBuilder... specimen) {
+      this.specimen = Arrays.stream(specimen).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param bodySite - Anatomic location where the procedure should be performed. This is the
      *     target site.
@@ -278,6 +318,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
      */
     public ServiceRequestBuilder.Impl withBodySite(@NonNull Collection<CodeableConcept> bodySite) {
       this.bodySite = Collections.unmodifiableCollection(bodySite);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder... bodySite) {
+      this.bodySite = Arrays.stream(bodySite).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -296,6 +341,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
      */
     public ServiceRequestBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -320,6 +370,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - An encounter that provides additional information about the healthcare
      *     context in which this request is made.
@@ -328,12 +383,22 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.encounter = Optional.of(encounter);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
     /**
      * @param requester - The individual who initiated the request and has responsibility for its
      *     activation.
      */
     public ServiceRequestBuilder.Impl withRequester(@NonNull Reference requester) {
       this.requester = Optional.of(requester);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withRequester(@NonNull ReferenceBuilder requester) {
+      this.requester = Optional.of(requester.build());
       return this;
     }
     /**
@@ -352,6 +417,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.performer = Collections.unmodifiableCollection(performer);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withPerformer(@NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param insurance - Insurance plans, coverage extensions, pre-authorizations and/or
      *     pre-determinations that may be needed for delivering the requested service.
@@ -368,6 +438,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.insurance = Collections.unmodifiableCollection(insurance);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withInsurance(@NonNull ReferenceBuilder... insurance) {
+      this.insurance = Arrays.stream(insurance).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Identifiers assigned to this order instance by the orderer and/or the
      *     receiver and/or order fulfiller.
@@ -382,6 +457,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
      */
     public ServiceRequestBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param authoredOn - When the request transitioned to being actionable. */
@@ -408,6 +488,12 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param requisition - A shared identifier common to all service requests that were authorized
      *     more or less simultaneously by a single author, representing the composite or group
@@ -415,6 +501,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
      */
     public ServiceRequestBuilder.Impl withRequisition(@NonNull Identifier requisition) {
       this.requisition = Optional.of(requisition);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withRequisition(@NonNull IdentifierBuilder requisition) {
+      this.requisition = Optional.of(requisition.build());
       return this;
     }
     /**
@@ -436,6 +527,12 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     public ServiceRequestBuilder.Impl withOrderDetail(
         @NonNull Collection<CodeableConcept> orderDetail) {
       this.orderDetail = Collections.unmodifiableCollection(orderDetail);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withOrderDetail(
+        @NonNull CodeableConceptBuilder... orderDetail) {
+      this.orderDetail = Arrays.stream(orderDetail).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -484,6 +581,12 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.locationCode = Collections.unmodifiableCollection(locationCode);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withLocationCode(
+        @NonNull CodeableConceptBuilder... locationCode) {
+      this.locationCode = Arrays.stream(locationCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -506,6 +609,12 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     /** @param performerType - Desired type of performer for doing the requested service. */
     public ServiceRequestBuilder.Impl withPerformerType(@NonNull CodeableConcept performerType) {
       this.performerType = Optional.of(performerType);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withPerformerType(
+        @NonNull CodeableConceptBuilder performerType) {
+      this.performerType = Optional.of(performerType.build());
       return this;
     }
     /**
@@ -533,6 +642,12 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     public ServiceRequestBuilder.Impl withSupportingInfo(
         @NonNull Collection<Reference> supportingInfo) {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withSupportingInfo(
+        @NonNull ReferenceBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -573,6 +688,12 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param relevantHistory - Key events in the history of the request. */
     public ServiceRequestBuilder.Impl withRelevantHistory(@NonNull Reference... relevantHistory) {
       this.relevantHistory = Arrays.asList(relevantHistory);
@@ -582,6 +703,12 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     public ServiceRequestBuilder.Impl withRelevantHistory(
         @NonNull Collection<Reference> relevantHistory) {
       this.relevantHistory = Collections.unmodifiableCollection(relevantHistory);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withRelevantHistory(
+        @NonNull ReferenceBuilder... relevantHistory) {
+      this.relevantHistory = Arrays.stream(relevantHistory).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -620,6 +747,13 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ServiceRequestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param locationReference - A reference to the the preferred location(s) where the procedure
      *     should actually happen. E.g. at home or nursing day care center.
@@ -636,6 +770,13 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     public ServiceRequestBuilder.Impl withLocationReference(
         @NonNull Collection<Reference> locationReference) {
       this.locationReference = Collections.unmodifiableCollection(locationReference);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withLocationReference(
+        @NonNull ReferenceBuilder... locationReference) {
+      this.locationReference =
+          Arrays.stream(locationReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**

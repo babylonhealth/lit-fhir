@@ -106,6 +106,11 @@ public interface Us_core_birthsexBuilder extends ExtensionBuilder {
       return this;
     }
 
+    public Us_core_birthsexBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Us_core_birthsex build() {
       return new Us_core_birthsex(
           OptionConverters.toScala(id),

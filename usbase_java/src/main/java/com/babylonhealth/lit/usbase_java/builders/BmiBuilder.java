@@ -168,6 +168,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public BmiBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -179,6 +184,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public BmiBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param note - Comments about the observation or the results. */
     public BmiBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
@@ -187,6 +197,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
     /** @param note - Comments about the observation or the results. */
     public BmiBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public BmiBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -217,6 +232,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.focus = Collections.unmodifiableCollection(focus);
       return this;
     }
+
+    public BmiBuilder.Impl withFocus(@NonNull ReferenceBuilder... focus) {
+      this.focus = Arrays.stream(focus).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param partOf - A larger event of which this particular Observation is a component or step.
      *     For example, an observation as part of a procedure.
@@ -233,6 +253,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public BmiBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param issued - The date and time this version of the observation was made available to
      *     providers, typically after the results have been reviewed and verified.
@@ -246,9 +271,19 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.method = Optional.of(method);
       return this;
     }
+
+    public BmiBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
+      return this;
+    }
     /** @param device - The device used to generate the observation data. */
     public BmiBuilder.Impl withDevice(@NonNull Reference device) {
       this.device = Optional.of(device);
+      return this;
+    }
+
+    public BmiBuilder.Impl withDevice(@NonNull ReferenceBuilder device) {
+      this.device = Optional.of(device.build());
       return this;
     }
     /**
@@ -269,6 +304,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public BmiBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public BmiBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -282,9 +322,19 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.bodySite = Optional.of(bodySite);
       return this;
     }
+
+    public BmiBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
+      return this;
+    }
     /** @param specimen - The specimen that was used when this observation was made. */
     public BmiBuilder.Impl withSpecimen(@NonNull Reference specimen) {
       this.specimen = Optional.of(specimen);
+      return this;
+    }
+
+    public BmiBuilder.Impl withSpecimen(@NonNull ReferenceBuilder specimen) {
+      this.specimen = Optional.of(specimen.build());
       return this;
     }
     /**
@@ -303,6 +353,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
      */
     public BmiBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public BmiBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -327,12 +382,22 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public BmiBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The healthcare event (e.g. a patient and healthcare provider interaction)
      *     during which this observation is made.
      */
     public BmiBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public BmiBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /** @param performer - Who was responsible for asserting the observed value as "true". */
@@ -345,6 +410,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.performer = Collections.unmodifiableCollection(performer);
       return this;
     }
+
+    public BmiBuilder.Impl withPerformer(@NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param hasMember - Used when reporting vital signs panel components. */
     public BmiBuilder.Impl withHasMember(@NonNull Reference... hasMember) {
       this.hasMember = Arrays.asList(hasMember);
@@ -355,6 +425,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.hasMember = Collections.unmodifiableCollection(hasMember);
       return this;
     }
+
+    public BmiBuilder.Impl withHasMember(@NonNull ReferenceBuilder... hasMember) {
+      this.hasMember = Arrays.stream(hasMember).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this observation. */
     public BmiBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -363,6 +438,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
     /** @param identifier - A unique identifier assigned to this observation. */
     public BmiBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public BmiBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -381,6 +461,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
      */
     public BmiBuilder.Impl withDerivedFrom(@NonNull Collection<Reference> derivedFrom) {
       this.derivedFrom = Collections.unmodifiableCollection(derivedFrom);
+      return this;
+    }
+
+    public BmiBuilder.Impl withDerivedFrom(@NonNull ReferenceBuilder... derivedFrom) {
+      this.derivedFrom = Arrays.stream(derivedFrom).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -409,12 +494,22 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.interpretation = Collections.unmodifiableCollection(interpretation);
       return this;
     }
+
+    public BmiBuilder.Impl withInterpretation(@NonNull CodeableConceptBuilder... interpretation) {
+      this.interpretation = Arrays.stream(interpretation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dataAbsentReason - Provides a reason why the expected value in the element
      *     Observation.value[x] is missing.
      */
     public BmiBuilder.Impl withDataAbsentReason(@NonNull CodeableConcept dataAbsentReason) {
       this.dataAbsentReason = Optional.of(dataAbsentReason);
+      return this;
+    }
+
+    public BmiBuilder.Impl withDataAbsentReason(@NonNull CodeableConceptBuilder dataAbsentReason) {
+      this.dataAbsentReason = Optional.of(dataAbsentReason.build());
       return this;
     }
     /**
@@ -451,6 +546,12 @@ public interface BmiBuilder extends VitalsignsBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public BmiBuilder.Impl withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param component - Used when reporting systolic and diastolic blood pressure. */
     public BmiBuilder.Impl withComponent(@NonNull Observation.Component... component) {
       this.component = Arrays.asList(component);
@@ -459,6 +560,11 @@ public interface BmiBuilder extends VitalsignsBuilder {
     /** @param component - Used when reporting systolic and diastolic blood pressure. */
     public BmiBuilder.Impl withComponent(@NonNull Collection<Observation.Component> component) {
       this.component = Collections.unmodifiableCollection(component);
+      return this;
+    }
+
+    public BmiBuilder.Impl withComponent(@NonNull Observation_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -481,6 +587,12 @@ public interface BmiBuilder extends VitalsignsBuilder {
     public BmiBuilder.Impl withReferenceRange(
         @NonNull Collection<Observation.ReferenceRange> referenceRange) {
       this.referenceRange = Collections.unmodifiableCollection(referenceRange);
+      return this;
+    }
+
+    public BmiBuilder.Impl withReferenceRange(
+        @NonNull Observation_ReferenceRangeBuilder... referenceRange) {
+      this.referenceRange = Arrays.stream(referenceRange).map(e -> e.build()).collect(toList());
       return this;
     }
 

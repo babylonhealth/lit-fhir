@@ -122,6 +122,11 @@ public interface TestScript_VariableBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TestScript_VariableBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param expression */
     public TestScript_VariableBuilder.Impl withExpression(@NonNull String expression) {
       this.expression = Optional.of(expression);
@@ -179,6 +184,13 @@ public interface TestScript_VariableBuilder {
     public TestScript_VariableBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public TestScript_VariableBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -142,6 +142,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -151,6 +156,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      */
     public PlanDefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -168,6 +178,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      */
     public PlanDefinitionBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -211,6 +226,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.topic = Collections.unmodifiableCollection(topic);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withTopic(@NonNull CodeableConceptBuilder... topic) {
+      this.topic = Arrays.stream(topic).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - An individiual or organization primarily involved in the creation and
      *     maintenance of the content.
@@ -227,6 +247,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.author = Collections.unmodifiableCollection(author);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withAuthor(@NonNull ContactDetailBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param editor - An individual or organization primarily responsible for internal coherence of
      *     the content.
@@ -241,6 +266,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      */
     public PlanDefinitionBuilder.Impl withEditor(@NonNull Collection<ContactDetail> editor) {
       this.editor = Collections.unmodifiableCollection(editor);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withEditor(@NonNull ContactDetailBuilder... editor) {
+      this.editor = Arrays.stream(editor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -272,6 +302,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      */
     public PlanDefinitionBuilder.Impl withContact(@NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -327,6 +362,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.reviewer = Collections.unmodifiableCollection(reviewer);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withReviewer(@NonNull ContactDetailBuilder... reviewer) {
+      this.reviewer = Arrays.stream(reviewer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param endorser - An individual or organization responsible for officially endorsing the
      *     content for use in some setting.
@@ -341,6 +381,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      */
     public PlanDefinitionBuilder.Impl withEndorser(@NonNull Collection<ContactDetail> endorser) {
       this.endorser = Collections.unmodifiableCollection(endorser);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withEndorser(@NonNull ContactDetailBuilder... endorser) {
+      this.endorser = Arrays.stream(endorser).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -359,6 +404,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      */
     public PlanDefinitionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -381,6 +431,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      */
     public PlanDefinitionBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -418,6 +473,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - A code or group definition that describes the intended subject of the plan
      *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
@@ -445,6 +505,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      */
     public PlanDefinitionBuilder.Impl withUseContext(@NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -481,6 +546,12 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param approvalDate - The date on which the resource content was approved by the publisher.
      *     Approval happens once when the content is officially approved for usage.
@@ -515,6 +586,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.effectivePeriod = Optional.of(effectivePeriod);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withEffectivePeriod(@NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
+      return this;
+    }
     /**
      * @param relatedArtifact - Related artifacts such as additional documentation, justification,
      *     or bibliographic references.
@@ -531,6 +607,12 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     public PlanDefinitionBuilder.Impl withRelatedArtifact(
         @NonNull Collection<RelatedArtifact> relatedArtifact) {
       this.relatedArtifact = Collections.unmodifiableCollection(relatedArtifact);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withRelatedArtifact(
+        @NonNull RelatedArtifactBuilder... relatedArtifact) {
+      this.relatedArtifact = Arrays.stream(relatedArtifact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -569,6 +651,13 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param goal - Goals that describe what the activities within the plan are intended to
      *     achieve. For example, weight loss, restoring an activity of daily living, obtaining herd
@@ -587,6 +676,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.goal = Collections.unmodifiableCollection(goal);
       return this;
     }
+
+    public PlanDefinitionBuilder.Impl withGoal(@NonNull PlanDefinition_GoalBuilder... goal) {
+      this.goal = Arrays.stream(goal).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param action - An action or group of actions to be taken as part of the plan. */
     public PlanDefinitionBuilder.Impl withAction(@NonNull PlanDefinition.Action... action) {
       this.action = Arrays.asList(action);
@@ -596,6 +690,11 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     public PlanDefinitionBuilder.Impl withAction(
         @NonNull Collection<PlanDefinition.Action> action) {
       this.action = Collections.unmodifiableCollection(action);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withAction(@NonNull PlanDefinition_ActionBuilder... action) {
+      this.action = Arrays.stream(action).map(e -> e.build()).collect(toList());
       return this;
     }
 

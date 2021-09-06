@@ -112,6 +112,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public DocumentReferenceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -123,6 +128,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public DocumentReferenceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param _type - Specifies the particular kind of document referenced (e.g. History and
      *     Physical, Discharge Summary, Progress Note). This usually equates to the purpose of
@@ -130,6 +140,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
      */
     public DocumentReferenceBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param date - When the document reference was created. */
@@ -147,6 +162,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.author = Collections.unmodifiableCollection(author);
       return this;
     }
+
+    public DocumentReferenceBuilder.Impl withAuthor(@NonNull ReferenceBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - Who or what the document is about. The document can be about a person,
      *     (patient or healthcare practitioner), a device (e.g. a machine) or even a group of
@@ -155,6 +175,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
      */
     public DocumentReferenceBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -181,6 +206,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public DocumentReferenceBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -197,6 +227,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
      */
     public DocumentReferenceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -221,6 +256,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DocumentReferenceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param docStatus - The status of the underlying document. */
     public DocumentReferenceBuilder.Impl withDocStatus(@NonNull COMPOSITION_STATUS docStatus) {
       this.docStatus = Optional.of(docStatus);
@@ -232,6 +272,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
      */
     public DocumentReferenceBuilder.Impl withCustodian(@NonNull Reference custodian) {
       this.custodian = Optional.of(custodian);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withCustodian(@NonNull ReferenceBuilder custodian) {
+      this.custodian = Optional.of(custodian.build());
       return this;
     }
     /**
@@ -249,6 +294,11 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
     public DocumentReferenceBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description - Human-readable description of the source document. */
@@ -274,6 +324,12 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.authenticator = Optional.of(authenticator);
       return this;
     }
+
+    public DocumentReferenceBuilder.Impl withAuthenticator(
+        @NonNull ReferenceBuilder authenticator) {
+      this.authenticator = Optional.of(authenticator.build());
+      return this;
+    }
     /**
      * @param securityLabel - A set of Security-Tag codes specifying the level of privacy/security
      *     of the Document. Note that DocumentReference.meta.security contains the security labels
@@ -296,6 +352,12 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.securityLabel = Collections.unmodifiableCollection(securityLabel);
       return this;
     }
+
+    public DocumentReferenceBuilder.Impl withSecurityLabel(
+        @NonNull CodeableConceptBuilder... securityLabel) {
+      this.securityLabel = Arrays.stream(securityLabel).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param masterIdentifier - Document identifier as assigned by the source of the document. This
      *     identifier is specific to this version of the document. This unique identifier may be
@@ -304,6 +366,12 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
     public DocumentReferenceBuilder.Impl withMasterIdentifier(
         @NonNull Identifier masterIdentifier) {
       this.masterIdentifier = Optional.of(masterIdentifier);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withMasterIdentifier(
+        @NonNull IdentifierBuilder masterIdentifier) {
+      this.masterIdentifier = Optional.of(masterIdentifier.build());
       return this;
     }
     /**
@@ -342,9 +410,22 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DocumentReferenceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param context - The clinical context in which the document was prepared. */
     public DocumentReferenceBuilder.Impl withContext(@NonNull DocumentReference.Context context) {
       this.context = Optional.of(context);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withContext(
+        @NonNull DocumentReference_ContextBuilder context) {
+      this.context = Optional.of(context.build());
       return this;
     }
     /**
@@ -363,6 +444,12 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
     public DocumentReferenceBuilder.Impl withRelatesTo(
         @NonNull Collection<DocumentReference.RelatesTo> relatesTo) {
       this.relatesTo = Collections.unmodifiableCollection(relatesTo);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withRelatesTo(
+        @NonNull DocumentReference_RelatesToBuilder... relatesTo) {
+      this.relatesTo = Arrays.stream(relatesTo).map(e -> e.build()).collect(toList());
       return this;
     }
 

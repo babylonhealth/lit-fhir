@@ -89,6 +89,11 @@ public interface Contract_Term_OfferBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public Contract_Term_OfferBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -108,6 +113,11 @@ public interface Contract_Term_OfferBuilder {
       this.topic = Optional.of(topic);
       return this;
     }
+
+    public Contract_Term_OfferBuilder.Impl withTopic(@NonNull ReferenceBuilder topic) {
+      this.topic = Optional.of(topic.build());
+      return this;
+    }
     /** @param linkId */
     public Contract_Term_OfferBuilder.Impl withLinkId(@NonNull String... linkId) {
       this.linkId = Arrays.asList(linkId);
@@ -121,6 +131,11 @@ public interface Contract_Term_OfferBuilder {
     /** @param decision */
     public Contract_Term_OfferBuilder.Impl withDecision(@NonNull CodeableConcept decision) {
       this.decision = Optional.of(decision);
+      return this;
+    }
+
+    public Contract_Term_OfferBuilder.Impl withDecision(@NonNull CodeableConceptBuilder decision) {
+      this.decision = Optional.of(decision.build());
       return this;
     }
     /**
@@ -145,6 +160,11 @@ public interface Contract_Term_OfferBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Contract_Term_OfferBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Unique identifier for this Contract or a derivative that references a
      *     Source Contract.
@@ -162,6 +182,12 @@ public interface Contract_Term_OfferBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public Contract_Term_OfferBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param decisionMode */
     public Contract_Term_OfferBuilder.Impl withDecisionMode(
         @NonNull CodeableConcept... decisionMode) {
@@ -172,6 +198,12 @@ public interface Contract_Term_OfferBuilder {
     public Contract_Term_OfferBuilder.Impl withDecisionMode(
         @NonNull Collection<CodeableConcept> decisionMode) {
       this.decisionMode = Collections.unmodifiableCollection(decisionMode);
+      return this;
+    }
+
+    public Contract_Term_OfferBuilder.Impl withDecisionMode(
+        @NonNull CodeableConceptBuilder... decisionMode) {
+      this.decisionMode = Arrays.stream(decisionMode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -210,6 +242,13 @@ public interface Contract_Term_OfferBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Contract_Term_OfferBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param securityLabelNumber */
     public Contract_Term_OfferBuilder.Impl withSecurityLabelNumber(
         @NonNull Integer... securityLabelNumber) {
@@ -233,6 +272,12 @@ public interface Contract_Term_OfferBuilder {
       this.party = Collections.unmodifiableCollection(party);
       return this;
     }
+
+    public Contract_Term_OfferBuilder.Impl withParty(
+        @NonNull Contract_Term_Offer_PartyBuilder... party) {
+      this.party = Arrays.stream(party).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param answer */
     public Contract_Term_OfferBuilder.Impl withAnswer(
         @NonNull Contract$Term$Offer$Answer... answer) {
@@ -243,6 +288,12 @@ public interface Contract_Term_OfferBuilder {
     public Contract_Term_OfferBuilder.Impl withAnswer(
         @NonNull Collection<Contract$Term$Offer$Answer> answer) {
       this.answer = Collections.unmodifiableCollection(answer);
+      return this;
+    }
+
+    public Contract_Term_OfferBuilder.Impl withAnswer(
+        @NonNull Contract_Term_Offer_AnswerBuilder... answer) {
+      this.answer = Arrays.stream(answer).map(e -> e.build()).collect(toList());
       return this;
     }
 

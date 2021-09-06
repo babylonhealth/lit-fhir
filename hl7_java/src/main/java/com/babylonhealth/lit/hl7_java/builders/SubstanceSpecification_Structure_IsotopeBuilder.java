@@ -81,10 +81,22 @@ public interface SubstanceSpecification_Structure_IsotopeBuilder {
       this.name = Optional.of(name);
       return this;
     }
+
+    public SubstanceSpecification_Structure_IsotopeBuilder.Impl withName(
+        @NonNull CodeableConceptBuilder name) {
+      this.name = Optional.of(name.build());
+      return this;
+    }
     /** @param halfLife */
     public SubstanceSpecification_Structure_IsotopeBuilder.Impl withHalfLife(
         @NonNull Quantity halfLife) {
       this.halfLife = Optional.of(halfLife);
+      return this;
+    }
+
+    public SubstanceSpecification_Structure_IsotopeBuilder.Impl withHalfLife(
+        @NonNull QuantityBuilder halfLife) {
+      this.halfLife = Optional.of(halfLife.build());
       return this;
     }
     /**
@@ -111,16 +123,34 @@ public interface SubstanceSpecification_Structure_IsotopeBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSpecification_Structure_IsotopeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Identifier by which this substance is known. */
     public SubstanceSpecification_Structure_IsotopeBuilder.Impl withIdentifier(
         @NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
       return this;
     }
+
+    public SubstanceSpecification_Structure_IsotopeBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
     /** @param substitution */
     public SubstanceSpecification_Structure_IsotopeBuilder.Impl withSubstitution(
         @NonNull CodeableConcept substitution) {
       this.substitution = Optional.of(substitution);
+      return this;
+    }
+
+    public SubstanceSpecification_Structure_IsotopeBuilder.Impl withSubstitution(
+        @NonNull CodeableConceptBuilder substitution) {
+      this.substitution = Optional.of(substitution.build());
       return this;
     }
     /**
@@ -159,6 +189,13 @@ public interface SubstanceSpecification_Structure_IsotopeBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceSpecification_Structure_IsotopeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param molecularWeight - The molecular weight or weight range (for proteins, polymers or
      *     nucleic acids).
@@ -166,6 +203,12 @@ public interface SubstanceSpecification_Structure_IsotopeBuilder {
     public SubstanceSpecification_Structure_IsotopeBuilder.Impl withMolecularWeight(
         @NonNull SubstanceSpecification$Structure$Isotope$MolecularWeight molecularWeight) {
       this.molecularWeight = Optional.of(molecularWeight);
+      return this;
+    }
+
+    public SubstanceSpecification_Structure_IsotopeBuilder.Impl withMolecularWeight(
+        @NonNull SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder molecularWeight) {
+      this.molecularWeight = Optional.of(molecularWeight.build());
       return this;
     }
 

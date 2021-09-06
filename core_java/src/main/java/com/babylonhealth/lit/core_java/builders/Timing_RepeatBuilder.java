@@ -152,6 +152,11 @@ public interface Timing_RepeatBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Timing_RepeatBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param bounds Field is a 'choice' field. Type should be one of Duration, Period, Range. To
      *     pass the value in, wrap with one of the Timing_RepeatBuilder.bounds static methods

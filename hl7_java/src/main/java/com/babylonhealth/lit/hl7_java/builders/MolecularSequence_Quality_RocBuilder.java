@@ -151,6 +151,12 @@ public interface MolecularSequence_Quality_RocBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MolecularSequence_Quality_RocBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param precision */
     public MolecularSequence_Quality_RocBuilder.Impl withPrecision(
         @NonNull BigDecimal... precision) {
@@ -209,6 +215,13 @@ public interface MolecularSequence_Quality_RocBuilder {
     public MolecularSequence_Quality_RocBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MolecularSequence_Quality_RocBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

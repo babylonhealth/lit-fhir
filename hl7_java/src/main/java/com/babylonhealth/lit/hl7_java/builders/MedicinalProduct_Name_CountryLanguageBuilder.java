@@ -104,10 +104,22 @@ public interface MedicinalProduct_Name_CountryLanguageBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProduct_Name_CountryLanguageBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param jurisdiction */
     public MedicinalProduct_Name_CountryLanguageBuilder.Impl withJurisdiction(
         @NonNull CodeableConcept jurisdiction) {
       this.jurisdiction = Optional.of(jurisdiction);
+      return this;
+    }
+
+    public MedicinalProduct_Name_CountryLanguageBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder jurisdiction) {
+      this.jurisdiction = Optional.of(jurisdiction.build());
       return this;
     }
     /**
@@ -144,6 +156,13 @@ public interface MedicinalProduct_Name_CountryLanguageBuilder {
     public MedicinalProduct_Name_CountryLanguageBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicinalProduct_Name_CountryLanguageBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

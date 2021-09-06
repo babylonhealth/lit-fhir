@@ -90,6 +90,12 @@ public interface ValueSet_ComposeBuilder {
       this.exclude = Collections.unmodifiableCollection(exclude);
       return this;
     }
+
+    public ValueSet_ComposeBuilder.Impl withExclude(
+        @NonNull ValueSet_Compose_IncludeBuilder... exclude) {
+      this.exclude = Arrays.stream(exclude).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param inactive */
     public ValueSet_ComposeBuilder.Impl withInactive(@NonNull Boolean inactive) {
       this.inactive = Optional.of(inactive);
@@ -115,6 +121,11 @@ public interface ValueSet_ComposeBuilder {
      */
     public ValueSet_ComposeBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ValueSet_ComposeBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param lockedDate */
@@ -156,6 +167,13 @@ public interface ValueSet_ComposeBuilder {
     public ValueSet_ComposeBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ValueSet_ComposeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

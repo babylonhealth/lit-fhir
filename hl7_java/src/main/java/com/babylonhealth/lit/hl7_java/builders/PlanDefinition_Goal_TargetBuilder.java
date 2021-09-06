@@ -89,9 +89,20 @@ public interface PlanDefinition_Goal_TargetBuilder {
       this.due = Optional.of(due);
       return this;
     }
+
+    public PlanDefinition_Goal_TargetBuilder.Impl withDue(@NonNull DurationBuilder due) {
+      this.due = Optional.of(due.build());
+      return this;
+    }
     /** @param measure */
     public PlanDefinition_Goal_TargetBuilder.Impl withMeasure(@NonNull CodeableConcept measure) {
       this.measure = Optional.of(measure);
+      return this;
+    }
+
+    public PlanDefinition_Goal_TargetBuilder.Impl withMeasure(
+        @NonNull CodeableConceptBuilder measure) {
+      this.measure = Optional.of(measure.build());
       return this;
     }
     /**
@@ -115,6 +126,12 @@ public interface PlanDefinition_Goal_TargetBuilder {
     public PlanDefinition_Goal_TargetBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public PlanDefinition_Goal_TargetBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -160,6 +177,13 @@ public interface PlanDefinition_Goal_TargetBuilder {
     public PlanDefinition_Goal_TargetBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public PlanDefinition_Goal_TargetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

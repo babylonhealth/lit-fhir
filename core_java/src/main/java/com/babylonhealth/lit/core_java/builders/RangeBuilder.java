@@ -72,9 +72,19 @@ public interface RangeBuilder extends ElementBuilder {
       this.low = Optional.of(low);
       return this;
     }
+
+    public RangeBuilder.Impl withLow(@NonNull QuantityBuilder low) {
+      this.low = Optional.of(low.build());
+      return this;
+    }
     /** @param high - The high limit. The boundary is inclusive. */
     public RangeBuilder.Impl withHigh(@NonNull Quantity high) {
       this.high = Optional.of(high);
+      return this;
+    }
+
+    public RangeBuilder.Impl withHigh(@NonNull QuantityBuilder high) {
+      this.high = Optional.of(high.build());
       return this;
     }
     /**
@@ -97,6 +107,11 @@ public interface RangeBuilder extends ElementBuilder {
      */
     public RangeBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public RangeBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
 

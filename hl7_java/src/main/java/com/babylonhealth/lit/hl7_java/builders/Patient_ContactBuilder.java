@@ -81,6 +81,11 @@ public interface Patient_ContactBuilder {
       this.name = Optional.of(name);
       return this;
     }
+
+    public Patient_ContactBuilder.Impl withName(@NonNull HumanNameBuilder name) {
+      this.name = Optional.of(name.build());
+      return this;
+    }
     /**
      * @param gender - Administrative Gender - the gender that the patient is considered to have for
      *     administration and record keeping purposes.
@@ -92,6 +97,11 @@ public interface Patient_ContactBuilder {
     /** @param period */
     public Patient_ContactBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public Patient_ContactBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -110,9 +120,19 @@ public interface Patient_ContactBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public Patient_ContactBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param address - An address for the individual. */
     public Patient_ContactBuilder.Impl withAddress(@NonNull Address address) {
       this.address = Optional.of(address);
+      return this;
+    }
+
+    public Patient_ContactBuilder.Impl withAddress(@NonNull AddressBuilder address) {
+      this.address = Optional.of(address.build());
       return this;
     }
     /**
@@ -137,6 +157,11 @@ public interface Patient_ContactBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Patient_ContactBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param relationship */
     public Patient_ContactBuilder.Impl withRelationship(@NonNull CodeableConcept... relationship) {
       this.relationship = Arrays.asList(relationship);
@@ -148,9 +173,20 @@ public interface Patient_ContactBuilder {
       this.relationship = Collections.unmodifiableCollection(relationship);
       return this;
     }
+
+    public Patient_ContactBuilder.Impl withRelationship(
+        @NonNull CodeableConceptBuilder... relationship) {
+      this.relationship = Arrays.stream(relationship).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param organization */
     public Patient_ContactBuilder.Impl withOrganization(@NonNull Reference organization) {
       this.organization = Optional.of(organization);
+      return this;
+    }
+
+    public Patient_ContactBuilder.Impl withOrganization(@NonNull ReferenceBuilder organization) {
+      this.organization = Optional.of(organization.build());
       return this;
     }
     /**
@@ -187,6 +223,13 @@ public interface Patient_ContactBuilder {
     public Patient_ContactBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Patient_ContactBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -94,6 +94,11 @@ public interface PersonBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public PersonBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -103,6 +108,11 @@ public interface PersonBuilder extends DomainResourceBuilder {
      */
     public PersonBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public PersonBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param name - A name associated with the person. */
@@ -115,12 +125,22 @@ public interface PersonBuilder extends DomainResourceBuilder {
       this.name = Collections.unmodifiableCollection(name);
       return this;
     }
+
+    public PersonBuilder.Impl withName(@NonNull HumanNameBuilder... name) {
+      this.name = Arrays.stream(name).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param photo - An image that can be displayed as a thumbnail of the person to enhance the
      *     identification of the individual.
      */
     public PersonBuilder.Impl withPhoto(@NonNull Attachment photo) {
       this.photo = Optional.of(photo);
+      return this;
+    }
+
+    public PersonBuilder.Impl withPhoto(@NonNull AttachmentBuilder photo) {
+      this.photo = Optional.of(photo.build());
       return this;
     }
     /** @param gender - Administrative Gender. */
@@ -149,6 +169,11 @@ public interface PersonBuilder extends DomainResourceBuilder {
       this.telecom = Collections.unmodifiableCollection(telecom);
       return this;
     }
+
+    public PersonBuilder.Impl withTelecom(@NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param address - One or more addresses for the person. */
     public PersonBuilder.Impl withAddress(@NonNull Address... address) {
       this.address = Arrays.asList(address);
@@ -157,6 +182,11 @@ public interface PersonBuilder extends DomainResourceBuilder {
     /** @param address - One or more addresses for the person. */
     public PersonBuilder.Impl withAddress(@NonNull Collection<Address> address) {
       this.address = Collections.unmodifiableCollection(address);
+      return this;
+    }
+
+    public PersonBuilder.Impl withAddress(@NonNull AddressBuilder... address) {
+      this.address = Arrays.stream(address).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -182,6 +212,11 @@ public interface PersonBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public PersonBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -204,6 +239,11 @@ public interface PersonBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public PersonBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param birthDate - The birth date for the person. */
     public PersonBuilder.Impl withBirthDate(@NonNull FHIRDate birthDate) {
       this.birthDate = Optional.of(birthDate);
@@ -217,6 +257,11 @@ public interface PersonBuilder extends DomainResourceBuilder {
     /** @param identifier - Identifier for a person within a particular scope. */
     public PersonBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public PersonBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -264,11 +309,24 @@ public interface PersonBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public PersonBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param managingOrganization - The organization that is the custodian of the person record.
      */
     public PersonBuilder.Impl withManagingOrganization(@NonNull Reference managingOrganization) {
       this.managingOrganization = Optional.of(managingOrganization);
+      return this;
+    }
+
+    public PersonBuilder.Impl withManagingOrganization(
+        @NonNull ReferenceBuilder managingOrganization) {
+      this.managingOrganization = Optional.of(managingOrganization.build());
       return this;
     }
     /** @param link - Link to a resource that concerns the same actual person. */
@@ -279,6 +337,11 @@ public interface PersonBuilder extends DomainResourceBuilder {
     /** @param link - Link to a resource that concerns the same actual person. */
     public PersonBuilder.Impl withLink(@NonNull Collection<Person.Link> link) {
       this.link = Collections.unmodifiableCollection(link);
+      return this;
+    }
+
+    public PersonBuilder.Impl withLink(@NonNull Person_LinkBuilder... link) {
+      this.link = Arrays.stream(link).map(e -> e.build()).collect(toList());
       return this;
     }
 

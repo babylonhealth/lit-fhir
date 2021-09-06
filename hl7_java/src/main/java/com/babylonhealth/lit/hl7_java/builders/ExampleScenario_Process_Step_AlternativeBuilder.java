@@ -90,6 +90,12 @@ public interface ExampleScenario_Process_Step_AlternativeBuilder {
       this.step = Collections.unmodifiableCollection(step);
       return this;
     }
+
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withStep(
+        @NonNull ExampleScenario_Process_StepBuilder... step) {
+      this.step = Arrays.stream(step).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -112,6 +118,12 @@ public interface ExampleScenario_Process_Step_AlternativeBuilder {
     public ExampleScenario_Process_Step_AlternativeBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description */
@@ -154,6 +166,13 @@ public interface ExampleScenario_Process_Step_AlternativeBuilder {
     public ExampleScenario_Process_Step_AlternativeBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

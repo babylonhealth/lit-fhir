@@ -157,6 +157,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -168,11 +173,21 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param form - The actual form, by reference or inclusion, for printing the content or an EOB.
      */
     public ClaimResponseBuilder.Impl withForm(@NonNull Attachment form) {
       this.form = Optional.of(form);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withForm(@NonNull AttachmentBuilder form) {
+      this.form = Optional.of(form.build());
       return this;
     }
     /**
@@ -183,9 +198,19 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.subType = Optional.of(subType);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withSubType(@NonNull CodeableConceptBuilder subType) {
+      this.subType = Optional.of(subType.build());
+      return this;
+    }
     /** @param request - Original request resource reference. */
     public ClaimResponseBuilder.Impl withRequest(@NonNull Reference request) {
       this.request = Optional.of(request);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withRequest(@NonNull ReferenceBuilder request) {
+      this.request = Optional.of(request.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -196,6 +221,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     /** @param formCode - A code for the form to be used for printing the content. */
     public ClaimResponseBuilder.Impl withFormCode(@NonNull CodeableConcept formCode) {
       this.formCode = Optional.of(formCode);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withFormCode(@NonNull CodeableConceptBuilder formCode) {
+      this.formCode = Optional.of(formCode.build());
       return this;
     }
     /**
@@ -214,6 +244,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
      */
     public ClaimResponseBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -238,6 +273,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param requestor - The provider which is responsible for the claim, predetermination or
      *     preauthorization.
@@ -246,9 +286,19 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.requestor = Optional.of(requestor);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withRequestor(@NonNull ReferenceBuilder requestor) {
+      this.requestor = Optional.of(requestor.build());
+      return this;
+    }
     /** @param payeeType - Type of Party to be reimbursed: subscriber, provider, other. */
     public ClaimResponseBuilder.Impl withPayeeType(@NonNull CodeableConcept payeeType) {
       this.payeeType = Optional.of(payeeType);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withPayeeType(@NonNull CodeableConceptBuilder payeeType) {
+      this.payeeType = Optional.of(payeeType.build());
       return this;
     }
     /** @param identifier - A unique identifier assigned to this claim response. */
@@ -259,6 +309,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     /** @param identifier - A unique identifier assigned to this claim response. */
     public ClaimResponseBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -292,12 +347,24 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.adjudication = Collections.unmodifiableCollection(adjudication);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withAdjudication(
+        @NonNull ClaimResponse_Item_AdjudicationBuilder... adjudication) {
+      this.adjudication = Arrays.stream(adjudication).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param fundsReserve - A code, used only on a response to a preauthorization, to indicate
      *     whether the benefits payable have been reserved and for whom.
      */
     public ClaimResponseBuilder.Impl withFundsReserve(@NonNull CodeableConcept fundsReserve) {
       this.fundsReserve = Optional.of(fundsReserve);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withFundsReserve(
+        @NonNull CodeableConceptBuilder fundsReserve) {
+      this.fundsReserve = Optional.of(fundsReserve.build());
       return this;
     }
     /**
@@ -313,6 +380,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     /** @param preAuthPeriod - The time frame during which this authorization is effective. */
     public ClaimResponseBuilder.Impl withPreAuthPeriod(@NonNull Period preAuthPeriod) {
       this.preAuthPeriod = Optional.of(preAuthPeriod);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withPreAuthPeriod(@NonNull PeriodBuilder preAuthPeriod) {
+      this.preAuthPeriod = Optional.of(preAuthPeriod.build());
       return this;
     }
     /**
@@ -351,6 +423,13 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param communicationRequest - Request for additional supporting or authorizing information.
      */
@@ -367,6 +446,13 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.communicationRequest = Collections.unmodifiableCollection(communicationRequest);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withCommunicationRequest(
+        @NonNull ReferenceBuilder... communicationRequest) {
+      this.communicationRequest =
+          Arrays.stream(communicationRequest).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param total - Categorized monetary totals for the adjudication. */
     public ClaimResponseBuilder.Impl withTotal(@NonNull ClaimResponse.Total... total) {
       this.total = Arrays.asList(total);
@@ -375,6 +461,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     /** @param total - Categorized monetary totals for the adjudication. */
     public ClaimResponseBuilder.Impl withTotal(@NonNull Collection<ClaimResponse.Total> total) {
       this.total = Collections.unmodifiableCollection(total);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withTotal(@NonNull ClaimResponse_TotalBuilder... total) {
+      this.total = Arrays.stream(total).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param error - Errors encountered during the processing of the adjudication. */
@@ -387,9 +478,19 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.error = Collections.unmodifiableCollection(error);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withError(@NonNull ClaimResponse_ErrorBuilder... error) {
+      this.error = Arrays.stream(error).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param payment - Payment details for the adjudication of the claim. */
     public ClaimResponseBuilder.Impl withPayment(@NonNull ClaimResponse.Payment payment) {
       this.payment = Optional.of(payment);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withPayment(@NonNull ClaimResponse_PaymentBuilder payment) {
+      this.payment = Optional.of(payment.build());
       return this;
     }
     /**
@@ -410,6 +511,12 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.processNote = Collections.unmodifiableCollection(processNote);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withProcessNote(
+        @NonNull ClaimResponse_ProcessNoteBuilder... processNote) {
+      this.processNote = Arrays.stream(processNote).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param insurance - Financial instruments for reimbursement for the health care products and
      *     services specified on the claim.
@@ -425,6 +532,12 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     public ClaimResponseBuilder.Impl withInsurance(
         @NonNull Collection<ClaimResponse.Insurance> insurance) {
       this.insurance = Collections.unmodifiableCollection(insurance);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withInsurance(
+        @NonNull ClaimResponse_InsuranceBuilder... insurance) {
+      this.insurance = Arrays.stream(insurance).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -443,6 +556,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       this.item = Collections.unmodifiableCollection(item);
       return this;
     }
+
+    public ClaimResponseBuilder.Impl withItem(@NonNull ClaimResponse_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param addItem - The first-tier service adjudications for payor added product or service
      *     lines.
@@ -458,6 +576,11 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     public ClaimResponseBuilder.Impl withAddItem(
         @NonNull Collection<ClaimResponse.AddItem> addItem) {
       this.addItem = Collections.unmodifiableCollection(addItem);
+      return this;
+    }
+
+    public ClaimResponseBuilder.Impl withAddItem(@NonNull ClaimResponse_AddItemBuilder... addItem) {
+      this.addItem = Arrays.stream(addItem).map(e -> e.build()).collect(toList());
       return this;
     }
 

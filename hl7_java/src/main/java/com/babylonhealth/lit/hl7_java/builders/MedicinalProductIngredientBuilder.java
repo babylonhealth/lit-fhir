@@ -96,6 +96,11 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicinalProductIngredientBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -105,6 +110,11 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
      */
     public MedicinalProductIngredientBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public MedicinalProductIngredientBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -131,6 +141,12 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MedicinalProductIngredientBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -154,6 +170,12 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductIngredientBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - The identifier(s) of this Ingredient that are assigned by business
      *     processes and/or used to refer to it when a direct URL reference to the resource itself
@@ -161,6 +183,12 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
      */
     public MedicinalProductIngredientBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public MedicinalProductIngredientBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /** @param manufacturer - Manufacturer of this Ingredient. */
@@ -173,6 +201,12 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
     public MedicinalProductIngredientBuilder.Impl withManufacturer(
         @NonNull Collection<Reference> manufacturer) {
       this.manufacturer = Collections.unmodifiableCollection(manufacturer);
+      return this;
+    }
+
+    public MedicinalProductIngredientBuilder.Impl withManufacturer(
+        @NonNull ReferenceBuilder... manufacturer) {
+      this.manufacturer = Arrays.stream(manufacturer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -221,6 +255,13 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductIngredientBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param allergenicIndicator - If the ingredient is a known or suspected allergen. */
     public MedicinalProductIngredientBuilder.Impl withAllergenicIndicator(
         @NonNull Boolean allergenicIndicator) {
@@ -233,6 +274,12 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
       this.substance = Optional.of(substance);
       return this;
     }
+
+    public MedicinalProductIngredientBuilder.Impl withSubstance(
+        @NonNull MedicinalProductIngredient_SubstanceBuilder substance) {
+      this.substance = Optional.of(substance.build());
+      return this;
+    }
     /** @param specifiedSubstance - A specified substance that comprises this ingredient. */
     public MedicinalProductIngredientBuilder.Impl withSpecifiedSubstance(
         @NonNull MedicinalProductIngredient.SpecifiedSubstance... specifiedSubstance) {
@@ -243,6 +290,13 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
     public MedicinalProductIngredientBuilder.Impl withSpecifiedSubstance(
         @NonNull Collection<MedicinalProductIngredient.SpecifiedSubstance> specifiedSubstance) {
       this.specifiedSubstance = Collections.unmodifiableCollection(specifiedSubstance);
+      return this;
+    }
+
+    public MedicinalProductIngredientBuilder.Impl withSpecifiedSubstance(
+        @NonNull MedicinalProductIngredient_SpecifiedSubstanceBuilder... specifiedSubstance) {
+      this.specifiedSubstance =
+          Arrays.stream(specifiedSubstance).map(e -> e.build()).collect(toList());
       return this;
     }
 

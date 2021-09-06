@@ -113,9 +113,19 @@ public interface ProductShelfLifeBuilder extends BackboneElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ProductShelfLifeBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Unique identifier for the packaged Medicinal Product. */
     public ProductShelfLifeBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public ProductShelfLifeBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /**
@@ -152,6 +162,13 @@ public interface ProductShelfLifeBuilder extends BackboneElementBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ProductShelfLifeBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param specialPrecautionsForStorage - Special precautions for storage, if any, can be
      *     specified using an appropriate controlled vocabulary The controlled term and the
@@ -171,6 +188,13 @@ public interface ProductShelfLifeBuilder extends BackboneElementBuilder {
         @NonNull Collection<CodeableConcept> specialPrecautionsForStorage) {
       this.specialPrecautionsForStorage =
           Collections.unmodifiableCollection(specialPrecautionsForStorage);
+      return this;
+    }
+
+    public ProductShelfLifeBuilder.Impl withSpecialPrecautionsForStorage(
+        @NonNull CodeableConceptBuilder... specialPrecautionsForStorage) {
+      this.specialPrecautionsForStorage =
+          Arrays.stream(specialPrecautionsForStorage).map(e -> e.build()).collect(toList());
       return this;
     }
 

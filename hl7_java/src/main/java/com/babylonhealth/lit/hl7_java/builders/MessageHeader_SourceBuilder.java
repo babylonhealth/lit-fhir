@@ -95,6 +95,11 @@ public interface MessageHeader_SourceBuilder {
       this.contact = Optional.of(contact);
       return this;
     }
+
+    public MessageHeader_SourceBuilder.Impl withContact(@NonNull ContactPointBuilder contact) {
+      this.contact = Optional.of(contact.build());
+      return this;
+    }
     /** @param software */
     public MessageHeader_SourceBuilder.Impl withSoftware(@NonNull String software) {
       this.software = Optional.of(software);
@@ -121,6 +126,11 @@ public interface MessageHeader_SourceBuilder {
     public MessageHeader_SourceBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MessageHeader_SourceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -157,6 +167,13 @@ public interface MessageHeader_SourceBuilder {
     public MessageHeader_SourceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MessageHeader_SourceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

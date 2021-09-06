@@ -91,6 +91,11 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SubstanceNucleicAcidBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -100,6 +105,11 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
      */
     public SubstanceNucleicAcidBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SubstanceNucleicAcidBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -125,6 +135,11 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SubstanceNucleicAcidBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -148,6 +163,11 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceNucleicAcidBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param sequenceType - The type of the sequence shall be specified based on a controlled
      *     vocabulary.
@@ -155,6 +175,12 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
     public SubstanceNucleicAcidBuilder.Impl withSequenceType(
         @NonNull CodeableConcept sequenceType) {
       this.sequenceType = Optional.of(sequenceType);
+      return this;
+    }
+
+    public SubstanceNucleicAcidBuilder.Impl withSequenceType(
+        @NonNull CodeableConceptBuilder sequenceType) {
+      this.sequenceType = Optional.of(sequenceType.build());
       return this;
     }
     /**
@@ -214,6 +240,13 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceNucleicAcidBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param areaOfHybridisation - The area of hybridisation shall be described if applicable for
      *     double stranded RNA or DNA. The number associated with the subunit followed by the number
@@ -229,6 +262,12 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
     public SubstanceNucleicAcidBuilder.Impl withOligoNucleotideType(
         @NonNull CodeableConcept oligoNucleotideType) {
       this.oligoNucleotideType = Optional.of(oligoNucleotideType);
+      return this;
+    }
+
+    public SubstanceNucleicAcidBuilder.Impl withOligoNucleotideType(
+        @NonNull CodeableConceptBuilder oligoNucleotideType) {
+      this.oligoNucleotideType = Optional.of(oligoNucleotideType.build());
       return this;
     }
     /**
@@ -249,6 +288,12 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
     public SubstanceNucleicAcidBuilder.Impl withSubunit(
         @NonNull Collection<SubstanceNucleicAcid.Subunit> subunit) {
       this.subunit = Collections.unmodifiableCollection(subunit);
+      return this;
+    }
+
+    public SubstanceNucleicAcidBuilder.Impl withSubunit(
+        @NonNull SubstanceNucleicAcid_SubunitBuilder... subunit) {
+      this.subunit = Arrays.stream(subunit).map(e -> e.build()).collect(toList());
       return this;
     }
 

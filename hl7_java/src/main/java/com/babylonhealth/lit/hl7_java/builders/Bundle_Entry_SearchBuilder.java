@@ -91,6 +91,11 @@ public interface Bundle_Entry_SearchBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Bundle_Entry_SearchBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param modifierExtension */
     public Bundle_Entry_SearchBuilder.Impl withModifierExtension(
         @NonNull Extension... modifierExtension) {
@@ -101,6 +106,13 @@ public interface Bundle_Entry_SearchBuilder {
     public Bundle_Entry_SearchBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Bundle_Entry_SearchBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

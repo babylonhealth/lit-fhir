@@ -122,6 +122,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CarePlanBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -131,6 +136,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      */
     public CarePlanBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param goal - Describes the intended objective(s) of carrying out the care plan. */
@@ -143,6 +153,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.goal = Collections.unmodifiableCollection(goal);
       return this;
     }
+
+    public CarePlanBuilder.Impl withGoal(@NonNull ReferenceBuilder... goal) {
+      this.goal = Arrays.stream(goal).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param note - General notes about the care plan not covered elsewhere. */
     public CarePlanBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
@@ -151,6 +166,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
     /** @param note - General notes about the care plan not covered elsewhere. */
     public CarePlanBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param title - Human-friendly name for the care plan. */
@@ -172,9 +192,19 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public CarePlanBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param period - Indicates when the plan did (or is intended to) come into effect and end. */
     public CarePlanBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -185,6 +215,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.author = Optional.of(author);
       return this;
     }
+
+    public CarePlanBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
+      return this;
+    }
     /** @param basedOn - A care plan that is fulfilled in whole or in part by this care plan. */
     public CarePlanBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
       this.basedOn = Arrays.asList(basedOn);
@@ -193,6 +228,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
     /** @param basedOn - A care plan that is fulfilled in whole or in part by this care plan. */
     public CarePlanBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -224,6 +264,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.replaces = Collections.unmodifiableCollection(replaces);
       return this;
     }
+
+    public CarePlanBuilder.Impl withReplaces(@NonNull ReferenceBuilder... replaces) {
+      this.replaces = Arrays.stream(replaces).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param category - Identifies what "kind" of plan this is to support differentiation between
      *     multiple co-existing plans; e.g. "Home health", "psychiatric", "asthma", "disease
@@ -242,6 +287,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public CarePlanBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param careTeam - Identifies all people and organizations who are expected to be involved in
      *     the care envisioned by this plan.
@@ -256,6 +306,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      */
     public CarePlanBuilder.Impl withCareTeam(@NonNull Collection<Reference> careTeam) {
       this.careTeam = Collections.unmodifiableCollection(careTeam);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withCareTeam(@NonNull ReferenceBuilder... careTeam) {
+      this.careTeam = Arrays.stream(careTeam).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -274,6 +329,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      */
     public CarePlanBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -298,12 +358,22 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CarePlanBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this CarePlan was created or to which the
      *     creation of this record is tightly associated.
      */
     public CarePlanBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -322,6 +392,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.addresses = Collections.unmodifiableCollection(addresses);
       return this;
     }
+
+    public CarePlanBuilder.Impl withAddresses(@NonNull ReferenceBuilder... addresses) {
+      this.addresses = Arrays.stream(addresses).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Business identifiers assigned to this care plan by the performer or other
      *     systems which remain constant as the resource is updated and propagates from server to
@@ -338,6 +413,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      */
     public CarePlanBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description - A description of the scope and nature of the plan. */
@@ -359,6 +439,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      */
     public CarePlanBuilder.Impl withContributor(@NonNull Collection<Reference> contributor) {
       this.contributor = Collections.unmodifiableCollection(contributor);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withContributor(@NonNull ReferenceBuilder... contributor) {
+      this.contributor = Arrays.stream(contributor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -387,6 +472,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      */
     public CarePlanBuilder.Impl withSupportingInfo(@NonNull Collection<Reference> supportingInfo) {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withSupportingInfo(@NonNull ReferenceBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -442,6 +532,13 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CarePlanBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param instantiatesCanonical - The URL pointing to a FHIR-defined protocol, guideline,
      *     questionnaire or other definition that is adhered to in whole or in part by this
@@ -476,6 +573,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      */
     public CarePlanBuilder.Impl withActivity(@NonNull Collection<CarePlan.Activity> activity) {
       this.activity = Collections.unmodifiableCollection(activity);
+      return this;
+    }
+
+    public CarePlanBuilder.Impl withActivity(@NonNull CarePlan_ActivityBuilder... activity) {
+      this.activity = Arrays.stream(activity).map(e -> e.build()).collect(toList());
       return this;
     }
 

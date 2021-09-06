@@ -184,6 +184,11 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -195,6 +200,11 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param note - Comments about the observation or the results. */
     public DevicemetricobservationBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
@@ -203,6 +213,11 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     /** @param note - Comments about the observation or the results. */
     public DevicemetricobservationBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public DevicemetricobservationBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -233,6 +248,11 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.focus = Collections.unmodifiableCollection(focus);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withFocus(@NonNull ReferenceBuilder... focus) {
+      this.focus = Arrays.stream(focus).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param partOf - A larger event of which this particular Observation is a component or step.
      *     For example, an observation as part of a procedure.
@@ -249,9 +269,19 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param method - Indicates the mechanism used to perform the observation. */
     public DevicemetricobservationBuilder.Impl withMethod(@NonNull CodeableConcept method) {
       this.method = Optional.of(method);
+      return this;
+    }
+
+    public DevicemetricobservationBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
       return this;
     }
     /**
@@ -272,6 +302,11 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public DevicemetricobservationBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -286,6 +321,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     public DevicemetricobservationBuilder.Impl withCategory(
         @NonNull Collection<CodeableConcept> category) {
       this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public DevicemetricobservationBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -307,6 +348,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.bodySite = Optional.of(bodySite);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withBodySite(
+        @NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -324,6 +371,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     public DevicemetricobservationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public DevicemetricobservationBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -349,6 +402,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performer - Who was responsible for asserting the observed value as "true". */
     public DevicemetricobservationBuilder.Impl withPerformer(@NonNull Reference... performer) {
       this.performer = Arrays.asList(performer);
@@ -358,6 +417,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     public DevicemetricobservationBuilder.Impl withPerformer(
         @NonNull Collection<Reference> performer) {
       this.performer = Collections.unmodifiableCollection(performer);
+      return this;
+    }
+
+    public DevicemetricobservationBuilder.Impl withPerformer(
+        @NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -377,6 +442,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.hasMember = Collections.unmodifiableCollection(hasMember);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withHasMember(
+        @NonNull ReferenceBuilder... hasMember) {
+      this.hasMember = Arrays.stream(hasMember).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this observation. */
     public DevicemetricobservationBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -386,6 +457,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     public DevicemetricobservationBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public DevicemetricobservationBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -407,6 +484,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.derivedFrom = Collections.unmodifiableCollection(derivedFrom);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withDerivedFrom(
+        @NonNull ReferenceBuilder... derivedFrom) {
+      this.derivedFrom = Arrays.stream(derivedFrom).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -424,6 +507,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     public DevicemetricobservationBuilder.Impl withInterpretation(
         @NonNull CodeableConcept interpretation) {
       this.interpretation = Optional.of(interpretation);
+      return this;
+    }
+
+    public DevicemetricobservationBuilder.Impl withInterpretation(
+        @NonNull CodeableConceptBuilder interpretation) {
+      this.interpretation = Optional.of(interpretation.build());
       return this;
     }
     /**
@@ -462,6 +551,13 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param component - Some observations have multiple component observations. These component
      *     observations are expressed as separate code value pairs that share the same attributes.
@@ -484,6 +580,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
       this.component = Collections.unmodifiableCollection(component);
       return this;
     }
+
+    public DevicemetricobservationBuilder.Impl withComponent(
+        @NonNull Observation_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param referenceRange - Guidance on how to interpret the value by comparison to a normal or
      *     recommended range. Multiple reference ranges are interpreted as an "OR". In other words,
@@ -493,6 +595,12 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     public DevicemetricobservationBuilder.Impl withReferenceRange(
         @NonNull Observation.ReferenceRange referenceRange) {
       this.referenceRange = Optional.of(referenceRange);
+      return this;
+    }
+
+    public DevicemetricobservationBuilder.Impl withReferenceRange(
+        @NonNull Observation_ReferenceRangeBuilder referenceRange) {
+      this.referenceRange = Optional.of(referenceRange.build());
       return this;
     }
 

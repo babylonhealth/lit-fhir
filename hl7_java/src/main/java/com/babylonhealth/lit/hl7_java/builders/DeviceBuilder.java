@@ -115,6 +115,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public DeviceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -126,9 +131,19 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public DeviceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - The kind or type of device. */
     public DeviceBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -147,12 +162,22 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public DeviceBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param owner - An organization that is responsible for the provision and ongoing maintenance
      *     of the device.
      */
     public DeviceBuilder.Impl withOwner(@NonNull Reference owner) {
       this.owner = Optional.of(owner);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withOwner(@NonNull ReferenceBuilder owner) {
+      this.owner = Optional.of(owner.build());
       return this;
     }
     /** @param status - Status of the Device availability. */
@@ -176,14 +201,29 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.safety = Collections.unmodifiableCollection(safety);
       return this;
     }
+
+    public DeviceBuilder.Impl withSafety(@NonNull CodeableConceptBuilder... safety) {
+      this.safety = Arrays.stream(safety).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param parent - The parent device. */
     public DeviceBuilder.Impl withParent(@NonNull Reference parent) {
       this.parent = Optional.of(parent);
       return this;
     }
+
+    public DeviceBuilder.Impl withParent(@NonNull ReferenceBuilder parent) {
+      this.parent = Optional.of(parent.build());
+      return this;
+    }
     /** @param patient - Patient information, If the device is affixed to a person. */
     public DeviceBuilder.Impl withPatient(@NonNull Reference patient) {
       this.patient = Optional.of(patient);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withPatient(@NonNull ReferenceBuilder patient) {
+      this.patient = Optional.of(patient.build());
       return this;
     }
     /**
@@ -202,6 +242,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public DeviceBuilder.Impl withContact(@NonNull ContactPointBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public DeviceBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -210,6 +255,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     /** @param location - The place where the device can be found. */
     public DeviceBuilder.Impl withLocation(@NonNull Reference location) {
       this.location = Optional.of(location);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
       return this;
     }
     /**
@@ -228,6 +278,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
      */
     public DeviceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -252,6 +307,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DeviceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param lotNumber - Lot number assigned by the manufacturer. */
     public DeviceBuilder.Impl withLotNumber(@NonNull String lotNumber) {
       this.lotNumber = Optional.of(lotNumber);
@@ -273,9 +333,19 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public DeviceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param definition - The reference to the definition for the device. */
     public DeviceBuilder.Impl withDefinition(@NonNull Reference definition) {
       this.definition = Optional.of(definition);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withDefinition(@NonNull ReferenceBuilder definition) {
+      this.definition = Optional.of(definition.build());
       return this;
     }
     /** @param partNumber - The part number of the device. */
@@ -296,6 +366,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     /** @param statusReason - Reason for the dtatus of the Device availability. */
     public DeviceBuilder.Impl withStatusReason(@NonNull Collection<CodeableConcept> statusReason) {
       this.statusReason = Collections.unmodifiableCollection(statusReason);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withStatusReason(@NonNull CodeableConceptBuilder... statusReason) {
+      this.statusReason = Arrays.stream(statusReason).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param manufacturer - A name of the manufacturer. */
@@ -369,6 +444,13 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DeviceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param distinctIdentifier - The distinct identification string as required by regulation for
      *     a human cell, tissue, or cellular and tissue-based product.
@@ -391,6 +473,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.version = Collections.unmodifiableCollection(version);
       return this;
     }
+
+    public DeviceBuilder.Impl withVersion(@NonNull Device_VersionBuilder... version) {
+      this.version = Arrays.stream(version).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param property - The actual configuration settings of a device as it actually operates,
      *     e.g., regulation status, time properties.
@@ -405,6 +492,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
      */
     public DeviceBuilder.Impl withProperty(@NonNull Collection<Device.Property> property) {
       this.property = Collections.unmodifiableCollection(property);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withProperty(@NonNull Device_PropertyBuilder... property) {
+      this.property = Arrays.stream(property).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -427,6 +519,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.udiCarrier = Collections.unmodifiableCollection(udiCarrier);
       return this;
     }
+
+    public DeviceBuilder.Impl withUdiCarrier(@NonNull Device_UdiCarrierBuilder... udiCarrier) {
+      this.udiCarrier = Arrays.stream(udiCarrier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param deviceName - This represents the manufacturer's name of the device as provided by the
      *     device, from a UDI label, or by a person describing the Device. This typically would be
@@ -447,6 +544,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.deviceName = Collections.unmodifiableCollection(deviceName);
       return this;
     }
+
+    public DeviceBuilder.Impl withDeviceName(@NonNull Device_DeviceNameBuilder... deviceName) {
+      this.deviceName = Arrays.stream(deviceName).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param specialization - The capabilities supported on a device, the standards to which the
      *     device conforms for a particular purpose, and used for the communication.
@@ -462,6 +564,12 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     public DeviceBuilder.Impl withSpecialization(
         @NonNull Collection<Device.Specialization> specialization) {
       this.specialization = Collections.unmodifiableCollection(specialization);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withSpecialization(
+        @NonNull Device_SpecializationBuilder... specialization) {
+      this.specialization = Arrays.stream(specialization).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -94,14 +94,29 @@ public interface Appointment_ParticipantBuilder {
       this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
+
+    public Appointment_ParticipantBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param actor */
     public Appointment_ParticipantBuilder.Impl withActor(@NonNull Reference actor) {
       this.actor = Optional.of(actor);
       return this;
     }
+
+    public Appointment_ParticipantBuilder.Impl withActor(@NonNull ReferenceBuilder actor) {
+      this.actor = Optional.of(actor.build());
+      return this;
+    }
     /** @param period */
     public Appointment_ParticipantBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public Appointment_ParticipantBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /** @param required */
@@ -130,6 +145,12 @@ public interface Appointment_ParticipantBuilder {
     public Appointment_ParticipantBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Appointment_ParticipantBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -166,6 +187,13 @@ public interface Appointment_ParticipantBuilder {
     public Appointment_ParticipantBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Appointment_ParticipantBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

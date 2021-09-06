@@ -105,6 +105,11 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CatalogEntryBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -116,9 +121,19 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public CatalogEntryBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - The type of item - medication, device, service, protocol or other. */
     public CatalogEntryBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public CatalogEntryBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -157,6 +172,11 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public CatalogEntryBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -179,6 +199,11 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CatalogEntryBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Used in supporting different identifiers for the same product, e.g.
      *     manufacturer code and retailer code.
@@ -193,6 +218,11 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
      */
     public CatalogEntryBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public CatalogEntryBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -224,11 +254,22 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.classification = Collections.unmodifiableCollection(classification);
       return this;
     }
+
+    public CatalogEntryBuilder.Impl withClassification(
+        @NonNull CodeableConceptBuilder... classification) {
+      this.classification = Arrays.stream(classification).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param validityPeriod - The time period in which this catalog entry is expected to be active.
      */
     public CatalogEntryBuilder.Impl withValidityPeriod(@NonNull Period validityPeriod) {
       this.validityPeriod = Optional.of(validityPeriod);
+      return this;
+    }
+
+    public CatalogEntryBuilder.Impl withValidityPeriod(@NonNull PeriodBuilder validityPeriod) {
+      this.validityPeriod = Optional.of(validityPeriod.build());
       return this;
     }
     /**
@@ -266,6 +307,13 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CatalogEntryBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param additionalIdentifier - Used in supporting related concepts, e.g. NDC to RxNorm. */
     public CatalogEntryBuilder.Impl withAdditionalIdentifier(
         @NonNull Identifier... additionalIdentifier) {
@@ -276,6 +324,13 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
     public CatalogEntryBuilder.Impl withAdditionalIdentifier(
         @NonNull Collection<Identifier> additionalIdentifier) {
       this.additionalIdentifier = Collections.unmodifiableCollection(additionalIdentifier);
+      return this;
+    }
+
+    public CatalogEntryBuilder.Impl withAdditionalIdentifier(
+        @NonNull IdentifierBuilder... additionalIdentifier) {
+      this.additionalIdentifier =
+          Arrays.stream(additionalIdentifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param additionalCharacteristic - Used for examplefor Out of Formulary, or any specifics. */
@@ -290,6 +345,13 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.additionalCharacteristic = Collections.unmodifiableCollection(additionalCharacteristic);
       return this;
     }
+
+    public CatalogEntryBuilder.Impl withAdditionalCharacteristic(
+        @NonNull CodeableConceptBuilder... additionalCharacteristic) {
+      this.additionalCharacteristic =
+          Arrays.stream(additionalCharacteristic).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param additionalClassification - User for example for ATC classification, or. */
     public CatalogEntryBuilder.Impl withAdditionalClassification(
         @NonNull CodeableConcept... additionalClassification) {
@@ -300,6 +362,13 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
     public CatalogEntryBuilder.Impl withAdditionalClassification(
         @NonNull Collection<CodeableConcept> additionalClassification) {
       this.additionalClassification = Collections.unmodifiableCollection(additionalClassification);
+      return this;
+    }
+
+    public CatalogEntryBuilder.Impl withAdditionalClassification(
+        @NonNull CodeableConceptBuilder... additionalClassification) {
+      this.additionalClassification =
+          Arrays.stream(additionalClassification).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -318,6 +387,12 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
     public CatalogEntryBuilder.Impl withRelatedEntry(
         @NonNull Collection<CatalogEntry.RelatedEntry> relatedEntry) {
       this.relatedEntry = Collections.unmodifiableCollection(relatedEntry);
+      return this;
+    }
+
+    public CatalogEntryBuilder.Impl withRelatedEntry(
+        @NonNull CatalogEntry_RelatedEntryBuilder... relatedEntry) {
+      this.relatedEntry = Arrays.stream(relatedEntry).map(e -> e.build()).collect(toList());
       return this;
     }
 

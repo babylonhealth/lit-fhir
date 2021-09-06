@@ -76,6 +76,11 @@ public interface ResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ResourceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public ResourceBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);

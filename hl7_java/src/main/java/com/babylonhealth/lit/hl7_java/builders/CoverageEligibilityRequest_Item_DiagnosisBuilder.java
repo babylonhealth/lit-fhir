@@ -102,6 +102,12 @@ public interface CoverageEligibilityRequest_Item_DiagnosisBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param diagnosis Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
      *     To pass the value in, wrap with one of the
@@ -146,6 +152,13 @@ public interface CoverageEligibilityRequest_Item_DiagnosisBuilder {
     public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

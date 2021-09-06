@@ -105,6 +105,12 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param repeatUnit */
     public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withRepeatUnit(
         @NonNull String repeatUnit) {
@@ -147,10 +153,23 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param orientationOfPolymerisation */
     public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withOrientationOfPolymerisation(
         @NonNull CodeableConcept orientationOfPolymerisation) {
       this.orientationOfPolymerisation = Optional.of(orientationOfPolymerisation);
+      return this;
+    }
+
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withOrientationOfPolymerisation(
+        @NonNull CodeableConceptBuilder orientationOfPolymerisation) {
+      this.orientationOfPolymerisation = Optional.of(orientationOfPolymerisation.build());
       return this;
     }
     /** @param degreeOfPolymerisation */
@@ -168,6 +187,15 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
       this.degreeOfPolymerisation = Collections.unmodifiableCollection(degreeOfPolymerisation);
       return this;
     }
+
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withDegreeOfPolymerisation(
+        @NonNull
+            SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder...
+                degreeOfPolymerisation) {
+      this.degreeOfPolymerisation =
+          Arrays.stream(degreeOfPolymerisation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param structuralRepresentation */
     public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withStructuralRepresentation(
         @NonNull
@@ -182,6 +210,15 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
             Collection<SubstancePolymer$Repeat$RepeatUnit$StructuralRepresentation>
                 structuralRepresentation) {
       this.structuralRepresentation = Collections.unmodifiableCollection(structuralRepresentation);
+      return this;
+    }
+
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withStructuralRepresentation(
+        @NonNull
+            SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder...
+                structuralRepresentation) {
+      this.structuralRepresentation =
+          Arrays.stream(structuralRepresentation).map(e -> e.build()).collect(toList());
       return this;
     }
 

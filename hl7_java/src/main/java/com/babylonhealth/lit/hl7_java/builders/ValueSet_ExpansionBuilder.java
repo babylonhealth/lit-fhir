@@ -113,6 +113,11 @@ public interface ValueSet_ExpansionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ValueSet_ExpansionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - A formal identifier that is used to identify this value set when it is
      *     represented in other formats, or referenced in a specification, model, design or an
@@ -158,6 +163,13 @@ public interface ValueSet_ExpansionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ValueSet_ExpansionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param contains */
     public ValueSet_ExpansionBuilder.Impl withContains(
         @NonNull ValueSet$Expansion$Contains... contains) {
@@ -170,6 +182,12 @@ public interface ValueSet_ExpansionBuilder {
       this.contains = Collections.unmodifiableCollection(contains);
       return this;
     }
+
+    public ValueSet_ExpansionBuilder.Impl withContains(
+        @NonNull ValueSet_Expansion_ContainsBuilder... contains) {
+      this.contains = Arrays.stream(contains).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param parameter */
     public ValueSet_ExpansionBuilder.Impl withParameter(
         @NonNull ValueSet$Expansion$Parameter... parameter) {
@@ -180,6 +198,12 @@ public interface ValueSet_ExpansionBuilder {
     public ValueSet_ExpansionBuilder.Impl withParameter(
         @NonNull Collection<ValueSet$Expansion$Parameter> parameter) {
       this.parameter = Collections.unmodifiableCollection(parameter);
+      return this;
+    }
+
+    public ValueSet_ExpansionBuilder.Impl withParameter(
+        @NonNull ValueSet_Expansion_ParameterBuilder... parameter) {
+      this.parameter = Arrays.stream(parameter).map(e -> e.build()).collect(toList());
       return this;
     }
 

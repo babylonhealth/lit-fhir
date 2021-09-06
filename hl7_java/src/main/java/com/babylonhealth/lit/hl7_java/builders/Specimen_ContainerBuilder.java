@@ -88,9 +88,19 @@ public interface Specimen_ContainerBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public Specimen_ContainerBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param capacity */
     public Specimen_ContainerBuilder.Impl withCapacity(@NonNull Quantity capacity) {
       this.capacity = Optional.of(capacity);
+      return this;
+    }
+
+    public Specimen_ContainerBuilder.Impl withCapacity(@NonNull QuantityBuilder capacity) {
+      this.capacity = Optional.of(capacity.build());
       return this;
     }
     /**
@@ -115,6 +125,11 @@ public interface Specimen_ContainerBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Specimen_ContainerBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Id for specimen. */
     public Specimen_ContainerBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -124,6 +139,11 @@ public interface Specimen_ContainerBuilder {
     public Specimen_ContainerBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Specimen_ContainerBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description */
@@ -143,6 +163,12 @@ public interface Specimen_ContainerBuilder {
     /** @param specimenQuantity */
     public Specimen_ContainerBuilder.Impl withSpecimenQuantity(@NonNull Quantity specimenQuantity) {
       this.specimenQuantity = Optional.of(specimenQuantity);
+      return this;
+    }
+
+    public Specimen_ContainerBuilder.Impl withSpecimenQuantity(
+        @NonNull QuantityBuilder specimenQuantity) {
+      this.specimenQuantity = Optional.of(specimenQuantity.build());
       return this;
     }
     /**
@@ -179,6 +205,13 @@ public interface Specimen_ContainerBuilder {
     public Specimen_ContainerBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Specimen_ContainerBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

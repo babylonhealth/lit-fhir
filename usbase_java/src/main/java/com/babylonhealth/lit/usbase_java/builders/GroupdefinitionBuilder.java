@@ -110,6 +110,11 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public GroupdefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -121,12 +126,22 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public GroupdefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param code - Provides a specific type of resource the group includes; e.g. "cow", "syringe",
      *     etc.
      */
     public GroupdefinitionBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public GroupdefinitionBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param name - A label assigned to the group for human identification and communication. */
@@ -170,6 +185,11 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public GroupdefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -192,6 +212,11 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public GroupdefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique business identifier for this group. */
     public GroupdefinitionBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -200,6 +225,11 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
     /** @param identifier - A unique business identifier for this group. */
     public GroupdefinitionBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public GroupdefinitionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -218,6 +248,12 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
      */
     public GroupdefinitionBuilder.Impl withManagingEntity(@NonNull Reference managingEntity) {
       this.managingEntity = Optional.of(managingEntity);
+      return this;
+    }
+
+    public GroupdefinitionBuilder.Impl withManagingEntity(
+        @NonNull ReferenceBuilder managingEntity) {
+      this.managingEntity = Optional.of(managingEntity.build());
       return this;
     }
     /**
@@ -256,6 +292,13 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public GroupdefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param characteristic - Identifies traits whose presence r absence is shared by members of
      *     the group.
@@ -272,6 +315,12 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
     public GroupdefinitionBuilder.Impl withCharacteristic(
         @NonNull Collection<Group.Characteristic> characteristic) {
       this.characteristic = Collections.unmodifiableCollection(characteristic);
+      return this;
+    }
+
+    public GroupdefinitionBuilder.Impl withCharacteristic(
+        @NonNull Group_CharacteristicBuilder... characteristic) {
+      this.characteristic = Arrays.stream(characteristic).map(e -> e.build()).collect(toList());
       return this;
     }
 

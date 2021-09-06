@@ -107,6 +107,11 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public InvoiceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -118,12 +123,22 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public InvoiceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param _type - Type of Invoice depending on domain, realm an usage (e.g. internal/external,
      *     dental, preliminary).
      */
     public InvoiceBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param date - Date/time(s) of when this Invoice was posted. */
@@ -145,9 +160,19 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public InvoiceBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param issuer - The organizationissuing the Invoice. */
     public InvoiceBuilder.Impl withIssuer(@NonNull Reference issuer) {
       this.issuer = Optional.of(issuer);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withIssuer(@NonNull ReferenceBuilder issuer) {
+      this.issuer = Optional.of(issuer.build());
       return this;
     }
     /**
@@ -158,9 +183,19 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       this.subject = Optional.of(subject);
       return this;
     }
+
+    public InvoiceBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
+      return this;
+    }
     /** @param account - Account which is supposed to be balanced with this Invoice. */
     public InvoiceBuilder.Impl withAccount(@NonNull Reference account) {
       this.account = Optional.of(account);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withAccount(@NonNull ReferenceBuilder account) {
+      this.account = Optional.of(account.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -171,6 +206,11 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
     /** @param totalNet - Invoice total , taxes excluded. */
     public InvoiceBuilder.Impl withTotalNet(@NonNull Money totalNet) {
       this.totalNet = Optional.of(totalNet);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withTotalNet(@NonNull MoneyBuilder totalNet) {
+      this.totalNet = Optional.of(totalNet.build());
       return this;
     }
     /**
@@ -189,6 +229,11 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
      */
     public InvoiceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -213,11 +258,21 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public InvoiceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param recipient - The individual or Organization responsible for balancing of this invoice.
      */
     public InvoiceBuilder.Impl withRecipient(@NonNull Reference recipient) {
       this.recipient = Optional.of(recipient);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withRecipient(@NonNull ReferenceBuilder recipient) {
+      this.recipient = Optional.of(recipient.build());
       return this;
     }
     /**
@@ -236,9 +291,19 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public InvoiceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param totalGross - Invoice total, tax included. */
     public InvoiceBuilder.Impl withTotalGross(@NonNull Money totalGross) {
       this.totalGross = Optional.of(totalGross);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withTotalGross(@NonNull MoneyBuilder totalGross) {
+      this.totalGross = Optional.of(totalGross.build());
       return this;
     }
     /**
@@ -302,6 +367,13 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public InvoiceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param totalPriceComponent - The total amount for the Invoice may be calculated as the sum of
      *     the line items with surcharges/deductions that apply in certain conditions. The
@@ -324,6 +396,13 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       this.totalPriceComponent = Collections.unmodifiableCollection(totalPriceComponent);
       return this;
     }
+
+    public InvoiceBuilder.Impl withTotalPriceComponent(
+        @NonNull Invoice_LineItem_PriceComponentBuilder... totalPriceComponent) {
+      this.totalPriceComponent =
+          Arrays.stream(totalPriceComponent).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param participant - Indicates who or what performed or participated in the charged service.
      */
@@ -337,6 +416,11 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
     public InvoiceBuilder.Impl withParticipant(
         @NonNull Collection<Invoice.Participant> participant) {
       this.participant = Collections.unmodifiableCollection(participant);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withParticipant(@NonNull Invoice_ParticipantBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -353,6 +437,11 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
      */
     public InvoiceBuilder.Impl withLineItem(@NonNull Collection<Invoice.LineItem> lineItem) {
       this.lineItem = Collections.unmodifiableCollection(lineItem);
+      return this;
+    }
+
+    public InvoiceBuilder.Impl withLineItem(@NonNull Invoice_LineItemBuilder... lineItem) {
+      this.lineItem = Arrays.stream(lineItem).map(e -> e.build()).collect(toList());
       return this;
     }
 

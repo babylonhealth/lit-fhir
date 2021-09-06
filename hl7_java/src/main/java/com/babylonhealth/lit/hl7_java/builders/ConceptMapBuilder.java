@@ -137,6 +137,11 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ConceptMapBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -146,6 +151,11 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
      */
     public ConceptMapBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ConceptMapBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -199,6 +209,11 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public ConceptMapBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this concept map is needed and why it has been designed
      *     as it has.
@@ -230,6 +245,11 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ConceptMapBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -250,6 +270,11 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
      */
     public ConceptMapBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ConceptMapBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -298,6 +323,11 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
       this.identifier = Optional.of(identifier);
       return this;
     }
+
+    public ConceptMapBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -316,6 +346,11 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
      */
     public ConceptMapBuilder.Impl withUseContext(@NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public ConceptMapBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -350,6 +385,12 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
     public ConceptMapBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public ConceptMapBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -397,6 +438,13 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ConceptMapBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param group - A group of mappings that all have the same source and target system. */
     public ConceptMapBuilder.Impl withGroup(@NonNull ConceptMap.Group... group) {
       this.group = Arrays.asList(group);
@@ -405,6 +453,11 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
     /** @param group - A group of mappings that all have the same source and target system. */
     public ConceptMapBuilder.Impl withGroup(@NonNull Collection<ConceptMap.Group> group) {
       this.group = Collections.unmodifiableCollection(group);
+      return this;
+    }
+
+    public ConceptMapBuilder.Impl withGroup(@NonNull ConceptMap_GroupBuilder... group) {
+      this.group = Arrays.stream(group).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -107,6 +107,11 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SupplyDeliveryBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -118,12 +123,22 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public SupplyDeliveryBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param _type - Indicates the type of dispensing event that is performed. Examples include:
      *     Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples, etc.
      */
     public SupplyDeliveryBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public SupplyDeliveryBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param partOf - A larger event of which this particular event is a component or step. */
@@ -134,6 +149,11 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
     /** @param partOf - A larger event of which this particular event is a component or step. */
     public SupplyDeliveryBuilder.Impl withPartOf(@NonNull Collection<Reference> partOf) {
       this.partOf = Collections.unmodifiableCollection(partOf);
+      return this;
+    }
+
+    public SupplyDeliveryBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param status - A code specifying the state of the dispense event. */
@@ -157,11 +177,21 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public SupplyDeliveryBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param patient - A link to a resource representing the person whom the delivered item is for.
      */
     public SupplyDeliveryBuilder.Impl withPatient(@NonNull Reference patient) {
       this.patient = Optional.of(patient);
+      return this;
+    }
+
+    public SupplyDeliveryBuilder.Impl withPatient(@NonNull ReferenceBuilder patient) {
+      this.patient = Optional.of(patient.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -177,6 +207,11 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
       this.supplier = Optional.of(supplier);
       return this;
     }
+
+    public SupplyDeliveryBuilder.Impl withSupplier(@NonNull ReferenceBuilder supplier) {
+      this.supplier = Optional.of(supplier.build());
+      return this;
+    }
     /** @param receiver - Identifies the person who picked up the Supply. */
     public SupplyDeliveryBuilder.Impl withReceiver(@NonNull Reference... receiver) {
       this.receiver = Arrays.asList(receiver);
@@ -185,6 +220,11 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
     /** @param receiver - Identifies the person who picked up the Supply. */
     public SupplyDeliveryBuilder.Impl withReceiver(@NonNull Collection<Reference> receiver) {
       this.receiver = Collections.unmodifiableCollection(receiver);
+      return this;
+    }
+
+    public SupplyDeliveryBuilder.Impl withReceiver(@NonNull ReferenceBuilder... receiver) {
+      this.receiver = Arrays.stream(receiver).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -203,6 +243,11 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
      */
     public SupplyDeliveryBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public SupplyDeliveryBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -227,6 +272,11 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SupplyDeliveryBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Identifier for the supply delivery event that is used to identify it
      *     across multiple disparate systems.
@@ -243,12 +293,22 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public SupplyDeliveryBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param destination - Identification of the facility/location where the Supply was shipped to,
      *     as part of the dispense event.
      */
     public SupplyDeliveryBuilder.Impl withDestination(@NonNull Reference destination) {
       this.destination = Optional.of(destination);
+      return this;
+    }
+
+    public SupplyDeliveryBuilder.Impl withDestination(@NonNull ReferenceBuilder destination) {
+      this.destination = Optional.of(destination.build());
       return this;
     }
     /**
@@ -306,10 +366,23 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SupplyDeliveryBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param suppliedItem - The item that is being delivered or has been supplied. */
     public SupplyDeliveryBuilder.Impl withSuppliedItem(
         @NonNull SupplyDelivery.SuppliedItem suppliedItem) {
       this.suppliedItem = Optional.of(suppliedItem);
+      return this;
+    }
+
+    public SupplyDeliveryBuilder.Impl withSuppliedItem(
+        @NonNull SupplyDelivery_SuppliedItemBuilder suppliedItem) {
+      this.suppliedItem = Optional.of(suppliedItem.build());
       return this;
     }
 

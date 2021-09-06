@@ -90,9 +90,21 @@ public interface ExplanationOfBenefit_Item_AdjudicationBuilder {
       this.reason = Optional.of(reason);
       return this;
     }
+
+    public ExplanationOfBenefit_Item_AdjudicationBuilder.Impl withReason(
+        @NonNull CodeableConceptBuilder reason) {
+      this.reason = Optional.of(reason.build());
+      return this;
+    }
     /** @param amount */
     public ExplanationOfBenefit_Item_AdjudicationBuilder.Impl withAmount(@NonNull Money amount) {
       this.amount = Optional.of(amount);
+      return this;
+    }
+
+    public ExplanationOfBenefit_Item_AdjudicationBuilder.Impl withAmount(
+        @NonNull MoneyBuilder amount) {
+      this.amount = Optional.of(amount.build());
       return this;
     }
     /**
@@ -117,6 +129,12 @@ public interface ExplanationOfBenefit_Item_AdjudicationBuilder {
     public ExplanationOfBenefit_Item_AdjudicationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_Item_AdjudicationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -153,6 +171,13 @@ public interface ExplanationOfBenefit_Item_AdjudicationBuilder {
     public ExplanationOfBenefit_Item_AdjudicationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_Item_AdjudicationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

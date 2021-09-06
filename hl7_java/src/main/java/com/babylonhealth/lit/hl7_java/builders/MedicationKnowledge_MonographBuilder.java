@@ -76,9 +76,20 @@ public interface MedicationKnowledge_MonographBuilder {
       this._type = Optional.of(_type);
       return this;
     }
+
+    public MedicationKnowledge_MonographBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param source */
     public MedicationKnowledge_MonographBuilder.Impl withSource(@NonNull Reference source) {
       this.source = Optional.of(source);
+      return this;
+    }
+
+    public MedicationKnowledge_MonographBuilder.Impl withSource(@NonNull ReferenceBuilder source) {
+      this.source = Optional.of(source.build());
       return this;
     }
     /**
@@ -103,6 +114,12 @@ public interface MedicationKnowledge_MonographBuilder {
     public MedicationKnowledge_MonographBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationKnowledge_MonographBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -139,6 +156,13 @@ public interface MedicationKnowledge_MonographBuilder {
     public MedicationKnowledge_MonographBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationKnowledge_MonographBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

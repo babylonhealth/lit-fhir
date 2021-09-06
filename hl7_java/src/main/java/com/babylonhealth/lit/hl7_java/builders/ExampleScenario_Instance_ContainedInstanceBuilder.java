@@ -101,6 +101,12 @@ public interface ExampleScenario_Instance_ContainedInstanceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExampleScenario_Instance_ContainedInstanceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param versionId */
     public ExampleScenario_Instance_ContainedInstanceBuilder.Impl withVersionId(
         @NonNull String versionId) {
@@ -141,6 +147,13 @@ public interface ExampleScenario_Instance_ContainedInstanceBuilder {
     public ExampleScenario_Instance_ContainedInstanceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExampleScenario_Instance_ContainedInstanceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

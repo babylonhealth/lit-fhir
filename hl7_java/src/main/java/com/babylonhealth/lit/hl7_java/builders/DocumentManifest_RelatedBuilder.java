@@ -76,6 +76,11 @@ public interface DocumentManifest_RelatedBuilder {
       this.ref = Optional.of(ref);
       return this;
     }
+
+    public DocumentManifest_RelatedBuilder.Impl withRef(@NonNull ReferenceBuilder ref) {
+      this.ref = Optional.of(ref.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -99,12 +104,24 @@ public interface DocumentManifest_RelatedBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DocumentManifest_RelatedBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Other identifiers associated with the document manifest, including
      *     version independent identifiers.
      */
     public DocumentManifest_RelatedBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public DocumentManifest_RelatedBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /**
@@ -141,6 +158,13 @@ public interface DocumentManifest_RelatedBuilder {
     public DocumentManifest_RelatedBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public DocumentManifest_RelatedBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

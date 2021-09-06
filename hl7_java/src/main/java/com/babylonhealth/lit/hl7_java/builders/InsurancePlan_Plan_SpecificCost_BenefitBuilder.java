@@ -101,6 +101,12 @@ public interface InsurancePlan_Plan_SpecificCost_BenefitBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public InsurancePlan_Plan_SpecificCost_BenefitBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -137,6 +143,13 @@ public interface InsurancePlan_Plan_SpecificCost_BenefitBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public InsurancePlan_Plan_SpecificCost_BenefitBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param cost */
     public InsurancePlan_Plan_SpecificCost_BenefitBuilder.Impl withCost(
         @NonNull InsurancePlan$Plan$SpecificCost$Benefit$Cost... cost) {
@@ -147,6 +160,12 @@ public interface InsurancePlan_Plan_SpecificCost_BenefitBuilder {
     public InsurancePlan_Plan_SpecificCost_BenefitBuilder.Impl withCost(
         @NonNull Collection<InsurancePlan$Plan$SpecificCost$Benefit$Cost> cost) {
       this.cost = Collections.unmodifiableCollection(cost);
+      return this;
+    }
+
+    public InsurancePlan_Plan_SpecificCost_BenefitBuilder.Impl withCost(
+        @NonNull InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder... cost) {
+      this.cost = Arrays.stream(cost).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -82,6 +82,12 @@ public interface MeasureReport_Group_StratifierBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public MeasureReport_Group_StratifierBuilder.Impl withCode(
+        @NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -104,6 +110,12 @@ public interface MeasureReport_Group_StratifierBuilder {
     public MeasureReport_Group_StratifierBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MeasureReport_Group_StratifierBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -142,6 +154,13 @@ public interface MeasureReport_Group_StratifierBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MeasureReport_Group_StratifierBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param stratum */
     public MeasureReport_Group_StratifierBuilder.Impl withStratum(
         @NonNull MeasureReport$Group$Stratifier$Stratum... stratum) {
@@ -152,6 +171,12 @@ public interface MeasureReport_Group_StratifierBuilder {
     public MeasureReport_Group_StratifierBuilder.Impl withStratum(
         @NonNull Collection<MeasureReport$Group$Stratifier$Stratum> stratum) {
       this.stratum = Collections.unmodifiableCollection(stratum);
+      return this;
+    }
+
+    public MeasureReport_Group_StratifierBuilder.Impl withStratum(
+        @NonNull MeasureReport_Group_Stratifier_StratumBuilder... stratum) {
+      this.stratum = Arrays.stream(stratum).map(e -> e.build()).collect(toList());
       return this;
     }
 

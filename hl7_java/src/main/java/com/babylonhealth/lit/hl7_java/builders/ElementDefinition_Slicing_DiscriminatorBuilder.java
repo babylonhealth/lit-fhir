@@ -104,6 +104,12 @@ public interface ElementDefinition_Slicing_DiscriminatorBuilder {
       return this;
     }
 
+    public ElementDefinition_Slicing_DiscriminatorBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public ElementDefinition$Slicing$Discriminator build() {
       return new ElementDefinition$Slicing$Discriminator(
           OptionConverters.toScala(id),

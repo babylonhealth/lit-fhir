@@ -101,6 +101,12 @@ public interface MedicationKnowledge_MedicineClassificationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicationKnowledge_MedicineClassificationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param classification */
     public MedicationKnowledge_MedicineClassificationBuilder.Impl withClassification(
         @NonNull CodeableConcept... classification) {
@@ -111,6 +117,12 @@ public interface MedicationKnowledge_MedicineClassificationBuilder {
     public MedicationKnowledge_MedicineClassificationBuilder.Impl withClassification(
         @NonNull Collection<CodeableConcept> classification) {
       this.classification = Collections.unmodifiableCollection(classification);
+      return this;
+    }
+
+    public MedicationKnowledge_MedicineClassificationBuilder.Impl withClassification(
+        @NonNull CodeableConceptBuilder... classification) {
+      this.classification = Arrays.stream(classification).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -147,6 +159,13 @@ public interface MedicationKnowledge_MedicineClassificationBuilder {
     public MedicationKnowledge_MedicineClassificationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicationKnowledge_MedicineClassificationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

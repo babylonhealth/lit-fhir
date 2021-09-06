@@ -88,9 +88,19 @@ public interface Encounter_ParticipantBuilder {
       this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
+
+    public Encounter_ParticipantBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param period - The start and end time of the encounter. */
     public Encounter_ParticipantBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public Encounter_ParticipantBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -116,9 +126,19 @@ public interface Encounter_ParticipantBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Encounter_ParticipantBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param individual */
     public Encounter_ParticipantBuilder.Impl withIndividual(@NonNull Reference individual) {
       this.individual = Optional.of(individual);
+      return this;
+    }
+
+    public Encounter_ParticipantBuilder.Impl withIndividual(@NonNull ReferenceBuilder individual) {
+      this.individual = Optional.of(individual.build());
       return this;
     }
     /**
@@ -155,6 +175,13 @@ public interface Encounter_ParticipantBuilder {
     public Encounter_ParticipantBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Encounter_ParticipantBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

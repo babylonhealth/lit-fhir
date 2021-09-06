@@ -102,6 +102,12 @@ public interface InsurancePlan_Coverage_BenefitBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public InsurancePlan_Coverage_BenefitBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param requirement */
     public InsurancePlan_Coverage_BenefitBuilder.Impl withRequirement(@NonNull String requirement) {
       this.requirement = Optional.of(requirement);
@@ -143,6 +149,13 @@ public interface InsurancePlan_Coverage_BenefitBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public InsurancePlan_Coverage_BenefitBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param limit */
     public InsurancePlan_Coverage_BenefitBuilder.Impl withLimit(
         @NonNull InsurancePlan$Coverage$Benefit$Limit... limit) {
@@ -153,6 +166,12 @@ public interface InsurancePlan_Coverage_BenefitBuilder {
     public InsurancePlan_Coverage_BenefitBuilder.Impl withLimit(
         @NonNull Collection<InsurancePlan$Coverage$Benefit$Limit> limit) {
       this.limit = Collections.unmodifiableCollection(limit);
+      return this;
+    }
+
+    public InsurancePlan_Coverage_BenefitBuilder.Impl withLimit(
+        @NonNull InsurancePlan_Coverage_Benefit_LimitBuilder... limit) {
+      this.limit = Arrays.stream(limit).map(e -> e.build()).collect(toList());
       return this;
     }
 

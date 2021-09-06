@@ -149,6 +149,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -160,6 +165,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param note - Comments about result. */
     public LdlcholesterolBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
@@ -168,6 +178,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
     /** @param note - Comments about result. */
     public LdlcholesterolBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -198,6 +213,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.focus = Collections.unmodifiableCollection(focus);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withFocus(@NonNull ReferenceBuilder... focus) {
+      this.focus = Arrays.stream(focus).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param partOf - A larger event of which this particular Observation is a component or step.
      *     For example, an observation as part of a procedure.
@@ -214,6 +234,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param issued - The date and time this version of the observation was made available to
      *     providers, typically after the results have been reviewed and verified.
@@ -227,9 +252,19 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.method = Optional.of(method);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
+      this.method = Optional.of(method.build());
+      return this;
+    }
     /** @param device - The device used to generate the observation data. */
     public LdlcholesterolBuilder.Impl withDevice(@NonNull Reference device) {
       this.device = Optional.of(device);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withDevice(@NonNull ReferenceBuilder device) {
+      this.device = Optional.of(device.build());
       return this;
     }
     /**
@@ -250,6 +285,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - The patient, or group of patients, location, or device this observation is
      *     about and into whose record the observation is placed. If the actual focus of the
@@ -259,6 +299,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
      */
     public LdlcholesterolBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -276,12 +321,22 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param value - The information determined as a result of making the observation, if the
      *     information has a simple value.
      */
     public LdlcholesterolBuilder.Impl withValue(@NonNull Quantity value) {
       this.value = Optional.of(value);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withValue(@NonNull QuantityBuilder value) {
+      this.value = Optional.of(value.build());
       return this;
     }
     /**
@@ -292,9 +347,19 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.bodySite = Optional.of(bodySite);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
+      return this;
+    }
     /** @param specimen - The specimen that was used when this observation was made. */
     public LdlcholesterolBuilder.Impl withSpecimen(@NonNull Reference specimen) {
       this.specimen = Optional.of(specimen);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withSpecimen(@NonNull ReferenceBuilder specimen) {
+      this.specimen = Optional.of(specimen.build());
       return this;
     }
     /**
@@ -313,6 +378,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
      */
     public LdlcholesterolBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -337,12 +407,22 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The healthcare event (e.g. a patient and healthcare provider interaction)
      *     during which this observation is made.
      */
     public LdlcholesterolBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /** @param performer - Who was responsible for asserting the observed value as "true". */
@@ -355,6 +435,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.performer = Collections.unmodifiableCollection(performer);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withPerformer(@NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this observation. */
     public LdlcholesterolBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -363,6 +448,11 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
     /** @param identifier - A unique identifier assigned to this observation. */
     public LdlcholesterolBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -393,6 +483,12 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.interpretation = Optional.of(interpretation);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withInterpretation(
+        @NonNull CodeableConceptBuilder interpretation) {
+      this.interpretation = Optional.of(interpretation.build());
+      return this;
+    }
     /**
      * @param dataAbsentReason - Provides a reason why the expected value in the element
      *     Observation.value[x] is missing.
@@ -400,6 +496,12 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
     public LdlcholesterolBuilder.Impl withDataAbsentReason(
         @NonNull CodeableConcept dataAbsentReason) {
       this.dataAbsentReason = Optional.of(dataAbsentReason);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withDataAbsentReason(
+        @NonNull CodeableConceptBuilder dataAbsentReason) {
+      this.dataAbsentReason = Optional.of(dataAbsentReason.build());
       return this;
     }
     /**
@@ -438,6 +540,13 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public LdlcholesterolBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param component - Some observations have multiple component observations. These component
      *     observations are expressed as separate code value pairs that share the same attributes.
@@ -457,6 +566,12 @@ public interface LdlcholesterolBuilder extends ObservationBuilder {
     public LdlcholesterolBuilder.Impl withComponent(
         @NonNull Collection<Observation.Component> component) {
       this.component = Collections.unmodifiableCollection(component);
+      return this;
+    }
+
+    public LdlcholesterolBuilder.Impl withComponent(
+        @NonNull Observation_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -152,6 +152,11 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -161,6 +166,11 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
      */
     public CdshooksserviceplandefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -178,6 +188,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
      */
     public CdshooksserviceplandefinitionBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -222,6 +238,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       this.topic = Collections.unmodifiableCollection(topic);
       return this;
     }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withTopic(
+        @NonNull CodeableConceptBuilder... topic) {
+      this.topic = Arrays.stream(topic).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - An individiual or organization primarily involved in the creation and
      *     maintenance of the content.
@@ -239,6 +261,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       this.author = Collections.unmodifiableCollection(author);
       return this;
     }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withAuthor(
+        @NonNull ContactDetailBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param editor - An individual or organization primarily responsible for internal coherence of
      *     the content.
@@ -254,6 +282,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     public CdshooksserviceplandefinitionBuilder.Impl withEditor(
         @NonNull Collection<ContactDetail> editor) {
       this.editor = Collections.unmodifiableCollection(editor);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withEditor(
+        @NonNull ContactDetailBuilder... editor) {
+      this.editor = Arrays.stream(editor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -287,6 +321,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     public CdshooksserviceplandefinitionBuilder.Impl withContact(
         @NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withContact(
+        @NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -345,6 +385,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       this.reviewer = Collections.unmodifiableCollection(reviewer);
       return this;
     }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withReviewer(
+        @NonNull ContactDetailBuilder... reviewer) {
+      this.reviewer = Arrays.stream(reviewer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param endorser - An individual or organization responsible for officially endorsing the
      *     content for use in some setting.
@@ -361,6 +407,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     public CdshooksserviceplandefinitionBuilder.Impl withEndorser(
         @NonNull Collection<ContactDetail> endorser) {
       this.endorser = Collections.unmodifiableCollection(endorser);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withEndorser(
+        @NonNull ContactDetailBuilder... endorser) {
+      this.endorser = Arrays.stream(endorser).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -380,6 +432,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     public CdshooksserviceplandefinitionBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -419,6 +477,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - A code or group definition that describes the intended subject of the plan
      *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
@@ -450,6 +514,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     public CdshooksserviceplandefinitionBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -486,6 +556,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     public CdshooksserviceplandefinitionBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -526,6 +602,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       this.effectivePeriod = Optional.of(effectivePeriod);
       return this;
     }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withEffectivePeriod(
+        @NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
+      return this;
+    }
     /**
      * @param relatedArtifact - Related artifacts such as additional documentation, justification,
      *     or bibliographic references.
@@ -542,6 +624,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     public CdshooksserviceplandefinitionBuilder.Impl withRelatedArtifact(
         @NonNull Collection<RelatedArtifact> relatedArtifact) {
       this.relatedArtifact = Collections.unmodifiableCollection(relatedArtifact);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withRelatedArtifact(
+        @NonNull RelatedArtifactBuilder... relatedArtifact) {
+      this.relatedArtifact = Arrays.stream(relatedArtifact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -580,6 +668,13 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param goal - Goals that describe what the activities within the plan are intended to
      *     achieve. For example, weight loss, restoring an activity of daily living, obtaining herd
@@ -600,6 +695,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       this.goal = Collections.unmodifiableCollection(goal);
       return this;
     }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withGoal(
+        @NonNull PlanDefinition_GoalBuilder... goal) {
+      this.goal = Arrays.stream(goal).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param action - An action or group of actions to be taken as part of the plan. */
     public CdshooksserviceplandefinitionBuilder.Impl withAction(
         @NonNull PlanDefinition.Action... action) {
@@ -610,6 +711,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     public CdshooksserviceplandefinitionBuilder.Impl withAction(
         @NonNull Collection<PlanDefinition.Action> action) {
       this.action = Collections.unmodifiableCollection(action);
+      return this;
+    }
+
+    public CdshooksserviceplandefinitionBuilder.Impl withAction(
+        @NonNull PlanDefinition_ActionBuilder... action) {
+      this.action = Arrays.stream(action).map(e -> e.build()).collect(toList());
       return this;
     }
 

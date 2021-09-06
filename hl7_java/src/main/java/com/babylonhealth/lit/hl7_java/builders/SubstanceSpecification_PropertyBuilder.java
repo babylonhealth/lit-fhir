@@ -95,10 +95,22 @@ public interface SubstanceSpecification_PropertyBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public SubstanceSpecification_PropertyBuilder.Impl withCode(
+        @NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param category */
     public SubstanceSpecification_PropertyBuilder.Impl withCategory(
         @NonNull CodeableConcept category) {
       this.category = Optional.of(category);
+      return this;
+    }
+
+    public SubstanceSpecification_PropertyBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /**
@@ -123,6 +135,12 @@ public interface SubstanceSpecification_PropertyBuilder {
     public SubstanceSpecification_PropertyBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstanceSpecification_PropertyBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -174,6 +192,13 @@ public interface SubstanceSpecification_PropertyBuilder {
     public SubstanceSpecification_PropertyBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSpecification_PropertyBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**

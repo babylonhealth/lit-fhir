@@ -296,6 +296,12 @@ public interface Observation_geneticsAminoAcidChangeBuilder extends ExtensionBui
       return this;
     }
 
+    public Observation_geneticsAminoAcidChangeBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Observation_geneticsAminoAcidChange build() {
       return new Observation_geneticsAminoAcidChange(
           OptionConverters.toScala(id),

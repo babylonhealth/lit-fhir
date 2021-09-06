@@ -79,6 +79,12 @@ public interface EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder 
       this._type = Optional.of(_type);
       return this;
     }
+
+    public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
+      return this;
+    }
     /** @param note - A human-readable string to clarify or explain concepts about the resource. */
     public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl withNote(
         @NonNull Annotation... note) {
@@ -91,6 +97,12 @@ public interface EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder 
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl withNote(
+        @NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param rating */
     public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl withRating(
         @NonNull CodeableConcept... rating) {
@@ -101,6 +113,12 @@ public interface EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder 
     public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl withRating(
         @NonNull Collection<CodeableConcept> rating) {
       this.rating = Collections.unmodifiableCollection(rating);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl withRating(
+        @NonNull CodeableConceptBuilder... rating) {
+      this.rating = Arrays.stream(rating).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -125,6 +143,12 @@ public interface EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder 
     public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -161,6 +185,13 @@ public interface EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder 
     public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl
         withModifierExtension(@NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder.Impl
+        withModifierExtension(@NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -103,6 +103,12 @@ public interface TerminologyCapabilities_Expansion_ParameterBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TerminologyCapabilities_Expansion_ParameterBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param documentation */
     public TerminologyCapabilities_Expansion_ParameterBuilder.Impl withDocumentation(
         @NonNull String documentation) {
@@ -143,6 +149,13 @@ public interface TerminologyCapabilities_Expansion_ParameterBuilder {
     public TerminologyCapabilities_Expansion_ParameterBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public TerminologyCapabilities_Expansion_ParameterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

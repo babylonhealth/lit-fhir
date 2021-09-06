@@ -97,6 +97,12 @@ public interface BiologicallyDerivedProduct_ProcessingBuilder {
       this.additive = Optional.of(additive);
       return this;
     }
+
+    public BiologicallyDerivedProduct_ProcessingBuilder.Impl withAdditive(
+        @NonNull ReferenceBuilder additive) {
+      this.additive = Optional.of(additive.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -121,10 +127,22 @@ public interface BiologicallyDerivedProduct_ProcessingBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public BiologicallyDerivedProduct_ProcessingBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param procedure */
     public BiologicallyDerivedProduct_ProcessingBuilder.Impl withProcedure(
         @NonNull CodeableConcept procedure) {
       this.procedure = Optional.of(procedure);
+      return this;
+    }
+
+    public BiologicallyDerivedProduct_ProcessingBuilder.Impl withProcedure(
+        @NonNull CodeableConceptBuilder procedure) {
+      this.procedure = Optional.of(procedure.build());
       return this;
     }
     /** @param description */
@@ -167,6 +185,13 @@ public interface BiologicallyDerivedProduct_ProcessingBuilder {
     public BiologicallyDerivedProduct_ProcessingBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public BiologicallyDerivedProduct_ProcessingBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

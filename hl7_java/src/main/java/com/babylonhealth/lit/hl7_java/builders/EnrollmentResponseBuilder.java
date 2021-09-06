@@ -93,6 +93,11 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public EnrollmentResponseBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -104,6 +109,11 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public EnrollmentResponseBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param status - The status of the resource instance. */
     public EnrollmentResponseBuilder.Impl withStatus(@NonNull FM_STATUS status) {
       this.status = Optional.of(status);
@@ -112,6 +122,11 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
     /** @param request - Original request resource reference. */
     public EnrollmentResponseBuilder.Impl withRequest(@NonNull Reference request) {
       this.request = Optional.of(request);
+      return this;
+    }
+
+    public EnrollmentResponseBuilder.Impl withRequest(@NonNull ReferenceBuilder request) {
+      this.request = Optional.of(request.build());
       return this;
     }
     /** @param outcome - Processing status: error, complete. */
@@ -149,6 +164,11 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public EnrollmentResponseBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -171,6 +191,11 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EnrollmentResponseBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - The Response business identifier. */
     public EnrollmentResponseBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -182,6 +207,11 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public EnrollmentResponseBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param disposition - A description of the status of the adjudication. */
     public EnrollmentResponseBuilder.Impl withDisposition(@NonNull String disposition) {
       this.disposition = Optional.of(disposition);
@@ -190,6 +220,11 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
     /** @param organization - The Insurer who produced this adjudicated response. */
     public EnrollmentResponseBuilder.Impl withOrganization(@NonNull Reference organization) {
       this.organization = Optional.of(organization);
+      return this;
+    }
+
+    public EnrollmentResponseBuilder.Impl withOrganization(@NonNull ReferenceBuilder organization) {
+      this.organization = Optional.of(organization.build());
       return this;
     }
     /**
@@ -208,6 +243,12 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
      */
     public EnrollmentResponseBuilder.Impl withRequestProvider(@NonNull Reference requestProvider) {
       this.requestProvider = Optional.of(requestProvider);
+      return this;
+    }
+
+    public EnrollmentResponseBuilder.Impl withRequestProvider(
+        @NonNull ReferenceBuilder requestProvider) {
+      this.requestProvider = Optional.of(requestProvider.build());
       return this;
     }
     /**
@@ -244,6 +285,13 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
     public EnrollmentResponseBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EnrollmentResponseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

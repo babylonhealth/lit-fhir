@@ -93,6 +93,11 @@ public interface SupplyDelivery_SuppliedItemBuilder {
       this.quantity = Optional.of(quantity);
       return this;
     }
+
+    public SupplyDelivery_SuppliedItemBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -114,6 +119,12 @@ public interface SupplyDelivery_SuppliedItemBuilder {
     public SupplyDelivery_SuppliedItemBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SupplyDelivery_SuppliedItemBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -150,6 +161,13 @@ public interface SupplyDelivery_SuppliedItemBuilder {
     public SupplyDelivery_SuppliedItemBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SupplyDelivery_SuppliedItemBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

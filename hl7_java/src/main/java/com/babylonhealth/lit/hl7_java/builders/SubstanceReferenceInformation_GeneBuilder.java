@@ -77,6 +77,12 @@ public interface SubstanceReferenceInformation_GeneBuilder {
       this.gene = Optional.of(gene);
       return this;
     }
+
+    public SubstanceReferenceInformation_GeneBuilder.Impl withGene(
+        @NonNull CodeableConceptBuilder gene) {
+      this.gene = Optional.of(gene.build());
+      return this;
+    }
     /** @param source */
     public SubstanceReferenceInformation_GeneBuilder.Impl withSource(@NonNull Reference... source) {
       this.source = Arrays.asList(source);
@@ -86,6 +92,12 @@ public interface SubstanceReferenceInformation_GeneBuilder {
     public SubstanceReferenceInformation_GeneBuilder.Impl withSource(
         @NonNull Collection<Reference> source) {
       this.source = Collections.unmodifiableCollection(source);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_GeneBuilder.Impl withSource(
+        @NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -110,6 +122,12 @@ public interface SubstanceReferenceInformation_GeneBuilder {
     public SubstanceReferenceInformation_GeneBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_GeneBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -148,10 +166,23 @@ public interface SubstanceReferenceInformation_GeneBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceReferenceInformation_GeneBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param geneSequenceOrigin */
     public SubstanceReferenceInformation_GeneBuilder.Impl withGeneSequenceOrigin(
         @NonNull CodeableConcept geneSequenceOrigin) {
       this.geneSequenceOrigin = Optional.of(geneSequenceOrigin);
+      return this;
+    }
+
+    public SubstanceReferenceInformation_GeneBuilder.Impl withGeneSequenceOrigin(
+        @NonNull CodeableConceptBuilder geneSequenceOrigin) {
+      this.geneSequenceOrigin = Optional.of(geneSequenceOrigin.build());
       return this;
     }
 

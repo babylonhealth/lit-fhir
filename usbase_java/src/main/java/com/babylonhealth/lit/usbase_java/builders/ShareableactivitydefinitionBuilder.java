@@ -239,6 +239,11 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -248,6 +253,11 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
      */
     public ShareableactivitydefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -275,6 +285,11 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
      */
     public ShareableactivitydefinitionBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param title - A short, descriptive, user-friendly title for the activity definition. */
@@ -307,6 +322,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.topic = Collections.unmodifiableCollection(topic);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withTopic(
+        @NonNull CodeableConceptBuilder... topic) {
+      this.topic = Arrays.stream(topic).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - An individiual or organization primarily involved in the creation and
      *     maintenance of the content.
@@ -324,6 +345,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.author = Collections.unmodifiableCollection(author);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withAuthor(
+        @NonNull ContactDetailBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param editor - An individual or organization primarily responsible for internal coherence of
      *     the content.
@@ -339,6 +366,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withEditor(
         @NonNull Collection<ContactDetail> editor) {
       this.editor = Collections.unmodifiableCollection(editor);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withEditor(
+        @NonNull ContactDetailBuilder... editor) {
+      this.editor = Arrays.stream(editor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -365,6 +398,11 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.dosage = Collections.unmodifiableCollection(dosage);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withDosage(@NonNull DosageBuilder... dosage) {
+      this.dosage = Arrays.stream(dosage).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contact - Contact details to assist a user in finding and communicating with the
      *     publisher.
@@ -380,6 +418,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withContact(
         @NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withContact(
+        @NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -446,6 +490,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.reviewer = Collections.unmodifiableCollection(reviewer);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withReviewer(
+        @NonNull ContactDetailBuilder... reviewer) {
+      this.reviewer = Arrays.stream(reviewer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param endorser - An individual or organization responsible for officially endorsing the
      *     content for use in some setting.
@@ -462,6 +512,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withEndorser(
         @NonNull Collection<ContactDetail> endorser) {
       this.endorser = Collections.unmodifiableCollection(endorser);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withEndorser(
+        @NonNull ContactDetailBuilder... endorser) {
+      this.endorser = Arrays.stream(endorser).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -481,12 +537,23 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.location = Optional.of(location);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withLocation(
+        @NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /**
      * @param quantity - Identifies the quantity expected to be consumed at once (per dose, per
      *     meal, etc.).
      */
     public ShareableactivitydefinitionBuilder.Impl withQuantity(@NonNull Quantity quantity) {
       this.quantity = Optional.of(quantity);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
       return this;
     }
     /**
@@ -507,6 +574,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.bodySite = Collections.unmodifiableCollection(bodySite);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withBodySite(
+        @NonNull CodeableConceptBuilder... bodySite) {
+      this.bodySite = Arrays.stream(bodySite).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -524,6 +597,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -547,6 +626,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -597,6 +682,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - A code or group definition that describes the intended subject of the
      *     activity being defined. Field is a 'choice' field. Type should be one of CodeableConcept,
@@ -629,6 +720,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.useContext = Collections.unmodifiableCollection(useContext);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param product - Identifies the food, drug or other product being consumed or supplied in the
      *     activity. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
@@ -655,6 +752,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -705,6 +808,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.effectivePeriod = Optional.of(effectivePeriod);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withEffectivePeriod(
+        @NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
+      return this;
+    }
     /**
      * @param relatedArtifact - Related artifacts such as additional documentation, justification,
      *     or bibliographic references.
@@ -721,6 +830,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withRelatedArtifact(
         @NonNull Collection<RelatedArtifact> relatedArtifact) {
       this.relatedArtifact = Collections.unmodifiableCollection(relatedArtifact);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withRelatedArtifact(
+        @NonNull RelatedArtifactBuilder... relatedArtifact) {
+      this.relatedArtifact = Arrays.stream(relatedArtifact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -759,6 +874,13 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param specimenRequirement - Defines specimen requirements for the action to be performed,
      *     such as required specimens for a lab test.
@@ -777,6 +899,13 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
       this.specimenRequirement = Collections.unmodifiableCollection(specimenRequirement);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withSpecimenRequirement(
+        @NonNull ReferenceBuilder... specimenRequirement) {
+      this.specimenRequirement =
+          Arrays.stream(specimenRequirement).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param observationRequirement - Defines observation requirements for the action to be
      *     performed, such as body weight or surface area.
@@ -793,6 +922,13 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withObservationRequirement(
         @NonNull Collection<Reference> observationRequirement) {
       this.observationRequirement = Collections.unmodifiableCollection(observationRequirement);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withObservationRequirement(
+        @NonNull ReferenceBuilder... observationRequirement) {
+      this.observationRequirement =
+          Arrays.stream(observationRequirement).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -814,6 +950,13 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
           Collections.unmodifiableCollection(observationResultRequirement);
       return this;
     }
+
+    public ShareableactivitydefinitionBuilder.Impl withObservationResultRequirement(
+        @NonNull ReferenceBuilder... observationResultRequirement) {
+      this.observationResultRequirement =
+          Arrays.stream(observationResultRequirement).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param participant - Indicates who should participate in performing the action described. */
     public ShareableactivitydefinitionBuilder.Impl withParticipant(
         @NonNull ActivityDefinition.Participant... participant) {
@@ -824,6 +967,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withParticipant(
         @NonNull Collection<ActivityDefinition.Participant> participant) {
       this.participant = Collections.unmodifiableCollection(participant);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withParticipant(
+        @NonNull ActivityDefinition_ParticipantBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -848,6 +997,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     public ShareableactivitydefinitionBuilder.Impl withDynamicValue(
         @NonNull Collection<ActivityDefinition.DynamicValue> dynamicValue) {
       this.dynamicValue = Collections.unmodifiableCollection(dynamicValue);
+      return this;
+    }
+
+    public ShareableactivitydefinitionBuilder.Impl withDynamicValue(
+        @NonNull ActivityDefinition_DynamicValueBuilder... dynamicValue) {
+      this.dynamicValue = Arrays.stream(dynamicValue).map(e -> e.build()).collect(toList());
       return this;
     }
 

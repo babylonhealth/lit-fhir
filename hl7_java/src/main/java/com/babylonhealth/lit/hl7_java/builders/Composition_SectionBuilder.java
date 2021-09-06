@@ -84,6 +84,11 @@ public interface Composition_SectionBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public Composition_SectionBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -93,6 +98,11 @@ public interface Composition_SectionBuilder {
      */
     public Composition_SectionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Composition_SectionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param mode */
@@ -110,6 +120,11 @@ public interface Composition_SectionBuilder {
       this.focus = Optional.of(focus);
       return this;
     }
+
+    public Composition_SectionBuilder.Impl withFocus(@NonNull ReferenceBuilder focus) {
+      this.focus = Optional.of(focus.build());
+      return this;
+    }
     /** @param entry */
     public Composition_SectionBuilder.Impl withEntry(@NonNull Reference... entry) {
       this.entry = Arrays.asList(entry);
@@ -118,6 +133,11 @@ public interface Composition_SectionBuilder {
     /** @param entry */
     public Composition_SectionBuilder.Impl withEntry(@NonNull Collection<Reference> entry) {
       this.entry = Collections.unmodifiableCollection(entry);
+      return this;
+    }
+
+    public Composition_SectionBuilder.Impl withEntry(@NonNull ReferenceBuilder... entry) {
+      this.entry = Arrays.stream(entry).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -136,6 +156,11 @@ public interface Composition_SectionBuilder {
       this.author = Collections.unmodifiableCollection(author);
       return this;
     }
+
+    public Composition_SectionBuilder.Impl withAuthor(@NonNull ReferenceBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param section - The root of the sections that make up the composition. */
     public Composition_SectionBuilder.Impl withSection(@NonNull Composition.Section... section) {
       this.section = Arrays.asList(section);
@@ -145,6 +170,12 @@ public interface Composition_SectionBuilder {
     public Composition_SectionBuilder.Impl withSection(
         @NonNull Collection<Composition.Section> section) {
       this.section = Collections.unmodifiableCollection(section);
+      return this;
+    }
+
+    public Composition_SectionBuilder.Impl withSection(
+        @NonNull Composition_SectionBuilder... section) {
+      this.section = Arrays.stream(section).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -169,14 +200,31 @@ public interface Composition_SectionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Composition_SectionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param orderedBy */
     public Composition_SectionBuilder.Impl withOrderedBy(@NonNull CodeableConcept orderedBy) {
       this.orderedBy = Optional.of(orderedBy);
       return this;
     }
+
+    public Composition_SectionBuilder.Impl withOrderedBy(
+        @NonNull CodeableConceptBuilder orderedBy) {
+      this.orderedBy = Optional.of(orderedBy.build());
+      return this;
+    }
     /** @param emptyReason */
     public Composition_SectionBuilder.Impl withEmptyReason(@NonNull CodeableConcept emptyReason) {
       this.emptyReason = Optional.of(emptyReason);
+      return this;
+    }
+
+    public Composition_SectionBuilder.Impl withEmptyReason(
+        @NonNull CodeableConceptBuilder emptyReason) {
+      this.emptyReason = Optional.of(emptyReason.build());
       return this;
     }
     /**
@@ -213,6 +261,13 @@ public interface Composition_SectionBuilder {
     public Composition_SectionBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Composition_SectionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

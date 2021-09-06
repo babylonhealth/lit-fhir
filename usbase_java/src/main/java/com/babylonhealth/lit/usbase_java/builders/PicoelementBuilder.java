@@ -146,6 +146,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public PicoelementBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -155,6 +160,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
      */
     public PicoelementBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public PicoelementBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -186,6 +196,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public PicoelementBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param _type - The type of evidence element, a population, an exposure, or an outcome. */
     public PicoelementBuilder.Impl withType(@NonNull VARIABLE_TYPE _type) {
       this._type = Optional.of(_type);
@@ -214,6 +229,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.topic = Collections.unmodifiableCollection(topic);
       return this;
     }
+
+    public PicoelementBuilder.Impl withTopic(@NonNull CodeableConceptBuilder... topic) {
+      this.topic = Arrays.stream(topic).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param author - An individiual or organization primarily involved in the creation and
      *     maintenance of the content.
@@ -230,6 +250,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.author = Collections.unmodifiableCollection(author);
       return this;
     }
+
+    public PicoelementBuilder.Impl withAuthor(@NonNull ContactDetailBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param editor - An individual or organization primarily responsible for internal coherence of
      *     the content.
@@ -244,6 +269,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
      */
     public PicoelementBuilder.Impl withEditor(@NonNull Collection<ContactDetail> editor) {
       this.editor = Collections.unmodifiableCollection(editor);
+      return this;
+    }
+
+    public PicoelementBuilder.Impl withEditor(@NonNull ContactDetailBuilder... editor) {
+      this.editor = Arrays.stream(editor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -277,6 +307,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public PicoelementBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public PicoelementBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -306,6 +341,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.reviewer = Collections.unmodifiableCollection(reviewer);
       return this;
     }
+
+    public PicoelementBuilder.Impl withReviewer(@NonNull ContactDetailBuilder... reviewer) {
+      this.reviewer = Arrays.stream(reviewer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param endorser - An individual or organization responsible for officially endorsing the
      *     content for use in some setting.
@@ -320,6 +360,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
      */
     public PicoelementBuilder.Impl withEndorser(@NonNull Collection<ContactDetail> endorser) {
       this.endorser = Collections.unmodifiableCollection(endorser);
+      return this;
+    }
+
+    public PicoelementBuilder.Impl withEndorser(@NonNull ContactDetailBuilder... endorser) {
+      this.endorser = Arrays.stream(endorser).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -338,6 +383,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
      */
     public PicoelementBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public PicoelementBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -360,6 +410,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
      */
     public PicoelementBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public PicoelementBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -397,6 +452,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public PicoelementBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param shortTitle - The short title provides an alternate title for use in informal
      *     descriptive contexts where the full, formal title is not necessary.
@@ -425,6 +485,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.useContext = Collections.unmodifiableCollection(useContext);
       return this;
     }
+
+    public PicoelementBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the evidence variable from a
      *     consumer's perspective.
@@ -448,6 +513,12 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
     public PicoelementBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public PicoelementBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -484,6 +555,11 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       this.effectivePeriod = Optional.of(effectivePeriod);
       return this;
     }
+
+    public PicoelementBuilder.Impl withEffectivePeriod(@NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
+      return this;
+    }
     /**
      * @param relatedArtifact - Related artifacts such as additional documentation, justification,
      *     or bibliographic references.
@@ -500,6 +576,12 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
     public PicoelementBuilder.Impl withRelatedArtifact(
         @NonNull Collection<RelatedArtifact> relatedArtifact) {
       this.relatedArtifact = Collections.unmodifiableCollection(relatedArtifact);
+      return this;
+    }
+
+    public PicoelementBuilder.Impl withRelatedArtifact(
+        @NonNull RelatedArtifactBuilder... relatedArtifact) {
+      this.relatedArtifact = Arrays.stream(relatedArtifact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -535,6 +617,13 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
     public PicoelementBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public PicoelementBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

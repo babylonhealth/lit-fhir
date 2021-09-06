@@ -96,10 +96,22 @@ public interface NutritionOrder_EnteralFormula_AdministrationBuilder {
       this.schedule = Optional.of(schedule);
       return this;
     }
+
+    public NutritionOrder_EnteralFormula_AdministrationBuilder.Impl withSchedule(
+        @NonNull TimingBuilder schedule) {
+      this.schedule = Optional.of(schedule.build());
+      return this;
+    }
     /** @param quantity */
     public NutritionOrder_EnteralFormula_AdministrationBuilder.Impl withQuantity(
         @NonNull Quantity quantity) {
       this.quantity = Optional.of(quantity);
+      return this;
+    }
+
+    public NutritionOrder_EnteralFormula_AdministrationBuilder.Impl withQuantity(
+        @NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
       return this;
     }
     /**
@@ -124,6 +136,12 @@ public interface NutritionOrder_EnteralFormula_AdministrationBuilder {
     public NutritionOrder_EnteralFormula_AdministrationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public NutritionOrder_EnteralFormula_AdministrationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -160,6 +178,13 @@ public interface NutritionOrder_EnteralFormula_AdministrationBuilder {
     public NutritionOrder_EnteralFormula_AdministrationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public NutritionOrder_EnteralFormula_AdministrationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

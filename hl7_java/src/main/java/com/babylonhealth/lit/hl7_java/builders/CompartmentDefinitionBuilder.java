@@ -124,6 +124,11 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CompartmentDefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -133,6 +138,11 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
      */
     public CompartmentDefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public CompartmentDefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -174,6 +184,11 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public CompartmentDefinitionBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this compartment definition is needed and why it has been
      *     designed as it has.
@@ -206,6 +221,11 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public CompartmentDefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -227,6 +247,11 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
     public CompartmentDefinitionBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public CompartmentDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -256,6 +281,12 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
     public CompartmentDefinitionBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public CompartmentDefinitionBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -321,6 +352,13 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CompartmentDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param resource - Information about how a resource is related to the compartment. */
     public CompartmentDefinitionBuilder.Impl withResource(
         @NonNull CompartmentDefinition.Resource... resource) {
@@ -331,6 +369,12 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
     public CompartmentDefinitionBuilder.Impl withResource(
         @NonNull Collection<CompartmentDefinition.Resource> resource) {
       this.resource = Collections.unmodifiableCollection(resource);
+      return this;
+    }
+
+    public CompartmentDefinitionBuilder.Impl withResource(
+        @NonNull CompartmentDefinition_ResourceBuilder... resource) {
+      this.resource = Arrays.stream(resource).map(e -> e.build()).collect(toList());
       return this;
     }
 

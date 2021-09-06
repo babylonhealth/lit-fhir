@@ -158,6 +158,11 @@ public interface Observation_ComponentBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Observation_ComponentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param interpretation - A categorical assessment of an observation value. For example, high,
      *     low, normal.
@@ -174,6 +179,12 @@ public interface Observation_ComponentBuilder {
     public Observation_ComponentBuilder.Impl withInterpretation(
         @NonNull Collection<CodeableConcept> interpretation) {
       this.interpretation = Collections.unmodifiableCollection(interpretation);
+      return this;
+    }
+
+    public Observation_ComponentBuilder.Impl withInterpretation(
+        @NonNull CodeableConceptBuilder... interpretation) {
+      this.interpretation = Arrays.stream(interpretation).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -198,6 +209,12 @@ public interface Observation_ComponentBuilder {
       this.referenceRange = Collections.unmodifiableCollection(referenceRange);
       return this;
     }
+
+    public Observation_ComponentBuilder.Impl withReferenceRange(
+        @NonNull Observation_ReferenceRangeBuilder... referenceRange) {
+      this.referenceRange = Arrays.stream(referenceRange).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param dataAbsentReason - Provides a reason why the expected value in the element
      *     Observation.value[x] is missing.
@@ -205,6 +222,12 @@ public interface Observation_ComponentBuilder {
     public Observation_ComponentBuilder.Impl withDataAbsentReason(
         @NonNull CodeableConcept dataAbsentReason) {
       this.dataAbsentReason = Optional.of(dataAbsentReason);
+      return this;
+    }
+
+    public Observation_ComponentBuilder.Impl withDataAbsentReason(
+        @NonNull CodeableConceptBuilder dataAbsentReason) {
+      this.dataAbsentReason = Optional.of(dataAbsentReason.build());
       return this;
     }
     /**
@@ -241,6 +264,13 @@ public interface Observation_ComponentBuilder {
     public Observation_ComponentBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Observation_ComponentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -106,6 +106,12 @@ public interface ElementDefinition_BaseBuilder {
       return this;
     }
 
+    public ElementDefinition_BaseBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public ElementDefinition.Base build() {
       return new ElementDefinition.Base(
           OptionConverters.toScala(id),

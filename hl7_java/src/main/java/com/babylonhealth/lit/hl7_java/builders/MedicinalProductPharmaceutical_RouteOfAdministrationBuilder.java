@@ -108,10 +108,22 @@ public interface MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param firstDose */
     public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withFirstDose(
         @NonNull Quantity firstDose) {
       this.firstDose = Optional.of(firstDose);
+      return this;
+    }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withFirstDose(
+        @NonNull QuantityBuilder firstDose) {
+      this.firstDose = Optional.of(firstDose.build());
       return this;
     }
     /** @param maxSingleDose */
@@ -120,10 +132,22 @@ public interface MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
       this.maxSingleDose = Optional.of(maxSingleDose);
       return this;
     }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withMaxSingleDose(
+        @NonNull QuantityBuilder maxSingleDose) {
+      this.maxSingleDose = Optional.of(maxSingleDose.build());
+      return this;
+    }
     /** @param maxDosePerDay */
     public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withMaxDosePerDay(
         @NonNull Quantity maxDosePerDay) {
       this.maxDosePerDay = Optional.of(maxDosePerDay);
+      return this;
+    }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withMaxDosePerDay(
+        @NonNull QuantityBuilder maxDosePerDay) {
+      this.maxDosePerDay = Optional.of(maxDosePerDay.build());
       return this;
     }
     /**
@@ -162,16 +186,35 @@ public interface MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param maxTreatmentPeriod */
     public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withMaxTreatmentPeriod(
         @NonNull Duration maxTreatmentPeriod) {
       this.maxTreatmentPeriod = Optional.of(maxTreatmentPeriod);
       return this;
     }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withMaxTreatmentPeriod(
+        @NonNull DurationBuilder maxTreatmentPeriod) {
+      this.maxTreatmentPeriod = Optional.of(maxTreatmentPeriod.build());
+      return this;
+    }
     /** @param maxDosePerTreatmentPeriod */
     public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl
         withMaxDosePerTreatmentPeriod(@NonNull Ratio maxDosePerTreatmentPeriod) {
       this.maxDosePerTreatmentPeriod = Optional.of(maxDosePerTreatmentPeriod);
+      return this;
+    }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl
+        withMaxDosePerTreatmentPeriod(@NonNull RatioBuilder maxDosePerTreatmentPeriod) {
+      this.maxDosePerTreatmentPeriod = Optional.of(maxDosePerTreatmentPeriod.build());
       return this;
     }
     /** @param targetSpecies */
@@ -187,6 +230,14 @@ public interface MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
             Collection<MedicinalProductPharmaceutical$RouteOfAdministration$TargetSpecies>
                 targetSpecies) {
       this.targetSpecies = Collections.unmodifiableCollection(targetSpecies);
+      return this;
+    }
+
+    public MedicinalProductPharmaceutical_RouteOfAdministrationBuilder.Impl withTargetSpecies(
+        @NonNull
+            MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpeciesBuilder...
+                targetSpecies) {
+      this.targetSpecies = Arrays.stream(targetSpecies).map(e -> e.build()).collect(toList());
       return this;
     }
 

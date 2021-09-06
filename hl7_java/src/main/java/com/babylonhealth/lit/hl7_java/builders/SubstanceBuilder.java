@@ -97,6 +97,11 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SubstanceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -106,6 +111,11 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
      */
     public SubstanceBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SubstanceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param status - A code to indicate if the substance is actively used. */
@@ -134,6 +144,11 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       this.category = Collections.unmodifiableCollection(category);
       return this;
     }
+
+    public SubstanceBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -150,6 +165,11 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
      */
     public SubstanceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public SubstanceBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -174,6 +194,11 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Unique identifier for the substance. */
     public SubstanceBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -182,6 +207,11 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
     /** @param identifier - Unique identifier for the substance. */
     public SubstanceBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public SubstanceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -237,6 +267,13 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param instance - Substance may be used to describe a kind of substance, or a specific
      *     package/container of the substance: an instance.
@@ -253,6 +290,11 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       this.instance = Collections.unmodifiableCollection(instance);
       return this;
     }
+
+    public SubstanceBuilder.Impl withInstance(@NonNull Substance_InstanceBuilder... instance) {
+      this.instance = Arrays.stream(instance).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param ingredient - A substance can be composed of other substances. */
     public SubstanceBuilder.Impl withIngredient(@NonNull Substance.Ingredient... ingredient) {
       this.ingredient = Arrays.asList(ingredient);
@@ -262,6 +304,12 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
     public SubstanceBuilder.Impl withIngredient(
         @NonNull Collection<Substance.Ingredient> ingredient) {
       this.ingredient = Collections.unmodifiableCollection(ingredient);
+      return this;
+    }
+
+    public SubstanceBuilder.Impl withIngredient(
+        @NonNull Substance_IngredientBuilder... ingredient) {
+      this.ingredient = Arrays.stream(ingredient).map(e -> e.build()).collect(toList());
       return this;
     }
 

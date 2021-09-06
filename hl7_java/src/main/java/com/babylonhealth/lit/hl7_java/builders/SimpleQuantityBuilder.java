@@ -120,6 +120,11 @@ public interface SimpleQuantityBuilder extends QuantityBuilder {
       return this;
     }
 
+    public SimpleQuantityBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public SimpleQuantity build() {
       return new SimpleQuantity(
           OptionConverters.toScala(id),

@@ -99,6 +99,12 @@ public interface OperationDefinition_OverloadBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public OperationDefinition_OverloadBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param parameterName */
     public OperationDefinition_OverloadBuilder.Impl withParameterName(
         @NonNull String... parameterName) {
@@ -145,6 +151,13 @@ public interface OperationDefinition_OverloadBuilder {
     public OperationDefinition_OverloadBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public OperationDefinition_OverloadBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -103,10 +103,22 @@ public interface NutritionOrder_EnteralFormulaBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public NutritionOrder_EnteralFormulaBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param additiveType */
     public NutritionOrder_EnteralFormulaBuilder.Impl withAdditiveType(
         @NonNull CodeableConcept additiveType) {
       this.additiveType = Optional.of(additiveType);
+      return this;
+    }
+
+    public NutritionOrder_EnteralFormulaBuilder.Impl withAdditiveType(
+        @NonNull CodeableConceptBuilder additiveType) {
+      this.additiveType = Optional.of(additiveType.build());
       return this;
     }
     /** @param caloricDensity */
@@ -115,10 +127,22 @@ public interface NutritionOrder_EnteralFormulaBuilder {
       this.caloricDensity = Optional.of(caloricDensity);
       return this;
     }
+
+    public NutritionOrder_EnteralFormulaBuilder.Impl withCaloricDensity(
+        @NonNull QuantityBuilder caloricDensity) {
+      this.caloricDensity = Optional.of(caloricDensity.build());
+      return this;
+    }
     /** @param baseFormulaType */
     public NutritionOrder_EnteralFormulaBuilder.Impl withBaseFormulaType(
         @NonNull CodeableConcept baseFormulaType) {
       this.baseFormulaType = Optional.of(baseFormulaType);
+      return this;
+    }
+
+    public NutritionOrder_EnteralFormulaBuilder.Impl withBaseFormulaType(
+        @NonNull CodeableConceptBuilder baseFormulaType) {
+      this.baseFormulaType = Optional.of(baseFormulaType.build());
       return this;
     }
     /**
@@ -157,10 +181,23 @@ public interface NutritionOrder_EnteralFormulaBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public NutritionOrder_EnteralFormulaBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param maxVolumeToDeliver */
     public NutritionOrder_EnteralFormulaBuilder.Impl withMaxVolumeToDeliver(
         @NonNull Quantity maxVolumeToDeliver) {
       this.maxVolumeToDeliver = Optional.of(maxVolumeToDeliver);
+      return this;
+    }
+
+    public NutritionOrder_EnteralFormulaBuilder.Impl withMaxVolumeToDeliver(
+        @NonNull QuantityBuilder maxVolumeToDeliver) {
+      this.maxVolumeToDeliver = Optional.of(maxVolumeToDeliver.build());
       return this;
     }
     /** @param additiveProductName */
@@ -173,6 +210,12 @@ public interface NutritionOrder_EnteralFormulaBuilder {
     public NutritionOrder_EnteralFormulaBuilder.Impl withRouteofAdministration(
         @NonNull CodeableConcept routeofAdministration) {
       this.routeofAdministration = Optional.of(routeofAdministration);
+      return this;
+    }
+
+    public NutritionOrder_EnteralFormulaBuilder.Impl withRouteofAdministration(
+        @NonNull CodeableConceptBuilder routeofAdministration) {
+      this.routeofAdministration = Optional.of(routeofAdministration.build());
       return this;
     }
     /** @param baseFormulaProductName */
@@ -197,6 +240,12 @@ public interface NutritionOrder_EnteralFormulaBuilder {
     public NutritionOrder_EnteralFormulaBuilder.Impl withAdministration(
         @NonNull Collection<NutritionOrder$EnteralFormula$Administration> administration) {
       this.administration = Collections.unmodifiableCollection(administration);
+      return this;
+    }
+
+    public NutritionOrder_EnteralFormulaBuilder.Impl withAdministration(
+        @NonNull NutritionOrder_EnteralFormula_AdministrationBuilder... administration) {
+      this.administration = Arrays.stream(administration).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -137,6 +137,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -148,12 +153,22 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param _type - Indicates the type of dispensing event that is performed. For example, Trial
      *     Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples, etc.
      */
     public MedicationDispenseBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -172,6 +187,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param partOf - The procedure that trigger the dispense. */
     public MedicationDispenseBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
@@ -182,6 +202,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - A link to a resource representing the person or the group to whom the
      *     medication will be given.
@@ -190,12 +215,22 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.subject = Optional.of(subject);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
+      return this;
+    }
     /**
      * @param context - The encounter or episode of care that establishes the context for this
      *     event.
      */
     public MedicationDispenseBuilder.Impl withContext(@NonNull Reference context) {
       this.context = Optional.of(context);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withContext(@NonNull ReferenceBuilder context) {
+      this.context = Optional.of(context.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -211,9 +246,19 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.category = Optional.of(category);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withCategory(@NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
+      return this;
+    }
     /** @param location - The principal physical location where the dispense was performed. */
     public MedicationDispenseBuilder.Impl withLocation(@NonNull Reference location) {
       this.location = Optional.of(location);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
       return this;
     }
     /**
@@ -221,6 +266,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
      */
     public MedicationDispenseBuilder.Impl withQuantity(@NonNull Quantity quantity) {
       this.quantity = Optional.of(quantity);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
       return this;
     }
     /**
@@ -241,6 +291,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.receiver = Collections.unmodifiableCollection(receiver);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withReceiver(@NonNull ReferenceBuilder... receiver) {
+      this.receiver = Arrays.stream(receiver).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -257,6 +312,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
      */
     public MedicationDispenseBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -279,6 +339,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
      */
     public MedicationDispenseBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -304,9 +369,19 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param daysSupply - The amount of medication expressed as a timing amount. */
     public MedicationDispenseBuilder.Impl withDaysSupply(@NonNull Quantity daysSupply) {
       this.daysSupply = Optional.of(daysSupply);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withDaysSupply(@NonNull QuantityBuilder daysSupply) {
+      this.daysSupply = Optional.of(daysSupply.build());
       return this;
     }
     /**
@@ -315,6 +390,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
      */
     public MedicationDispenseBuilder.Impl withDestination(@NonNull Reference destination) {
       this.destination = Optional.of(destination);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withDestination(@NonNull ReferenceBuilder destination) {
+      this.destination = Optional.of(destination.build());
       return this;
     }
     /** @param whenPrepared - The time when the dispensed product was packaged and reviewed. */
@@ -337,6 +417,12 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     public MedicationDispenseBuilder.Impl withEventHistory(
         @NonNull Collection<Reference> eventHistory) {
       this.eventHistory = Collections.unmodifiableCollection(eventHistory);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withEventHistory(
+        @NonNull ReferenceBuilder... eventHistory) {
+      this.eventHistory = Arrays.stream(eventHistory).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -366,6 +452,12 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     public MedicationDispenseBuilder.Impl withDetectedIssue(
         @NonNull Collection<Reference> detectedIssue) {
       this.detectedIssue = Collections.unmodifiableCollection(detectedIssue);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withDetectedIssue(
+        @NonNull ReferenceBuilder... detectedIssue) {
+      this.detectedIssue = Arrays.stream(detectedIssue).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -422,6 +514,13 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dosageInstruction - Indicates how the medication is to be used by the patient. */
     public MedicationDispenseBuilder.Impl withDosageInstruction(
         @NonNull Dosage... dosageInstruction) {
@@ -432,6 +531,13 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     public MedicationDispenseBuilder.Impl withDosageInstruction(
         @NonNull Collection<Dosage> dosageInstruction) {
       this.dosageInstruction = Collections.unmodifiableCollection(dosageInstruction);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withDosageInstruction(
+        @NonNull DosageBuilder... dosageInstruction) {
+      this.dosageInstruction =
+          Arrays.stream(dosageInstruction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -452,6 +558,13 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.supportingInformation = Collections.unmodifiableCollection(supportingInformation);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withSupportingInformation(
+        @NonNull ReferenceBuilder... supportingInformation) {
+      this.supportingInformation =
+          Arrays.stream(supportingInformation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param authorizingPrescription - Indicates the medication order that is being dispensed
      *     against.
@@ -470,6 +583,13 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.authorizingPrescription = Collections.unmodifiableCollection(authorizingPrescription);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withAuthorizingPrescription(
+        @NonNull ReferenceBuilder... authorizingPrescription) {
+      this.authorizingPrescription =
+          Arrays.stream(authorizingPrescription).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param performer - Indicates who or what performed the event. */
     public MedicationDispenseBuilder.Impl withPerformer(
         @NonNull MedicationDispense.Performer... performer) {
@@ -482,6 +602,12 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.performer = Collections.unmodifiableCollection(performer);
       return this;
     }
+
+    public MedicationDispenseBuilder.Impl withPerformer(
+        @NonNull MedicationDispense_PerformerBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param substitution - Indicates whether or not substitution was made as part of the dispense.
      *     In some cases, substitution will be expected but does not happen, in other cases
@@ -491,6 +617,12 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     public MedicationDispenseBuilder.Impl withSubstitution(
         @NonNull MedicationDispense.Substitution substitution) {
       this.substitution = Optional.of(substitution);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withSubstitution(
+        @NonNull MedicationDispense_SubstitutionBuilder substitution) {
+      this.substitution = Optional.of(substitution.build());
       return this;
     }
 

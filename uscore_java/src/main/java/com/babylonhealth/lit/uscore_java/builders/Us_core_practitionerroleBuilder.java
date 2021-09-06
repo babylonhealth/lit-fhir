@@ -117,6 +117,11 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_practitionerroleBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -126,6 +131,11 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
      */
     public Us_core_practitionerroleBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Us_core_practitionerroleBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -143,6 +153,11 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public Us_core_practitionerroleBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param active - Whether this practitioner role record is in active use. */
     public Us_core_practitionerroleBuilder.Impl withActive(@NonNull Boolean active) {
       this.active = Optional.of(active);
@@ -154,6 +169,11 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
      */
     public Us_core_practitionerroleBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public Us_core_practitionerroleBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -170,6 +190,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
     public Us_core_practitionerroleBuilder.Impl withLocation(
         @NonNull Collection<Reference> location) {
       this.location = Collections.unmodifiableCollection(location);
+      return this;
+    }
+
+    public Us_core_practitionerroleBuilder.Impl withLocation(
+        @NonNull ReferenceBuilder... location) {
+      this.location = Arrays.stream(location).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -189,6 +215,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       this.endpoint = Collections.unmodifiableCollection(endpoint);
       return this;
     }
+
+    public Us_core_practitionerroleBuilder.Impl withEndpoint(
+        @NonNull ReferenceBuilder... endpoint) {
+      this.endpoint = Arrays.stream(endpoint).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
      *     resource that contains them - they cannot be identified independently, and nor can they
@@ -206,6 +238,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
     public Us_core_practitionerroleBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Us_core_practitionerroleBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -231,6 +269,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_practitionerroleBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param specialty - Specific specialty of the practitioner. */
     public Us_core_practitionerroleBuilder.Impl withSpecialty(
         @NonNull CodeableConcept... specialty) {
@@ -243,6 +287,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       this.specialty = Collections.unmodifiableCollection(specialty);
       return this;
     }
+
+    public Us_core_practitionerroleBuilder.Impl withSpecialty(
+        @NonNull CodeableConceptBuilder... specialty) {
+      this.specialty = Arrays.stream(specialty).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Business Identifiers that are specific to a role/location. */
     public Us_core_practitionerroleBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -252,6 +302,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
     public Us_core_practitionerroleBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Us_core_practitionerroleBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -300,6 +356,13 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_practitionerroleBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param healthcareService - The list of healthcare services that this worker provides for this
      *     role's Organization/Location(s).
@@ -318,6 +381,13 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       this.healthcareService = Collections.unmodifiableCollection(healthcareService);
       return this;
     }
+
+    public Us_core_practitionerroleBuilder.Impl withHealthcareService(
+        @NonNull ReferenceBuilder... healthcareService) {
+      this.healthcareService =
+          Arrays.stream(healthcareService).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param telecom - Contact details that are specific to the role/location/service. */
     public Us_core_practitionerroleBuilder.Impl withTelecom(@NonNull ContactPoint... telecom) {
       this.telecom = Arrays.asList(telecom);
@@ -327,6 +397,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
     public Us_core_practitionerroleBuilder.Impl withTelecom(
         @NonNull Collection<ContactPoint> telecom) {
       this.telecom = Collections.unmodifiableCollection(telecom);
+      return this;
+    }
+
+    public Us_core_practitionerroleBuilder.Impl withTelecom(
+        @NonNull ContactPointBuilder... telecom) {
+      this.telecom = Arrays.stream(telecom).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -357,6 +433,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       this.notAvailable = Collections.unmodifiableCollection(notAvailable);
       return this;
     }
+
+    public Us_core_practitionerroleBuilder.Impl withNotAvailable(
+        @NonNull PractitionerRole_NotAvailableBuilder... notAvailable) {
+      this.notAvailable = Arrays.stream(notAvailable).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param availableTime - A collection of times the practitioner is available or performing this
      *     role at the location and/or healthcareservice.
@@ -373,6 +455,12 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
     public Us_core_practitionerroleBuilder.Impl withAvailableTime(
         @NonNull Collection<PractitionerRole.AvailableTime> availableTime) {
       this.availableTime = Collections.unmodifiableCollection(availableTime);
+      return this;
+    }
+
+    public Us_core_practitionerroleBuilder.Impl withAvailableTime(
+        @NonNull PractitionerRole_AvailableTimeBuilder... availableTime) {
+      this.availableTime = Arrays.stream(availableTime).map(e -> e.build()).collect(toList());
       return this;
     }
 

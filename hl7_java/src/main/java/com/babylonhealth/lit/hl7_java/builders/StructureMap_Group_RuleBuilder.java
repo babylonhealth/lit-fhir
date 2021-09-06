@@ -97,6 +97,12 @@ public interface StructureMap_Group_RuleBuilder {
       this.rule = Collections.unmodifiableCollection(rule);
       return this;
     }
+
+    public StructureMap_Group_RuleBuilder.Impl withRule(
+        @NonNull StructureMap_Group_RuleBuilder... rule) {
+      this.rule = Arrays.stream(rule).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -118,6 +124,12 @@ public interface StructureMap_Group_RuleBuilder {
     public StructureMap_Group_RuleBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public StructureMap_Group_RuleBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param documentation */
@@ -161,6 +173,13 @@ public interface StructureMap_Group_RuleBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public StructureMap_Group_RuleBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param dependent */
     public StructureMap_Group_RuleBuilder.Impl withDependent(
         @NonNull StructureMap$Group$Rule$Dependent... dependent) {
@@ -173,6 +192,12 @@ public interface StructureMap_Group_RuleBuilder {
       this.dependent = Collections.unmodifiableCollection(dependent);
       return this;
     }
+
+    public StructureMap_Group_RuleBuilder.Impl withDependent(
+        @NonNull StructureMap_Group_Rule_DependentBuilder... dependent) {
+      this.dependent = Arrays.stream(dependent).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param target */
     public StructureMap_Group_RuleBuilder.Impl withTarget(
         @NonNull StructureMap$Group$Rule$Target... target) {
@@ -183,6 +208,12 @@ public interface StructureMap_Group_RuleBuilder {
     public StructureMap_Group_RuleBuilder.Impl withTarget(
         @NonNull Collection<StructureMap$Group$Rule$Target> target) {
       this.target = Collections.unmodifiableCollection(target);
+      return this;
+    }
+
+    public StructureMap_Group_RuleBuilder.Impl withTarget(
+        @NonNull StructureMap_Group_Rule_TargetBuilder... target) {
+      this.target = Arrays.stream(target).map(e -> e.build()).collect(toList());
       return this;
     }
 

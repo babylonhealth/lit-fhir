@@ -93,6 +93,11 @@ public interface Medication_BatchBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Medication_BatchBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param lotNumber */
     public Medication_BatchBuilder.Impl withLotNumber(@NonNull String lotNumber) {
       this.lotNumber = Optional.of(lotNumber);
@@ -137,6 +142,13 @@ public interface Medication_BatchBuilder {
     public Medication_BatchBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Medication_BatchBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

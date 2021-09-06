@@ -97,10 +97,22 @@ public interface SpecimenDefinition_TypeTested_HandlingBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SpecimenDefinition_TypeTested_HandlingBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param maxDuration */
     public SpecimenDefinition_TypeTested_HandlingBuilder.Impl withMaxDuration(
         @NonNull Duration maxDuration) {
       this.maxDuration = Optional.of(maxDuration);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTested_HandlingBuilder.Impl withMaxDuration(
+        @NonNull DurationBuilder maxDuration) {
+      this.maxDuration = Optional.of(maxDuration.build());
       return this;
     }
     /** @param instruction */
@@ -113,6 +125,12 @@ public interface SpecimenDefinition_TypeTested_HandlingBuilder {
     public SpecimenDefinition_TypeTested_HandlingBuilder.Impl withTemperatureRange(
         @NonNull Range temperatureRange) {
       this.temperatureRange = Optional.of(temperatureRange);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTested_HandlingBuilder.Impl withTemperatureRange(
+        @NonNull RangeBuilder temperatureRange) {
+      this.temperatureRange = Optional.of(temperatureRange.build());
       return this;
     }
     /**
@@ -151,10 +169,23 @@ public interface SpecimenDefinition_TypeTested_HandlingBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SpecimenDefinition_TypeTested_HandlingBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param temperatureQualifier */
     public SpecimenDefinition_TypeTested_HandlingBuilder.Impl withTemperatureQualifier(
         @NonNull CodeableConcept temperatureQualifier) {
       this.temperatureQualifier = Optional.of(temperatureQualifier);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTested_HandlingBuilder.Impl withTemperatureQualifier(
+        @NonNull CodeableConceptBuilder temperatureQualifier) {
+      this.temperatureQualifier = Optional.of(temperatureQualifier.build());
       return this;
     }
 

@@ -142,6 +142,11 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public CoverageEligibilityRequestBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -153,9 +158,19 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
       this.text = Optional.of(text);
       return this;
     }
+
+    public CoverageEligibilityRequestBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param enterer - Person who created the request. */
     public CoverageEligibilityRequestBuilder.Impl withEnterer(@NonNull Reference enterer) {
       this.enterer = Optional.of(enterer);
+      return this;
+    }
+
+    public CoverageEligibilityRequestBuilder.Impl withEnterer(@NonNull ReferenceBuilder enterer) {
+      this.enterer = Optional.of(enterer.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -168,14 +183,30 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
       this.priority = Optional.of(priority);
       return this;
     }
+
+    public CoverageEligibilityRequestBuilder.Impl withPriority(
+        @NonNull CodeableConceptBuilder priority) {
+      this.priority = Optional.of(priority.build());
+      return this;
+    }
     /** @param provider - The provider which is responsible for the request. */
     public CoverageEligibilityRequestBuilder.Impl withProvider(@NonNull Reference provider) {
       this.provider = Optional.of(provider);
       return this;
     }
+
+    public CoverageEligibilityRequestBuilder.Impl withProvider(@NonNull ReferenceBuilder provider) {
+      this.provider = Optional.of(provider.build());
+      return this;
+    }
     /** @param facility - Facility where the services are intended to be provided. */
     public CoverageEligibilityRequestBuilder.Impl withFacility(@NonNull Reference facility) {
       this.facility = Optional.of(facility);
+      return this;
+    }
+
+    public CoverageEligibilityRequestBuilder.Impl withFacility(@NonNull ReferenceBuilder facility) {
+      this.facility = Optional.of(facility.build());
       return this;
     }
     /**
@@ -195,6 +226,12 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
     public CoverageEligibilityRequestBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public CoverageEligibilityRequestBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -220,6 +257,12 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CoverageEligibilityRequestBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this coverage eligiblity request. */
     public CoverageEligibilityRequestBuilder.Impl withIdentifier(
         @NonNull Identifier... identifier) {
@@ -230,6 +273,12 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
     public CoverageEligibilityRequestBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public CoverageEligibilityRequestBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -288,6 +337,13 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CoverageEligibilityRequestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param insurance - Financial instruments for reimbursement for the health care products and
      *     services.
@@ -304,6 +360,12 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
     public CoverageEligibilityRequestBuilder.Impl withInsurance(
         @NonNull Collection<CoverageEligibilityRequest.Insurance> insurance) {
       this.insurance = Collections.unmodifiableCollection(insurance);
+      return this;
+    }
+
+    public CoverageEligibilityRequestBuilder.Impl withInsurance(
+        @NonNull CoverageEligibilityRequest_InsuranceBuilder... insurance) {
+      this.insurance = Arrays.stream(insurance).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -324,6 +386,12 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
       return this;
     }
+
+    public CoverageEligibilityRequestBuilder.Impl withSupportingInfo(
+        @NonNull CoverageEligibilityRequest_SupportingInfoBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param item - Service categories or billable services for which benefit details and/or an
      *     authorization prior to service delivery may be required by the payor.
@@ -340,6 +408,12 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
     public CoverageEligibilityRequestBuilder.Impl withItem(
         @NonNull Collection<CoverageEligibilityRequest.Item> item) {
       this.item = Collections.unmodifiableCollection(item);
+      return this;
+    }
+
+    public CoverageEligibilityRequestBuilder.Impl withItem(
+        @NonNull CoverageEligibilityRequest_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
       return this;
     }
 

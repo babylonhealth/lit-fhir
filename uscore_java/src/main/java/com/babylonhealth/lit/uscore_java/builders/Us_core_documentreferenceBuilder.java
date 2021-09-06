@@ -154,6 +154,11 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Us_core_documentreferenceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -163,6 +168,11 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
      */
     public Us_core_documentreferenceBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Us_core_documentreferenceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param date - When the document reference was created. */
@@ -178,6 +188,11 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
     /** @param author - Identifies who is responsible for adding the information to the document. */
     public Us_core_documentreferenceBuilder.Impl withAuthor(@NonNull Collection<Reference> author) {
       this.author = Collections.unmodifiableCollection(author);
+      return this;
+    }
+
+    public Us_core_documentreferenceBuilder.Impl withAuthor(@NonNull ReferenceBuilder... author) {
+      this.author = Arrays.stream(author).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -204,6 +219,12 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Us_core_documentreferenceBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -227,6 +248,12 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Us_core_documentreferenceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param docStatus - The status of the underlying document. */
     public Us_core_documentreferenceBuilder.Impl withDocStatus(
         @NonNull COMPOSITION_STATUS docStatus) {
@@ -239,6 +266,12 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
      */
     public Us_core_documentreferenceBuilder.Impl withCustodian(@NonNull Reference custodian) {
       this.custodian = Optional.of(custodian);
+      return this;
+    }
+
+    public Us_core_documentreferenceBuilder.Impl withCustodian(
+        @NonNull ReferenceBuilder custodian) {
+      this.custodian = Optional.of(custodian.build());
       return this;
     }
     /**
@@ -256,6 +289,12 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
     public Us_core_documentreferenceBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Us_core_documentreferenceBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param description - Human-readable description of the source document. */
@@ -282,6 +321,12 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
       this.authenticator = Optional.of(authenticator);
       return this;
     }
+
+    public Us_core_documentreferenceBuilder.Impl withAuthenticator(
+        @NonNull ReferenceBuilder authenticator) {
+      this.authenticator = Optional.of(authenticator.build());
+      return this;
+    }
     /**
      * @param securityLabel - A set of Security-Tag codes specifying the level of privacy/security
      *     of the Document. Note that DocumentReference.meta.security contains the security labels
@@ -304,6 +349,12 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
       this.securityLabel = Collections.unmodifiableCollection(securityLabel);
       return this;
     }
+
+    public Us_core_documentreferenceBuilder.Impl withSecurityLabel(
+        @NonNull CodeableConceptBuilder... securityLabel) {
+      this.securityLabel = Arrays.stream(securityLabel).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param masterIdentifier - Document identifier as assigned by the source of the document. This
      *     identifier is specific to this version of the document. This unique identifier may be
@@ -312,6 +363,12 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
     public Us_core_documentreferenceBuilder.Impl withMasterIdentifier(
         @NonNull Identifier masterIdentifier) {
       this.masterIdentifier = Optional.of(masterIdentifier);
+      return this;
+    }
+
+    public Us_core_documentreferenceBuilder.Impl withMasterIdentifier(
+        @NonNull IdentifierBuilder masterIdentifier) {
+      this.masterIdentifier = Optional.of(masterIdentifier.build());
       return this;
     }
     /**
@@ -350,10 +407,23 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Us_core_documentreferenceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param context - The clinical context in which the document was prepared. */
     public Us_core_documentreferenceBuilder.Impl withContext(
         @NonNull DocumentReference.Context context) {
       this.context = Optional.of(context);
+      return this;
+    }
+
+    public Us_core_documentreferenceBuilder.Impl withContext(
+        @NonNull DocumentReference_ContextBuilder context) {
+      this.context = Optional.of(context.build());
       return this;
     }
     /**
@@ -372,6 +442,12 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
     public Us_core_documentreferenceBuilder.Impl withRelatesTo(
         @NonNull Collection<DocumentReference.RelatesTo> relatesTo) {
       this.relatesTo = Collections.unmodifiableCollection(relatesTo);
+      return this;
+    }
+
+    public Us_core_documentreferenceBuilder.Impl withRelatesTo(
+        @NonNull DocumentReference_RelatesToBuilder... relatesTo) {
+      this.relatesTo = Arrays.stream(relatesTo).map(e -> e.build()).collect(toList());
       return this;
     }
 

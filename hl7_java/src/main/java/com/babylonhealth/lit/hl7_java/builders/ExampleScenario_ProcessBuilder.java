@@ -103,6 +103,12 @@ public interface ExampleScenario_ProcessBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExampleScenario_ProcessBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public ExampleScenario_ProcessBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
@@ -154,6 +160,13 @@ public interface ExampleScenario_ProcessBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ExampleScenario_ProcessBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param step */
     public ExampleScenario_ProcessBuilder.Impl withStep(
         @NonNull ExampleScenario$Process$Step... step) {
@@ -164,6 +177,12 @@ public interface ExampleScenario_ProcessBuilder {
     public ExampleScenario_ProcessBuilder.Impl withStep(
         @NonNull Collection<ExampleScenario$Process$Step> step) {
       this.step = Collections.unmodifiableCollection(step);
+      return this;
+    }
+
+    public ExampleScenario_ProcessBuilder.Impl withStep(
+        @NonNull ExampleScenario_Process_StepBuilder... step) {
+      this.step = Arrays.stream(step).map(e -> e.build()).collect(toList());
       return this;
     }
 

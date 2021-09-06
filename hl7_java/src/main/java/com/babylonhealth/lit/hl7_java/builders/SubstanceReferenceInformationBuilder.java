@@ -90,6 +90,11 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SubstanceReferenceInformationBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -99,6 +104,11 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
      */
     public SubstanceReferenceInformationBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public SubstanceReferenceInformationBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /** @param comment - Todo. */
@@ -130,6 +140,12 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SubstanceReferenceInformationBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -152,6 +168,12 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
     public SubstanceReferenceInformationBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstanceReferenceInformationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -201,6 +223,13 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceReferenceInformationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param gene - Todo. */
     public SubstanceReferenceInformationBuilder.Impl withGene(
         @NonNull SubstanceReferenceInformation.Gene... gene) {
@@ -211,6 +240,12 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
     public SubstanceReferenceInformationBuilder.Impl withGene(
         @NonNull Collection<SubstanceReferenceInformation.Gene> gene) {
       this.gene = Collections.unmodifiableCollection(gene);
+      return this;
+    }
+
+    public SubstanceReferenceInformationBuilder.Impl withGene(
+        @NonNull SubstanceReferenceInformation_GeneBuilder... gene) {
+      this.gene = Arrays.stream(gene).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param target - Todo. */
@@ -225,6 +260,12 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
       this.target = Collections.unmodifiableCollection(target);
       return this;
     }
+
+    public SubstanceReferenceInformationBuilder.Impl withTarget(
+        @NonNull SubstanceReferenceInformation_TargetBuilder... target) {
+      this.target = Arrays.stream(target).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param geneElement - Todo. */
     public SubstanceReferenceInformationBuilder.Impl withGeneElement(
         @NonNull SubstanceReferenceInformation.GeneElement... geneElement) {
@@ -237,6 +278,12 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
       this.geneElement = Collections.unmodifiableCollection(geneElement);
       return this;
     }
+
+    public SubstanceReferenceInformationBuilder.Impl withGeneElement(
+        @NonNull SubstanceReferenceInformation_GeneElementBuilder... geneElement) {
+      this.geneElement = Arrays.stream(geneElement).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param classification - Todo. */
     public SubstanceReferenceInformationBuilder.Impl withClassification(
         @NonNull SubstanceReferenceInformation.Classification... classification) {
@@ -247,6 +294,12 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
     public SubstanceReferenceInformationBuilder.Impl withClassification(
         @NonNull Collection<SubstanceReferenceInformation.Classification> classification) {
       this.classification = Collections.unmodifiableCollection(classification);
+      return this;
+    }
+
+    public SubstanceReferenceInformationBuilder.Impl withClassification(
+        @NonNull SubstanceReferenceInformation_ClassificationBuilder... classification) {
+      this.classification = Arrays.stream(classification).map(e -> e.build()).collect(toList());
       return this;
     }
 

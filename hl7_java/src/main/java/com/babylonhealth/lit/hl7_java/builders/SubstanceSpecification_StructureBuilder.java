@@ -90,6 +90,12 @@ public interface SubstanceSpecification_StructureBuilder {
       this.source = Collections.unmodifiableCollection(source);
       return this;
     }
+
+    public SubstanceSpecification_StructureBuilder.Impl withSource(
+        @NonNull ReferenceBuilder... source) {
+      this.source = Arrays.stream(source).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -114,16 +120,34 @@ public interface SubstanceSpecification_StructureBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSpecification_StructureBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param stereochemistry */
     public SubstanceSpecification_StructureBuilder.Impl withStereochemistry(
         @NonNull CodeableConcept stereochemistry) {
       this.stereochemistry = Optional.of(stereochemistry);
       return this;
     }
+
+    public SubstanceSpecification_StructureBuilder.Impl withStereochemistry(
+        @NonNull CodeableConceptBuilder stereochemistry) {
+      this.stereochemistry = Optional.of(stereochemistry.build());
+      return this;
+    }
     /** @param opticalActivity */
     public SubstanceSpecification_StructureBuilder.Impl withOpticalActivity(
         @NonNull CodeableConcept opticalActivity) {
       this.opticalActivity = Optional.of(opticalActivity);
+      return this;
+    }
+
+    public SubstanceSpecification_StructureBuilder.Impl withOpticalActivity(
+        @NonNull CodeableConceptBuilder opticalActivity) {
+      this.opticalActivity = Optional.of(opticalActivity.build());
       return this;
     }
     /**
@@ -133,6 +157,12 @@ public interface SubstanceSpecification_StructureBuilder {
     public SubstanceSpecification_StructureBuilder.Impl withMolecularWeight(
         @NonNull SubstanceSpecification$Structure$Isotope$MolecularWeight molecularWeight) {
       this.molecularWeight = Optional.of(molecularWeight);
+      return this;
+    }
+
+    public SubstanceSpecification_StructureBuilder.Impl withMolecularWeight(
+        @NonNull SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder molecularWeight) {
+      this.molecularWeight = Optional.of(molecularWeight.build());
       return this;
     }
     /** @param molecularFormula */
@@ -177,6 +207,13 @@ public interface SubstanceSpecification_StructureBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstanceSpecification_StructureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param molecularFormulaByMoiety */
     public SubstanceSpecification_StructureBuilder.Impl withMolecularFormulaByMoiety(
         @NonNull String molecularFormulaByMoiety) {
@@ -195,6 +232,12 @@ public interface SubstanceSpecification_StructureBuilder {
       this.representation = Collections.unmodifiableCollection(representation);
       return this;
     }
+
+    public SubstanceSpecification_StructureBuilder.Impl withRepresentation(
+        @NonNull SubstanceSpecification_Structure_RepresentationBuilder... representation) {
+      this.representation = Arrays.stream(representation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param isotope */
     public SubstanceSpecification_StructureBuilder.Impl withIsotope(
         @NonNull SubstanceSpecification$Structure$Isotope... isotope) {
@@ -205,6 +248,12 @@ public interface SubstanceSpecification_StructureBuilder {
     public SubstanceSpecification_StructureBuilder.Impl withIsotope(
         @NonNull Collection<SubstanceSpecification$Structure$Isotope> isotope) {
       this.isotope = Collections.unmodifiableCollection(isotope);
+      return this;
+    }
+
+    public SubstanceSpecification_StructureBuilder.Impl withIsotope(
+        @NonNull SubstanceSpecification_Structure_IsotopeBuilder... isotope) {
+      this.isotope = Arrays.stream(isotope).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -108,9 +108,19 @@ public interface Claim_InsuranceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Claim_InsuranceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this claim. */
     public Claim_InsuranceBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public Claim_InsuranceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /** @param preAuthRef */
@@ -126,6 +136,11 @@ public interface Claim_InsuranceBuilder {
     /** @param claimResponse */
     public Claim_InsuranceBuilder.Impl withClaimResponse(@NonNull Reference claimResponse) {
       this.claimResponse = Optional.of(claimResponse);
+      return this;
+    }
+
+    public Claim_InsuranceBuilder.Impl withClaimResponse(@NonNull ReferenceBuilder claimResponse) {
+      this.claimResponse = Optional.of(claimResponse.build());
       return this;
     }
     /**
@@ -162,6 +177,13 @@ public interface Claim_InsuranceBuilder {
     public Claim_InsuranceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Claim_InsuranceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param businessArrangement */

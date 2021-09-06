@@ -294,6 +294,11 @@ public interface Cqf_measureInfoBuilder extends ExtensionBuilder {
       return this;
     }
 
+    public Cqf_measureInfoBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Cqf_measureInfo build() {
       return new Cqf_measureInfo(
           OptionConverters.toScala(id),

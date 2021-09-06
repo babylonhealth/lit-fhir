@@ -127,6 +127,11 @@ public interface CodingBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CodingBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param userSelected - Indicates that this coding was chosen by a user directly - e.g. off a
      *     pick list of available items (codes or displays).

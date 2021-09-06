@@ -163,6 +163,11 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ShareablevaluesetBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -172,6 +177,11 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
      */
     public ShareablevaluesetBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public ShareablevaluesetBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -201,6 +211,11 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
      */
     public ShareablevaluesetBuilder.Impl withContact(@NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public ShareablevaluesetBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -234,6 +249,11 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public ShareablevaluesetBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -254,6 +274,11 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
      */
     public ShareablevaluesetBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ShareablevaluesetBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -292,6 +317,11 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ShareablevaluesetBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -313,6 +343,12 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
       this.useContext = Collections.unmodifiableCollection(useContext);
       return this;
     }
+
+    public ShareablevaluesetBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param jurisdiction - A legal or geographic region in which the value set is intended to be
      *     used.
@@ -329,6 +365,12 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
     public ShareablevaluesetBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public ShareablevaluesetBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -377,6 +419,13 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ShareablevaluesetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param expansion - A value set can also be "expanded", where the value set is turned into a
      *     simple collection of enumerated codes. This element holds the expansion, if it has been
@@ -386,6 +435,12 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
       this.expansion = Optional.of(expansion);
       return this;
     }
+
+    public ShareablevaluesetBuilder.Impl withExpansion(
+        @NonNull ValueSet_ExpansionBuilder expansion) {
+      this.expansion = Optional.of(expansion.build());
+      return this;
+    }
     /**
      * @param compose - A set of criteria that define the contents of the value set by including or
      *     excluding codes selected from the specified code system(s) that the value set draws from.
@@ -393,6 +448,11 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
      */
     public ShareablevaluesetBuilder.Impl withCompose(@NonNull ValueSet.Compose compose) {
       this.compose = Optional.of(compose);
+      return this;
+    }
+
+    public ShareablevaluesetBuilder.Impl withCompose(@NonNull ValueSet_ComposeBuilder compose) {
+      this.compose = Optional.of(compose.build());
       return this;
     }
 

@@ -116,9 +116,19 @@ public interface Claim_SupportingInfoBuilder {
       this.code = Optional.of(code);
       return this;
     }
+
+    public Claim_SupportingInfoBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
+      return this;
+    }
     /** @param reason */
     public Claim_SupportingInfoBuilder.Impl withReason(@NonNull CodeableConcept reason) {
       this.reason = Optional.of(reason);
+      return this;
+    }
+
+    public Claim_SupportingInfoBuilder.Impl withReason(@NonNull CodeableConceptBuilder reason) {
+      this.reason = Optional.of(reason.build());
       return this;
     }
     /**
@@ -151,6 +161,11 @@ public interface Claim_SupportingInfoBuilder {
     public Claim_SupportingInfoBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Claim_SupportingInfoBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -195,6 +210,13 @@ public interface Claim_SupportingInfoBuilder {
     public Claim_SupportingInfoBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Claim_SupportingInfoBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -102,6 +102,11 @@ public interface Claim_ProcedureBuilder {
       this.udi = Collections.unmodifiableCollection(udi);
       return this;
     }
+
+    public Claim_ProcedureBuilder.Impl withUdi(@NonNull ReferenceBuilder... udi) {
+      this.udi = Arrays.stream(udi).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param _type - The category of claim, e.g. oral, pharmacy, vision, institutional,
      *     professional.
@@ -116,6 +121,11 @@ public interface Claim_ProcedureBuilder {
      */
     public Claim_ProcedureBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
       this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public Claim_ProcedureBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param date */
@@ -143,6 +153,11 @@ public interface Claim_ProcedureBuilder {
      */
     public Claim_ProcedureBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Claim_ProcedureBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -179,6 +194,13 @@ public interface Claim_ProcedureBuilder {
     public Claim_ProcedureBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Claim_ProcedureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

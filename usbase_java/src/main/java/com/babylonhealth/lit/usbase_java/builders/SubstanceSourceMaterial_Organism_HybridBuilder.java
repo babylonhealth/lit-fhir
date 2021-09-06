@@ -101,10 +101,22 @@ public interface SubstanceSourceMaterial_Organism_HybridBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSourceMaterial_Organism_HybridBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param hybridType */
     public SubstanceSourceMaterial_Organism_HybridBuilder.Impl withHybridType(
         @NonNull CodeableConcept hybridType) {
       this.hybridType = Optional.of(hybridType);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_Organism_HybridBuilder.Impl withHybridType(
+        @NonNull CodeableConceptBuilder hybridType) {
+      this.hybridType = Optional.of(hybridType.build());
       return this;
     }
     /**
@@ -141,6 +153,13 @@ public interface SubstanceSourceMaterial_Organism_HybridBuilder {
     public SubstanceSourceMaterial_Organism_HybridBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_Organism_HybridBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param maternalOrganismId */

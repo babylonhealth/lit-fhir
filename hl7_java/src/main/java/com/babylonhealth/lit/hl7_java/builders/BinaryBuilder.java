@@ -89,6 +89,11 @@ public interface BinaryBuilder extends ResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public BinaryBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /** @param data - The actual content, base64 encoded. */
     public BinaryBuilder.Impl withData(@NonNull byte[] data) {
       this.data = Optional.of(data);
@@ -122,6 +127,11 @@ public interface BinaryBuilder extends ResourceBuilder {
      */
     public BinaryBuilder.Impl withSecurityContext(@NonNull Reference securityContext) {
       this.securityContext = Optional.of(securityContext);
+      return this;
+    }
+
+    public BinaryBuilder.Impl withSecurityContext(@NonNull ReferenceBuilder securityContext) {
+      this.securityContext = Optional.of(securityContext.build());
       return this;
     }
 

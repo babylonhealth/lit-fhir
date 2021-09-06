@@ -141,6 +141,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public ProcedureBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -152,12 +157,22 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public ProcedureBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param code - The specific procedure that is performed. Use text if the exact nature of the
      *     procedure cannot be coded (e.g. "Laparoscopic Appendectomy").
      */
     public ProcedureBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param note - Any other notes and comments about the procedure. */
@@ -170,6 +185,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public ProcedureBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param partOf - A larger event of which this particular procedure is a component or step. */
     public ProcedureBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
@@ -180,6 +200,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
     }
+
+    public ProcedureBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
+      this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param report - This could be a histology result, pathology report, surgical report, etc. */
     public ProcedureBuilder.Impl withReport(@NonNull Reference... report) {
       this.report = Arrays.asList(report);
@@ -188,6 +213,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     /** @param report - This could be a histology result, pathology report, surgical report, etc. */
     public ProcedureBuilder.Impl withReport(@NonNull Collection<Reference> report) {
       this.report = Collections.unmodifiableCollection(report);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withReport(@NonNull ReferenceBuilder... report) {
+      this.report = Arrays.stream(report).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -206,12 +236,22 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public ProcedureBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param outcome - The outcome of the procedure - did it resolve the reasons for the procedure
      *     being performed?
      */
     public ProcedureBuilder.Impl withOutcome(@NonNull CodeableConcept outcome) {
       this.outcome = Optional.of(outcome);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withOutcome(@NonNull CodeableConceptBuilder outcome) {
+      this.outcome = Optional.of(outcome.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -227,6 +267,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.category = Optional.of(category);
       return this;
     }
+
+    public ProcedureBuilder.Impl withCategory(@NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
+      return this;
+    }
     /**
      * @param recorder - Individual who recorded the record and takes responsibility for its
      *     content.
@@ -235,9 +280,19 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.recorder = Optional.of(recorder);
       return this;
     }
+
+    public ProcedureBuilder.Impl withRecorder(@NonNull ReferenceBuilder recorder) {
+      this.recorder = Optional.of(recorder.build());
+      return this;
+    }
     /** @param asserter - Individual who is making the procedure statement. */
     public ProcedureBuilder.Impl withAsserter(@NonNull Reference asserter) {
       this.asserter = Optional.of(asserter);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withAsserter(@NonNull ReferenceBuilder asserter) {
+      this.asserter = Optional.of(asserter.build());
       return this;
     }
     /**
@@ -246,6 +301,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
      */
     public ProcedureBuilder.Impl withLocation(@NonNull Reference location) {
       this.location = Optional.of(location);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
       return this;
     }
     /**
@@ -262,6 +322,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
      */
     public ProcedureBuilder.Impl withBodySite(@NonNull Collection<CodeableConcept> bodySite) {
       this.bodySite = Collections.unmodifiableCollection(bodySite);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withBodySite(@NonNull CodeableConceptBuilder... bodySite) {
+      this.bodySite = Arrays.stream(bodySite).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -282,6 +347,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.followUp = Collections.unmodifiableCollection(followUp);
       return this;
     }
+
+    public ProcedureBuilder.Impl withFollowUp(@NonNull CodeableConceptBuilder... followUp) {
+      this.followUp = Arrays.stream(followUp).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param usedCode - Identifies coded items that were used as part of the procedure. */
     public ProcedureBuilder.Impl withUsedCode(@NonNull CodeableConcept... usedCode) {
       this.usedCode = Arrays.asList(usedCode);
@@ -290,6 +360,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     /** @param usedCode - Identifies coded items that were used as part of the procedure. */
     public ProcedureBuilder.Impl withUsedCode(@NonNull Collection<CodeableConcept> usedCode) {
       this.usedCode = Collections.unmodifiableCollection(usedCode);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withUsedCode(@NonNull CodeableConceptBuilder... usedCode) {
+      this.usedCode = Arrays.stream(usedCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -308,6 +383,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
      */
     public ProcedureBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -332,12 +412,22 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ProcedureBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - The Encounter during which this Procedure was created or performed or to
      *     which the creation of this record is tightly associated.
      */
     public ProcedureBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -358,6 +448,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public ProcedureBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param reasonCode - The coded reason why the procedure was performed. This may be a coded
      *     entity of some type, or may simply be present as text.
@@ -374,9 +469,19 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
       return this;
     }
+
+    public ProcedureBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param statusReason - Captures the reason for the current state of the procedure. */
     public ProcedureBuilder.Impl withStatusReason(@NonNull CodeableConcept statusReason) {
       this.statusReason = Optional.of(statusReason);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withStatusReason(@NonNull CodeableConceptBuilder statusReason) {
+      this.statusReason = Optional.of(statusReason.build());
       return this;
     }
     /**
@@ -411,6 +516,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.complication = Collections.unmodifiableCollection(complication);
       return this;
     }
+
+    public ProcedureBuilder.Impl withComplication(@NonNull CodeableConceptBuilder... complication) {
+      this.complication = Arrays.stream(complication).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -435,6 +545,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
      */
     public ProcedureBuilder.Impl withUsedReference(@NonNull Collection<Reference> usedReference) {
       this.usedReference = Collections.unmodifiableCollection(usedReference);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withUsedReference(@NonNull ReferenceBuilder... usedReference) {
+      this.usedReference = Arrays.stream(usedReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -462,6 +577,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     public ProcedureBuilder.Impl withReasonReference(
         @NonNull Collection<Reference> reasonReference) {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withReasonReference(@NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -499,6 +619,13 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public ProcedureBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param complicationDetail - Any complications that occurred during the procedure, or in the
      *     immediate post-performance period.
@@ -514,6 +641,13 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     public ProcedureBuilder.Impl withComplicationDetail(
         @NonNull Collection<Reference> complicationDetail) {
       this.complicationDetail = Collections.unmodifiableCollection(complicationDetail);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withComplicationDetail(
+        @NonNull ReferenceBuilder... complicationDetail) {
+      this.complicationDetail =
+          Arrays.stream(complicationDetail).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -544,6 +678,11 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.performer = Collections.unmodifiableCollection(performer);
       return this;
     }
+
+    public ProcedureBuilder.Impl withPerformer(@NonNull Procedure_PerformerBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param focalDevice - A device that is implanted, removed or otherwise manipulated
      *     (calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as
@@ -561,6 +700,12 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     public ProcedureBuilder.Impl withFocalDevice(
         @NonNull Collection<Procedure.FocalDevice> focalDevice) {
       this.focalDevice = Collections.unmodifiableCollection(focalDevice);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withFocalDevice(
+        @NonNull Procedure_FocalDeviceBuilder... focalDevice) {
+      this.focalDevice = Arrays.stream(focalDevice).map(e -> e.build()).collect(toList());
       return this;
     }
 

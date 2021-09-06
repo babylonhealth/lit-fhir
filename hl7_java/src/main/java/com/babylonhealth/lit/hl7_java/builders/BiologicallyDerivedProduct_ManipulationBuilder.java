@@ -113,6 +113,12 @@ public interface BiologicallyDerivedProduct_ManipulationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public BiologicallyDerivedProduct_ManipulationBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param description */
     public BiologicallyDerivedProduct_ManipulationBuilder.Impl withDescription(
         @NonNull String description) {
@@ -153,6 +159,13 @@ public interface BiologicallyDerivedProduct_ManipulationBuilder {
     public BiologicallyDerivedProduct_ManipulationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public BiologicallyDerivedProduct_ManipulationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -114,6 +114,12 @@ public interface MolecularSequence_RepositoryBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MolecularSequence_RepositoryBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param datasetId */
     public MolecularSequence_RepositoryBuilder.Impl withDatasetId(@NonNull String datasetId) {
       this.datasetId = Optional.of(datasetId);
@@ -163,6 +169,13 @@ public interface MolecularSequence_RepositoryBuilder {
     public MolecularSequence_RepositoryBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MolecularSequence_RepositoryBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

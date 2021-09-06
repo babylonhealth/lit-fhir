@@ -81,6 +81,11 @@ public interface DetectedIssue_EvidenceBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public DetectedIssue_EvidenceBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param detail - A textual explanation of the detected issue. */
     public DetectedIssue_EvidenceBuilder.Impl withDetail(@NonNull Reference... detail) {
       this.detail = Arrays.asList(detail);
@@ -89,6 +94,11 @@ public interface DetectedIssue_EvidenceBuilder {
     /** @param detail - A textual explanation of the detected issue. */
     public DetectedIssue_EvidenceBuilder.Impl withDetail(@NonNull Collection<Reference> detail) {
       this.detail = Collections.unmodifiableCollection(detail);
+      return this;
+    }
+
+    public DetectedIssue_EvidenceBuilder.Impl withDetail(@NonNull ReferenceBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -112,6 +122,12 @@ public interface DetectedIssue_EvidenceBuilder {
     public DetectedIssue_EvidenceBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public DetectedIssue_EvidenceBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -148,6 +164,13 @@ public interface DetectedIssue_EvidenceBuilder {
     public DetectedIssue_EvidenceBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public DetectedIssue_EvidenceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

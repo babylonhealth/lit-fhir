@@ -87,9 +87,20 @@ public interface DocumentReference_ContextBuilder {
       this.event = Collections.unmodifiableCollection(event);
       return this;
     }
+
+    public DocumentReference_ContextBuilder.Impl withEvent(
+        @NonNull CodeableConceptBuilder... event) {
+      this.event = Arrays.stream(event).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param period */
     public DocumentReference_ContextBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public DocumentReference_ContextBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /** @param related */
@@ -101,6 +112,11 @@ public interface DocumentReference_ContextBuilder {
     public DocumentReference_ContextBuilder.Impl withRelated(
         @NonNull Collection<Reference> related) {
       this.related = Collections.unmodifiableCollection(related);
+      return this;
+    }
+
+    public DocumentReference_ContextBuilder.Impl withRelated(@NonNull ReferenceBuilder... related) {
+      this.related = Arrays.stream(related).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -126,6 +142,12 @@ public interface DocumentReference_ContextBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public DocumentReference_ContextBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param encounter */
     public DocumentReference_ContextBuilder.Impl withEncounter(@NonNull Reference... encounter) {
       this.encounter = Arrays.asList(encounter);
@@ -137,16 +159,34 @@ public interface DocumentReference_ContextBuilder {
       this.encounter = Collections.unmodifiableCollection(encounter);
       return this;
     }
+
+    public DocumentReference_ContextBuilder.Impl withEncounter(
+        @NonNull ReferenceBuilder... encounter) {
+      this.encounter = Arrays.stream(encounter).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param facilityType */
     public DocumentReference_ContextBuilder.Impl withFacilityType(
         @NonNull CodeableConcept facilityType) {
       this.facilityType = Optional.of(facilityType);
       return this;
     }
+
+    public DocumentReference_ContextBuilder.Impl withFacilityType(
+        @NonNull CodeableConceptBuilder facilityType) {
+      this.facilityType = Optional.of(facilityType.build());
+      return this;
+    }
     /** @param practiceSetting */
     public DocumentReference_ContextBuilder.Impl withPracticeSetting(
         @NonNull CodeableConcept practiceSetting) {
       this.practiceSetting = Optional.of(practiceSetting);
+      return this;
+    }
+
+    public DocumentReference_ContextBuilder.Impl withPracticeSetting(
+        @NonNull CodeableConceptBuilder practiceSetting) {
+      this.practiceSetting = Optional.of(practiceSetting.build());
       return this;
     }
     /**
@@ -185,10 +225,23 @@ public interface DocumentReference_ContextBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public DocumentReference_ContextBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param sourcePatientInfo */
     public DocumentReference_ContextBuilder.Impl withSourcePatientInfo(
         @NonNull Reference sourcePatientInfo) {
       this.sourcePatientInfo = Optional.of(sourcePatientInfo);
+      return this;
+    }
+
+    public DocumentReference_ContextBuilder.Impl withSourcePatientInfo(
+        @NonNull ReferenceBuilder sourcePatientInfo) {
+      this.sourcePatientInfo = Optional.of(sourcePatientInfo.build());
       return this;
     }
 

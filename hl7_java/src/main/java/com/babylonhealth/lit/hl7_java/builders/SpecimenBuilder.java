@@ -97,6 +97,11 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SpecimenBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -108,9 +113,19 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public SpecimenBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - The kind of material that forms the specimen. */
     public SpecimenBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public SpecimenBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /**
@@ -127,6 +142,11 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
      */
     public SpecimenBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
+
+    public SpecimenBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param status - The availability of the specimen. */
@@ -150,12 +170,22 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       this.parent = Collections.unmodifiableCollection(parent);
       return this;
     }
+
+    public SpecimenBuilder.Impl withParent(@NonNull ReferenceBuilder... parent) {
+      this.parent = Arrays.stream(parent).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - Where the specimen came from. This may be from patient(s), from a location
      *     (e.g., the source of an environmental sample), or a sampling of a substance or a device.
      */
     public SpecimenBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public SpecimenBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /**
@@ -172,6 +202,11 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
      */
     public SpecimenBuilder.Impl withRequest(@NonNull Collection<Reference> request) {
       this.request = Collections.unmodifiableCollection(request);
+      return this;
+    }
+
+    public SpecimenBuilder.Impl withRequest(@NonNull ReferenceBuilder... request) {
+      this.request = Arrays.stream(request).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -197,6 +232,11 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public SpecimenBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -219,6 +259,11 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SpecimenBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param condition - A mode or state of being that describes the nature of the specimen. */
     public SpecimenBuilder.Impl withCondition(@NonNull CodeableConcept... condition) {
       this.condition = Arrays.asList(condition);
@@ -229,6 +274,11 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       this.condition = Collections.unmodifiableCollection(condition);
       return this;
     }
+
+    public SpecimenBuilder.Impl withCondition(@NonNull CodeableConceptBuilder... condition) {
+      this.condition = Arrays.stream(condition).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - Id for specimen. */
     public SpecimenBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -237,6 +287,11 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
     /** @param identifier - Id for specimen. */
     public SpecimenBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public SpecimenBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param receivedTime - Time when specimen was received for processing or testing. */
@@ -289,6 +344,13 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SpecimenBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param accessionIdentifier - The identifier assigned by the lab when accessioning
      *     specimen(s). This is not necessarily the same as the specimen identifier, depending on
@@ -296,6 +358,12 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
      */
     public SpecimenBuilder.Impl withAccessionIdentifier(@NonNull Identifier accessionIdentifier) {
       this.accessionIdentifier = Optional.of(accessionIdentifier);
+      return this;
+    }
+
+    public SpecimenBuilder.Impl withAccessionIdentifier(
+        @NonNull IdentifierBuilder accessionIdentifier) {
+      this.accessionIdentifier = Optional.of(accessionIdentifier.build());
       return this;
     }
     /**
@@ -314,9 +382,19 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       this.container = Collections.unmodifiableCollection(container);
       return this;
     }
+
+    public SpecimenBuilder.Impl withContainer(@NonNull Specimen_ContainerBuilder... container) {
+      this.container = Arrays.stream(container).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param collection - Details concerning the specimen collection. */
     public SpecimenBuilder.Impl withCollection(@NonNull Specimen.Collection collection) {
       this.collection = Optional.of(collection);
+      return this;
+    }
+
+    public SpecimenBuilder.Impl withCollection(@NonNull Specimen_CollectionBuilder collection) {
+      this.collection = Optional.of(collection.build());
       return this;
     }
     /** @param processing - Details concerning processing and processing steps for the specimen. */
@@ -328,6 +406,11 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
     public SpecimenBuilder.Impl withProcessing(
         @NonNull Collection<Specimen.Processing> processing) {
       this.processing = Collections.unmodifiableCollection(processing);
+      return this;
+    }
+
+    public SpecimenBuilder.Impl withProcessing(@NonNull Specimen_ProcessingBuilder... processing) {
+      this.processing = Arrays.stream(processing).map(e -> e.build()).collect(toList());
       return this;
     }
 

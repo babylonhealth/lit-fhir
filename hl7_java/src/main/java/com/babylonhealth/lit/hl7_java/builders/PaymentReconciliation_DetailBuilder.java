@@ -95,9 +95,19 @@ public interface PaymentReconciliation_DetailBuilder {
       this.payee = Optional.of(payee);
       return this;
     }
+
+    public PaymentReconciliation_DetailBuilder.Impl withPayee(@NonNull ReferenceBuilder payee) {
+      this.payee = Optional.of(payee.build());
+      return this;
+    }
     /** @param amount */
     public PaymentReconciliation_DetailBuilder.Impl withAmount(@NonNull Money amount) {
       this.amount = Optional.of(amount);
+      return this;
+    }
+
+    public PaymentReconciliation_DetailBuilder.Impl withAmount(@NonNull MoneyBuilder amount) {
+      this.amount = Optional.of(amount.build());
       return this;
     }
     /** @param request - Original request resource reference. */
@@ -105,9 +115,20 @@ public interface PaymentReconciliation_DetailBuilder {
       this.request = Optional.of(request);
       return this;
     }
+
+    public PaymentReconciliation_DetailBuilder.Impl withRequest(@NonNull ReferenceBuilder request) {
+      this.request = Optional.of(request.build());
+      return this;
+    }
     /** @param response */
     public PaymentReconciliation_DetailBuilder.Impl withResponse(@NonNull Reference response) {
       this.response = Optional.of(response);
+      return this;
+    }
+
+    public PaymentReconciliation_DetailBuilder.Impl withResponse(
+        @NonNull ReferenceBuilder response) {
+      this.response = Optional.of(response.build());
       return this;
     }
     /**
@@ -133,14 +154,32 @@ public interface PaymentReconciliation_DetailBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public PaymentReconciliation_DetailBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param submitter */
     public PaymentReconciliation_DetailBuilder.Impl withSubmitter(@NonNull Reference submitter) {
       this.submitter = Optional.of(submitter);
       return this;
     }
+
+    public PaymentReconciliation_DetailBuilder.Impl withSubmitter(
+        @NonNull ReferenceBuilder submitter) {
+      this.submitter = Optional.of(submitter.build());
+      return this;
+    }
     /** @param identifier - A unique identifier assigned to this payment reconciliation. */
     public PaymentReconciliation_DetailBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
       this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public PaymentReconciliation_DetailBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
       return this;
     }
     /** @param predecessor */
@@ -149,10 +188,22 @@ public interface PaymentReconciliation_DetailBuilder {
       this.predecessor = Optional.of(predecessor);
       return this;
     }
+
+    public PaymentReconciliation_DetailBuilder.Impl withPredecessor(
+        @NonNull IdentifierBuilder predecessor) {
+      this.predecessor = Optional.of(predecessor.build());
+      return this;
+    }
     /** @param responsible */
     public PaymentReconciliation_DetailBuilder.Impl withResponsible(
         @NonNull Reference responsible) {
       this.responsible = Optional.of(responsible);
+      return this;
+    }
+
+    public PaymentReconciliation_DetailBuilder.Impl withResponsible(
+        @NonNull ReferenceBuilder responsible) {
+      this.responsible = Optional.of(responsible.build());
       return this;
     }
     /**
@@ -189,6 +240,13 @@ public interface PaymentReconciliation_DetailBuilder {
     public PaymentReconciliation_DetailBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public PaymentReconciliation_DetailBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

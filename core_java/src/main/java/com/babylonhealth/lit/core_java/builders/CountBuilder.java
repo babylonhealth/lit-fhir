@@ -117,6 +117,11 @@ public interface CountBuilder extends QuantityBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CountBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param comparator - How the value should be understood and represented - whether the actual
      *     value is greater or less than the stated value due to measurement issues; e.g. if the

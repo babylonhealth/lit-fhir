@@ -108,6 +108,12 @@ public interface CapabilityStatement_RestBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public CapabilityStatement_RestBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param operation */
     public CapabilityStatement_RestBuilder.Impl withOperation(
         @NonNull CapabilityStatement$Rest$Resource$Operation... operation) {
@@ -120,6 +126,12 @@ public interface CapabilityStatement_RestBuilder {
       this.operation = Collections.unmodifiableCollection(operation);
       return this;
     }
+
+    public CapabilityStatement_RestBuilder.Impl withOperation(
+        @NonNull CapabilityStatement_Rest_Resource_OperationBuilder... operation) {
+      this.operation = Arrays.stream(operation).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param searchParam */
     public CapabilityStatement_RestBuilder.Impl withSearchParam(
         @NonNull CapabilityStatement$Rest$Resource$SearchParam... searchParam) {
@@ -130,6 +142,12 @@ public interface CapabilityStatement_RestBuilder {
     public CapabilityStatement_RestBuilder.Impl withSearchParam(
         @NonNull Collection<CapabilityStatement$Rest$Resource$SearchParam> searchParam) {
       this.searchParam = Collections.unmodifiableCollection(searchParam);
+      return this;
+    }
+
+    public CapabilityStatement_RestBuilder.Impl withSearchParam(
+        @NonNull CapabilityStatement_Rest_Resource_SearchParamBuilder... searchParam) {
+      this.searchParam = Arrays.stream(searchParam).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param compartment */
@@ -184,10 +202,23 @@ public interface CapabilityStatement_RestBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public CapabilityStatement_RestBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param security */
     public CapabilityStatement_RestBuilder.Impl withSecurity(
         @NonNull CapabilityStatement$Rest$Security security) {
       this.security = Optional.of(security);
+      return this;
+    }
+
+    public CapabilityStatement_RestBuilder.Impl withSecurity(
+        @NonNull CapabilityStatement_Rest_SecurityBuilder security) {
+      this.security = Optional.of(security.build());
       return this;
     }
     /** @param interaction */
@@ -202,6 +233,12 @@ public interface CapabilityStatement_RestBuilder {
       this.interaction = Collections.unmodifiableCollection(interaction);
       return this;
     }
+
+    public CapabilityStatement_RestBuilder.Impl withInteraction(
+        @NonNull CapabilityStatement_Rest_InteractionBuilder... interaction) {
+      this.interaction = Arrays.stream(interaction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param resource */
     public CapabilityStatement_RestBuilder.Impl withResource(
         @NonNull CapabilityStatement$Rest$Resource... resource) {
@@ -212,6 +249,12 @@ public interface CapabilityStatement_RestBuilder {
     public CapabilityStatement_RestBuilder.Impl withResource(
         @NonNull Collection<CapabilityStatement$Rest$Resource> resource) {
       this.resource = Collections.unmodifiableCollection(resource);
+      return this;
+    }
+
+    public CapabilityStatement_RestBuilder.Impl withResource(
+        @NonNull CapabilityStatement_Rest_ResourceBuilder... resource) {
+      this.resource = Arrays.stream(resource).map(e -> e.build()).collect(toList());
       return this;
     }
 

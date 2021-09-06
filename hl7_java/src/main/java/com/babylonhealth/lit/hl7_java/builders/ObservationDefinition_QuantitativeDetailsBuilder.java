@@ -79,6 +79,12 @@ public interface ObservationDefinition_QuantitativeDetailsBuilder {
       this.unit = Optional.of(unit);
       return this;
     }
+
+    public ObservationDefinition_QuantitativeDetailsBuilder.Impl withUnit(
+        @NonNull CodeableConceptBuilder unit) {
+      this.unit = Optional.of(unit.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -103,10 +109,22 @@ public interface ObservationDefinition_QuantitativeDetailsBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ObservationDefinition_QuantitativeDetailsBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param customaryUnit */
     public ObservationDefinition_QuantitativeDetailsBuilder.Impl withCustomaryUnit(
         @NonNull CodeableConcept customaryUnit) {
       this.customaryUnit = Optional.of(customaryUnit);
+      return this;
+    }
+
+    public ObservationDefinition_QuantitativeDetailsBuilder.Impl withCustomaryUnit(
+        @NonNull CodeableConceptBuilder customaryUnit) {
+      this.customaryUnit = Optional.of(customaryUnit.build());
       return this;
     }
     /** @param conversionFactor */
@@ -155,6 +173,13 @@ public interface ObservationDefinition_QuantitativeDetailsBuilder {
     public ObservationDefinition_QuantitativeDetailsBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ObservationDefinition_QuantitativeDetailsBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

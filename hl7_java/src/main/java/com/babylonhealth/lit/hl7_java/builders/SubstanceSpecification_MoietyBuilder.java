@@ -89,6 +89,12 @@ public interface SubstanceSpecification_MoietyBuilder {
       this.role = Optional.of(role);
       return this;
     }
+
+    public SubstanceSpecification_MoietyBuilder.Impl withRole(
+        @NonNull CodeableConceptBuilder role) {
+      this.role = Optional.of(role.build());
+      return this;
+    }
     /** @param name - Names applicable to this substance. */
     public SubstanceSpecification_MoietyBuilder.Impl withName(@NonNull String name) {
       this.name = Optional.of(name);
@@ -118,6 +124,12 @@ public interface SubstanceSpecification_MoietyBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SubstanceSpecification_MoietyBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param amount Field is a 'choice' field. Type should be one of Quantity, String. To pass the
      *     value in, wrap with one of the SubstanceSpecification_MoietyBuilder.amount static methods
@@ -132,16 +144,34 @@ public interface SubstanceSpecification_MoietyBuilder {
       this.identifier = Optional.of(identifier);
       return this;
     }
+
+    public SubstanceSpecification_MoietyBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
     /** @param stereochemistry */
     public SubstanceSpecification_MoietyBuilder.Impl withStereochemistry(
         @NonNull CodeableConcept stereochemistry) {
       this.stereochemistry = Optional.of(stereochemistry);
       return this;
     }
+
+    public SubstanceSpecification_MoietyBuilder.Impl withStereochemistry(
+        @NonNull CodeableConceptBuilder stereochemistry) {
+      this.stereochemistry = Optional.of(stereochemistry.build());
+      return this;
+    }
     /** @param opticalActivity */
     public SubstanceSpecification_MoietyBuilder.Impl withOpticalActivity(
         @NonNull CodeableConcept opticalActivity) {
       this.opticalActivity = Optional.of(opticalActivity);
+      return this;
+    }
+
+    public SubstanceSpecification_MoietyBuilder.Impl withOpticalActivity(
+        @NonNull CodeableConceptBuilder opticalActivity) {
+      this.opticalActivity = Optional.of(opticalActivity.build());
       return this;
     }
     /** @param molecularFormula */
@@ -184,6 +214,13 @@ public interface SubstanceSpecification_MoietyBuilder {
     public SubstanceSpecification_MoietyBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSpecification_MoietyBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -84,6 +84,11 @@ public interface FHIRList_EntryBuilder {
       this.flag = Optional.of(flag);
       return this;
     }
+
+    public FHIRList_EntryBuilder.Impl withFlag(@NonNull CodeableConceptBuilder flag) {
+      this.flag = Optional.of(flag.build());
+      return this;
+    }
     /** @param date - The date that the list was prepared. */
     public FHIRList_EntryBuilder.Impl withDate(@NonNull FHIRDateTime date) {
       this.date = Optional.of(date);
@@ -114,6 +119,11 @@ public interface FHIRList_EntryBuilder {
      */
     public FHIRList_EntryBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public FHIRList_EntryBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -150,6 +160,13 @@ public interface FHIRList_EntryBuilder {
     public FHIRList_EntryBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public FHIRList_EntryBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

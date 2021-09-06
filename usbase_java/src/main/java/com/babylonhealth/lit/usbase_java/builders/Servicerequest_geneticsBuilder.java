@@ -171,6 +171,11 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -182,12 +187,22 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /**
      * @param code - A code that identifies a particular service (i.e., procedure, diagnostic
      *     investigation, or panel of investigations) that have been requested.
      */
     public Servicerequest_geneticsBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /**
@@ -206,6 +221,11 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param basedOn - Plan/proposal/order fulfilled by this request. */
     public Servicerequest_geneticsBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
       this.basedOn = Arrays.asList(basedOn);
@@ -214,6 +234,11 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     /** @param basedOn - Plan/proposal/order fulfilled by this request. */
     public Servicerequest_geneticsBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -238,6 +263,11 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.replaces = Collections.unmodifiableCollection(replaces);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withReplaces(@NonNull ReferenceBuilder... replaces) {
+      this.replaces = Arrays.stream(replaces).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param category - A code that classifies the service for searching, sorting and display
      *     purposes (e.g. "Surgical Procedure").
@@ -253,6 +283,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     public Servicerequest_geneticsBuilder.Impl withCategory(
         @NonNull Collection<CodeableConcept> category) {
       this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -274,6 +310,11 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.specimen = Collections.unmodifiableCollection(specimen);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withSpecimen(@NonNull ReferenceBuilder... specimen) {
+      this.specimen = Arrays.stream(specimen).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param bodySite - Anatomic location where the procedure should be performed. This is the
      *     target site.
@@ -289,6 +330,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     public Servicerequest_geneticsBuilder.Impl withBodySite(
         @NonNull Collection<CodeableConcept> bodySite) {
       this.bodySite = Collections.unmodifiableCollection(bodySite);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withBodySite(
+        @NonNull CodeableConceptBuilder... bodySite) {
+      this.bodySite = Arrays.stream(bodySite).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -310,6 +357,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param extension - An Extension */
     public Servicerequest_geneticsBuilder.Impl withExtension(@NonNull Extension... extension) {
       this.extension = Arrays.asList(extension);
@@ -321,6 +374,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param encounter - An encounter that provides additional information about the healthcare
      *     context in which this request is made.
@@ -329,12 +388,22 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.encounter = Optional.of(encounter);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
     /**
      * @param requester - The individual who initiated the request and has responsibility for its
      *     activation.
      */
     public Servicerequest_geneticsBuilder.Impl withRequester(@NonNull Reference requester) {
       this.requester = Optional.of(requester);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withRequester(@NonNull ReferenceBuilder requester) {
+      this.requester = Optional.of(requester.build());
       return this;
     }
     /**
@@ -354,6 +423,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.performer = Collections.unmodifiableCollection(performer);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withPerformer(
+        @NonNull ReferenceBuilder... performer) {
+      this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param insurance - Insurance plans, coverage extensions, pre-authorizations and/or
      *     pre-determinations that may be needed for delivering the requested service.
@@ -371,6 +446,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.insurance = Collections.unmodifiableCollection(insurance);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withInsurance(
+        @NonNull ReferenceBuilder... insurance) {
+      this.insurance = Arrays.stream(insurance).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Identifiers assigned to this order instance by the orderer and/or the
      *     receiver and/or order fulfiller.
@@ -386,6 +467,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     public Servicerequest_geneticsBuilder.Impl withIdentifier(
         @NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param authoredOn - When the request transitioned to being actionable. */
@@ -413,6 +500,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withReasonCode(
+        @NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param requisition - A shared identifier common to all service requests that were authorized
      *     more or less simultaneously by a single author, representing the composite or group
@@ -420,6 +513,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
      */
     public Servicerequest_geneticsBuilder.Impl withRequisition(@NonNull Identifier requisition) {
       this.requisition = Optional.of(requisition);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withRequisition(
+        @NonNull IdentifierBuilder requisition) {
+      this.requisition = Optional.of(requisition.build());
       return this;
     }
     /**
@@ -442,6 +541,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     public Servicerequest_geneticsBuilder.Impl withOrderDetail(
         @NonNull Collection<CodeableConcept> orderDetail) {
       this.orderDetail = Collections.unmodifiableCollection(orderDetail);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withOrderDetail(
+        @NonNull CodeableConceptBuilder... orderDetail) {
+      this.orderDetail = Arrays.stream(orderDetail).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -491,6 +596,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.locationCode = Collections.unmodifiableCollection(locationCode);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withLocationCode(
+        @NonNull CodeableConceptBuilder... locationCode) {
+      this.locationCode = Arrays.stream(locationCode).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -515,6 +626,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     public Servicerequest_geneticsBuilder.Impl withPerformerType(
         @NonNull CodeableConcept performerType) {
       this.performerType = Optional.of(performerType);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withPerformerType(
+        @NonNull CodeableConceptBuilder performerType) {
+      this.performerType = Optional.of(performerType.build());
       return this;
     }
     /**
@@ -543,6 +660,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     public Servicerequest_geneticsBuilder.Impl withSupportingInfo(
         @NonNull Collection<Reference> supportingInfo) {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withSupportingInfo(
+        @NonNull ReferenceBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -585,6 +708,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param relevantHistory - Key events in the history of the request. */
     public Servicerequest_geneticsBuilder.Impl withRelevantHistory(
         @NonNull Reference... relevantHistory) {
@@ -595,6 +724,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     public Servicerequest_geneticsBuilder.Impl withRelevantHistory(
         @NonNull Collection<Reference> relevantHistory) {
       this.relevantHistory = Collections.unmodifiableCollection(relevantHistory);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withRelevantHistory(
+        @NonNull ReferenceBuilder... relevantHistory) {
+      this.relevantHistory = Arrays.stream(relevantHistory).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -633,6 +768,13 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Servicerequest_geneticsBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param locationReference - A reference to the the preferred location(s) where the procedure
      *     should actually happen. E.g. at home or nursing day care center.
@@ -649,6 +791,13 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     public Servicerequest_geneticsBuilder.Impl withLocationReference(
         @NonNull Collection<Reference> locationReference) {
       this.locationReference = Collections.unmodifiableCollection(locationReference);
+      return this;
+    }
+
+    public Servicerequest_geneticsBuilder.Impl withLocationReference(
+        @NonNull ReferenceBuilder... locationReference) {
+      this.locationReference =
+          Arrays.stream(locationReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**

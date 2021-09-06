@@ -101,6 +101,11 @@ public interface AccountBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public AccountBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -112,9 +117,19 @@ public interface AccountBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public AccountBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _type - Categorizes the account for reporting and searching purposes. */
     public AccountBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
+      return this;
+    }
+
+    public AccountBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
     /** @param name - Name used for the account when displaying it to humans in reports, etc. */
@@ -130,9 +145,19 @@ public interface AccountBuilder extends DomainResourceBuilder {
       this.owner = Optional.of(owner);
       return this;
     }
+
+    public AccountBuilder.Impl withOwner(@NonNull ReferenceBuilder owner) {
+      this.owner = Optional.of(owner.build());
+      return this;
+    }
     /** @param partOf - Reference to a parent Account. */
     public AccountBuilder.Impl withPartOf(@NonNull Reference partOf) {
       this.partOf = Optional.of(partOf);
+      return this;
+    }
+
+    public AccountBuilder.Impl withPartOf(@NonNull ReferenceBuilder partOf) {
+      this.partOf = Optional.of(partOf.build());
       return this;
     }
     /**
@@ -151,6 +176,11 @@ public interface AccountBuilder extends DomainResourceBuilder {
      */
     public AccountBuilder.Impl withSubject(@NonNull Collection<Reference> subject) {
       this.subject = Collections.unmodifiableCollection(subject);
+      return this;
+    }
+
+    public AccountBuilder.Impl withSubject(@NonNull ReferenceBuilder... subject) {
+      this.subject = Arrays.stream(subject).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -176,6 +206,11 @@ public interface AccountBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public AccountBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -198,6 +233,11 @@ public interface AccountBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public AccountBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param identifier - Unique identifier used to reference the account. Might or might not be
      *     intended for human use (e.g. credit card number).
@@ -212,6 +252,11 @@ public interface AccountBuilder extends DomainResourceBuilder {
      */
     public AccountBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public AccountBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -235,6 +280,11 @@ public interface AccountBuilder extends DomainResourceBuilder {
     /** @param servicePeriod - The date range of services associated with this account. */
     public AccountBuilder.Impl withServicePeriod(@NonNull Period servicePeriod) {
       this.servicePeriod = Optional.of(servicePeriod);
+      return this;
+    }
+
+    public AccountBuilder.Impl withServicePeriod(@NonNull PeriodBuilder servicePeriod) {
+      this.servicePeriod = Optional.of(servicePeriod.build());
       return this;
     }
     /**
@@ -272,6 +322,13 @@ public interface AccountBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public AccountBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param coverage - The party(s) that are responsible for covering the payment of this account,
      *     and what order should they be applied to the account.
@@ -288,6 +345,11 @@ public interface AccountBuilder extends DomainResourceBuilder {
       this.coverage = Collections.unmodifiableCollection(coverage);
       return this;
     }
+
+    public AccountBuilder.Impl withCoverage(@NonNull Account_CoverageBuilder... coverage) {
+      this.coverage = Arrays.stream(coverage).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param guarantor - The parties responsible for balancing the account if other payment options
      *     fall short.
@@ -302,6 +364,11 @@ public interface AccountBuilder extends DomainResourceBuilder {
      */
     public AccountBuilder.Impl withGuarantor(@NonNull Collection<Account.Guarantor> guarantor) {
       this.guarantor = Collections.unmodifiableCollection(guarantor);
+      return this;
+    }
+
+    public AccountBuilder.Impl withGuarantor(@NonNull Account_GuarantorBuilder... guarantor) {
+      this.guarantor = Arrays.stream(guarantor).map(e -> e.build()).collect(toList());
       return this;
     }
 

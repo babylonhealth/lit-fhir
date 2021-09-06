@@ -133,6 +133,12 @@ public interface ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ExplanationOfBenefit_BenefitBalance_FinancialBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. To
      *     pass the value in, wrap with one of the
@@ -177,6 +183,13 @@ public interface ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     public ExplanationOfBenefit_BenefitBalance_FinancialBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_BenefitBalance_FinancialBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

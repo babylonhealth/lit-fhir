@@ -153,6 +153,12 @@ public interface EvidenceVariable_CharacteristicBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public EvidenceVariable_CharacteristicBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param description - A free text natural language description of the evidence variable from a
      *     consumer's perspective.
@@ -174,6 +180,12 @@ public interface EvidenceVariable_CharacteristicBuilder {
       this.usageContext = Collections.unmodifiableCollection(usageContext);
       return this;
     }
+
+    public EvidenceVariable_CharacteristicBuilder.Impl withUsageContext(
+        @NonNull UsageContextBuilder... usageContext) {
+      this.usageContext = Arrays.stream(usageContext).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param groupMeasure */
     public EvidenceVariable_CharacteristicBuilder.Impl withGroupMeasure(
         @NonNull GROUP_MEASURE groupMeasure) {
@@ -184,6 +196,12 @@ public interface EvidenceVariable_CharacteristicBuilder {
     public EvidenceVariable_CharacteristicBuilder.Impl withTimeFromStart(
         @NonNull Duration timeFromStart) {
       this.timeFromStart = Optional.of(timeFromStart);
+      return this;
+    }
+
+    public EvidenceVariable_CharacteristicBuilder.Impl withTimeFromStart(
+        @NonNull DurationBuilder timeFromStart) {
+      this.timeFromStart = Optional.of(timeFromStart.build());
       return this;
     }
     /**
@@ -220,6 +238,13 @@ public interface EvidenceVariable_CharacteristicBuilder {
     public EvidenceVariable_CharacteristicBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public EvidenceVariable_CharacteristicBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**

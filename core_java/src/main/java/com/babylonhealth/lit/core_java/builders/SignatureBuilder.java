@@ -116,6 +116,11 @@ public interface SignatureBuilder extends ElementBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public SignatureBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param sigFormat - A mime type that indicates the technical format of the signature.
      *     Important mime types are application/signature+xml for X ML DigSig, application/jose for
@@ -131,6 +136,11 @@ public interface SignatureBuilder extends ElementBuilder {
      */
     public SignatureBuilder.Impl withOnBehalfOf(@NonNull Reference onBehalfOf) {
       this.onBehalfOf = Optional.of(onBehalfOf);
+      return this;
+    }
+
+    public SignatureBuilder.Impl withOnBehalfOf(@NonNull ReferenceBuilder onBehalfOf) {
+      this.onBehalfOf = Optional.of(onBehalfOf.build());
       return this;
     }
     /**

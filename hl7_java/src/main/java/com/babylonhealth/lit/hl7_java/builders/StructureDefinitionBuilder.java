@@ -165,6 +165,11 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public StructureDefinitionBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -174,6 +179,11 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
      */
     public StructureDefinitionBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public StructureDefinitionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -219,6 +229,11 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       this.contact = Collections.unmodifiableCollection(contact);
       return this;
     }
+
+    public StructureDefinitionBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param purpose - Explanation of why this structure definition is needed and why it has been
      *     designed as it has.
@@ -245,6 +260,11 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       this.keyword = Collections.unmodifiableCollection(keyword);
       return this;
     }
+
+    public StructureDefinitionBuilder.Impl withKeyword(@NonNull CodingBuilder... keyword) {
+      this.keyword = Arrays.stream(keyword).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public StructureDefinitionBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -268,6 +288,11 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public StructureDefinitionBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -288,6 +313,11 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
      */
     public StructureDefinitionBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public StructureDefinitionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -326,6 +356,12 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public StructureDefinitionBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -345,6 +381,12 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
     public StructureDefinitionBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public StructureDefinitionBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param derivation - How the type relates to the baseDefinition. */
@@ -395,6 +437,12 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
     public StructureDefinitionBuilder.Impl withJurisdiction(
         @NonNull Collection<CodeableConcept> jurisdiction) {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public StructureDefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -469,6 +517,13 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public StructureDefinitionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param mapping - An external specification that the content is mapped to. */
     public StructureDefinitionBuilder.Impl withMapping(
         @NonNull StructureDefinition.Mapping... mapping) {
@@ -479,6 +534,12 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
     public StructureDefinitionBuilder.Impl withMapping(
         @NonNull Collection<StructureDefinition.Mapping> mapping) {
       this.mapping = Collections.unmodifiableCollection(mapping);
+      return this;
+    }
+
+    public StructureDefinitionBuilder.Impl withMapping(
+        @NonNull StructureDefinition_MappingBuilder... mapping) {
+      this.mapping = Arrays.stream(mapping).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -499,6 +560,12 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       this.context = Collections.unmodifiableCollection(context);
       return this;
     }
+
+    public StructureDefinitionBuilder.Impl withContext(
+        @NonNull StructureDefinition_ContextBuilder... context) {
+      this.context = Arrays.stream(context).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param snapshot - A snapshot view is expressed in a standalone form that can be used and
      *     interpreted without considering the base StructureDefinition.
@@ -508,6 +575,12 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       this.snapshot = Optional.of(snapshot);
       return this;
     }
+
+    public StructureDefinitionBuilder.Impl withSnapshot(
+        @NonNull StructureDefinition_SnapshotBuilder snapshot) {
+      this.snapshot = Optional.of(snapshot.build());
+      return this;
+    }
     /**
      * @param differential - A differential view is expressed relative to the base
      *     StructureDefinition - a statement of differences that it applies.
@@ -515,6 +588,12 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
     public StructureDefinitionBuilder.Impl withDifferential(
         @NonNull StructureDefinition.Differential differential) {
       this.differential = Optional.of(differential);
+      return this;
+    }
+
+    public StructureDefinitionBuilder.Impl withDifferential(
+        @NonNull StructureDefinition_DifferentialBuilder differential) {
+      this.differential = Optional.of(differential.build());
       return this;
     }
 

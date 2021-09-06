@@ -91,6 +91,11 @@ public interface Encounter_LocationBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public Encounter_LocationBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -113,9 +118,20 @@ public interface Encounter_LocationBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Encounter_LocationBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param physicalType */
     public Encounter_LocationBuilder.Impl withPhysicalType(@NonNull CodeableConcept physicalType) {
       this.physicalType = Optional.of(physicalType);
+      return this;
+    }
+
+    public Encounter_LocationBuilder.Impl withPhysicalType(
+        @NonNull CodeableConceptBuilder physicalType) {
+      this.physicalType = Optional.of(physicalType.build());
       return this;
     }
     /**
@@ -152,6 +168,13 @@ public interface Encounter_LocationBuilder {
     public Encounter_LocationBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Encounter_LocationBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

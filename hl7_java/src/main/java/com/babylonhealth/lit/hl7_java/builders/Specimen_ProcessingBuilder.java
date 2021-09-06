@@ -99,6 +99,11 @@ public interface Specimen_ProcessingBuilder {
       this.additive = Collections.unmodifiableCollection(additive);
       return this;
     }
+
+    public Specimen_ProcessingBuilder.Impl withAdditive(@NonNull ReferenceBuilder... additive) {
+      this.additive = Arrays.stream(additive).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -121,9 +126,20 @@ public interface Specimen_ProcessingBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Specimen_ProcessingBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param procedure */
     public Specimen_ProcessingBuilder.Impl withProcedure(@NonNull CodeableConcept procedure) {
       this.procedure = Optional.of(procedure);
+      return this;
+    }
+
+    public Specimen_ProcessingBuilder.Impl withProcedure(
+        @NonNull CodeableConceptBuilder procedure) {
+      this.procedure = Optional.of(procedure.build());
       return this;
     }
     /** @param description */
@@ -165,6 +181,13 @@ public interface Specimen_ProcessingBuilder {
     public Specimen_ProcessingBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Specimen_ProcessingBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

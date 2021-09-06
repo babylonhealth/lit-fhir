@@ -82,9 +82,19 @@ public interface Composition_EventBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public Composition_EventBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param period */
     public Composition_EventBuilder.Impl withPeriod(@NonNull Period period) {
       this.period = Optional.of(period);
+      return this;
+    }
+
+    public Composition_EventBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
       return this;
     }
     /** @param detail */
@@ -95,6 +105,11 @@ public interface Composition_EventBuilder {
     /** @param detail */
     public Composition_EventBuilder.Impl withDetail(@NonNull Collection<Reference> detail) {
       this.detail = Collections.unmodifiableCollection(detail);
+      return this;
+    }
+
+    public Composition_EventBuilder.Impl withDetail(@NonNull ReferenceBuilder... detail) {
+      this.detail = Arrays.stream(detail).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -117,6 +132,11 @@ public interface Composition_EventBuilder {
      */
     public Composition_EventBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Composition_EventBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -153,6 +173,13 @@ public interface Composition_EventBuilder {
     public Composition_EventBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Composition_EventBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

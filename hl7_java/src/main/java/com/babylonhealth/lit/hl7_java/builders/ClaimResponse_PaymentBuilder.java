@@ -112,9 +112,19 @@ public interface ClaimResponse_PaymentBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public ClaimResponse_PaymentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param adjustment */
     public ClaimResponse_PaymentBuilder.Impl withAdjustment(@NonNull Money adjustment) {
       this.adjustment = Optional.of(adjustment);
+      return this;
+    }
+
+    public ClaimResponse_PaymentBuilder.Impl withAdjustment(@NonNull MoneyBuilder adjustment) {
+      this.adjustment = Optional.of(adjustment.build());
       return this;
     }
     /** @param identifier - A unique identifier assigned to this claim response. */
@@ -122,10 +132,21 @@ public interface ClaimResponse_PaymentBuilder {
       this.identifier = Optional.of(identifier);
       return this;
     }
+
+    public ClaimResponse_PaymentBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
     /** @param adjustmentReason */
     public ClaimResponse_PaymentBuilder.Impl withAdjustmentReason(
         @NonNull CodeableConcept adjustmentReason) {
       this.adjustmentReason = Optional.of(adjustmentReason);
+      return this;
+    }
+
+    public ClaimResponse_PaymentBuilder.Impl withAdjustmentReason(
+        @NonNull CodeableConceptBuilder adjustmentReason) {
+      this.adjustmentReason = Optional.of(adjustmentReason.build());
       return this;
     }
     /**
@@ -162,6 +183,13 @@ public interface ClaimResponse_PaymentBuilder {
     public ClaimResponse_PaymentBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ClaimResponse_PaymentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

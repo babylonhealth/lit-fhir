@@ -129,6 +129,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Ehrsrle_provenanceBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -138,6 +143,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
      */
     public Ehrsrle_provenanceBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Ehrsrle_provenanceBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -168,6 +178,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
       this.reason = Collections.unmodifiableCollection(reason);
       return this;
     }
+
+    public Ehrsrle_provenanceBuilder.Impl withReason(@NonNull CodeableConceptBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public Ehrsrle_provenanceBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -178,6 +193,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
       this.location = Optional.of(location);
       return this;
     }
+
+    public Ehrsrle_provenanceBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /**
      * @param activity - An activity is something that occurs over a period of time and acts upon or
      *     with entities; it may include consuming, processing, transforming, modifying, relocating,
@@ -185,6 +205,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
      */
     public Ehrsrle_provenanceBuilder.Impl withActivity(@NonNull CodeableConcept activity) {
       this.activity = Optional.of(activity);
+      return this;
+    }
+
+    public Ehrsrle_provenanceBuilder.Impl withActivity(@NonNull CodeableConceptBuilder activity) {
+      this.activity = Optional.of(activity.build());
       return this;
     }
     /**
@@ -203,6 +228,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
      */
     public Ehrsrle_provenanceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public Ehrsrle_provenanceBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -227,6 +257,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public Ehrsrle_provenanceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param signature - A digital signature on the target Reference(s). The signer should match a
      *     Provenance.agent. The purpose of the signature is indicated.
@@ -241,6 +276,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
      */
     public Ehrsrle_provenanceBuilder.Impl withSignature(@NonNull Collection<Signature> signature) {
       this.signature = Collections.unmodifiableCollection(signature);
+      return this;
+    }
+
+    public Ehrsrle_provenanceBuilder.Impl withSignature(@NonNull SignatureBuilder... signature) {
+      this.signature = Arrays.stream(signature).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -298,6 +338,13 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Ehrsrle_provenanceBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param entity - An entity used in this activity. */
     public Ehrsrle_provenanceBuilder.Impl withEntity(@NonNull Provenance.Entity... entity) {
       this.entity = Arrays.asList(entity);
@@ -307,6 +354,11 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
     public Ehrsrle_provenanceBuilder.Impl withEntity(
         @NonNull Collection<Provenance.Entity> entity) {
       this.entity = Collections.unmodifiableCollection(entity);
+      return this;
+    }
+
+    public Ehrsrle_provenanceBuilder.Impl withEntity(@NonNull Provenance_EntityBuilder... entity) {
+      this.entity = Arrays.stream(entity).map(e -> e.build()).collect(toList());
       return this;
     }
 

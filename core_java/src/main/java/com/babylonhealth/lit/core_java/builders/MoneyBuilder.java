@@ -100,6 +100,11 @@ public interface MoneyBuilder extends ElementBuilder {
       return this;
     }
 
+    public MoneyBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
     public Money build() {
       return new Money(
           OptionConverters.toScala(id),

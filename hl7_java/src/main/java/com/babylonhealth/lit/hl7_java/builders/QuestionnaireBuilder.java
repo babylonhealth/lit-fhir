@@ -126,6 +126,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public QuestionnaireBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -135,6 +140,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
      */
     public QuestionnaireBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public QuestionnaireBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -172,6 +182,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public QuestionnaireBuilder.Impl withCode(@NonNull CodingBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param title - A short, descriptive, user-friendly title for the questionnaire. */
     public QuestionnaireBuilder.Impl withTitle(@NonNull String title) {
       this.title = Optional.of(title);
@@ -202,6 +217,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
      */
     public QuestionnaireBuilder.Impl withContact(@NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public QuestionnaireBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -235,6 +255,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public QuestionnaireBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -255,6 +280,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
      */
     public QuestionnaireBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public QuestionnaireBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -292,6 +322,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public QuestionnaireBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -310,6 +345,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
      */
     public QuestionnaireBuilder.Impl withUseContext(@NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public QuestionnaireBuilder.Impl withUseContext(@NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param derivedFrom - The URL of a Questionnaire that this Questionnaire is based on. */
@@ -373,6 +413,12 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
       return this;
     }
+
+    public QuestionnaireBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param approvalDate - The date on which the resource content was approved by the publisher.
      *     Approval happens once when the content is officially approved for usage.
@@ -405,6 +451,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
      */
     public QuestionnaireBuilder.Impl withEffectivePeriod(@NonNull Period effectivePeriod) {
       this.effectivePeriod = Optional.of(effectivePeriod);
+      return this;
+    }
+
+    public QuestionnaireBuilder.Impl withEffectivePeriod(@NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
       return this;
     }
     /**
@@ -443,6 +494,13 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public QuestionnaireBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param item - A particular question, question grouping or display text that is part of the
      *     questionnaire.
@@ -457,6 +515,11 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
      */
     public QuestionnaireBuilder.Impl withItem(@NonNull Collection<Questionnaire.Item> item) {
       this.item = Collections.unmodifiableCollection(item);
+      return this;
+    }
+
+    public QuestionnaireBuilder.Impl withItem(@NonNull Questionnaire_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
       return this;
     }
 

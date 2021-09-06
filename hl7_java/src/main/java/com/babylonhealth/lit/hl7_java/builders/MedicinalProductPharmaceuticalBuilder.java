@@ -110,6 +110,11 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -121,6 +126,11 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
       this.text = Optional.of(text);
       return this;
     }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param device - Accompanying device. */
     public MedicinalProductPharmaceuticalBuilder.Impl withDevice(@NonNull Reference... device) {
       this.device = Arrays.asList(device);
@@ -130,6 +140,12 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
     public MedicinalProductPharmaceuticalBuilder.Impl withDevice(
         @NonNull Collection<Reference> device) {
       this.device = Collections.unmodifiableCollection(device);
+      return this;
+    }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withDevice(
+        @NonNull ReferenceBuilder... device) {
+      this.device = Arrays.stream(device).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -157,6 +173,12 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withContained(
+        @NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -181,6 +203,12 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param identifier - An identifier for the pharmaceutical medicinal product. */
     public MedicinalProductPharmaceuticalBuilder.Impl withIdentifier(
         @NonNull Identifier... identifier) {
@@ -193,6 +221,12 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param ingredient - Ingredient. */
     public MedicinalProductPharmaceuticalBuilder.Impl withIngredient(
         @NonNull Reference... ingredient) {
@@ -203,6 +237,12 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
     public MedicinalProductPharmaceuticalBuilder.Impl withIngredient(
         @NonNull Collection<Reference> ingredient) {
       this.ingredient = Collections.unmodifiableCollection(ingredient);
+      return this;
+    }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withIngredient(
+        @NonNull ReferenceBuilder... ingredient) {
+      this.ingredient = Arrays.stream(ingredient).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -252,10 +292,23 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param unitOfPresentation - Todo. */
     public MedicinalProductPharmaceuticalBuilder.Impl withUnitOfPresentation(
         @NonNull CodeableConcept unitOfPresentation) {
       this.unitOfPresentation = Optional.of(unitOfPresentation);
+      return this;
+    }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withUnitOfPresentation(
+        @NonNull CodeableConceptBuilder unitOfPresentation) {
+      this.unitOfPresentation = Optional.of(unitOfPresentation.build());
       return this;
     }
     /** @param characteristics - Characteristics e.g. a products onset of action. */
@@ -268,6 +321,12 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
     public MedicinalProductPharmaceuticalBuilder.Impl withCharacteristics(
         @NonNull Collection<MedicinalProductPharmaceutical.Characteristics> characteristics) {
       this.characteristics = Collections.unmodifiableCollection(characteristics);
+      return this;
+    }
+
+    public MedicinalProductPharmaceuticalBuilder.Impl withCharacteristics(
+        @NonNull MedicinalProductPharmaceutical_CharacteristicsBuilder... characteristics) {
+      this.characteristics = Arrays.stream(characteristics).map(e -> e.build()).collect(toList());
       return this;
     }
 

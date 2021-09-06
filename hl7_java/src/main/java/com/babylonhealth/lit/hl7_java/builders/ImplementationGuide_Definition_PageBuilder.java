@@ -109,6 +109,12 @@ public interface ImplementationGuide_Definition_PageBuilder {
       this.page = Collections.unmodifiableCollection(page);
       return this;
     }
+
+    public ImplementationGuide_Definition_PageBuilder.Impl withPage(
+        @NonNull ImplementationGuide_Definition_PageBuilder... page) {
+      this.page = Arrays.stream(page).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -131,6 +137,12 @@ public interface ImplementationGuide_Definition_PageBuilder {
     public ImplementationGuide_Definition_PageBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ImplementationGuide_Definition_PageBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -167,6 +179,13 @@ public interface ImplementationGuide_Definition_PageBuilder {
     public ImplementationGuide_Definition_PageBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ImplementationGuide_Definition_PageBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

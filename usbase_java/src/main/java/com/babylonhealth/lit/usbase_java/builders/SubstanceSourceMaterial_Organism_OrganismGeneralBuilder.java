@@ -82,10 +82,22 @@ public interface SubstanceSourceMaterial_Organism_OrganismGeneralBuilder {
       this._class = Optional.of(_class);
       return this;
     }
+
+    public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withClass(
+        @NonNull CodeableConceptBuilder _class) {
+      this._class = Optional.of(_class.build());
+      return this;
+    }
     /** @param order */
     public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withOrder(
         @NonNull CodeableConcept order) {
       this.order = Optional.of(order);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withOrder(
+        @NonNull CodeableConceptBuilder order) {
+      this.order = Optional.of(order.build());
       return this;
     }
     /** @param phylum */
@@ -94,10 +106,22 @@ public interface SubstanceSourceMaterial_Organism_OrganismGeneralBuilder {
       this.phylum = Optional.of(phylum);
       return this;
     }
+
+    public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withPhylum(
+        @NonNull CodeableConceptBuilder phylum) {
+      this.phylum = Optional.of(phylum.build());
+      return this;
+    }
     /** @param kingdom */
     public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withKingdom(
         @NonNull CodeableConcept kingdom) {
       this.kingdom = Optional.of(kingdom);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withKingdom(
+        @NonNull CodeableConceptBuilder kingdom) {
+      this.kingdom = Optional.of(kingdom.build());
       return this;
     }
     /**
@@ -122,6 +146,12 @@ public interface SubstanceSourceMaterial_Organism_OrganismGeneralBuilder {
     public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withExtension(
         @NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -158,6 +188,13 @@ public interface SubstanceSourceMaterial_Organism_OrganismGeneralBuilder {
     public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withModifierExtension(
         @NonNull Collection<Extension> modifierExtension) {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public SubstanceSourceMaterial_Organism_OrganismGeneralBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -105,6 +105,11 @@ public interface ContactPointBuilder extends ElementBuilder {
       this.period = Optional.of(period);
       return this;
     }
+
+    public ContactPointBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the element. To make the use of extensions safe and manageable, there
@@ -125,6 +130,11 @@ public interface ContactPointBuilder extends ElementBuilder {
      */
     public ContactPointBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ContactPointBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
 

@@ -89,6 +89,11 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public SubstancePolymerBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -100,9 +105,19 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public SubstancePolymerBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param _class - Todo. */
     public SubstancePolymerBuilder.Impl withClass(@NonNull CodeableConcept _class) {
       this._class = Optional.of(_class);
+      return this;
+    }
+
+    public SubstancePolymerBuilder.Impl withClass(@NonNull CodeableConceptBuilder _class) {
+      this._class = Optional.of(_class.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -113,6 +128,11 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
     /** @param geometry - Todo. */
     public SubstancePolymerBuilder.Impl withGeometry(@NonNull CodeableConcept geometry) {
       this.geometry = Optional.of(geometry);
+      return this;
+    }
+
+    public SubstancePolymerBuilder.Impl withGeometry(@NonNull CodeableConceptBuilder geometry) {
+      this.geometry = Optional.of(geometry.build());
       return this;
     }
     /**
@@ -131,6 +151,11 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
      */
     public SubstancePolymerBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public SubstancePolymerBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -153,6 +178,11 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
      */
     public SubstancePolymerBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public SubstancePolymerBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param modification - Todo. */
@@ -211,6 +241,13 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public SubstancePolymerBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param copolymerConnectivity - Todo. */
     public SubstancePolymerBuilder.Impl withCopolymerConnectivity(
         @NonNull CodeableConcept... copolymerConnectivity) {
@@ -221,6 +258,13 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
     public SubstancePolymerBuilder.Impl withCopolymerConnectivity(
         @NonNull Collection<CodeableConcept> copolymerConnectivity) {
       this.copolymerConnectivity = Collections.unmodifiableCollection(copolymerConnectivity);
+      return this;
+    }
+
+    public SubstancePolymerBuilder.Impl withCopolymerConnectivity(
+        @NonNull CodeableConceptBuilder... copolymerConnectivity) {
+      this.copolymerConnectivity =
+          Arrays.stream(copolymerConnectivity).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param monomerSet - Todo. */
@@ -235,6 +279,12 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       this.monomerSet = Collections.unmodifiableCollection(monomerSet);
       return this;
     }
+
+    public SubstancePolymerBuilder.Impl withMonomerSet(
+        @NonNull SubstancePolymer_MonomerSetBuilder... monomerSet) {
+      this.monomerSet = Arrays.stream(monomerSet).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param repeat - Todo. */
     public SubstancePolymerBuilder.Impl withRepeat(@NonNull SubstancePolymer.Repeat... repeat) {
       this.repeat = Arrays.asList(repeat);
@@ -244,6 +294,12 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
     public SubstancePolymerBuilder.Impl withRepeat(
         @NonNull Collection<SubstancePolymer.Repeat> repeat) {
       this.repeat = Collections.unmodifiableCollection(repeat);
+      return this;
+    }
+
+    public SubstancePolymerBuilder.Impl withRepeat(
+        @NonNull SubstancePolymer_RepeatBuilder... repeat) {
+      this.repeat = Arrays.stream(repeat).map(e -> e.build()).collect(toList());
       return this;
     }
 

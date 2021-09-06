@@ -133,6 +133,11 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public Cqf_questionnaireBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -142,6 +147,11 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
      */
     public Cqf_questionnaireBuilder.Impl withText(@NonNull Narrative text) {
       this.text = Optional.of(text);
+      return this;
+    }
+
+    public Cqf_questionnaireBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
       return this;
     }
     /**
@@ -179,6 +189,11 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
       this.code = Collections.unmodifiableCollection(code);
       return this;
     }
+
+    public Cqf_questionnaireBuilder.Impl withCode(@NonNull CodingBuilder... code) {
+      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param title - A short, descriptive, user-friendly title for the questionnaire. */
     public Cqf_questionnaireBuilder.Impl withTitle(@NonNull String title) {
       this.title = Optional.of(title);
@@ -209,6 +224,11 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
      */
     public Cqf_questionnaireBuilder.Impl withContact(@NonNull Collection<ContactDetail> contact) {
       this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public Cqf_questionnaireBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -242,6 +262,11 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public Cqf_questionnaireBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param extension - An Extension */
     public Cqf_questionnaireBuilder.Impl withExtension(@NonNull Extension... extension) {
       this.extension = Arrays.asList(extension);
@@ -250,6 +275,11 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
     /** @param extension - An Extension */
     public Cqf_questionnaireBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
       this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Cqf_questionnaireBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -288,6 +318,11 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public Cqf_questionnaireBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param useContext - The content was developed with a focus and intent of supporting the
      *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
@@ -307,6 +342,12 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
     public Cqf_questionnaireBuilder.Impl withUseContext(
         @NonNull Collection<UsageContext> useContext) {
       this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public Cqf_questionnaireBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param derivedFrom - The URL of a Questionnaire that this Questionnaire is based on. */
@@ -371,6 +412,12 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
       this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
       return this;
     }
+
+    public Cqf_questionnaireBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param approvalDate - The date on which the resource content was approved by the publisher.
      *     Approval happens once when the content is officially approved for usage.
@@ -403,6 +450,12 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
      */
     public Cqf_questionnaireBuilder.Impl withEffectivePeriod(@NonNull Period effectivePeriod) {
       this.effectivePeriod = Optional.of(effectivePeriod);
+      return this;
+    }
+
+    public Cqf_questionnaireBuilder.Impl withEffectivePeriod(
+        @NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
       return this;
     }
     /**
@@ -441,6 +494,13 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public Cqf_questionnaireBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param item - A particular question, question grouping or display text that is part of the
      *     questionnaire.
@@ -455,6 +515,11 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
      */
     public Cqf_questionnaireBuilder.Impl withItem(@NonNull Collection<Questionnaire.Item> item) {
       this.item = Collections.unmodifiableCollection(item);
+      return this;
+    }
+
+    public Cqf_questionnaireBuilder.Impl withItem(@NonNull Questionnaire_ItemBuilder... item) {
+      this.item = Arrays.stream(item).map(e -> e.build()).collect(toList());
       return this;
     }
 

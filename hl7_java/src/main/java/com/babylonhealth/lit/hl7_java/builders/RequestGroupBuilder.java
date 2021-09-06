@@ -114,6 +114,11 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.meta = Optional.of(meta);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
     /**
      * @param text - A human-readable narrative that contains a summary of the resource and can be
      *     used to represent the content of the resource to a human. The narrative need not encode
@@ -125,9 +130,19 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
     /** @param code - A code that identifies what the overall request group is. */
     public RequestGroupBuilder.Impl withCode(@NonNull CodeableConcept code) {
       this.code = Optional.of(code);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /**
@@ -144,9 +159,19 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.note = Collections.unmodifiableCollection(note);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param author - Provides a reference to the author of the request group. */
     public RequestGroupBuilder.Impl withAuthor(@NonNull Reference author) {
       this.author = Optional.of(author);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
       return this;
     }
     /**
@@ -165,9 +190,19 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param subject - The subject for which the request group was created. */
     public RequestGroupBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -189,6 +224,11 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
      */
     public RequestGroupBuilder.Impl withReplaces(@NonNull Collection<Reference> replaces) {
       this.replaces = Collections.unmodifiableCollection(replaces);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withReplaces(@NonNull ReferenceBuilder... replaces) {
+      this.replaces = Arrays.stream(replaces).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -217,6 +257,11 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.contained = Collections.unmodifiableCollection(contained);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -239,9 +284,19 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param encounter - Describes the context of the request group, if any. */
     public RequestGroupBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -260,6 +315,11 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param authoredOn - Indicates when the request group was created. */
     public RequestGroupBuilder.Impl withAuthoredOn(@NonNull FHIRDateTime authoredOn) {
       this.authoredOn = Optional.of(authoredOn);
@@ -274,6 +334,11 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     public RequestGroupBuilder.Impl withReasonCode(
         @NonNull Collection<CodeableConcept> reasonCode) {
       this.reasonCode = Collections.unmodifiableCollection(reasonCode);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
+      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -312,6 +377,12 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.groupIdentifier = Optional.of(groupIdentifier);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withGroupIdentifier(
+        @NonNull IdentifierBuilder groupIdentifier) {
+      this.groupIdentifier = Optional.of(groupIdentifier.build());
+      return this;
+    }
     /**
      * @param reasonReference - Indicates another resource whose existence justifies this request
      *     group.
@@ -327,6 +398,12 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     public RequestGroupBuilder.Impl withReasonReference(
         @NonNull Collection<Reference> reasonReference) {
       this.reasonReference = Collections.unmodifiableCollection(reasonReference);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withReasonReference(
+        @NonNull ReferenceBuilder... reasonReference) {
+      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -364,6 +441,13 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public RequestGroupBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param instantiatesCanonical - A canonical URL referencing a FHIR-defined protocol,
      *     guideline, orderset or other definition that is adhered to in whole or in part by this
@@ -392,6 +476,11 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     /** @param action - The actions, if any, produced by the evaluation of the artifact. */
     public RequestGroupBuilder.Impl withAction(@NonNull Collection<RequestGroup.Action> action) {
       this.action = Collections.unmodifiableCollection(action);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withAction(@NonNull RequestGroup_ActionBuilder... action) {
+      this.action = Arrays.stream(action).map(e -> e.build()).collect(toList());
       return this;
     }
 

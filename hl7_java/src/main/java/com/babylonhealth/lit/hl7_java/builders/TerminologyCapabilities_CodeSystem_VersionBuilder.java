@@ -129,6 +129,12 @@ public interface TerminologyCapabilities_CodeSystem_VersionBuilder {
       this.extension = Collections.unmodifiableCollection(extension);
       return this;
     }
+
+    public TerminologyCapabilities_CodeSystem_VersionBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param isDefault */
     public TerminologyCapabilities_CodeSystem_VersionBuilder.Impl withIsDefault(
         @NonNull Boolean isDefault) {
@@ -177,6 +183,13 @@ public interface TerminologyCapabilities_CodeSystem_VersionBuilder {
       this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
       return this;
     }
+
+    public TerminologyCapabilities_CodeSystem_VersionBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param filter */
     public TerminologyCapabilities_CodeSystem_VersionBuilder.Impl withFilter(
         @NonNull TerminologyCapabilities$CodeSystem$Version$Filter... filter) {
@@ -187,6 +200,12 @@ public interface TerminologyCapabilities_CodeSystem_VersionBuilder {
     public TerminologyCapabilities_CodeSystem_VersionBuilder.Impl withFilter(
         @NonNull Collection<TerminologyCapabilities$CodeSystem$Version$Filter> filter) {
       this.filter = Collections.unmodifiableCollection(filter);
+      return this;
+    }
+
+    public TerminologyCapabilities_CodeSystem_VersionBuilder.Impl withFilter(
+        @NonNull TerminologyCapabilities_CodeSystem_Version_FilterBuilder... filter) {
+      this.filter = Arrays.stream(filter).map(e -> e.build()).collect(toList());
       return this;
     }
 
