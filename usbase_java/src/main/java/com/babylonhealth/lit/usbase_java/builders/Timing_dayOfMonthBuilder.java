@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Timing_dayOfMonthBuilder {
-  private Optional<String> id = Optional.empty();
-  private Integer value;
+public interface Timing_dayOfMonthBuilder extends ExtensionBuilder {
+  public Timing_dayOfMonth build();
 
-  /**
-   * Required fields for {@link Timing_dayOfMonth}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Timing_dayOfMonthBuilder(Integer value) {
-    this.value = value;
+  public static Impl init(Integer value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Timing_dayOfMonthBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(Integer value) {
+    return new Impl(value);
   }
 
-  public Timing_dayOfMonth build() {
-    return new Timing_dayOfMonth(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Timing_dayOfMonthBuilder {
+    private Optional<String> id = Optional.empty();
+    private Integer value;
+
+    /**
+     * Required fields for {@link Timing_dayOfMonth}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Integer value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Timing_dayOfMonthBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Timing_dayOfMonth build() {
+      return new Timing_dayOfMonth(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

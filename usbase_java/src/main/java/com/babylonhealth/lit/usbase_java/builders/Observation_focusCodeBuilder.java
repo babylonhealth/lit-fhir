@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Observation_focusCodeBuilder {
-  private Optional<String> id = Optional.empty();
-  private CodeableConcept value;
+public interface Observation_focusCodeBuilder extends ExtensionBuilder {
+  public Observation_focusCode build();
 
-  /**
-   * Required fields for {@link Observation_focusCode}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Observation_focusCodeBuilder(CodeableConcept value) {
-    this.value = value;
+  public static Impl init(CodeableConcept value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Observation_focusCodeBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Observation_focusCode build() {
-    return new Observation_focusCode(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Observation_focusCodeBuilder {
+    private Optional<String> id = Optional.empty();
+    private CodeableConcept value;
+
+    /**
+     * Required fields for {@link Observation_focusCode}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(CodeableConcept value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Observation_focusCodeBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Observation_focusCode build() {
+      return new Observation_focusCode(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

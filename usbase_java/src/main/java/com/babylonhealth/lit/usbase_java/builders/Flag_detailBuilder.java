@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Flag_detailBuilder {
-  private Optional<String> id = Optional.empty();
-  private Reference value;
+public interface Flag_detailBuilder extends ExtensionBuilder {
+  public Flag_detail build();
 
-  /**
-   * Required fields for {@link Flag_detail}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Flag_detailBuilder(Reference value) {
-    this.value = value;
+  public static Impl init(Reference value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Flag_detailBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Flag_detail build() {
-    return new Flag_detail(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Flag_detailBuilder {
+    private Optional<String> id = Optional.empty();
+    private Reference value;
+
+    /**
+     * Required fields for {@link Flag_detail}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Reference value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Flag_detailBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Flag_detail build() {
+      return new Flag_detail(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

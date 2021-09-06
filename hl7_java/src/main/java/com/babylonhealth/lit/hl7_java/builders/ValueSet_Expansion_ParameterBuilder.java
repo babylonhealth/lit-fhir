@@ -42,21 +42,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class ValueSet_Expansion_ParameterBuilder {
-  private Optional<String> id = Optional.empty();
-  private String name;
-  private Optional<Choice_1427970408> value = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface ValueSet_Expansion_ParameterBuilder {
+  public ValueSet$Expansion$Parameter build();
 
-  /**
-   * Required fields for {@link ValueSet$Expansion$Parameter}
-   *
-   * @param name - A natural language name identifying the value set. This name should be usable as
-   *     an identifier for the module by machine processing applications such as code generation.
-   */
-  public ValueSet_Expansion_ParameterBuilder(String name) {
-    this.name = name;
+  public static Impl init(String name) {
+    return new Impl(name);
+  }
+
+  public static Impl builder(String name) {
+    return new Impl(name);
   }
 
   public static Choice_1427970408 value(BigDecimal b) {
@@ -87,88 +81,122 @@ public class ValueSet_Expansion_ParameterBuilder {
     return Choice_1427970408.Choice_1427970408UriStr(s);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public ValueSet_Expansion_ParameterBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param value Field is a 'choice' field. Type should be one of BigDecimal, Boolean, String,
-   *     FHIRDateTime, Integer. To pass the value in, wrap with one of the
-   *     ValueSet_Expansion_ParameterBuilder.value static methods
-   */
-  public ValueSet_Expansion_ParameterBuilder withValue(@NonNull Choice_1427970408 value) {
-    this.value = Optional.of(value);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ValueSet_Expansion_ParameterBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ValueSet_Expansion_ParameterBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public ValueSet_Expansion_ParameterBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public ValueSet_Expansion_ParameterBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements ValueSet_Expansion_ParameterBuilder {
+    private Optional<String> id = Optional.empty();
+    private String name;
+    private Optional<Choice_1427970408> value = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public ValueSet$Expansion$Parameter build() {
-    return new ValueSet$Expansion$Parameter(
-        OptionConverters.toScala(id),
-        name,
-        (Option) OptionConverters.toScala(value),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link ValueSet$Expansion$Parameter}
+     *
+     * @param name - A natural language name identifying the value set. This name should be usable
+     *     as an identifier for the module by machine processing applications such as code
+     *     generation.
+     */
+    public Impl(String name) {
+      this.name = name;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public ValueSet_Expansion_ParameterBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param value Field is a 'choice' field. Type should be one of BigDecimal, Boolean, String,
+     *     FHIRDateTime, Integer. To pass the value in, wrap with one of the
+     *     ValueSet_Expansion_ParameterBuilder.value static methods
+     */
+    public ValueSet_Expansion_ParameterBuilder.Impl withValue(@NonNull Choice_1427970408 value) {
+      this.value = Optional.of(value);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public ValueSet_Expansion_ParameterBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public ValueSet_Expansion_ParameterBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ValueSet_Expansion_ParameterBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public ValueSet_Expansion_ParameterBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public ValueSet_Expansion_ParameterBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ValueSet_Expansion_ParameterBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
+    public ValueSet$Expansion$Parameter build() {
+      return new ValueSet$Expansion$Parameter(
+          OptionConverters.toScala(id),
+          name,
+          (Option) OptionConverters.toScala(value),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

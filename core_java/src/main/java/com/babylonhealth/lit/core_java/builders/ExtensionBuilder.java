@@ -39,19 +39,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class ExtensionBuilder {
-  private Optional<String> id = Optional.empty();
-  private String url;
-  private Optional<Choice_1349125893> value = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
+public interface ExtensionBuilder extends ElementBuilder {
+  public Extension build();
 
-  /**
-   * Required fields for {@link Extension}
-   *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
-   */
-  public ExtensionBuilder(String url) {
-    this.url = url;
+  public static Impl init(String url) {
+    return new Impl(url);
+  }
+
+  public static Impl builder(String url) {
+    return new Impl(url);
   }
 
   public static Choice_1349125893 value(Address a) {
@@ -254,58 +250,79 @@ public class ExtensionBuilder {
     return Choice_1349125893.Choice_1349125893UrlStr(s);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public ExtensionBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](extensibility.html) for a list). Field is a 'choice' field. Type should be
-   *     one of Address, Age, Annotation, Attachment, byte[], BigDecimal, Boolean, String,
-   *     CodeableConcept, Coding, ContactDetail, ContactPoint, Contributor, Count, DataRequirement,
-   *     Distance, Dosage, Duration, Expression, FHIRDate, FHIRDateTime, HumanName, Identifier,
-   *     Integer, LocalTime, Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio,
-   *     Reference, RelatedArtifact, SampledData, Signature, Timing, TriggerDefinition, UUID,
-   *     UsageContext, ZonedDateTime. To pass the value in, wrap with one of the
-   *     ExtensionBuilder.value static methods
-   */
-  public ExtensionBuilder withValue(@NonNull Choice_1349125893 value) {
-    this.value = Optional.of(value);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ExtensionBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ExtensionBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
+  public class Impl implements ExtensionBuilder {
+    private Optional<String> id = Optional.empty();
+    private String url;
+    private Optional<Choice_1349125893> value = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
 
-  public Extension build() {
-    return new Extension(
-        OptionConverters.toScala(id),
-        url,
-        (Option) OptionConverters.toScala(value),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Extension}
+     *
+     * @param url - Source of the definition for the extension code - a logical name or a URL.
+     */
+    public Impl(String url) {
+      this.url = url;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public ExtensionBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](extensibility.html) for a list). Field is a 'choice' field. Type should
+     *     be one of Address, Age, Annotation, Attachment, byte[], BigDecimal, Boolean, String,
+     *     CodeableConcept, Coding, ContactDetail, ContactPoint, Contributor, Count,
+     *     DataRequirement, Distance, Dosage, Duration, Expression, FHIRDate, FHIRDateTime,
+     *     HumanName, Identifier, Integer, LocalTime, Meta, Money, ParameterDefinition, Period,
+     *     Quantity, Range, Ratio, Reference, RelatedArtifact, SampledData, Signature, Timing,
+     *     TriggerDefinition, UUID, UsageContext, ZonedDateTime. To pass the value in, wrap with one
+     *     of the ExtensionBuilder.value static methods
+     */
+    public ExtensionBuilder.Impl withValue(@NonNull Choice_1349125893 value) {
+      this.value = Optional.of(value);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public ExtensionBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public ExtensionBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExtensionBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
+    public Extension build() {
+      return new Extension(
+          OptionConverters.toScala(id),
+          url,
+          (Option) OptionConverters.toScala(value),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

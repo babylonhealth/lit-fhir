@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Elementdefinition_equivalenceBuilder {
-  private Optional<String> id = Optional.empty();
-  private CONCEPT_MAP_EQUIVALENCE value;
+public interface Elementdefinition_equivalenceBuilder extends ExtensionBuilder {
+  public Elementdefinition_equivalence build();
 
-  /**
-   * Required fields for {@link Elementdefinition_equivalence}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Elementdefinition_equivalenceBuilder(CONCEPT_MAP_EQUIVALENCE value) {
-    this.value = value;
+  public static Impl init(CONCEPT_MAP_EQUIVALENCE value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Elementdefinition_equivalenceBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(CONCEPT_MAP_EQUIVALENCE value) {
+    return new Impl(value);
   }
 
-  public Elementdefinition_equivalence build() {
-    return new Elementdefinition_equivalence(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Elementdefinition_equivalenceBuilder {
+    private Optional<String> id = Optional.empty();
+    private CONCEPT_MAP_EQUIVALENCE value;
+
+    /**
+     * Required fields for {@link Elementdefinition_equivalence}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(CONCEPT_MAP_EQUIVALENCE value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Elementdefinition_equivalenceBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Elementdefinition_equivalence build() {
+      return new Elementdefinition_equivalence(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

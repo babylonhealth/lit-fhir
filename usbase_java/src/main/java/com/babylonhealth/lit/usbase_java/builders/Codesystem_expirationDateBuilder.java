@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Codesystem_expirationDateBuilder {
-  private Optional<String> id = Optional.empty();
-  private FHIRDate value;
+public interface Codesystem_expirationDateBuilder extends ExtensionBuilder {
+  public Codesystem_expirationDate build();
 
-  /**
-   * Required fields for {@link Codesystem_expirationDate}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Codesystem_expirationDateBuilder(FHIRDate value) {
-    this.value = value;
+  public static Impl init(FHIRDate value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Codesystem_expirationDateBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(FHIRDate value) {
+    return new Impl(value);
   }
 
-  public Codesystem_expirationDate build() {
-    return new Codesystem_expirationDate(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Codesystem_expirationDateBuilder {
+    private Optional<String> id = Optional.empty();
+    private FHIRDate value;
+
+    /**
+     * Required fields for {@link Codesystem_expirationDate}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(FHIRDate value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Codesystem_expirationDateBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Codesystem_expirationDate build() {
+      return new Codesystem_expirationDate(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

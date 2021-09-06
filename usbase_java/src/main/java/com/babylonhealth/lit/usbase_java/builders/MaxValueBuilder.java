@@ -45,21 +45,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class MaxValueBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice00315627715 value;
+public interface MaxValueBuilder extends ExtensionBuilder {
+  public MaxValue build();
 
-  /**
-   * Required fields for {@link MaxValue}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime,
-   *     ZonedDateTime. To pass the value in, wrap with one of the MaxValueBuilder.value static
-   *     methods
-   */
-  public MaxValueBuilder(@NonNull Choice00315627715 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice00315627715 value) {
+    return new Impl(value);
+  }
+
+  public static Impl builder(@NonNull Choice00315627715 value) {
+    return new Impl(value);
   }
 
   public static Choice00315627715 value(BigDecimal b) {
@@ -86,16 +80,34 @@ public class MaxValueBuilder {
     return new Choice00315627715(z);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public MaxValueBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements MaxValueBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice00315627715 value;
 
-  public MaxValue build() {
-    return new MaxValue(OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link MaxValue}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime,
+     *     ZonedDateTime. To pass the value in, wrap with one of the MaxValueBuilder.value static
+     *     methods
+     */
+    public Impl(@NonNull Choice00315627715 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public MaxValueBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public MaxValue build() {
+      return new MaxValue(OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    }
   }
 }

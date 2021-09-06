@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Practitionerrole_primaryIndBuilder {
-  private Optional<String> id = Optional.empty();
-  private Boolean value;
+public interface Practitionerrole_primaryIndBuilder extends ExtensionBuilder {
+  public Practitionerrole_primaryInd build();
 
-  /**
-   * Required fields for {@link Practitionerrole_primaryInd}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Practitionerrole_primaryIndBuilder(Boolean value) {
-    this.value = value;
+  public static Impl init(Boolean value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Practitionerrole_primaryIndBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
   }
 
-  public Practitionerrole_primaryInd build() {
-    return new Practitionerrole_primaryInd(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Practitionerrole_primaryIndBuilder {
+    private Optional<String> id = Optional.empty();
+    private Boolean value;
+
+    /**
+     * Required fields for {@link Practitionerrole_primaryInd}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Boolean value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Practitionerrole_primaryIndBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Practitionerrole_primaryInd build() {
+      return new Practitionerrole_primaryInd(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Structuredefinition_normative_versionBuilder {
-  private Optional<String> id = Optional.empty();
-  private FHIR_VERSION value;
+public interface Structuredefinition_normative_versionBuilder extends ExtensionBuilder {
+  public Structuredefinition_normative_version build();
 
-  /**
-   * Required fields for {@link Structuredefinition_normative_version}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Structuredefinition_normative_versionBuilder(FHIR_VERSION value) {
-    this.value = value;
+  public static Impl init(FHIR_VERSION value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Structuredefinition_normative_versionBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(FHIR_VERSION value) {
+    return new Impl(value);
   }
 
-  public Structuredefinition_normative_version build() {
-    return new Structuredefinition_normative_version(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Structuredefinition_normative_versionBuilder {
+    private Optional<String> id = Optional.empty();
+    private FHIR_VERSION value;
+
+    /**
+     * Required fields for {@link Structuredefinition_normative_version}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(FHIR_VERSION value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Structuredefinition_normative_versionBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Structuredefinition_normative_version build() {
+      return new Structuredefinition_normative_version(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

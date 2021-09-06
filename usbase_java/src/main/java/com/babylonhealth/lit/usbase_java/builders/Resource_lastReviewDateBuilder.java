@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Resource_lastReviewDateBuilder {
-  private Optional<String> id = Optional.empty();
-  private FHIRDate value;
+public interface Resource_lastReviewDateBuilder extends ExtensionBuilder {
+  public Resource_lastReviewDate build();
 
-  /**
-   * Required fields for {@link Resource_lastReviewDate}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Resource_lastReviewDateBuilder(FHIRDate value) {
-    this.value = value;
+  public static Impl init(FHIRDate value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Resource_lastReviewDateBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(FHIRDate value) {
+    return new Impl(value);
   }
 
-  public Resource_lastReviewDate build() {
-    return new Resource_lastReviewDate(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Resource_lastReviewDateBuilder {
+    private Optional<String> id = Optional.empty();
+    private FHIRDate value;
+
+    /**
+     * Required fields for {@link Resource_lastReviewDate}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(FHIRDate value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Resource_lastReviewDateBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Resource_lastReviewDate build() {
+      return new Resource_lastReviewDate(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

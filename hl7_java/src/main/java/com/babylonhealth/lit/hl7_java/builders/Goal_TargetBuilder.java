@@ -42,16 +42,16 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Goal_TargetBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<Choice01219602913> due = Optional.empty();
-  private Optional<CodeableConcept> measure = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice01056080496> detail = Optional.empty();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface Goal_TargetBuilder {
+  public Goal.Target build();
 
-  /** Required fields for {@link Goal.Target} */
-  public Goal_TargetBuilder() {}
+  public static Impl init() {
+    return new Impl();
+  }
+
+  public static Impl builder() {
+    return new Impl();
+  }
 
   public static Choice01219602913 due(Duration d) {
     return new Choice01219602913(d);
@@ -89,100 +89,131 @@ public class Goal_TargetBuilder {
     return new Choice01056080496(s);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public Goal_TargetBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param due Field is a 'choice' field. Type should be one of Duration, FHIRDate. To pass the
-   *     value in, wrap with one of the Goal_TargetBuilder.due static methods
-   */
-  public Goal_TargetBuilder withDue(@NonNull Choice01219602913 due) {
-    this.due = Optional.of(due);
-    return this;
-  }
-  /** @param measure */
-  public Goal_TargetBuilder withMeasure(@NonNull CodeableConcept measure) {
-    this.measure = Optional.of(measure);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Goal_TargetBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Goal_TargetBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param detail Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
-   *     Integer, Quantity, Range, Ratio, String. To pass the value in, wrap with one of the
-   *     Goal_TargetBuilder.detail static methods
-   */
-  public Goal_TargetBuilder withDetail(@NonNull Choice01056080496 detail) {
-    this.detail = Optional.of(detail);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public Goal_TargetBuilder withModifierExtension(@NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public Goal_TargetBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements Goal_TargetBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<Choice01219602913> due = Optional.empty();
+    private Optional<CodeableConcept> measure = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Choice01056080496> detail = Optional.empty();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public Goal.Target build() {
-    return new Goal.Target(
-        OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(due),
-        OptionConverters.toScala(measure),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(detail),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /** Required fields for {@link Goal.Target} */
+    public Impl() {}
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public Goal_TargetBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param due Field is a 'choice' field. Type should be one of Duration, FHIRDate. To pass the
+     *     value in, wrap with one of the Goal_TargetBuilder.due static methods
+     */
+    public Goal_TargetBuilder.Impl withDue(@NonNull Choice01219602913 due) {
+      this.due = Optional.of(due);
+      return this;
+    }
+    /** @param measure */
+    public Goal_TargetBuilder.Impl withMeasure(@NonNull CodeableConcept measure) {
+      this.measure = Optional.of(measure);
+      return this;
+    }
+
+    public Goal_TargetBuilder.Impl withMeasure(@NonNull CodeableConceptBuilder measure) {
+      this.measure = Optional.of(measure.build());
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public Goal_TargetBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public Goal_TargetBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Goal_TargetBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param detail Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
+     *     Integer, Quantity, Range, Ratio, String. To pass the value in, wrap with one of the
+     *     Goal_TargetBuilder.detail static methods
+     */
+    public Goal_TargetBuilder.Impl withDetail(@NonNull Choice01056080496 detail) {
+      this.detail = Optional.of(detail);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public Goal_TargetBuilder.Impl withModifierExtension(@NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public Goal_TargetBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Goal_TargetBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
+    public Goal.Target build() {
+      return new Goal.Target(
+          OptionConverters.toScala(id),
+          (Option) OptionConverters.toScala(due),
+          OptionConverters.toScala(measure),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(detail),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

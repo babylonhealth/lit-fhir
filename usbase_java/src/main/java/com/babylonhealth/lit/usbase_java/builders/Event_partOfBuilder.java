@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Event_partOfBuilder {
-  private Optional<String> id = Optional.empty();
-  private Reference value;
+public interface Event_partOfBuilder extends ExtensionBuilder {
+  public Event_partOf build();
 
-  /**
-   * Required fields for {@link Event_partOf}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Event_partOfBuilder(Reference value) {
-    this.value = value;
+  public static Impl init(Reference value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Event_partOfBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Event_partOf build() {
-    return new Event_partOf(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Event_partOfBuilder {
+    private Optional<String> id = Optional.empty();
+    private Reference value;
+
+    /**
+     * Required fields for {@link Event_partOf}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Reference value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Event_partOfBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Event_partOf build() {
+      return new Event_partOf(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

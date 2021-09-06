@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Structuredefinition_display_hintBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Structuredefinition_display_hintBuilder extends ExtensionBuilder {
+  public Structuredefinition_display_hint build();
 
-  /**
-   * Required fields for {@link Structuredefinition_display_hint}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Structuredefinition_display_hintBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Structuredefinition_display_hintBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(String value) {
+    return new Impl(value);
   }
 
-  public Structuredefinition_display_hint build() {
-    return new Structuredefinition_display_hint(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Structuredefinition_display_hintBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
+
+    /**
+     * Required fields for {@link Structuredefinition_display_hint}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Structuredefinition_display_hintBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Structuredefinition_display_hint build() {
+      return new Structuredefinition_display_hint(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

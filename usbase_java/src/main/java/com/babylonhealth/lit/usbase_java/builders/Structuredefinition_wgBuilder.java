@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Structuredefinition_wgBuilder {
-  private Optional<String> id = Optional.empty();
-  private HL7_WORK_GROUP value;
+public interface Structuredefinition_wgBuilder extends ExtensionBuilder {
+  public Structuredefinition_wg build();
 
-  /**
-   * Required fields for {@link Structuredefinition_wg}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Structuredefinition_wgBuilder(HL7_WORK_GROUP value) {
-    this.value = value;
+  public static Impl init(HL7_WORK_GROUP value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Structuredefinition_wgBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(HL7_WORK_GROUP value) {
+    return new Impl(value);
   }
 
-  public Structuredefinition_wg build() {
-    return new Structuredefinition_wg(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Structuredefinition_wgBuilder {
+    private Optional<String> id = Optional.empty();
+    private HL7_WORK_GROUP value;
+
+    /**
+     * Required fields for {@link Structuredefinition_wg}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(HL7_WORK_GROUP value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Structuredefinition_wgBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Structuredefinition_wg build() {
+      return new Structuredefinition_wg(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

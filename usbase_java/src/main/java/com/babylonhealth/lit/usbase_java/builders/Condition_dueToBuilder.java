@@ -45,20 +45,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Condition_dueToBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice01025009075 value;
+public interface Condition_dueToBuilder extends ExtensionBuilder {
+  public Condition_dueTo build();
 
-  /**
-   * Required fields for {@link Condition_dueTo}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
-   *     one of the Condition_dueToBuilder.value static methods
-   */
-  public Condition_dueToBuilder(@NonNull Choice01025009075 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice01025009075 value) {
+    return new Impl(value);
+  }
+
+  public static Impl builder(@NonNull Choice01025009075 value) {
+    return new Impl(value);
   }
 
   public static Choice01025009075 value(CodeableConcept c) {
@@ -69,16 +64,33 @@ public class Condition_dueToBuilder {
     return new Choice01025009075(r);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Condition_dueToBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Condition_dueToBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice01025009075 value;
 
-  public Condition_dueTo build() {
-    return new Condition_dueTo(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Condition_dueTo}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
+     *     one of the Condition_dueToBuilder.value static methods
+     */
+    public Impl(@NonNull Choice01025009075 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Condition_dueToBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Condition_dueTo build() {
+      return new Condition_dueTo(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

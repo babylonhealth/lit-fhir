@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Match_gradeBuilder {
-  private Optional<String> id = Optional.empty();
-  private MATCH_GRADE value;
+public interface Match_gradeBuilder extends ExtensionBuilder {
+  public Match_grade build();
 
-  /**
-   * Required fields for {@link Match_grade}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Match_gradeBuilder(MATCH_GRADE value) {
-    this.value = value;
+  public static Impl init(MATCH_GRADE value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Match_gradeBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(MATCH_GRADE value) {
+    return new Impl(value);
   }
 
-  public Match_grade build() {
-    return new Match_grade(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Match_gradeBuilder {
+    private Optional<String> id = Optional.empty();
+    private MATCH_GRADE value;
+
+    /**
+     * Required fields for {@link Match_grade}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(MATCH_GRADE value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Match_gradeBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Match_grade build() {
+      return new Match_grade(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

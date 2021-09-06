@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Hla_genotyping_results_allele_databaseBuilder {
-  private Optional<String> id = Optional.empty();
-  private CodeableConcept value;
+public interface Hla_genotyping_results_allele_databaseBuilder extends ExtensionBuilder {
+  public Hla_genotyping_results_allele_database build();
 
-  /**
-   * Required fields for {@link Hla_genotyping_results_allele_database}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Hla_genotyping_results_allele_databaseBuilder(CodeableConcept value) {
-    this.value = value;
+  public static Impl init(CodeableConcept value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Hla_genotyping_results_allele_databaseBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Hla_genotyping_results_allele_database build() {
-    return new Hla_genotyping_results_allele_database(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Hla_genotyping_results_allele_databaseBuilder {
+    private Optional<String> id = Optional.empty();
+    private CodeableConcept value;
+
+    /**
+     * Required fields for {@link Hla_genotyping_results_allele_database}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(CodeableConcept value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Hla_genotyping_results_allele_databaseBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Hla_genotyping_results_allele_database build() {
+      return new Hla_genotyping_results_allele_database(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -116,10 +116,11 @@ object CardinalityImplicits {
       case _              => s"Collection<$typeStr>"
     }
 
-    def wrapJavaValue(value: String): String = card match {
-      case One      => value
-      case Optional => s"Optional.of($value)"
-      case _        => s"Arrays.asList($value)"
+    def wrapJavaValue(value: String, build: Boolean = false): String = card match {
+      case One        => value + (if (build) ".build()" else "")
+      case Optional   => s"Optional.of($value${if (build) ".build()" else ""})"
+      case _ if build => s"Arrays.stream($value).map(e -> e.build()).collect(toList())"
+      case _          => s"Arrays.asList($value)"
     }
 
     def convertJavaToScala(value: String, tpe: String): String = card match {

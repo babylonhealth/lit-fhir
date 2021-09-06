@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Workflow_instantiatesCanonicalBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Workflow_instantiatesCanonicalBuilder extends ExtensionBuilder {
+  public Workflow_instantiatesCanonical build();
 
-  /**
-   * Required fields for {@link Workflow_instantiatesCanonical}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Workflow_instantiatesCanonicalBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Workflow_instantiatesCanonicalBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(String value) {
+    return new Impl(value);
   }
 
-  public Workflow_instantiatesCanonical build() {
-    return new Workflow_instantiatesCanonical(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Workflow_instantiatesCanonicalBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
+
+    /**
+     * Required fields for {@link Workflow_instantiatesCanonical}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Workflow_instantiatesCanonicalBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Workflow_instantiatesCanonical build() {
+      return new Workflow_instantiatesCanonical(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

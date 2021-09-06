@@ -45,21 +45,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class DiagnosticReport_geneticsAnalysisBuilder {
-  private Optional<String> id = Optional.empty();
-  private Collection<Extension> extension;
+public interface DiagnosticReport_geneticsAnalysisBuilder extends ExtensionBuilder {
+  public DiagnosticReport_geneticsAnalysis build();
 
-  /**
-   * Required fields for {@link DiagnosticReport_geneticsAnalysis}
-   *
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public DiagnosticReport_geneticsAnalysisBuilder(Collection<Extension> extension) {
-    this.extension = extension;
+  public static Impl init(Collection<Extension> extension) {
+    return new Impl(extension);
+  }
+
+  public static Impl builder(Collection<ExtensionBuilder> extension) {
+    return new Impl(new LitSeq<>(extension).map(ExtensionBuilder::build));
   }
 
   public static Choice_1349125893 value(Address a) {
@@ -262,19 +256,37 @@ public class DiagnosticReport_geneticsAnalysisBuilder {
     return Choice_1349125893.Choice_1349125893UrlStr(s);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public DiagnosticReport_geneticsAnalysisBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements DiagnosticReport_geneticsAnalysisBuilder {
+    private Optional<String> id = Optional.empty();
+    private Collection<Extension> extension;
 
-  public DiagnosticReport_geneticsAnalysis build() {
-    return new DiagnosticReport_geneticsAnalysis(
-        OptionConverters.toScala(id),
-        extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link DiagnosticReport_geneticsAnalysis}
+     *
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public Impl(Collection<Extension> extension) {
+      this.extension = extension;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public DiagnosticReport_geneticsAnalysisBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public DiagnosticReport_geneticsAnalysis build() {
+      return new DiagnosticReport_geneticsAnalysis(
+          OptionConverters.toScala(id),
+          extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

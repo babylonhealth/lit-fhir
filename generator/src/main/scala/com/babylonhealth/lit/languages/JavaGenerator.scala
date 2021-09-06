@@ -38,53 +38,63 @@ trait JavaGenerator extends Commonish {
         .map { bf =>
           val default: Option[String] = // TODO Should this list include parents? Should it have a priority ordering?
             if (bf.javaName == "meta" && bf.types.head == "Meta" && topLevelClass.isProfile)
-              Some(s"""Optional.of(new MetaBuilder().withProfile("${topLevelClass.url}").build())""")
+              Some(s"""Optional.of(MetaBuilder.init().withProfile("${topLevelClass.url}").build())""")
             else bf.cardinality.defaultValue
           val nearestValueSet = bf.nearestValueSet
           bf.copy(default = default, valueEnumeration = nearestValueSet)
         }
     def toCallableScalaName(f: BaseField): String = CodegenUtils.fieldScalaNameFromJavaName(f.javaName)
-    def eraseSubtypes(t: String, f: BaseField): String = t match {
+    def eraseSubtypes(t: String, f: BaseField, builder: Boolean = false): String = t match {
       case "Code" if f.valueEnumeration.isDefined =>
         EnumerationUtils.valueSetToEnumName(f.valueEnumeration.get.valueSet)
       case "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" if !f.isGenerated =>
         "String"
-      case "Base64Binary"                                          => "byte[]"
-      case "PositiveInt" | "UnsignedInt" | "Int" if !f.isGenerated => "Integer"
+      case "Base64Binary"                                                 => "byte[]"
+      case "PositiveInt" | "UnsignedInt" | "Int" if !f.isGenerated        => "Integer"
+      case x if !f.isGenerated && isPrimitiveSuffix(inverseTypeLookup(x)) => x
       case x if f.isGenerated && f.declaringClasses.size > 1 =>
-        f.declaringClasses.mkString("$") + "$" + x
+        if (builder) f.declaringClasses.mkString("_") + "_" + x + "Builder"
+        else f.declaringClasses.mkString("$") + "$" + x
       case x if f.isGenerated =>
         val progenitorClass = f.firstBase.map(_.scalaClassName) getOrElse topLevelClass.scalaClassName
-        s"${progenitorClass}.$x"
-      case x if x.count(_ == '.') > 1 => x.split("\\.").mkString("$")
-      case x if x.contains('"')       => "Choice"
-      case x                          => x
+        if (builder) s"${progenitorClass}_${x}Builder" else s"$progenitorClass.$x"
+      case x if x.count(_ == '.') > 1 =>
+        if (builder) x.split("\\.").mkString("_") + "Builder"
+        else x.split("\\.").mkString("$")
+      case x if x.contains('"') => "Choice"
+      case x if builder         => x.replace('.', '_') + "Builder"
+      case x                    => x
     }
-    def eraseUninferrableChoices(f: BaseField) = {
+    def eraseUninferrableChoices(f: BaseField, builder: Boolean = false) = {
       f.types match {
-        case x if x.size == 1 => eraseSubtypes(x.head, f)
-        case x                => choiceClassName(f)
+        case x if x.size == 1 => eraseSubtypes(x.head, f, builder)
+        case _                => choiceClassName(f)
       }
     }
-    def toJavaType(f: BaseField, wrapInOptional: Boolean = true): String = {
-      f.cardinality.wrapJavaType(eraseUninferrableChoices(f))
+    def toJavaType(f: BaseField, builder: Boolean = false): String = {
+      f.cardinality.wrapJavaType(eraseUninferrableChoices(f, builder = builder))
     }
-    def toBuilderMutatorType(f: BaseField, wrapInOptional: Boolean = true, asCollection: Boolean = false): String = {
+    def toBuilderMutatorType(
+        f: BaseField,
+        builder: Boolean,
+        wrapInOptional: Boolean = true,
+        asCollection: Boolean = false): String = {
       if (asCollection) {
-        f.cardinality.collectionJavaType(eraseUninferrableChoices(f))
+        f.cardinality.collectionJavaType(eraseUninferrableChoices(f, builder = builder))
       } else {
-        f.cardinality.varArgJavaType(eraseUninferrableChoices(f))
+        f.cardinality.varArgJavaType(eraseUninferrableChoices(f, builder = builder))
       }
     }
 
     def genPrivateFields(fs: Seq[BaseField]): String =
       fs.map(f => s"""private ${toJavaType(f)} ${f.javaName}${default(f)};""").mkString("\n")
 
-    def genBuilderParam(f: BaseField): String = {
-      if (f.types.size == 1) s"${toJavaType(f)} ${f.javaName}"
+    def genInitialParam(f: BaseField, builder: Boolean): String = {
+      if (f.types.size == 1) s"${toJavaType(f, builder = builder)} ${f.javaName}"
       else s"@NonNull ${choiceClassName(f)} ${f.javaName}"
     }
-    def genBuilderParams(fs: Seq[BaseField]): String = fs.map(genBuilderParam).mkString(", ")
+    def genInitialParams(fs: Seq[BaseField], builder: Boolean = false): String =
+      fs.map(genInitialParam(_, builder = builder)).mkString(", ")
 
     def genFieldAssignment(f: BaseField, targetClassName: String): String =
       s"this.${f.javaName} = ${f.javaName};"
@@ -93,7 +103,7 @@ trait JavaGenerator extends Commonish {
 
     def default(f: BaseField): String =
       if (f.javaName == "meta" && topLevelClass.isProfile)
-        s""" = Optional.of(new MetaBuilder().withProfile("${topLevelClass.url}").build())"""
+        s""" = Optional.of(MetaBuilder.init().withProfile("${topLevelClass.url}").build())"""
       else f.cardinality.defaultJavaValue.filter(_ => !f.cardinality.required).map(x => s" = $x") getOrElse ""
 
     def descFromTLC(f: BaseField, t: TopLevelClass): Option[String] =
@@ -131,12 +141,13 @@ trait JavaGenerator extends Commonish {
       s"@param ${f.javaName}${getNearestDescription(f, topLevelClass) getOrElse ""}${if (f.types.size > 1) {
         val value = f.types.map(t => t -> eraseSubtypes(t, f))
         s"\n  * Field is a 'choice' field. Type should be one of ${value.map(_._2).distinct.mkString(", ")}. To pass the" +
-          s" value in, wrap with one of the $builderName.${f.javaName} static methods"
+        s" value in, wrap with one of the $builderName.${f.javaName} static methods"
       } else ""}"
     val builderName                         = s"${topLevelClass.scalaClassName}Builder"
     val privateFields                       = genPrivateFields(fields)
     val (nonOptionalFields, optionalFields) = fields.partition(_.cardinality.required)
-    val builderParams                       = genBuilderParams(nonOptionalFields)
+    val initialParams                       = genInitialParams(nonOptionalFields)
+    val builderParams                       = genInitialParams(nonOptionalFields, builder = true)
     val fieldAssignments                    = genFieldAssignments(nonOptionalFields, topLevelClass.scalaClassName)
     def convertToScala(f: BaseField) = {
       val isErasedRef =
@@ -164,14 +175,18 @@ trait JavaGenerator extends Commonish {
                |  * ${paramStr(f, isRequired = false, builderName)}
                |  */
                |""".stripMargin
-          s"""${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
+          s"""${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
+            f,
+            builder = false,
+            wrapInOptional = false)} ${f.javaName}) {
              |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName)};
              |  return this;
              |}""".stripMargin +
           // For list types, include a second with method which takes a Collection
           (if (f.cardinality.max > 1) {
-             s"""\n${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(
+             s"""\n${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
                f,
+               builder = false,
                wrapInOptional = false,
                asCollection = true)} ${f.javaName}) {
                 |  this.${f.javaName} = Collections.unmodifiableCollection(${f.javaName});
@@ -179,7 +194,17 @@ trait JavaGenerator extends Commonish {
                 |}""".stripMargin
            } else {
              ""
-           })
+           }) +
+          // For non-primitive types, include another method which takes a Builder (or builder varargs if applicable)
+          (if (f.isBuildableFHIRType) {
+             s"""public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
+               f,
+               builder = true,
+               wrapInOptional = false)} ${f.javaName}) {
+                |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName, build = true)};
+                |  return this;
+                |}""".stripMargin
+           } else "")
         }
         .mkString("\n")
 
@@ -237,35 +262,48 @@ trait JavaGenerator extends Commonish {
         else mungedClassName.replace('_', '$')
       val privateFields                       = genPrivateFields(f.childFields)
       val (nonOptionalFields, optionalFields) = f.childFields.partition(_.cardinality.required)
-      val builderParams                       = genBuilderParams(nonOptionalFields)
+      val initialParams                       = genInitialParams(nonOptionalFields)
+      val builderParams                       = genInitialParams(nonOptionalFields, builder = true)
       val fieldAssignments                    = genFieldAssignments(nonOptionalFields, targetClassName)
       val optionalFieldAppenders              = genOptionalFieldAppenders(optionalFields, builderName, targetClassName)
       val choiceConstructorAliases            = f.childFields.map(choiceConstructorMethods).mkString("\n")
-      val paramStrs                           = nonOptionalFields.map(paramStr(_, isRequired = true, builderName)).mkString("\n  * ")
+      val paramStrs = nonOptionalFields.map(paramStr(_, isRequired = true, builderName)).mkString("\n  * ")
       val javaDoc =
         s""" /** Required fields for {@link $targetClassName}
            |  *
            |  * $paramStrs
            |  */""".stripMargin
+      val implementationExtension = if (f.parent.isDefined) s" extends ${f.parent.get.capitalName}Builder" else ""
       val fileContents =
         s"""${imports(isTop = false, f.childFields.flatMap(_.nearestValueSet.map(_.valueSet)))}
+           |public interface $builderName$implementationExtension {
+           |  public $targetClassName build();
            |
-           |public class $builderName {
-           |  $privateFields
+           |  public static Impl init($initialParams) {
+           |    return new Impl(${nonOptionalFields.map(_.javaName).mkString(", ")});
+           |  }
            |
-           |  $javaDoc
-           |  public $builderName($builderParams) {
-           |    $fieldAssignments
+           |  public static Impl builder($builderParams) {
+           |    return new Impl(${nonOptionalFields.map(_.javaBuildName((t, f) => eraseSubtypes(t, f, true))).mkString(", ")});
            |  }
            |
            |  $choiceConstructorAliases
            |
-           |  $optionalFieldAppenders
+           |  public class Impl implements $builderName {
+           |    $privateFields
            |
-           |  public $targetClassName build() {
-           |    return new $targetClassName(${f.childFields
+           |    $javaDoc
+           |    public Impl($initialParams) {
+           |      $fieldAssignments
+           |    }
+           |
+           |    $optionalFieldAppenders
+           |
+           |    public $targetClassName build() {
+           |      return new $targetClassName(${f.childFields
           .map(convertToScala)
           .mkString(", ")}, LitUtils.emptyMetaElMap());
+           |    }
            |  }
            |}""".stripMargin
       ClassGenInfo(fileContents, builderName, pkg)
@@ -299,27 +337,41 @@ trait JavaGenerator extends Commonish {
          |  *
          |  * $paramStrs
          |  */""".stripMargin
+    val implementationExtension =
+      if (topLevelClass.parentClass.isDefined) s" extends ${topLevelClass.parentClass.get.scalaClassName}Builder" else ""
     val file =
       s"""${imports(isTop = true, topLevelClass.fields.flatMap(_.nearestValueSet.map(_.valueSet)))}
          |
-         |public class $builderName {
-         |  $privateFields
+         |public interface $builderName$implementationExtension {
+         |  public ${topLevelClass.scalaClassName} build();
          |
-         |  $javaDoc
-         |  public $builderName($builderParams) {
-         |    $fieldAssignments
+         |  public static Impl init($initialParams) {
+         |    return new Impl(${nonOptionalFields.map(_.javaName).mkString(", ")});
+         |  }
+         |
+         |  public static Impl builder($builderParams) {
+         |    return new Impl(${nonOptionalFields.map(_.javaBuildName((t, f) => eraseSubtypes(t, f, true))).mkString(", ")});
          |  }
          |
          |  $choiceConstructorAliases
          |
-         |  $optionalFieldAppenders
+         |  public class Impl implements $builderName {
+         |    $privateFields
          |
-         |  $withoutMeta
+         |    $javaDoc
+         |    public Impl($initialParams) {
+         |      $fieldAssignments
+         |    }
          |
-         |  public ${topLevelClass.scalaClassName} build() {
-         |    return new ${topLevelClass.scalaClassName}(${fields
+         |    $optionalFieldAppenders
+         |
+         |    $withoutMeta
+         |
+         |    public ${topLevelClass.scalaClassName} build() {
+         |      return new ${topLevelClass.scalaClassName}(${fields
         .map(convertToScala)
         .mkString(", ")}, LitUtils.emptyMetaElMap());
+         |    }
          |  }
          |}""".stripMargin
     ClassGenInfo(file, builderName, pkg) +: generatedBuilders

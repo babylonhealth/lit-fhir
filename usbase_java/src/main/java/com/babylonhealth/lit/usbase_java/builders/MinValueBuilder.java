@@ -45,20 +45,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class MinValueBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice01613806391 value;
+public interface MinValueBuilder extends ExtensionBuilder {
+  public MinValue build();
 
-  /**
-   * Required fields for {@link MinValue}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime. To
-   *     pass the value in, wrap with one of the MinValueBuilder.value static methods
-   */
-  public MinValueBuilder(@NonNull Choice01613806391 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice01613806391 value) {
+    return new Impl(value);
+  }
+
+  public static Impl builder(@NonNull Choice01613806391 value) {
+    return new Impl(value);
   }
 
   public static Choice01613806391 value(BigDecimal b) {
@@ -81,16 +76,33 @@ public class MinValueBuilder {
     return new Choice01613806391(l);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public MinValueBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements MinValueBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice01613806391 value;
 
-  public MinValue build() {
-    return new MinValue(OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link MinValue}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime. To
+     *     pass the value in, wrap with one of the MinValueBuilder.value static methods
+     */
+    public Impl(@NonNull Choice01613806391 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public MinValueBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public MinValue build() {
+      return new MinValue(OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    }
   }
 }

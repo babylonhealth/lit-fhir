@@ -45,30 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Valueset_expressionBuilder {
-  private Optional<String> id = Optional.empty();
-  private Expression value;
+public interface Valueset_expressionBuilder extends ExtensionBuilder {
+  public Valueset_expression build();
 
-  /**
-   * Required fields for {@link Valueset_expression}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Valueset_expressionBuilder(Expression value) {
-    this.value = value;
+  public static Impl init(Expression value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Valueset_expressionBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(ExpressionBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Valueset_expression build() {
-    return new Valueset_expression(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Valueset_expressionBuilder {
+    private Optional<String> id = Optional.empty();
+    private Expression value;
+
+    /**
+     * Required fields for {@link Valueset_expression}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Expression value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Valueset_expressionBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Valueset_expression build() {
+      return new Valueset_expression(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

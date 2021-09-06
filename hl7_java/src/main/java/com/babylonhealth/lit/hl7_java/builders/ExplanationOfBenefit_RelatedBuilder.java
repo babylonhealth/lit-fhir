@@ -42,110 +42,154 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class ExplanationOfBenefit_RelatedBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<Reference> claim = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Identifier> reference = Optional.empty();
-  private Optional<CodeableConcept> relationship = Optional.empty();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface ExplanationOfBenefit_RelatedBuilder {
+  public ExplanationOfBenefit.Related build();
 
-  /** Required fields for {@link ExplanationOfBenefit.Related} */
-  public ExplanationOfBenefit_RelatedBuilder() {}
-
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public ExplanationOfBenefit_RelatedBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param claim - The business identifier for the instance of the adjudication request: claim
-   *     predetermination or preauthorization.
-   */
-  public ExplanationOfBenefit_RelatedBuilder withClaim(@NonNull Reference claim) {
-    this.claim = Optional.of(claim);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ExplanationOfBenefit_RelatedBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ExplanationOfBenefit_RelatedBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /** @param reference */
-  public ExplanationOfBenefit_RelatedBuilder withReference(@NonNull Identifier reference) {
-    this.reference = Optional.of(reference);
-    return this;
-  }
-  /** @param relationship */
-  public ExplanationOfBenefit_RelatedBuilder withRelationship(
-      @NonNull CodeableConcept relationship) {
-    this.relationship = Optional.of(relationship);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public ExplanationOfBenefit_RelatedBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public ExplanationOfBenefit_RelatedBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
+  public static Impl init() {
+    return new Impl();
   }
 
-  public ExplanationOfBenefit.Related build() {
-    return new ExplanationOfBenefit.Related(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(claim),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(reference),
-        OptionConverters.toScala(relationship),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+  public static Impl builder() {
+    return new Impl();
+  }
+
+  public class Impl implements ExplanationOfBenefit_RelatedBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<Reference> claim = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Identifier> reference = Optional.empty();
+    private Optional<CodeableConcept> relationship = Optional.empty();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
+
+    /** Required fields for {@link ExplanationOfBenefit.Related} */
+    public Impl() {}
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public ExplanationOfBenefit_RelatedBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param claim - The business identifier for the instance of the adjudication request: claim
+     *     predetermination or preauthorization.
+     */
+    public ExplanationOfBenefit_RelatedBuilder.Impl withClaim(@NonNull Reference claim) {
+      this.claim = Optional.of(claim);
+      return this;
+    }
+
+    public ExplanationOfBenefit_RelatedBuilder.Impl withClaim(@NonNull ReferenceBuilder claim) {
+      this.claim = Optional.of(claim.build());
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public ExplanationOfBenefit_RelatedBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public ExplanationOfBenefit_RelatedBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_RelatedBuilder.Impl withExtension(
+        @NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param reference */
+    public ExplanationOfBenefit_RelatedBuilder.Impl withReference(@NonNull Identifier reference) {
+      this.reference = Optional.of(reference);
+      return this;
+    }
+
+    public ExplanationOfBenefit_RelatedBuilder.Impl withReference(
+        @NonNull IdentifierBuilder reference) {
+      this.reference = Optional.of(reference.build());
+      return this;
+    }
+    /** @param relationship */
+    public ExplanationOfBenefit_RelatedBuilder.Impl withRelationship(
+        @NonNull CodeableConcept relationship) {
+      this.relationship = Optional.of(relationship);
+      return this;
+    }
+
+    public ExplanationOfBenefit_RelatedBuilder.Impl withRelationship(
+        @NonNull CodeableConceptBuilder relationship) {
+      this.relationship = Optional.of(relationship.build());
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public ExplanationOfBenefit_RelatedBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public ExplanationOfBenefit_RelatedBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExplanationOfBenefit_RelatedBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
+    public ExplanationOfBenefit.Related build() {
+      return new ExplanationOfBenefit.Related(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(claim),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(reference),
+          OptionConverters.toScala(relationship),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

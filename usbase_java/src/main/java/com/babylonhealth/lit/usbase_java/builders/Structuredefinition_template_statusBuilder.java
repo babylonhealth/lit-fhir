@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Structuredefinition_template_statusBuilder {
-  private Optional<String> id = Optional.empty();
-  private TEMPLATE_STATUS_CODE value;
+public interface Structuredefinition_template_statusBuilder extends ExtensionBuilder {
+  public Structuredefinition_template_status build();
 
-  /**
-   * Required fields for {@link Structuredefinition_template_status}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Structuredefinition_template_statusBuilder(TEMPLATE_STATUS_CODE value) {
-    this.value = value;
+  public static Impl init(TEMPLATE_STATUS_CODE value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Structuredefinition_template_statusBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(TEMPLATE_STATUS_CODE value) {
+    return new Impl(value);
   }
 
-  public Structuredefinition_template_status build() {
-    return new Structuredefinition_template_status(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Structuredefinition_template_statusBuilder {
+    private Optional<String> id = Optional.empty();
+    private TEMPLATE_STATUS_CODE value;
+
+    /**
+     * Required fields for {@link Structuredefinition_template_status}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(TEMPLATE_STATUS_CODE value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Structuredefinition_template_statusBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Structuredefinition_template_status build() {
+      return new Structuredefinition_template_status(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }
