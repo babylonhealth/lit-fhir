@@ -114,8 +114,8 @@ public class JavaUsageOfLit {
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
             .withIdentifier(
-                IdentifierBuilder.init().withValue("foo 1").build(),
-                IdentifierBuilder.init().withValue("foo 2").build())
+                IdentifierBuilder.init().withValue("foo 1"),
+                IdentifierBuilder.init().withValue("foo 2"))
             .build();
 
     assertEquals(paedBMI.toString(), paedBMI2.toString());
@@ -187,35 +187,28 @@ public class JavaUsageOfLit {
   @Test
   public void bundleWithDifferentResourceTypes() throws Exception {
     var effective = new FHIRDateTime(ZonedDateTime.now(), LitUtils.DateTimeSpecificity.Time);
-    var babylonOrgEntry =
+    Bundle_EntryBuilder babylonOrgEntry =
         Bundle_EntryBuilder.init()
             .withFullUrl("urn:uuid:organization")
             .withResource(
                 Us_core_organizationBuilder.init("Babylon", true)
                     .withType(
-                        List.of(
-                            CodeableConceptBuilder.init()
-                                .withCoding(
-                                    CodingBuilder.init()
-                                        .withSystem(
-                                            "http://terminology.hl7.org/CodeSystem/organization-type")
-                                        .withCode("prov")
-                                        .build())
-                                .build()))
+                        CodeableConceptBuilder.init()
+                            .withCoding(
+                                CodingBuilder.init()
+                                    .withSystem(
+                                        "http://terminology.hl7.org/CodeSystem/organization-type")
+                                    .withCode("prov")))
                     .withIdentifier(
                         IdentifierBuilder.init()
                             .withSystem("http://system-reference")
-                            .withValue("code-reference")
-                            .build())
-                    .withLanguage(Languages.EN_GB)
-                    .build())
+                            .withValue("code-reference"))
+                    .withLanguage(Languages.EN_GB))
             .withRequest(
                 Bundle_Entry_RequestBuilder.init("/Organization", HttpVerb.POST)
-                    .withIfNoneExist("identifier=http://system-reference|code-reference")
-                    .build())
-            .build();
+                    .withIfNoneExist("identifier=http://system-reference|code-reference"));
 
-    var patient =
+    Bundle_EntryBuilder patient =
         Bundle_EntryBuilder.init()
             .withFullUrl("urn:uuid:patient")
             .withResource(
@@ -225,16 +218,13 @@ public class JavaUsageOfLit {
                         List.of(IdentifierBuilder.init().withSystem("tardis://").withValue("213")))
                     .withLanguage(Languages.EN_GB)
                     .withManagingOrganization(
-                        ReferenceBuilder.init().withReference("urn:uuid:organization").build())
-                    .build())
+                        ReferenceBuilder.init().withReference("urn:uuid:organization")))
             .withRequest(
                 Bundle_Entry_RequestBuilder.init("/Patient", HttpVerb.POST)
                     .withIfNoneExist(
-                        "identifier=https://fhir.bbl.health/sid/babylon-patient-uuid|${patientUuid}")
-                    .build())
-            .build();
+                        "identifier=https://fhir.bbl.health/sid/babylon-patient-uuid|${patientUuid}"));
 
-    var observation =
+    Bundle_EntryBuilder observation =
         Bundle_EntryBuilder.init()
             .withFullUrl("urn:uuid:observation:bmi")
             .withResource(
@@ -246,8 +236,7 @@ public class JavaUsageOfLit {
                                 .withCoding(
                                     CodingBuilder.init()
                                         .withSystem("http://terminology.system")
-                                        .withCode("Vital signs")
-                                        .build())),
+                                        .withCode("Vital signs"))),
                         QuantityBuilder.init()
                             .withValue(BigDecimal.valueOf(1.23))
                             .withSystem("http://unitsofmeasure.org")
@@ -258,18 +247,20 @@ public class JavaUsageOfLit {
                                 CodingBuilder.init()
                                     .withSystem("http://terminology.system")
                                     .withCode("code-for-bmi")
-                                    .withDisplay("BMI")
-                                    .build()))
-                    .withLanguage(Languages.EN_GB)
-                    .build())
-            .withRequest(Bundle_Entry_RequestBuilder.init("/Observation", HttpVerb.POST).build())
-            .build();
+                                    .withDisplay("BMI")))
+                    .withLanguage(Languages.EN_GB))
+            .withRequest(Bundle_Entry_RequestBuilder.init("/Observation", HttpVerb.POST));
 
     var bundle =
         BundleBuilder.init(BundleType.TRANSACTION)
             .withEntry(babylonOrgEntry, patient, observation)
             .build();
+    var bundleOfBuilt =
+        BundleBuilder.init(BundleType.TRANSACTION)
+            .withEntry(babylonOrgEntry.build(), patient.build(), observation.build())
+            .build();
 
+    assertEquals(bundleOfBuilt, bundle);
     var expected = String.format(unsafeSlurpRsc("HeterogeneousBundle.json"), effective.fmt());
 
     var bigBundleJson = LitUtils.encode(bundle);

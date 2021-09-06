@@ -32,8 +32,7 @@ class LitUtilsTest {
             .withIdentifier(
                 IdentifierBuilder.init()
                     .withSystem("https://fhir.bbl.health/sid/babylon-patient-uuid")
-                    .withValue("${patientUuid}")
-                    .build())
+                    .withValue("${patientUuid}"))
             .build(),
         patient);
   }
