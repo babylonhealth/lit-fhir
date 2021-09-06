@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Composition_clinicaldocument_versionNumberBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Composition_clinicaldocument_versionNumberBuilder extends ExtensionBuilder {
+  public Composition_clinicaldocument_versionNumber build();
 
-  /**
-   * Required fields for {@link Composition_clinicaldocument_versionNumber}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Composition_clinicaldocument_versionNumberBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Composition_clinicaldocument_versionNumberBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Composition_clinicaldocument_versionNumberBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
 
-  public Composition_clinicaldocument_versionNumber build() {
-    return new Composition_clinicaldocument_versionNumber(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Composition_clinicaldocument_versionNumber}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Composition_clinicaldocument_versionNumberBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Composition_clinicaldocument_versionNumber build() {
+      return new Composition_clinicaldocument_versionNumber(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

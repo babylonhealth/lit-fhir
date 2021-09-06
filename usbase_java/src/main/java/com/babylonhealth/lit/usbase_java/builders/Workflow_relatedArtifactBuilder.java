@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Workflow_relatedArtifactBuilder {
-  private Optional<String> id = Optional.empty();
-  private RelatedArtifact value;
+public interface Workflow_relatedArtifactBuilder extends ExtensionBuilder {
+  public Workflow_relatedArtifact build();
 
-  /**
-   * Required fields for {@link Workflow_relatedArtifact}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Workflow_relatedArtifactBuilder(RelatedArtifact value) {
-    this.value = value;
+  public static Impl init(RelatedArtifact value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Workflow_relatedArtifactBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Workflow_relatedArtifactBuilder {
+    private Optional<String> id = Optional.empty();
+    private RelatedArtifact value;
 
-  public Workflow_relatedArtifact build() {
-    return new Workflow_relatedArtifact(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Workflow_relatedArtifact}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(RelatedArtifact value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Workflow_relatedArtifactBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Workflow_relatedArtifact build() {
+      return new Workflow_relatedArtifact(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

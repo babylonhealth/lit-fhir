@@ -28,9 +28,9 @@ class LitUtilsTest {
             Patient.class,
             "{\"resourceType\": \"Patient\", \"identifier\": [{\"system\":\"https://fhir.bbl.health/sid/babylon-patient-uuid\", \"value\":\"${patientUuid}\"}]}");
     assertEquals(
-        new PatientBuilder()
+        PatientBuilder.init()
             .withIdentifier(
-                new IdentifierBuilder()
+                IdentifierBuilder.init()
                     .withSystem("https://fhir.bbl.health/sid/babylon-patient-uuid")
                     .withValue("${patientUuid}")
                     .build())
@@ -45,10 +45,10 @@ class LitUtilsTest {
             Us_core_patient.class,
             "{\"resourceType\": \"Patient\", \"gender\": \"other\", \"name\":[{\"given\":[\"The\"], \"family\":\"Doctor\"}], \"identifier\": [{\"system\":\"tardis://\", \"value\":\"213\"}]}");
     assertEquals(
-        new Us_core_patientBuilder(
+        Us_core_patientBuilder.init(
                 AdministrativeGender.OTHER,
-                List.of(new HumanNameBuilder().withGiven("The").withFamily("Doctor").build()),
-                List.of(new IdentifierBuilder().withSystem("tardis://").withValue("213").build()))
+                List.of(HumanNameBuilder.init().withGiven("The").withFamily("Doctor").build()),
+                List.of(IdentifierBuilder.init().withSystem("tardis://").withValue("213").build()))
             .withoutMeta()
             .build(),
         patient);

@@ -39,90 +39,100 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class QuantityBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<String> unit = Optional.empty();
-  private Optional<String> code = Optional.empty();
-  private Optional<BigDecimal> value = Optional.empty();
-  private Optional<String> system = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<QUANTITY_COMPARATOR> comparator = Optional.empty();
+public interface QuantityBuilder extends ElementBuilder {
+  public Quantity build();
 
-  /** Required fields for {@link Quantity} */
-  public QuantityBuilder() {}
-
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public QuantityBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param unit - A human-readable form of the unit. */
-  public QuantityBuilder withUnit(@NonNull String unit) {
-    this.unit = Optional.of(unit);
-    return this;
-  }
-  /** @param code - A computer processable form of the unit in some unit representation system. */
-  public QuantityBuilder withCode(@NonNull String code) {
-    this.code = Optional.of(code);
-    return this;
-  }
-  /**
-   * @param value - The value of the measured amount. The value includes an implicit precision in
-   *     the presentation of the value.
-   */
-  public QuantityBuilder withValue(@NonNull BigDecimal value) {
-    this.value = Optional.of(value);
-    return this;
-  }
-  /** @param system - The identification of the system that provides the coded form of the unit. */
-  public QuantityBuilder withSystem(@NonNull String system) {
-    this.system = Optional.of(system);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public QuantityBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public QuantityBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param comparator - How the value should be understood and represented - whether the actual
-   *     value is greater or less than the stated value due to measurement issues; e.g. if the
-   *     comparator is "&lt;" , then the real value is &lt; stated value.
-   */
-  public QuantityBuilder withComparator(@NonNull QUANTITY_COMPARATOR comparator) {
-    this.comparator = Optional.of(comparator);
-    return this;
+  public static Impl init() {
+    return new Impl();
   }
 
-  public Quantity build() {
-    return new Quantity(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(unit),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(value),
-        OptionConverters.toScala(system),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(comparator),
-        LitUtils.emptyMetaElMap());
+  public class Impl implements QuantityBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<String> unit = Optional.empty();
+    private Optional<String> code = Optional.empty();
+    private Optional<BigDecimal> value = Optional.empty();
+    private Optional<String> system = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<QUANTITY_COMPARATOR> comparator = Optional.empty();
+
+    /** Required fields for {@link Quantity} */
+    public Impl() {}
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public QuantityBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param unit - A human-readable form of the unit. */
+    public QuantityBuilder.Impl withUnit(@NonNull String unit) {
+      this.unit = Optional.of(unit);
+      return this;
+    }
+    /** @param code - A computer processable form of the unit in some unit representation system. */
+    public QuantityBuilder.Impl withCode(@NonNull String code) {
+      this.code = Optional.of(code);
+      return this;
+    }
+    /**
+     * @param value - The value of the measured amount. The value includes an implicit precision in
+     *     the presentation of the value.
+     */
+    public QuantityBuilder.Impl withValue(@NonNull BigDecimal value) {
+      this.value = Optional.of(value);
+      return this;
+    }
+    /**
+     * @param system - The identification of the system that provides the coded form of the unit.
+     */
+    public QuantityBuilder.Impl withSystem(@NonNull String system) {
+      this.system = Optional.of(system);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public QuantityBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public QuantityBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /**
+     * @param comparator - How the value should be understood and represented - whether the actual
+     *     value is greater or less than the stated value due to measurement issues; e.g. if the
+     *     comparator is "&lt;" , then the real value is &lt; stated value.
+     */
+    public QuantityBuilder.Impl withComparator(@NonNull QUANTITY_COMPARATOR comparator) {
+      this.comparator = Optional.of(comparator);
+      return this;
+    }
+
+    public Quantity build() {
+      return new Quantity(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(unit),
+          OptionConverters.toScala(code),
+          OptionConverters.toScala(value),
+          OptionConverters.toScala(system),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(comparator),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

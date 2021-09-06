@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class OpenEHR_administrationBuilder {
-  private Optional<String> id = Optional.empty();
-  private Reference value;
+public interface OpenEHR_administrationBuilder extends ExtensionBuilder {
+  public OpenEHR_administration build();
 
-  /**
-   * Required fields for {@link OpenEHR_administration}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public OpenEHR_administrationBuilder(Reference value) {
-    this.value = value;
+  public static Impl init(Reference value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public OpenEHR_administrationBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements OpenEHR_administrationBuilder {
+    private Optional<String> id = Optional.empty();
+    private Reference value;
 
-  public OpenEHR_administration build() {
-    return new OpenEHR_administration(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link OpenEHR_administration}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Reference value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public OpenEHR_administrationBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public OpenEHR_administration build() {
+      return new OpenEHR_administration(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

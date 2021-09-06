@@ -45,20 +45,11 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Procedure_directedByBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice01025009075 value;
+public interface Procedure_directedByBuilder extends ExtensionBuilder {
+  public Procedure_directedBy build();
 
-  /**
-   * Required fields for {@link Procedure_directedBy}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
-   *     one of the Procedure_directedByBuilder.value static methods
-   */
-  public Procedure_directedByBuilder(@NonNull Choice01025009075 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice01025009075 value) {
+    return new Impl(value);
   }
 
   public static Choice01025009075 value(CodeableConcept c) {
@@ -69,16 +60,34 @@ public class Procedure_directedByBuilder {
     return new Choice01025009075(r);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Procedure_directedByBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Procedure_directedByBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice01025009075 value;
 
-  public Procedure_directedBy build() {
-    return new Procedure_directedBy(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Procedure_directedBy}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
+     *     one of the Procedure_directedByBuilder.value static methods
+     */
+    public Impl(@NonNull Choice01025009075 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Procedure_directedByBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Procedure_directedBy build() {
+      return new Procedure_directedBy(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -42,128 +42,138 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class MolecularSequence_RepositoryBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<String> url = Optional.empty();
-  private REPOSITORY_TYPE _type;
-  private Optional<String> name = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<String> datasetId = Optional.empty();
-  private Optional<String> readsetId = Optional.empty();
-  private Optional<String> variantsetId = Optional.empty();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface MolecularSequence_RepositoryBuilder {
+  public MolecularSequence.Repository build();
 
-  /**
-   * Required fields for {@link MolecularSequence.Repository}
-   *
-   * @param _type - Amino Acid Sequence/ DNA Sequence / RNA Sequence.
-   */
-  public MolecularSequence_RepositoryBuilder(REPOSITORY_TYPE _type) {
-    this._type = _type;
+  public static Impl init(REPOSITORY_TYPE _type) {
+    return new Impl(_type);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public MolecularSequence_RepositoryBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param url */
-  public MolecularSequence_RepositoryBuilder withUrl(@NonNull String url) {
-    this.url = Optional.of(url);
-    return this;
-  }
-  /** @param name */
-  public MolecularSequence_RepositoryBuilder withName(@NonNull String name) {
-    this.name = Optional.of(name);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public MolecularSequence_RepositoryBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public MolecularSequence_RepositoryBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /** @param datasetId */
-  public MolecularSequence_RepositoryBuilder withDatasetId(@NonNull String datasetId) {
-    this.datasetId = Optional.of(datasetId);
-    return this;
-  }
-  /** @param readsetId */
-  public MolecularSequence_RepositoryBuilder withReadsetId(@NonNull String readsetId) {
-    this.readsetId = Optional.of(readsetId);
-    return this;
-  }
-  /** @param variantsetId */
-  public MolecularSequence_RepositoryBuilder withVariantsetId(@NonNull String variantsetId) {
-    this.variantsetId = Optional.of(variantsetId);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public MolecularSequence_RepositoryBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public MolecularSequence_RepositoryBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements MolecularSequence_RepositoryBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<String> url = Optional.empty();
+    private REPOSITORY_TYPE _type;
+    private Optional<String> name = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<String> datasetId = Optional.empty();
+    private Optional<String> readsetId = Optional.empty();
+    private Optional<String> variantsetId = Optional.empty();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public MolecularSequence.Repository build() {
-    return new MolecularSequence.Repository(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        _type,
-        OptionConverters.toScala(name),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(datasetId),
-        OptionConverters.toScala(readsetId),
-        OptionConverters.toScala(variantsetId),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link MolecularSequence.Repository}
+     *
+     * @param _type - Amino Acid Sequence/ DNA Sequence / RNA Sequence.
+     */
+    public Impl(REPOSITORY_TYPE _type) {
+      this._type = _type;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public MolecularSequence_RepositoryBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param url */
+    public MolecularSequence_RepositoryBuilder.Impl withUrl(@NonNull String url) {
+      this.url = Optional.of(url);
+      return this;
+    }
+    /** @param name */
+    public MolecularSequence_RepositoryBuilder.Impl withName(@NonNull String name) {
+      this.name = Optional.of(name);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public MolecularSequence_RepositoryBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public MolecularSequence_RepositoryBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /** @param datasetId */
+    public MolecularSequence_RepositoryBuilder.Impl withDatasetId(@NonNull String datasetId) {
+      this.datasetId = Optional.of(datasetId);
+      return this;
+    }
+    /** @param readsetId */
+    public MolecularSequence_RepositoryBuilder.Impl withReadsetId(@NonNull String readsetId) {
+      this.readsetId = Optional.of(readsetId);
+      return this;
+    }
+    /** @param variantsetId */
+    public MolecularSequence_RepositoryBuilder.Impl withVariantsetId(@NonNull String variantsetId) {
+      this.variantsetId = Optional.of(variantsetId);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public MolecularSequence_RepositoryBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public MolecularSequence_RepositoryBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MolecularSequence.Repository build() {
+      return new MolecularSequence.Repository(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(url),
+          _type,
+          OptionConverters.toScala(name),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(datasetId),
+          OptionConverters.toScala(readsetId),
+          OptionConverters.toScala(variantsetId),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

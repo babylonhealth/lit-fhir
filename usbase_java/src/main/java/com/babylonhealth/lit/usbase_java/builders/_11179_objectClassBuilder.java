@@ -45,30 +45,38 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class _11179_objectClassBuilder {
-  private Optional<String> id = Optional.empty();
-  private Coding value;
+public interface _11179_objectClassBuilder extends ExtensionBuilder {
+  public _11179_objectClass build();
 
-  /**
-   * Required fields for {@link _11179_objectClass}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public _11179_objectClassBuilder(Coding value) {
-    this.value = value;
+  public static Impl init(Coding value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public _11179_objectClassBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements _11179_objectClassBuilder {
+    private Optional<String> id = Optional.empty();
+    private Coding value;
 
-  public _11179_objectClass build() {
-    return new _11179_objectClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link _11179_objectClass}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Coding value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public _11179_objectClassBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public _11179_objectClass build() {
+      return new _11179_objectClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

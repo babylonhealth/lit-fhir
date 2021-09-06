@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Rendering_styleSensitiveBuilder {
-  private Optional<String> id = Optional.empty();
-  private Boolean value;
+public interface Rendering_styleSensitiveBuilder extends ExtensionBuilder {
+  public Rendering_styleSensitive build();
 
-  /**
-   * Required fields for {@link Rendering_styleSensitive}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Rendering_styleSensitiveBuilder(Boolean value) {
-    this.value = value;
+  public static Impl init(Boolean value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Rendering_styleSensitiveBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Rendering_styleSensitiveBuilder {
+    private Optional<String> id = Optional.empty();
+    private Boolean value;
 
-  public Rendering_styleSensitive build() {
-    return new Rendering_styleSensitive(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Rendering_styleSensitive}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Boolean value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Rendering_styleSensitiveBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Rendering_styleSensitive build() {
+      return new Rendering_styleSensitive(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class _11179_objectClassPropertyBuilder {
-  private Optional<String> id = Optional.empty();
-  private Coding value;
+public interface _11179_objectClassPropertyBuilder extends ExtensionBuilder {
+  public _11179_objectClassProperty build();
 
-  /**
-   * Required fields for {@link _11179_objectClassProperty}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public _11179_objectClassPropertyBuilder(Coding value) {
-    this.value = value;
+  public static Impl init(Coding value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public _11179_objectClassPropertyBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements _11179_objectClassPropertyBuilder {
+    private Optional<String> id = Optional.empty();
+    private Coding value;
 
-  public _11179_objectClassProperty build() {
-    return new _11179_objectClassProperty(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link _11179_objectClassProperty}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Coding value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public _11179_objectClassPropertyBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public _11179_objectClassProperty build() {
+      return new _11179_objectClassProperty(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -42,99 +42,110 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Immunization_PerformerBuilder {
-  private Optional<String> id = Optional.empty();
-  private Reference actor;
-  private Optional<CodeableConcept> function = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface Immunization_PerformerBuilder {
+  public Immunization.Performer build();
 
-  /**
-   * Required fields for {@link Immunization.Performer}
-   *
-   * @param actor
-   */
-  public Immunization_PerformerBuilder(Reference actor) {
-    this.actor = actor;
+  public static Impl init(Reference actor) {
+    return new Impl(actor);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public Immunization_PerformerBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param function */
-  public Immunization_PerformerBuilder withFunction(@NonNull CodeableConcept function) {
-    this.function = Optional.of(function);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Immunization_PerformerBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Immunization_PerformerBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public Immunization_PerformerBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public Immunization_PerformerBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements Immunization_PerformerBuilder {
+    private Optional<String> id = Optional.empty();
+    private Reference actor;
+    private Optional<CodeableConcept> function = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public Immunization.Performer build() {
-    return new Immunization.Performer(
-        OptionConverters.toScala(id),
-        actor,
-        OptionConverters.toScala(function),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Immunization.Performer}
+     *
+     * @param actor
+     */
+    public Impl(Reference actor) {
+      this.actor = actor;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public Immunization_PerformerBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param function */
+    public Immunization_PerformerBuilder.Impl withFunction(@NonNull CodeableConcept function) {
+      this.function = Optional.of(function);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public Immunization_PerformerBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public Immunization_PerformerBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public Immunization_PerformerBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public Immunization_PerformerBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Immunization.Performer build() {
+      return new Immunization.Performer(
+          OptionConverters.toScala(id),
+          actor,
+          OptionConverters.toScala(function),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

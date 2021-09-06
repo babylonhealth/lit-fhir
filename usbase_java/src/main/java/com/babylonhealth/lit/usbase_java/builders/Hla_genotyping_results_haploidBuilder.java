@@ -45,12 +45,12 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Hla_genotyping_results_haploidBuilder {
-  private Optional<String> id = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
+public interface Hla_genotyping_results_haploidBuilder extends ExtensionBuilder {
+  public Hla_genotyping_results_haploid build();
 
-  /** Required fields for {@link Hla_genotyping_results_haploid} */
-  public Hla_genotyping_results_haploidBuilder() {}
+  public static Impl init() {
+    return new Impl();
+  }
 
   public static Choice_1349125893 value(Address a) {
     return new Choice_1349125893(a);
@@ -252,42 +252,51 @@ public class Hla_genotyping_results_haploidBuilder {
     return Choice_1349125893.Choice_1349125893UrlStr(s);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Hla_genotyping_results_haploidBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Hla_genotyping_results_haploidBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Hla_genotyping_results_haploidBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
+  public class Impl implements Hla_genotyping_results_haploidBuilder {
+    private Optional<String> id = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
 
-  public Hla_genotyping_results_haploid build() {
-    return new Hla_genotyping_results_haploid(
-        OptionConverters.toScala(id),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /** Required fields for {@link Hla_genotyping_results_haploid} */
+    public Impl() {}
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Hla_genotyping_results_haploidBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public Hla_genotyping_results_haploidBuilder.Impl withExtension(
+        @NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public Hla_genotyping_results_haploidBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Hla_genotyping_results_haploid build() {
+      return new Hla_genotyping_results_haploid(
+          OptionConverters.toScala(id),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

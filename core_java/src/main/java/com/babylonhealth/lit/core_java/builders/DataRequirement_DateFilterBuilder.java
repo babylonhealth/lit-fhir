@@ -39,15 +39,12 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class DataRequirement_DateFilterBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<String> path = Optional.empty();
-  private Optional<Choice_1947777294> value = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<String> searchParam = Optional.empty();
+public interface DataRequirement_DateFilterBuilder {
+  public DataRequirement.DateFilter build();
 
-  /** Required fields for {@link DataRequirement.DateFilter} */
-  public DataRequirement_DateFilterBuilder() {}
+  public static Impl init() {
+    return new Impl();
+  }
 
   public static Choice_1947777294 value(Duration d) {
     return new Choice_1947777294(d);
@@ -61,63 +58,75 @@ public class DataRequirement_DateFilterBuilder {
     return new Choice_1947777294(p);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public DataRequirement_DateFilterBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param path */
-  public DataRequirement_DateFilterBuilder withPath(@NonNull String path) {
-    this.path = Optional.of(path);
-    return this;
-  }
-  /**
-   * @param value Field is a 'choice' field. Type should be one of Duration, FHIRDateTime, Period.
-   *     To pass the value in, wrap with one of the DataRequirement_DateFilterBuilder.value static
-   *     methods
-   */
-  public DataRequirement_DateFilterBuilder withValue(@NonNull Choice_1947777294 value) {
-    this.value = Optional.of(value);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public DataRequirement_DateFilterBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public DataRequirement_DateFilterBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /** @param searchParam */
-  public DataRequirement_DateFilterBuilder withSearchParam(@NonNull String searchParam) {
-    this.searchParam = Optional.of(searchParam);
-    return this;
-  }
+  public class Impl implements DataRequirement_DateFilterBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<String> path = Optional.empty();
+    private Optional<Choice_1947777294> value = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<String> searchParam = Optional.empty();
 
-  public DataRequirement.DateFilter build() {
-    return new DataRequirement.DateFilter(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(path),
-        (Option) OptionConverters.toScala(value),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(searchParam),
-        LitUtils.emptyMetaElMap());
+    /** Required fields for {@link DataRequirement.DateFilter} */
+    public Impl() {}
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public DataRequirement_DateFilterBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param path */
+    public DataRequirement_DateFilterBuilder.Impl withPath(@NonNull String path) {
+      this.path = Optional.of(path);
+      return this;
+    }
+    /**
+     * @param value Field is a 'choice' field. Type should be one of Duration, FHIRDateTime, Period.
+     *     To pass the value in, wrap with one of the DataRequirement_DateFilterBuilder.value static
+     *     methods
+     */
+    public DataRequirement_DateFilterBuilder.Impl withValue(@NonNull Choice_1947777294 value) {
+      this.value = Optional.of(value);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public DataRequirement_DateFilterBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public DataRequirement_DateFilterBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /** @param searchParam */
+    public DataRequirement_DateFilterBuilder.Impl withSearchParam(@NonNull String searchParam) {
+      this.searchParam = Optional.of(searchParam);
+      return this;
+    }
+
+    public DataRequirement.DateFilter build() {
+      return new DataRequirement.DateFilter(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(path),
+          (Option) OptionConverters.toScala(value),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(searchParam),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

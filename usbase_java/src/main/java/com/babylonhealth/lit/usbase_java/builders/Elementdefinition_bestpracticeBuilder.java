@@ -45,20 +45,11 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Elementdefinition_bestpracticeBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice_1768247138 value;
+public interface Elementdefinition_bestpracticeBuilder extends ExtensionBuilder {
+  public Elementdefinition_bestpractice build();
 
-  /**
-   * Required fields for {@link Elementdefinition_bestpractice}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of Boolean, CodeableConcept. To pass the value in, wrap with one
-   *     of the Elementdefinition_bestpracticeBuilder.value static methods
-   */
-  public Elementdefinition_bestpracticeBuilder(@NonNull Choice_1768247138 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice_1768247138 value) {
+    return new Impl(value);
   }
 
   public static Choice_1768247138 value(Boolean b) {
@@ -69,17 +60,34 @@ public class Elementdefinition_bestpracticeBuilder {
     return new Choice_1768247138(c);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Elementdefinition_bestpracticeBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Elementdefinition_bestpracticeBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice_1768247138 value;
 
-  public Elementdefinition_bestpractice build() {
-    return new Elementdefinition_bestpractice(
-        OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Elementdefinition_bestpractice}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of Boolean, CodeableConcept. To pass the value in, wrap with
+     *     one of the Elementdefinition_bestpracticeBuilder.value static methods
+     */
+    public Impl(@NonNull Choice_1768247138 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Elementdefinition_bestpracticeBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Elementdefinition_bestpractice build() {
+      return new Elementdefinition_bestpractice(
+          OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    }
   }
 }

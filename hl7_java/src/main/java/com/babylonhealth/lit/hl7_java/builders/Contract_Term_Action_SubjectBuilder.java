@@ -42,100 +42,110 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Contract_Term_Action_SubjectBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<CodeableConcept> role = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Collection<Reference> reference;
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface Contract_Term_Action_SubjectBuilder {
+  public Contract$Term$Action$Subject build();
 
-  /**
-   * Required fields for {@link Contract$Term$Action$Subject}
-   *
-   * @param reference
-   */
-  public Contract_Term_Action_SubjectBuilder(Collection<Reference> reference) {
-    this.reference = reference;
+  public static Impl init(Collection<Reference> reference) {
+    return new Impl(reference);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public Contract_Term_Action_SubjectBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param role */
-  public Contract_Term_Action_SubjectBuilder withRole(@NonNull CodeableConcept role) {
-    this.role = Optional.of(role);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Contract_Term_Action_SubjectBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Contract_Term_Action_SubjectBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public Contract_Term_Action_SubjectBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public Contract_Term_Action_SubjectBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements Contract_Term_Action_SubjectBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<CodeableConcept> role = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Reference> reference;
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public Contract$Term$Action$Subject build() {
-    return new Contract$Term$Action$Subject(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(role),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        reference.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Contract$Term$Action$Subject}
+     *
+     * @param reference
+     */
+    public Impl(Collection<Reference> reference) {
+      this.reference = reference;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public Contract_Term_Action_SubjectBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param role */
+    public Contract_Term_Action_SubjectBuilder.Impl withRole(@NonNull CodeableConcept role) {
+      this.role = Optional.of(role);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public Contract_Term_Action_SubjectBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public Contract_Term_Action_SubjectBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public Contract_Term_Action_SubjectBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public Contract_Term_Action_SubjectBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Contract$Term$Action$Subject build() {
+      return new Contract$Term$Action$Subject(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(role),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          reference.stream().collect(new NonEmptyLitSeqJCollector<>()),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

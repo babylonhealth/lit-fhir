@@ -45,30 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Cqf_calculatedValueBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Cqf_calculatedValueBuilder extends ExtensionBuilder {
+  public Cqf_calculatedValue build();
 
-  /**
-   * Required fields for {@link Cqf_calculatedValue}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Cqf_calculatedValueBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Cqf_calculatedValueBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Cqf_calculatedValueBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
 
-  public Cqf_calculatedValue build() {
-    return new Cqf_calculatedValue(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Cqf_calculatedValue}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Cqf_calculatedValueBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Cqf_calculatedValue build() {
+      return new Cqf_calculatedValue(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

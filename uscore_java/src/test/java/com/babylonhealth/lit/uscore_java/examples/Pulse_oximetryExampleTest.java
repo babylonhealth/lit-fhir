@@ -32,29 +32,32 @@ public class Pulse_oximetryExampleTest {
           LitUtils.DateTimeSpecificity.Time);
 
   Us_core_pulse_oximetry example =
-      new Us_core_pulse_oximetryBuilder(
+      Us_core_pulse_oximetryBuilder.init(
               ObservationStatus.FINAL,
-              new ReferenceBuilder().withReference("Patient/1234567890").build(),
+              ReferenceBuilder.init().withReference("Patient/1234567890").build(),
               List.of(
-                  new CodeableConceptBuilder()
+                  CodeableConceptBuilder.init()
                       .withCoding(
-                          new CodingBuilder()
+                          CodingBuilder.init()
                               .withSystem(
                                   "http://terminology.hl7.org/CodeSystem/observation-category")
                               .withCode("vital-signs")
                               .build())
                       .build()),
               Us_core_pulse_oximetryBuilder.effective(time),
-              new CodeableConceptBuilder()
+              CodeableConceptBuilder.init()
                   .withCoding(
-                      new CodingBuilder().withSystem("http://loinc.org").withCode("2708-6").build(),
-                      new CodingBuilder()
+                      CodingBuilder.init()
+                          .withSystem("http://loinc.org")
+                          .withCode("2708-6")
+                          .build(),
+                      CodingBuilder.init()
                           .withSystem("http://loinc.org")
                           .withCode("59408-5")
                           .build())
                   .build())
           .withValue(
-              new QuantityBuilder()
+              QuantityBuilder.init()
                   .withSystem("http://unitsofmeasure.org")
                   .withValue(BigDecimal.valueOf(94.3))
                   .withCode("%")

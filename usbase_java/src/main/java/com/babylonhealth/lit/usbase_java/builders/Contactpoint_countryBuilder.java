@@ -45,30 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Contactpoint_countryBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Contactpoint_countryBuilder extends ExtensionBuilder {
+  public Contactpoint_country build();
 
-  /**
-   * Required fields for {@link Contactpoint_country}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Contactpoint_countryBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Contactpoint_countryBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Contactpoint_countryBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
 
-  public Contactpoint_country build() {
-    return new Contactpoint_country(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Contactpoint_country}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Contactpoint_countryBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Contactpoint_country build() {
+      return new Contactpoint_country(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

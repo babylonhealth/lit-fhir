@@ -45,30 +45,38 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Cqm_ValidityPeriodBuilder {
-  private Optional<String> id = Optional.empty();
-  private FHIRDateTime value;
+public interface Cqm_ValidityPeriodBuilder extends ExtensionBuilder {
+  public Cqm_ValidityPeriod build();
 
-  /**
-   * Required fields for {@link Cqm_ValidityPeriod}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Cqm_ValidityPeriodBuilder(FHIRDateTime value) {
-    this.value = value;
+  public static Impl init(FHIRDateTime value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Cqm_ValidityPeriodBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Cqm_ValidityPeriodBuilder {
+    private Optional<String> id = Optional.empty();
+    private FHIRDateTime value;
 
-  public Cqm_ValidityPeriod build() {
-    return new Cqm_ValidityPeriod(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Cqm_ValidityPeriod}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(FHIRDateTime value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Cqm_ValidityPeriodBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Cqm_ValidityPeriod build() {
+      return new Cqm_ValidityPeriod(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

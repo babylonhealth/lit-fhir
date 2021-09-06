@@ -42,29 +42,11 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class ElementDefinition_ExampleBuilder {
-  private Optional<String> id = Optional.empty();
-  private String label;
-  private Choice_1349125893 value;
-  private Collection<Extension> extension = Collections.emptyList();
+public interface ElementDefinition_ExampleBuilder {
+  public ElementDefinition.Example build();
 
-  /**
-   * Required fields for {@link ElementDefinition.Example}
-   *
-   * @param label - A single preferred label which is the text to display beside the element
-   *     indicating its meaning or to use to prompt for the element in a user display or form.
-   * @param value Field is a 'choice' field. Type should be one of Address, Age, Annotation,
-   *     Attachment, byte[], BigDecimal, Boolean, String, CodeableConcept, Coding, ContactDetail,
-   *     ContactPoint, Contributor, Count, DataRequirement, Distance, Dosage, Duration, Expression,
-   *     FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime, Meta, Money,
-   *     ParameterDefinition, Period, Quantity, Range, Ratio, Reference, RelatedArtifact,
-   *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime. To
-   *     pass the value in, wrap with one of the ElementDefinition_ExampleBuilder.value static
-   *     methods
-   */
-  public ElementDefinition_ExampleBuilder(String label, @NonNull Choice_1349125893 value) {
-    this.label = label;
-    this.value = value;
+  public static Impl init(String label, @NonNull Choice_1349125893 value) {
+    return new Impl(label, value);
   }
 
   public static Choice_1349125893 value(Address a) {
@@ -267,43 +249,70 @@ public class ElementDefinition_ExampleBuilder {
     return Choice_1349125893.Choice_1349125893UrlStr(s);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public ElementDefinition_ExampleBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ElementDefinition_ExampleBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ElementDefinition_ExampleBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
+  public class Impl implements ElementDefinition_ExampleBuilder {
+    private Optional<String> id = Optional.empty();
+    private String label;
+    private Choice_1349125893 value;
+    private Collection<Extension> extension = Collections.emptyList();
 
-  public ElementDefinition.Example build() {
-    return new ElementDefinition.Example(
-        OptionConverters.toScala(id),
-        label,
-        (Choice) value,
-        extension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link ElementDefinition.Example}
+     *
+     * @param label - A single preferred label which is the text to display beside the element
+     *     indicating its meaning or to use to prompt for the element in a user display or form.
+     * @param value Field is a 'choice' field. Type should be one of Address, Age, Annotation,
+     *     Attachment, byte[], BigDecimal, Boolean, String, CodeableConcept, Coding, ContactDetail,
+     *     ContactPoint, Contributor, Count, DataRequirement, Distance, Dosage, Duration,
+     *     Expression, FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime, Meta,
+     *     Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference, RelatedArtifact,
+     *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime. To
+     *     pass the value in, wrap with one of the ElementDefinition_ExampleBuilder.value static
+     *     methods
+     */
+    public Impl(String label, @NonNull Choice_1349125893 value) {
+      this.label = label;
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public ElementDefinition_ExampleBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public ElementDefinition_ExampleBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public ElementDefinition_ExampleBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ElementDefinition.Example build() {
+      return new ElementDefinition.Example(
+          OptionConverters.toScala(id),
+          label,
+          (Choice) value,
+          extension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

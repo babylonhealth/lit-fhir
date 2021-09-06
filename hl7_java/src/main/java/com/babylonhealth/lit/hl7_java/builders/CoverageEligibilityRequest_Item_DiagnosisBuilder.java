@@ -42,14 +42,12 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class CoverageEligibilityRequest_Item_DiagnosisBuilder {
-  private Optional<String> id = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice01025009075> diagnosis = Optional.empty();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface CoverageEligibilityRequest_Item_DiagnosisBuilder {
+  public CoverageEligibilityRequest$Item$Diagnosis build();
 
-  /** Required fields for {@link CoverageEligibilityRequest$Item$Diagnosis} */
-  public CoverageEligibilityRequest_Item_DiagnosisBuilder() {}
+  public static Impl init() {
+    return new Impl();
+  }
 
   public static Choice01025009075 diagnosis(CodeableConcept c) {
     return new Choice01025009075(c);
@@ -59,89 +57,101 @@ public class CoverageEligibilityRequest_Item_DiagnosisBuilder {
     return new Choice01025009075(r);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public CoverageEligibilityRequest_Item_DiagnosisBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public CoverageEligibilityRequest_Item_DiagnosisBuilder withExtension(
-      @NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public CoverageEligibilityRequest_Item_DiagnosisBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param diagnosis Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
-   *     To pass the value in, wrap with one of the
-   *     CoverageEligibilityRequest_Item_DiagnosisBuilder.diagnosis static methods
-   */
-  public CoverageEligibilityRequest_Item_DiagnosisBuilder withDiagnosis(
-      @NonNull Choice01025009075 diagnosis) {
-    this.diagnosis = Optional.of(diagnosis);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public CoverageEligibilityRequest_Item_DiagnosisBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public CoverageEligibilityRequest_Item_DiagnosisBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements CoverageEligibilityRequest_Item_DiagnosisBuilder {
+    private Optional<String> id = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Choice01025009075> diagnosis = Optional.empty();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public CoverageEligibilityRequest$Item$Diagnosis build() {
-    return new CoverageEligibilityRequest$Item$Diagnosis(
-        OptionConverters.toScala(id),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(diagnosis),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /** Required fields for {@link CoverageEligibilityRequest$Item$Diagnosis} */
+    public Impl() {}
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withExtension(
+        @NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /**
+     * @param diagnosis Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+     *     To pass the value in, wrap with one of the
+     *     CoverageEligibilityRequest_Item_DiagnosisBuilder.diagnosis static methods
+     */
+    public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withDiagnosis(
+        @NonNull Choice01025009075 diagnosis) {
+      this.diagnosis = Optional.of(diagnosis);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CoverageEligibilityRequest$Item$Diagnosis build() {
+      return new CoverageEligibilityRequest$Item$Diagnosis(
+          OptionConverters.toScala(id),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(diagnosis),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

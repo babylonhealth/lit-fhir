@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Structuredefinition_fhir_typeBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Structuredefinition_fhir_typeBuilder extends ExtensionBuilder {
+  public Structuredefinition_fhir_type build();
 
-  /**
-   * Required fields for {@link Structuredefinition_fhir_type}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Structuredefinition_fhir_typeBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Structuredefinition_fhir_typeBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Structuredefinition_fhir_typeBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
 
-  public Structuredefinition_fhir_type build() {
-    return new Structuredefinition_fhir_type(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Structuredefinition_fhir_type}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Structuredefinition_fhir_typeBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Structuredefinition_fhir_type build() {
+      return new Structuredefinition_fhir_type(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

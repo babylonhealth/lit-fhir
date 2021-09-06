@@ -45,20 +45,11 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Familymemberhistory_abatementBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice00813350082 value;
+public interface Familymemberhistory_abatementBuilder extends ExtensionBuilder {
+  public Familymemberhistory_abatement build();
 
-  /**
-   * Required fields for {@link Familymemberhistory_abatement}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of Age, Boolean, FHIRDate. To pass the value in, wrap with one of
-   *     the Familymemberhistory_abatementBuilder.value static methods
-   */
-  public Familymemberhistory_abatementBuilder(@NonNull Choice00813350082 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice00813350082 value) {
+    return new Impl(value);
   }
 
   public static Choice00813350082 value(Age a) {
@@ -73,17 +64,34 @@ public class Familymemberhistory_abatementBuilder {
     return new Choice00813350082(f);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Familymemberhistory_abatementBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Familymemberhistory_abatementBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice00813350082 value;
 
-  public Familymemberhistory_abatement build() {
-    return new Familymemberhistory_abatement(
-        OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Familymemberhistory_abatement}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of Age, Boolean, FHIRDate. To pass the value in, wrap with one
+     *     of the Familymemberhistory_abatementBuilder.value static methods
+     */
+    public Impl(@NonNull Choice00813350082 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Familymemberhistory_abatementBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Familymemberhistory_abatement build() {
+      return new Familymemberhistory_abatement(
+          OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    }
   }
 }

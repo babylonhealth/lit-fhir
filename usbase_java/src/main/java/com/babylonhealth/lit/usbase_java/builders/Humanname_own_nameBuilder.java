@@ -45,30 +45,38 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Humanname_own_nameBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Humanname_own_nameBuilder extends ExtensionBuilder {
+  public Humanname_own_name build();
 
-  /**
-   * Required fields for {@link Humanname_own_name}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Humanname_own_nameBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Humanname_own_nameBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Humanname_own_nameBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
 
-  public Humanname_own_name build() {
-    return new Humanname_own_name(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Humanname_own_name}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Humanname_own_nameBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Humanname_own_name build() {
+      return new Humanname_own_name(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

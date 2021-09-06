@@ -45,30 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Specimen_isDryWeightBuilder {
-  private Optional<String> id = Optional.empty();
-  private Boolean value;
+public interface Specimen_isDryWeightBuilder extends ExtensionBuilder {
+  public Specimen_isDryWeight build();
 
-  /**
-   * Required fields for {@link Specimen_isDryWeight}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Specimen_isDryWeightBuilder(Boolean value) {
-    this.value = value;
+  public static Impl init(Boolean value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Specimen_isDryWeightBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Specimen_isDryWeightBuilder {
+    private Optional<String> id = Optional.empty();
+    private Boolean value;
 
-  public Specimen_isDryWeight build() {
-    return new Specimen_isDryWeight(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Specimen_isDryWeight}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Boolean value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Specimen_isDryWeightBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Specimen_isDryWeight build() {
+      return new Specimen_isDryWeight(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

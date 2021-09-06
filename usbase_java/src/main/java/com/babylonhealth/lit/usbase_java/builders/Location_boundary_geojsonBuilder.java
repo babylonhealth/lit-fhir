@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Location_boundary_geojsonBuilder {
-  private Optional<String> id = Optional.empty();
-  private Attachment value;
+public interface Location_boundary_geojsonBuilder extends ExtensionBuilder {
+  public Location_boundary_geojson build();
 
-  /**
-   * Required fields for {@link Location_boundary_geojson}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Location_boundary_geojsonBuilder(Attachment value) {
-    this.value = value;
+  public static Impl init(Attachment value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Location_boundary_geojsonBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Location_boundary_geojsonBuilder {
+    private Optional<String> id = Optional.empty();
+    private Attachment value;
 
-  public Location_boundary_geojson build() {
-    return new Location_boundary_geojson(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Location_boundary_geojson}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Attachment value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Location_boundary_geojsonBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Location_boundary_geojson build() {
+      return new Location_boundary_geojson(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

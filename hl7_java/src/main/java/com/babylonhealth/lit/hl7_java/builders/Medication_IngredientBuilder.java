@@ -42,22 +42,11 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Medication_IngredientBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice01025009075 item;
-  private Optional<Boolean> isActive = Optional.empty();
-  private Optional<Ratio> strength = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface Medication_IngredientBuilder {
+  public Medication.Ingredient build();
 
-  /**
-   * Required fields for {@link Medication.Ingredient}
-   *
-   * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
-   *     pass the value in, wrap with one of the Medication_IngredientBuilder.item static methods
-   */
-  public Medication_IngredientBuilder(@NonNull Choice01025009075 item) {
-    this.item = item;
+  public static Impl init(@NonNull Choice01025009075 item) {
+    return new Impl(item);
   }
 
   public static Choice01025009075 item(CodeableConcept c) {
@@ -68,89 +57,111 @@ public class Medication_IngredientBuilder {
     return new Choice01025009075(r);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public Medication_IngredientBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param isActive */
-  public Medication_IngredientBuilder withIsActive(@NonNull Boolean isActive) {
-    this.isActive = Optional.of(isActive);
-    return this;
-  }
-  /** @param strength */
-  public Medication_IngredientBuilder withStrength(@NonNull Ratio strength) {
-    this.strength = Optional.of(strength);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Medication_IngredientBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Medication_IngredientBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public Medication_IngredientBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public Medication_IngredientBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements Medication_IngredientBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice01025009075 item;
+    private Optional<Boolean> isActive = Optional.empty();
+    private Optional<Ratio> strength = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public Medication.Ingredient build() {
-    return new Medication.Ingredient(
-        OptionConverters.toScala(id),
-        item,
-        OptionConverters.toScala(isActive.map(x -> (Object) x)),
-        OptionConverters.toScala(strength),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Medication.Ingredient}
+     *
+     * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+     *     pass the value in, wrap with one of the Medication_IngredientBuilder.item static methods
+     */
+    public Impl(@NonNull Choice01025009075 item) {
+      this.item = item;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public Medication_IngredientBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param isActive */
+    public Medication_IngredientBuilder.Impl withIsActive(@NonNull Boolean isActive) {
+      this.isActive = Optional.of(isActive);
+      return this;
+    }
+    /** @param strength */
+    public Medication_IngredientBuilder.Impl withStrength(@NonNull Ratio strength) {
+      this.strength = Optional.of(strength);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public Medication_IngredientBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public Medication_IngredientBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public Medication_IngredientBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public Medication_IngredientBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Medication.Ingredient build() {
+      return new Medication.Ingredient(
+          OptionConverters.toScala(id),
+          item,
+          OptionConverters.toScala(isActive.map(x -> (Object) x)),
+          OptionConverters.toScala(strength),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

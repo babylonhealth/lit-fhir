@@ -42,135 +42,145 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder {
-  private Optional<String> id = Optional.empty();
-  private Collection<CodeableConcept> country = Collections.emptyList();
-  private Ratio strength;
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<CodeableConcept> substance = Optional.empty();
-  private Optional<Ratio> strengthLowLimit = Optional.empty();
-  private Optional<String> measurementPoint = Optional.empty();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder {
+  public MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength build();
 
-  /**
-   * Required fields for {@link
-   * MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength}
-   *
-   * @param strength
-   */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder(
-      Ratio strength) {
-    this.strength = strength;
+  public static Impl init(Ratio strength) {
+    return new Impl(strength);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder withId(
-      @NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param country */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withCountry(@NonNull CodeableConcept... country) {
-    this.country = Arrays.asList(country);
-    return this;
-  }
-  /** @param country */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withCountry(@NonNull Collection<CodeableConcept> country) {
-    this.country = Collections.unmodifiableCollection(country);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /** @param substance - The ingredient substance. */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withSubstance(@NonNull CodeableConcept substance) {
-    this.substance = Optional.of(substance);
-    return this;
-  }
-  /** @param strengthLowLimit */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withStrengthLowLimit(@NonNull Ratio strengthLowLimit) {
-    this.strengthLowLimit = Optional.of(strengthLowLimit);
-    return this;
-  }
-  /** @param measurementPoint */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withMeasurementPoint(@NonNull String measurementPoint) {
-    this.measurementPoint = Optional.of(measurementPoint);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withModifierExtension(@NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder
-      withModifierExtension(@NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl
+      implements MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder {
+    private Optional<String> id = Optional.empty();
+    private Collection<CodeableConcept> country = Collections.emptyList();
+    private Ratio strength;
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<CodeableConcept> substance = Optional.empty();
+    private Optional<Ratio> strengthLowLimit = Optional.empty();
+    private Optional<String> measurementPoint = Optional.empty();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength build() {
-    return new MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength(
-        OptionConverters.toScala(id),
-        country.stream().collect(new LitSeqJCollector<>()),
-        strength,
-        extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(substance),
-        OptionConverters.toScala(strengthLowLimit),
-        OptionConverters.toScala(measurementPoint),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link
+     * MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength}
+     *
+     * @param strength
+     */
+    public Impl(Ratio strength) {
+      this.strength = strength;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param country */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withCountry(@NonNull CodeableConcept... country) {
+      this.country = Arrays.asList(country);
+      return this;
+    }
+    /** @param country */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withCountry(@NonNull Collection<CodeableConcept> country) {
+      this.country = Collections.unmodifiableCollection(country);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /** @param substance - The ingredient substance. */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withSubstance(@NonNull CodeableConcept substance) {
+      this.substance = Optional.of(substance);
+      return this;
+    }
+    /** @param strengthLowLimit */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withStrengthLowLimit(@NonNull Ratio strengthLowLimit) {
+      this.strengthLowLimit = Optional.of(strengthLowLimit);
+      return this;
+    }
+    /** @param measurementPoint */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withMeasurementPoint(@NonNull String measurementPoint) {
+      this.measurementPoint = Optional.of(measurementPoint);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withModifierExtension(@NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrengthBuilder.Impl
+        withModifierExtension(@NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength build() {
+      return new MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength(
+          OptionConverters.toScala(id),
+          country.stream().collect(new LitSeqJCollector<>()),
+          strength,
+          extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(substance),
+          OptionConverters.toScala(strengthLowLimit),
+          OptionConverters.toScala(measurementPoint),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

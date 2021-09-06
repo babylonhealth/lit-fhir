@@ -42,118 +42,128 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class StructureDefinition_MappingBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<String> uri = Optional.empty();
-  private Optional<String> name = Optional.empty();
-  private Optional<String> comment = Optional.empty();
-  private String identity;
-  private Collection<Extension> extension = Collections.emptyList();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface StructureDefinition_MappingBuilder {
+  public StructureDefinition.Mapping build();
 
-  /**
-   * Required fields for {@link StructureDefinition.Mapping}
-   *
-   * @param identity
-   */
-  public StructureDefinition_MappingBuilder(String identity) {
-    this.identity = identity;
+  public static Impl init(String identity) {
+    return new Impl(identity);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public StructureDefinition_MappingBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param uri */
-  public StructureDefinition_MappingBuilder withUri(@NonNull String uri) {
-    this.uri = Optional.of(uri);
-    return this;
-  }
-  /**
-   * @param name - A natural language name identifying the structure definition. This name should be
-   *     usable as an identifier for the module by machine processing applications such as code
-   *     generation.
-   */
-  public StructureDefinition_MappingBuilder withName(@NonNull String name) {
-    this.name = Optional.of(name);
-    return this;
-  }
-  /** @param comment */
-  public StructureDefinition_MappingBuilder withComment(@NonNull String comment) {
-    this.comment = Optional.of(comment);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public StructureDefinition_MappingBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public StructureDefinition_MappingBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public StructureDefinition_MappingBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public StructureDefinition_MappingBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements StructureDefinition_MappingBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<String> uri = Optional.empty();
+    private Optional<String> name = Optional.empty();
+    private Optional<String> comment = Optional.empty();
+    private String identity;
+    private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public StructureDefinition.Mapping build() {
-    return new StructureDefinition.Mapping(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(uri),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(comment),
-        identity,
-        extension.stream().collect(new LitSeqJCollector<>()),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link StructureDefinition.Mapping}
+     *
+     * @param identity
+     */
+    public Impl(String identity) {
+      this.identity = identity;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public StructureDefinition_MappingBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param uri */
+    public StructureDefinition_MappingBuilder.Impl withUri(@NonNull String uri) {
+      this.uri = Optional.of(uri);
+      return this;
+    }
+    /**
+     * @param name - A natural language name identifying the structure definition. This name should
+     *     be usable as an identifier for the module by machine processing applications such as code
+     *     generation.
+     */
+    public StructureDefinition_MappingBuilder.Impl withName(@NonNull String name) {
+      this.name = Optional.of(name);
+      return this;
+    }
+    /** @param comment */
+    public StructureDefinition_MappingBuilder.Impl withComment(@NonNull String comment) {
+      this.comment = Optional.of(comment);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public StructureDefinition_MappingBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public StructureDefinition_MappingBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public StructureDefinition_MappingBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public StructureDefinition_MappingBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public StructureDefinition.Mapping build() {
+      return new StructureDefinition.Mapping(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(uri),
+          OptionConverters.toScala(name),
+          OptionConverters.toScala(comment),
+          identity,
+          extension.stream().collect(new LitSeqJCollector<>()),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

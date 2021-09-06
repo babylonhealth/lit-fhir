@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Capabilitystatement_supported_systemBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Capabilitystatement_supported_systemBuilder extends ExtensionBuilder {
+  public Capabilitystatement_supported_system build();
 
-  /**
-   * Required fields for {@link Capabilitystatement_supported_system}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Capabilitystatement_supported_systemBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Capabilitystatement_supported_systemBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Capabilitystatement_supported_systemBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
 
-  public Capabilitystatement_supported_system build() {
-    return new Capabilitystatement_supported_system(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Capabilitystatement_supported_system}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Capabilitystatement_supported_systemBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Capabilitystatement_supported_system build() {
+      return new Capabilitystatement_supported_system(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

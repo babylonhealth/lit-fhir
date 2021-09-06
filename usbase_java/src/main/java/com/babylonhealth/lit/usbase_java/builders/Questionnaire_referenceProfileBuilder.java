@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Questionnaire_referenceProfileBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Questionnaire_referenceProfileBuilder extends ExtensionBuilder {
+  public Questionnaire_referenceProfile build();
 
-  /**
-   * Required fields for {@link Questionnaire_referenceProfile}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Questionnaire_referenceProfileBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Questionnaire_referenceProfileBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Questionnaire_referenceProfileBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
 
-  public Questionnaire_referenceProfile build() {
-    return new Questionnaire_referenceProfile(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Questionnaire_referenceProfile}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Questionnaire_referenceProfileBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Questionnaire_referenceProfile build() {
+      return new Questionnaire_referenceProfile(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

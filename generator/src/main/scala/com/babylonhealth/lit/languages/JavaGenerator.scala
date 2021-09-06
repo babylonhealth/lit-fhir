@@ -38,7 +38,7 @@ trait JavaGenerator extends Commonish {
         .map { bf =>
           val default: Option[String] = // TODO Should this list include parents? Should it have a priority ordering?
             if (bf.javaName == "meta" && bf.types.head == "Meta" && topLevelClass.isProfile)
-              Some(s"""Optional.of(new MetaBuilder().withProfile("${topLevelClass.url}").build())""")
+              Some(s"""Optional.of(MetaBuilder.init().withProfile("${topLevelClass.url}").build())""")
             else bf.cardinality.defaultValue
           val nearestValueSet = bf.nearestValueSet
           bf.copy(default = default, valueEnumeration = nearestValueSet)
@@ -93,7 +93,7 @@ trait JavaGenerator extends Commonish {
 
     def default(f: BaseField): String =
       if (f.javaName == "meta" && topLevelClass.isProfile)
-        s""" = Optional.of(new MetaBuilder().withProfile("${topLevelClass.url}").build())"""
+        s""" = Optional.of(MetaBuilder.init().withProfile("${topLevelClass.url}").build())"""
       else f.cardinality.defaultJavaValue.filter(_ => !f.cardinality.required).map(x => s" = $x") getOrElse ""
 
     def descFromTLC(f: BaseField, t: TopLevelClass): Option[String] =
@@ -164,13 +164,13 @@ trait JavaGenerator extends Commonish {
                |  * ${paramStr(f, isRequired = false, builderName)}
                |  */
                |""".stripMargin
-          s"""${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
+          s"""${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
              |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName)};
              |  return this;
              |}""".stripMargin +
           // For list types, include a second with method which takes a Collection
           (if (f.cardinality.max > 1) {
-             s"""\n${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(
+             s"""\n${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
                f,
                wrapInOptional = false,
                asCollection = true)} ${f.javaName}) {
@@ -247,25 +247,33 @@ trait JavaGenerator extends Commonish {
            |  *
            |  * $paramStrs
            |  */""".stripMargin
+      val implementationExtension = if (f.parent.isDefined) s" extends ${f.parent.get.capitalName}Builder" else ""
       val fileContents =
         s"""${imports(isTop = false, f.childFields.flatMap(_.nearestValueSet.map(_.valueSet)))}
+           |public interface $builderName$implementationExtension {
+           |  public $targetClassName build();
            |
-           |public class $builderName {
-           |  $privateFields
-           |
-           |  $javaDoc
-           |  public $builderName($builderParams) {
-           |    $fieldAssignments
+           |  public static Impl init($builderParams) {
+           |    return new Impl(${nonOptionalFields.map(_.javaName).mkString(", ")});
            |  }
            |
            |  $choiceConstructorAliases
            |
-           |  $optionalFieldAppenders
+           |  public class Impl implements $builderName {
+           |    $privateFields
            |
-           |  public $targetClassName build() {
-           |    return new $targetClassName(${f.childFields
+           |    $javaDoc
+           |    public Impl($builderParams) {
+           |      $fieldAssignments
+           |    }
+           |
+           |    $optionalFieldAppenders
+           |
+           |    public $targetClassName build() {
+           |      return new $targetClassName(${f.childFields
           .map(convertToScala)
           .mkString(", ")}, LitUtils.emptyMetaElMap());
+           |    }
            |  }
            |}""".stripMargin
       ClassGenInfo(fileContents, builderName, pkg)
@@ -299,27 +307,37 @@ trait JavaGenerator extends Commonish {
          |  *
          |  * $paramStrs
          |  */""".stripMargin
+    val implementationExtension =
+      if (topLevelClass.parentClass.isDefined) s" extends ${topLevelClass.parentClass.get.scalaClassName}Builder" else ""
     val file =
       s"""${imports(isTop = true, topLevelClass.fields.flatMap(_.nearestValueSet.map(_.valueSet)))}
          |
-         |public class $builderName {
-         |  $privateFields
+         |public interface $builderName$implementationExtension {
+         |  public ${topLevelClass.scalaClassName} build();
          |
-         |  $javaDoc
-         |  public $builderName($builderParams) {
-         |    $fieldAssignments
+         |  public static Impl init($builderParams) {
+         |    return new Impl(${nonOptionalFields.map(_.javaName).mkString(", ")});
          |  }
          |
          |  $choiceConstructorAliases
          |
-         |  $optionalFieldAppenders
+         |  public class Impl implements $builderName {
+         |    $privateFields
          |
-         |  $withoutMeta
+         |    $javaDoc
+         |    public Impl($builderParams) {
+         |      $fieldAssignments
+         |    }
          |
-         |  public ${topLevelClass.scalaClassName} build() {
-         |    return new ${topLevelClass.scalaClassName}(${fields
+         |    $optionalFieldAppenders
+         |
+         |    $withoutMeta
+         |
+         |    public ${topLevelClass.scalaClassName} build() {
+         |      return new ${topLevelClass.scalaClassName}(${fields
         .map(convertToScala)
         .mkString(", ")}, LitUtils.emptyMetaElMap());
+         |    }
          |  }
          |}""".stripMargin
     ClassGenInfo(file, builderName, pkg) +: generatedBuilders

@@ -48,58 +48,66 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Us_core_birthsexBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<String> value = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
+public interface Us_core_birthsexBuilder extends ExtensionBuilder {
+  public Us_core_birthsex build();
 
-  /** Required fields for {@link Us_core_birthsex} */
-  public Us_core_birthsexBuilder() {}
-
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Us_core_birthsexBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list).
-   */
-  public Us_core_birthsexBuilder withValue(@NonNull String value) {
-    this.value = Optional.of(value);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Us_core_birthsexBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public Us_core_birthsexBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
+  public static Impl init() {
+    return new Impl();
   }
 
-  public Us_core_birthsex build() {
-    return new Us_core_birthsex(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(value),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+  public class Impl implements Us_core_birthsexBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<String> value = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+
+    /** Required fields for {@link Us_core_birthsex} */
+    public Impl() {}
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Us_core_birthsexBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list).
+     */
+    public Us_core_birthsexBuilder.Impl withValue(@NonNull String value) {
+      this.value = Optional.of(value);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public Us_core_birthsexBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public Us_core_birthsexBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Us_core_birthsex build() {
+      return new Us_core_birthsex(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(value),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

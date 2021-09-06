@@ -42,108 +42,118 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class CapabilityStatement_Rest_Resource_OperationBuilder {
-  private Optional<String> id = Optional.empty();
-  private String name;
-  private Collection<Extension> extension = Collections.emptyList();
-  private String definition;
-  private Optional<String> documentation = Optional.empty();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface CapabilityStatement_Rest_Resource_OperationBuilder {
+  public CapabilityStatement$Rest$Resource$Operation build();
 
-  /**
-   * Required fields for {@link CapabilityStatement$Rest$Resource$Operation}
-   *
-   * @param name - A natural language name identifying the capability statement. This name should be
-   *     usable as an identifier for the module by machine processing applications such as code
-   *     generation.
-   * @param definition
-   */
-  public CapabilityStatement_Rest_Resource_OperationBuilder(String name, String definition) {
-    this.name = name;
-    this.definition = definition;
+  public static Impl init(String name, String definition) {
+    return new Impl(name, definition);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public CapabilityStatement_Rest_Resource_OperationBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public CapabilityStatement_Rest_Resource_OperationBuilder withExtension(
-      @NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public CapabilityStatement_Rest_Resource_OperationBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /** @param documentation */
-  public CapabilityStatement_Rest_Resource_OperationBuilder withDocumentation(
-      @NonNull String documentation) {
-    this.documentation = Optional.of(documentation);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public CapabilityStatement_Rest_Resource_OperationBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public CapabilityStatement_Rest_Resource_OperationBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements CapabilityStatement_Rest_Resource_OperationBuilder {
+    private Optional<String> id = Optional.empty();
+    private String name;
+    private Collection<Extension> extension = Collections.emptyList();
+    private String definition;
+    private Optional<String> documentation = Optional.empty();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public CapabilityStatement$Rest$Resource$Operation build() {
-    return new CapabilityStatement$Rest$Resource$Operation(
-        OptionConverters.toScala(id),
-        name,
-        extension.stream().collect(new LitSeqJCollector<>()),
-        definition,
-        OptionConverters.toScala(documentation),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link CapabilityStatement$Rest$Resource$Operation}
+     *
+     * @param name - A natural language name identifying the capability statement. This name should
+     *     be usable as an identifier for the module by machine processing applications such as code
+     *     generation.
+     * @param definition
+     */
+    public Impl(String name, String definition) {
+      this.name = name;
+      this.definition = definition;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public CapabilityStatement_Rest_Resource_OperationBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public CapabilityStatement_Rest_Resource_OperationBuilder.Impl withExtension(
+        @NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public CapabilityStatement_Rest_Resource_OperationBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /** @param documentation */
+    public CapabilityStatement_Rest_Resource_OperationBuilder.Impl withDocumentation(
+        @NonNull String documentation) {
+      this.documentation = Optional.of(documentation);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public CapabilityStatement_Rest_Resource_OperationBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public CapabilityStatement_Rest_Resource_OperationBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public CapabilityStatement$Rest$Resource$Operation build() {
+      return new CapabilityStatement$Rest$Resource$Operation(
+          OptionConverters.toScala(id),
+          name,
+          extension.stream().collect(new LitSeqJCollector<>()),
+          definition,
+          OptionConverters.toScala(documentation),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

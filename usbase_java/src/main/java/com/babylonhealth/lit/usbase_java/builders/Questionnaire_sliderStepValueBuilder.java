@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Questionnaire_sliderStepValueBuilder {
-  private Optional<String> id = Optional.empty();
-  private Integer value;
+public interface Questionnaire_sliderStepValueBuilder extends ExtensionBuilder {
+  public Questionnaire_sliderStepValue build();
 
-  /**
-   * Required fields for {@link Questionnaire_sliderStepValue}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Questionnaire_sliderStepValueBuilder(Integer value) {
-    this.value = value;
+  public static Impl init(Integer value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Questionnaire_sliderStepValueBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Questionnaire_sliderStepValueBuilder {
+    private Optional<String> id = Optional.empty();
+    private Integer value;
 
-  public Questionnaire_sliderStepValue build() {
-    return new Questionnaire_sliderStepValue(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Questionnaire_sliderStepValue}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Integer value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Questionnaire_sliderStepValueBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Questionnaire_sliderStepValue build() {
+      return new Questionnaire_sliderStepValue(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

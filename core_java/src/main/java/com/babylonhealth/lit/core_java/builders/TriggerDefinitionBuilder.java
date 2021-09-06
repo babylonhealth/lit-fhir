@@ -39,22 +39,11 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class TriggerDefinitionBuilder {
-  private Optional<String> id = Optional.empty();
-  private TRIGGER_TYPE _type;
-  private Optional<String> name = Optional.empty();
-  private Collection<DataRequirement> data = Collections.emptyList();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice_1051729086> timing = Optional.empty();
-  private Optional<Expression> condition = Optional.empty();
+public interface TriggerDefinitionBuilder extends ElementBuilder {
+  public TriggerDefinition build();
 
-  /**
-   * Required fields for {@link TriggerDefinition}
-   *
-   * @param _type - The type of triggering event.
-   */
-  public TriggerDefinitionBuilder(TRIGGER_TYPE _type) {
-    this._type = _type;
+  public static Impl init(TRIGGER_TYPE _type) {
+    return new Impl(_type);
   }
 
   public static Choice_1051729086 timing(FHIRDate f) {
@@ -73,88 +62,107 @@ public class TriggerDefinitionBuilder {
     return new Choice_1051729086(t);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public TriggerDefinitionBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param name - A formal name for the event. This may be an absolute URI that identifies the
-   *     event formally (e.g. from a trigger registry), or a simple relative URI that identifies the
-   *     event in a local context.
-   */
-  public TriggerDefinitionBuilder withName(@NonNull String name) {
-    this.name = Optional.of(name);
-    return this;
-  }
-  /**
-   * @param data - The triggering data of the event (if this is a data trigger). If more than one
-   *     data is requirement is specified, then all the data requirements must be true.
-   */
-  public TriggerDefinitionBuilder withData(@NonNull DataRequirement... data) {
-    this.data = Arrays.asList(data);
-    return this;
-  }
-  /**
-   * @param data - The triggering data of the event (if this is a data trigger). If more than one
-   *     data is requirement is specified, then all the data requirements must be true.
-   */
-  public TriggerDefinitionBuilder withData(@NonNull Collection<DataRequirement> data) {
-    this.data = Collections.unmodifiableCollection(data);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public TriggerDefinitionBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public TriggerDefinitionBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param timing - The timing of the event (if this is a periodic trigger). Field is a 'choice'
-   *     field. Type should be one of FHIRDate, FHIRDateTime, Reference, Timing. To pass the value
-   *     in, wrap with one of the TriggerDefinitionBuilder.timing static methods
-   */
-  public TriggerDefinitionBuilder withTiming(@NonNull Choice_1051729086 timing) {
-    this.timing = Optional.of(timing);
-    return this;
-  }
-  /**
-   * @param condition - A boolean-valued expression that is evaluated in the context of the
-   *     container of the trigger definition and returns whether or not the trigger fires.
-   */
-  public TriggerDefinitionBuilder withCondition(@NonNull Expression condition) {
-    this.condition = Optional.of(condition);
-    return this;
-  }
+  public class Impl implements TriggerDefinitionBuilder {
+    private Optional<String> id = Optional.empty();
+    private TRIGGER_TYPE _type;
+    private Optional<String> name = Optional.empty();
+    private Collection<DataRequirement> data = Collections.emptyList();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Choice_1051729086> timing = Optional.empty();
+    private Optional<Expression> condition = Optional.empty();
 
-  public TriggerDefinition build() {
-    return new TriggerDefinition(
-        OptionConverters.toScala(id),
-        _type,
-        OptionConverters.toScala(name),
-        data.stream().collect(new LitSeqJCollector<>()),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(timing),
-        OptionConverters.toScala(condition),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link TriggerDefinition}
+     *
+     * @param _type - The type of triggering event.
+     */
+    public Impl(TRIGGER_TYPE _type) {
+      this._type = _type;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public TriggerDefinitionBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param name - A formal name for the event. This may be an absolute URI that identifies the
+     *     event formally (e.g. from a trigger registry), or a simple relative URI that identifies
+     *     the event in a local context.
+     */
+    public TriggerDefinitionBuilder.Impl withName(@NonNull String name) {
+      this.name = Optional.of(name);
+      return this;
+    }
+    /**
+     * @param data - The triggering data of the event (if this is a data trigger). If more than one
+     *     data is requirement is specified, then all the data requirements must be true.
+     */
+    public TriggerDefinitionBuilder.Impl withData(@NonNull DataRequirement... data) {
+      this.data = Arrays.asList(data);
+      return this;
+    }
+    /**
+     * @param data - The triggering data of the event (if this is a data trigger). If more than one
+     *     data is requirement is specified, then all the data requirements must be true.
+     */
+    public TriggerDefinitionBuilder.Impl withData(@NonNull Collection<DataRequirement> data) {
+      this.data = Collections.unmodifiableCollection(data);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public TriggerDefinitionBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public TriggerDefinitionBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /**
+     * @param timing - The timing of the event (if this is a periodic trigger). Field is a 'choice'
+     *     field. Type should be one of FHIRDate, FHIRDateTime, Reference, Timing. To pass the value
+     *     in, wrap with one of the TriggerDefinitionBuilder.timing static methods
+     */
+    public TriggerDefinitionBuilder.Impl withTiming(@NonNull Choice_1051729086 timing) {
+      this.timing = Optional.of(timing);
+      return this;
+    }
+    /**
+     * @param condition - A boolean-valued expression that is evaluated in the context of the
+     *     container of the trigger definition and returns whether or not the trigger fires.
+     */
+    public TriggerDefinitionBuilder.Impl withCondition(@NonNull Expression condition) {
+      this.condition = Optional.of(condition);
+      return this;
+    }
+
+    public TriggerDefinition build() {
+      return new TriggerDefinition(
+          OptionConverters.toScala(id),
+          _type,
+          OptionConverters.toScala(name),
+          data.stream().collect(new LitSeqJCollector<>()),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(timing),
+          OptionConverters.toScala(condition),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

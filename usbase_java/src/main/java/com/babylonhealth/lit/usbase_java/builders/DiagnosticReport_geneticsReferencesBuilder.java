@@ -45,12 +45,12 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class DiagnosticReport_geneticsReferencesBuilder {
-  private Optional<String> id = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
+public interface DiagnosticReport_geneticsReferencesBuilder extends ExtensionBuilder {
+  public DiagnosticReport_geneticsReferences build();
 
-  /** Required fields for {@link DiagnosticReport_geneticsReferences} */
-  public DiagnosticReport_geneticsReferencesBuilder() {}
+  public static Impl init() {
+    return new Impl();
+  }
 
   public static Choice_1349125893 value(Address a) {
     return new Choice_1349125893(a);
@@ -252,42 +252,51 @@ public class DiagnosticReport_geneticsReferencesBuilder {
     return Choice_1349125893.Choice_1349125893UrlStr(s);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public DiagnosticReport_geneticsReferencesBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public DiagnosticReport_geneticsReferencesBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public DiagnosticReport_geneticsReferencesBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
+  public class Impl implements DiagnosticReport_geneticsReferencesBuilder {
+    private Optional<String> id = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
 
-  public DiagnosticReport_geneticsReferences build() {
-    return new DiagnosticReport_geneticsReferences(
-        OptionConverters.toScala(id),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /** Required fields for {@link DiagnosticReport_geneticsReferences} */
+    public Impl() {}
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public DiagnosticReport_geneticsReferencesBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public DiagnosticReport_geneticsReferencesBuilder.Impl withExtension(
+        @NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public DiagnosticReport_geneticsReferencesBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public DiagnosticReport_geneticsReferences build() {
+      return new DiagnosticReport_geneticsReferences(
+          OptionConverters.toScala(id),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

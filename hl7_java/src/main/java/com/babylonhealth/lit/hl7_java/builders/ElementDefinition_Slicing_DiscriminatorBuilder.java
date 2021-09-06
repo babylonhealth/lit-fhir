@@ -42,63 +42,71 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class ElementDefinition_Slicing_DiscriminatorBuilder {
-  private Optional<String> id = Optional.empty();
-  private DISCRIMINATOR_TYPE _type;
-  private String path;
-  private Collection<Extension> extension = Collections.emptyList();
+public interface ElementDefinition_Slicing_DiscriminatorBuilder {
+  public ElementDefinition$Slicing$Discriminator build();
 
-  /**
-   * Required fields for {@link ElementDefinition$Slicing$Discriminator}
-   *
-   * @param _type - The data type or resource that the value of this element is permitted to be.
-   * @param path - The path identifies the element and is expressed as a "."-separated list of
-   *     ancestor elements, beginning with the name of the resource or extension.
-   */
-  public ElementDefinition_Slicing_DiscriminatorBuilder(DISCRIMINATOR_TYPE _type, String path) {
-    this._type = _type;
-    this.path = path;
+  public static Impl init(DISCRIMINATOR_TYPE _type, String path) {
+    return new Impl(_type, path);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public ElementDefinition_Slicing_DiscriminatorBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ElementDefinition_Slicing_DiscriminatorBuilder withExtension(
-      @NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ElementDefinition_Slicing_DiscriminatorBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
+  public class Impl implements ElementDefinition_Slicing_DiscriminatorBuilder {
+    private Optional<String> id = Optional.empty();
+    private DISCRIMINATOR_TYPE _type;
+    private String path;
+    private Collection<Extension> extension = Collections.emptyList();
 
-  public ElementDefinition$Slicing$Discriminator build() {
-    return new ElementDefinition$Slicing$Discriminator(
-        OptionConverters.toScala(id),
-        _type,
-        path,
-        extension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link ElementDefinition$Slicing$Discriminator}
+     *
+     * @param _type - The data type or resource that the value of this element is permitted to be.
+     * @param path - The path identifies the element and is expressed as a "."-separated list of
+     *     ancestor elements, beginning with the name of the resource or extension.
+     */
+    public Impl(DISCRIMINATOR_TYPE _type, String path) {
+      this._type = _type;
+      this.path = path;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public ElementDefinition_Slicing_DiscriminatorBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public ElementDefinition_Slicing_DiscriminatorBuilder.Impl withExtension(
+        @NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public ElementDefinition_Slicing_DiscriminatorBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ElementDefinition$Slicing$Discriminator build() {
+      return new ElementDefinition$Slicing$Discriminator(
+          OptionConverters.toScala(id),
+          _type,
+          path,
+          extension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

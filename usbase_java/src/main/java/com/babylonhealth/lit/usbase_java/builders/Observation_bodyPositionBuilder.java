@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Observation_bodyPositionBuilder {
-  private Optional<String> id = Optional.empty();
-  private CodeableConcept value;
+public interface Observation_bodyPositionBuilder extends ExtensionBuilder {
+  public Observation_bodyPosition build();
 
-  /**
-   * Required fields for {@link Observation_bodyPosition}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Observation_bodyPositionBuilder(CodeableConcept value) {
-    this.value = value;
+  public static Impl init(CodeableConcept value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Observation_bodyPositionBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Observation_bodyPositionBuilder {
+    private Optional<String> id = Optional.empty();
+    private CodeableConcept value;
 
-  public Observation_bodyPosition build() {
-    return new Observation_bodyPosition(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Observation_bodyPosition}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(CodeableConcept value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Observation_bodyPositionBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Observation_bodyPosition build() {
+      return new Observation_bodyPosition(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

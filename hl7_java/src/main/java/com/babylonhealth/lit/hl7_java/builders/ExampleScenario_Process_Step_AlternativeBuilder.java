@@ -42,116 +42,126 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class ExampleScenario_Process_Step_AlternativeBuilder {
-  private Optional<String> id = Optional.empty();
-  private Collection<ExampleScenario$Process$Step> step = Collections.emptyList();
-  private String title;
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<String> description = Optional.empty();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface ExampleScenario_Process_Step_AlternativeBuilder {
+  public ExampleScenario$Process$Step$Alternative build();
 
-  /**
-   * Required fields for {@link ExampleScenario$Process$Step$Alternative}
-   *
-   * @param title
-   */
-  public ExampleScenario_Process_Step_AlternativeBuilder(String title) {
-    this.title = title;
+  public static Impl init(String title) {
+    return new Impl(title);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public ExampleScenario_Process_Step_AlternativeBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param step */
-  public ExampleScenario_Process_Step_AlternativeBuilder withStep(
-      @NonNull ExampleScenario$Process$Step... step) {
-    this.step = Arrays.asList(step);
-    return this;
-  }
-  /** @param step */
-  public ExampleScenario_Process_Step_AlternativeBuilder withStep(
-      @NonNull Collection<ExampleScenario$Process$Step> step) {
-    this.step = Collections.unmodifiableCollection(step);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ExampleScenario_Process_Step_AlternativeBuilder withExtension(
-      @NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the resource. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public ExampleScenario_Process_Step_AlternativeBuilder withExtension(
-      @NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /** @param description */
-  public ExampleScenario_Process_Step_AlternativeBuilder withDescription(
-      @NonNull String description) {
-    this.description = Optional.of(description);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public ExampleScenario_Process_Step_AlternativeBuilder withModifierExtension(
-      @NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public ExampleScenario_Process_Step_AlternativeBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
+  public class Impl implements ExampleScenario_Process_Step_AlternativeBuilder {
+    private Optional<String> id = Optional.empty();
+    private Collection<ExampleScenario$Process$Step> step = Collections.emptyList();
+    private String title;
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<String> description = Optional.empty();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
 
-  public ExampleScenario$Process$Step$Alternative build() {
-    return new ExampleScenario$Process$Step$Alternative(
-        OptionConverters.toScala(id),
-        step.stream().collect(new LitSeqJCollector<>()),
-        title,
-        extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link ExampleScenario$Process$Step$Alternative}
+     *
+     * @param title
+     */
+    public Impl(String title) {
+      this.title = title;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param step */
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withStep(
+        @NonNull ExampleScenario$Process$Step... step) {
+      this.step = Arrays.asList(step);
+      return this;
+    }
+    /** @param step */
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withStep(
+        @NonNull Collection<ExampleScenario$Process$Step> step) {
+      this.step = Collections.unmodifiableCollection(step);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withExtension(
+        @NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the resource. To make the use of extensions safe and manageable,
+     *     there is a strict set of governance applied to the definition and use of extensions.
+     *     Though any implementer can define an extension, there is a set of requirements that SHALL
+     *     be met as part of the definition of the extension.
+     */
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withExtension(
+        @NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+    /** @param description */
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withDescription(
+        @NonNull String description) {
+      this.description = Optional.of(description);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public ExampleScenario_Process_Step_AlternativeBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ExampleScenario$Process$Step$Alternative build() {
+      return new ExampleScenario$Process$Step$Alternative(
+          OptionConverters.toScala(id),
+          step.stream().collect(new LitSeqJCollector<>()),
+          title,
+          extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(description),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

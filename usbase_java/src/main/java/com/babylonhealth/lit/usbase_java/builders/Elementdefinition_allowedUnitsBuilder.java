@@ -45,20 +45,11 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Elementdefinition_allowedUnitsBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice01054268719 value;
+public interface Elementdefinition_allowedUnitsBuilder extends ExtensionBuilder {
+  public Elementdefinition_allowedUnits build();
 
-  /**
-   * Required fields for {@link Elementdefinition_allowedUnits}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of String, CodeableConcept. To pass the value in, wrap with one
-   *     of the Elementdefinition_allowedUnitsBuilder.value static methods
-   */
-  public Elementdefinition_allowedUnitsBuilder(@NonNull Choice01054268719 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice01054268719 value) {
+    return new Impl(value);
   }
 
   public static Choice01054268719 value(String s) {
@@ -69,17 +60,34 @@ public class Elementdefinition_allowedUnitsBuilder {
     return new Choice01054268719(c);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Elementdefinition_allowedUnitsBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Elementdefinition_allowedUnitsBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice01054268719 value;
 
-  public Elementdefinition_allowedUnits build() {
-    return new Elementdefinition_allowedUnits(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Elementdefinition_allowedUnits}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of String, CodeableConcept. To pass the value in, wrap with one
+     *     of the Elementdefinition_allowedUnitsBuilder.value static methods
+     */
+    public Impl(@NonNull Choice01054268719 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Elementdefinition_allowedUnitsBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Elementdefinition_allowedUnits build() {
+      return new Elementdefinition_allowedUnits(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

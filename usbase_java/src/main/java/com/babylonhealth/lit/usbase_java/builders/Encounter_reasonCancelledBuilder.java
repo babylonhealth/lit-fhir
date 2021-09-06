@@ -45,31 +45,39 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Encounter_reasonCancelledBuilder {
-  private Optional<String> id = Optional.empty();
-  private CodeableConcept value;
+public interface Encounter_reasonCancelledBuilder extends ExtensionBuilder {
+  public Encounter_reasonCancelled build();
 
-  /**
-   * Required fields for {@link Encounter_reasonCancelled}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Encounter_reasonCancelledBuilder(CodeableConcept value) {
-    this.value = value;
+  public static Impl init(CodeableConcept value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Encounter_reasonCancelledBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Encounter_reasonCancelledBuilder {
+    private Optional<String> id = Optional.empty();
+    private CodeableConcept value;
 
-  public Encounter_reasonCancelled build() {
-    return new Encounter_reasonCancelled(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Encounter_reasonCancelled}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(CodeableConcept value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Encounter_reasonCancelledBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Encounter_reasonCancelled build() {
+      return new Encounter_reasonCancelled(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -45,30 +45,38 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Procedure_scheduleBuilder {
-  private Optional<String> id = Optional.empty();
-  private Timing value;
+public interface Procedure_scheduleBuilder extends ExtensionBuilder {
+  public Procedure_schedule build();
 
-  /**
-   * Required fields for {@link Procedure_schedule}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Procedure_scheduleBuilder(Timing value) {
-    this.value = value;
+  public static Impl init(Timing value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Procedure_scheduleBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Procedure_scheduleBuilder {
+    private Optional<String> id = Optional.empty();
+    private Timing value;
 
-  public Procedure_schedule build() {
-    return new Procedure_schedule(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Procedure_schedule}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Timing value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Procedure_scheduleBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Procedure_schedule build() {
+      return new Procedure_schedule(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }
