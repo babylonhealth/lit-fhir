@@ -36,10 +36,13 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -63,7 +66,7 @@ public class Us_core_provenanceBuilder {
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Signature> signature = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> occurred = Optional.empty();
+  private Optional<Choice_0934386166> occurred = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<Provenance.Agent> agent;
@@ -84,6 +87,14 @@ public class Us_core_provenanceBuilder {
     this.target = target;
     this.recorded = recorded;
     this.agent = agent;
+  }
+
+  public static Choice_0934386166 occurred(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 occurred(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -217,29 +228,11 @@ public class Us_core_provenanceBuilder {
   }
   /**
    * @param occurred - The period during which the activity occurred. Field is a 'choice' field.
-   *     Type should be one of FHIRDateTime, Period.
+   *     Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     Us_core_provenanceBuilder.occurred static methods
    */
-  public <T> Us_core_provenanceBuilder withOccurred(@NonNull T occurred) {
-    var guessedSuffix =
-        autoSuffix(occurred.getClass().getSimpleName(), Us_core_provenance$.MODULE$.occurred());
-    return withOccurred(guessedSuffix, occurred);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurred method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurred - The value to be passed to the builder
-   */
-  public <T> Us_core_provenanceBuilder withOccurred(String suffix, @NonNull T occurred) {
-    guard(occurred.getClass().getSimpleName(), suffix, Us_core_provenance$.MODULE$.occurred());
-    this.occurred =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurred, Us_core_provenance$.MODULE$.occurred()));
+  public Us_core_provenanceBuilder withOccurred(@NonNull Choice_0934386166 occurred) {
+    this.occurred = Optional.of(occurred);
     return this;
   }
   /**
@@ -316,7 +309,7 @@ public class Us_core_provenanceBuilder {
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         signature.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(occurred),
+        (Option) OptionConverters.toScala(occurred),
         OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         agent.stream().collect(new NonEmptyLitSeqJCollector<>()),

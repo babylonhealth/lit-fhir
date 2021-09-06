@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,24 +47,30 @@ import static java.util.stream.Collectors.toList;
 
 public class Familymemberhistory_abatementBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice00813350082 value;
 
   /**
    * Required fields for {@link Familymemberhistory_abatement}
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of Age, Boolean, FHIRDate.
+   *     field. Type should be one of Age, Boolean, FHIRDate. To pass the value in, wrap with one of
+   *     the Familymemberhistory_abatementBuilder.value static methods
    */
-  public Familymemberhistory_abatementBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(),
-                    Familymemberhistory_abatement$.MODULE$.value()),
-                value,
-                Familymemberhistory_abatement$.MODULE$.value());
+  public Familymemberhistory_abatementBuilder(@NonNull Choice00813350082 value) {
+    this.value = value;
+  }
+
+  public static Choice00813350082 value(Age a) {
+    return new Choice00813350082(a);
+  }
+
+  public static Choice00813350082 value(Boolean b) {
+    return new Choice00813350082(b);
+  }
+
+  public static Choice00813350082 value(FHIRDate f) {
+    return new Choice00813350082(f);
   }
 
   /**

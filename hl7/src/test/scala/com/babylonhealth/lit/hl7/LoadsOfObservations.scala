@@ -1,23 +1,17 @@
 package com.babylonhealth.lit.hl7
 
-import java.time.ZonedDateTime
-
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core._
-import com.babylonhealth.lit.core.model.{ CodeableConcept, Coding, Period, Quantity, Timing }
+import com.babylonhealth.lit.core.model.{ CodeableConcept, Coding, Quantity }
+import com.babylonhealth.lit.hl7.SharedVals._
 import com.babylonhealth.lit.hl7.model.Observation
 
-import SharedVals._
-
 object LoadsOfObservationsPt1 {
-  // The original list is _just slightly_ too long for scala to manage its compilation, producing the following error:
+  // The original list is too long for scala to manage its compilation, producing the following error:
   //  [error] Error while emitting com/babylonhealth/lit/generated/ParseTest
   //  [error] Method too large: com/babylonhealth/lit/generated/ParseTest.<init> ()V
-  // -- the solution is to exclude the final four observations from the initial construction and append them in another object.
+  // -- the solution is to exclude the final few observations from the initial construction and append them in another object.
   // Which makes no sense to me, but there you are
-
-  // Edit: Since updating to use choice rather than Ref.fromVal, the list has now had to be split into 4 chunks.
-  // C'est la vie.
   def observations_pt1: Seq[Observation] =
     Seq(
       new Observation(
@@ -356,13 +350,7 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Mean platelet volume")
         ),
-        effective = zdt2Ref)
-    )
-}
-
-object LoadsOfObservationsPt2 {
-  def observations_pt2 =
-    Seq(
+        effective = zdt2Ref),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("fL"), value = Some(89.4)))),
@@ -505,8 +493,8 @@ object LoadsOfObservationsPt2 {
     )
 }
 
-object LoadsOfObservationsPt3 {
-  def observations_pt3 =
+object LoadsOfObservations {
+  def observations_pt2 =
     Seq(
       new Observation(
         meta = None,
@@ -780,297 +768,284 @@ object LoadsOfObservationsPt3 {
           ),
           text = Some("Monocyte count - observation")
         ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.2)))),
+        id = Some("9c4ba3d2f99d610439372f27fb2e6004"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Eosinophil count - observation"),
+              system = Some("CTV3"),
+              code = Some("42K..")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1022561000000101")
+            )
+          ),
+          text = Some("Eosinophil count - observation")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("fL"), value = Some(89.4)))),
+        id = Some("e9e732ff59e5220a245efb610b42026a"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Mean cell volume"),
+              system = Some("CTV3"),
+              code = Some("42A..")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1022491000000106")
+            )),
+          text = Some("Mean cell volume")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("10^12/L"), value = Some(4.24)))),
+        id = Some("f91cd505b5acf7f05393986d58c27b70"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Red blood cell count"),
+              system = Some("CTV3"),
+              code = Some("426..")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1022451000000103")
+            )
+          ),
+          text = Some("Red blood cell count")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("g/L"), value = Some(125.0)))),
+        id = Some("9dc4aef8f262f6bbb833bd145d8e1710"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Haemoglobin concentration"),
+              system = Some("CTV3"),
+              code = Some("Xa96v")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1022431000000105")
+            )
+          ),
+          text = Some("Haemoglobin concentration")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        id = Some("1b9f1277acba247e12cb30d9017c6414"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Haematocrit"),
+              system = Some("CTV3"),
+              code = Some("X76tb")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1022291000000105")
+            )),
+          text = Some("Haematocrit")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("miu/L"), value = Some(1.99)))),
+        id = Some("d15b93628cff6754cf5a0a04d52dd1b6"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Serum TSH level"),
+              system = Some("CTV3"),
+              code = Some("XaELV")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1022791000000101")
+            )),
+          text = Some("Serum TSH level")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("iu/L"), value = Some(50.0)))),
+        id = Some("fb198dad03a1eec0fb780473cf4da05f"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Serum alkaline phosphatase level"),
+              system = Some("CTV3"),
+              code = Some("XE2px")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1000621000000104")
+            )
+          ),
+          text = Some("Serum alkaline phosphatase level")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("g/L"), value = Some(42.0)))),
+        id = Some("87a25dc309584fcbb76c0a411492e6b9"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Serum albumin level"),
+              system = Some("CTV3"),
+              code = Some("XE2eA")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1000821000000103")
+            )
+          ),
+          text = Some("Serum albumin level")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        id = Some("f3c72d5f8df7f2d435abe19442735611"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Liver function tests"),
+              system = Some("CTV3"),
+              code = Some("X77WP")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("997531000000108")
+            )
+          ),
+          text = Some("Liver function tests")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("iu/L"), value = Some(18.0)))),
+        id = Some("cde5b91396f0e3fc66ac9adaa7e34189"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Serum alanine aminotransferase level"),
+              system = Some("CTV3"),
+              code = Some("XaLJx")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1018251000000107")
+            )
+          ),
+          text = Some("Serum alanine aminotransferase level")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("umol/L"), value = Some(5.0)))),
+        id = Some("9f6ba48aa7ed06534520c16546df36fa"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Serum bilirubin level"),
+              system = Some("CTV3"),
+              code = Some("44E..")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("999691000000104")
+            )
+          ),
+          text = Some("Serum bilirubin level")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("ng/ml"), value = Some(47.0)))),
+        id = Some("1e25e7a96a48b57e401ed66222fe9f5d"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Serum ferritin level"),
+              system = Some("CTV3"),
+              code = Some("XE24r")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("993381000000106")
+            )
+          ),
+          text = Some("Serum ferritin level")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("mmol/mol"), value = Some(33.0)))),
+        id = Some("a536357aaa69fd61a564ee562d01d584"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Haemoglobin A1c level - IFCC standardised"),
+              system = Some("CTV3"),
+              code = Some("XaPbt")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("999791000000106")
+            )
+          ),
+          text = Some("Haemoglobin A1c level - IFCC standardised")
+        ),
+        effective = zdt2Ref),
+      new Observation(
+        meta = None,
+        value = Some(choice(Quantity(unit = Some("mmol/L"), value = Some(4.6)))),
+        id = Some("db4614ce1be93ff3239fb35334a81b49"),
+        status = OBSERVATION_STATUS.UNKNOWN,
+        code = CodeableConcept(
+          coding = LitSeq(
+            Coding(
+              display = Some("Plasma glucose level"),
+              system = Some("CTV3"),
+              code = Some("XM0ly")
+            ),
+            Coding(
+              system = Some("SNOMED"),
+              code = Some("1010671000000102")
+            )
+          ),
+          text = Some("Plasma glucose level")
+        ),
         effective = zdt2Ref)
     )
-}
-object LoadsOfObservationsPt4 {
-  val observations_pt4 = Seq(
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.2)))),
-      id = Some("9c4ba3d2f99d610439372f27fb2e6004"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Eosinophil count - observation"),
-            system = Some("CTV3"),
-            code = Some("42K..")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1022561000000101")
-          )
-        ),
-        text = Some("Eosinophil count - observation")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("fL"), value = Some(89.4)))),
-      id = Some("e9e732ff59e5220a245efb610b42026a"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Mean cell volume"),
-            system = Some("CTV3"),
-            code = Some("42A..")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1022491000000106")
-          )),
-        text = Some("Mean cell volume")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("10^12/L"), value = Some(4.24)))),
-      id = Some("f91cd505b5acf7f05393986d58c27b70"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Red blood cell count"),
-            system = Some("CTV3"),
-            code = Some("426..")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1022451000000103")
-          )
-        ),
-        text = Some("Red blood cell count")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("g/L"), value = Some(125.0)))),
-      id = Some("9dc4aef8f262f6bbb833bd145d8e1710"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Haemoglobin concentration"),
-            system = Some("CTV3"),
-            code = Some("Xa96v")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1022431000000105")
-          )
-        ),
-        text = Some("Haemoglobin concentration")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      id = Some("1b9f1277acba247e12cb30d9017c6414"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Haematocrit"),
-            system = Some("CTV3"),
-            code = Some("X76tb")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1022291000000105")
-          )),
-        text = Some("Haematocrit")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("miu/L"), value = Some(1.99)))),
-      id = Some("d15b93628cff6754cf5a0a04d52dd1b6"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Serum TSH level"),
-            system = Some("CTV3"),
-            code = Some("XaELV")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1022791000000101")
-          )),
-        text = Some("Serum TSH level")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("iu/L"), value = Some(50.0)))),
-      id = Some("fb198dad03a1eec0fb780473cf4da05f"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Serum alkaline phosphatase level"),
-            system = Some("CTV3"),
-            code = Some("XE2px")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1000621000000104")
-          )
-        ),
-        text = Some("Serum alkaline phosphatase level")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("g/L"), value = Some(42.0)))),
-      id = Some("87a25dc309584fcbb76c0a411492e6b9"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Serum albumin level"),
-            system = Some("CTV3"),
-            code = Some("XE2eA")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1000821000000103")
-          )
-        ),
-        text = Some("Serum albumin level")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      id = Some("f3c72d5f8df7f2d435abe19442735611"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Liver function tests"),
-            system = Some("CTV3"),
-            code = Some("X77WP")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("997531000000108")
-          )
-        ),
-        text = Some("Liver function tests")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("iu/L"), value = Some(18.0)))),
-      id = Some("cde5b91396f0e3fc66ac9adaa7e34189"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Serum alanine aminotransferase level"),
-            system = Some("CTV3"),
-            code = Some("XaLJx")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1018251000000107")
-          )
-        ),
-        text = Some("Serum alanine aminotransferase level")
-      ),
-      effective = zdt2Ref)
-  )
-}
-
-object LoadsOfObservations {
-  val final_4_observations: Seq[Observation] = Seq(
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("umol/L"), value = Some(5.0)))),
-      id = Some("9f6ba48aa7ed06534520c16546df36fa"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Serum bilirubin level"),
-            system = Some("CTV3"),
-            code = Some("44E..")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("999691000000104")
-          )
-        ),
-        text = Some("Serum bilirubin level")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("ng/ml"), value = Some(47.0)))),
-      id = Some("1e25e7a96a48b57e401ed66222fe9f5d"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Serum ferritin level"),
-            system = Some("CTV3"),
-            code = Some("XE24r")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("993381000000106")
-          )
-        ),
-        text = Some("Serum ferritin level")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("mmol/mol"), value = Some(33.0)))),
-      id = Some("a536357aaa69fd61a564ee562d01d584"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Haemoglobin A1c level - IFCC standardised"),
-            system = Some("CTV3"),
-            code = Some("XaPbt")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("999791000000106")
-          )
-        ),
-        text = Some("Haemoglobin A1c level - IFCC standardised")
-      ),
-      effective = zdt2Ref),
-    new Observation(
-      meta = None,
-      value = Some(choice(Quantity(unit = Some("mmol/L"), value = Some(4.6)))),
-      id = Some("db4614ce1be93ff3239fb35334a81b49"),
-      status = OBSERVATION_STATUS.UNKNOWN,
-      code = CodeableConcept(
-        coding = LitSeq(
-          Coding(
-            display = Some("Plasma glucose level"),
-            system = Some("CTV3"),
-            code = Some("XM0ly")
-          ),
-          Coding(
-            system = Some("SNOMED"),
-            code = Some("1010671000000102")
-          )
-        ),
-        text = Some("Plasma glucose level")
-      ),
-      effective = zdt2Ref)
-  )
 
   val observations: LitSeq[Observation] =
-    LoadsOfObservationsPt1.observations_pt1 ++
-      LoadsOfObservationsPt2.observations_pt2 ++
-      LoadsOfObservationsPt3.observations_pt3 ++
-      LoadsOfObservationsPt4.observations_pt4 ++
-      final_4_observations to LitSeq
+    LoadsOfObservationsPt1.observations_pt1 ++ observations_pt2 to LitSeq
 }

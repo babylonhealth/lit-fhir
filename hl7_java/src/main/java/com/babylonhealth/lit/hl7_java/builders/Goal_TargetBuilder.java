@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -43,14 +44,50 @@ import static java.util.stream.Collectors.toList;
 
 public class Goal_TargetBuilder {
   private Optional<String> id = Optional.empty();
-  private Optional<Choice<$bslash$div<Duration, FHIRDate>>> due = Optional.empty();
+  private Optional<Choice01219602913> due = Optional.empty();
   private Optional<CodeableConcept> measure = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice> detail = Optional.empty();
+  private Optional<Choice01056080496> detail = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link Goal.Target} */
   public Goal_TargetBuilder() {}
+
+  public static Choice01219602913 due(Duration d) {
+    return new Choice01219602913(d);
+  }
+
+  public static Choice01219602913 due(FHIRDate f) {
+    return new Choice01219602913(f);
+  }
+
+  public static Choice01056080496 detail(Boolean b) {
+    return new Choice01056080496(b);
+  }
+
+  public static Choice01056080496 detail(CodeableConcept c) {
+    return new Choice01056080496(c);
+  }
+
+  public static Choice01056080496 detail(Integer i) {
+    return new Choice01056080496(i);
+  }
+
+  public static Choice01056080496 detail(Quantity q) {
+    return new Choice01056080496(q);
+  }
+
+  public static Choice01056080496 detail(Range r) {
+    return new Choice01056080496(r);
+  }
+
+  public static Choice01056080496 detail(Ratio r) {
+    return new Choice01056080496(r);
+  }
+
+  public static Choice01056080496 detail(String s) {
+    return new Choice01056080496(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -60,24 +97,12 @@ public class Goal_TargetBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param due Field is a 'choice' field. Type should be one of Duration, FHIRDate. */
-  public <T> Goal_TargetBuilder withDue(@NonNull T due) {
-    var guessedSuffix = autoSuffix(due.getClass().getSimpleName(), Goal.Target$.MODULE$.due());
-    return withDue(guessedSuffix, due);
-  }
-
   /**
-   * Alternative to the 'main' withDue method. This will be marginally faster than the other method,
-   * but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param due - The value to be passed to the builder
+   * @param due Field is a 'choice' field. Type should be one of Duration, FHIRDate. To pass the
+   *     value in, wrap with one of the Goal_TargetBuilder.due static methods
    */
-  public <T> Goal_TargetBuilder withDue(String suffix, @NonNull T due) {
-    guard(due.getClass().getSimpleName(), suffix, Goal.Target$.MODULE$.due());
-    this.due =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, due, Goal.Target$.MODULE$.due()));
+  public Goal_TargetBuilder withDue(@NonNull Choice01219602913 due) {
+    this.due = Optional.of(due);
     return this;
   }
   /** @param measure */
@@ -109,27 +134,11 @@ public class Goal_TargetBuilder {
   }
   /**
    * @param detail Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
-   *     Integer, Quantity, Range, Ratio, String.
+   *     Integer, Quantity, Range, Ratio, String. To pass the value in, wrap with one of the
+   *     Goal_TargetBuilder.detail static methods
    */
-  public <T> Goal_TargetBuilder withDetail(@NonNull T detail) {
-    var guessedSuffix =
-        autoSuffix(detail.getClass().getSimpleName(), Goal.Target$.MODULE$.detail());
-    return withDetail(guessedSuffix, detail);
-  }
-
-  /**
-   * Alternative to the 'main' withDetail method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param detail - The value to be passed to the builder
-   */
-  public <T> Goal_TargetBuilder withDetail(String suffix, @NonNull T detail) {
-    guard(detail.getClass().getSimpleName(), suffix, Goal.Target$.MODULE$.detail());
-    this.detail =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, detail, Goal.Target$.MODULE$.detail()));
+  public Goal_TargetBuilder withDetail(@NonNull Choice01056080496 detail) {
+    this.detail = Optional.of(detail);
     return this;
   }
   /**
@@ -169,7 +178,7 @@ public class Goal_TargetBuilder {
   public Goal.Target build() {
     return new Goal.Target(
         OptionConverters.toScala(id),
-        OptionConverters.toScala(due),
+        (Option) OptionConverters.toScala(due),
         OptionConverters.toScala(measure),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(detail),

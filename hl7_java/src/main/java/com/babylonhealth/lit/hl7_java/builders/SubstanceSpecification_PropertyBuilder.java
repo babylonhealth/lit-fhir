@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,14 +47,29 @@ public class SubstanceSpecification_PropertyBuilder {
   private Optional<CodeableConcept> code = Optional.empty();
   private Optional<CodeableConcept> category = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Quantity, String>>> amount = Optional.empty();
+  private Optional<Choice_2072987899> amount = Optional.empty();
   private Optional<String> parameters = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> definingSubstance =
-      Optional.empty();
+  private Optional<Choice01025009075> definingSubstance = Optional.empty();
 
   /** Required fields for {@link SubstanceSpecification.Property} */
   public SubstanceSpecification_PropertyBuilder() {}
+
+  public static Choice_2072987899 amount(Quantity q) {
+    return new Choice_2072987899(q);
+  }
+
+  public static Choice_2072987899 amount(String s) {
+    return new Choice_2072987899(s);
+  }
+
+  public static Choice01025009075 definingSubstance(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 definingSubstance(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -96,32 +112,12 @@ public class SubstanceSpecification_PropertyBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param amount Field is a 'choice' field. Type should be one of Quantity, String. */
-  public <T> SubstanceSpecification_PropertyBuilder withAmount(@NonNull T amount) {
-    var guessedSuffix =
-        autoSuffix(
-            amount.getClass().getSimpleName(), SubstanceSpecification.Property$.MODULE$.amount());
-    return withAmount(guessedSuffix, amount);
-  }
-
   /**
-   * Alternative to the 'main' withAmount method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param amount - The value to be passed to the builder
+   * @param amount Field is a 'choice' field. Type should be one of Quantity, String. To pass the
+   *     value in, wrap with one of the SubstanceSpecification_PropertyBuilder.amount static methods
    */
-  public <T> SubstanceSpecification_PropertyBuilder withAmount(String suffix, @NonNull T amount) {
-    guard(
-        amount.getClass().getSimpleName(),
-        suffix,
-        SubstanceSpecification.Property$.MODULE$.amount());
-    this.amount =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, amount, SubstanceSpecification.Property$.MODULE$.amount()));
+  public SubstanceSpecification_PropertyBuilder withAmount(@NonNull Choice_2072987899 amount) {
+    this.amount = Optional.of(amount);
     return this;
   }
   /** @param parameters */
@@ -165,38 +161,12 @@ public class SubstanceSpecification_PropertyBuilder {
   }
   /**
    * @param definingSubstance Field is a 'choice' field. Type should be one of CodeableConcept,
-   *     Reference.
+   *     Reference. To pass the value in, wrap with one of the
+   *     SubstanceSpecification_PropertyBuilder.definingSubstance static methods
    */
-  public <T> SubstanceSpecification_PropertyBuilder withDefiningSubstance(
-      @NonNull T definingSubstance) {
-    var guessedSuffix =
-        autoSuffix(
-            definingSubstance.getClass().getSimpleName(),
-            SubstanceSpecification.Property$.MODULE$.definingSubstance());
-    return withDefiningSubstance(guessedSuffix, definingSubstance);
-  }
-
-  /**
-   * Alternative to the 'main' withDefiningSubstance method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param definingSubstance - The value to be passed to the builder
-   */
-  public <T> SubstanceSpecification_PropertyBuilder withDefiningSubstance(
-      String suffix, @NonNull T definingSubstance) {
-    guard(
-        definingSubstance.getClass().getSimpleName(),
-        suffix,
-        SubstanceSpecification.Property$.MODULE$.definingSubstance());
-    this.definingSubstance =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    definingSubstance,
-                    SubstanceSpecification.Property$.MODULE$.definingSubstance()));
+  public SubstanceSpecification_PropertyBuilder withDefiningSubstance(
+      @NonNull Choice01025009075 definingSubstance) {
+    this.definingSubstance = Optional.of(definingSubstance);
     return this;
   }
 
@@ -206,10 +176,10 @@ public class SubstanceSpecification_PropertyBuilder {
         OptionConverters.toScala(code),
         OptionConverters.toScala(category),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(amount),
         OptionConverters.toScala(parameters),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(definingSubstance),
+        (Option) OptionConverters.toScala(definingSubstance),
         LitUtils.emptyMetaElMap());
   }
 }

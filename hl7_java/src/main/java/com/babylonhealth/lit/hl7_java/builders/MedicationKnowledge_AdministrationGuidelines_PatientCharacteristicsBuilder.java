@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,26 +47,27 @@ public class MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics
   private Collection<String> value = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Quantity>> characteristic;
+  private Choice_0970951552 characteristic;
 
   /**
    * Required fields for {@link MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics}
    *
    * @param characteristic Field is a 'choice' field. Type should be one of CodeableConcept,
-   *     Quantity.
+   *     Quantity. To pass the value in, wrap with one of the
+   *     MedicationKnowledge_AdministrationGuidelines_PatientCharacteristicsBuilder.characteristic
+   *     static methods
    */
   public MedicationKnowledge_AdministrationGuidelines_PatientCharacteristicsBuilder(
-      @NonNull Object characteristic) {
-    this.characteristic =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    characteristic.getClass().getSimpleName(),
-                    MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics$.MODULE$
-                        .characteristic()),
-                characteristic,
-                MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics$.MODULE$
-                    .characteristic());
+      @NonNull Choice_0970951552 characteristic) {
+    this.characteristic = characteristic;
+  }
+
+  public static Choice_0970951552 characteristic(CodeableConcept c) {
+    return new Choice_0970951552(c);
+  }
+
+  public static Choice_0970951552 characteristic(Quantity q) {
+    return new Choice_0970951552(q);
   }
 
   /**

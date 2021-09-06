@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATION_STATEMENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -61,10 +62,10 @@ public class MedicationStatementBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
   private Collection<CodeableConcept> statusReason = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> effective = Optional.empty();
+  private Optional<Choice_0934386166> effective = Optional.empty();
   private Optional<FHIRDateTime> dateAsserted = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> medication;
+  private Choice01025009075 medication;
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<Reference> informationSource = Optional.empty();
@@ -79,20 +80,32 @@ public class MedicationStatementBuilder {
    * @param medication - Identifies the medication being administered. This is either a link to a
    *     resource representing the details of the medication or a simple attribute carrying a code
    *     that identifies the medication from a known list of medications. Field is a 'choice' field.
-   *     Type should be one of CodeableConcept, Reference.
+   *     Type should be one of CodeableConcept, Reference. To pass the value in, wrap with one of
+   *     the MedicationStatementBuilder.medication static methods
    */
   public MedicationStatementBuilder(
-      MEDICATION_STATEMENT_STATUS status, Reference subject, @NonNull Object medication) {
+      MEDICATION_STATEMENT_STATUS status,
+      Reference subject,
+      @NonNull Choice01025009075 medication) {
     this.status = status;
     this.subject = subject;
-    this.medication =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    medication.getClass().getSimpleName(),
-                    MedicationStatement$.MODULE$.medication()),
-                medication,
-                MedicationStatement$.MODULE$.medication());
+    this.medication = medication;
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
+  }
+
+  public static Choice01025009075 medication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 medication(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -298,29 +311,11 @@ public class MedicationStatementBuilder {
   /**
    * @param effective - The interval of time during which it is being asserted that the patient
    *     is/was/will be taking the medication (or was not taking, when the MedicationStatement.taken
-   *     element is No). Field is a 'choice' field. Type should be one of FHIRDateTime, Period.
+   *     element is No). Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To
+   *     pass the value in, wrap with one of the MedicationStatementBuilder.effective static methods
    */
-  public <T> MedicationStatementBuilder withEffective(@NonNull T effective) {
-    var guessedSuffix =
-        autoSuffix(effective.getClass().getSimpleName(), MedicationStatement$.MODULE$.effective());
-    return withEffective(guessedSuffix, effective);
-  }
-
-  /**
-   * Alternative to the 'main' withEffective method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param effective - The value to be passed to the builder
-   */
-  public <T> MedicationStatementBuilder withEffective(String suffix, @NonNull T effective) {
-    guard(effective.getClass().getSimpleName(), suffix, MedicationStatement$.MODULE$.effective());
-    this.effective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, effective, MedicationStatement$.MODULE$.effective()));
+  public MedicationStatementBuilder withEffective(@NonNull Choice_0934386166 effective) {
+    this.effective = Optional.of(effective);
     return this;
   }
   /**
@@ -426,7 +421,7 @@ public class MedicationStatementBuilder {
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
         statusReason.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(effective),
+        (Option) OptionConverters.toScala(effective),
         OptionConverters.toScala(dateAsserted),
         OptionConverters.toScala(implicitRules),
         medication,

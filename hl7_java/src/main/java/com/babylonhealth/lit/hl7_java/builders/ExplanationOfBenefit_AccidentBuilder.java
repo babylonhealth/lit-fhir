@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,11 +47,19 @@ public class ExplanationOfBenefit_AccidentBuilder {
   private Optional<FHIRDate> date = Optional.empty();
   private Optional<CodeableConcept> _type = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Address, Reference>>> location = Optional.empty();
+  private Optional<Choice00434638053> location = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link ExplanationOfBenefit.Accident} */
   public ExplanationOfBenefit_AccidentBuilder() {}
+
+  public static Choice00434638053 location(Address a) {
+    return new Choice00434638053(a);
+  }
+
+  public static Choice00434638053 location(Reference r) {
+    return new Choice00434638053(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -95,32 +104,13 @@ public class ExplanationOfBenefit_AccidentBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param location Field is a 'choice' field. Type should be one of Address, Reference. */
-  public <T> ExplanationOfBenefit_AccidentBuilder withLocation(@NonNull T location) {
-    var guessedSuffix =
-        autoSuffix(
-            location.getClass().getSimpleName(), ExplanationOfBenefit.Accident$.MODULE$.location());
-    return withLocation(guessedSuffix, location);
-  }
-
   /**
-   * Alternative to the 'main' withLocation method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param location - The value to be passed to the builder
+   * @param location Field is a 'choice' field. Type should be one of Address, Reference. To pass
+   *     the value in, wrap with one of the ExplanationOfBenefit_AccidentBuilder.location static
+   *     methods
    */
-  public <T> ExplanationOfBenefit_AccidentBuilder withLocation(String suffix, @NonNull T location) {
-    guard(
-        location.getClass().getSimpleName(),
-        suffix,
-        ExplanationOfBenefit.Accident$.MODULE$.location());
-    this.location =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, location, ExplanationOfBenefit.Accident$.MODULE$.location()));
+  public ExplanationOfBenefit_AccidentBuilder withLocation(@NonNull Choice00434638053 location) {
+    this.location = Optional.of(location);
     return this;
   }
   /**
@@ -164,7 +154,7 @@ public class ExplanationOfBenefit_AccidentBuilder {
         OptionConverters.toScala(date),
         OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(location),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

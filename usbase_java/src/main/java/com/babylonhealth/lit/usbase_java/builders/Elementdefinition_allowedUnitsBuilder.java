@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,24 +47,26 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_allowedUnitsBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<String, CodeableConcept>> value;
+  private Choice01054268719 value;
 
   /**
    * Required fields for {@link Elementdefinition_allowedUnits}
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of String, CodeableConcept.
+   *     field. Type should be one of String, CodeableConcept. To pass the value in, wrap with one
+   *     of the Elementdefinition_allowedUnitsBuilder.value static methods
    */
-  public Elementdefinition_allowedUnitsBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(),
-                    Elementdefinition_allowedUnits$.MODULE$.value()),
-                value,
-                Elementdefinition_allowedUnits$.MODULE$.value());
+  public Elementdefinition_allowedUnitsBuilder(@NonNull Choice01054268719 value) {
+    this.value = value;
+  }
+
+  public static Choice01054268719 value(String s) {
+    return new Choice01054268719(s);
+  }
+
+  public static Choice01054268719 value(CodeableConcept c) {
+    return new Choice01054268719(c);
   }
 
   /**

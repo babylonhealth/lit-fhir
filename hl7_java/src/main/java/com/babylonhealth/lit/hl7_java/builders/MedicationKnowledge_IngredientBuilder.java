@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -43,7 +44,7 @@ import static java.util.stream.Collectors.toList;
 
 public class MedicationKnowledge_IngredientBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> item;
+  private Choice01025009075 item;
   private Optional<Boolean> isActive = Optional.empty();
   private Optional<Ratio> strength = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
@@ -52,17 +53,20 @@ public class MedicationKnowledge_IngredientBuilder {
   /**
    * Required fields for {@link MedicationKnowledge.Ingredient}
    *
-   * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the MedicationKnowledge_IngredientBuilder.item static
+   *     methods
    */
-  public MedicationKnowledge_IngredientBuilder(@NonNull Object item) {
-    this.item =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    item.getClass().getSimpleName(),
-                    MedicationKnowledge.Ingredient$.MODULE$.item()),
-                item,
-                MedicationKnowledge.Ingredient$.MODULE$.item());
+  public MedicationKnowledge_IngredientBuilder(@NonNull Choice01025009075 item) {
+    this.item = item;
+  }
+
+  public static Choice01025009075 item(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 item(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

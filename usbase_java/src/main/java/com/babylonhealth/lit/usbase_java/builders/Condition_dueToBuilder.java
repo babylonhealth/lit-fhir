@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,22 +47,26 @@ import static java.util.stream.Collectors.toList;
 
 public class Condition_dueToBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> value;
+  private Choice01025009075 value;
 
   /**
    * Required fields for {@link Condition_dueTo}
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of CodeableConcept, Reference.
+   *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
+   *     one of the Condition_dueToBuilder.value static methods
    */
-  public Condition_dueToBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), Condition_dueTo$.MODULE$.value()),
-                value,
-                Condition_dueTo$.MODULE$.value());
+  public Condition_dueToBuilder(@NonNull Choice01025009075 value) {
+    this.value = value;
+  }
+
+  public static Choice01025009075 value(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 value(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

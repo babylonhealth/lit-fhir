@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PROPERTY_REPRESENTATION;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -57,13 +59,13 @@ public class Elementdefinition_deBuilder {
   private Optional<Integer> maxLength = Optional.empty();
   private Collection<String> condition = Collections.emptyList();
   private Optional<String> definition = Optional.empty();
-  private Optional<Choice> minValue = Optional.empty();
-  private Optional<Choice> maxValue = Optional.empty();
+  private Optional<Choice_0637176084> minValue = Optional.empty();
+  private Optional<Choice_0637176084> maxValue = Optional.empty();
   private Optional<Boolean> mustSupport = Optional.empty();
   private Optional<String> requirements = Optional.empty();
   private Optional<String> orderMeaning = Optional.empty();
   private Optional<ElementDefinition.Base> base = Optional.empty();
-  private Optional<Choice> defaultValue = Optional.empty();
+  private Optional<Choice_1349125893> defaultValue = Optional.empty();
   private Optional<String> isModifierReason = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<ElementDefinition.Example> example = Collections.emptyList();
@@ -82,6 +84,678 @@ public class Elementdefinition_deBuilder {
    */
   public Elementdefinition_deBuilder(String path) {
     this.path = path;
+  }
+
+  public static Choice_1349125893 fixed(Address a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 fixed(Age a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 fixed(Annotation a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 fixed(Attachment a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 fixed(byte[] b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 fixed(BigDecimal b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 fixed(Boolean b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 fixed(CodeableConcept c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 fixed(Coding c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 fixed(ContactDetail c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 fixed(ContactPoint c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 fixed(Contributor c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 fixed(Count c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 fixed(DataRequirement d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 fixed(Distance d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 fixed(Dosage d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 fixed(Duration d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 fixed(Expression e) {
+    return new Choice_1349125893(e);
+  }
+
+  public static Choice_1349125893 fixed(FHIRDate f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 fixed(FHIRDateTime f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 fixed(HumanName h) {
+    return new Choice_1349125893(h);
+  }
+
+  public static Choice_1349125893 fixed(Identifier i) {
+    return new Choice_1349125893(i);
+  }
+
+  public static Choice_1349125893 fixed(LocalTime l) {
+    return new Choice_1349125893(l);
+  }
+
+  public static Choice_1349125893 fixed(Meta m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 fixed(Money m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 fixed(ParameterDefinition p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 fixed(Period p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 fixed(Quantity q) {
+    return new Choice_1349125893(q);
+  }
+
+  public static Choice_1349125893 fixed(Range r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 fixed(Ratio r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 fixed(Reference r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 fixed(RelatedArtifact r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 fixed(SampledData s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 fixed(Signature s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 fixed(Timing t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 fixed(TriggerDefinition t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 fixed(UUID u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 fixed(UsageContext u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 fixed(ZonedDateTime z) {
+    return new Choice_1349125893(z);
+  }
+
+  public static Choice_1349125893 fixedCanonical(String s) {
+    return Choice_1349125893.Choice_1349125893Canonical(s);
+  }
+
+  public static Choice_1349125893 fixedCode(String s) {
+    return Choice_1349125893.Choice_1349125893Code(s);
+  }
+
+  public static Choice_1349125893 fixedId(String s) {
+    return Choice_1349125893.Choice_1349125893Id(s);
+  }
+
+  public static Choice_1349125893 fixedInteger(Integer i) {
+    return Choice_1349125893.Choice_1349125893Int(i);
+  }
+
+  public static Choice_1349125893 fixedMarkdown(String s) {
+    return Choice_1349125893.Choice_1349125893Markdown(s);
+  }
+
+  public static Choice_1349125893 fixedOid(String s) {
+    return Choice_1349125893.Choice_1349125893OID(s);
+  }
+
+  public static Choice_1349125893 fixedPositiveInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  }
+
+  public static Choice_1349125893 fixedString(String s) {
+    return Choice_1349125893.Choice_1349125893String(s);
+  }
+
+  public static Choice_1349125893 fixedUnsignedInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  }
+
+  public static Choice_1349125893 fixedUri(String s) {
+    return Choice_1349125893.Choice_1349125893UriStr(s);
+  }
+
+  public static Choice_1349125893 fixedUrl(String s) {
+    return Choice_1349125893.Choice_1349125893UrlStr(s);
+  }
+
+  public static Choice_1349125893 pattern(Address a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 pattern(Age a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 pattern(Annotation a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 pattern(Attachment a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 pattern(byte[] b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 pattern(BigDecimal b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 pattern(Boolean b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 pattern(CodeableConcept c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 pattern(Coding c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 pattern(ContactDetail c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 pattern(ContactPoint c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 pattern(Contributor c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 pattern(Count c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 pattern(DataRequirement d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 pattern(Distance d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 pattern(Dosage d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 pattern(Duration d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 pattern(Expression e) {
+    return new Choice_1349125893(e);
+  }
+
+  public static Choice_1349125893 pattern(FHIRDate f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 pattern(FHIRDateTime f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 pattern(HumanName h) {
+    return new Choice_1349125893(h);
+  }
+
+  public static Choice_1349125893 pattern(Identifier i) {
+    return new Choice_1349125893(i);
+  }
+
+  public static Choice_1349125893 pattern(LocalTime l) {
+    return new Choice_1349125893(l);
+  }
+
+  public static Choice_1349125893 pattern(Meta m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 pattern(Money m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 pattern(ParameterDefinition p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 pattern(Period p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 pattern(Quantity q) {
+    return new Choice_1349125893(q);
+  }
+
+  public static Choice_1349125893 pattern(Range r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 pattern(Ratio r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 pattern(Reference r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 pattern(RelatedArtifact r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 pattern(SampledData s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 pattern(Signature s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 pattern(Timing t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 pattern(TriggerDefinition t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 pattern(UUID u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 pattern(UsageContext u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 pattern(ZonedDateTime z) {
+    return new Choice_1349125893(z);
+  }
+
+  public static Choice_1349125893 patternCanonical(String s) {
+    return Choice_1349125893.Choice_1349125893Canonical(s);
+  }
+
+  public static Choice_1349125893 patternCode(String s) {
+    return Choice_1349125893.Choice_1349125893Code(s);
+  }
+
+  public static Choice_1349125893 patternId(String s) {
+    return Choice_1349125893.Choice_1349125893Id(s);
+  }
+
+  public static Choice_1349125893 patternInteger(Integer i) {
+    return Choice_1349125893.Choice_1349125893Int(i);
+  }
+
+  public static Choice_1349125893 patternMarkdown(String s) {
+    return Choice_1349125893.Choice_1349125893Markdown(s);
+  }
+
+  public static Choice_1349125893 patternOid(String s) {
+    return Choice_1349125893.Choice_1349125893OID(s);
+  }
+
+  public static Choice_1349125893 patternPositiveInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  }
+
+  public static Choice_1349125893 patternString(String s) {
+    return Choice_1349125893.Choice_1349125893String(s);
+  }
+
+  public static Choice_1349125893 patternUnsignedInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  }
+
+  public static Choice_1349125893 patternUri(String s) {
+    return Choice_1349125893.Choice_1349125893UriStr(s);
+  }
+
+  public static Choice_1349125893 patternUrl(String s) {
+    return Choice_1349125893.Choice_1349125893UrlStr(s);
+  }
+
+  public static Choice_0637176084 minValue(BigDecimal b) {
+    return new Choice_0637176084(b);
+  }
+
+  public static Choice_0637176084 minValue(FHIRDate f) {
+    return new Choice_0637176084(f);
+  }
+
+  public static Choice_0637176084 minValue(FHIRDateTime f) {
+    return new Choice_0637176084(f);
+  }
+
+  public static Choice_0637176084 minValue(LocalTime l) {
+    return new Choice_0637176084(l);
+  }
+
+  public static Choice_0637176084 minValue(Quantity q) {
+    return new Choice_0637176084(q);
+  }
+
+  public static Choice_0637176084 minValue(ZonedDateTime z) {
+    return new Choice_0637176084(z);
+  }
+
+  public static Choice_0637176084 minValueInteger(Integer i) {
+    return Choice_0637176084.Choice_0637176084Int(i);
+  }
+
+  public static Choice_0637176084 minValuePositiveInt(Integer i) {
+    return Choice_0637176084.Choice_0637176084PositiveInt(i);
+  }
+
+  public static Choice_0637176084 minValueUnsignedInt(Integer i) {
+    return Choice_0637176084.Choice_0637176084UnsignedInt(i);
+  }
+
+  public static Choice_0637176084 maxValue(BigDecimal b) {
+    return new Choice_0637176084(b);
+  }
+
+  public static Choice_0637176084 maxValue(FHIRDate f) {
+    return new Choice_0637176084(f);
+  }
+
+  public static Choice_0637176084 maxValue(FHIRDateTime f) {
+    return new Choice_0637176084(f);
+  }
+
+  public static Choice_0637176084 maxValue(LocalTime l) {
+    return new Choice_0637176084(l);
+  }
+
+  public static Choice_0637176084 maxValue(Quantity q) {
+    return new Choice_0637176084(q);
+  }
+
+  public static Choice_0637176084 maxValue(ZonedDateTime z) {
+    return new Choice_0637176084(z);
+  }
+
+  public static Choice_0637176084 maxValueInteger(Integer i) {
+    return Choice_0637176084.Choice_0637176084Int(i);
+  }
+
+  public static Choice_0637176084 maxValuePositiveInt(Integer i) {
+    return Choice_0637176084.Choice_0637176084PositiveInt(i);
+  }
+
+  public static Choice_0637176084 maxValueUnsignedInt(Integer i) {
+    return Choice_0637176084.Choice_0637176084UnsignedInt(i);
+  }
+
+  public static Choice_1349125893 defaultValue(Address a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 defaultValue(Age a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 defaultValue(Annotation a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 defaultValue(Attachment a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 defaultValue(byte[] b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 defaultValue(BigDecimal b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 defaultValue(Boolean b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 defaultValue(CodeableConcept c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(Coding c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(ContactDetail c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(ContactPoint c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(Contributor c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(Count c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(DataRequirement d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 defaultValue(Distance d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 defaultValue(Dosage d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 defaultValue(Duration d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 defaultValue(Expression e) {
+    return new Choice_1349125893(e);
+  }
+
+  public static Choice_1349125893 defaultValue(FHIRDate f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 defaultValue(FHIRDateTime f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 defaultValue(HumanName h) {
+    return new Choice_1349125893(h);
+  }
+
+  public static Choice_1349125893 defaultValue(Identifier i) {
+    return new Choice_1349125893(i);
+  }
+
+  public static Choice_1349125893 defaultValue(LocalTime l) {
+    return new Choice_1349125893(l);
+  }
+
+  public static Choice_1349125893 defaultValue(Meta m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 defaultValue(Money m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 defaultValue(ParameterDefinition p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 defaultValue(Period p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 defaultValue(Quantity q) {
+    return new Choice_1349125893(q);
+  }
+
+  public static Choice_1349125893 defaultValue(Range r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 defaultValue(Ratio r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 defaultValue(Reference r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 defaultValue(RelatedArtifact r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 defaultValue(SampledData s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 defaultValue(Signature s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 defaultValue(Timing t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 defaultValue(TriggerDefinition t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 defaultValue(UUID u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 defaultValue(UsageContext u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 defaultValue(ZonedDateTime z) {
+    return new Choice_1349125893(z);
+  }
+
+  public static Choice_1349125893 defaultValueCanonical(String s) {
+    return Choice_1349125893.Choice_1349125893Canonical(s);
+  }
+
+  public static Choice_1349125893 defaultValueCode(String s) {
+    return Choice_1349125893.Choice_1349125893Code(s);
+  }
+
+  public static Choice_1349125893 defaultValueId(String s) {
+    return Choice_1349125893.Choice_1349125893Id(s);
+  }
+
+  public static Choice_1349125893 defaultValueInteger(Integer i) {
+    return Choice_1349125893.Choice_1349125893Int(i);
+  }
+
+  public static Choice_1349125893 defaultValueMarkdown(String s) {
+    return Choice_1349125893.Choice_1349125893Markdown(s);
+  }
+
+  public static Choice_1349125893 defaultValueOid(String s) {
+    return Choice_1349125893.Choice_1349125893OID(s);
+  }
+
+  public static Choice_1349125893 defaultValuePositiveInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  }
+
+  public static Choice_1349125893 defaultValueString(String s) {
+    return Choice_1349125893.Choice_1349125893String(s);
+  }
+
+  public static Choice_1349125893 defaultValueUnsignedInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  }
+
+  public static Choice_1349125893 defaultValueUri(String s) {
+    return Choice_1349125893.Choice_1349125893UriStr(s);
+  }
+
+  public static Choice_1349125893 defaultValueUrl(String s) {
+    return Choice_1349125893.Choice_1349125893UrlStr(s);
   }
 
   /**
@@ -213,64 +887,22 @@ public class Elementdefinition_deBuilder {
    * @param minValue - The minimum allowed value for the element. The value is inclusive. This is
    *     allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. Field
    *     is a 'choice' field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer,
-   *     LocalTime, Quantity, ZonedDateTime.
+   *     LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
+   *     Elementdefinition_deBuilder.minValue static methods
    */
-  public <T> Elementdefinition_deBuilder withMinValue(@NonNull T minValue) {
-    var guessedSuffix =
-        autoSuffix(minValue.getClass().getSimpleName(), Elementdefinition_de$.MODULE$.minValue());
-    return withMinValue(guessedSuffix, minValue);
-  }
-
-  /**
-   * Alternative to the 'main' withMinValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of Integer then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt.
-   * @param minValue - The value to be passed to the builder
-   */
-  public <T> Elementdefinition_deBuilder withMinValue(String suffix, @NonNull T minValue) {
-    guard(minValue.getClass().getSimpleName(), suffix, Elementdefinition_de$.MODULE$.minValue());
-    this.minValue =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, minValue, Elementdefinition_de$.MODULE$.minValue()));
+  public Elementdefinition_deBuilder withMinValue(@NonNull Choice_0637176084 minValue) {
+    this.minValue = Optional.of(minValue);
     return this;
   }
   /**
    * @param maxValue - The maximum allowed value for the element. The value is inclusive. This is
    *     allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity. Field
    *     is a 'choice' field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer,
-   *     LocalTime, Quantity, ZonedDateTime.
+   *     LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
+   *     Elementdefinition_deBuilder.maxValue static methods
    */
-  public <T> Elementdefinition_deBuilder withMaxValue(@NonNull T maxValue) {
-    var guessedSuffix =
-        autoSuffix(maxValue.getClass().getSimpleName(), Elementdefinition_de$.MODULE$.maxValue());
-    return withMaxValue(guessedSuffix, maxValue);
-  }
-
-  /**
-   * Alternative to the 'main' withMaxValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of Integer then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt.
-   * @param maxValue - The value to be passed to the builder
-   */
-  public <T> Elementdefinition_deBuilder withMaxValue(String suffix, @NonNull T maxValue) {
-    guard(maxValue.getClass().getSimpleName(), suffix, Elementdefinition_de$.MODULE$.maxValue());
-    this.maxValue =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, maxValue, Elementdefinition_de$.MODULE$.maxValue()));
+  public Elementdefinition_deBuilder withMaxValue(@NonNull Choice_0637176084 maxValue) {
+    this.maxValue = Optional.of(maxValue);
     return this;
   }
   /**
@@ -321,37 +953,11 @@ public class Elementdefinition_deBuilder {
    *     Distance, Dosage, Duration, Expression, FHIRDate, FHIRDateTime, HumanName, Identifier,
    *     Integer, LocalTime, Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio,
    *     Reference, RelatedArtifact, SampledData, Signature, Timing, TriggerDefinition, UUID,
-   *     UsageContext, ZonedDateTime.
+   *     UsageContext, ZonedDateTime. To pass the value in, wrap with one of the
+   *     Elementdefinition_deBuilder.defaultValue static methods
    */
-  public <T> Elementdefinition_deBuilder withDefaultValue(@NonNull T defaultValue) {
-    var guessedSuffix =
-        autoSuffix(
-            defaultValue.getClass().getSimpleName(), Elementdefinition_de$.MODULE$.defaultValue());
-    return withDefaultValue(guessedSuffix, defaultValue);
-  }
-
-  /**
-   * Alternative to the 'main' withDefaultValue method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type. When the
-   * parameter is one of Integer or String then there are multiple candidate 'types' for the FHIR
-   * object, and we are unable to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt. For values of type String, the valid values are Canonical, Code,
-   *     Id, Markdown, Oid, String, Uri, Url.
-   * @param defaultValue - The value to be passed to the builder
-   */
-  public <T> Elementdefinition_deBuilder withDefaultValue(String suffix, @NonNull T defaultValue) {
-    guard(
-        defaultValue.getClass().getSimpleName(),
-        suffix,
-        Elementdefinition_de$.MODULE$.defaultValue());
-    this.defaultValue =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, defaultValue, Elementdefinition_de$.MODULE$.defaultValue()));
+  public Elementdefinition_deBuilder withDefaultValue(@NonNull Choice_1349125893 defaultValue) {
+    this.defaultValue = Optional.of(defaultValue);
     return this;
   }
   /**

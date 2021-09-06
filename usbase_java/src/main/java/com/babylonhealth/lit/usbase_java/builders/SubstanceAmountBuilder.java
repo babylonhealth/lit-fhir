@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,8 +48,7 @@ import static java.util.stream.Collectors.toList;
 public class SubstanceAmountBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<Quantity, Range>, String>>> amount =
-      Optional.empty();
+  private Optional<Choice_1527751898> amount = Optional.empty();
   private Optional<CodeableConcept> amountType = Optional.empty();
   private Optional<String> amountText = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -55,6 +56,18 @@ public class SubstanceAmountBuilder {
 
   /** Required fields for {@link SubstanceAmount} */
   public SubstanceAmountBuilder() {}
+
+  public static Choice_1527751898 amount(Quantity q) {
+    return new Choice_1527751898(q);
+  }
+
+  public static Choice_1527751898 amount(Range r) {
+    return new Choice_1527751898(r);
+  }
+
+  public static Choice_1527751898 amount(String s) {
+    return new Choice_1527751898(s);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -90,27 +103,11 @@ public class SubstanceAmountBuilder {
    * @param amount - Used to capture quantitative values for a variety of elements. If only limits
    *     are given, the arithmetic mean would be the average. If only a single definite value for a
    *     given element is given, it would be captured in this field. Field is a 'choice' field. Type
-   *     should be one of Quantity, Range, String.
+   *     should be one of Quantity, Range, String. To pass the value in, wrap with one of the
+   *     SubstanceAmountBuilder.amount static methods
    */
-  public <T> SubstanceAmountBuilder withAmount(@NonNull T amount) {
-    var guessedSuffix =
-        autoSuffix(amount.getClass().getSimpleName(), SubstanceAmount$.MODULE$.amount());
-    return withAmount(guessedSuffix, amount);
-  }
-
-  /**
-   * Alternative to the 'main' withAmount method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param amount - The value to be passed to the builder
-   */
-  public <T> SubstanceAmountBuilder withAmount(String suffix, @NonNull T amount) {
-    guard(amount.getClass().getSimpleName(), suffix, SubstanceAmount$.MODULE$.amount());
-    this.amount =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, amount, SubstanceAmount$.MODULE$.amount()));
+  public SubstanceAmountBuilder withAmount(@NonNull Choice_1527751898 amount) {
+    this.amount = Optional.of(amount);
     return this;
   }
   /**
@@ -174,7 +171,7 @@ public class SubstanceAmountBuilder {
     return new SubstanceAmount(
         OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(amount),
         OptionConverters.toScala(amountType),
         OptionConverters.toScala(amountText),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

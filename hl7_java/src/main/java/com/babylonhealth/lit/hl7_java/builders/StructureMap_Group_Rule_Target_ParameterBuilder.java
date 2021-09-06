@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -43,7 +44,7 @@ import static java.util.stream.Collectors.toList;
 
 public class StructureMap_Group_Rule_Target_ParameterBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice00600764285 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -51,17 +52,31 @@ public class StructureMap_Group_Rule_Target_ParameterBuilder {
    * Required fields for {@link StructureMap$Group$Rule$Target$Parameter}
    *
    * @param value Field is a 'choice' field. Type should be one of BigDecimal, Boolean, String,
-   *     Integer. There are multiple valid json suffixes which correspond to values of type String
-   *     -- to distinguish between the specific subtype, pass $value wrapped in
-   *     ParamDistinguisher.choose("foo". $value), where foo is one of: Id, String
+   *     Integer. To pass the value in, wrap with one of the
+   *     StructureMap_Group_Rule_Target_ParameterBuilder.value static methods
    */
-  public StructureMap_Group_Rule_Target_ParameterBuilder(@NonNull ParamDistinguisher value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix,
-                value.wrappedChoice,
-                StructureMap$Group$Rule$Target$Parameter$.MODULE$.value());
+  public StructureMap_Group_Rule_Target_ParameterBuilder(@NonNull Choice00600764285 value) {
+    this.value = value;
+  }
+
+  public static Choice00600764285 value(BigDecimal b) {
+    return new Choice00600764285(b);
+  }
+
+  public static Choice00600764285 value(Boolean b) {
+    return new Choice00600764285(b);
+  }
+
+  public static Choice00600764285 value(Integer i) {
+    return new Choice00600764285(i);
+  }
+
+  public static Choice00600764285 valueId(String s) {
+    return Choice00600764285.Choice00600764285Id(s);
+  }
+
+  public static Choice00600764285 valueString(String s) {
+    return Choice00600764285.Choice00600764285String(s);
   }
 
   /**

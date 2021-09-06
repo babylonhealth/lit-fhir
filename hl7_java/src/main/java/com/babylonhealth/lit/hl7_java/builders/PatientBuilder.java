@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ADMINISTRATIVE_GENDER;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -57,10 +58,10 @@ public class PatientBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<FHIRDate> birthDate = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice> deceased = Optional.empty();
+  private Optional<Choice_2131715935> deceased = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Optional<CodeableConcept> maritalStatus = Optional.empty();
-  private Optional<Choice> multipleBirth = Optional.empty();
+  private Optional<Choice02065782851> multipleBirth = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<Reference> generalPractitioner = Collections.emptyList();
   private Optional<Reference> managingOrganization = Optional.empty();
@@ -70,6 +71,22 @@ public class PatientBuilder {
 
   /** Required fields for {@link Patient} */
   public PatientBuilder() {}
+
+  public static Choice_2131715935 deceased(Boolean b) {
+    return new Choice_2131715935(b);
+  }
+
+  public static Choice_2131715935 deceased(FHIRDateTime f) {
+    return new Choice_2131715935(f);
+  }
+
+  public static Choice02065782851 multipleBirth(Boolean b) {
+    return new Choice02065782851(b);
+  }
+
+  public static Choice02065782851 multipleBirth(Integer i) {
+    return new Choice02065782851(i);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -227,27 +244,11 @@ public class PatientBuilder {
   }
   /**
    * @param deceased - Indicates if the individual is deceased or not. Field is a 'choice' field.
-   *     Type should be one of Boolean, FHIRDateTime.
+   *     Type should be one of Boolean, FHIRDateTime. To pass the value in, wrap with one of the
+   *     PatientBuilder.deceased static methods
    */
-  public <T> PatientBuilder withDeceased(@NonNull T deceased) {
-    var guessedSuffix =
-        autoSuffix(deceased.getClass().getSimpleName(), Patient$.MODULE$.deceased());
-    return withDeceased(guessedSuffix, deceased);
-  }
-
-  /**
-   * Alternative to the 'main' withDeceased method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param deceased - The value to be passed to the builder
-   */
-  public <T> PatientBuilder withDeceased(String suffix, @NonNull T deceased) {
-    guard(deceased.getClass().getSimpleName(), suffix, Patient$.MODULE$.deceased());
-    this.deceased =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, deceased, Patient$.MODULE$.deceased()));
+  public PatientBuilder withDeceased(@NonNull Choice_2131715935 deceased) {
+    this.deceased = Optional.of(deceased);
     return this;
   }
   /**
@@ -268,29 +269,11 @@ public class PatientBuilder {
   /**
    * @param multipleBirth - Indicates whether the patient is part of a multiple (boolean) or
    *     indicates the actual birth order (integer). Field is a 'choice' field. Type should be one
-   *     of Boolean, Integer.
+   *     of Boolean, Integer. To pass the value in, wrap with one of the
+   *     PatientBuilder.multipleBirth static methods
    */
-  public <T> PatientBuilder withMultipleBirth(@NonNull T multipleBirth) {
-    var guessedSuffix =
-        autoSuffix(multipleBirth.getClass().getSimpleName(), Patient$.MODULE$.multipleBirth());
-    return withMultipleBirth(guessedSuffix, multipleBirth);
-  }
-
-  /**
-   * Alternative to the 'main' withMultipleBirth method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param multipleBirth - The value to be passed to the builder
-   */
-  public <T> PatientBuilder withMultipleBirth(String suffix, @NonNull T multipleBirth) {
-    guard(multipleBirth.getClass().getSimpleName(), suffix, Patient$.MODULE$.multipleBirth());
-    this.multipleBirth =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, multipleBirth, Patient$.MODULE$.multipleBirth()));
+  public PatientBuilder withMultipleBirth(@NonNull Choice02065782851 multipleBirth) {
+    this.multipleBirth = Optional.of(multipleBirth);
     return this;
   }
   /**

@@ -36,11 +36,14 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -76,7 +79,7 @@ public class Us_core_procedureBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<CodeableConcept> statusReason = Optional.empty();
-  private Choice<$bslash$div<FHIRDateTime, Period>> performed;
+  private Choice_0934386166 performed;
   private Collection<CodeableConcept> complication = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Reference> usedReference = Collections.emptyList();
@@ -99,20 +102,26 @@ public class Us_core_procedureBuilder {
    * @param performed - Estimated or actual date, date-time, period, or age when the procedure was
    *     performed. Allows a period to support complex procedures that span more than one date, and
    *     also allows for the length of the procedure to be captured. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period.
+   *     should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     Us_core_procedureBuilder.performed static methods
    */
   public Us_core_procedureBuilder(
-      CodeableConcept code, EVENT_STATUS status, Reference subject, @NonNull Object performed) {
+      CodeableConcept code,
+      EVENT_STATUS status,
+      Reference subject,
+      @NonNull Choice_0934386166 performed) {
     this.code = code;
     this.status = status;
     this.subject = subject;
-    this.performed =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    performed.getClass().getSimpleName(), Us_core_procedure$.MODULE$.performed()),
-                performed,
-                Us_core_procedure$.MODULE$.performed());
+    this.performed = performed;
+  }
+
+  public static Choice_0934386166 performed(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 performed(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**

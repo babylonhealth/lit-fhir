@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -48,7 +49,7 @@ public class Claim_DiagnosisBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<CodeableConcept> onAdmission = Optional.empty();
   private Optional<CodeableConcept> packageCode = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> diagnosis;
+  private Choice01025009075 diagnosis;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -56,17 +57,20 @@ public class Claim_DiagnosisBuilder {
    *
    * @param sequence
    * @param diagnosis - Information about diagnoses relevant to the claim items. Field is a 'choice'
-   *     field. Type should be one of CodeableConcept, Reference.
+   *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
+   *     one of the Claim_DiagnosisBuilder.diagnosis static methods
    */
-  public Claim_DiagnosisBuilder(Integer sequence, @NonNull Object diagnosis) {
+  public Claim_DiagnosisBuilder(Integer sequence, @NonNull Choice01025009075 diagnosis) {
     this.sequence = sequence;
-    this.diagnosis =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    diagnosis.getClass().getSimpleName(), Claim.Diagnosis$.MODULE$.diagnosis()),
-                diagnosis,
-                Claim.Diagnosis$.MODULE$.diagnosis());
+    this.diagnosis = diagnosis;
+  }
+
+  public static Choice01025009075 diagnosis(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 diagnosis(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

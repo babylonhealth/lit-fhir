@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATIONDISPENSE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -65,10 +66,10 @@ public class MedicationDispenseBuilder {
   private Optional<FHIRDateTime> whenPrepared = Optional.empty();
   private Collection<Reference> eventHistory = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> medication;
+  private Choice01025009075 medication;
   private Collection<Reference> detectedIssue = Collections.emptyList();
   private Optional<FHIRDateTime> whenHandedOver = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> statusReason = Optional.empty();
+  private Optional<Choice01025009075> statusReason = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<Dosage> dosageInstruction = Collections.emptyList();
   private Collection<Reference> supportingInformation = Collections.emptyList();
@@ -83,18 +84,29 @@ public class MedicationDispenseBuilder {
    * @param medication - Identifies the medication being administered. This is either a link to a
    *     resource representing the details of the medication or a simple attribute carrying a code
    *     that identifies the medication from a known list of medications. Field is a 'choice' field.
-   *     Type should be one of CodeableConcept, Reference.
+   *     Type should be one of CodeableConcept, Reference. To pass the value in, wrap with one of
+   *     the MedicationDispenseBuilder.medication static methods
    */
-  public MedicationDispenseBuilder(MEDICATIONDISPENSE_STATUS status, @NonNull Object medication) {
+  public MedicationDispenseBuilder(
+      MEDICATIONDISPENSE_STATUS status, @NonNull Choice01025009075 medication) {
     this.status = status;
-    this.medication =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    medication.getClass().getSimpleName(),
-                    MedicationDispense$.MODULE$.medication()),
-                medication,
-                MedicationDispense$.MODULE$.medication());
+    this.medication = medication;
+  }
+
+  public static Choice01025009075 medication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 medication(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice01025009075 statusReason(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 statusReason(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -349,33 +361,11 @@ public class MedicationDispenseBuilder {
   }
   /**
    * @param statusReason - Indicates the reason why a dispense was not performed. Field is a
-   *     'choice' field. Type should be one of CodeableConcept, Reference.
+   *     'choice' field. Type should be one of CodeableConcept, Reference. To pass the value in,
+   *     wrap with one of the MedicationDispenseBuilder.statusReason static methods
    */
-  public <T> MedicationDispenseBuilder withStatusReason(@NonNull T statusReason) {
-    var guessedSuffix =
-        autoSuffix(
-            statusReason.getClass().getSimpleName(), MedicationDispense$.MODULE$.statusReason());
-    return withStatusReason(guessedSuffix, statusReason);
-  }
-
-  /**
-   * Alternative to the 'main' withStatusReason method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param statusReason - The value to be passed to the builder
-   */
-  public <T> MedicationDispenseBuilder withStatusReason(String suffix, @NonNull T statusReason) {
-    guard(
-        statusReason.getClass().getSimpleName(),
-        suffix,
-        MedicationDispense$.MODULE$.statusReason());
-    this.statusReason =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, statusReason, MedicationDispense$.MODULE$.statusReason()));
+  public MedicationDispenseBuilder withStatusReason(@NonNull Choice01025009075 statusReason) {
+    this.statusReason = Optional.of(statusReason);
     return this;
   }
   /**
@@ -514,7 +504,7 @@ public class MedicationDispenseBuilder {
         medication,
         detectedIssue.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(whenHandedOver),
-        OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(statusReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         dosageInstruction.stream().collect(new LitSeqJCollector<>()),
         supportingInformation.stream().collect(new LitSeqJCollector<>()),

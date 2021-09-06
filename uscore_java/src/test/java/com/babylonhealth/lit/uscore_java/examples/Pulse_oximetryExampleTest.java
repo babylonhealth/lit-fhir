@@ -9,6 +9,7 @@ import com.babylonhealth.lit.core_java.builders.CodingBuilder;
 import com.babylonhealth.lit.core_java.builders.QuantityBuilder;
 import com.babylonhealth.lit.core_java.builders.ReferenceBuilder;
 import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
+import com.babylonhealth.lit.hl7_java.model.Unions;
 import com.babylonhealth.lit.uscore.model.Us_core_pulse_oximetry;
 import com.babylonhealth.lit.uscore.model.Us_core_pulse_oximetry$;
 import com.babylonhealth.lit.uscore_java.builders.Us_core_pulse_oximetryBuilder;
@@ -43,7 +44,7 @@ public class Pulse_oximetryExampleTest {
                               .withCode("vital-signs")
                               .build())
                       .build()),
-              time,
+              Us_core_pulse_oximetryBuilder.effective(time),
               new CodeableConceptBuilder()
                   .withCoding(
                       new CodingBuilder().withSystem("http://loinc.org").withCode("2708-6").build(),

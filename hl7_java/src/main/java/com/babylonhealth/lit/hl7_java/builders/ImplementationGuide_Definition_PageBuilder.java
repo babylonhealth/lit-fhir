@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GUIDE_PAGE_GENERATION;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,7 +46,7 @@ public class ImplementationGuide_Definition_PageBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<ImplementationGuide$Definition$Page> page = Collections.emptyList();
   private String title;
-  private Choice<$bslash$div<Reference, String>> name;
+  private Choice01831019594 name;
   private Collection<Extension> extension = Collections.emptyList();
   private GUIDE_PAGE_GENERATION generation;
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -56,21 +57,24 @@ public class ImplementationGuide_Definition_PageBuilder {
    * @param title - A short, descriptive, user-friendly title for the implementation guide.
    * @param name - A natural language name identifying the implementation guide. This name should be
    *     usable as an identifier for the module by machine processing applications such as code
-   *     generation. Field is a 'choice' field. Type should be one of Reference, String.
+   *     generation. Field is a 'choice' field. Type should be one of Reference, String. To pass the
+   *     value in, wrap with one of the ImplementationGuide_Definition_PageBuilder.name static
+   *     methods
    * @param generation
    */
   public ImplementationGuide_Definition_PageBuilder(
-      String title, @NonNull Object name, GUIDE_PAGE_GENERATION generation) {
+      String title, @NonNull Choice01831019594 name, GUIDE_PAGE_GENERATION generation) {
     this.title = title;
-    this.name =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    name.getClass().getSimpleName(),
-                    ImplementationGuide$Definition$Page$.MODULE$.name()),
-                name,
-                ImplementationGuide$Definition$Page$.MODULE$.name());
+    this.name = name;
     this.generation = generation;
+  }
+
+  public static Choice01831019594 name(Reference r) {
+    return new Choice01831019594(r);
+  }
+
+  public static Choice01831019594 name(String s) {
+    return new Choice01831019594(s);
   }
 
   /**

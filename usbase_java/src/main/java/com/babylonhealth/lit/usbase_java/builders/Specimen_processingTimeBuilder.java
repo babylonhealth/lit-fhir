@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,23 +47,26 @@ import static java.util.stream.Collectors.toList;
 
 public class Specimen_processingTimeBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<Duration, Period>> value;
+  private Choice00284192631 value;
 
   /**
    * Required fields for {@link Specimen_processingTime}
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of Duration, Period.
+   *     field. Type should be one of Duration, Period. To pass the value in, wrap with one of the
+   *     Specimen_processingTimeBuilder.value static methods
    */
-  public Specimen_processingTimeBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(), Specimen_processingTime$.MODULE$.value()),
-                value,
-                Specimen_processingTime$.MODULE$.value());
+  public Specimen_processingTimeBuilder(@NonNull Choice00284192631 value) {
+    this.value = value;
+  }
+
+  public static Choice00284192631 value(Duration d) {
+    return new Choice00284192631(d);
+  }
+
+  public static Choice00284192631 value(Period p) {
+    return new Choice00284192631(p);
   }
 
   /**

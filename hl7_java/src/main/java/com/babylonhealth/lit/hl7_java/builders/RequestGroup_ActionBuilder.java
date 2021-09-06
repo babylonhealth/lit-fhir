@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.hl7.ACTION_GROUPING_BEHAVIOR;
 import com.babylonhealth.lit.hl7.ACTION_REQUIRED_BEHAVIOR;
@@ -40,7 +42,6 @@ import com.babylonhealth.lit.hl7.ACTION_SELECTION_BEHAVIOR;
 import com.babylonhealth.lit.hl7.ACTION_CARDINALITY_BEHAVIOR;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -56,14 +57,7 @@ public class RequestGroup_ActionBuilder {
   private Optional<REQUEST_PRIORITY> priority = Optional.empty();
   private Optional<Reference> resource = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<$bslash$div<$bslash$div<Age, Duration>, FHIRDateTime>, Period>,
-                      Range>,
-                  Timing>>>
-      timing = Optional.empty();
+  private Optional<Choice_0181779868> timing = Optional.empty();
   private Optional<String> description = Optional.empty();
   private Collection<Reference> participant = Collections.emptyList();
   private Collection<RelatedArtifact> documentation = Collections.emptyList();
@@ -79,6 +73,30 @@ public class RequestGroup_ActionBuilder {
 
   /** Required fields for {@link RequestGroup.Action} */
   public RequestGroup_ActionBuilder() {}
+
+  public static Choice_0181779868 timing(Age a) {
+    return new Choice_0181779868(a);
+  }
+
+  public static Choice_0181779868 timing(Duration d) {
+    return new Choice_0181779868(d);
+  }
+
+  public static Choice_0181779868 timing(FHIRDateTime f) {
+    return new Choice_0181779868(f);
+  }
+
+  public static Choice_0181779868 timing(Period p) {
+    return new Choice_0181779868(p);
+  }
+
+  public static Choice_0181779868 timing(Range r) {
+    return new Choice_0181779868(r);
+  }
+
+  public static Choice_0181779868 timing(Timing t) {
+    return new Choice_0181779868(t);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -160,28 +178,11 @@ public class RequestGroup_ActionBuilder {
   }
   /**
    * @param timing Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime,
-   *     Period, Range, Timing.
+   *     Period, Range, Timing. To pass the value in, wrap with one of the
+   *     RequestGroup_ActionBuilder.timing static methods
    */
-  public <T> RequestGroup_ActionBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(timing.getClass().getSimpleName(), RequestGroup.Action$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
-  /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
-   */
-  public <T> RequestGroup_ActionBuilder withTiming(String suffix, @NonNull T timing) {
-    guard(timing.getClass().getSimpleName(), suffix, RequestGroup.Action$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, timing, RequestGroup.Action$.MODULE$.timing()));
+  public RequestGroup_ActionBuilder withTiming(@NonNull Choice_0181779868 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /** @param description */
@@ -314,7 +315,7 @@ public class RequestGroup_ActionBuilder {
         OptionConverters.toScala(priority),
         OptionConverters.toScala(resource),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(timing),
         OptionConverters.toScala(description),
         participant.stream().collect(new LitSeqJCollector<>()),
         documentation.stream().collect(new LitSeqJCollector<>()),

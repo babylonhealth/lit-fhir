@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 public class CodeSystem_Concept_PropertyBuilder {
   private Optional<String> id = Optional.empty();
   private String code;
-  private Choice value;
+  private Choice_1489367071 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -53,16 +54,40 @@ public class CodeSystem_Concept_PropertyBuilder {
    *
    * @param code
    * @param value Field is a 'choice' field. Type should be one of BigDecimal, Boolean, String,
-   *     Coding, FHIRDateTime, Integer. There are multiple valid json suffixes which correspond to
-   *     values of type String -- to distinguish between the specific subtype, pass $value wrapped
-   *     in ParamDistinguisher.choose("foo". $value), where foo is one of: Code, String
+   *     Coding, FHIRDateTime, Integer. To pass the value in, wrap with one of the
+   *     CodeSystem_Concept_PropertyBuilder.value static methods
    */
-  public CodeSystem_Concept_PropertyBuilder(String code, @NonNull ParamDistinguisher value) {
+  public CodeSystem_Concept_PropertyBuilder(String code, @NonNull Choice_1489367071 value) {
     this.code = code;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix, value.wrappedChoice, CodeSystem$Concept$Property$.MODULE$.value());
+    this.value = value;
+  }
+
+  public static Choice_1489367071 value(BigDecimal b) {
+    return new Choice_1489367071(b);
+  }
+
+  public static Choice_1489367071 value(Boolean b) {
+    return new Choice_1489367071(b);
+  }
+
+  public static Choice_1489367071 value(Coding c) {
+    return new Choice_1489367071(c);
+  }
+
+  public static Choice_1489367071 value(FHIRDateTime f) {
+    return new Choice_1489367071(f);
+  }
+
+  public static Choice_1489367071 value(Integer i) {
+    return new Choice_1489367071(i);
+  }
+
+  public static Choice_1489367071 valueCode(String s) {
+    return Choice_1489367071.Choice_1489367071Code(s);
+  }
+
+  public static Choice_1489367071 valueString(String s) {
+    return Choice_1489367071.Choice_1489367071String(s);
   }
 
   /**

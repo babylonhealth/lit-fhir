@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,12 +45,60 @@ import static java.util.stream.Collectors.toList;
 public class QuestionnaireResponse_Item_AnswerBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<QuestionnaireResponse.Item> item = Collections.emptyList();
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_2101127777> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link QuestionnaireResponse$Item$Answer} */
   public QuestionnaireResponse_Item_AnswerBuilder() {}
+
+  public static Choice_2101127777 value(Attachment a) {
+    return new Choice_2101127777(a);
+  }
+
+  public static Choice_2101127777 value(BigDecimal b) {
+    return new Choice_2101127777(b);
+  }
+
+  public static Choice_2101127777 value(Boolean b) {
+    return new Choice_2101127777(b);
+  }
+
+  public static Choice_2101127777 value(Coding c) {
+    return new Choice_2101127777(c);
+  }
+
+  public static Choice_2101127777 value(FHIRDate f) {
+    return new Choice_2101127777(f);
+  }
+
+  public static Choice_2101127777 value(FHIRDateTime f) {
+    return new Choice_2101127777(f);
+  }
+
+  public static Choice_2101127777 value(Integer i) {
+    return new Choice_2101127777(i);
+  }
+
+  public static Choice_2101127777 value(LocalTime l) {
+    return new Choice_2101127777(l);
+  }
+
+  public static Choice_2101127777 value(Quantity q) {
+    return new Choice_2101127777(q);
+  }
+
+  public static Choice_2101127777 value(Reference r) {
+    return new Choice_2101127777(r);
+  }
+
+  public static Choice_2101127777 valueString(String s) {
+    return Choice_2101127777.Choice_2101127777String(s);
+  }
+
+  public static Choice_2101127777 valueUri(String s) {
+    return Choice_2101127777.Choice_2101127777UriStr(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -79,35 +128,12 @@ public class QuestionnaireResponse_Item_AnswerBuilder {
   }
   /**
    * @param value Field is a 'choice' field. Type should be one of Attachment, BigDecimal, Boolean,
-   *     Coding, FHIRDate, FHIRDateTime, Integer, LocalTime, Quantity, Reference, String.
+   *     Coding, FHIRDate, FHIRDateTime, Integer, LocalTime, Quantity, Reference, String. To pass
+   *     the value in, wrap with one of the QuestionnaireResponse_Item_AnswerBuilder.value static
+   *     methods
    */
-  public <T> QuestionnaireResponse_Item_AnswerBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(
-            value.getClass().getSimpleName(), QuestionnaireResponse$Item$Answer$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of String then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type String, the valid values are String, Uri.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> QuestionnaireResponse_Item_AnswerBuilder withValue(String suffix, @NonNull T value) {
-    guard(
-        value.getClass().getSimpleName(),
-        suffix,
-        QuestionnaireResponse$Item$Answer$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, QuestionnaireResponse$Item$Answer$.MODULE$.value()));
+  public QuestionnaireResponse_Item_AnswerBuilder withValue(@NonNull Choice_2101127777 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**

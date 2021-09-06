@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CHARGEITEM_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -63,12 +64,11 @@ public class ChargeItemBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<Reference> costCenter = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> product = Optional.empty();
+  private Optional<Choice01025009075> product = Optional.empty();
   private Optional<FHIRDateTime> enteredDate = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<String> definitionUri = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Optional<Money> priceOverride = Optional.empty();
   private Optional<BigDecimal> factorOverride = Optional.empty();
   private Optional<String> overrideReason = Optional.empty();
@@ -90,6 +90,26 @@ public class ChargeItemBuilder {
     this.code = code;
     this.status = status;
     this.subject = subject;
+  }
+
+  public static Choice01025009075 product(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 product(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice00609373412 occurrence(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 occurrence(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 occurrence(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -264,27 +284,11 @@ public class ChargeItemBuilder {
   /**
    * @param product - Identifies the device, food, drug or other product being charged either by
    *     type code or reference to an instance. Field is a 'choice' field. Type should be one of
-   *     CodeableConcept, Reference.
+   *     CodeableConcept, Reference. To pass the value in, wrap with one of the
+   *     ChargeItemBuilder.product static methods
    */
-  public <T> ChargeItemBuilder withProduct(@NonNull T product) {
-    var guessedSuffix =
-        autoSuffix(product.getClass().getSimpleName(), ChargeItem$.MODULE$.product());
-    return withProduct(guessedSuffix, product);
-  }
-
-  /**
-   * Alternative to the 'main' withProduct method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param product - The value to be passed to the builder
-   */
-  public <T> ChargeItemBuilder withProduct(String suffix, @NonNull T product) {
-    guard(product.getClass().getSimpleName(), suffix, ChargeItem$.MODULE$.product());
-    this.product =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, product, ChargeItem$.MODULE$.product()));
+  public ChargeItemBuilder withProduct(@NonNull Choice01025009075 product) {
+    this.product = Optional.of(product);
     return this;
   }
   /** @param enteredDate - Date the charge item was entered. */
@@ -320,28 +324,11 @@ public class ChargeItemBuilder {
   }
   /**
    * @param occurrence - Date/time(s) or duration when the charged service was applied. Field is a
-   *     'choice' field. Type should be one of FHIRDateTime, Period, Timing.
+   *     'choice' field. Type should be one of FHIRDateTime, Period, Timing. To pass the value in,
+   *     wrap with one of the ChargeItemBuilder.occurrence static methods
    */
-  public <T> ChargeItemBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), ChargeItem$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> ChargeItemBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, ChargeItem$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, occurrence, ChargeItem$.MODULE$.occurrence()));
+  public ChargeItemBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /**
@@ -476,11 +463,11 @@ public class ChargeItemBuilder {
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(costCenter),
-        OptionConverters.toScala(product),
+        (Option) OptionConverters.toScala(product),
         OptionConverters.toScala(enteredDate),
         OptionConverters.toScala(implicitRules),
         definitionUri.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(occurrence),
         OptionConverters.toScala(priceOverride),
         OptionConverters.toScala(factorOverride),
         OptionConverters.toScala(overrideReason),

@@ -30,13 +30,13 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.EVENT_TIMING;
 import com.babylonhealth.lit.core.DAYS_OF_WEEK;
 import com.babylonhealth.lit.core.UNITS_OF_TIME;
 import com.babylonhealth.lit.core.UNITS_OF_TIME;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -51,8 +51,7 @@ public class Timing_RepeatBuilder {
   private Optional<Integer> countMax = Optional.empty();
   private Optional<BigDecimal> duration = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<Duration, Period>, Range>>> bounds =
-      Optional.empty();
+  private Optional<Choice_0731860109> bounds = Optional.empty();
   private Optional<Integer> frequency = Optional.empty();
   private Optional<BigDecimal> periodMax = Optional.empty();
   private Collection<DAYS_OF_WEEK> dayOfWeek = Collections.emptyList();
@@ -64,6 +63,18 @@ public class Timing_RepeatBuilder {
 
   /** Required fields for {@link Timing.Repeat} */
   public Timing_RepeatBuilder() {}
+
+  public static Choice_0731860109 bounds(Duration d) {
+    return new Choice_0731860109(d);
+  }
+
+  public static Choice_0731860109 bounds(Period p) {
+    return new Choice_0731860109(p);
+  }
+
+  public static Choice_0731860109 bounds(Range r) {
+    return new Choice_0731860109(r);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -130,26 +141,12 @@ public class Timing_RepeatBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param bounds Field is a 'choice' field. Type should be one of Duration, Period, Range. */
-  public <T> Timing_RepeatBuilder withBounds(@NonNull T bounds) {
-    var guessedSuffix =
-        autoSuffix(bounds.getClass().getSimpleName(), Timing.Repeat$.MODULE$.bounds());
-    return withBounds(guessedSuffix, bounds);
-  }
-
   /**
-   * Alternative to the 'main' withBounds method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param bounds - The value to be passed to the builder
+   * @param bounds Field is a 'choice' field. Type should be one of Duration, Period, Range. To pass
+   *     the value in, wrap with one of the Timing_RepeatBuilder.bounds static methods
    */
-  public <T> Timing_RepeatBuilder withBounds(String suffix, @NonNull T bounds) {
-    guard(bounds.getClass().getSimpleName(), suffix, Timing.Repeat$.MODULE$.bounds());
-    this.bounds =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, bounds, Timing.Repeat$.MODULE$.bounds()));
+  public Timing_RepeatBuilder withBounds(@NonNull Choice_0731860109 bounds) {
+    this.bounds = Optional.of(bounds);
     return this;
   }
   /** @param frequency */
@@ -213,7 +210,7 @@ public class Timing_RepeatBuilder {
         OptionConverters.toScala(countMax.map(x -> (Object) x)),
         OptionConverters.toScala(duration),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(bounds),
+        (Option) OptionConverters.toScala(bounds),
         OptionConverters.toScala(frequency.map(x -> (Object) x)),
         OptionConverters.toScala(periodMax),
         dayOfWeek.stream().collect(new LitSeqJCollector<>()),

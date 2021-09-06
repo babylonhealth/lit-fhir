@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 public class MedicationKnowledge_AdministrationGuidelinesBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> indication = Optional.empty();
+  private Optional<Choice01025009075> indication = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<MedicationKnowledge$AdministrationGuidelines$Dosage> dosage =
       Collections.emptyList();
@@ -53,6 +54,14 @@ public class MedicationKnowledge_AdministrationGuidelinesBuilder {
 
   /** Required fields for {@link MedicationKnowledge.AdministrationGuidelines} */
   public MedicationKnowledge_AdministrationGuidelinesBuilder() {}
+
+  public static Choice01025009075 indication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 indication(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -88,37 +97,12 @@ public class MedicationKnowledge_AdministrationGuidelinesBuilder {
   }
   /**
    * @param indication Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the
+   *     MedicationKnowledge_AdministrationGuidelinesBuilder.indication static methods
    */
-  public <T> MedicationKnowledge_AdministrationGuidelinesBuilder withIndication(
-      @NonNull T indication) {
-    var guessedSuffix =
-        autoSuffix(
-            indication.getClass().getSimpleName(),
-            MedicationKnowledge.AdministrationGuidelines$.MODULE$.indication());
-    return withIndication(guessedSuffix, indication);
-  }
-
-  /**
-   * Alternative to the 'main' withIndication method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param indication - The value to be passed to the builder
-   */
-  public <T> MedicationKnowledge_AdministrationGuidelinesBuilder withIndication(
-      String suffix, @NonNull T indication) {
-    guard(
-        indication.getClass().getSimpleName(),
-        suffix,
-        MedicationKnowledge.AdministrationGuidelines$.MODULE$.indication());
-    this.indication =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    indication,
-                    MedicationKnowledge.AdministrationGuidelines$.MODULE$.indication()));
+  public MedicationKnowledge_AdministrationGuidelinesBuilder withIndication(
+      @NonNull Choice01025009075 indication) {
+    this.indication = Optional.of(indication);
     return this;
   }
   /**
@@ -188,7 +172,7 @@ public class MedicationKnowledge_AdministrationGuidelinesBuilder {
     return new MedicationKnowledge.AdministrationGuidelines(
         OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(indication),
+        (Option) OptionConverters.toScala(indication),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         dosage.stream().collect(new LitSeqJCollector<>()),
         patientCharacteristics.stream().collect(new LitSeqJCollector<>()),
