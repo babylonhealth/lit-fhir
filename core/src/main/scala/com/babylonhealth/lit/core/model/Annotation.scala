@@ -28,7 +28,7 @@ object Annotation extends CompanionFor[Annotation] {
   override val baseType: CompanionFor[ResourceType] = Annotation
   override val parentType: CompanionFor[ParentType] = Annotation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Annotation")
-  type AuthorChoice = Choice[Union_1128709984]
+  type AuthorChoice = Choice[UnionReferenceOrString]
   def apply(
       id: Option[String] = None,
       time: Option[FHIRDateTime] = None,
@@ -53,7 +53,7 @@ object Annotation extends CompanionFor[Annotation] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val author: FHIRComponentFieldMeta[Option[Annotation.AuthorChoice]] =
-    FHIRComponentFieldMeta("author", lTagOf[Option[Annotation.AuthorChoice]], true, lTagOf[Union_1128709984])
+    FHIRComponentFieldMeta("author", lTagOf[Option[Annotation.AuthorChoice]], true, lTagOf[UnionReferenceOrString])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, time, text, extension, author)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Annotation): Seq[FHIRComponentField[_]] = Seq(
@@ -80,7 +80,7 @@ object Annotation extends CompanionFor[Annotation] {
           cursor.decodeAs[Option[FHIRDateTime]]("time", Some(None)),
           cursor.decodeAs[Markdown]("text", None),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1128709984]("author"),
+          cursor.decodeOptRef[UnionReferenceOrString]("author"),
           decodeAttributes(cursor)
         )
       ))

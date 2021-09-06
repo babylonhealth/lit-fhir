@@ -72,56 +72,56 @@ public interface Us_core_observation_labBuilder extends ObservationBuilder {
         new LitSeq<>(category).map(CodeableConceptBuilder::build));
   }
 
-  public static Choice_0802685816 value(Boolean b) {
-    return new Choice_0802685816(b);
+  public static ChoiceObservation_Value value(Boolean b) {
+    return new ChoiceObservation_Value(b);
   }
 
-  public static Choice_0802685816 value(CodeableConcept c) {
-    return new Choice_0802685816(c);
+  public static ChoiceObservation_Value value(CodeableConcept c) {
+    return new ChoiceObservation_Value(c);
   }
 
-  public static Choice_0802685816 value(FHIRDateTime f) {
-    return new Choice_0802685816(f);
+  public static ChoiceObservation_Value value(FHIRDateTime f) {
+    return new ChoiceObservation_Value(f);
   }
 
-  public static Choice_0802685816 value(Integer i) {
-    return new Choice_0802685816(i);
+  public static ChoiceObservation_Value value(Integer i) {
+    return new ChoiceObservation_Value(i);
   }
 
-  public static Choice_0802685816 value(LocalTime l) {
-    return new Choice_0802685816(l);
+  public static ChoiceObservation_Value value(LocalTime l) {
+    return new ChoiceObservation_Value(l);
   }
 
-  public static Choice_0802685816 value(Period p) {
-    return new Choice_0802685816(p);
+  public static ChoiceObservation_Value value(Period p) {
+    return new ChoiceObservation_Value(p);
   }
 
-  public static Choice_0802685816 value(Quantity q) {
-    return new Choice_0802685816(q);
+  public static ChoiceObservation_Value value(Quantity q) {
+    return new ChoiceObservation_Value(q);
   }
 
-  public static Choice_0802685816 value(Range r) {
-    return new Choice_0802685816(r);
+  public static ChoiceObservation_Value value(Range r) {
+    return new ChoiceObservation_Value(r);
   }
 
-  public static Choice_0802685816 value(Ratio r) {
-    return new Choice_0802685816(r);
+  public static ChoiceObservation_Value value(Ratio r) {
+    return new ChoiceObservation_Value(r);
   }
 
-  public static Choice_0802685816 value(SampledData s) {
-    return new Choice_0802685816(s);
+  public static ChoiceObservation_Value value(SampledData s) {
+    return new ChoiceObservation_Value(s);
   }
 
-  public static Choice_0802685816 value(String s) {
-    return new Choice_0802685816(s);
+  public static ChoiceObservation_Value value(String s) {
+    return new ChoiceObservation_Value(s);
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements Us_core_observation_labBuilder {
@@ -145,7 +145,7 @@ public interface Us_core_observation_labBuilder extends ObservationBuilder {
     private Reference subject;
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category;
-    private Optional<Choice_0802685816> value = Optional.empty();
+    private Optional<ChoiceObservation_Value> value = Optional.empty();
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Optional<Reference> specimen = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -155,7 +155,7 @@ public interface Us_core_observation_labBuilder extends ObservationBuilder {
     private Collection<Reference> hasMember = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private Optional<Choice_0934386166> effective = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriod> effective = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
     private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -361,7 +361,7 @@ public interface Us_core_observation_labBuilder extends ObservationBuilder {
      *     Range, Ratio, SampledData, String. To pass the value in, wrap with one of the
      *     Us_core_observation_labBuilder.value static methods
      */
-    public Us_core_observation_labBuilder.Impl withValue(@NonNull Choice_0802685816 value) {
+    public Us_core_observation_labBuilder.Impl withValue(@NonNull ChoiceObservation_Value value) {
       this.value = Optional.of(value);
       return this;
     }
@@ -544,7 +544,8 @@ public interface Us_core_observation_labBuilder extends ObservationBuilder {
      *     Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
      *     Us_core_observation_labBuilder.effective static methods
      */
-    public Us_core_observation_labBuilder.Impl withEffective(@NonNull Choice_0934386166 effective) {
+    public Us_core_observation_labBuilder.Impl withEffective(
+        @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
       this.effective = Optional.of(effective);
       return this;
     }

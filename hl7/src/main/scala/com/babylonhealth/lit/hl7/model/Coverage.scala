@@ -103,7 +103,7 @@ object Coverage extends CompanionFor[Coverage] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type ValueChoice = Choice[Union_0221283134]
+    type ValueChoice = Choice[UnionMoneyOrQuantity]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -129,7 +129,7 @@ object Coverage extends CompanionFor[Coverage] {
     val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[CostToBeneficiary.ValueChoice] =
-      FHIRComponentFieldMeta("value", lTagOf[CostToBeneficiary.ValueChoice], true, lTagOf[Union_0221283134])
+      FHIRComponentFieldMeta("value", lTagOf[CostToBeneficiary.ValueChoice], true, lTagOf[UnionMoneyOrQuantity])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -154,7 +154,7 @@ object Coverage extends CompanionFor[Coverage] {
           new CostToBeneficiary(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
-            cursor.decodeRef[Union_0221283134]("value"),
+            cursor.decodeRef[UnionMoneyOrQuantity]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CostToBeneficiary.Exception]]("exception", Some(LitSeq.empty)),

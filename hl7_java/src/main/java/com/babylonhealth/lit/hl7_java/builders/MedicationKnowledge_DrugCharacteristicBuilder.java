@@ -53,26 +53,26 @@ public interface MedicationKnowledge_DrugCharacteristicBuilder {
     return new Impl();
   }
 
-  public static Choice_1309404550 value(byte[] b) {
-    return new Choice_1309404550(b);
+  public static ChoiceDrugCharacteristic_Value value(byte[] b) {
+    return new ChoiceDrugCharacteristic_Value(b);
   }
 
-  public static Choice_1309404550 value(CodeableConcept c) {
-    return new Choice_1309404550(c);
+  public static ChoiceDrugCharacteristic_Value value(CodeableConcept c) {
+    return new ChoiceDrugCharacteristic_Value(c);
   }
 
-  public static Choice_1309404550 value(Quantity q) {
-    return new Choice_1309404550(q);
+  public static ChoiceDrugCharacteristic_Value value(Quantity q) {
+    return new ChoiceDrugCharacteristic_Value(q);
   }
 
-  public static Choice_1309404550 value(String s) {
-    return new Choice_1309404550(s);
+  public static ChoiceDrugCharacteristic_Value value(String s) {
+    return new ChoiceDrugCharacteristic_Value(s);
   }
 
   public class Impl implements MedicationKnowledge_DrugCharacteristicBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();
-    private Optional<Choice_1309404550> value = Optional.empty();
+    private Optional<ChoiceDrugCharacteristic_Value> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -105,7 +105,7 @@ public interface MedicationKnowledge_DrugCharacteristicBuilder {
      *     MedicationKnowledge_DrugCharacteristicBuilder.value static methods
      */
     public MedicationKnowledge_DrugCharacteristicBuilder.Impl withValue(
-        @NonNull Choice_1309404550 value) {
+        @NonNull ChoiceDrugCharacteristic_Value value) {
       this.value = Optional.of(value);
       return this;
     }

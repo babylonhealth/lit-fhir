@@ -173,7 +173,7 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
       val itemCodeableConcept: Option[CodeableConcept] = None,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EffectiveChoice = Choice[Union_0934386166]
+  type EffectiveChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -276,7 +276,11 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val effective: FHIRComponentFieldMeta[Option[ClinicalImpression.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[ClinicalImpression.EffectiveChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta(
+      "effective",
+      lTagOf[Option[ClinicalImpression.EffectiveChoice]],
+      true,
+      lTagOf[UnionFHIRDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val supportingInfo: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -424,7 +428,7 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("description", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
-          cursor.decodeOptRef[Union_0934386166]("effective"),
+          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInfo", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

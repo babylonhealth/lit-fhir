@@ -171,9 +171,9 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type TimingChoice  = Choice[Union_0181779868]
-  type SubjectChoice = Choice[Union01025009075]
-  type ProductChoice = Choice[Union01025009075]
+  type TimingChoice  = Choice[UnionAction_Timing]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
+  type ProductChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -354,17 +354,25 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val timing: FHIRComponentFieldMeta[Option[ActivityDefinition.TimingChoice]] =
-    FHIRComponentFieldMeta("timing", lTagOf[Option[ActivityDefinition.TimingChoice]], true, lTagOf[Union_0181779868])
+    FHIRComponentFieldMeta("timing", lTagOf[Option[ActivityDefinition.TimingChoice]], true, lTagOf[UnionAction_Timing])
   val transform: FHIRComponentFieldMeta[Option[Canonical]] =
     FHIRComponentFieldMeta("transform", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[ActivityDefinition.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[ActivityDefinition.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "subject",
+      lTagOf[Option[ActivityDefinition.SubjectChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val product: FHIRComponentFieldMeta[Option[ActivityDefinition.ProductChoice]] =
-    FHIRComponentFieldMeta("product", lTagOf[Option[ActivityDefinition.ProductChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "product",
+      lTagOf[Option[ActivityDefinition.ProductChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val description: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("description", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val experimental: FHIRComponentFieldMeta[Option[Boolean]] =
@@ -636,12 +644,12 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
         cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
         cursor.decodeAs[Option[String]]("publisher", Some(None)),
         cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
-        cursor.decodeOptRef[Union_0181779868]("timing"),
+        cursor.decodeOptRef[UnionAction_Timing]("timing"),
         cursor.decodeAs[Option[Canonical]]("transform", Some(None)),
         cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-        cursor.decodeOptRef[Union01025009075]("subject"),
+        cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
         cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
-        cursor.decodeOptRef[Union01025009075]("product"),
+        cursor.decodeOptRef[UnionCodeableConceptOrReference]("product"),
         cursor.decodeAs[Option[Markdown]]("description", Some(None)),
         cursor.decodeAs[Option[Boolean]]("experimental", Some(None)),
         cursor.decodeAs[LitSeq[CodeableConcept]]("jurisdiction", Some(LitSeq.empty)),

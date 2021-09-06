@@ -65,11 +65,11 @@ class LitSeqTest extends AnyFreeSpec with Matchers with TableDrivenPropertyCheck
     )
 
     val litSeqs: Seq[LitSeq[Int]] = seqs.map(LitSeq.from(_))
-    val jlists: Seq[JList[Int]] = seqs.map(asJava(_))
+    val jlists: Seq[JList[Int]]   = seqs.map(asJava(_))
 
     val table = Table(
       ("litSeq", "otherSeq"),
-      (for {litSeq <- litSeqs; otherSeq <- seqs ++ litSeqs ++ jlists} yield (litSeq, otherSeq)): _*
+      (for { litSeq <- litSeqs; otherSeq <- seqs ++ litSeqs ++ jlists } yield (litSeq, otherSeq)): _*
     )
 
     "is symmetric" in {

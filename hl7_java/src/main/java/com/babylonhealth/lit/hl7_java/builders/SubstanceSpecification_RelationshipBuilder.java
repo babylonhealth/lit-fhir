@@ -53,38 +53,38 @@ public interface SubstanceSpecification_RelationshipBuilder {
     return new Impl();
   }
 
-  public static Choice00910671146 amount(Quantity q) {
-    return new Choice00910671146(q);
+  public static ChoiceRelationship_Amount amount(Quantity q) {
+    return new ChoiceRelationship_Amount(q);
   }
 
-  public static Choice00910671146 amount(Range r) {
-    return new Choice00910671146(r);
+  public static ChoiceRelationship_Amount amount(Range r) {
+    return new ChoiceRelationship_Amount(r);
   }
 
-  public static Choice00910671146 amount(Ratio r) {
-    return new Choice00910671146(r);
+  public static ChoiceRelationship_Amount amount(Ratio r) {
+    return new ChoiceRelationship_Amount(r);
   }
 
-  public static Choice00910671146 amount(String s) {
-    return new Choice00910671146(s);
+  public static ChoiceRelationship_Amount amount(String s) {
+    return new ChoiceRelationship_Amount(s);
   }
 
-  public static Choice01025009075 substance(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference substance(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 substance(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference substance(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements SubstanceSpecification_RelationshipBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Reference> source = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice00910671146> amount = Optional.empty();
+    private Optional<ChoiceRelationship_Amount> amount = Optional.empty();
     private Optional<Boolean> isDefining = Optional.empty();
     private Optional<CodeableConcept> amountType = Optional.empty();
-    private Optional<Choice01025009075> substance = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> substance = Optional.empty();
     private Optional<CodeableConcept> relationship = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<Ratio> amountRatioLowLimit = Optional.empty();
@@ -154,7 +154,7 @@ public interface SubstanceSpecification_RelationshipBuilder {
      *     SubstanceSpecification_RelationshipBuilder.amount static methods
      */
     public SubstanceSpecification_RelationshipBuilder.Impl withAmount(
-        @NonNull Choice00910671146 amount) {
+        @NonNull ChoiceRelationship_Amount amount) {
       this.amount = Optional.of(amount);
       return this;
     }
@@ -182,7 +182,7 @@ public interface SubstanceSpecification_RelationshipBuilder {
      *     SubstanceSpecification_RelationshipBuilder.substance static methods
      */
     public SubstanceSpecification_RelationshipBuilder.Impl withSubstance(
-        @NonNull Choice01025009075 substance) {
+        @NonNull ChoiceCodeableConceptOrReference substance) {
       this.substance = Optional.of(substance);
       return this;
     }

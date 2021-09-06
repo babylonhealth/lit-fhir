@@ -53,12 +53,12 @@ public interface Specimen_ContainerBuilder {
     return new Impl();
   }
 
-  public static Choice01025009075 additive(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference additive(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 additive(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference additive(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Specimen_ContainerBuilder {
@@ -68,7 +68,7 @@ public interface Specimen_ContainerBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> description = Optional.empty();
-    private Optional<Choice01025009075> additive = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> additive = Optional.empty();
     private Optional<Quantity> specimenQuantity = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -156,7 +156,8 @@ public interface Specimen_ContainerBuilder {
      *     To pass the value in, wrap with one of the Specimen_ContainerBuilder.additive static
      *     methods
      */
-    public Specimen_ContainerBuilder.Impl withAdditive(@NonNull Choice01025009075 additive) {
+    public Specimen_ContainerBuilder.Impl withAdditive(
+        @NonNull ChoiceCodeableConceptOrReference additive) {
       this.additive = Optional.of(additive);
       return this;
     }

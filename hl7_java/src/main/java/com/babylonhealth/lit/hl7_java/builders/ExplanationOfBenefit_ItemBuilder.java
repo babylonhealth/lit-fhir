@@ -53,24 +53,24 @@ public interface ExplanationOfBenefit_ItemBuilder {
     return new Impl(sequence, productOrService.build());
   }
 
-  public static Choice_0503196159 serviced(FHIRDate f) {
-    return new Choice_0503196159(f);
+  public static ChoiceFHIRDateOrPeriod serviced(FHIRDate f) {
+    return new ChoiceFHIRDateOrPeriod(f);
   }
 
-  public static Choice_0503196159 serviced(Period p) {
-    return new Choice_0503196159(p);
+  public static ChoiceFHIRDateOrPeriod serviced(Period p) {
+    return new ChoiceFHIRDateOrPeriod(p);
   }
 
-  public static Choice_0316522316 location(Address a) {
-    return new Choice_0316522316(a);
+  public static ChoiceAddressOrCodeableConceptOrReference location(Address a) {
+    return new ChoiceAddressOrCodeableConceptOrReference(a);
   }
 
-  public static Choice_0316522316 location(CodeableConcept c) {
-    return new Choice_0316522316(c);
+  public static ChoiceAddressOrCodeableConceptOrReference location(CodeableConcept c) {
+    return new ChoiceAddressOrCodeableConceptOrReference(c);
   }
 
-  public static Choice_0316522316 location(Reference r) {
-    return new Choice_0316522316(r);
+  public static ChoiceAddressOrCodeableConceptOrReference location(Reference r) {
+    return new ChoiceAddressOrCodeableConceptOrReference(r);
   }
 
   public class Impl implements ExplanationOfBenefit_ItemBuilder {
@@ -90,8 +90,8 @@ public interface ExplanationOfBenefit_ItemBuilder {
     private Collection<Reference> encounter = Collections.emptyList();
     private Collection<Integer> noteNumber = Collections.emptyList();
     private Collection<CodeableConcept> programCode = Collections.emptyList();
-    private Optional<Choice_0503196159> serviced = Optional.empty();
-    private Optional<Choice_0316522316> location = Optional.empty();
+    private Optional<ChoiceFHIRDateOrPeriod> serviced = Optional.empty();
+    private Optional<ChoiceAddressOrCodeableConceptOrReference> location = Optional.empty();
     private Collection<Integer> careTeamSequence = Collections.emptyList();
     private CodeableConcept productOrService;
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -319,7 +319,8 @@ public interface ExplanationOfBenefit_ItemBuilder {
      *     the value in, wrap with one of the ExplanationOfBenefit_ItemBuilder.serviced static
      *     methods
      */
-    public ExplanationOfBenefit_ItemBuilder.Impl withServiced(@NonNull Choice_0503196159 serviced) {
+    public ExplanationOfBenefit_ItemBuilder.Impl withServiced(
+        @NonNull ChoiceFHIRDateOrPeriod serviced) {
       this.serviced = Optional.of(serviced);
       return this;
     }
@@ -328,7 +329,8 @@ public interface ExplanationOfBenefit_ItemBuilder {
      *     Reference. To pass the value in, wrap with one of the
      *     ExplanationOfBenefit_ItemBuilder.location static methods
      */
-    public ExplanationOfBenefit_ItemBuilder.Impl withLocation(@NonNull Choice_0316522316 location) {
+    public ExplanationOfBenefit_ItemBuilder.Impl withLocation(
+        @NonNull ChoiceAddressOrCodeableConceptOrReference location) {
       this.location = Optional.of(location);
       return this;
     }

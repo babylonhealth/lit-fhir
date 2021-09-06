@@ -172,7 +172,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type IdentifiedChoice = Choice[Union_0934386166]
+  type IdentifiedChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -251,7 +251,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val identified: FHIRComponentFieldMeta[Option[DetectedIssue.IdentifiedChoice]] =
-    FHIRComponentFieldMeta("identified", lTagOf[Option[DetectedIssue.IdentifiedChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("identified", lTagOf[Option[DetectedIssue.IdentifiedChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val evidence: FHIRComponentFieldMeta[LitSeq[DetectedIssue.Evidence]] =
@@ -376,7 +376,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("implicated", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[Union_0934386166]("identified"),
+          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("identified"),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[DetectedIssue.Evidence]]("evidence", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[DetectedIssue.Mitigation]]("mitigation", Some(LitSeq.empty)),

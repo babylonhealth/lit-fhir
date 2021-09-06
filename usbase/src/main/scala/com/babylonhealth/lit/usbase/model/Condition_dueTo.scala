@@ -31,7 +31,7 @@ object Condition_dueTo extends CompanionFor[Condition_dueTo] {
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/condition-dueTo")
-  type ValueChoice = Choice[Union01025009075]
+  type ValueChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       value: Condition_dueTo.ValueChoice,
@@ -44,7 +44,7 @@ object Condition_dueTo extends CompanionFor[Condition_dueTo] {
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Condition_dueTo.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Condition_dueTo.ValueChoice], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("value", lTagOf[Condition_dueTo.ValueChoice], true, lTagOf[UnionCodeableConceptOrReference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -62,7 +62,7 @@ object Condition_dueTo extends CompanionFor[Condition_dueTo] {
       Try(
         new Condition_dueTo(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union01025009075]("value"),
+          cursor.decodeRef[UnionCodeableConceptOrReference]("value"),
           decodeAttributes(cursor)
         )
       ))

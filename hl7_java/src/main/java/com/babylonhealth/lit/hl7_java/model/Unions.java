@@ -17,79 +17,80 @@ import com.babylonhealth.lit.hl7.UnionAliases;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 public class Unions {
-  public static class Choice_0839638734 extends Choice<$bslash$div<Integer, String>> {
-    public Choice_0839638734(Integer arg) {
-      super("PositiveInt", arg, (LTag) UnionAliases.Union_0839638734Tag());
+  public static class ChoiceObservation_Effective
+      extends Choice<
+          $bslash$div<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>, ZonedDateTime>> {
+    public ChoiceObservation_Effective(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionObservation_EffectiveTag());
     }
 
-    public Choice_0839638734(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_0839638734Tag());
+    public ChoiceObservation_Effective(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionObservation_EffectiveTag());
+    }
+
+    public ChoiceObservation_Effective(Timing arg) {
+      super("Timing", arg, (LTag) UnionAliases.UnionObservation_EffectiveTag());
+    }
+
+    public ChoiceObservation_Effective(ZonedDateTime arg) {
+      super("Instant", arg, (LTag) UnionAliases.UnionObservation_EffectiveTag());
     }
   }
 
-  public static class Choice_1489367071
+  public static class ChoiceBooleanOrCanonical extends Choice<$bslash$div<Boolean, String>> {
+    public ChoiceBooleanOrCanonical(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionBooleanOrCanonicalTag());
+    }
+
+    public ChoiceBooleanOrCanonical(String arg) {
+      super("Canonical", arg, (LTag) UnionAliases.UnionBooleanOrCanonicalTag());
+    }
+  }
+
+  public static class ChoiceAction_Timing
       extends Choice<
           $bslash$div<
               $bslash$div<
-                  $bslash$div<
-                      $bslash$div<$bslash$div<$bslash$div<BigDecimal, Boolean>, String>, Coding>,
-                      FHIRDateTime>,
-                  Integer>,
-              String>> {
-    public Choice_1489367071(BigDecimal arg) {
-      super("Decimal", arg, (LTag) UnionAliases.Union_1489367071Tag());
+                  $bslash$div<$bslash$div<$bslash$div<Age, Duration>, FHIRDateTime>, Period>,
+                  Range>,
+              Timing>> {
+    public ChoiceAction_Timing(Age arg) {
+      super("Age", arg, (LTag) UnionAliases.UnionAction_TimingTag());
     }
 
-    public Choice_1489367071(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_1489367071Tag());
+    public ChoiceAction_Timing(Duration arg) {
+      super("Duration", arg, (LTag) UnionAliases.UnionAction_TimingTag());
     }
 
-    public Choice_1489367071(Coding arg) {
-      super("Coding", arg, (LTag) UnionAliases.Union_1489367071Tag());
+    public ChoiceAction_Timing(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionAction_TimingTag());
     }
 
-    public Choice_1489367071(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_1489367071Tag());
+    public ChoiceAction_Timing(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionAction_TimingTag());
     }
 
-    public Choice_1489367071(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union_1489367071Tag());
+    public ChoiceAction_Timing(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionAction_TimingTag());
     }
 
-    private Choice_1489367071(String subtype, String arg) {
-      super(subtype, arg, (LTag) UnionAliases.Union_1489367071Tag());
-    }
-
-    public static Choice_1489367071 Choice_1489367071Code(String arg) {
-      return new Choice_1489367071("Code", arg);
-    }
-
-    public static Choice_1489367071 Choice_1489367071String(String arg) {
-      return new Choice_1489367071("String", arg);
+    public ChoiceAction_Timing(Timing arg) {
+      super("Timing", arg, (LTag) UnionAliases.UnionAction_TimingTag());
     }
   }
 
-  public static class Choice00483057553 extends Choice<$bslash$div<byte[], String>> {
-    public Choice00483057553(byte[] arg) {
-      super("Base64Binary", arg, (LTag) UnionAliases.Union00483057553Tag());
+  public static class ChoiceAttachmentOrReference
+      extends Choice<$bslash$div<Attachment, Reference>> {
+    public ChoiceAttachmentOrReference(Attachment arg) {
+      super("Attachment", arg, (LTag) UnionAliases.UnionAttachmentOrReferenceTag());
     }
 
-    public Choice00483057553(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union00483057553Tag());
-    }
-  }
-
-  public static class Choice_0221283134 extends Choice<$bslash$div<Money, Quantity>> {
-    public Choice_0221283134(Money arg) {
-      super("Money", arg, (LTag) UnionAliases.Union_0221283134Tag());
-    }
-
-    public Choice_0221283134(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_0221283134Tag());
+    public ChoiceAttachmentOrReference(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionAttachmentOrReferenceTag());
     }
   }
 
-  public static class Choice01056080496
+  public static class ChoiceTarget_Detail
       extends Choice<
           $bslash$div<
               $bslash$div<
@@ -99,144 +100,660 @@ public class Unions {
                       Range>,
                   Ratio>,
               String>> {
-    public Choice01056080496(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union01056080496Tag());
+    public ChoiceTarget_Detail(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionTarget_DetailTag());
     }
 
-    public Choice01056080496(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union01056080496Tag());
+    public ChoiceTarget_Detail(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionTarget_DetailTag());
     }
 
-    public Choice01056080496(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union01056080496Tag());
+    public ChoiceTarget_Detail(Integer arg) {
+      super("Integer", arg, (LTag) UnionAliases.UnionTarget_DetailTag());
     }
 
-    public Choice01056080496(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union01056080496Tag());
+    public ChoiceTarget_Detail(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionTarget_DetailTag());
     }
 
-    public Choice01056080496(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union01056080496Tag());
+    public ChoiceTarget_Detail(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionTarget_DetailTag());
     }
 
-    public Choice01056080496(Ratio arg) {
-      super("Ratio", arg, (LTag) UnionAliases.Union01056080496Tag());
+    public ChoiceTarget_Detail(Ratio arg) {
+      super("Ratio", arg, (LTag) UnionAliases.UnionTarget_DetailTag());
     }
 
-    public Choice01056080496(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union01056080496Tag());
-    }
-  }
-
-  public static class Choice01200936722 extends Choice<$bslash$div<Period, Range>> {
-    public Choice01200936722(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union01200936722Tag());
-    }
-
-    public Choice01200936722(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union01200936722Tag());
+    public ChoiceTarget_Detail(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionTarget_DetailTag());
     }
   }
 
-  public static class Choice_0181779868
+  public static class ChoiceCharacteristic_Definition
       extends Choice<
           $bslash$div<
               $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Age, Duration>, FHIRDateTime>, Period>,
-                  Range>,
-              Timing>> {
-    public Choice_0181779868(Age arg) {
-      super("Age", arg, (LTag) UnionAliases.Union_0181779868Tag());
+                  $bslash$div<
+                      $bslash$div<$bslash$div<String, CodeableConcept>, DataRequirement>,
+                      Expression>,
+                  Reference>,
+              TriggerDefinition>> {
+    public ChoiceCharacteristic_Definition(String arg) {
+      super("Canonical", arg, (LTag) UnionAliases.UnionCharacteristic_DefinitionTag());
     }
 
-    public Choice_0181779868(Duration arg) {
-      super("Duration", arg, (LTag) UnionAliases.Union_0181779868Tag());
+    public ChoiceCharacteristic_Definition(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionCharacteristic_DefinitionTag());
     }
 
-    public Choice_0181779868(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_0181779868Tag());
+    public ChoiceCharacteristic_Definition(DataRequirement arg) {
+      super("DataRequirement", arg, (LTag) UnionAliases.UnionCharacteristic_DefinitionTag());
     }
 
-    public Choice_0181779868(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union_0181779868Tag());
+    public ChoiceCharacteristic_Definition(Expression arg) {
+      super("Expression", arg, (LTag) UnionAliases.UnionCharacteristic_DefinitionTag());
     }
 
-    public Choice_0181779868(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union_0181779868Tag());
+    public ChoiceCharacteristic_Definition(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionCharacteristic_DefinitionTag());
     }
 
-    public Choice_0181779868(Timing arg) {
-      super("Timing", arg, (LTag) UnionAliases.Union_0181779868Tag());
-    }
-  }
-
-  public static class Choice_1524702593 extends Choice<$bslash$div<Boolean, Reference>> {
-    public Choice_1524702593(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_1524702593Tag());
-    }
-
-    public Choice_1524702593(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_1524702593Tag());
+    public ChoiceCharacteristic_Definition(TriggerDefinition arg) {
+      super("TriggerDefinition", arg, (LTag) UnionAliases.UnionCharacteristic_DefinitionTag());
     }
   }
 
-  public static class Choice_0964108894 extends Choice<$bslash$div<Quantity, Ratio>> {
-    public Choice_0964108894(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_0964108894Tag());
+  public static class ChoiceBooleanOrInt extends Choice<$bslash$div<Boolean, Integer>> {
+    public ChoiceBooleanOrInt(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionBooleanOrIntTag());
     }
 
-    public Choice_0964108894(Ratio arg) {
-      super("Ratio", arg, (LTag) UnionAliases.Union_0964108894Tag());
+    public ChoiceBooleanOrInt(Integer arg) {
+      super("Integer", arg, (LTag) UnionAliases.UnionBooleanOrIntTag());
     }
   }
 
-  public static class Choice01646729908
+  public static class ChoiceQuantityOrString extends Choice<$bslash$div<Quantity, String>> {
+    public ChoiceQuantityOrString(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionQuantityOrStringTag());
+    }
+
+    public ChoiceQuantityOrString(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionQuantityOrStringTag());
+    }
+  }
+
+  public static class ChoiceAddressOrCodeableConceptOrReference
+      extends Choice<$bslash$div<$bslash$div<Address, CodeableConcept>, Reference>> {
+    public ChoiceAddressOrCodeableConceptOrReference(Address arg) {
+      super("Address", arg, (LTag) UnionAliases.UnionAddressOrCodeableConceptOrReferenceTag());
+    }
+
+    public ChoiceAddressOrCodeableConceptOrReference(CodeableConcept arg) {
+      super(
+          "CodeableConcept",
+          arg,
+          (LTag) UnionAliases.UnionAddressOrCodeableConceptOrReferenceTag());
+    }
+
+    public ChoiceAddressOrCodeableConceptOrReference(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionAddressOrCodeableConceptOrReferenceTag());
+    }
+  }
+
+  public static class ChoiceCanonicalOrCodeableConceptOrUriStr
+      extends Choice<$bslash$div<$bslash$div<String, CodeableConcept>, String>> {
+    public ChoiceCanonicalOrCodeableConceptOrUriStr(CodeableConcept arg) {
+      super(
+          "CodeableConcept", arg, (LTag) UnionAliases.UnionCanonicalOrCodeableConceptOrUriStrTag());
+    }
+
+    private ChoiceCanonicalOrCodeableConceptOrUriStr(String subtype, String arg) {
+      super(subtype, arg, (LTag) UnionAliases.UnionCanonicalOrCodeableConceptOrUriStrTag());
+    }
+
+    public static ChoiceCanonicalOrCodeableConceptOrUriStr
+        ChoiceCanonicalOrCodeableConceptOrUriStrCanonical(String arg) {
+      return new ChoiceCanonicalOrCodeableConceptOrUriStr("Canonical", arg);
+    }
+
+    public static ChoiceCanonicalOrCodeableConceptOrUriStr
+        ChoiceCanonicalOrCodeableConceptOrUriStrUriStr(String arg) {
+      return new ChoiceCanonicalOrCodeableConceptOrUriStr("Uri", arg);
+    }
+  }
+
+  public static class ChoiceProperty_Value
+      extends Choice<
+          $bslash$div<
+              $bslash$div<
+                  $bslash$div<
+                      $bslash$div<$bslash$div<$bslash$div<BigDecimal, Boolean>, String>, Coding>,
+                      FHIRDateTime>,
+                  Integer>,
+              String>> {
+    public ChoiceProperty_Value(BigDecimal arg) {
+      super("Decimal", arg, (LTag) UnionAliases.UnionProperty_ValueTag());
+    }
+
+    public ChoiceProperty_Value(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionProperty_ValueTag());
+    }
+
+    public ChoiceProperty_Value(Coding arg) {
+      super("Coding", arg, (LTag) UnionAliases.UnionProperty_ValueTag());
+    }
+
+    public ChoiceProperty_Value(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionProperty_ValueTag());
+    }
+
+    public ChoiceProperty_Value(Integer arg) {
+      super("Integer", arg, (LTag) UnionAliases.UnionProperty_ValueTag());
+    }
+
+    private ChoiceProperty_Value(String subtype, String arg) {
+      super(subtype, arg, (LTag) UnionAliases.UnionProperty_ValueTag());
+    }
+
+    public static ChoiceProperty_Value ChoiceProperty_ValueCode(String arg) {
+      return new ChoiceProperty_Value("Code", arg);
+    }
+
+    public static ChoiceProperty_Value ChoiceProperty_ValueString(String arg) {
+      return new ChoiceProperty_Value("String", arg);
+    }
+  }
+
+  public static class ChoiceAttachmentOrReferenceOrString
+      extends Choice<$bslash$div<$bslash$div<Attachment, Reference>, String>> {
+    public ChoiceAttachmentOrReferenceOrString(Attachment arg) {
+      super("Attachment", arg, (LTag) UnionAliases.UnionAttachmentOrReferenceOrStringTag());
+    }
+
+    public ChoiceAttachmentOrReferenceOrString(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionAttachmentOrReferenceOrStringTag());
+    }
+
+    public ChoiceAttachmentOrReferenceOrString(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionAttachmentOrReferenceOrStringTag());
+    }
+  }
+
+  public static class ChoicePeriodOrStringOrTiming
+      extends Choice<$bslash$div<$bslash$div<Period, String>, Timing>> {
+    public ChoicePeriodOrStringOrTiming(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionPeriodOrStringOrTimingTag());
+    }
+
+    public ChoicePeriodOrStringOrTiming(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionPeriodOrStringOrTimingTag());
+    }
+
+    public ChoicePeriodOrStringOrTiming(Timing arg) {
+      super("Timing", arg, (LTag) UnionAliases.UnionPeriodOrStringOrTimingTag());
+    }
+  }
+
+  public static class ChoiceBase64BinaryOrString extends Choice<$bslash$div<byte[], String>> {
+    public ChoiceBase64BinaryOrString(byte[] arg) {
+      super("Base64Binary", arg, (LTag) UnionAliases.UnionBase64BinaryOrStringTag());
+    }
+
+    public ChoiceBase64BinaryOrString(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionBase64BinaryOrStringTag());
+    }
+  }
+
+  public static class ChoiceQuantityOrRangeOrString
+      extends Choice<$bslash$div<$bslash$div<Quantity, Range>, String>> {
+    public ChoiceQuantityOrRangeOrString(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionQuantityOrRangeOrStringTag());
+    }
+
+    public ChoiceQuantityOrRangeOrString(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionQuantityOrRangeOrStringTag());
+    }
+
+    public ChoiceQuantityOrRangeOrString(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionQuantityOrRangeOrStringTag());
+    }
+  }
+
+  public static class ChoiceCodingOrUriStr extends Choice<$bslash$div<Coding, String>> {
+    public ChoiceCodingOrUriStr(Coding arg) {
+      super("Coding", arg, (LTag) UnionAliases.UnionCodingOrUriStrTag());
+    }
+
+    public ChoiceCodingOrUriStr(String arg) {
+      super("Uri", arg, (LTag) UnionAliases.UnionCodingOrUriStrTag());
+    }
+  }
+
+  public static class ChoiceMoneyOrStringOrUnsignedInt
+      extends Choice<$bslash$div<$bslash$div<Money, String>, Integer>> {
+    public ChoiceMoneyOrStringOrUnsignedInt(Money arg) {
+      super("Money", arg, (LTag) UnionAliases.UnionMoneyOrStringOrUnsignedIntTag());
+    }
+
+    public ChoiceMoneyOrStringOrUnsignedInt(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionMoneyOrStringOrUnsignedIntTag());
+    }
+
+    public ChoiceMoneyOrStringOrUnsignedInt(Integer arg) {
+      super("UnsignedInt", arg, (LTag) UnionAliases.UnionMoneyOrStringOrUnsignedIntTag());
+    }
+  }
+
+  public static class ChoiceCharacteristic_Value
       extends Choice<
           $bslash$div<
               $bslash$div<$bslash$div<$bslash$div<Boolean, CodeableConcept>, Quantity>, Range>,
               Reference>> {
-    public Choice01646729908(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union01646729908Tag());
+    public ChoiceCharacteristic_Value(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionCharacteristic_ValueTag());
     }
 
-    public Choice01646729908(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union01646729908Tag());
+    public ChoiceCharacteristic_Value(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionCharacteristic_ValueTag());
     }
 
-    public Choice01646729908(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union01646729908Tag());
+    public ChoiceCharacteristic_Value(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionCharacteristic_ValueTag());
     }
 
-    public Choice01646729908(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union01646729908Tag());
+    public ChoiceCharacteristic_Value(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionCharacteristic_ValueTag());
     }
 
-    public Choice01646729908(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union01646729908Tag());
-    }
-  }
-
-  public static class Choice02065782851 extends Choice<$bslash$div<Boolean, Integer>> {
-    public Choice02065782851(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union02065782851Tag());
-    }
-
-    public Choice02065782851(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union02065782851Tag());
+    public ChoiceCharacteristic_Value(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionCharacteristic_ValueTag());
     }
   }
 
-  public static class Choice_0970951552 extends Choice<$bslash$div<CodeableConcept, Quantity>> {
-    public Choice_0970951552(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union_0970951552Tag());
+  public static class ChoiceFHIRDateTimeOrPeriodOrTiming
+      extends Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>> {
+    public ChoiceFHIRDateTimeOrPeriodOrTiming(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionFHIRDateTimeOrPeriodOrTimingTag());
     }
 
-    public Choice_0970951552(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_0970951552Tag());
+    public ChoiceFHIRDateTimeOrPeriodOrTiming(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionFHIRDateTimeOrPeriodOrTimingTag());
+    }
+
+    public ChoiceFHIRDateTimeOrPeriodOrTiming(Timing arg) {
+      super("Timing", arg, (LTag) UnionAliases.UnionFHIRDateTimeOrPeriodOrTimingTag());
     }
   }
 
-  public static class Choice_0802685816
+  public static class ChoiceCanonicalOrUriStr extends Choice<$bslash$div<String, String>> {
+
+    private ChoiceCanonicalOrUriStr(String subtype, String arg) {
+      super(subtype, arg, (LTag) UnionAliases.UnionCanonicalOrUriStrTag());
+    }
+
+    public static ChoiceCanonicalOrUriStr ChoiceCanonicalOrUriStrCanonical(String arg) {
+      return new ChoiceCanonicalOrUriStr("Canonical", arg);
+    }
+
+    public static ChoiceCanonicalOrUriStr ChoiceCanonicalOrUriStrUriStr(String arg) {
+      return new ChoiceCanonicalOrUriStr("Uri", arg);
+    }
+  }
+
+  public static class ChoiceAddressOrReference extends Choice<$bslash$div<Address, Reference>> {
+    public ChoiceAddressOrReference(Address arg) {
+      super("Address", arg, (LTag) UnionAliases.UnionAddressOrReferenceTag());
+    }
+
+    public ChoiceAddressOrReference(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionAddressOrReferenceTag());
+    }
+  }
+
+  public static class ChoiceEnableWhen_Answer
+      extends Choice<
+          $bslash$div<
+              $bslash$div<
+                  $bslash$div<
+                      $bslash$div<
+                          $bslash$div<
+                              $bslash$div<
+                                  $bslash$div<
+                                      $bslash$div<$bslash$div<BigDecimal, Boolean>, Coding>,
+                                      FHIRDate>,
+                                  FHIRDateTime>,
+                              Integer>,
+                          LocalTime>,
+                      Quantity>,
+                  Reference>,
+              String>> {
+    public ChoiceEnableWhen_Answer(BigDecimal arg) {
+      super("Decimal", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(Coding arg) {
+      super("Coding", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(Integer arg) {
+      super("Integer", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(LocalTime arg) {
+      super("Time", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+
+    public ChoiceEnableWhen_Answer(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionEnableWhen_AnswerTag());
+    }
+  }
+
+  public static class ChoiceFHIRDateOrPeriodOrString
+      extends Choice<$bslash$div<$bslash$div<FHIRDate, Period>, String>> {
+    public ChoiceFHIRDateOrPeriodOrString(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionFHIRDateOrPeriodOrStringTag());
+    }
+
+    public ChoiceFHIRDateOrPeriodOrString(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionFHIRDateOrPeriodOrStringTag());
+    }
+
+    public ChoiceFHIRDateOrPeriodOrString(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionFHIRDateOrPeriodOrStringTag());
+    }
+  }
+
+  public static class ChoiceMoneyOrQuantity extends Choice<$bslash$div<Money, Quantity>> {
+    public ChoiceMoneyOrQuantity(Money arg) {
+      super("Money", arg, (LTag) UnionAliases.UnionMoneyOrQuantityTag());
+    }
+
+    public ChoiceMoneyOrQuantity(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionMoneyOrQuantityTag());
+    }
+  }
+
+  public static class ChoiceDurationOrFHIRDate extends Choice<$bslash$div<Duration, FHIRDate>> {
+    public ChoiceDurationOrFHIRDate(Duration arg) {
+      super("Duration", arg, (LTag) UnionAliases.UnionDurationOrFHIRDateTag());
+    }
+
+    public ChoiceDurationOrFHIRDate(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionDurationOrFHIRDateTag());
+    }
+  }
+
+  public static class ChoiceSupportingInfo_Value
+      extends Choice<
+          $bslash$div<
+              $bslash$div<$bslash$div<$bslash$div<Attachment, Boolean>, Quantity>, Reference>,
+              String>> {
+    public ChoiceSupportingInfo_Value(Attachment arg) {
+      super("Attachment", arg, (LTag) UnionAliases.UnionSupportingInfo_ValueTag());
+    }
+
+    public ChoiceSupportingInfo_Value(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionSupportingInfo_ValueTag());
+    }
+
+    public ChoiceSupportingInfo_Value(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionSupportingInfo_ValueTag());
+    }
+
+    public ChoiceSupportingInfo_Value(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionSupportingInfo_ValueTag());
+    }
+
+    public ChoiceSupportingInfo_Value(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionSupportingInfo_ValueTag());
+    }
+  }
+
+  public static class ChoiceAllergyIntolerance_Onset
+      extends Choice<
+          $bslash$div<
+              $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>> {
+    public ChoiceAllergyIntolerance_Onset(Age arg) {
+      super("Age", arg, (LTag) UnionAliases.UnionAllergyIntolerance_OnsetTag());
+    }
+
+    public ChoiceAllergyIntolerance_Onset(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionAllergyIntolerance_OnsetTag());
+    }
+
+    public ChoiceAllergyIntolerance_Onset(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionAllergyIntolerance_OnsetTag());
+    }
+
+    public ChoiceAllergyIntolerance_Onset(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionAllergyIntolerance_OnsetTag());
+    }
+
+    public ChoiceAllergyIntolerance_Onset(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionAllergyIntolerance_OnsetTag());
+    }
+  }
+
+  public static class ChoiceBooleanOrFHIRDateTime
+      extends Choice<$bslash$div<Boolean, FHIRDateTime>> {
+    public ChoiceBooleanOrFHIRDateTime(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionBooleanOrFHIRDateTimeTag());
+    }
+
+    public ChoiceBooleanOrFHIRDateTime(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionBooleanOrFHIRDateTimeTag());
+    }
+  }
+
+  public static class ChoiceParameter_Value
+      extends Choice<
+          $bslash$div<
+              $bslash$div<$bslash$div<$bslash$div<BigDecimal, Boolean>, String>, Integer>,
+              String>> {
+    public ChoiceParameter_Value(BigDecimal arg) {
+      super("Decimal", arg, (LTag) UnionAliases.UnionParameter_ValueTag());
+    }
+
+    public ChoiceParameter_Value(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionParameter_ValueTag());
+    }
+
+    public ChoiceParameter_Value(Integer arg) {
+      super("Integer", arg, (LTag) UnionAliases.UnionParameter_ValueTag());
+    }
+
+    private ChoiceParameter_Value(String subtype, String arg) {
+      super(subtype, arg, (LTag) UnionAliases.UnionParameter_ValueTag());
+    }
+
+    public static ChoiceParameter_Value ChoiceParameter_ValueId(String arg) {
+      return new ChoiceParameter_Value("Id", arg);
+    }
+
+    public static ChoiceParameter_Value ChoiceParameter_ValueString(String arg) {
+      return new ChoiceParameter_Value("String", arg);
+    }
+  }
+
+  public static class ChoiceQuantityOrRatio extends Choice<$bslash$div<Quantity, Ratio>> {
+    public ChoiceQuantityOrRatio(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionQuantityOrRatioTag());
+    }
+
+    public ChoiceQuantityOrRatio(Ratio arg) {
+      super("Ratio", arg, (LTag) UnionAliases.UnionQuantityOrRatioTag());
+    }
+  }
+
+  public static class ChoiceBigDecimalOrRange extends Choice<$bslash$div<BigDecimal, Range>> {
+    public ChoiceBigDecimalOrRange(BigDecimal arg) {
+      super("Decimal", arg, (LTag) UnionAliases.UnionBigDecimalOrRangeTag());
+    }
+
+    public ChoiceBigDecimalOrRange(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionBigDecimalOrRangeTag());
+    }
+  }
+
+  public static class ChoiceDurationOrRange extends Choice<$bslash$div<Duration, Range>> {
+    public ChoiceDurationOrRange(Duration arg) {
+      super("Duration", arg, (LTag) UnionAliases.UnionDurationOrRangeTag());
+    }
+
+    public ChoiceDurationOrRange(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionDurationOrRangeTag());
+    }
+  }
+
+  public static class ChoiceCondition_Onset
+      extends Choice<$bslash$div<$bslash$div<$bslash$div<Age, Period>, Range>, String>> {
+    public ChoiceCondition_Onset(Age arg) {
+      super("Age", arg, (LTag) UnionAliases.UnionCondition_OnsetTag());
+    }
+
+    public ChoiceCondition_Onset(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionCondition_OnsetTag());
+    }
+
+    public ChoiceCondition_Onset(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionCondition_OnsetTag());
+    }
+
+    public ChoiceCondition_Onset(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionCondition_OnsetTag());
+    }
+  }
+
+  public static class ChoicePositiveIntOrString extends Choice<$bslash$div<Integer, String>> {
+    public ChoicePositiveIntOrString(Integer arg) {
+      super("PositiveInt", arg, (LTag) UnionAliases.UnionPositiveIntOrStringTag());
+    }
+
+    public ChoicePositiveIntOrString(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionPositiveIntOrStringTag());
+    }
+  }
+
+  public static class ChoiceAgeOrRangeOrString
+      extends Choice<$bslash$div<$bslash$div<Age, Range>, String>> {
+    public ChoiceAgeOrRangeOrString(Age arg) {
+      super("Age", arg, (LTag) UnionAliases.UnionAgeOrRangeOrStringTag());
+    }
+
+    public ChoiceAgeOrRangeOrString(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionAgeOrRangeOrStringTag());
+    }
+
+    public ChoiceAgeOrRangeOrString(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionAgeOrRangeOrStringTag());
+    }
+  }
+
+  public static class ChoiceReferenceOrUrlStr extends Choice<$bslash$div<Reference, String>> {
+    public ChoiceReferenceOrUrlStr(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionReferenceOrUrlStrTag());
+    }
+
+    public ChoiceReferenceOrUrlStr(String arg) {
+      super("Url", arg, (LTag) UnionAliases.UnionReferenceOrUrlStrTag());
+    }
+  }
+
+  public static class ChoiceRelationship_Amount
+      extends Choice<$bslash$div<$bslash$div<$bslash$div<Quantity, Range>, Ratio>, String>> {
+    public ChoiceRelationship_Amount(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionRelationship_AmountTag());
+    }
+
+    public ChoiceRelationship_Amount(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionRelationship_AmountTag());
+    }
+
+    public ChoiceRelationship_Amount(Ratio arg) {
+      super("Ratio", arg, (LTag) UnionAliases.UnionRelationship_AmountTag());
+    }
+
+    public ChoiceRelationship_Amount(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionRelationship_AmountTag());
+    }
+  }
+
+  public static class ChoiceIdentifierOrReference
+      extends Choice<$bslash$div<Identifier, Reference>> {
+    public ChoiceIdentifierOrReference(Identifier arg) {
+      super("Identifier", arg, (LTag) UnionAliases.UnionIdentifierOrReferenceTag());
+    }
+
+    public ChoiceIdentifierOrReference(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionIdentifierOrReferenceTag());
+    }
+  }
+
+  public static class ChoiceAnswerOption_Value
+      extends Choice<
+          $bslash$div<
+              $bslash$div<
+                  $bslash$div<$bslash$div<$bslash$div<Coding, FHIRDate>, Integer>, LocalTime>,
+                  Reference>,
+              String>> {
+    public ChoiceAnswerOption_Value(Coding arg) {
+      super("Coding", arg, (LTag) UnionAliases.UnionAnswerOption_ValueTag());
+    }
+
+    public ChoiceAnswerOption_Value(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionAnswerOption_ValueTag());
+    }
+
+    public ChoiceAnswerOption_Value(Integer arg) {
+      super("Integer", arg, (LTag) UnionAliases.UnionAnswerOption_ValueTag());
+    }
+
+    public ChoiceAnswerOption_Value(LocalTime arg) {
+      super("Time", arg, (LTag) UnionAliases.UnionAnswerOption_ValueTag());
+    }
+
+    public ChoiceAnswerOption_Value(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionAnswerOption_ValueTag());
+    }
+
+    public ChoiceAnswerOption_Value(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionAnswerOption_ValueTag());
+    }
+  }
+
+  public static class ChoiceCodeableConceptOrDuration
+      extends Choice<$bslash$div<CodeableConcept, Duration>> {
+    public ChoiceCodeableConceptOrDuration(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionCodeableConceptOrDurationTag());
+    }
+
+    public ChoiceCodeableConceptOrDuration(Duration arg) {
+      super("Duration", arg, (LTag) UnionAliases.UnionCodeableConceptOrDurationTag());
+    }
+  }
+
+  public static class ChoiceObservation_Value
       extends Choice<
           $bslash$div<
               $bslash$div<
@@ -256,459 +773,174 @@ public class Unions {
                       Ratio>,
                   SampledData>,
               String>> {
-    public Choice_0802685816(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(Integer arg) {
+      super("Integer", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(LocalTime arg) {
-      super("Time", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(LocalTime arg) {
+      super("Time", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(Ratio arg) {
-      super("Ratio", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(Ratio arg) {
+      super("Ratio", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(SampledData arg) {
-      super("SampledData", arg, (LTag) UnionAliases.Union_0802685816Tag());
+    public ChoiceObservation_Value(SampledData arg) {
+      super("SampledData", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
 
-    public Choice_0802685816(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_0802685816Tag());
-    }
-  }
-
-  public static class Choice_0040864668
-      extends Choice<$bslash$div<$bslash$div<Money, String>, Integer>> {
-    public Choice_0040864668(Money arg) {
-      super("Money", arg, (LTag) UnionAliases.Union_0040864668Tag());
-    }
-
-    public Choice_0040864668(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_0040864668Tag());
-    }
-
-    public Choice_0040864668(Integer arg) {
-      super("UnsignedInt", arg, (LTag) UnionAliases.Union_0040864668Tag());
+    public ChoiceObservation_Value(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionObservation_ValueTag());
     }
   }
 
-  public static class Choice00607514014
+  public static class ChoiceBooleanOrReference extends Choice<$bslash$div<Boolean, Reference>> {
+    public ChoiceBooleanOrReference(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionBooleanOrReferenceTag());
+    }
+
+    public ChoiceBooleanOrReference(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionBooleanOrReferenceTag());
+    }
+  }
+
+  public static class ChoiceCharacteristic_ParticipantEffective
       extends Choice<
           $bslash$div<$bslash$div<$bslash$div<Duration, FHIRDateTime>, Period>, Timing>> {
-    public Choice00607514014(Duration arg) {
-      super("Duration", arg, (LTag) UnionAliases.Union00607514014Tag());
+    public ChoiceCharacteristic_ParticipantEffective(Duration arg) {
+      super("Duration", arg, (LTag) UnionAliases.UnionCharacteristic_ParticipantEffectiveTag());
     }
 
-    public Choice00607514014(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union00607514014Tag());
+    public ChoiceCharacteristic_ParticipantEffective(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionCharacteristic_ParticipantEffectiveTag());
     }
 
-    public Choice00607514014(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union00607514014Tag());
+    public ChoiceCharacteristic_ParticipantEffective(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionCharacteristic_ParticipantEffectiveTag());
     }
 
-    public Choice00607514014(Timing arg) {
-      super("Timing", arg, (LTag) UnionAliases.Union00607514014Tag());
-    }
-  }
-
-  public static class Choice00078348305 extends Choice<$bslash$div<CodeableConcept, FHIRDate>> {
-    public Choice00078348305(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union00078348305Tag());
-    }
-
-    public Choice00078348305(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union00078348305Tag());
+    public ChoiceCharacteristic_ParticipantEffective(Timing arg) {
+      super("Timing", arg, (LTag) UnionAliases.UnionCharacteristic_ParticipantEffectiveTag());
     }
   }
 
-  public static class Choice00910671146
-      extends Choice<$bslash$div<$bslash$div<$bslash$div<Quantity, Range>, Ratio>, String>> {
-    public Choice00910671146(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union00910671146Tag());
+  public static class ChoicePeriodOrRange extends Choice<$bslash$div<Period, Range>> {
+    public ChoicePeriodOrRange(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionPeriodOrRangeTag());
     }
 
-    public Choice00910671146(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union00910671146Tag());
-    }
-
-    public Choice00910671146(Ratio arg) {
-      super("Ratio", arg, (LTag) UnionAliases.Union00910671146Tag());
-    }
-
-    public Choice00910671146(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union00910671146Tag());
+    public ChoicePeriodOrRange(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionPeriodOrRangeTag());
     }
   }
 
-  public static class Choice_0966801288
+  public static class ChoiceFamilyMemberHistory_Deceased
       extends Choice<
           $bslash$div<
               $bslash$div<$bslash$div<$bslash$div<Age, Boolean>, FHIRDate>, Range>, String>> {
-    public Choice_0966801288(Age arg) {
-      super("Age", arg, (LTag) UnionAliases.Union_0966801288Tag());
+    public ChoiceFamilyMemberHistory_Deceased(Age arg) {
+      super("Age", arg, (LTag) UnionAliases.UnionFamilyMemberHistory_DeceasedTag());
     }
 
-    public Choice_0966801288(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_0966801288Tag());
+    public ChoiceFamilyMemberHistory_Deceased(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionFamilyMemberHistory_DeceasedTag());
     }
 
-    public Choice_0966801288(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union_0966801288Tag());
+    public ChoiceFamilyMemberHistory_Deceased(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionFamilyMemberHistory_DeceasedTag());
     }
 
-    public Choice_0966801288(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union_0966801288Tag());
+    public ChoiceFamilyMemberHistory_Deceased(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionFamilyMemberHistory_DeceasedTag());
     }
 
-    public Choice_0966801288(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_0966801288Tag());
-    }
-  }
-
-  public static class Choice01352864625
-      extends Choice<
-          $bslash$div<
-              $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>> {
-    public Choice01352864625(Age arg) {
-      super("Age", arg, (LTag) UnionAliases.Union01352864625Tag());
-    }
-
-    public Choice01352864625(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union01352864625Tag());
-    }
-
-    public Choice01352864625(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union01352864625Tag());
-    }
-
-    public Choice01352864625(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union01352864625Tag());
-    }
-
-    public Choice01352864625(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union01352864625Tag());
+    public ChoiceFamilyMemberHistory_Deceased(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionFamilyMemberHistory_DeceasedTag());
     }
   }
 
-  public static class Choice_0934386166 extends Choice<$bslash$div<FHIRDateTime, Period>> {
-    public Choice_0934386166(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_0934386166Tag());
+  public static class ChoiceCodeableConceptOrQuantity
+      extends Choice<$bslash$div<CodeableConcept, Quantity>> {
+    public ChoiceCodeableConceptOrQuantity(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionCodeableConceptOrQuantityTag());
     }
 
-    public Choice_0934386166(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union_0934386166Tag());
-    }
-  }
-
-  public static class Choice_1516277229
-      extends Choice<
-          $bslash$div<$bslash$div<$bslash$div<Boolean, CodeableConcept>, Quantity>, Range>> {
-    public Choice_1516277229(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_1516277229Tag());
-    }
-
-    public Choice_1516277229(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union_1516277229Tag());
-    }
-
-    public Choice_1516277229(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_1516277229Tag());
-    }
-
-    public Choice_1516277229(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union_1516277229Tag());
+    public ChoiceCodeableConceptOrQuantity(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionCodeableConceptOrQuantityTag());
     }
   }
 
-  public static class Choice_1750183386
-      extends Choice<$bslash$div<$bslash$div<Attachment, Reference>, String>> {
-    public Choice_1750183386(Attachment arg) {
-      super("Attachment", arg, (LTag) UnionAliases.Union_1750183386Tag());
+  public static class ChoiceCodeableConceptOrFHIRDate
+      extends Choice<$bslash$div<CodeableConcept, FHIRDate>> {
+    public ChoiceCodeableConceptOrFHIRDate(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionCodeableConceptOrFHIRDateTag());
     }
 
-    public Choice_1750183386(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_1750183386Tag());
-    }
-
-    public Choice_1750183386(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_1750183386Tag());
+    public ChoiceCodeableConceptOrFHIRDate(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionCodeableConceptOrFHIRDateTag());
     }
   }
 
-  public static class Choice_1507098327
-      extends Choice<$bslash$div<$bslash$div<Age, Range>, String>> {
-    public Choice_1507098327(Age arg) {
-      super("Age", arg, (LTag) UnionAliases.Union_1507098327Tag());
+  public static class ChoiceFHIRDateTimeOrPeriod extends Choice<$bslash$div<FHIRDateTime, Period>> {
+    public ChoiceFHIRDateTimeOrPeriod(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionFHIRDateTimeOrPeriodTag());
     }
 
-    public Choice_1507098327(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union_1507098327Tag());
-    }
-
-    public Choice_1507098327(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_1507098327Tag());
+    public ChoiceFHIRDateTimeOrPeriod(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionFHIRDateTimeOrPeriodTag());
     }
   }
 
-  public static class Choice_2072987899 extends Choice<$bslash$div<Quantity, String>> {
-    public Choice_2072987899(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_2072987899Tag());
-    }
-
-    public Choice_2072987899(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_2072987899Tag());
-    }
-  }
-
-  public static class Choice_0831630297 extends Choice<$bslash$div<BigDecimal, Range>> {
-    public Choice_0831630297(BigDecimal arg) {
-      super("Decimal", arg, (LTag) UnionAliases.Union_0831630297Tag());
-    }
-
-    public Choice_0831630297(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union_0831630297Tag());
-    }
-  }
-
-  public static class Choice_0687680458
-      extends Choice<$bslash$div<$bslash$div<String, CodeableConcept>, String>> {
-    public Choice_0687680458(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union_0687680458Tag());
-    }
-
-    private Choice_0687680458(String subtype, String arg) {
-      super(subtype, arg, (LTag) UnionAliases.Union_0687680458Tag());
-    }
-
-    public static Choice_0687680458 Choice_0687680458Canonical(String arg) {
-      return new Choice_0687680458("Canonical", arg);
-    }
-
-    public static Choice_0687680458 Choice_0687680458UriStr(String arg) {
-      return new Choice_0687680458("Uri", arg);
-    }
-  }
-
-  public static class Choice_0543144563
-      extends Choice<
-          $bslash$div<
-              $bslash$div<$bslash$div<$bslash$div<Attachment, Boolean>, Quantity>, Reference>,
-              String>> {
-    public Choice_0543144563(Attachment arg) {
-      super("Attachment", arg, (LTag) UnionAliases.Union_0543144563Tag());
-    }
-
-    public Choice_0543144563(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_0543144563Tag());
-    }
-
-    public Choice_0543144563(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_0543144563Tag());
-    }
-
-    public Choice_0543144563(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_0543144563Tag());
-    }
-
-    public Choice_0543144563(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_0543144563Tag());
-    }
-  }
-
-  public static class Choice_1132894602
-      extends Choice<
-          $bslash$div<
-              $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Coding, FHIRDate>, Integer>, LocalTime>,
-                  Reference>,
-              String>> {
-    public Choice_1132894602(Coding arg) {
-      super("Coding", arg, (LTag) UnionAliases.Union_1132894602Tag());
-    }
-
-    public Choice_1132894602(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union_1132894602Tag());
-    }
-
-    public Choice_1132894602(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union_1132894602Tag());
-    }
-
-    public Choice_1132894602(LocalTime arg) {
-      super("Time", arg, (LTag) UnionAliases.Union_1132894602Tag());
-    }
-
-    public Choice_1132894602(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_1132894602Tag());
-    }
-
-    public Choice_1132894602(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_1132894602Tag());
-    }
-  }
-
-  public static class Choice_1750128470
-      extends Choice<
-          $bslash$div<
-              $bslash$div<$bslash$div<String, CodeableConcept>, DataRequirement>, Expression>> {
-    public Choice_1750128470(String arg) {
-      super("Canonical", arg, (LTag) UnionAliases.Union_1750128470Tag());
-    }
-
-    public Choice_1750128470(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union_1750128470Tag());
-    }
-
-    public Choice_1750128470(DataRequirement arg) {
-      super("DataRequirement", arg, (LTag) UnionAliases.Union_1750128470Tag());
-    }
-
-    public Choice_1750128470(Expression arg) {
-      super("Expression", arg, (LTag) UnionAliases.Union_1750128470Tag());
-    }
-  }
-
-  public static class Choice01560785079
+  public static class ChoiceCodeableConceptOrQuantityOrRange
       extends Choice<$bslash$div<$bslash$div<CodeableConcept, Quantity>, Range>> {
-    public Choice01560785079(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union01560785079Tag());
+    public ChoiceCodeableConceptOrQuantityOrRange(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionCodeableConceptOrQuantityOrRangeTag());
     }
 
-    public Choice01560785079(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union01560785079Tag());
+    public ChoiceCodeableConceptOrQuantityOrRange(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionCodeableConceptOrQuantityOrRangeTag());
     }
 
-    public Choice01560785079(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union01560785079Tag());
-    }
-  }
-
-  public static class Choice01831019594 extends Choice<$bslash$div<Reference, String>> {
-    public Choice01831019594(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union01831019594Tag());
-    }
-
-    public Choice01831019594(String arg) {
-      super("Url", arg, (LTag) UnionAliases.Union01831019594Tag());
+    public ChoiceCodeableConceptOrQuantityOrRange(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.UnionCodeableConceptOrQuantityOrRangeTag());
     }
   }
 
-  public static class Choice00434638053 extends Choice<$bslash$div<Address, Reference>> {
-    public Choice00434638053(Address arg) {
-      super("Address", arg, (LTag) UnionAliases.Union00434638053Tag());
+  public static class ChoiceFHIRDateOrPeriod extends Choice<$bslash$div<FHIRDate, Period>> {
+    public ChoiceFHIRDateOrPeriod(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionFHIRDateOrPeriodTag());
     }
 
-    public Choice00434638053(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union00434638053Tag());
-    }
-  }
-
-  public static class Choice_1309404550
-      extends Choice<
-          $bslash$div<$bslash$div<$bslash$div<byte[], CodeableConcept>, Quantity>, String>> {
-    public Choice_1309404550(byte[] arg) {
-      super("Base64Binary", arg, (LTag) UnionAliases.Union_1309404550Tag());
-    }
-
-    public Choice_1309404550(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union_1309404550Tag());
-    }
-
-    public Choice_1309404550(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_1309404550Tag());
-    }
-
-    public Choice_1309404550(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_1309404550Tag());
+    public ChoiceFHIRDateOrPeriod(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionFHIRDateOrPeriodTag());
     }
   }
 
-  public static class Choice00609373412
-      extends Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>> {
-    public Choice00609373412(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union00609373412Tag());
-    }
-
-    public Choice00609373412(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union00609373412Tag());
-    }
-
-    public Choice00609373412(Timing arg) {
-      super("Timing", arg, (LTag) UnionAliases.Union00609373412Tag());
-    }
-  }
-
-  public static class Choice00600764285
-      extends Choice<
-          $bslash$div<
-              $bslash$div<$bslash$div<$bslash$div<BigDecimal, Boolean>, String>, Integer>,
-              String>> {
-    public Choice00600764285(BigDecimal arg) {
-      super("Decimal", arg, (LTag) UnionAliases.Union00600764285Tag());
-    }
-
-    public Choice00600764285(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union00600764285Tag());
-    }
-
-    public Choice00600764285(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union00600764285Tag());
-    }
-
-    private Choice00600764285(String subtype, String arg) {
-      super(subtype, arg, (LTag) UnionAliases.Union00600764285Tag());
-    }
-
-    public static Choice00600764285 Choice00600764285Id(String arg) {
-      return new Choice00600764285("Id", arg);
-    }
-
-    public static Choice00600764285 Choice00600764285String(String arg) {
-      return new Choice00600764285("String", arg);
-    }
-  }
-
-  public static class Choice01486281057
-      extends Choice<$bslash$div<$bslash$div<FHIRDate, Period>, String>> {
-    public Choice01486281057(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union01486281057Tag());
-    }
-
-    public Choice01486281057(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union01486281057Tag());
-    }
-
-    public Choice01486281057(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union01486281057Tag());
-    }
-  }
-
-  public static class Choice_0637176084
+  public static class ChoiceElementDefinition_MinValue
       extends Choice<
           $bslash$div<
               $bslash$div<
@@ -723,253 +955,91 @@ public class Unions {
                       Quantity>,
                   Integer>,
               ZonedDateTime>> {
-    public Choice_0637176084(BigDecimal arg) {
-      super("Decimal", arg, (LTag) UnionAliases.Union_0637176084Tag());
+    public ChoiceElementDefinition_MinValue(BigDecimal arg) {
+      super("Decimal", arg, (LTag) UnionAliases.UnionElementDefinition_MinValueTag());
     }
 
-    public Choice_0637176084(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union_0637176084Tag());
+    public ChoiceElementDefinition_MinValue(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionElementDefinition_MinValueTag());
     }
 
-    public Choice_0637176084(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_0637176084Tag());
+    public ChoiceElementDefinition_MinValue(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionElementDefinition_MinValueTag());
     }
 
-    public Choice_0637176084(LocalTime arg) {
-      super("Time", arg, (LTag) UnionAliases.Union_0637176084Tag());
+    public ChoiceElementDefinition_MinValue(LocalTime arg) {
+      super("Time", arg, (LTag) UnionAliases.UnionElementDefinition_MinValueTag());
     }
 
-    public Choice_0637176084(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_0637176084Tag());
+    public ChoiceElementDefinition_MinValue(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionElementDefinition_MinValueTag());
     }
 
-    public Choice_0637176084(ZonedDateTime arg) {
-      super("Instant", arg, (LTag) UnionAliases.Union_0637176084Tag());
+    public ChoiceElementDefinition_MinValue(ZonedDateTime arg) {
+      super("Instant", arg, (LTag) UnionAliases.UnionElementDefinition_MinValueTag());
     }
 
-    private Choice_0637176084(String subtype, Integer arg) {
-      super(subtype, arg, (LTag) UnionAliases.Union_0637176084Tag());
+    private ChoiceElementDefinition_MinValue(String subtype, Integer arg) {
+      super(subtype, arg, (LTag) UnionAliases.UnionElementDefinition_MinValueTag());
     }
 
-    public static Choice_0637176084 Choice_0637176084Int(Integer arg) {
-      return new Choice_0637176084("Integer", arg);
+    public static ChoiceElementDefinition_MinValue ChoiceElementDefinition_MinValueInt(
+        Integer arg) {
+      return new ChoiceElementDefinition_MinValue("Integer", arg);
     }
 
-    public static Choice_0637176084 Choice_0637176084PositiveInt(Integer arg) {
-      return new Choice_0637176084("PositiveInt", arg);
+    public static ChoiceElementDefinition_MinValue ChoiceElementDefinition_MinValuePositiveInt(
+        Integer arg) {
+      return new ChoiceElementDefinition_MinValue("PositiveInt", arg);
     }
 
-    public static Choice_0637176084 Choice_0637176084UnsignedInt(Integer arg) {
-      return new Choice_0637176084("UnsignedInt", arg);
-    }
-  }
-
-  public static class Choice_2131715935 extends Choice<$bslash$div<Boolean, FHIRDateTime>> {
-    public Choice_2131715935(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_2131715935Tag());
-    }
-
-    public Choice_2131715935(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_2131715935Tag());
+    public static ChoiceElementDefinition_MinValue ChoiceElementDefinition_MinValueUnsignedInt(
+        Integer arg) {
+      return new ChoiceElementDefinition_MinValue("UnsignedInt", arg);
     }
   }
 
-  public static class Choice01726112534
-      extends Choice<$bslash$div<$bslash$div<Period, String>, Timing>> {
-    public Choice01726112534(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union01726112534Tag());
-    }
-
-    public Choice01726112534(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union01726112534Tag());
-    }
-
-    public Choice01726112534(Timing arg) {
-      super("Timing", arg, (LTag) UnionAliases.Union01726112534Tag());
-    }
-  }
-
-  public static class Choice_1289000811 extends Choice<$bslash$div<Money, Integer>> {
-    public Choice_1289000811(Money arg) {
-      super("Money", arg, (LTag) UnionAliases.Union_1289000811Tag());
-    }
-
-    public Choice_1289000811(Integer arg) {
-      super("UnsignedInt", arg, (LTag) UnionAliases.Union_1289000811Tag());
-    }
-  }
-
-  public static class Choice01473702374
+  public static class ChoiceDrugCharacteristic_Value
       extends Choice<
-          $bslash$div<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>, ZonedDateTime>> {
-    public Choice01473702374(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union01473702374Tag());
+          $bslash$div<$bslash$div<$bslash$div<byte[], CodeableConcept>, Quantity>, String>> {
+    public ChoiceDrugCharacteristic_Value(byte[] arg) {
+      super("Base64Binary", arg, (LTag) UnionAliases.UnionDrugCharacteristic_ValueTag());
     }
 
-    public Choice01473702374(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union01473702374Tag());
+    public ChoiceDrugCharacteristic_Value(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.UnionDrugCharacteristic_ValueTag());
     }
 
-    public Choice01473702374(Timing arg) {
-      super("Timing", arg, (LTag) UnionAliases.Union01473702374Tag());
+    public ChoiceDrugCharacteristic_Value(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionDrugCharacteristic_ValueTag());
     }
 
-    public Choice01473702374(ZonedDateTime arg) {
-      super("Instant", arg, (LTag) UnionAliases.Union01473702374Tag());
-    }
-  }
-
-  public static class Choice_1427970408
-      extends Choice<
-          $bslash$div<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<
-                          $bslash$div<$bslash$div<BigDecimal, Boolean>, String>, FHIRDateTime>,
-                      Integer>,
-                  String>,
-              String>> {
-    public Choice_1427970408(BigDecimal arg) {
-      super("Decimal", arg, (LTag) UnionAliases.Union_1427970408Tag());
-    }
-
-    public Choice_1427970408(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_1427970408Tag());
-    }
-
-    public Choice_1427970408(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_1427970408Tag());
-    }
-
-    public Choice_1427970408(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union_1427970408Tag());
-    }
-
-    private Choice_1427970408(String subtype, String arg) {
-      super(subtype, arg, (LTag) UnionAliases.Union_1427970408Tag());
-    }
-
-    public static Choice_1427970408 Choice_1427970408Code(String arg) {
-      return new Choice_1427970408("Code", arg);
-    }
-
-    public static Choice_1427970408 Choice_1427970408String(String arg) {
-      return new Choice_1427970408("String", arg);
-    }
-
-    public static Choice_1427970408 Choice_1427970408UriStr(String arg) {
-      return new Choice_1427970408("Uri", arg);
+    public ChoiceDrugCharacteristic_Value(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionDrugCharacteristic_ValueTag());
     }
   }
 
-  public static class Choice01727798874
-      extends Choice<$bslash$div<$bslash$div<$bslash$div<Age, Period>, Range>, String>> {
-    public Choice01727798874(Age arg) {
-      super("Age", arg, (LTag) UnionAliases.Union01727798874Tag());
+  public static class ChoiceFHIRDateTimeOrString extends Choice<$bslash$div<FHIRDateTime, String>> {
+    public ChoiceFHIRDateTimeOrString(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionFHIRDateTimeOrStringTag());
     }
 
-    public Choice01727798874(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union01727798874Tag());
-    }
-
-    public Choice01727798874(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union01727798874Tag());
-    }
-
-    public Choice01727798874(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union01727798874Tag());
+    public ChoiceFHIRDateTimeOrString(String arg) {
+      super("String", arg, (LTag) UnionAliases.UnionFHIRDateTimeOrStringTag());
     }
   }
 
-  public static class Choice01219602913 extends Choice<$bslash$div<Duration, FHIRDate>> {
-    public Choice01219602913(Duration arg) {
-      super("Duration", arg, (LTag) UnionAliases.Union01219602913Tag());
+  public static class ChoiceMoneyOrUnsignedInt extends Choice<$bslash$div<Money, Integer>> {
+    public ChoiceMoneyOrUnsignedInt(Money arg) {
+      super("Money", arg, (LTag) UnionAliases.UnionMoneyOrUnsignedIntTag());
     }
 
-    public Choice01219602913(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union01219602913Tag());
-    }
-  }
-
-  public static class Choice_0388264667
-      extends Choice<
-          $bslash$div<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<
-                          $bslash$div<
-                              $bslash$div<
-                                  $bslash$div<
-                                      $bslash$div<$bslash$div<BigDecimal, Boolean>, Coding>,
-                                      FHIRDate>,
-                                  FHIRDateTime>,
-                              Integer>,
-                          LocalTime>,
-                      Quantity>,
-                  Reference>,
-              String>> {
-    public Choice_0388264667(BigDecimal arg) {
-      super("Decimal", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(Coding arg) {
-      super("Coding", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(LocalTime arg) {
-      super("Time", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_0388264667Tag());
-    }
-
-    public Choice_0388264667(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_0388264667Tag());
+    public ChoiceMoneyOrUnsignedInt(Integer arg) {
+      super("UnsignedInt", arg, (LTag) UnionAliases.UnionMoneyOrUnsignedIntTag());
     }
   }
 
-  public static class Choice01583485927 extends Choice<$bslash$div<Coding, String>> {
-    public Choice01583485927(Coding arg) {
-      super("Coding", arg, (LTag) UnionAliases.Union01583485927Tag());
-    }
-
-    public Choice01583485927(String arg) {
-      super("Uri", arg, (LTag) UnionAliases.Union01583485927Tag());
-    }
-  }
-
-  public static class Choice00801828838 extends Choice<$bslash$div<Duration, Range>> {
-    public Choice00801828838(Duration arg) {
-      super("Duration", arg, (LTag) UnionAliases.Union00801828838Tag());
-    }
-
-    public Choice00801828838(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union00801828838Tag());
-    }
-  }
-
-  public static class Choice_2101127777
+  public static class ChoiceAnswer_Value
       extends Choice<
           $bslash$div<
               $bslash$div<
@@ -991,195 +1061,56 @@ public class Unions {
                       Reference>,
                   String>,
               String>> {
-    public Choice_2101127777(Attachment arg) {
-      super("Attachment", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(Attachment arg) {
+      super("Attachment", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(BigDecimal arg) {
-      super("Decimal", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(BigDecimal arg) {
+      super("Decimal", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(Boolean arg) {
+      super("Boolean", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(Coding arg) {
-      super("Coding", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(Coding arg) {
+      super("Coding", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(Integer arg) {
-      super("Integer", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(Integer arg) {
+      super("Integer", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(LocalTime arg) {
-      super("Time", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(LocalTime arg) {
+      super("Time", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public Choice_2101127777(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_2101127777Tag());
+    public ChoiceAnswer_Value(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    private Choice_2101127777(String subtype, String arg) {
-      super(subtype, arg, (LTag) UnionAliases.Union_2101127777Tag());
+    private ChoiceAnswer_Value(String subtype, String arg) {
+      super(subtype, arg, (LTag) UnionAliases.UnionAnswer_ValueTag());
     }
 
-    public static Choice_2101127777 Choice_2101127777String(String arg) {
-      return new Choice_2101127777("String", arg);
+    public static ChoiceAnswer_Value ChoiceAnswer_ValueString(String arg) {
+      return new ChoiceAnswer_Value("String", arg);
     }
 
-    public static Choice_2101127777 Choice_2101127777UriStr(String arg) {
-      return new Choice_2101127777("Uri", arg);
-    }
-  }
-
-  public static class Choice_0503196159 extends Choice<$bslash$div<FHIRDate, Period>> {
-    public Choice_0503196159(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.Union_0503196159Tag());
-    }
-
-    public Choice_0503196159(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.Union_0503196159Tag());
-    }
-  }
-
-  public static class Choice_1527751898
-      extends Choice<$bslash$div<$bslash$div<Quantity, Range>, String>> {
-    public Choice_1527751898(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.Union_1527751898Tag());
-    }
-
-    public Choice_1527751898(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.Union_1527751898Tag());
-    }
-
-    public Choice_1527751898(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_1527751898Tag());
-    }
-  }
-
-  public static class Choice01243416269 extends Choice<$bslash$div<CodeableConcept, Duration>> {
-    public Choice01243416269(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union01243416269Tag());
-    }
-
-    public Choice01243416269(Duration arg) {
-      super("Duration", arg, (LTag) UnionAliases.Union01243416269Tag());
-    }
-  }
-
-  public static class Choice_0358050020
-      extends Choice<
-          $bslash$div<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<$bslash$div<String, CodeableConcept>, DataRequirement>,
-                      Expression>,
-                  Reference>,
-              TriggerDefinition>> {
-    public Choice_0358050020(String arg) {
-      super("Canonical", arg, (LTag) UnionAliases.Union_0358050020Tag());
-    }
-
-    public Choice_0358050020(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union_0358050020Tag());
-    }
-
-    public Choice_0358050020(DataRequirement arg) {
-      super("DataRequirement", arg, (LTag) UnionAliases.Union_0358050020Tag());
-    }
-
-    public Choice_0358050020(Expression arg) {
-      super("Expression", arg, (LTag) UnionAliases.Union_0358050020Tag());
-    }
-
-    public Choice_0358050020(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_0358050020Tag());
-    }
-
-    public Choice_0358050020(TriggerDefinition arg) {
-      super("TriggerDefinition", arg, (LTag) UnionAliases.Union_0358050020Tag());
-    }
-  }
-
-  public static class Choice_0983418289 extends Choice<$bslash$div<Identifier, Reference>> {
-    public Choice_0983418289(Identifier arg) {
-      super("Identifier", arg, (LTag) UnionAliases.Union_0983418289Tag());
-    }
-
-    public Choice_0983418289(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_0983418289Tag());
-    }
-  }
-
-  public static class Choice_1715923163 extends Choice<$bslash$div<FHIRDateTime, String>> {
-    public Choice_1715923163(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.Union_1715923163Tag());
-    }
-
-    public Choice_1715923163(String arg) {
-      super("String", arg, (LTag) UnionAliases.Union_1715923163Tag());
-    }
-  }
-
-  public static class Choice00545979821 extends Choice<$bslash$div<String, String>> {
-
-    private Choice00545979821(String subtype, String arg) {
-      super(subtype, arg, (LTag) UnionAliases.Union00545979821Tag());
-    }
-
-    public static Choice00545979821 Choice00545979821Canonical(String arg) {
-      return new Choice00545979821("Canonical", arg);
-    }
-
-    public static Choice00545979821 Choice00545979821UriStr(String arg) {
-      return new Choice00545979821("Uri", arg);
-    }
-  }
-
-  public static class Choice_0316522316
-      extends Choice<$bslash$div<$bslash$div<Address, CodeableConcept>, Reference>> {
-    public Choice_0316522316(Address arg) {
-      super("Address", arg, (LTag) UnionAliases.Union_0316522316Tag());
-    }
-
-    public Choice_0316522316(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.Union_0316522316Tag());
-    }
-
-    public Choice_0316522316(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_0316522316Tag());
-    }
-  }
-
-  public static class Choice00683246261 extends Choice<$bslash$div<Boolean, String>> {
-    public Choice00683246261(Boolean arg) {
-      super("Boolean", arg, (LTag) UnionAliases.Union00683246261Tag());
-    }
-
-    public Choice00683246261(String arg) {
-      super("Canonical", arg, (LTag) UnionAliases.Union00683246261Tag());
-    }
-  }
-
-  public static class Choice_0340660840 extends Choice<$bslash$div<Attachment, Reference>> {
-    public Choice_0340660840(Attachment arg) {
-      super("Attachment", arg, (LTag) UnionAliases.Union_0340660840Tag());
-    }
-
-    public Choice_0340660840(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.Union_0340660840Tag());
+    public static ChoiceAnswer_Value ChoiceAnswer_ValueUriStr(String arg) {
+      return new ChoiceAnswer_Value("Uri", arg);
     }
   }
 }

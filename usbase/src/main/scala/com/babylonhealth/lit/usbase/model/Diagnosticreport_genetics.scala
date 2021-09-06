@@ -33,7 +33,7 @@ object Diagnosticreport_genetics extends CompanionFor[Diagnosticreport_genetics]
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport
   override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/diagnosticreport-genetics")
-  type EffectiveChoice = Choice[Union_0934386166]
+  type EffectiveChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/diagnosticreport-genetics"))),
@@ -126,7 +126,11 @@ object Diagnosticreport_genetics extends CompanionFor[Diagnosticreport_genetics]
   val conclusion: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("conclusion", lTagOf[Option[String]], false, lTagOf[String])
   val effective: FHIRComponentFieldMeta[Option[Diagnosticreport_genetics.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[Diagnosticreport_genetics.EffectiveChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta(
+      "effective",
+      lTagOf[Option[Diagnosticreport_genetics.EffectiveChoice]],
+      true,
+      lTagOf[UnionFHIRDateTimeOrPeriod])
   val imagingStudy: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("imagingStudy", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -244,7 +248,7 @@ object Diagnosticreport_genetics extends CompanionFor[Diagnosticreport_genetics]
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("conclusion", Some(None)),
-          cursor.decodeOptRef[Union_0934386166]("effective"),
+          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("effective"),
           cursor.decodeAs[LitSeq[Reference]]("imagingStudy", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Attachment]]("presentedForm", Some(LitSeq.empty)),

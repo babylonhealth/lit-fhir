@@ -38,7 +38,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
     override type ResourceType = Manipulation
     override type ParentType   = Manipulation
     override val parentType: CompanionFor[ResourceType] = Manipulation
-    type TimeChoice = Choice[Union_0934386166]
+    type TimeChoice = Choice[UnionFHIRDateTimeOrPeriod]
     def apply(
         id: Option[String] = None,
         time: Option[Manipulation.TimeChoice] = None,
@@ -60,7 +60,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val time: FHIRComponentFieldMeta[Option[Manipulation.TimeChoice]] =
-      FHIRComponentFieldMeta("time", lTagOf[Option[Manipulation.TimeChoice]], true, lTagOf[Union_0934386166])
+      FHIRComponentFieldMeta("time", lTagOf[Option[Manipulation.TimeChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val description: FHIRComponentFieldMeta[Option[String]] =
@@ -83,7 +83,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
         Try(
           new Manipulation(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeOptRef[Union_0934386166]("time"),
+            cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("time"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -106,7 +106,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
     override type ResourceType = Processing
     override type ParentType   = Processing
     override val parentType: CompanionFor[ResourceType] = Processing
-    type TimeChoice = Choice[Union_0934386166]
+    type TimeChoice = Choice[UnionFHIRDateTimeOrPeriod]
     def apply(
         id: Option[String] = None,
         time: Option[Processing.TimeChoice] = None,
@@ -132,7 +132,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val time: FHIRComponentFieldMeta[Option[Processing.TimeChoice]] =
-      FHIRComponentFieldMeta("time", lTagOf[Option[Processing.TimeChoice]], true, lTagOf[Union_0934386166])
+      FHIRComponentFieldMeta("time", lTagOf[Option[Processing.TimeChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
     val additive: FHIRComponentFieldMeta[Option[Reference]] =
       FHIRComponentFieldMeta("additive", lTagOf[Option[Reference]], false, lTagOf[Reference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -161,7 +161,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
         Try(
           new Processing(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeOptRef[Union_0934386166]("time"),
+            cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("time"),
             cursor.decodeAs[Option[Reference]]("additive", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("procedure", Some(None)),
@@ -188,7 +188,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
     override type ResourceType = Collection
     override type ParentType   = Collection
     override val parentType: CompanionFor[ResourceType] = Collection
-    type CollectedChoice = Choice[Union_0934386166]
+    type CollectedChoice = Choice[UnionFHIRDateTimeOrPeriod]
     def apply(
         id: Option[String] = None,
         source: Option[Reference] = None,
@@ -218,7 +218,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
     val collector: FHIRComponentFieldMeta[Option[Reference]] =
       FHIRComponentFieldMeta("collector", lTagOf[Option[Reference]], false, lTagOf[Reference])
     val collected: FHIRComponentFieldMeta[Option[Collection.CollectedChoice]] =
-      FHIRComponentFieldMeta("collected", lTagOf[Option[Collection.CollectedChoice]], true, lTagOf[Union_0934386166])
+      FHIRComponentFieldMeta("collected", lTagOf[Option[Collection.CollectedChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, source, extension, collector, collected, modifierExtension)
@@ -241,7 +241,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
             cursor.decodeAs[Option[Reference]]("source", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Reference]]("collector", Some(None)),
-            cursor.decodeOptRef[Union_0934386166]("collected"),
+            cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("collected"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )

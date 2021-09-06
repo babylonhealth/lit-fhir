@@ -36,7 +36,7 @@ object Parameters extends CompanionFor[Parameters] {
     override type ResourceType = Parameter
     override type ParentType   = Parameter
     override val parentType: CompanionFor[ResourceType] = Parameter
-    type ValueChoice = Choice[Union_1349125893]
+    type ValueChoice = Choice[UnionAll]
     def apply(
         id: Option[String] = None,
         name: String,
@@ -66,7 +66,7 @@ object Parameters extends CompanionFor[Parameters] {
     val part: FHIRComponentFieldMeta[LitSeq[Parameters.Parameter]] =
       FHIRComponentFieldMeta("part", lTagOf[LitSeq[Parameters.Parameter]], false, lTagOf[Parameters.Parameter])
     val value: FHIRComponentFieldMeta[Option[Parameter.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[Union_1349125893])
+      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[UnionAll])
     val resource: FHIRComponentFieldMeta[Option[Resource]] =
       FHIRComponentFieldMeta("resource", lTagOf[Option[Resource]], false, lTagOf[Resource])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -93,7 +93,7 @@ object Parameters extends CompanionFor[Parameters] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[String]("name", None),
             cursor.decodeAs[LitSeq[Parameters.Parameter]]("part", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_1349125893]("value"),
+            cursor.decodeOptRef[UnionAll]("value"),
             cursor.decodeAs[Option[Resource]]("resource", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

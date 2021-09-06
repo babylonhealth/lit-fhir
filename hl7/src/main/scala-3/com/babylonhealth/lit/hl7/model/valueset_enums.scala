@@ -2541,14 +2541,6 @@ enum REQUEST_STATUS(val name: String, val display: Option[String], val system: O
 }
 object REQUEST_STATUS extends EType[REQUEST_STATUS]("http://hl7.org/fhir/ValueSet/request-status")
 
-enum RESEARCH_ELEMENT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case EXPOSURE extends RESEARCH_ELEMENT_TYPE("exposure", Some("Exposure"), Some("http://hl7.org/fhir/research-element-type"))
-  case OUTCOME extends RESEARCH_ELEMENT_TYPE("outcome", Some("Outcome"), Some("http://hl7.org/fhir/research-element-type"))
-  case POPULATION
-      extends RESEARCH_ELEMENT_TYPE("population", Some("Population"), Some("http://hl7.org/fhir/research-element-type"))
-}
-object RESEARCH_ELEMENT_TYPE extends EType[RESEARCH_ELEMENT_TYPE]("http://hl7.org/fhir/ValueSet/research-element-type")
-
 enum RESEARCH_STUDY_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ACTIVE extends RESEARCH_STUDY_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/research-study-status"))
   case ADMINISTRATIVELY_COMPLETED
@@ -3959,18 +3951,6 @@ enum SUPPLYDELIVERY_STATUS(val name: String, val display: Option[String], val sy
       extends SUPPLYDELIVERY_STATUS("in-progress", Some("In Progress"), Some("http://hl7.org/fhir/supplydelivery-status"))
 }
 object SUPPLYDELIVERY_STATUS extends EType[SUPPLYDELIVERY_STATUS]("http://hl7.org/fhir/ValueSet/supplydelivery-status")
-
-enum SUPPLYREQUEST_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends SUPPLYREQUEST_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/supplyrequest-status"))
-  case CANCELLED extends SUPPLYREQUEST_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/supplyrequest-status"))
-  case COMPLETED extends SUPPLYREQUEST_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/supplyrequest-status"))
-  case DRAFT extends SUPPLYREQUEST_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/supplyrequest-status"))
-  case ENTERED_IN_ERROR
-      extends SUPPLYREQUEST_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/supplyrequest-status"))
-  case SUSPENDED extends SUPPLYREQUEST_STATUS("suspended", Some("Suspended"), Some("http://hl7.org/fhir/supplyrequest-status"))
-  case UNKNOWN extends SUPPLYREQUEST_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/supplyrequest-status"))
-}
-object SUPPLYREQUEST_STATUS extends EType[SUPPLYREQUEST_STATUS]("http://hl7.org/fhir/ValueSet/supplyrequest-status")
 
 enum SYSTEM_RESTFUL_INTERACTION(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case BATCH extends SYSTEM_RESTFUL_INTERACTION("batch", Some("batch"), Some("http://hl7.org/fhir/restful-interaction"))

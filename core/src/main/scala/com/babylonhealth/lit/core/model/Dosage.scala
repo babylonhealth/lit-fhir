@@ -34,8 +34,8 @@ object Dosage extends CompanionFor[Dosage] {
     override type ResourceType = DoseAndRate
     override type ParentType   = DoseAndRate
     override val parentType: CompanionFor[ResourceType] = DoseAndRate
-    type DoseChoice = Choice[Union01639511888]
-    type RateChoice = Choice[Union_0575082635]
+    type DoseChoice = Choice[UnionQuantityOrRange]
+    type RateChoice = Choice[UnionQuantityOrRangeOrRatio]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -59,9 +59,9 @@ object Dosage extends CompanionFor[Dosage] {
     val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val dose: FHIRComponentFieldMeta[Option[DoseAndRate.DoseChoice]] =
-      FHIRComponentFieldMeta("dose", lTagOf[Option[DoseAndRate.DoseChoice]], true, lTagOf[Union01639511888])
+      FHIRComponentFieldMeta("dose", lTagOf[Option[DoseAndRate.DoseChoice]], true, lTagOf[UnionQuantityOrRange])
     val rate: FHIRComponentFieldMeta[Option[DoseAndRate.RateChoice]] =
-      FHIRComponentFieldMeta("rate", lTagOf[Option[DoseAndRate.RateChoice]], true, lTagOf[Union_0575082635])
+      FHIRComponentFieldMeta("rate", lTagOf[Option[DoseAndRate.RateChoice]], true, lTagOf[UnionQuantityOrRangeOrRatio])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, dose, rate, extension)
@@ -81,8 +81,8 @@ object Dosage extends CompanionFor[Dosage] {
           new DoseAndRate(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
-            cursor.decodeOptRef[Union01639511888]("dose"),
-            cursor.decodeOptRef[Union_0575082635]("rate"),
+            cursor.decodeOptRef[UnionQuantityOrRange]("dose"),
+            cursor.decodeOptRef[UnionQuantityOrRangeOrRatio]("rate"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -97,7 +97,7 @@ object Dosage extends CompanionFor[Dosage] {
       override val extension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
-  type AsNeededChoice = Choice[Union_1768247138]
+  type AsNeededChoice = Choice[UnionBooleanOrCodeableConcept]
   def apply(
       id: Option[String] = None,
       text: Option[String] = None,
@@ -152,7 +152,7 @@ object Dosage extends CompanionFor[Dosage] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val asNeeded: FHIRComponentFieldMeta[Option[Dosage.AsNeededChoice]] =
-    FHIRComponentFieldMeta("asNeeded", lTagOf[Option[Dosage.AsNeededChoice]], true, lTagOf[Union_1768247138])
+    FHIRComponentFieldMeta("asNeeded", lTagOf[Option[Dosage.AsNeededChoice]], true, lTagOf[UnionBooleanOrCodeableConcept])
   val maxDosePerPeriod: FHIRComponentFieldMeta[Option[Ratio]] =
     FHIRComponentFieldMeta("maxDosePerPeriod", lTagOf[Option[Ratio]], false, lTagOf[Ratio])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -253,7 +253,7 @@ object Dosage extends CompanionFor[Dosage] {
           cursor.decodeAs[Option[CodeableConcept]]("method", Some(None)),
           cursor.decodeAs[Option[Int]]("sequence", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1768247138]("asNeeded"),
+          cursor.decodeOptRef[UnionBooleanOrCodeableConcept]("asNeeded"),
           cursor.decodeAs[Option[Ratio]]("maxDosePerPeriod", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("patientInstruction", Some(None)),

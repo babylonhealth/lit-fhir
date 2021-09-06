@@ -37,7 +37,7 @@ object Specimen extends CompanionFor[Specimen] {
     override type ResourceType = Processing
     override type ParentType   = Processing
     override val parentType: CompanionFor[ResourceType] = Processing
-    type TimeChoice = Choice[Union_0934386166]
+    type TimeChoice = Choice[UnionFHIRDateTimeOrPeriod]
     def apply(
         id: Option[String] = None,
         time: Option[Processing.TimeChoice] = None,
@@ -63,7 +63,7 @@ object Specimen extends CompanionFor[Specimen] {
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val time: FHIRComponentFieldMeta[Option[Processing.TimeChoice]] =
-      FHIRComponentFieldMeta("time", lTagOf[Option[Processing.TimeChoice]], true, lTagOf[Union_0934386166])
+      FHIRComponentFieldMeta("time", lTagOf[Option[Processing.TimeChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
     val additive: FHIRComponentFieldMeta[LitSeq[Reference]] =
       FHIRComponentFieldMeta("additive", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -92,7 +92,7 @@ object Specimen extends CompanionFor[Specimen] {
         Try(
           new Processing(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeOptRef[Union_0934386166]("time"),
+            cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("time"),
             cursor.decodeAs[LitSeq[Reference]]("additive", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("procedure", Some(None)),
@@ -119,8 +119,8 @@ object Specimen extends CompanionFor[Specimen] {
     override type ResourceType = Collection
     override type ParentType   = Collection
     override val parentType: CompanionFor[ResourceType] = Collection
-    type CollectedChoice     = Choice[Union_0934386166]
-    type FastingStatusChoice = Choice[Union01243416269]
+    type CollectedChoice     = Choice[UnionFHIRDateTimeOrPeriod]
+    type FastingStatusChoice = Choice[UnionCodeableConceptOrDuration]
     def apply(
         id: Option[String] = None,
         method: Option[CodeableConcept] = None,
@@ -175,9 +175,13 @@ object Specimen extends CompanionFor[Specimen] {
     val collector: FHIRComponentFieldMeta[Option[Reference]] =
       FHIRComponentFieldMeta("collector", lTagOf[Option[Reference]], false, lTagOf[Reference])
     val collected: FHIRComponentFieldMeta[Option[Collection.CollectedChoice]] =
-      FHIRComponentFieldMeta("collected", lTagOf[Option[Collection.CollectedChoice]], true, lTagOf[Union_0934386166])
+      FHIRComponentFieldMeta("collected", lTagOf[Option[Collection.CollectedChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
     val fastingStatus: FHIRComponentFieldMeta[Option[Collection.FastingStatusChoice]] =
-      FHIRComponentFieldMeta("fastingStatus", lTagOf[Option[Collection.FastingStatusChoice]], true, lTagOf[Union01243416269])
+      FHIRComponentFieldMeta(
+        "fastingStatus",
+        lTagOf[Option[Collection.FastingStatusChoice]],
+        true,
+        lTagOf[UnionCodeableConceptOrDuration])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -208,8 +212,8 @@ object Specimen extends CompanionFor[Specimen] {
             cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Reference]]("collector", Some(None)),
-            cursor.decodeOptRef[Union_0934386166]("collected"),
-            cursor.decodeOptRef[Union01243416269]("fastingStatus"),
+            cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("collected"),
+            cursor.decodeOptRef[UnionCodeableConceptOrDuration]("fastingStatus"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -235,7 +239,7 @@ object Specimen extends CompanionFor[Specimen] {
     override type ResourceType = Container
     override type ParentType   = Container
     override val parentType: CompanionFor[ResourceType] = Container
-    type AdditiveChoice = Choice[Union01025009075]
+    type AdditiveChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -285,7 +289,7 @@ object Specimen extends CompanionFor[Specimen] {
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
     val additive: FHIRComponentFieldMeta[Option[Container.AdditiveChoice]] =
-      FHIRComponentFieldMeta("additive", lTagOf[Option[Container.AdditiveChoice]], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("additive", lTagOf[Option[Container.AdditiveChoice]], true, lTagOf[UnionCodeableConceptOrReference])
     val specimenQuantity: FHIRComponentFieldMeta[Option[Quantity]] =
       FHIRComponentFieldMeta("specimenQuantity", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -316,7 +320,7 @@ object Specimen extends CompanionFor[Specimen] {
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("description", Some(None)),
-            cursor.decodeOptRef[Union01025009075]("additive"),
+            cursor.decodeOptRef[UnionCodeableConceptOrReference]("additive"),
             cursor.decodeAs[Option[Quantity]]("specimenQuantity", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)

@@ -45,30 +45,30 @@ import static java.util.stream.Collectors.toList;
 public interface Communication_PayloadBuilder {
   public Communication.Payload build();
 
-  public static Impl init(@NonNull Choice_1750183386 content) {
+  public static Impl init(@NonNull ChoiceAttachmentOrReferenceOrString content) {
     return new Impl(content);
   }
 
-  public static Impl builder(@NonNull Choice_1750183386 content) {
+  public static Impl builder(@NonNull ChoiceAttachmentOrReferenceOrString content) {
     return new Impl(content);
   }
 
-  public static Choice_1750183386 content(Attachment a) {
-    return new Choice_1750183386(a);
+  public static ChoiceAttachmentOrReferenceOrString content(Attachment a) {
+    return new ChoiceAttachmentOrReferenceOrString(a);
   }
 
-  public static Choice_1750183386 content(Reference r) {
-    return new Choice_1750183386(r);
+  public static ChoiceAttachmentOrReferenceOrString content(Reference r) {
+    return new ChoiceAttachmentOrReferenceOrString(r);
   }
 
-  public static Choice_1750183386 content(String s) {
-    return new Choice_1750183386(s);
+  public static ChoiceAttachmentOrReferenceOrString content(String s) {
+    return new ChoiceAttachmentOrReferenceOrString(s);
   }
 
   public class Impl implements Communication_PayloadBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice_1750183386 content;
+    private ChoiceAttachmentOrReferenceOrString content;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -78,7 +78,7 @@ public interface Communication_PayloadBuilder {
      *     String. To pass the value in, wrap with one of the Communication_PayloadBuilder.content
      *     static methods
      */
-    public Impl(@NonNull Choice_1750183386 content) {
+    public Impl(@NonNull ChoiceAttachmentOrReferenceOrString content) {
       this.content = content;
     }
 

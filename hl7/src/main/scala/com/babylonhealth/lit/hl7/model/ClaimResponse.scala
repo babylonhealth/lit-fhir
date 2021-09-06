@@ -318,8 +318,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
         val subDetail: LitSeq[Detail.SubDetail] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type ServicedChoice = Choice[Union_0503196159]
-    type LocationChoice = Choice[Union_0316522316]
+    type ServicedChoice = Choice[UnionFHIRDateOrPeriod]
+    type LocationChoice = Choice[UnionAddressOrCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         net: Option[Money] = None,
@@ -417,9 +417,13 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
     val programCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("programCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val serviced: FHIRComponentFieldMeta[Option[AddItem.ServicedChoice]] =
-      FHIRComponentFieldMeta("serviced", lTagOf[Option[AddItem.ServicedChoice]], true, lTagOf[Union_0503196159])
+      FHIRComponentFieldMeta("serviced", lTagOf[Option[AddItem.ServicedChoice]], true, lTagOf[UnionFHIRDateOrPeriod])
     val location: FHIRComponentFieldMeta[Option[AddItem.LocationChoice]] =
-      FHIRComponentFieldMeta("location", lTagOf[Option[AddItem.LocationChoice]], true, lTagOf[Union_0316522316])
+      FHIRComponentFieldMeta(
+        "location",
+        lTagOf[Option[AddItem.LocationChoice]],
+        true,
+        lTagOf[UnionAddressOrCodeableConceptOrReference])
     val itemSequence: FHIRComponentFieldMeta[LitSeq[PositiveInt]] =
       FHIRComponentFieldMeta("itemSequence", lTagOf[LitSeq[PositiveInt]], false, lTagOf[PositiveInt])
     val adjudication: FHIRComponentFieldMeta[NonEmptyLitSeq[ClaimResponse.Item.Adjudication]] =
@@ -503,8 +507,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
             cursor.decodeAs[Option[Money]]("unitPrice", Some(None)),
             cursor.decodeAs[LitSeq[PositiveInt]]("noteNumber", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("programCode", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0503196159]("serviced"),
-            cursor.decodeOptRef[Union_0316522316]("location"),
+            cursor.decodeOptRef[UnionFHIRDateOrPeriod]("serviced"),
+            cursor.decodeOptRef[UnionAddressOrCodeableConceptOrReference]("location"),
             cursor.decodeAs[LitSeq[PositiveInt]]("itemSequence", Some(LitSeq.empty)),
             cursor.decodeAs[NonEmptyLitSeq[ClaimResponse.Item.Adjudication]]("adjudication", None),
             cursor.decodeAs[LitSeq[PositiveInt]]("detailSequence", Some(LitSeq.empty)),

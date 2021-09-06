@@ -43,7 +43,7 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
       override type ResourceType = Administration
       override type ParentType   = Administration
       override val parentType: CompanionFor[ResourceType] = Administration
-      type RateChoice = Choice[Union_0964108894]
+      type RateChoice = Choice[UnionQuantityOrRatio]
       def apply(
           id: Option[String] = None,
           rate: Option[Administration.RateChoice] = None,
@@ -67,7 +67,7 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val rate: FHIRComponentFieldMeta[Option[Administration.RateChoice]] =
-        FHIRComponentFieldMeta("rate", lTagOf[Option[Administration.RateChoice]], true, lTagOf[Union_0964108894])
+        FHIRComponentFieldMeta("rate", lTagOf[Option[Administration.RateChoice]], true, lTagOf[UnionQuantityOrRatio])
       val schedule: FHIRComponentFieldMeta[Option[Timing]] =
         FHIRComponentFieldMeta("schedule", lTagOf[Option[Timing]], false, lTagOf[Timing])
       val quantity: FHIRComponentFieldMeta[Option[Quantity]] =
@@ -93,7 +93,7 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
           Try(
             new Administration(
               cursor.decodeAs[Option[String]]("id", Some(None)),
-              cursor.decodeOptRef[Union_0964108894]("rate"),
+              cursor.decodeOptRef[UnionQuantityOrRatio]("rate"),
               cursor.decodeAs[Option[Timing]]("schedule", Some(None)),
               cursor.decodeAs[Option[Quantity]]("quantity", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),

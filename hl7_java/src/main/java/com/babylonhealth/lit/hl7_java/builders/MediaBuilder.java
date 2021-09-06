@@ -54,12 +54,12 @@ public interface MediaBuilder extends DomainResourceBuilder {
     return new Impl(status, content.build());
   }
 
-  public static Choice_0934386166 created(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod created(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 created(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod created(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements MediaBuilder {
@@ -88,7 +88,7 @@ public interface MediaBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice_0934386166> created = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriod> created = Optional.empty();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<String> deviceName = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
@@ -405,7 +405,7 @@ public interface MediaBuilder extends DomainResourceBuilder {
      *     field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of
      *     the MediaBuilder.created static methods
      */
-    public MediaBuilder.Impl withCreated(@NonNull Choice_0934386166 created) {
+    public MediaBuilder.Impl withCreated(@NonNull ChoiceFHIRDateTimeOrPeriod created) {
       this.created = Optional.of(created);
       return this;
     }

@@ -32,7 +32,7 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet")
-  type ValueChoice = Choice[Union00545979821]
+  type ValueChoice = Choice[UnionCanonicalOrUriStr]
   def apply(
       id: Option[String] = None,
       value: Elementdefinition_maxValueSet.ValueChoice,
@@ -45,7 +45,7 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Elementdefinition_maxValueSet.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_maxValueSet.ValueChoice], true, lTagOf[Union00545979821])
+    FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_maxValueSet.ValueChoice], true, lTagOf[UnionCanonicalOrUriStr])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -64,7 +64,7 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
       Try(
         new Elementdefinition_maxValueSet(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union00545979821]("value"),
+          cursor.decodeRef[UnionCanonicalOrUriStr]("value"),
           decodeAttributes(cursor)
         )
       ))

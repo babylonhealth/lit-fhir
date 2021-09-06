@@ -37,7 +37,7 @@ object Communication extends CompanionFor[Communication] {
     override type ResourceType = Payload
     override type ParentType   = Payload
     override val parentType: CompanionFor[ResourceType] = Payload
-    type ContentChoice = Choice[Union_1750183386]
+    type ContentChoice = Choice[UnionAttachmentOrReferenceOrString]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -58,7 +58,7 @@ object Communication extends CompanionFor[Communication] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Payload.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[Union_1750183386])
+      FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[UnionAttachmentOrReferenceOrString])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -77,7 +77,7 @@ object Communication extends CompanionFor[Communication] {
           new Payload(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_1750183386]("content"),
+            cursor.decodeRef[UnionAttachmentOrReferenceOrString]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )

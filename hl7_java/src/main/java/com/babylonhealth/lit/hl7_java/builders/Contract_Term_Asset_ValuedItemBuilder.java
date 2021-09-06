@@ -53,12 +53,12 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
     return new Impl();
   }
 
-  public static Choice01025009075 entity(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference entity(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 entity(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference entity(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Contract_Term_Asset_ValuedItemBuilder {
@@ -70,7 +70,7 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
     private Optional<String> payment = Optional.empty();
     private Optional<Quantity> quantity = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice01025009075> entity = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> entity = Optional.empty();
     private Optional<Money> unitPrice = Optional.empty();
     private Optional<Reference> recipient = Optional.empty();
     private Optional<Identifier> identifier = Optional.empty();
@@ -174,7 +174,7 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
      *     static methods
      */
     public Contract_Term_Asset_ValuedItemBuilder.Impl withEntity(
-        @NonNull Choice01025009075 entity) {
+        @NonNull ChoiceCodeableConceptOrReference entity) {
       this.entity = Optional.of(entity);
       return this;
     }

@@ -275,7 +275,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EventChoice = Choice[Union01583485927]
+  type EventChoice = Choice[UnionCodingOrUriStr]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -338,7 +338,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val event: FHIRComponentFieldMeta[MessageHeader.EventChoice] =
-    FHIRComponentFieldMeta("event", lTagOf[MessageHeader.EventChoice], true, lTagOf[Union01583485927])
+    FHIRComponentFieldMeta("event", lTagOf[MessageHeader.EventChoice], true, lTagOf[UnionCodingOrUriStr])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -472,7 +472,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
           cursor.decodeAs[Option[CodeableConcept]]("reason", Some(None)),
           cursor.decodeAs[Option[Reference]]("enterer", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
-          cursor.decodeRef[Union01583485927]("event"),
+          cursor.decodeRef[UnionCodingOrUriStr]("event"),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Canonical]]("definition", Some(None)),

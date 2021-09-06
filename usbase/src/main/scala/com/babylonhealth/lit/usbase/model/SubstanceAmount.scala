@@ -90,7 +90,7 @@ object SubstanceAmount extends CompanionFor[SubstanceAmount] {
       val highLimit: Option[Quantity] = None,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
-  type AmountChoice = Choice[Union_1527751898]
+  type AmountChoice = Choice[UnionQuantityOrRangeOrString]
   def apply(
       id: Option[String] = None,
       extension: LitSeq[Extension] = LitSeq.empty,
@@ -115,7 +115,7 @@ object SubstanceAmount extends CompanionFor[SubstanceAmount] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val amount: FHIRComponentFieldMeta[Option[SubstanceAmount.AmountChoice]] =
-    FHIRComponentFieldMeta("amount", lTagOf[Option[SubstanceAmount.AmountChoice]], true, lTagOf[Union_1527751898])
+    FHIRComponentFieldMeta("amount", lTagOf[Option[SubstanceAmount.AmountChoice]], true, lTagOf[UnionQuantityOrRangeOrString])
   val amountType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("amountType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val amountText: FHIRComponentFieldMeta[Option[String]] =
@@ -157,7 +157,7 @@ object SubstanceAmount extends CompanionFor[SubstanceAmount] {
         new SubstanceAmount(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1527751898]("amount"),
+          cursor.decodeOptRef[UnionQuantityOrRangeOrString]("amount"),
           cursor.decodeAs[Option[CodeableConcept]]("amountType", Some(None)),
           cursor.decodeAs[Option[String]]("amountText", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

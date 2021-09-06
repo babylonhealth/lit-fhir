@@ -32,7 +32,7 @@ object Elementdefinition_minValueSet extends CompanionFor[Elementdefinition_minV
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-minValueSet")
-  type ValueChoice = Choice[Union00545979821]
+  type ValueChoice = Choice[UnionCanonicalOrUriStr]
   def apply(
       id: Option[String] = None,
       value: Elementdefinition_minValueSet.ValueChoice,
@@ -45,7 +45,7 @@ object Elementdefinition_minValueSet extends CompanionFor[Elementdefinition_minV
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Elementdefinition_minValueSet.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_minValueSet.ValueChoice], true, lTagOf[Union00545979821])
+    FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_minValueSet.ValueChoice], true, lTagOf[UnionCanonicalOrUriStr])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -64,7 +64,7 @@ object Elementdefinition_minValueSet extends CompanionFor[Elementdefinition_minV
       Try(
         new Elementdefinition_minValueSet(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union00545979821]("value"),
+          cursor.decodeRef[UnionCanonicalOrUriStr]("value"),
           decodeAttributes(cursor)
         )
       ))

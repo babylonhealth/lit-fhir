@@ -33,7 +33,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
   override val baseType: CompanionFor[ResourceType] = Procedure
   override val parentType: CompanionFor[ParentType] = Procedure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure")
-  type PerformedChoice = Choice[Union_0934386166]
+  type PerformedChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"))),
@@ -162,7 +162,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val performed: FHIRComponentFieldMeta[Us_core_procedure.PerformedChoice] =
-    FHIRComponentFieldMeta("performed", lTagOf[Us_core_procedure.PerformedChoice], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("performed", lTagOf[Us_core_procedure.PerformedChoice], true, lTagOf[UnionFHIRDateTimeOrPeriod])
   val complication: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("complication", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -328,7 +328,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
-          cursor.decodeRef[Union_0934386166]("performed"),
+          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("performed"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("complication", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("usedReference", Some(LitSeq.empty)),

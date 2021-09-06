@@ -53,12 +53,12 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
-  public static Choice_1128709984 manufacturer(Reference r) {
-    return new Choice_1128709984(r);
+  public static ChoiceReferenceOrString manufacturer(Reference r) {
+    return new ChoiceReferenceOrString(r);
   }
 
-  public static Choice_1128709984 manufacturer(String s) {
-    return new Choice_1128709984(s);
+  public static ChoiceReferenceOrString manufacturer(String s) {
+    return new ChoiceReferenceOrString(s);
   }
 
   public class Impl implements DeviceDefinitionBuilder {
@@ -81,7 +81,7 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> languageCode = Collections.emptyList();
     private Optional<Reference> parentDevice = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<Choice_1128709984> manufacturer = Optional.empty();
+    private Optional<ChoiceReferenceOrString> manufacturer = Optional.empty();
     private Collection<Choice> shelfLifeStorage = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<String> onlineInformation = Optional.empty();
@@ -373,7 +373,8 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
      *     one of Reference, String. To pass the value in, wrap with one of the
      *     DeviceDefinitionBuilder.manufacturer static methods
      */
-    public DeviceDefinitionBuilder.Impl withManufacturer(@NonNull Choice_1128709984 manufacturer) {
+    public DeviceDefinitionBuilder.Impl withManufacturer(
+        @NonNull ChoiceReferenceOrString manufacturer) {
       this.manufacturer = Optional.of(manufacturer);
       return this;
     }

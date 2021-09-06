@@ -53,32 +53,32 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
     return new Impl(sequence, category.build());
   }
 
-  public static Choice_0543144563 value(Attachment a) {
-    return new Choice_0543144563(a);
+  public static ChoiceSupportingInfo_Value value(Attachment a) {
+    return new ChoiceSupportingInfo_Value(a);
   }
 
-  public static Choice_0543144563 value(Boolean b) {
-    return new Choice_0543144563(b);
+  public static ChoiceSupportingInfo_Value value(Boolean b) {
+    return new ChoiceSupportingInfo_Value(b);
   }
 
-  public static Choice_0543144563 value(Quantity q) {
-    return new Choice_0543144563(q);
+  public static ChoiceSupportingInfo_Value value(Quantity q) {
+    return new ChoiceSupportingInfo_Value(q);
   }
 
-  public static Choice_0543144563 value(Reference r) {
-    return new Choice_0543144563(r);
+  public static ChoiceSupportingInfo_Value value(Reference r) {
+    return new ChoiceSupportingInfo_Value(r);
   }
 
-  public static Choice_0543144563 value(String s) {
-    return new Choice_0543144563(s);
+  public static ChoiceSupportingInfo_Value value(String s) {
+    return new ChoiceSupportingInfo_Value(s);
   }
 
-  public static Choice_0503196159 timing(FHIRDate f) {
-    return new Choice_0503196159(f);
+  public static ChoiceFHIRDateOrPeriod timing(FHIRDate f) {
+    return new ChoiceFHIRDateOrPeriod(f);
   }
 
-  public static Choice_0503196159 timing(Period p) {
-    return new Choice_0503196159(p);
+  public static ChoiceFHIRDateOrPeriod timing(Period p) {
+    return new ChoiceFHIRDateOrPeriod(p);
   }
 
   public class Impl implements ExplanationOfBenefit_SupportingInfoBuilder {
@@ -87,9 +87,9 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
     private Optional<Coding> reason = Optional.empty();
     private Integer sequence;
     private CodeableConcept category;
-    private Optional<Choice_0543144563> value = Optional.empty();
+    private Optional<ChoiceSupportingInfo_Value> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_0503196159> timing = Optional.empty();
+    private Optional<ChoiceFHIRDateOrPeriod> timing = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -139,7 +139,7 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
      *     ExplanationOfBenefit_SupportingInfoBuilder.value static methods
      */
     public ExplanationOfBenefit_SupportingInfoBuilder.Impl withValue(
-        @NonNull Choice_0543144563 value) {
+        @NonNull ChoiceSupportingInfo_Value value) {
       this.value = Optional.of(value);
       return this;
     }
@@ -179,7 +179,7 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
      *     methods
      */
     public ExplanationOfBenefit_SupportingInfoBuilder.Impl withTiming(
-        @NonNull Choice_0503196159 timing) {
+        @NonNull ChoiceFHIRDateOrPeriod timing) {
       this.timing = Optional.of(timing);
       return this;
     }

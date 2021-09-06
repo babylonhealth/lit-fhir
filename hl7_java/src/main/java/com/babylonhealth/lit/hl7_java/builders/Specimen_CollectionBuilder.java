@@ -53,20 +53,20 @@ public interface Specimen_CollectionBuilder {
     return new Impl();
   }
 
-  public static Choice_0934386166 collected(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod collected(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 collected(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod collected(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
-  public static Choice01243416269 fastingStatus(CodeableConcept c) {
-    return new Choice01243416269(c);
+  public static ChoiceCodeableConceptOrDuration fastingStatus(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrDuration(c);
   }
 
-  public static Choice01243416269 fastingStatus(Duration d) {
-    return new Choice01243416269(d);
+  public static ChoiceCodeableConceptOrDuration fastingStatus(Duration d) {
+    return new ChoiceCodeableConceptOrDuration(d);
   }
 
   public class Impl implements Specimen_CollectionBuilder {
@@ -77,8 +77,8 @@ public interface Specimen_CollectionBuilder {
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> collector = Optional.empty();
-    private Optional<Choice_0934386166> collected = Optional.empty();
-    private Optional<Choice01243416269> fastingStatus = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriod> collected = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrDuration> fastingStatus = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /** Required fields for {@link Specimen.Collection} */
@@ -174,7 +174,8 @@ public interface Specimen_CollectionBuilder {
      *     pass the value in, wrap with one of the Specimen_CollectionBuilder.collected static
      *     methods
      */
-    public Specimen_CollectionBuilder.Impl withCollected(@NonNull Choice_0934386166 collected) {
+    public Specimen_CollectionBuilder.Impl withCollected(
+        @NonNull ChoiceFHIRDateTimeOrPeriod collected) {
       this.collected = Optional.of(collected);
       return this;
     }
@@ -184,7 +185,7 @@ public interface Specimen_CollectionBuilder {
      *     Specimen_CollectionBuilder.fastingStatus static methods
      */
     public Specimen_CollectionBuilder.Impl withFastingStatus(
-        @NonNull Choice01243416269 fastingStatus) {
+        @NonNull ChoiceCodeableConceptOrDuration fastingStatus) {
       this.fastingStatus = Optional.of(fastingStatus);
       return this;
     }

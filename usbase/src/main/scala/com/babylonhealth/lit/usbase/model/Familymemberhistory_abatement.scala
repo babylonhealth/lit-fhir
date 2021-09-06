@@ -32,7 +32,7 @@ object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_ab
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/familymemberhistory-abatement")
-  type ValueChoice = Choice[Union00813350082]
+  type ValueChoice = Choice[UnionAgeOrBooleanOrFHIRDate]
   def apply(
       id: Option[String] = None,
       value: Familymemberhistory_abatement.ValueChoice,
@@ -45,7 +45,7 @@ object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_ab
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Familymemberhistory_abatement.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Familymemberhistory_abatement.ValueChoice], true, lTagOf[Union00813350082])
+    FHIRComponentFieldMeta("value", lTagOf[Familymemberhistory_abatement.ValueChoice], true, lTagOf[UnionAgeOrBooleanOrFHIRDate])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -64,7 +64,7 @@ object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_ab
       Try(
         new Familymemberhistory_abatement(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union00813350082]("value"),
+          cursor.decodeRef[UnionAgeOrBooleanOrFHIRDate]("value"),
           decodeAttributes(cursor)
         )
       ))

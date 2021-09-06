@@ -53,12 +53,12 @@ public interface SubstanceSpecification_MoietyBuilder {
     return new Impl();
   }
 
-  public static Choice_2072987899 amount(Quantity q) {
-    return new Choice_2072987899(q);
+  public static ChoiceQuantityOrString amount(Quantity q) {
+    return new ChoiceQuantityOrString(q);
   }
 
-  public static Choice_2072987899 amount(String s) {
-    return new Choice_2072987899(s);
+  public static ChoiceQuantityOrString amount(String s) {
+    return new ChoiceQuantityOrString(s);
   }
 
   public class Impl implements SubstanceSpecification_MoietyBuilder {
@@ -66,7 +66,7 @@ public interface SubstanceSpecification_MoietyBuilder {
     private Optional<CodeableConcept> role = Optional.empty();
     private Optional<String> name = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_2072987899> amount = Optional.empty();
+    private Optional<ChoiceQuantityOrString> amount = Optional.empty();
     private Optional<Identifier> identifier = Optional.empty();
     private Optional<CodeableConcept> stereochemistry = Optional.empty();
     private Optional<CodeableConcept> opticalActivity = Optional.empty();
@@ -134,7 +134,8 @@ public interface SubstanceSpecification_MoietyBuilder {
      * @param amount Field is a 'choice' field. Type should be one of Quantity, String. To pass the
      *     value in, wrap with one of the SubstanceSpecification_MoietyBuilder.amount static methods
      */
-    public SubstanceSpecification_MoietyBuilder.Impl withAmount(@NonNull Choice_2072987899 amount) {
+    public SubstanceSpecification_MoietyBuilder.Impl withAmount(
+        @NonNull ChoiceQuantityOrString amount) {
       this.amount = Optional.of(amount);
       return this;
     }

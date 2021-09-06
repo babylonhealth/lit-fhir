@@ -255,7 +255,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       override type ResourceType = RelatedAction
       override type ParentType   = RelatedAction
       override val parentType: CompanionFor[ResourceType] = RelatedAction
-      type OffsetChoice = Choice[Union00801828838]
+      type OffsetChoice = Choice[UnionDurationOrRange]
       def apply(
           id: Option[String] = None,
           actionId: Id,
@@ -283,7 +283,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val offset: FHIRComponentFieldMeta[Option[RelatedAction.OffsetChoice]] =
-        FHIRComponentFieldMeta("offset", lTagOf[Option[RelatedAction.OffsetChoice]], true, lTagOf[Union00801828838])
+        FHIRComponentFieldMeta("offset", lTagOf[Option[RelatedAction.OffsetChoice]], true, lTagOf[UnionDurationOrRange])
       val relationship: FHIRComponentFieldMeta[ACTION_RELATIONSHIP_TYPE] =
         FHIRComponentFieldMeta("relationship", lTagOf[ACTION_RELATIONSHIP_TYPE], false, lTagOf[ACTION_RELATIONSHIP_TYPE])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -307,7 +307,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[Id]("actionId", None),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-              cursor.decodeOptRef[Union00801828838]("offset"),
+              cursor.decodeOptRef[UnionDurationOrRange]("offset"),
               cursor.decodeAs[ACTION_RELATIONSHIP_TYPE]("relationship", None),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)
@@ -324,9 +324,9 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type TimingChoice     = Choice[Union_0181779868]
-    type SubjectChoice    = Choice[Union01025009075]
-    type DefinitionChoice = Choice[Union00545979821]
+    type TimingChoice     = Choice[UnionAction_Timing]
+    type SubjectChoice    = Choice[UnionCodeableConceptOrReference]
+    type DefinitionChoice = Choice[UnionCanonicalOrUriStr]
     def apply(
         id: Option[String] = None,
         code: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -419,17 +419,17 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val timing: FHIRComponentFieldMeta[Option[Action.TimingChoice]] =
-      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[Union_0181779868])
+      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[UnionAction_Timing])
     val transform: FHIRComponentFieldMeta[Option[Canonical]] =
       FHIRComponentFieldMeta("transform", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
     val subject: FHIRComponentFieldMeta[Option[Action.SubjectChoice]] =
-      FHIRComponentFieldMeta("subject", lTagOf[Option[Action.SubjectChoice]], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("subject", lTagOf[Option[Action.SubjectChoice]], true, lTagOf[UnionCodeableConceptOrReference])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
     val documentation: FHIRComponentFieldMeta[LitSeq[RelatedArtifact]] =
       FHIRComponentFieldMeta("documentation", lTagOf[LitSeq[RelatedArtifact]], false, lTagOf[RelatedArtifact])
     val definition: FHIRComponentFieldMeta[Option[Action.DefinitionChoice]] =
-      FHIRComponentFieldMeta("definition", lTagOf[Option[Action.DefinitionChoice]], true, lTagOf[Union00545979821])
+      FHIRComponentFieldMeta("definition", lTagOf[Option[Action.DefinitionChoice]], true, lTagOf[UnionCanonicalOrUriStr])
     val textEquivalent: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("textEquivalent", lTagOf[Option[String]], false, lTagOf[String])
     val groupingBehavior: FHIRComponentFieldMeta[Option[ACTION_GROUPING_BEHAVIOR]] =
@@ -556,12 +556,12 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
             cursor.decodeAs[LitSeq[TriggerDefinition]]("trigger", Some(LitSeq.empty)),
             cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0181779868]("timing"),
+            cursor.decodeOptRef[UnionAction_Timing]("timing"),
             cursor.decodeAs[Option[Canonical]]("transform", Some(None)),
-            cursor.decodeOptRef[Union01025009075]("subject"),
+            cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
             cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[LitSeq[RelatedArtifact]]("documentation", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union00545979821]("definition"),
+            cursor.decodeOptRef[UnionCanonicalOrUriStr]("definition"),
             cursor.decodeAs[Option[String]]("textEquivalent", Some(None)),
             cursor.decodeAs[Option[ACTION_GROUPING_BEHAVIOR]]("groupingBehavior", Some(None)),
             cursor.decodeAs[Option[ACTION_REQUIRED_BEHAVIOR]]("requiredBehavior", Some(None)),
@@ -622,7 +622,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       override type ResourceType = Target
       override type ParentType   = Target
       override val parentType: CompanionFor[ResourceType] = Target
-      type DetailChoice = Choice[Union01560785079]
+      type DetailChoice = Choice[UnionCodeableConceptOrQuantityOrRange]
       def apply(
           id: Option[String] = None,
           due: Option[Duration] = None,
@@ -652,7 +652,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val detail: FHIRComponentFieldMeta[Option[Target.DetailChoice]] =
-        FHIRComponentFieldMeta("detail", lTagOf[Option[Target.DetailChoice]], true, lTagOf[Union01560785079])
+        FHIRComponentFieldMeta("detail", lTagOf[Option[Target.DetailChoice]], true, lTagOf[UnionCodeableConceptOrQuantityOrRange])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, due, measure, extension, detail, modifierExtension)
@@ -675,7 +675,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
               cursor.decodeAs[Option[Duration]]("due", Some(None)),
               cursor.decodeAs[Option[CodeableConcept]]("measure", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-              cursor.decodeOptRef[Union01560785079]("detail"),
+              cursor.decodeOptRef[UnionCodeableConceptOrQuantityOrRange]("detail"),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)
             )
@@ -799,7 +799,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       val target: LitSeq[Goal.Target] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -936,7 +936,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[PlanDefinition.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[PlanDefinition.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("subject", lTagOf[Option[PlanDefinition.SubjectChoice]], true, lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val description: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -1144,7 +1144,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
           cursor.decodeAs[Option[String]]("publisher", Some(None)),
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01025009075]("subject"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),
           cursor.decodeAs[Option[Boolean]]("experimental", Some(None)),

@@ -45,26 +45,26 @@ import static java.util.stream.Collectors.toList;
 public interface AuditEvent_Entity_DetailBuilder {
   public AuditEvent$Entity$Detail build();
 
-  public static Impl init(String _type, @NonNull Choice00483057553 value) {
+  public static Impl init(String _type, @NonNull ChoiceBase64BinaryOrString value) {
     return new Impl(_type, value);
   }
 
-  public static Impl builder(String _type, @NonNull Choice00483057553 value) {
+  public static Impl builder(String _type, @NonNull ChoiceBase64BinaryOrString value) {
     return new Impl(_type, value);
   }
 
-  public static Choice00483057553 value(byte[] b) {
-    return new Choice00483057553(b);
+  public static ChoiceBase64BinaryOrString value(byte[] b) {
+    return new ChoiceBase64BinaryOrString(b);
   }
 
-  public static Choice00483057553 value(String s) {
-    return new Choice00483057553(s);
+  public static ChoiceBase64BinaryOrString value(String s) {
+    return new ChoiceBase64BinaryOrString(s);
   }
 
   public class Impl implements AuditEvent_Entity_DetailBuilder {
     private Optional<String> id = Optional.empty();
     private String _type;
-    private Choice00483057553 value;
+    private ChoiceBase64BinaryOrString value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -76,7 +76,7 @@ public interface AuditEvent_Entity_DetailBuilder {
      * @param value Field is a 'choice' field. Type should be one of byte[], String. To pass the
      *     value in, wrap with one of the AuditEvent_Entity_DetailBuilder.value static methods
      */
-    public Impl(String _type, @NonNull Choice00483057553 value) {
+    public Impl(String _type, @NonNull ChoiceBase64BinaryOrString value) {
       this._type = _type;
       this.value = value;
     }

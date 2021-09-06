@@ -45,65 +45,65 @@ import static java.util.stream.Collectors.toList;
 public interface Contract_Term_Offer_AnswerBuilder {
   public Contract$Term$Offer$Answer build();
 
-  public static Impl init(@NonNull Choice_2101127777 value) {
+  public static Impl init(@NonNull ChoiceAnswer_Value value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice_2101127777 value) {
+  public static Impl builder(@NonNull ChoiceAnswer_Value value) {
     return new Impl(value);
   }
 
-  public static Choice_2101127777 value(Attachment a) {
-    return new Choice_2101127777(a);
+  public static ChoiceAnswer_Value value(Attachment a) {
+    return new ChoiceAnswer_Value(a);
   }
 
-  public static Choice_2101127777 value(BigDecimal b) {
-    return new Choice_2101127777(b);
+  public static ChoiceAnswer_Value value(BigDecimal b) {
+    return new ChoiceAnswer_Value(b);
   }
 
-  public static Choice_2101127777 value(Boolean b) {
-    return new Choice_2101127777(b);
+  public static ChoiceAnswer_Value value(Boolean b) {
+    return new ChoiceAnswer_Value(b);
   }
 
-  public static Choice_2101127777 value(Coding c) {
-    return new Choice_2101127777(c);
+  public static ChoiceAnswer_Value value(Coding c) {
+    return new ChoiceAnswer_Value(c);
   }
 
-  public static Choice_2101127777 value(FHIRDate f) {
-    return new Choice_2101127777(f);
+  public static ChoiceAnswer_Value value(FHIRDate f) {
+    return new ChoiceAnswer_Value(f);
   }
 
-  public static Choice_2101127777 value(FHIRDateTime f) {
-    return new Choice_2101127777(f);
+  public static ChoiceAnswer_Value value(FHIRDateTime f) {
+    return new ChoiceAnswer_Value(f);
   }
 
-  public static Choice_2101127777 value(Integer i) {
-    return new Choice_2101127777(i);
+  public static ChoiceAnswer_Value value(Integer i) {
+    return new ChoiceAnswer_Value(i);
   }
 
-  public static Choice_2101127777 value(LocalTime l) {
-    return new Choice_2101127777(l);
+  public static ChoiceAnswer_Value value(LocalTime l) {
+    return new ChoiceAnswer_Value(l);
   }
 
-  public static Choice_2101127777 value(Quantity q) {
-    return new Choice_2101127777(q);
+  public static ChoiceAnswer_Value value(Quantity q) {
+    return new ChoiceAnswer_Value(q);
   }
 
-  public static Choice_2101127777 value(Reference r) {
-    return new Choice_2101127777(r);
+  public static ChoiceAnswer_Value value(Reference r) {
+    return new ChoiceAnswer_Value(r);
   }
 
-  public static Choice_2101127777 valueString(String s) {
-    return Choice_2101127777.Choice_2101127777String(s);
+  public static ChoiceAnswer_Value valueString(String s) {
+    return ChoiceAnswer_Value.ChoiceAnswer_ValueString(s);
   }
 
-  public static Choice_2101127777 valueUri(String s) {
-    return Choice_2101127777.Choice_2101127777UriStr(s);
+  public static ChoiceAnswer_Value valueUri(String s) {
+    return ChoiceAnswer_Value.ChoiceAnswer_ValueUriStr(s);
   }
 
   public class Impl implements Contract_Term_Offer_AnswerBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice_2101127777 value;
+    private ChoiceAnswer_Value value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -115,7 +115,7 @@ public interface Contract_Term_Offer_AnswerBuilder {
      *     To pass the value in, wrap with one of the Contract_Term_Offer_AnswerBuilder.value static
      *     methods
      */
-    public Impl(@NonNull Choice_2101127777 value) {
+    public Impl(@NonNull ChoiceAnswer_Value value) {
       this.value = value;
     }
 

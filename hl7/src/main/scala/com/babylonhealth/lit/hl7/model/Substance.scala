@@ -37,7 +37,7 @@ object Substance extends CompanionFor[Substance] {
     override type ResourceType = Ingredient
     override type ParentType   = Ingredient
     override val parentType: CompanionFor[ResourceType] = Ingredient
-    type SubstanceChoice = Choice[Union01025009075]
+    type SubstanceChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         quantity: Option[Ratio] = None,
@@ -63,7 +63,7 @@ object Substance extends CompanionFor[Substance] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val substance: FHIRComponentFieldMeta[Ingredient.SubstanceChoice] =
-      FHIRComponentFieldMeta("substance", lTagOf[Ingredient.SubstanceChoice], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("substance", lTagOf[Ingredient.SubstanceChoice], true, lTagOf[UnionCodeableConceptOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, quantity, extension, substance, modifierExtension)
@@ -84,7 +84,7 @@ object Substance extends CompanionFor[Substance] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[Ratio]]("quantity", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union01025009075]("substance"),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("substance"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )

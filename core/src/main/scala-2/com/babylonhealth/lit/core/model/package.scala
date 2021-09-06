@@ -153,28 +153,29 @@ package object model {
 }
 
 object UnionAliases {
-  type Union01025009075 = CodeableConcept \/ Reference
-  type Union01639511888 = Quantity \/ Range
-  type Union_0119127717 = CodeableConcept \/ Quantity \/ Range \/ Reference
-  type Union_0575082635 = Quantity \/ Range \/ Ratio
-  type Union_0731860109 = Duration \/ Period \/ Range
-  type Union_1051729086 = FHIRDate \/ FHIRDateTime \/ Reference \/ Timing
-  type Union_1128709984 = Reference \/ String
-  type Union_1349125893 =
+  type UnionAll =
     Address \/ Age \/ Annotation \/ Attachment \/ Base64Binary \/ BigDecimal \/ Boolean \/ Canonical \/ Code \/ CodeableConcept \/ Coding \/ ContactDetail \/ ContactPoint \/ Contributor \/ Count \/ DataRequirement \/ Distance \/ Dosage \/ Duration \/ Expression \/ FHIRDate \/ FHIRDateTime \/ HumanName \/ Id \/ Identifier \/ Int \/ LocalTime \/ Markdown \/ Meta \/ Money \/ OID \/ ParameterDefinition \/ Period \/ PositiveInt \/ Quantity \/ Range \/ Ratio \/ Reference \/ RelatedArtifact \/ SampledData \/ Signature \/ String \/ Timing \/ TriggerDefinition \/ UUID \/ UnsignedInt \/ UriStr \/ UrlStr \/ UsageContext \/ ZonedDateTime
-  type Union_1768247138 = Boolean \/ CodeableConcept
-  type Union_1947777294 = Duration \/ FHIRDateTime \/ Period
+  type UnionBooleanOrCodeableConcept       = Boolean \/ CodeableConcept
+  type UnionCodeableConceptOrReference     = CodeableConcept \/ Reference
+  type UnionDurationOrFHIRDateTimeOrPeriod = Duration \/ FHIRDateTime \/ Period
+  type UnionDurationOrPeriodOrRange        = Duration \/ Period \/ Range
+  type UnionQuantityOrRange                = Quantity \/ Range
+  type UnionQuantityOrRangeOrRatio         = Quantity \/ Range \/ Ratio
+  type UnionReferenceOrString              = Reference \/ String
+  type UnionTriggerDefinition_Timing       = FHIRDate \/ FHIRDateTime \/ Reference \/ Timing
+  type UnionUsageContext_Value             = CodeableConcept \/ Quantity \/ Range \/ Reference
 
-  val Union01025009075Tag: LTag[Union01025009075] = LTag[Union01025009075]
-  val Union01639511888Tag: LTag[Union01639511888] = LTag[Union01639511888]
-  val Union_0119127717Tag: LTag[Union_0119127717] = LTag[Union_0119127717]
-  val Union_0575082635Tag: LTag[Union_0575082635] = LTag[Union_0575082635]
-  val Union_0731860109Tag: LTag[Union_0731860109] = LTag[Union_0731860109]
-  val Union_1051729086Tag: LTag[Union_1051729086] = LTag[Union_1051729086]
-  val Union_1128709984Tag: LTag[Union_1128709984] = LTag[Union_1128709984]
-  val Union_1349125893Tag: LTag[Union_1349125893] = LTag[Union_1349125893]
-  val Union_1768247138Tag: LTag[Union_1768247138] = LTag[Union_1768247138]
-  val Union_1947777294Tag: LTag[Union_1947777294] = LTag[Union_1947777294]
+  val UnionAllTag: LTag[UnionAll]                                               = LTag[UnionAll]
+  val UnionBooleanOrCodeableConceptTag: LTag[UnionBooleanOrCodeableConcept]     = LTag[UnionBooleanOrCodeableConcept]
+  val UnionCodeableConceptOrReferenceTag: LTag[UnionCodeableConceptOrReference] = LTag[UnionCodeableConceptOrReference]
+  val UnionDurationOrFHIRDateTimeOrPeriodTag: LTag[UnionDurationOrFHIRDateTimeOrPeriod] =
+    LTag[UnionDurationOrFHIRDateTimeOrPeriod]
+  val UnionDurationOrPeriodOrRangeTag: LTag[UnionDurationOrPeriodOrRange]   = LTag[UnionDurationOrPeriodOrRange]
+  val UnionQuantityOrRangeOrRatioTag: LTag[UnionQuantityOrRangeOrRatio]     = LTag[UnionQuantityOrRangeOrRatio]
+  val UnionQuantityOrRangeTag: LTag[UnionQuantityOrRange]                   = LTag[UnionQuantityOrRange]
+  val UnionReferenceOrStringTag: LTag[UnionReferenceOrString]               = LTag[UnionReferenceOrString]
+  val UnionTriggerDefinition_TimingTag: LTag[UnionTriggerDefinition_Timing] = LTag[UnionTriggerDefinition_Timing]
+  val UnionUsageContext_ValueTag: LTag[UnionUsageContext_Value]             = LTag[UnionUsageContext_Value]
 }
 
 object Module

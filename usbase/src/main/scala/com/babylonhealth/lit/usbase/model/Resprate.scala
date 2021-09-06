@@ -32,7 +32,7 @@ object Resprate extends CompanionFor[Resprate] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Vitalsigns
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/resprate")
-  type EffectiveChoice = Choice[Union_0934386166]
+  type EffectiveChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/resprate"))),
@@ -151,7 +151,7 @@ object Resprate extends CompanionFor[Resprate] {
   val derivedFrom: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("derivedFrom", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Resprate.EffectiveChoice] =
-    FHIRComponentFieldMeta("effective", lTagOf[Resprate.EffectiveChoice], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("effective", lTagOf[Resprate.EffectiveChoice], true, lTagOf[UnionFHIRDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val code: FHIRComponentFieldMeta[CodeableConcept] =
@@ -302,7 +302,7 @@ object Resprate extends CompanionFor[Resprate] {
           cursor.decodeAs[LitSeq[Reference]]("hasMember", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
-          cursor.decodeRef[Union_0934386166]("effective"),
+          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[CodeableConcept]("code", None),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),

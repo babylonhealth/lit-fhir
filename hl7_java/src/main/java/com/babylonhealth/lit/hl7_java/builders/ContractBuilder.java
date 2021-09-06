@@ -54,20 +54,20 @@ public interface ContractBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
-  public static Choice01025009075 topic(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference topic(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 topic(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference topic(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static Choice_0340660840 legallyBinding(Attachment a) {
-    return new Choice_0340660840(a);
+  public static ChoiceAttachmentOrReference legallyBinding(Attachment a) {
+    return new ChoiceAttachmentOrReference(a);
   }
 
-  public static Choice_0340660840 legallyBinding(Reference r) {
-    return new Choice_0340660840(r);
+  public static ChoiceAttachmentOrReference legallyBinding(Reference r) {
+    return new ChoiceAttachmentOrReference(r);
   }
 
   public class Impl implements ContractBuilder {
@@ -91,7 +91,7 @@ public interface ContractBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> subType = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<String> subtitle = Optional.empty();
-    private Optional<Choice01025009075> topic = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> topic = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Reference> authority = Collections.emptyList();
@@ -104,7 +104,7 @@ public interface ContractBuilder extends DomainResourceBuilder {
     private Collection<Reference> relevantHistory = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<CodeableConcept> contentDerivative = Optional.empty();
-    private Optional<Choice_0340660840> legallyBinding = Optional.empty();
+    private Optional<ChoiceAttachmentOrReference> legallyBinding = Optional.empty();
     private Optional<Reference> instantiatesCanonical = Optional.empty();
     private Collection<Contract.Rule> rule = Collections.emptyList();
     private Collection<Contract.Legal> legal = Collections.emptyList();
@@ -365,7 +365,7 @@ public interface ContractBuilder extends DomainResourceBuilder {
      *     Reference. To pass the value in, wrap with one of the ContractBuilder.topic static
      *     methods
      */
-    public ContractBuilder.Impl withTopic(@NonNull Choice01025009075 topic) {
+    public ContractBuilder.Impl withTopic(@NonNull ChoiceCodeableConceptOrReference topic) {
       this.topic = Optional.of(topic);
       return this;
     }
@@ -623,7 +623,8 @@ public interface ContractBuilder extends DomainResourceBuilder {
      *     'choice' field. Type should be one of Attachment, Reference. To pass the value in, wrap
      *     with one of the ContractBuilder.legallyBinding static methods
      */
-    public ContractBuilder.Impl withLegallyBinding(@NonNull Choice_0340660840 legallyBinding) {
+    public ContractBuilder.Impl withLegallyBinding(
+        @NonNull ChoiceAttachmentOrReference legallyBinding) {
       this.legallyBinding = Optional.of(legallyBinding);
       return this;
     }

@@ -7,7 +7,7 @@
 <         new Extension(
 <           cursor.decodeAs[Option[String]]("id", Some(None)),
 <           cursor.decodeAs[String]("url", None),
-<           cursor.decodeOptRef[Union_1349125893]("value"),
+<           cursor.decodeOptRef[UnionAll]("value"),
 <           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
 <           decodeAttributes(cursor)
 ---
@@ -16,7 +16,7 @@
 >           new Extension(
 >             cursor.decodeAs[Option[String]]("id", Some(None)),
 >             cursor.decodeAs[String]("url", None),
->             cursor.decodeOptRef[Union_1349125893]("value"),
+>             cursor.decodeOptRef[UnionAll]("value"),
 >             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
 >             decodeAttributes(cursor)
 >           )

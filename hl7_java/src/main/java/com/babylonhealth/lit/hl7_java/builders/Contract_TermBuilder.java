@@ -53,12 +53,12 @@ public interface Contract_TermBuilder {
     return new Impl(offer.build());
   }
 
-  public static Choice01025009075 topic(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference topic(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 topic(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference topic(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Contract_TermBuilder {
@@ -69,7 +69,7 @@ public interface Contract_TermBuilder {
     private Optional<FHIRDateTime> issued = Optional.empty();
     private Optional<Period> applies = Optional.empty();
     private Optional<CodeableConcept> subType = Optional.empty();
-    private Optional<Choice01025009075> topic = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> topic = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Identifier> identifier = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -170,7 +170,7 @@ public interface Contract_TermBuilder {
      *     Reference. To pass the value in, wrap with one of the Contract_TermBuilder.topic static
      *     methods
      */
-    public Contract_TermBuilder.Impl withTopic(@NonNull Choice01025009075 topic) {
+    public Contract_TermBuilder.Impl withTopic(@NonNull ChoiceCodeableConceptOrReference topic) {
       this.topic = Optional.of(topic);
       return this;
     }

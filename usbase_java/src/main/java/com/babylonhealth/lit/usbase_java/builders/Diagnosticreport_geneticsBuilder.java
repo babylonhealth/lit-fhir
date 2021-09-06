@@ -57,12 +57,12 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     return new Impl(code.build(), status);
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements Diagnosticreport_geneticsBuilder {
@@ -88,7 +88,7 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     private Collection<Reference> performer = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> conclusion = Optional.empty();
-    private Optional<Choice_0934386166> effective = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriod> effective = Optional.empty();
     private Collection<Reference> imagingStudy = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Attachment> presentedForm = Collections.emptyList();
@@ -363,7 +363,7 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
      *     Diagnosticreport_geneticsBuilder.effective static methods
      */
     public Diagnosticreport_geneticsBuilder.Impl withEffective(
-        @NonNull Choice_0934386166 effective) {
+        @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
       this.effective = Optional.of(effective);
       return this;
     }

@@ -67,20 +67,20 @@ public interface Us_core_patientBuilder extends PatientBuilder {
         new LitSeq<>(identifier).map(IdentifierBuilder::build));
   }
 
-  public static Choice_2131715935 deceased(Boolean b) {
-    return new Choice_2131715935(b);
+  public static ChoiceBooleanOrFHIRDateTime deceased(Boolean b) {
+    return new ChoiceBooleanOrFHIRDateTime(b);
   }
 
-  public static Choice_2131715935 deceased(FHIRDateTime f) {
-    return new Choice_2131715935(f);
+  public static ChoiceBooleanOrFHIRDateTime deceased(FHIRDateTime f) {
+    return new ChoiceBooleanOrFHIRDateTime(f);
   }
 
-  public static Choice02065782851 multipleBirth(Boolean b) {
-    return new Choice02065782851(b);
+  public static ChoiceBooleanOrInt multipleBirth(Boolean b) {
+    return new ChoiceBooleanOrInt(b);
   }
 
-  public static Choice02065782851 multipleBirth(Integer i) {
-    return new Choice02065782851(i);
+  public static ChoiceBooleanOrInt multipleBirth(Integer i) {
+    return new ChoiceBooleanOrInt(i);
   }
 
   public class Impl implements Us_core_patientBuilder {
@@ -98,11 +98,11 @@ public interface Us_core_patientBuilder extends PatientBuilder {
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<FHIRDate> birthDate = Optional.empty();
-    private Optional<Choice_2131715935> deceased = Optional.empty();
+    private Optional<ChoiceBooleanOrFHIRDateTime> deceased = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<CodeableConcept> maritalStatus = Optional.empty();
     private Collection<HumanName> name;
-    private Optional<Choice02065782851> multipleBirth = Optional.empty();
+    private Optional<ChoiceBooleanOrInt> multipleBirth = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<ContactPoint> telecom = Collections.emptyList();
     private Collection<Address> address = Collections.emptyList();
@@ -248,7 +248,7 @@ public interface Us_core_patientBuilder extends PatientBuilder {
      *     Type should be one of Boolean, FHIRDateTime. To pass the value in, wrap with one of the
      *     Us_core_patientBuilder.deceased static methods
      */
-    public Us_core_patientBuilder.Impl withDeceased(@NonNull Choice_2131715935 deceased) {
+    public Us_core_patientBuilder.Impl withDeceased(@NonNull ChoiceBooleanOrFHIRDateTime deceased) {
       this.deceased = Optional.of(deceased);
       return this;
     }
@@ -281,7 +281,8 @@ public interface Us_core_patientBuilder extends PatientBuilder {
      *     of Boolean, Integer. To pass the value in, wrap with one of the
      *     Us_core_patientBuilder.multipleBirth static methods
      */
-    public Us_core_patientBuilder.Impl withMultipleBirth(@NonNull Choice02065782851 multipleBirth) {
+    public Us_core_patientBuilder.Impl withMultipleBirth(
+        @NonNull ChoiceBooleanOrInt multipleBirth) {
       this.multipleBirth = Optional.of(multipleBirth);
       return this;
     }

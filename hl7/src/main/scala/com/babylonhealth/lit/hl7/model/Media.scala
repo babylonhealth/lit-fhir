@@ -31,7 +31,7 @@ object Media extends CompanionFor[Media] {
   override val baseType: CompanionFor[ResourceType] = Media
   override val parentType: CompanionFor[ParentType] = Media
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Media")
-  type CreatedChoice = Choice[Union_0934386166]
+  type CreatedChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -148,7 +148,7 @@ object Media extends CompanionFor[Media] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val created: FHIRComponentFieldMeta[Option[Media.CreatedChoice]] =
-    FHIRComponentFieldMeta("created", lTagOf[Option[Media.CreatedChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("created", lTagOf[Option[Media.CreatedChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
   val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val deviceName: FHIRComponentFieldMeta[Option[String]] =
@@ -297,7 +297,7 @@ object Media extends CompanionFor[Media] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_0934386166]("created"),
+          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("created"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("deviceName", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),

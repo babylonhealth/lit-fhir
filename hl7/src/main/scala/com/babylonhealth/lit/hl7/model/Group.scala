@@ -37,7 +37,7 @@ object Group extends CompanionFor[Group] {
     override type ResourceType = Characteristic
     override type ParentType   = Characteristic
     override val parentType: CompanionFor[ResourceType] = Characteristic
-    type ValueChoice = Choice[Union01646729908]
+    type ValueChoice = Choice[UnionCharacteristic_Value]
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -69,7 +69,7 @@ object Group extends CompanionFor[Group] {
     val exclude: FHIRComponentFieldMeta[Boolean] =
       FHIRComponentFieldMeta("exclude", lTagOf[Boolean], false, lTagOf[Boolean])
     val value: FHIRComponentFieldMeta[Characteristic.ValueChoice] =
-      FHIRComponentFieldMeta("value", lTagOf[Characteristic.ValueChoice], true, lTagOf[Union01646729908])
+      FHIRComponentFieldMeta("value", lTagOf[Characteristic.ValueChoice], true, lTagOf[UnionCharacteristic_Value])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -95,7 +95,7 @@ object Group extends CompanionFor[Group] {
             cursor.decodeAs[CodeableConcept]("code", None),
             cursor.decodeAs[Option[Period]]("period", Some(None)),
             cursor.decodeAs[Boolean]("exclude", None),
-            cursor.decodeRef[Union01646729908]("value"),
+            cursor.decodeRef[UnionCharacteristic_Value]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)

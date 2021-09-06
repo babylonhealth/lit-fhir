@@ -55,16 +55,16 @@ public interface DeviceUseStatementBuilder extends DomainResourceBuilder {
     return new Impl(status, device.build(), subject.build());
   }
 
-  public static Choice00609373412 timing(FHIRDateTime f) {
-    return new Choice00609373412(f);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming timing(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
   }
 
-  public static Choice00609373412 timing(Period p) {
-    return new Choice00609373412(p);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming timing(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
   }
 
-  public static Choice00609373412 timing(Timing t) {
-    return new Choice00609373412(t);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming timing(Timing t) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements DeviceUseStatementBuilder {
@@ -81,7 +81,7 @@ public interface DeviceUseStatementBuilder extends DomainResourceBuilder {
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice00609373412> timing = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> timing = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<FHIRDateTime> recordedOn = Optional.empty();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
@@ -269,7 +269,8 @@ public interface DeviceUseStatementBuilder extends DomainResourceBuilder {
      *     of FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
      *     DeviceUseStatementBuilder.timing static methods
      */
-    public DeviceUseStatementBuilder.Impl withTiming(@NonNull Choice00609373412 timing) {
+    public DeviceUseStatementBuilder.Impl withTiming(
+        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming timing) {
       this.timing = Optional.of(timing);
       return this;
     }

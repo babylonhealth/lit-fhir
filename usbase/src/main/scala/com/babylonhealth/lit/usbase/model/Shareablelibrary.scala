@@ -32,7 +32,7 @@ object Shareablelibrary extends CompanionFor[Shareablelibrary] {
   override val baseType: CompanionFor[ResourceType] = Library
   override val parentType: CompanionFor[ParentType] = Library
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablelibrary")
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: UriStr,
@@ -171,7 +171,11 @@ object Shareablelibrary extends CompanionFor[Shareablelibrary] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[Shareablelibrary.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[Shareablelibrary.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "subject",
+      lTagOf[Option[Shareablelibrary.SubjectChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val description: FHIRComponentFieldMeta[Markdown] =
@@ -350,7 +354,7 @@ object Shareablelibrary extends CompanionFor[Shareablelibrary] {
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeAs[LitSeq[ParameterDefinition]]("parameter", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01025009075]("subject"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Markdown]("description", None),
           cursor.decodeAs[Boolean]("experimental", None),

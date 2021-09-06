@@ -54,20 +54,20 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
-  public static Choice00545979821 sourceCanonical(String s) {
-    return Choice00545979821.Choice00545979821Canonical(s);
+  public static ChoiceCanonicalOrUriStr sourceCanonical(String s) {
+    return ChoiceCanonicalOrUriStr.ChoiceCanonicalOrUriStrCanonical(s);
   }
 
-  public static Choice00545979821 sourceUri(String s) {
-    return Choice00545979821.Choice00545979821UriStr(s);
+  public static ChoiceCanonicalOrUriStr sourceUri(String s) {
+    return ChoiceCanonicalOrUriStr.ChoiceCanonicalOrUriStrUriStr(s);
   }
 
-  public static Choice00545979821 targetCanonical(String s) {
-    return Choice00545979821.Choice00545979821Canonical(s);
+  public static ChoiceCanonicalOrUriStr targetCanonical(String s) {
+    return ChoiceCanonicalOrUriStr.ChoiceCanonicalOrUriStrCanonical(s);
   }
 
-  public static Choice00545979821 targetUri(String s) {
-    return Choice00545979821.Choice00545979821UriStr(s);
+  public static ChoiceCanonicalOrUriStr targetUri(String s) {
+    return ChoiceCanonicalOrUriStr.ChoiceCanonicalOrUriStrUriStr(s);
   }
 
   public class Impl implements ConceptMapBuilder {
@@ -87,8 +87,8 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> publisher = Optional.empty();
     private Optional<String> copyright = Optional.empty();
-    private Optional<Choice00545979821> source = Optional.empty();
-    private Optional<Choice00545979821> target = Optional.empty();
+    private Optional<ChoiceCanonicalOrUriStr> source = Optional.empty();
+    private Optional<ChoiceCanonicalOrUriStr> target = Optional.empty();
     private Optional<Identifier> identifier = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
@@ -299,7 +299,7 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
      *     one of String. To pass the value in, wrap with one of the ConceptMapBuilder.source static
      *     methods
      */
-    public ConceptMapBuilder.Impl withSource(@NonNull Choice00545979821 source) {
+    public ConceptMapBuilder.Impl withSource(@NonNull ChoiceCanonicalOrUriStr source) {
       this.source = Optional.of(source);
       return this;
     }
@@ -310,7 +310,7 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
      *     should be one of String. To pass the value in, wrap with one of the
      *     ConceptMapBuilder.target static methods
      */
-    public ConceptMapBuilder.Impl withTarget(@NonNull Choice00545979821 target) {
+    public ConceptMapBuilder.Impl withTarget(@NonNull ChoiceCanonicalOrUriStr target) {
       this.target = Optional.of(target);
       return this;
     }

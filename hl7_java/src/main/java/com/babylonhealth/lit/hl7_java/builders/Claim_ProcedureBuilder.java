@@ -45,20 +45,21 @@ import static java.util.stream.Collectors.toList;
 public interface Claim_ProcedureBuilder {
   public Claim.Procedure build();
 
-  public static Impl init(Integer sequence, @NonNull Choice01025009075 procedure) {
+  public static Impl init(Integer sequence, @NonNull ChoiceCodeableConceptOrReference procedure) {
     return new Impl(sequence, procedure);
   }
 
-  public static Impl builder(Integer sequence, @NonNull Choice01025009075 procedure) {
+  public static Impl builder(
+      Integer sequence, @NonNull ChoiceCodeableConceptOrReference procedure) {
     return new Impl(sequence, procedure);
   }
 
-  public static Choice01025009075 procedure(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference procedure(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 procedure(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference procedure(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Claim_ProcedureBuilder {
@@ -68,7 +69,7 @@ public interface Claim_ProcedureBuilder {
     private Optional<FHIRDateTime> date = Optional.empty();
     private Integer sequence;
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice01025009075 procedure;
+    private ChoiceCodeableConceptOrReference procedure;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -79,7 +80,7 @@ public interface Claim_ProcedureBuilder {
      *     claim. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
      *     pass the value in, wrap with one of the Claim_ProcedureBuilder.procedure static methods
      */
-    public Impl(Integer sequence, @NonNull Choice01025009075 procedure) {
+    public Impl(Integer sequence, @NonNull ChoiceCodeableConceptOrReference procedure) {
       this.sequence = sequence;
       this.procedure = procedure;
     }

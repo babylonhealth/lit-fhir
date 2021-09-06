@@ -136,7 +136,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
     override type ResourceType = Procedure
     override type ParentType   = Procedure
     override val parentType: CompanionFor[ResourceType] = Procedure
-    type DateChoice = Choice[Union_0934386166]
+    type DateChoice = Choice[UnionFHIRDateTimeOrPeriod]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -164,7 +164,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
     val `type`: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("type", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val date: FHIRComponentFieldMeta[Option[Procedure.DateChoice]] =
-      FHIRComponentFieldMeta("date", lTagOf[Option[Procedure.DateChoice]], true, lTagOf[Union_0934386166])
+      FHIRComponentFieldMeta("date", lTagOf[Option[Procedure.DateChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val identifier: FHIRComponentFieldMeta[Option[Identifier]] =
@@ -196,7 +196,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
           new Procedure(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("type", None),
-            cursor.decodeOptRef[Union_0934386166]("date"),
+            cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("date"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
             cursor.decodeAs[LitSeq[MedicinalProductAuthorization.Procedure]]("application", Some(LitSeq.empty)),

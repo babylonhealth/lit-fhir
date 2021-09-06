@@ -45,20 +45,20 @@ import static java.util.stream.Collectors.toList;
 public interface MedicationKnowledge_AdministrationGuidelines_PatientCharacteristicsBuilder {
   public MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics build();
 
-  public static Impl init(@NonNull Choice_0970951552 characteristic) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrQuantity characteristic) {
     return new Impl(characteristic);
   }
 
-  public static Impl builder(@NonNull Choice_0970951552 characteristic) {
+  public static Impl builder(@NonNull ChoiceCodeableConceptOrQuantity characteristic) {
     return new Impl(characteristic);
   }
 
-  public static Choice_0970951552 characteristic(CodeableConcept c) {
-    return new Choice_0970951552(c);
+  public static ChoiceCodeableConceptOrQuantity characteristic(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrQuantity(c);
   }
 
-  public static Choice_0970951552 characteristic(Quantity q) {
-    return new Choice_0970951552(q);
+  public static ChoiceCodeableConceptOrQuantity characteristic(Quantity q) {
+    return new ChoiceCodeableConceptOrQuantity(q);
   }
 
   public class Impl
@@ -67,7 +67,7 @@ public interface MedicationKnowledge_AdministrationGuidelines_PatientCharacteris
     private Collection<String> value = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Choice_0970951552 characteristic;
+    private ChoiceCodeableConceptOrQuantity characteristic;
 
     /**
      * Required fields for {@link
@@ -78,7 +78,7 @@ public interface MedicationKnowledge_AdministrationGuidelines_PatientCharacteris
      *     MedicationKnowledge_AdministrationGuidelines_PatientCharacteristicsBuilder.characteristic
      *     static methods
      */
-    public Impl(@NonNull Choice_0970951552 characteristic) {
+    public Impl(@NonNull ChoiceCodeableConceptOrQuantity characteristic) {
       this.characteristic = characteristic;
     }
 

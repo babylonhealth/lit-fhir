@@ -110,7 +110,7 @@ object Task extends CompanionFor[Task] {
     override type ResourceType = Output
     override type ParentType   = Output
     override val parentType: CompanionFor[ResourceType] = Output
-    type ValueChoice = Choice[Union_1349125893]
+    type ValueChoice = Choice[UnionAll]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -133,7 +133,7 @@ object Task extends CompanionFor[Task] {
     val `type`: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("type", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Output.ValueChoice] =
-      FHIRComponentFieldMeta("value", lTagOf[Output.ValueChoice], true, lTagOf[Union_1349125893])
+      FHIRComponentFieldMeta("value", lTagOf[Output.ValueChoice], true, lTagOf[UnionAll])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -155,7 +155,7 @@ object Task extends CompanionFor[Task] {
           new Output(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("type", None),
-            cursor.decodeRef[Union_1349125893]("value"),
+            cursor.decodeRef[UnionAll]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -177,7 +177,7 @@ object Task extends CompanionFor[Task] {
     override type ResourceType = Input
     override type ParentType   = Input
     override val parentType: CompanionFor[ResourceType] = Input
-    type ValueChoice = Choice[Union_1349125893]
+    type ValueChoice = Choice[UnionAll]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -200,7 +200,7 @@ object Task extends CompanionFor[Task] {
     val `type`: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("type", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Input.ValueChoice] =
-      FHIRComponentFieldMeta("value", lTagOf[Input.ValueChoice], true, lTagOf[Union_1349125893])
+      FHIRComponentFieldMeta("value", lTagOf[Input.ValueChoice], true, lTagOf[UnionAll])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -222,7 +222,7 @@ object Task extends CompanionFor[Task] {
           new Input(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("type", None),
-            cursor.decodeRef[Union_1349125893]("value"),
+            cursor.decodeRef[UnionAll]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)

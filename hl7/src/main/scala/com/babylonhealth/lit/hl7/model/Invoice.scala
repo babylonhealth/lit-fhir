@@ -118,7 +118,7 @@ object Invoice extends CompanionFor[Invoice] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type ChargeItemChoice = Choice[Union01025009075]
+    type ChargeItemChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         sequence: Option[PositiveInt] = None,
@@ -146,7 +146,7 @@ object Invoice extends CompanionFor[Invoice] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val chargeItem: FHIRComponentFieldMeta[LineItem.ChargeItemChoice] =
-      FHIRComponentFieldMeta("chargeItem", lTagOf[LineItem.ChargeItemChoice], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("chargeItem", lTagOf[LineItem.ChargeItemChoice], true, lTagOf[UnionCodeableConceptOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val priceComponent: FHIRComponentFieldMeta[LitSeq[LineItem.PriceComponent]] =
@@ -170,7 +170,7 @@ object Invoice extends CompanionFor[Invoice] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[PositiveInt]]("sequence", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union01025009075]("chargeItem"),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("chargeItem"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[LineItem.PriceComponent]]("priceComponent", Some(LitSeq.empty)),
             decodeAttributes(cursor)

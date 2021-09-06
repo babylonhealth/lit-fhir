@@ -48,37 +48,37 @@ import static java.util.stream.Collectors.toList;
 public interface MinValueBuilder extends ExtensionBuilder {
   public MinValue build();
 
-  public static Impl init(@NonNull Choice01613806391 value) {
+  public static Impl init(@NonNull ChoiceMinValue_Value value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice01613806391 value) {
+  public static Impl builder(@NonNull ChoiceMinValue_Value value) {
     return new Impl(value);
   }
 
-  public static Choice01613806391 value(BigDecimal b) {
-    return new Choice01613806391(b);
+  public static ChoiceMinValue_Value value(BigDecimal b) {
+    return new ChoiceMinValue_Value(b);
   }
 
-  public static Choice01613806391 value(FHIRDate f) {
-    return new Choice01613806391(f);
+  public static ChoiceMinValue_Value value(FHIRDate f) {
+    return new ChoiceMinValue_Value(f);
   }
 
-  public static Choice01613806391 value(FHIRDateTime f) {
-    return new Choice01613806391(f);
+  public static ChoiceMinValue_Value value(FHIRDateTime f) {
+    return new ChoiceMinValue_Value(f);
   }
 
-  public static Choice01613806391 value(Integer i) {
-    return new Choice01613806391(i);
+  public static ChoiceMinValue_Value value(Integer i) {
+    return new ChoiceMinValue_Value(i);
   }
 
-  public static Choice01613806391 value(LocalTime l) {
-    return new Choice01613806391(l);
+  public static ChoiceMinValue_Value value(LocalTime l) {
+    return new ChoiceMinValue_Value(l);
   }
 
   public class Impl implements MinValueBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice01613806391 value;
+    private ChoiceMinValue_Value value;
 
     /**
      * Required fields for {@link MinValue}
@@ -88,7 +88,7 @@ public interface MinValueBuilder extends ExtensionBuilder {
      *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime. To
      *     pass the value in, wrap with one of the MinValueBuilder.value static methods
      */
-    public Impl(@NonNull Choice01613806391 value) {
+    public Impl(@NonNull ChoiceMinValue_Value value) {
       this.value = value;
     }
 

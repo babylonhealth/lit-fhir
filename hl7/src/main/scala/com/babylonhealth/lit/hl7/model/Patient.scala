@@ -278,8 +278,8 @@ object Patient extends CompanionFor[Patient] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type DeceasedChoice      = Choice[Union_2131715935]
-  type MultipleBirthChoice = Choice[Union02065782851]
+  type DeceasedChoice      = Choice[UnionBooleanOrFHIRDateTime]
+  type MultipleBirthChoice = Choice[UnionBooleanOrInt]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -362,13 +362,13 @@ object Patient extends CompanionFor[Patient] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val deceased: FHIRComponentFieldMeta[Option[Patient.DeceasedChoice]] =
-    FHIRComponentFieldMeta("deceased", lTagOf[Option[Patient.DeceasedChoice]], true, lTagOf[Union_2131715935])
+    FHIRComponentFieldMeta("deceased", lTagOf[Option[Patient.DeceasedChoice]], true, lTagOf[UnionBooleanOrFHIRDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val maritalStatus: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("maritalStatus", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val multipleBirth: FHIRComponentFieldMeta[Option[Patient.MultipleBirthChoice]] =
-    FHIRComponentFieldMeta("multipleBirth", lTagOf[Option[Patient.MultipleBirthChoice]], true, lTagOf[Union02065782851])
+    FHIRComponentFieldMeta("multipleBirth", lTagOf[Option[Patient.MultipleBirthChoice]], true, lTagOf[UnionBooleanOrInt])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val generalPractitioner: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -506,10 +506,10 @@ object Patient extends CompanionFor[Patient] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDate]]("birthDate", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_2131715935]("deceased"),
+          cursor.decodeOptRef[UnionBooleanOrFHIRDateTime]("deceased"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("maritalStatus", Some(None)),
-          cursor.decodeOptRef[Union02065782851]("multipleBirth"),
+          cursor.decodeOptRef[UnionBooleanOrInt]("multipleBirth"),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("generalPractitioner", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("managingOrganization", Some(None)),

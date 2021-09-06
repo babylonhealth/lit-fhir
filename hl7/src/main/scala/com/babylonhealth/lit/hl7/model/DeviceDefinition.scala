@@ -452,7 +452,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type ManufacturerChoice = Choice[Union_1128709984]
+  type ManufacturerChoice = Choice[UnionReferenceOrString]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -557,7 +557,11 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val manufacturer: FHIRComponentFieldMeta[Option[DeviceDefinition.ManufacturerChoice]] =
-    FHIRComponentFieldMeta("manufacturer", lTagOf[Option[DeviceDefinition.ManufacturerChoice]], true, lTagOf[Union_1128709984])
+    FHIRComponentFieldMeta(
+      "manufacturer",
+      lTagOf[Option[DeviceDefinition.ManufacturerChoice]],
+      true,
+      lTagOf[UnionReferenceOrString])
   val shelfLifeStorage: FHIRComponentFieldMeta[LitSeq[Choice["ProductShelfLife"]]] =
     FHIRComponentFieldMeta(
       "shelfLifeStorage",
@@ -718,7 +722,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("languageCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("parentDevice", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[Union_1128709984]("manufacturer"),
+          cursor.decodeOptRef[UnionReferenceOrString]("manufacturer"),
           cursor.decodeAs[LitSeq[Choice["ProductShelfLife"]]]("shelfLifeStorage", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("onlineInformation", Some(None)),

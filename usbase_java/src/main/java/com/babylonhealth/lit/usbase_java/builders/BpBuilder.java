@@ -53,7 +53,7 @@ public interface BpBuilder extends VitalsignsBuilder {
       OBSERVATION_STATUS status,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull Choice_0934386166 effective,
+      @NonNull ChoiceFHIRDateTimeOrPeriod effective,
       CodeableConcept code,
       Collection<Observation.Component> component) {
     return new Impl(status, subject, category, effective, code, component);
@@ -63,7 +63,7 @@ public interface BpBuilder extends VitalsignsBuilder {
       OBSERVATION_STATUS status,
       ReferenceBuilder subject,
       Collection<CodeableConceptBuilder> category,
-      @NonNull Choice_0934386166 effective,
+      @NonNull ChoiceFHIRDateTimeOrPeriod effective,
       CodeableConceptBuilder code,
       Collection<Observation_ComponentBuilder> component) {
     return new Impl(
@@ -75,12 +75,12 @@ public interface BpBuilder extends VitalsignsBuilder {
         new LitSeq<>(component).map(Observation_ComponentBuilder::build));
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements BpBuilder {
@@ -110,7 +110,7 @@ public interface BpBuilder extends VitalsignsBuilder {
     private Collection<Reference> hasMember = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private Choice_0934386166 effective;
+    private ChoiceFHIRDateTimeOrPeriod effective;
     private Optional<String> implicitRules = Optional.empty();
     private CodeableConcept code;
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
@@ -139,7 +139,7 @@ public interface BpBuilder extends VitalsignsBuilder {
         OBSERVATION_STATUS status,
         Reference subject,
         Collection<CodeableConcept> category,
-        @NonNull Choice_0934386166 effective,
+        @NonNull ChoiceFHIRDateTimeOrPeriod effective,
         CodeableConcept code,
         Collection<Observation.Component> component) {
       this.status = status;

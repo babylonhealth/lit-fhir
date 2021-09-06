@@ -32,8 +32,8 @@ object Vitalsigns extends CompanionFor[Vitalsigns] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/vitalsigns")
-  type ValueChoice     = Choice[Union_0802685816]
-  type EffectiveChoice = Choice[Union_0934386166]
+  type ValueChoice     = Choice[UnionObservation_Value]
+  type EffectiveChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/vitalsigns"))),
@@ -134,7 +134,7 @@ object Vitalsigns extends CompanionFor[Vitalsigns] {
   val category: FHIRComponentFieldMeta[NonEmptyLitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("category", lTagOf[NonEmptyLitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val value: FHIRComponentFieldMeta[Option[Vitalsigns.ValueChoice]] =
-    FHIRComponentFieldMeta("value", lTagOf[Option[Vitalsigns.ValueChoice]], true, lTagOf[Union_0802685816])
+    FHIRComponentFieldMeta("value", lTagOf[Option[Vitalsigns.ValueChoice]], true, lTagOf[UnionObservation_Value])
   val bodySite: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val specimen: FHIRComponentFieldMeta[Option[Reference]] =
@@ -154,7 +154,7 @@ object Vitalsigns extends CompanionFor[Vitalsigns] {
   val derivedFrom: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("derivedFrom", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Vitalsigns.EffectiveChoice] =
-    FHIRComponentFieldMeta("effective", lTagOf[Vitalsigns.EffectiveChoice], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("effective", lTagOf[Vitalsigns.EffectiveChoice], true, lTagOf[UnionFHIRDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -294,7 +294,7 @@ object Vitalsigns extends CompanionFor[Vitalsigns] {
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[NonEmptyLitSeq[CodeableConcept]]("category", None),
-          cursor.decodeOptRef[Union_0802685816]("value"),
+          cursor.decodeOptRef[UnionObservation_Value]("value"),
           cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
           cursor.decodeAs[Option[Reference]]("specimen", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -304,7 +304,7 @@ object Vitalsigns extends CompanionFor[Vitalsigns] {
           cursor.decodeAs[LitSeq[Reference]]("hasMember", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
-          cursor.decodeRef[Union_0934386166]("effective"),
+          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

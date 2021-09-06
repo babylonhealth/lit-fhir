@@ -34,7 +34,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
     override type ResourceType = DateFilter
     override type ParentType   = DateFilter
     override val parentType: CompanionFor[ResourceType] = DateFilter
-    type ValueChoice = Choice[Union_1947777294]
+    type ValueChoice = Choice[UnionDurationOrFHIRDateTimeOrPeriod]
     def apply(
         id: Option[String] = None,
         path: Option[String] = None,
@@ -58,7 +58,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
     val path: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("path", lTagOf[Option[String]], false, lTagOf[String])
     val value: FHIRComponentFieldMeta[Option[DateFilter.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[DateFilter.ValueChoice]], true, lTagOf[Union_1947777294])
+      FHIRComponentFieldMeta("value", lTagOf[Option[DateFilter.ValueChoice]], true, lTagOf[UnionDurationOrFHIRDateTimeOrPeriod])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val searchParam: FHIRComponentFieldMeta[Option[String]] =
@@ -80,7 +80,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
           new DateFilter(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[String]]("path", Some(None)),
-            cursor.decodeOptRef[Union_1947777294]("value"),
+            cursor.decodeOptRef[UnionDurationOrFHIRDateTimeOrPeriod]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("searchParam", Some(None)),
             decodeAttributes(cursor)
@@ -228,7 +228,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       val direction: SORT_DIRECTION,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       `type`: ALL_TYPES,
@@ -265,7 +265,11 @@ object DataRequirement extends CompanionFor[DataRequirement] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val subject: FHIRComponentFieldMeta[Option[DataRequirement.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[DataRequirement.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "subject",
+      lTagOf[Option[DataRequirement.SubjectChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val mustSupport: FHIRComponentFieldMeta[LitSeq[String]] =
     FHIRComponentFieldMeta("mustSupport", lTagOf[LitSeq[String]], false, lTagOf[String])
   val sort: FHIRComponentFieldMeta[LitSeq[DataRequirement.Sort]] =
@@ -312,7 +316,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
           cursor.decodeAs[Option[PositiveInt]]("limit", Some(None)),
           cursor.decodeAs[LitSeq[Canonical]]("profile", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01025009075]("subject"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
           cursor.decodeAs[LitSeq[String]]("mustSupport", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[DataRequirement.Sort]]("sort", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[DataRequirement.CodeFilter]]("codeFilter", Some(LitSeq.empty)),

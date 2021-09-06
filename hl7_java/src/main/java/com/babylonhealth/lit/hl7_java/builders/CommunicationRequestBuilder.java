@@ -55,12 +55,12 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
-  public static Choice_0934386166 occurrence(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod occurrence(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 occurrence(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod occurrence(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements CommunicationRequestBuilder {
@@ -89,7 +89,7 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     private Optional<CodeableConcept> statusReason = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<Choice_0934386166> occurrence = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriod> occurrence = Optional.empty();
     private Optional<Identifier> groupIdentifier = Optional.empty();
     private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -485,7 +485,8 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
      *     Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
      *     CommunicationRequestBuilder.occurrence static methods
      */
-    public CommunicationRequestBuilder.Impl withOccurrence(@NonNull Choice_0934386166 occurrence) {
+    public CommunicationRequestBuilder.Impl withOccurrence(
+        @NonNull ChoiceFHIRDateTimeOrPeriod occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

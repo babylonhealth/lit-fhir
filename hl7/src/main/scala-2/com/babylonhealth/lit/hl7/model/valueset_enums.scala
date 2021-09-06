@@ -6181,31 +6181,6 @@ object REQUEST_STATUS extends FhirEnum[REQUEST_STATUS] with FhirCirceEnum[REQUES
   }
 }
 
-sealed abstract class RESEARCH_ELEMENT_TYPE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object RESEARCH_ELEMENT_TYPE extends FhirEnum[RESEARCH_ELEMENT_TYPE] with FhirCirceEnum[RESEARCH_ELEMENT_TYPE] {
-  val reference = "http://hl7.org/fhir/ValueSet/research-element-type"
-  val values    = findValues
-  case object EXPOSURE extends RESEARCH_ELEMENT_TYPE("exposure") {
-    def display: Option[String] = Some("Exposure")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-element-type")
-  }
-  case object OUTCOME extends RESEARCH_ELEMENT_TYPE("outcome") {
-    def display: Option[String] = Some("Outcome")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-element-type")
-  }
-  case object POPULATION extends RESEARCH_ELEMENT_TYPE("population") {
-    def display: Option[String] = Some("Population")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-element-type")
-  }
-}
-
 sealed abstract class RESEARCH_STUDY_STATUS(override val entryName: String)
     extends EnumeratumBase
     with Product
@@ -8909,47 +8884,6 @@ object SUPPLYDELIVERY_STATUS extends FhirEnum[SUPPLYDELIVERY_STATUS] with FhirCi
   case object IN_PROGRESS extends SUPPLYDELIVERY_STATUS("in-progress") {
     def display: Option[String] = Some("In Progress")
     def system: Option[String]  = Some("http://hl7.org/fhir/supplydelivery-status")
-  }
-}
-
-sealed abstract class SUPPLYREQUEST_STATUS(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object SUPPLYREQUEST_STATUS extends FhirEnum[SUPPLYREQUEST_STATUS] with FhirCirceEnum[SUPPLYREQUEST_STATUS] {
-  val reference = "http://hl7.org/fhir/ValueSet/supplyrequest-status"
-  val values    = findValues
-  case object ACTIVE extends SUPPLYREQUEST_STATUS("active") {
-    def display: Option[String] = Some("Active")
-    def system: Option[String]  = Some("http://hl7.org/fhir/supplyrequest-status")
-  }
-  case object CANCELLED extends SUPPLYREQUEST_STATUS("cancelled") {
-    def display: Option[String] = Some("Cancelled")
-    def system: Option[String]  = Some("http://hl7.org/fhir/supplyrequest-status")
-  }
-  case object COMPLETED extends SUPPLYREQUEST_STATUS("completed") {
-    def display: Option[String] = Some("Completed")
-    def system: Option[String]  = Some("http://hl7.org/fhir/supplyrequest-status")
-  }
-  case object DRAFT extends SUPPLYREQUEST_STATUS("draft") {
-    def display: Option[String] = Some("Draft")
-    def system: Option[String]  = Some("http://hl7.org/fhir/supplyrequest-status")
-  }
-  case object ENTERED_IN_ERROR extends SUPPLYREQUEST_STATUS("entered-in-error") {
-    def display: Option[String] = Some("Entered in Error")
-    def system: Option[String]  = Some("http://hl7.org/fhir/supplyrequest-status")
-  }
-  case object SUSPENDED extends SUPPLYREQUEST_STATUS("suspended") {
-    def display: Option[String] = Some("Suspended")
-    def system: Option[String]  = Some("http://hl7.org/fhir/supplyrequest-status")
-  }
-  case object UNKNOWN extends SUPPLYREQUEST_STATUS("unknown") {
-    def display: Option[String] = Some("Unknown")
-    def system: Option[String]  = Some("http://hl7.org/fhir/supplyrequest-status")
   }
 }
 

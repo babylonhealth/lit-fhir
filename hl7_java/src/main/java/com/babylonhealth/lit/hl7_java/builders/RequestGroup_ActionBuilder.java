@@ -58,28 +58,28 @@ public interface RequestGroup_ActionBuilder {
     return new Impl();
   }
 
-  public static Choice_0181779868 timing(Age a) {
-    return new Choice_0181779868(a);
+  public static ChoiceAction_Timing timing(Age a) {
+    return new ChoiceAction_Timing(a);
   }
 
-  public static Choice_0181779868 timing(Duration d) {
-    return new Choice_0181779868(d);
+  public static ChoiceAction_Timing timing(Duration d) {
+    return new ChoiceAction_Timing(d);
   }
 
-  public static Choice_0181779868 timing(FHIRDateTime f) {
-    return new Choice_0181779868(f);
+  public static ChoiceAction_Timing timing(FHIRDateTime f) {
+    return new ChoiceAction_Timing(f);
   }
 
-  public static Choice_0181779868 timing(Period p) {
-    return new Choice_0181779868(p);
+  public static ChoiceAction_Timing timing(Period p) {
+    return new ChoiceAction_Timing(p);
   }
 
-  public static Choice_0181779868 timing(Range r) {
-    return new Choice_0181779868(r);
+  public static ChoiceAction_Timing timing(Range r) {
+    return new ChoiceAction_Timing(r);
   }
 
-  public static Choice_0181779868 timing(Timing t) {
-    return new Choice_0181779868(t);
+  public static ChoiceAction_Timing timing(Timing t) {
+    return new ChoiceAction_Timing(t);
   }
 
   public class Impl implements RequestGroup_ActionBuilder {
@@ -92,7 +92,7 @@ public interface RequestGroup_ActionBuilder {
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
     private Optional<Reference> resource = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_0181779868> timing = Optional.empty();
+    private Optional<ChoiceAction_Timing> timing = Optional.empty();
     private Optional<String> description = Optional.empty();
     private Collection<Reference> participant = Collections.emptyList();
     private Collection<RelatedArtifact> documentation = Collections.emptyList();
@@ -219,7 +219,7 @@ public interface RequestGroup_ActionBuilder {
      *     Period, Range, Timing. To pass the value in, wrap with one of the
      *     RequestGroup_ActionBuilder.timing static methods
      */
-    public RequestGroup_ActionBuilder.Impl withTiming(@NonNull Choice_0181779868 timing) {
+    public RequestGroup_ActionBuilder.Impl withTiming(@NonNull ChoiceAction_Timing timing) {
       this.timing = Optional.of(timing);
       return this;
     }

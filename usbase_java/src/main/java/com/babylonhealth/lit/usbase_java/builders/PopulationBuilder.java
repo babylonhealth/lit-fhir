@@ -56,18 +56,18 @@ public interface PopulationBuilder extends BackboneElementBuilder {
     return new Impl();
   }
 
-  public static Choice_1946587936 age(CodeableConcept c) {
-    return new Choice_1946587936(c);
+  public static ChoiceCodeableConceptOrRange age(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrRange(c);
   }
 
-  public static Choice_1946587936 age(Range r) {
-    return new Choice_1946587936(r);
+  public static ChoiceCodeableConceptOrRange age(Range r) {
+    return new ChoiceCodeableConceptOrRange(r);
   }
 
   public class Impl implements PopulationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> race = Optional.empty();
-    private Optional<Choice_1946587936> age = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrRange> age = Optional.empty();
     private Optional<CodeableConcept> gender = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -99,7 +99,7 @@ public interface PopulationBuilder extends BackboneElementBuilder {
      *     one of CodeableConcept, Range. To pass the value in, wrap with one of the
      *     PopulationBuilder.age static methods
      */
-    public PopulationBuilder.Impl withAge(@NonNull Choice_1946587936 age) {
+    public PopulationBuilder.Impl withAge(@NonNull ChoiceCodeableConceptOrRange age) {
       this.age = Optional.of(age);
       return this;
     }

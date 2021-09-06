@@ -10,21 +10,22 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.usbase.model._
 
 object UnionAliases {
-  type Union00284192631 = Duration | Period
-  type Union00315627715 = BigDecimal | FHIRDate | FHIRDateTime | Int | LocalTime | ZonedDateTime
-  type Union00813350082 = Age | Boolean | FHIRDate
-  type Union01054268719 = Canonical | CodeableConcept
-  type Union01613806391 = BigDecimal | FHIRDate | FHIRDateTime | Int | LocalTime
-  type Union_1915626029 = CodeableConcept | FHIRDateTime | LocalTime | Period | Quantity | Range | Ratio | SampledData | String
-  type Union_1946587936 = CodeableConcept | Range
+  type UnionAgeOrBooleanOrFHIRDate     = Age | Boolean | FHIRDate
+  type UnionCanonicalOrCodeableConcept = Canonical | CodeableConcept
+  type UnionCodeableConceptOrRange     = CodeableConcept | Range
+  type UnionDevicemetricobservation_Value = CodeableConcept | FHIRDateTime | LocalTime | Period | Quantity | Range | Ratio |
+    SampledData | String
+  type UnionDurationOrPeriod = Duration | Period
+  type UnionMaxValue_Value   = BigDecimal | FHIRDate | FHIRDateTime | Int | LocalTime | ZonedDateTime
+  type UnionMinValue_Value   = BigDecimal | FHIRDate | FHIRDateTime | Int | LocalTime
 
-  val Union00284192631Tag: LTag[Union00284192631] = LTag[Union00284192631]
-  val Union00315627715Tag: LTag[Union00315627715] = LTag[Union00315627715]
-  val Union00813350082Tag: LTag[Union00813350082] = LTag[Union00813350082]
-  val Union01054268719Tag: LTag[Union01054268719] = LTag[Union01054268719]
-  val Union01613806391Tag: LTag[Union01613806391] = LTag[Union01613806391]
-  val Union_1915626029Tag: LTag[Union_1915626029] = LTag[Union_1915626029]
-  val Union_1946587936Tag: LTag[Union_1946587936] = LTag[Union_1946587936]
+  val UnionAgeOrBooleanOrFHIRDateTag: LTag[UnionAgeOrBooleanOrFHIRDate]               = LTag[UnionAgeOrBooleanOrFHIRDate]
+  val UnionCanonicalOrCodeableConceptTag: LTag[UnionCanonicalOrCodeableConcept]       = LTag[UnionCanonicalOrCodeableConcept]
+  val UnionCodeableConceptOrRangeTag: LTag[UnionCodeableConceptOrRange]               = LTag[UnionCodeableConceptOrRange]
+  val UnionDevicemetricobservation_ValueTag: LTag[UnionDevicemetricobservation_Value] = LTag[UnionDevicemetricobservation_Value]
+  val UnionDurationOrPeriodTag: LTag[UnionDurationOrPeriod]                           = LTag[UnionDurationOrPeriod]
+  val UnionMaxValue_ValueTag: LTag[UnionMaxValue_Value]                               = LTag[UnionMaxValue_Value]
+  val UnionMinValue_ValueTag: LTag[UnionMinValue_Value]                               = LTag[UnionMinValue_Value]
 }
 
 object Module

@@ -150,7 +150,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OnsetChoice = Choice[Union01352864625]
+  type OnsetChoice = Choice[UnionAllergyIntolerance_Onset]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -223,7 +223,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
   val category: FHIRComponentFieldMeta[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]] =
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]], false, lTagOf[ALLERGY_INTOLERANCE_CATEGORY])
   val onset: FHIRComponentFieldMeta[Option[AllergyIntolerance.OnsetChoice]] =
-    FHIRComponentFieldMeta("onset", lTagOf[Option[AllergyIntolerance.OnsetChoice]], true, lTagOf[Union01352864625])
+    FHIRComponentFieldMeta("onset", lTagOf[Option[AllergyIntolerance.OnsetChoice]], true, lTagOf[UnionAllergyIntolerance_Onset])
   val recorder: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("recorder", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val asserter: FHIRComponentFieldMeta[Option[Reference]] =
@@ -367,7 +367,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
           cursor.decodeAs[Reference]("patient", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]]("category", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01352864625]("onset"),
+          cursor.decodeOptRef[UnionAllergyIntolerance_Onset]("onset"),
           cursor.decodeAs[Option[Reference]]("recorder", Some(None)),
           cursor.decodeAs[Option[Reference]]("asserter", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),

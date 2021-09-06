@@ -121,7 +121,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       override type ResourceType = RelatedAction
       override type ParentType   = RelatedAction
       override val parentType: CompanionFor[ResourceType] = RelatedAction
-      type OffsetChoice = Choice[Union00801828838]
+      type OffsetChoice = Choice[UnionDurationOrRange]
       def apply(
           id: Option[String] = None,
           actionId: Id,
@@ -149,7 +149,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val offset: FHIRComponentFieldMeta[Option[RelatedAction.OffsetChoice]] =
-        FHIRComponentFieldMeta("offset", lTagOf[Option[RelatedAction.OffsetChoice]], true, lTagOf[Union00801828838])
+        FHIRComponentFieldMeta("offset", lTagOf[Option[RelatedAction.OffsetChoice]], true, lTagOf[UnionDurationOrRange])
       val relationship: FHIRComponentFieldMeta[ACTION_RELATIONSHIP_TYPE] =
         FHIRComponentFieldMeta("relationship", lTagOf[ACTION_RELATIONSHIP_TYPE], false, lTagOf[ACTION_RELATIONSHIP_TYPE])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -173,7 +173,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[Id]("actionId", None),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-              cursor.decodeOptRef[Union00801828838]("offset"),
+              cursor.decodeOptRef[UnionDurationOrRange]("offset"),
               cursor.decodeAs[ACTION_RELATIONSHIP_TYPE]("relationship", None),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)
@@ -190,7 +190,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type TimingChoice = Choice[Union_0181779868]
+    type TimingChoice = Choice[UnionAction_Timing]
     def apply(
         id: Option[String] = None,
         code: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -285,7 +285,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val timing: FHIRComponentFieldMeta[Option[Action.TimingChoice]] =
-      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[Union_0181779868])
+      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[UnionAction_Timing])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
     val participant: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -394,7 +394,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
             cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
             cursor.decodeAs[Option[Reference]]("resource", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0181779868]("timing"),
+            cursor.decodeOptRef[UnionAction_Timing]("timing"),
             cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[LitSeq[Reference]]("participant", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[RelatedArtifact]]("documentation", Some(LitSeq.empty)),

@@ -31,7 +31,7 @@ object Ehrsrle_provenance extends CompanionFor[Ehrsrle_provenance] {
   override val baseType: CompanionFor[ResourceType] = Provenance
   override val parentType: CompanionFor[ParentType] = Provenance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ehrsrle-provenance")
-  type OccurredChoice = Choice[Union_0934386166]
+  type OccurredChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/ehrsrle-provenance"))),
@@ -100,7 +100,7 @@ object Ehrsrle_provenance extends CompanionFor[Ehrsrle_provenance] {
   val signature: FHIRComponentFieldMeta[LitSeq[Signature]] =
     FHIRComponentFieldMeta("signature", lTagOf[LitSeq[Signature]], false, lTagOf[Signature])
   val occurred: FHIRComponentFieldMeta[Option[Ehrsrle_provenance.OccurredChoice]] =
-    FHIRComponentFieldMeta("occurred", lTagOf[Option[Ehrsrle_provenance.OccurredChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("occurred", lTagOf[Option[Ehrsrle_provenance.OccurredChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -210,7 +210,7 @@ object Ehrsrle_provenance extends CompanionFor[Ehrsrle_provenance] {
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Signature]]("signature", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_0934386166]("occurred"),
+          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("occurred"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[NonEmptyLitSeq[Provenance.Agent]]("agent", None),

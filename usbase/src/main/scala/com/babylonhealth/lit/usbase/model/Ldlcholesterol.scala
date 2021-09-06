@@ -32,7 +32,7 @@ object Ldlcholesterol extends CompanionFor[Ldlcholesterol] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ldlcholesterol")
-  type EffectiveChoice = Choice[Union01473702374]
+  type EffectiveChoice = Choice[UnionObservation_Effective]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/ldlcholesterol"))),
@@ -145,7 +145,7 @@ object Ldlcholesterol extends CompanionFor[Ldlcholesterol] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val effective: FHIRComponentFieldMeta[Option[Ldlcholesterol.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[Ldlcholesterol.EffectiveChoice]], true, lTagOf[Union01473702374])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[Ldlcholesterol.EffectiveChoice]], true, lTagOf[UnionObservation_Effective])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -283,7 +283,7 @@ object Ldlcholesterol extends CompanionFor[Ldlcholesterol] {
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01473702374]("effective"),
+          cursor.decodeOptRef[UnionObservation_Effective]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeFromListAs[Option[CodeableConcept]]("interpretation", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

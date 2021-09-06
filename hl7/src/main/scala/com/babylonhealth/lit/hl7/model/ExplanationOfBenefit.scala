@@ -43,8 +43,8 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override type ResourceType = Financial
       override type ParentType   = Financial
       override val parentType: CompanionFor[ResourceType] = Financial
-      type UsedChoice    = Choice[Union_1289000811]
-      type AllowedChoice = Choice[Union_0040864668]
+      type UsedChoice    = Choice[UnionMoneyOrUnsignedInt]
+      type AllowedChoice = Choice[UnionMoneyOrStringOrUnsignedInt]
       def apply(
           id: Option[String] = None,
           `type`: CodeableConcept,
@@ -70,11 +70,11 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       val `type`: FHIRComponentFieldMeta[CodeableConcept] =
         FHIRComponentFieldMeta("type", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
       val used: FHIRComponentFieldMeta[Option[Financial.UsedChoice]] =
-        FHIRComponentFieldMeta("used", lTagOf[Option[Financial.UsedChoice]], true, lTagOf[Union_1289000811])
+        FHIRComponentFieldMeta("used", lTagOf[Option[Financial.UsedChoice]], true, lTagOf[UnionMoneyOrUnsignedInt])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val allowed: FHIRComponentFieldMeta[Option[Financial.AllowedChoice]] =
-        FHIRComponentFieldMeta("allowed", lTagOf[Option[Financial.AllowedChoice]], true, lTagOf[Union_0040864668])
+        FHIRComponentFieldMeta("allowed", lTagOf[Option[Financial.AllowedChoice]], true, lTagOf[UnionMoneyOrStringOrUnsignedInt])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, used, extension, allowed, modifierExtension)
@@ -95,9 +95,9 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             new Financial(
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[CodeableConcept]("type", None),
-              cursor.decodeOptRef[Union_1289000811]("used"),
+              cursor.decodeOptRef[UnionMoneyOrUnsignedInt]("used"),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-              cursor.decodeOptRef[Union_0040864668]("allowed"),
+              cursor.decodeOptRef[UnionMoneyOrStringOrUnsignedInt]("allowed"),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)
             )
@@ -516,8 +516,8 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
         val subDetail: LitSeq[Detail.SubDetail] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type ServicedChoice = Choice[Union_0503196159]
-    type LocationChoice = Choice[Union_0316522316]
+    type ServicedChoice = Choice[UnionFHIRDateOrPeriod]
+    type LocationChoice = Choice[UnionAddressOrCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         net: Option[Money] = None,
@@ -615,9 +615,13 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val programCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("programCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val serviced: FHIRComponentFieldMeta[Option[AddItem.ServicedChoice]] =
-      FHIRComponentFieldMeta("serviced", lTagOf[Option[AddItem.ServicedChoice]], true, lTagOf[Union_0503196159])
+      FHIRComponentFieldMeta("serviced", lTagOf[Option[AddItem.ServicedChoice]], true, lTagOf[UnionFHIRDateOrPeriod])
     val location: FHIRComponentFieldMeta[Option[AddItem.LocationChoice]] =
-      FHIRComponentFieldMeta("location", lTagOf[Option[AddItem.LocationChoice]], true, lTagOf[Union_0316522316])
+      FHIRComponentFieldMeta(
+        "location",
+        lTagOf[Option[AddItem.LocationChoice]],
+        true,
+        lTagOf[UnionAddressOrCodeableConceptOrReference])
     val itemSequence: FHIRComponentFieldMeta[LitSeq[PositiveInt]] =
       FHIRComponentFieldMeta("itemSequence", lTagOf[LitSeq[PositiveInt]], false, lTagOf[PositiveInt])
     val adjudication: FHIRComponentFieldMeta[LitSeq[ExplanationOfBenefit.Item.Adjudication]] =
@@ -701,8 +705,8 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[Option[Money]]("unitPrice", Some(None)),
             cursor.decodeAs[LitSeq[PositiveInt]]("noteNumber", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("programCode", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0503196159]("serviced"),
-            cursor.decodeOptRef[Union_0316522316]("location"),
+            cursor.decodeOptRef[UnionFHIRDateOrPeriod]("serviced"),
+            cursor.decodeOptRef[UnionAddressOrCodeableConceptOrReference]("location"),
             cursor.decodeAs[LitSeq[PositiveInt]]("itemSequence", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[ExplanationOfBenefit.Item.Adjudication]]("adjudication", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[PositiveInt]]("detailSequence", Some(LitSeq.empty)),
@@ -1199,8 +1203,8 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
         val subDetail: LitSeq[Detail.SubDetail] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type ServicedChoice = Choice[Union_0503196159]
-    type LocationChoice = Choice[Union_0316522316]
+    type ServicedChoice = Choice[UnionFHIRDateOrPeriod]
+    type LocationChoice = Choice[UnionAddressOrCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         net: Option[Money] = None,
@@ -1291,9 +1295,13 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val programCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("programCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val serviced: FHIRComponentFieldMeta[Option[Item.ServicedChoice]] =
-      FHIRComponentFieldMeta("serviced", lTagOf[Option[Item.ServicedChoice]], true, lTagOf[Union_0503196159])
+      FHIRComponentFieldMeta("serviced", lTagOf[Option[Item.ServicedChoice]], true, lTagOf[UnionFHIRDateOrPeriod])
     val location: FHIRComponentFieldMeta[Option[Item.LocationChoice]] =
-      FHIRComponentFieldMeta("location", lTagOf[Option[Item.LocationChoice]], true, lTagOf[Union_0316522316])
+      FHIRComponentFieldMeta(
+        "location",
+        lTagOf[Option[Item.LocationChoice]],
+        true,
+        lTagOf[UnionAddressOrCodeableConceptOrReference])
     val careTeamSequence: FHIRComponentFieldMeta[LitSeq[PositiveInt]] =
       FHIRComponentFieldMeta("careTeamSequence", lTagOf[LitSeq[PositiveInt]], false, lTagOf[PositiveInt])
     val productOrService: FHIRComponentFieldMeta[CodeableConcept] =
@@ -1389,8 +1397,8 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[LitSeq[Reference]]("encounter", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[PositiveInt]]("noteNumber", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("programCode", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0503196159]("serviced"),
-            cursor.decodeOptRef[Union_0316522316]("location"),
+            cursor.decodeOptRef[UnionFHIRDateOrPeriod]("serviced"),
+            cursor.decodeOptRef[UnionAddressOrCodeableConceptOrReference]("location"),
             cursor.decodeAs[LitSeq[PositiveInt]]("careTeamSequence", Some(LitSeq.empty)),
             cursor.decodeAs[CodeableConcept]("productOrService", None),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -1439,8 +1447,8 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     override type ResourceType = SupportingInfo
     override type ParentType   = SupportingInfo
     override val parentType: CompanionFor[ResourceType] = SupportingInfo
-    type ValueChoice  = Choice[Union_0543144563]
-    type TimingChoice = Choice[Union_0503196159]
+    type ValueChoice  = Choice[UnionSupportingInfo_Value]
+    type TimingChoice = Choice[UnionFHIRDateOrPeriod]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,
@@ -1478,11 +1486,11 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val category: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("category", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Option[SupportingInfo.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[SupportingInfo.ValueChoice]], true, lTagOf[Union_0543144563])
+      FHIRComponentFieldMeta("value", lTagOf[Option[SupportingInfo.ValueChoice]], true, lTagOf[UnionSupportingInfo_Value])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val timing: FHIRComponentFieldMeta[Option[SupportingInfo.TimingChoice]] =
-      FHIRComponentFieldMeta("timing", lTagOf[Option[SupportingInfo.TimingChoice]], true, lTagOf[Union_0503196159])
+      FHIRComponentFieldMeta("timing", lTagOf[Option[SupportingInfo.TimingChoice]], true, lTagOf[UnionFHIRDateOrPeriod])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -1510,9 +1518,9 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[Option[Coding]]("reason", Some(None)),
             cursor.decodeAs[PositiveInt]("sequence", None),
             cursor.decodeAs[CodeableConcept]("category", None),
-            cursor.decodeOptRef[Union_0543144563]("value"),
+            cursor.decodeOptRef[UnionSupportingInfo_Value]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0503196159]("timing"),
+            cursor.decodeOptRef[UnionFHIRDateOrPeriod]("timing"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1692,7 +1700,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     override type ResourceType = Procedure
     override type ParentType   = Procedure
     override val parentType: CompanionFor[ResourceType] = Procedure
-    type ProcedureChoice = Choice[Union01025009075]
+    type ProcedureChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         udi: LitSeq[Reference] = LitSeq.empty,
@@ -1730,7 +1738,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val procedure: FHIRComponentFieldMeta[Procedure.ProcedureChoice] =
-      FHIRComponentFieldMeta("procedure", lTagOf[Procedure.ProcedureChoice], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("procedure", lTagOf[Procedure.ProcedureChoice], true, lTagOf[UnionCodeableConceptOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, udi, `type`, date, sequence, extension, procedure, modifierExtension)
@@ -1757,7 +1765,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[Option[FHIRDateTime]]("date", Some(None)),
             cursor.decodeAs[PositiveInt]("sequence", None),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union01025009075]("procedure"),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("procedure"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1781,7 +1789,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     override type ResourceType = Diagnosis
     override type ParentType   = Diagnosis
     override val parentType: CompanionFor[ResourceType] = Diagnosis
-    type DiagnosisChoice = Choice[Union01025009075]
+    type DiagnosisChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         `type`: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -1819,7 +1827,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val packageCode: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("packageCode", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val diagnosis: FHIRComponentFieldMeta[Diagnosis.DiagnosisChoice] =
-      FHIRComponentFieldMeta("diagnosis", lTagOf[Diagnosis.DiagnosisChoice], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("diagnosis", lTagOf[Diagnosis.DiagnosisChoice], true, lTagOf[UnionCodeableConceptOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -1847,7 +1855,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("onAdmission", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("packageCode", Some(None)),
-            cursor.decodeRef[Union01025009075]("diagnosis"),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("diagnosis"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1871,7 +1879,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     override type ResourceType = Accident
     override type ParentType   = Accident
     override val parentType: CompanionFor[ResourceType] = Accident
-    type LocationChoice = Choice[Union00434638053]
+    type LocationChoice = Choice[UnionAddressOrReference]
     def apply(
         id: Option[String] = None,
         date: Option[FHIRDate] = None,
@@ -1901,7 +1909,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val location: FHIRComponentFieldMeta[Option[Accident.LocationChoice]] =
-      FHIRComponentFieldMeta("location", lTagOf[Option[Accident.LocationChoice]], true, lTagOf[Union00434638053])
+      FHIRComponentFieldMeta("location", lTagOf[Option[Accident.LocationChoice]], true, lTagOf[UnionAddressOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, date, `type`, extension, location, modifierExtension)
@@ -1924,7 +1932,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[Option[FHIRDate]]("date", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union00434638053]("location"),
+            cursor.decodeOptRef[UnionAddressOrReference]("location"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )

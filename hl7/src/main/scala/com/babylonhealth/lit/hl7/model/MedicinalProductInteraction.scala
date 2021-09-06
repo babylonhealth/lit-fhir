@@ -37,7 +37,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
     override type ResourceType = Interactant
     override type ParentType   = Interactant
     override val parentType: CompanionFor[ResourceType] = Interactant
-    type ItemChoice = Choice[Union01025009075]
+    type ItemChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         item: Interactant.ItemChoice,
@@ -56,7 +56,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val item: FHIRComponentFieldMeta[Interactant.ItemChoice] =
-      FHIRComponentFieldMeta("item", lTagOf[Interactant.ItemChoice], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("item", lTagOf[Interactant.ItemChoice], true, lTagOf[UnionCodeableConceptOrReference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -76,7 +76,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
         Try(
           new Interactant(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeRef[Union01025009075]("item"),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("item"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)

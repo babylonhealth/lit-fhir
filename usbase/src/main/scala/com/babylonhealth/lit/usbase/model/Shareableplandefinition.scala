@@ -33,7 +33,7 @@ object Shareableplandefinition extends CompanionFor[Shareableplandefinition] {
   override val baseType: CompanionFor[ResourceType] = PlanDefinition
   override val parentType: CompanionFor[ParentType] = PlanDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareableplandefinition")
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: UriStr,
@@ -170,7 +170,11 @@ object Shareableplandefinition extends CompanionFor[Shareableplandefinition] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[Shareableplandefinition.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[Shareableplandefinition.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "subject",
+      lTagOf[Option[Shareableplandefinition.SubjectChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val description: FHIRComponentFieldMeta[Markdown] =
@@ -350,7 +354,7 @@ object Shareableplandefinition extends CompanionFor[Shareableplandefinition] {
           cursor.decodeAs[String]("publisher", None),
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01025009075]("subject"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Markdown]("description", None),
           cursor.decodeAs[Boolean]("experimental", None),

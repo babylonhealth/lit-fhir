@@ -34,7 +34,7 @@ object Us_core_diagnosticreport_note extends CompanionFor[Us_core_diagnosticrepo
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport
   override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note")
-  type EffectiveChoice = Choice[Union_0934386166]
+  type EffectiveChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -130,7 +130,11 @@ object Us_core_diagnosticreport_note extends CompanionFor[Us_core_diagnosticrepo
   val conclusion: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("conclusion", lTagOf[Option[String]], false, lTagOf[String])
   val effective: FHIRComponentFieldMeta[Us_core_diagnosticreport_note.EffectiveChoice] =
-    FHIRComponentFieldMeta("effective", lTagOf[Us_core_diagnosticreport_note.EffectiveChoice], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta(
+      "effective",
+      lTagOf[Us_core_diagnosticreport_note.EffectiveChoice],
+      true,
+      lTagOf[UnionFHIRDateTimeOrPeriod])
   val imagingStudy: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("imagingStudy", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -253,7 +257,7 @@ object Us_core_diagnosticreport_note extends CompanionFor[Us_core_diagnosticrepo
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("conclusion", Some(None)),
-          cursor.decodeRef[Union_0934386166]("effective"),
+          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("effective"),
           cursor.decodeAs[LitSeq[Reference]]("imagingStudy", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Attachment]]("presentedForm", Some(LitSeq.empty)),

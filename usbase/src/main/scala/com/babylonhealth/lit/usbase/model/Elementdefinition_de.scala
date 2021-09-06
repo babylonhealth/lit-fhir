@@ -31,9 +31,9 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   override val baseType: CompanionFor[ResourceType] = ElementDefinition
   override val parentType: CompanionFor[ParentType] = ElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-de")
-  type MinValueChoice     = Choice[Union_0637176084]
-  type MaxValueChoice     = Choice[Union_0637176084]
-  type DefaultValueChoice = Choice[Union_1349125893]
+  type MinValueChoice     = Choice[UnionElementDefinition_MinValue]
+  type MaxValueChoice     = Choice[UnionElementDefinition_MinValue]
+  type DefaultValueChoice = Choice[UnionAll]
   def apply(
       id: Option[String] = None,
       min: Option[UnsignedInt] = None,
@@ -124,9 +124,17 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   val definition: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("definition", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val minValue: FHIRComponentFieldMeta[Option[Elementdefinition_de.MinValueChoice]] =
-    FHIRComponentFieldMeta("minValue", lTagOf[Option[Elementdefinition_de.MinValueChoice]], true, lTagOf[Union_0637176084])
+    FHIRComponentFieldMeta(
+      "minValue",
+      lTagOf[Option[Elementdefinition_de.MinValueChoice]],
+      true,
+      lTagOf[UnionElementDefinition_MinValue])
   val maxValue: FHIRComponentFieldMeta[Option[Elementdefinition_de.MaxValueChoice]] =
-    FHIRComponentFieldMeta("maxValue", lTagOf[Option[Elementdefinition_de.MaxValueChoice]], true, lTagOf[Union_0637176084])
+    FHIRComponentFieldMeta(
+      "maxValue",
+      lTagOf[Option[Elementdefinition_de.MaxValueChoice]],
+      true,
+      lTagOf[UnionElementDefinition_MinValue])
   val mustSupport: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("mustSupport", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val requirements: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -136,11 +144,7 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   val base: FHIRComponentFieldMeta[Option[ElementDefinition.Base]] =
     FHIRComponentFieldMeta("base", lTagOf[Option[ElementDefinition.Base]], false, lTagOf[ElementDefinition.Base])
   val defaultValue: FHIRComponentFieldMeta[Option[Elementdefinition_de.DefaultValueChoice]] =
-    FHIRComponentFieldMeta(
-      "defaultValue",
-      lTagOf[Option[Elementdefinition_de.DefaultValueChoice]],
-      true,
-      lTagOf[Union_1349125893])
+    FHIRComponentFieldMeta("defaultValue", lTagOf[Option[Elementdefinition_de.DefaultValueChoice]], true, lTagOf[UnionAll])
   val isModifierReason: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("isModifierReason", lTagOf[Option[String]], false, lTagOf[String])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -275,13 +279,13 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
           cursor.decodeAs[Option[Int]]("maxLength", Some(None)),
           cursor.decodeAs[LitSeq[Id]]("condition", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("definition", Some(None)),
-          cursor.decodeOptRef[Union_0637176084]("minValue"),
-          cursor.decodeOptRef[Union_0637176084]("maxValue"),
+          cursor.decodeOptRef[UnionElementDefinition_MinValue]("minValue"),
+          cursor.decodeOptRef[UnionElementDefinition_MinValue]("maxValue"),
           cursor.decodeAs[Option[Boolean]]("mustSupport", Some(None)),
           cursor.decodeAs[Option[Markdown]]("requirements", Some(None)),
           cursor.decodeAs[Option[String]]("orderMeaning", Some(None)),
           cursor.decodeAs[Option[ElementDefinition.Base]]("base", Some(None)),
-          cursor.decodeOptRef[Union_1349125893]("defaultValue"),
+          cursor.decodeOptRef[UnionAll]("defaultValue"),
           cursor.decodeAs[Option[String]]("isModifierReason", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[ElementDefinition.Example]]("example", Some(LitSeq.empty)),

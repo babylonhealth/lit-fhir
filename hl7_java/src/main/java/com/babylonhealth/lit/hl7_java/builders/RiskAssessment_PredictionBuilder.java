@@ -53,30 +53,30 @@ public interface RiskAssessment_PredictionBuilder {
     return new Impl();
   }
 
-  public static Choice01200936722 when(Period p) {
-    return new Choice01200936722(p);
+  public static ChoicePeriodOrRange when(Period p) {
+    return new ChoicePeriodOrRange(p);
   }
 
-  public static Choice01200936722 when(Range r) {
-    return new Choice01200936722(r);
+  public static ChoicePeriodOrRange when(Range r) {
+    return new ChoicePeriodOrRange(r);
   }
 
-  public static Choice_0831630297 probability(BigDecimal b) {
-    return new Choice_0831630297(b);
+  public static ChoiceBigDecimalOrRange probability(BigDecimal b) {
+    return new ChoiceBigDecimalOrRange(b);
   }
 
-  public static Choice_0831630297 probability(Range r) {
-    return new Choice_0831630297(r);
+  public static ChoiceBigDecimalOrRange probability(Range r) {
+    return new ChoiceBigDecimalOrRange(r);
   }
 
   public class Impl implements RiskAssessment_PredictionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> outcome = Optional.empty();
-    private Optional<Choice01200936722> when = Optional.empty();
+    private Optional<ChoicePeriodOrRange> when = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> rationale = Optional.empty();
     private Optional<BigDecimal> relativeRisk = Optional.empty();
-    private Optional<Choice_0831630297> probability = Optional.empty();
+    private Optional<ChoiceBigDecimalOrRange> probability = Optional.empty();
     private Optional<CodeableConcept> qualitativeRisk = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -106,7 +106,7 @@ public interface RiskAssessment_PredictionBuilder {
      * @param when Field is a 'choice' field. Type should be one of Period, Range. To pass the value
      *     in, wrap with one of the RiskAssessment_PredictionBuilder.when static methods
      */
-    public RiskAssessment_PredictionBuilder.Impl withWhen(@NonNull Choice01200936722 when) {
+    public RiskAssessment_PredictionBuilder.Impl withWhen(@NonNull ChoicePeriodOrRange when) {
       this.when = Optional.of(when);
       return this;
     }
@@ -156,7 +156,7 @@ public interface RiskAssessment_PredictionBuilder {
      *     static methods
      */
     public RiskAssessment_PredictionBuilder.Impl withProbability(
-        @NonNull Choice_0831630297 probability) {
+        @NonNull ChoiceBigDecimalOrRange probability) {
       this.probability = Optional.of(probability);
       return this;
     }

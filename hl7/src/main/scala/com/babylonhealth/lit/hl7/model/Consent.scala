@@ -463,7 +463,7 @@ object Consent extends CompanionFor[Consent] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SourceChoice = Choice[Union_0340660840]
+  type SourceChoice = Choice[UnionAttachmentOrReference]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -536,7 +536,7 @@ object Consent extends CompanionFor[Consent] {
   val performer: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("performer", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val source: FHIRComponentFieldMeta[Option[Consent.SourceChoice]] =
-    FHIRComponentFieldMeta("source", lTagOf[Option[Consent.SourceChoice]], true, lTagOf[Union_0340660840])
+    FHIRComponentFieldMeta("source", lTagOf[Option[Consent.SourceChoice]], true, lTagOf[UnionAttachmentOrReference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val policyRule: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -680,7 +680,7 @@ object Consent extends CompanionFor[Consent] {
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_0340660840]("source"),
+          cursor.decodeOptRef[UnionAttachmentOrReference]("source"),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("policyRule", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("organization", Some(LitSeq.empty)),

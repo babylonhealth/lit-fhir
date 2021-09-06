@@ -45,20 +45,21 @@ import static java.util.stream.Collectors.toList;
 public interface ExplanationOfBenefit_DiagnosisBuilder {
   public ExplanationOfBenefit.Diagnosis build();
 
-  public static Impl init(Integer sequence, @NonNull Choice01025009075 diagnosis) {
+  public static Impl init(Integer sequence, @NonNull ChoiceCodeableConceptOrReference diagnosis) {
     return new Impl(sequence, diagnosis);
   }
 
-  public static Impl builder(Integer sequence, @NonNull Choice01025009075 diagnosis) {
+  public static Impl builder(
+      Integer sequence, @NonNull ChoiceCodeableConceptOrReference diagnosis) {
     return new Impl(sequence, diagnosis);
   }
 
-  public static Choice01025009075 diagnosis(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference diagnosis(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 diagnosis(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference diagnosis(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements ExplanationOfBenefit_DiagnosisBuilder {
@@ -68,7 +69,7 @@ public interface ExplanationOfBenefit_DiagnosisBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<CodeableConcept> onAdmission = Optional.empty();
     private Optional<CodeableConcept> packageCode = Optional.empty();
-    private Choice01025009075 diagnosis;
+    private ChoiceCodeableConceptOrReference diagnosis;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -79,7 +80,7 @@ public interface ExplanationOfBenefit_DiagnosisBuilder {
      *     'choice' field. Type should be one of CodeableConcept, Reference. To pass the value in,
      *     wrap with one of the ExplanationOfBenefit_DiagnosisBuilder.diagnosis static methods
      */
-    public Impl(Integer sequence, @NonNull Choice01025009075 diagnosis) {
+    public Impl(Integer sequence, @NonNull ChoiceCodeableConceptOrReference diagnosis) {
       this.sequence = sequence;
       this.diagnosis = diagnosis;
     }

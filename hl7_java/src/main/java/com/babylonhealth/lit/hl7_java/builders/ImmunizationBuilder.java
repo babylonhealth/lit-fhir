@@ -50,7 +50,7 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
       IMMUNIZATION_STATUS status,
       Reference patient,
       CodeableConcept vaccineCode,
-      @NonNull Choice_1715923163 occurrence) {
+      @NonNull ChoiceFHIRDateTimeOrString occurrence) {
     return new Impl(status, patient, vaccineCode, occurrence);
   }
 
@@ -58,16 +58,16 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
       IMMUNIZATION_STATUS status,
       ReferenceBuilder patient,
       CodeableConceptBuilder vaccineCode,
-      @NonNull Choice_1715923163 occurrence) {
+      @NonNull ChoiceFHIRDateTimeOrString occurrence) {
     return new Impl(status, patient.build(), vaccineCode.build(), occurrence);
   }
 
-  public static Choice_1715923163 occurrence(FHIRDateTime f) {
-    return new Choice_1715923163(f);
+  public static ChoiceFHIRDateTimeOrString occurrence(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrString(f);
   }
 
-  public static Choice_1715923163 occurrence(String s) {
-    return new Choice_1715923163(s);
+  public static ChoiceFHIRDateTimeOrString occurrence(String s) {
+    return new ChoiceFHIRDateTimeOrString(s);
   }
 
   public class Impl implements ImmunizationBuilder {
@@ -95,7 +95,7 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
     private Optional<Reference> manufacturer = Optional.empty();
     private Optional<Quantity> doseQuantity = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Choice_1715923163 occurrence;
+    private ChoiceFHIRDateTimeOrString occurrence;
     private Optional<Boolean> primarySource = Optional.empty();
     private Optional<CodeableConcept> fundingSource = Optional.empty();
     private Optional<FHIRDate> expirationDate = Optional.empty();
@@ -122,7 +122,7 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
         IMMUNIZATION_STATUS status,
         Reference patient,
         CodeableConcept vaccineCode,
-        @NonNull Choice_1715923163 occurrence) {
+        @NonNull ChoiceFHIRDateTimeOrString occurrence) {
       this.status = status;
       this.patient = patient;
       this.vaccineCode = vaccineCode;

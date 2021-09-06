@@ -424,7 +424,7 @@ object Measure extends CompanionFor[Measure] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -587,7 +587,7 @@ object Measure extends CompanionFor[Measure] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[Measure.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[Measure.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("subject", lTagOf[Option[Measure.SubjectChoice]], true, lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val disclaimer: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -840,7 +840,7 @@ object Measure extends CompanionFor[Measure] {
         cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
         cursor.decodeAs[Option[Markdown]]("rationale", Some(None)),
         cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-        cursor.decodeOptRef[Union01025009075]("subject"),
+        cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
         cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
         cursor.decodeAs[Option[Markdown]]("disclaimer", Some(None)),
         cursor.decodeAs[LitSeq[Markdown]]("definition", Some(LitSeq.empty)),

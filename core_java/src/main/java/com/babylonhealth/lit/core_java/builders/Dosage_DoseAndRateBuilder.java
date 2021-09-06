@@ -50,31 +50,31 @@ public interface Dosage_DoseAndRateBuilder {
     return new Impl();
   }
 
-  public static Choice01639511888 dose(Quantity q) {
-    return new Choice01639511888(q);
+  public static ChoiceQuantityOrRange dose(Quantity q) {
+    return new ChoiceQuantityOrRange(q);
   }
 
-  public static Choice01639511888 dose(Range r) {
-    return new Choice01639511888(r);
+  public static ChoiceQuantityOrRange dose(Range r) {
+    return new ChoiceQuantityOrRange(r);
   }
 
-  public static Choice_0575082635 rate(Quantity q) {
-    return new Choice_0575082635(q);
+  public static ChoiceQuantityOrRangeOrRatio rate(Quantity q) {
+    return new ChoiceQuantityOrRangeOrRatio(q);
   }
 
-  public static Choice_0575082635 rate(Range r) {
-    return new Choice_0575082635(r);
+  public static ChoiceQuantityOrRangeOrRatio rate(Range r) {
+    return new ChoiceQuantityOrRangeOrRatio(r);
   }
 
-  public static Choice_0575082635 rate(Ratio r) {
-    return new Choice_0575082635(r);
+  public static ChoiceQuantityOrRangeOrRatio rate(Ratio r) {
+    return new ChoiceQuantityOrRangeOrRatio(r);
   }
 
   public class Impl implements Dosage_DoseAndRateBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();
-    private Optional<Choice01639511888> dose = Optional.empty();
-    private Optional<Choice_0575082635> rate = Optional.empty();
+    private Optional<ChoiceQuantityOrRange> dose = Optional.empty();
+    private Optional<ChoiceQuantityOrRangeOrRatio> rate = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
 
     /** Required fields for {@link Dosage.DoseAndRate} */
@@ -102,7 +102,7 @@ public interface Dosage_DoseAndRateBuilder {
      * @param dose Field is a 'choice' field. Type should be one of Quantity, Range. To pass the
      *     value in, wrap with one of the Dosage_DoseAndRateBuilder.dose static methods
      */
-    public Dosage_DoseAndRateBuilder.Impl withDose(@NonNull Choice01639511888 dose) {
+    public Dosage_DoseAndRateBuilder.Impl withDose(@NonNull ChoiceQuantityOrRange dose) {
       this.dose = Optional.of(dose);
       return this;
     }
@@ -110,7 +110,7 @@ public interface Dosage_DoseAndRateBuilder {
      * @param rate Field is a 'choice' field. Type should be one of Quantity, Range, Ratio. To pass
      *     the value in, wrap with one of the Dosage_DoseAndRateBuilder.rate static methods
      */
-    public Dosage_DoseAndRateBuilder.Impl withRate(@NonNull Choice_0575082635 rate) {
+    public Dosage_DoseAndRateBuilder.Impl withRate(@NonNull ChoiceQuantityOrRangeOrRatio rate) {
       this.rate = Optional.of(rate);
       return this;
     }

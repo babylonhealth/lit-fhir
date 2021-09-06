@@ -53,19 +53,19 @@ public interface RequestGroup_Action_RelatedActionBuilder {
     return new Impl(actionId, relationship);
   }
 
-  public static Choice00801828838 offset(Duration d) {
-    return new Choice00801828838(d);
+  public static ChoiceDurationOrRange offset(Duration d) {
+    return new ChoiceDurationOrRange(d);
   }
 
-  public static Choice00801828838 offset(Range r) {
-    return new Choice00801828838(r);
+  public static ChoiceDurationOrRange offset(Range r) {
+    return new ChoiceDurationOrRange(r);
   }
 
   public class Impl implements RequestGroup_Action_RelatedActionBuilder {
     private Optional<String> id = Optional.empty();
     private String actionId;
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice00801828838> offset = Optional.empty();
+    private Optional<ChoiceDurationOrRange> offset = Optional.empty();
     private ACTION_RELATIONSHIP_TYPE relationship;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -124,7 +124,7 @@ public interface RequestGroup_Action_RelatedActionBuilder {
      *     methods
      */
     public RequestGroup_Action_RelatedActionBuilder.Impl withOffset(
-        @NonNull Choice00801828838 offset) {
+        @NonNull ChoiceDurationOrRange offset) {
       this.offset = Optional.of(offset);
       return this;
     }

@@ -116,7 +116,7 @@ object Contract extends CompanionFor[Contract] {
         override type ResourceType = Answer
         override type ParentType   = Answer
         override val parentType: CompanionFor[ResourceType] = Answer
-        type ValueChoice = Choice[Union_2101127777]
+        type ValueChoice = Choice[UnionAnswer_Value]
         def apply(
             id: Option[String] = None,
             value: Answer.ValueChoice,
@@ -135,7 +135,7 @@ object Contract extends CompanionFor[Contract] {
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val value: FHIRComponentFieldMeta[Answer.ValueChoice] =
-          FHIRComponentFieldMeta("value", lTagOf[Answer.ValueChoice], true, lTagOf[Union_2101127777])
+          FHIRComponentFieldMeta("value", lTagOf[Answer.ValueChoice], true, lTagOf[UnionAnswer_Value])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -155,7 +155,7 @@ object Contract extends CompanionFor[Contract] {
             Try(
               new Answer(
                 cursor.decodeAs[Option[String]]("id", Some(None)),
-                cursor.decodeRef[Union_2101127777]("value"),
+                cursor.decodeRef[UnionAnswer_Value]("value"),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 decodeAttributes(cursor)
@@ -469,7 +469,7 @@ object Contract extends CompanionFor[Contract] {
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-      type OccurrenceChoice = Choice[Union00609373412]
+      type OccurrenceChoice = Choice[UnionFHIRDateTimeOrPeriodOrTiming]
       def apply(
           id: Option[String] = None,
           `type`: CodeableConcept,
@@ -554,7 +554,11 @@ object Contract extends CompanionFor[Contract] {
       val contextLinkId: FHIRComponentFieldMeta[LitSeq[String]] =
         FHIRComponentFieldMeta("contextLinkId", lTagOf[LitSeq[String]], false, lTagOf[String])
       val occurrence: FHIRComponentFieldMeta[Option[Action.OccurrenceChoice]] =
-        FHIRComponentFieldMeta("occurrence", lTagOf[Option[Action.OccurrenceChoice]], true, lTagOf[Union00609373412])
+        FHIRComponentFieldMeta(
+          "occurrence",
+          lTagOf[Option[Action.OccurrenceChoice]],
+          true,
+          lTagOf[UnionFHIRDateTimeOrPeriodOrTiming])
       val performerType: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
         FHIRComponentFieldMeta("performerType", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
       val performerRole: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -645,7 +649,7 @@ object Contract extends CompanionFor[Contract] {
               cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
               cursor.decodeAs[LitSeq[String]]("reasonLinkId", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[String]]("contextLinkId", Some(LitSeq.empty)),
-              cursor.decodeOptRef[Union00609373412]("occurrence"),
+              cursor.decodeOptRef[UnionFHIRDateTimeOrPeriodOrTiming]("occurrence"),
               cursor.decodeAs[LitSeq[CodeableConcept]]("performerType", Some(LitSeq.empty)),
               cursor.decodeAs[Option[CodeableConcept]]("performerRole", Some(None)),
               cursor.decodeAs[LitSeq[String]]("requesterLinkId", Some(LitSeq.empty)),
@@ -772,7 +776,7 @@ object Contract extends CompanionFor[Contract] {
         override type ResourceType = ValuedItem
         override type ParentType   = ValuedItem
         override val parentType: CompanionFor[ResourceType] = ValuedItem
-        type EntityChoice = Choice[Union01025009075]
+        type EntityChoice = Choice[UnionCodeableConceptOrReference]
         def apply(
             id: Option[String] = None,
             net: Option[Money] = None,
@@ -850,7 +854,7 @@ object Contract extends CompanionFor[Contract] {
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val entity: FHIRComponentFieldMeta[Option[ValuedItem.EntityChoice]] =
-          FHIRComponentFieldMeta("entity", lTagOf[Option[ValuedItem.EntityChoice]], true, lTagOf[Union01025009075])
+          FHIRComponentFieldMeta("entity", lTagOf[Option[ValuedItem.EntityChoice]], true, lTagOf[UnionCodeableConceptOrReference])
         val unitPrice: FHIRComponentFieldMeta[Option[Money]] =
           FHIRComponentFieldMeta("unitPrice", lTagOf[Option[Money]], false, lTagOf[Money])
         val recipient: FHIRComponentFieldMeta[Option[Reference]] =
@@ -920,7 +924,7 @@ object Contract extends CompanionFor[Contract] {
                 cursor.decodeAs[Option[String]]("payment", Some(None)),
                 cursor.decodeAs[Option[Quantity]]("quantity", Some(None)),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-                cursor.decodeOptRef[Union01025009075]("entity"),
+                cursor.decodeOptRef[UnionCodeableConceptOrReference]("entity"),
                 cursor.decodeAs[Option[Money]]("unitPrice", Some(None)),
                 cursor.decodeAs[Option[Reference]]("recipient", Some(None)),
                 cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
@@ -1144,7 +1148,7 @@ object Contract extends CompanionFor[Contract] {
         val valuedItem: LitSeq[Asset.ValuedItem] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type TopicChoice = Choice[Union01025009075]
+    type TopicChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -1214,7 +1218,7 @@ object Contract extends CompanionFor[Contract] {
     val subType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("subType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val topic: FHIRComponentFieldMeta[Option[Term.TopicChoice]] =
-      FHIRComponentFieldMeta("topic", lTagOf[Option[Term.TopicChoice]], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("topic", lTagOf[Option[Term.TopicChoice]], true, lTagOf[UnionCodeableConceptOrReference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val identifier: FHIRComponentFieldMeta[Option[Identifier]] =
@@ -1276,7 +1280,7 @@ object Contract extends CompanionFor[Contract] {
             cursor.decodeAs[Option[FHIRDateTime]]("issued", Some(None)),
             cursor.decodeAs[Option[Period]]("applies", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("subType", Some(None)),
-            cursor.decodeOptRef[Union01025009075]("topic"),
+            cursor.decodeOptRef[UnionCodeableConceptOrReference]("topic"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -1419,7 +1423,7 @@ object Contract extends CompanionFor[Contract] {
     override type ResourceType = Friendly
     override type ParentType   = Friendly
     override val parentType: CompanionFor[ResourceType] = Friendly
-    type ContentChoice = Choice[Union_0340660840]
+    type ContentChoice = Choice[UnionAttachmentOrReference]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1440,7 +1444,7 @@ object Contract extends CompanionFor[Contract] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Friendly.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Friendly.ContentChoice], true, lTagOf[Union_0340660840])
+      FHIRComponentFieldMeta("content", lTagOf[Friendly.ContentChoice], true, lTagOf[UnionAttachmentOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -1459,7 +1463,7 @@ object Contract extends CompanionFor[Contract] {
           new Friendly(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0340660840]("content"),
+            cursor.decodeRef[UnionAttachmentOrReference]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1553,7 +1557,7 @@ object Contract extends CompanionFor[Contract] {
     override type ResourceType = Legal
     override type ParentType   = Legal
     override val parentType: CompanionFor[ResourceType] = Legal
-    type ContentChoice = Choice[Union_0340660840]
+    type ContentChoice = Choice[UnionAttachmentOrReference]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1574,7 +1578,7 @@ object Contract extends CompanionFor[Contract] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Legal.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Legal.ContentChoice], true, lTagOf[Union_0340660840])
+      FHIRComponentFieldMeta("content", lTagOf[Legal.ContentChoice], true, lTagOf[UnionAttachmentOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -1593,7 +1597,7 @@ object Contract extends CompanionFor[Contract] {
           new Legal(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0340660840]("content"),
+            cursor.decodeRef[UnionAttachmentOrReference]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1613,7 +1617,7 @@ object Contract extends CompanionFor[Contract] {
     override type ResourceType = Rule
     override type ParentType   = Rule
     override val parentType: CompanionFor[ResourceType] = Rule
-    type ContentChoice = Choice[Union_0340660840]
+    type ContentChoice = Choice[UnionAttachmentOrReference]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1634,7 +1638,7 @@ object Contract extends CompanionFor[Contract] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Rule.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Rule.ContentChoice], true, lTagOf[Union_0340660840])
+      FHIRComponentFieldMeta("content", lTagOf[Rule.ContentChoice], true, lTagOf[UnionAttachmentOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -1653,7 +1657,7 @@ object Contract extends CompanionFor[Contract] {
           new Rule(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0340660840]("content"),
+            cursor.decodeRef[UnionAttachmentOrReference]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1667,8 +1671,8 @@ object Contract extends CompanionFor[Contract] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type TopicChoice          = Choice[Union01025009075]
-  type LegallyBindingChoice = Choice[Union_0340660840]
+  type TopicChoice          = Choice[UnionCodeableConceptOrReference]
+  type LegallyBindingChoice = Choice[UnionAttachmentOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -1797,7 +1801,7 @@ object Contract extends CompanionFor[Contract] {
   val subtitle: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("subtitle", lTagOf[Option[String]], false, lTagOf[String])
   val topic: FHIRComponentFieldMeta[Option[Contract.TopicChoice]] =
-    FHIRComponentFieldMeta("topic", lTagOf[Option[Contract.TopicChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("topic", lTagOf[Option[Contract.TopicChoice]], true, lTagOf[UnionCodeableConceptOrReference])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -1823,7 +1827,11 @@ object Contract extends CompanionFor[Contract] {
   val contentDerivative: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("contentDerivative", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val legallyBinding: FHIRComponentFieldMeta[Option[Contract.LegallyBindingChoice]] =
-    FHIRComponentFieldMeta("legallyBinding", lTagOf[Option[Contract.LegallyBindingChoice]], true, lTagOf[Union_0340660840])
+    FHIRComponentFieldMeta(
+      "legallyBinding",
+      lTagOf[Option[Contract.LegallyBindingChoice]],
+      true,
+      lTagOf[UnionAttachmentOrReference])
   val instantiatesCanonical: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("instantiatesCanonical", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val rule: FHIRComponentFieldMeta[LitSeq[Contract.Rule]] =
@@ -2007,7 +2015,7 @@ object Contract extends CompanionFor[Contract] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("subType", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[String]]("subtitle", Some(None)),
-          cursor.decodeOptRef[Union01025009075]("topic"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("topic"),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("authority", Some(LitSeq.empty)),
@@ -2020,7 +2028,7 @@ object Contract extends CompanionFor[Contract] {
           cursor.decodeAs[LitSeq[Reference]]("relevantHistory", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("contentDerivative", Some(None)),
-          cursor.decodeOptRef[Union_0340660840]("legallyBinding"),
+          cursor.decodeOptRef[UnionAttachmentOrReference]("legallyBinding"),
           cursor.decodeAs[Option[Reference]]("instantiatesCanonical", Some(None)),
           cursor.decodeAs[LitSeq[Contract.Rule]]("rule", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Contract.Legal]]("legal", Some(LitSeq.empty)),

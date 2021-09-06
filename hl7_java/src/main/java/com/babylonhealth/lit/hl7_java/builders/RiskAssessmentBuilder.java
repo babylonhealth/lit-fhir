@@ -54,12 +54,12 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     return new Impl(status, subject.build());
   }
 
-  public static Choice_0934386166 occurrence(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod occurrence(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 occurrence(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod occurrence(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements RiskAssessmentBuilder {
@@ -84,7 +84,7 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<String> mitigation = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<Choice_0934386166> occurrence = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriod> occurrence = Optional.empty();
     private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<RiskAssessment.Prediction> prediction = Collections.emptyList();
@@ -360,7 +360,8 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
      *     a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap
      *     with one of the RiskAssessmentBuilder.occurrence static methods
      */
-    public RiskAssessmentBuilder.Impl withOccurrence(@NonNull Choice_0934386166 occurrence) {
+    public RiskAssessmentBuilder.Impl withOccurrence(
+        @NonNull ChoiceFHIRDateTimeOrPeriod occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

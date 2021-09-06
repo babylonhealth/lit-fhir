@@ -53,17 +53,17 @@ public interface NutritionOrder_EnteralFormula_AdministrationBuilder {
     return new Impl();
   }
 
-  public static Choice_0964108894 rate(Quantity q) {
-    return new Choice_0964108894(q);
+  public static ChoiceQuantityOrRatio rate(Quantity q) {
+    return new ChoiceQuantityOrRatio(q);
   }
 
-  public static Choice_0964108894 rate(Ratio r) {
-    return new Choice_0964108894(r);
+  public static ChoiceQuantityOrRatio rate(Ratio r) {
+    return new ChoiceQuantityOrRatio(r);
   }
 
   public class Impl implements NutritionOrder_EnteralFormula_AdministrationBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<Choice_0964108894> rate = Optional.empty();
+    private Optional<ChoiceQuantityOrRatio> rate = Optional.empty();
     private Optional<Timing> schedule = Optional.empty();
     private Optional<Quantity> quantity = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
@@ -86,7 +86,7 @@ public interface NutritionOrder_EnteralFormula_AdministrationBuilder {
      *     static methods
      */
     public NutritionOrder_EnteralFormula_AdministrationBuilder.Impl withRate(
-        @NonNull Choice_0964108894 rate) {
+        @NonNull ChoiceQuantityOrRatio rate) {
       this.rate = Optional.of(rate);
       return this;
     }

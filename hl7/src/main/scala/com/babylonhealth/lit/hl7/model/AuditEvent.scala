@@ -43,7 +43,7 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       override type ResourceType = Detail
       override type ParentType   = Detail
       override val parentType: CompanionFor[ResourceType] = Detail
-      type ValueChoice = Choice[Union00483057553]
+      type ValueChoice = Choice[UnionBase64BinaryOrString]
       def apply(
           id: Option[String] = None,
           `type`: String,
@@ -66,7 +66,7 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       val `type`: FHIRComponentFieldMeta[String] =
         FHIRComponentFieldMeta("type", lTagOf[String], false, lTagOf[String])
       val value: FHIRComponentFieldMeta[Detail.ValueChoice] =
-        FHIRComponentFieldMeta("value", lTagOf[Detail.ValueChoice], true, lTagOf[Union00483057553])
+        FHIRComponentFieldMeta("value", lTagOf[Detail.ValueChoice], true, lTagOf[UnionBase64BinaryOrString])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -88,7 +88,7 @@ object AuditEvent extends CompanionFor[AuditEvent] {
             new Detail(
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[String]("type", None),
-              cursor.decodeRef[Union00483057553]("value"),
+              cursor.decodeRef[UnionBase64BinaryOrString]("value"),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)

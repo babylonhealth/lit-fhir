@@ -53,7 +53,7 @@ public interface BodyheightBuilder extends VitalsignsBuilder {
       OBSERVATION_STATUS status,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull Choice_0934386166 effective,
+      @NonNull ChoiceFHIRDateTimeOrPeriod effective,
       CodeableConcept code) {
     return new Impl(status, subject, category, effective, code);
   }
@@ -62,7 +62,7 @@ public interface BodyheightBuilder extends VitalsignsBuilder {
       OBSERVATION_STATUS status,
       ReferenceBuilder subject,
       Collection<CodeableConceptBuilder> category,
-      @NonNull Choice_0934386166 effective,
+      @NonNull ChoiceFHIRDateTimeOrPeriod effective,
       CodeableConceptBuilder code) {
     return new Impl(
         status,
@@ -72,12 +72,12 @@ public interface BodyheightBuilder extends VitalsignsBuilder {
         code.build());
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements BodyheightBuilder {
@@ -109,7 +109,7 @@ public interface BodyheightBuilder extends VitalsignsBuilder {
     private Collection<Reference> hasMember = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private Choice_0934386166 effective;
+    private ChoiceFHIRDateTimeOrPeriod effective;
     private Optional<String> implicitRules = Optional.empty();
     private CodeableConcept code;
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
@@ -137,7 +137,7 @@ public interface BodyheightBuilder extends VitalsignsBuilder {
         OBSERVATION_STATUS status,
         Reference subject,
         Collection<CodeableConcept> category,
-        @NonNull Choice_0934386166 effective,
+        @NonNull ChoiceFHIRDateTimeOrPeriod effective,
         CodeableConcept code) {
       this.status = status;
       this.subject = subject;

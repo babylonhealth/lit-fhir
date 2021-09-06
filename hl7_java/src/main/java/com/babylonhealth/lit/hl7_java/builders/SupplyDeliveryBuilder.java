@@ -54,16 +54,16 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
-  public static Choice00609373412 occurrence(FHIRDateTime f) {
-    return new Choice00609373412(f);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
   }
 
-  public static Choice00609373412 occurrence(Period p) {
-    return new Choice00609373412(p);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
   }
 
-  public static Choice00609373412 occurrence(Timing t) {
-    return new Choice00609373412(t);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements SupplyDeliveryBuilder {
@@ -83,7 +83,7 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<Reference> destination = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<Choice00609373412> occurrence = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<SupplyDelivery.SuppliedItem> suppliedItem = Optional.empty();
 
@@ -326,7 +326,8 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
      *     Type should be one of FHIRDateTime, Period, Timing. To pass the value in, wrap with one
      *     of the SupplyDeliveryBuilder.occurrence static methods
      */
-    public SupplyDeliveryBuilder.Impl withOccurrence(@NonNull Choice00609373412 occurrence) {
+    public SupplyDeliveryBuilder.Impl withOccurrence(
+        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

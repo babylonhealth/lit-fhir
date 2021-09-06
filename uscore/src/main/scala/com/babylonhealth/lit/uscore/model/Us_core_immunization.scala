@@ -33,7 +33,7 @@ object Us_core_immunization extends CompanionFor[Us_core_immunization] {
   override val baseType: CompanionFor[ResourceType] = Immunization
   override val parentType: CompanionFor[ParentType] = Immunization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization")
-  type OccurrenceChoice = Choice[Union_1715923163]
+  type OccurrenceChoice = Choice[UnionFHIRDateTimeOrString]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -161,7 +161,7 @@ object Us_core_immunization extends CompanionFor[Us_core_immunization] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Us_core_immunization.OccurrenceChoice] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Us_core_immunization.OccurrenceChoice], true, lTagOf[Union_1715923163])
+    FHIRComponentFieldMeta("occurrence", lTagOf[Us_core_immunization.OccurrenceChoice], true, lTagOf[UnionFHIRDateTimeOrString])
   val primarySource: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("primarySource", lTagOf[Boolean], false, lTagOf[Boolean])
   val fundingSource: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -332,7 +332,7 @@ object Us_core_immunization extends CompanionFor[Us_core_immunization] {
           cursor.decodeAs[Option[Reference]]("manufacturer", Some(None)),
           cursor.decodeAs[Option[Quantity]]("doseQuantity", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeRef[Union_1715923163]("occurrence"),
+          cursor.decodeRef[UnionFHIRDateTimeOrString]("occurrence"),
           cursor.decodeAs[Boolean]("primarySource", None),
           cursor.decodeAs[Option[CodeableConcept]]("fundingSource", Some(None)),
           cursor.decodeAs[Option[FHIRDate]]("expirationDate", Some(None)),

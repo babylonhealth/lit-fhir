@@ -71,12 +71,12 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
     return new Impl(url, name, status, version, publisher, description, experimental);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements ShareablemeasureBuilder {
@@ -113,7 +113,7 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
     private Optional<String> copyright = Optional.empty();
     private Optional<String> rationale = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> disclaimer = Optional.empty();
     private Collection<String> definition = Collections.emptyList();
@@ -544,7 +544,8 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
      *     'choice' field. Type should be one of CodeableConcept, Reference. To pass the value in,
      *     wrap with one of the ShareablemeasureBuilder.subject static methods
      */
-    public ShareablemeasureBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public ShareablemeasureBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

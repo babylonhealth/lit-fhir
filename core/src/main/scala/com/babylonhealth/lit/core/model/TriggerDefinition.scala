@@ -28,7 +28,7 @@ object TriggerDefinition extends CompanionFor[TriggerDefinition] {
   override val baseType: CompanionFor[ResourceType] = TriggerDefinition
   override val parentType: CompanionFor[ParentType] = TriggerDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TriggerDefinition")
-  type TimingChoice = Choice[Union_1051729086]
+  type TimingChoice = Choice[UnionTriggerDefinition_Timing]
   def apply(
       id: Option[String] = None,
       `type`: TRIGGER_TYPE,
@@ -59,7 +59,7 @@ object TriggerDefinition extends CompanionFor[TriggerDefinition] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val timing: FHIRComponentFieldMeta[Option[TriggerDefinition.TimingChoice]] =
-    FHIRComponentFieldMeta("timing", lTagOf[Option[TriggerDefinition.TimingChoice]], true, lTagOf[Union_1051729086])
+    FHIRComponentFieldMeta("timing", lTagOf[Option[TriggerDefinition.TimingChoice]], true, lTagOf[UnionTriggerDefinition_Timing])
   val condition: FHIRComponentFieldMeta[Option[Expression]] =
     FHIRComponentFieldMeta("condition", lTagOf[Option[Expression]], false, lTagOf[Expression])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, name, data, extension, timing, condition)
@@ -93,7 +93,7 @@ object TriggerDefinition extends CompanionFor[TriggerDefinition] {
           cursor.decodeAs[Option[String]]("name", Some(None)),
           cursor.decodeAs[LitSeq[DataRequirement]]("data", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1051729086]("timing"),
+          cursor.decodeOptRef[UnionTriggerDefinition_Timing]("timing"),
           cursor.decodeAs[Option[Expression]]("condition", Some(None)),
           decodeAttributes(cursor)
         )

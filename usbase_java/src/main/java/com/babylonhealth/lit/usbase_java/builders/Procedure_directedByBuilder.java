@@ -48,25 +48,25 @@ import static java.util.stream.Collectors.toList;
 public interface Procedure_directedByBuilder extends ExtensionBuilder {
   public Procedure_directedBy build();
 
-  public static Impl init(@NonNull Choice01025009075 value) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrReference value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice01025009075 value) {
+  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference value) {
     return new Impl(value);
   }
 
-  public static Choice01025009075 value(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference value(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 value(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference value(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Procedure_directedByBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice01025009075 value;
+    private ChoiceCodeableConceptOrReference value;
 
     /**
      * Required fields for {@link Procedure_directedBy}
@@ -76,7 +76,7 @@ public interface Procedure_directedByBuilder extends ExtensionBuilder {
      *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
      *     one of the Procedure_directedByBuilder.value static methods
      */
-    public Impl(@NonNull Choice01025009075 value) {
+    public Impl(@NonNull ChoiceCodeableConceptOrReference value) {
       this.value = value;
     }
 

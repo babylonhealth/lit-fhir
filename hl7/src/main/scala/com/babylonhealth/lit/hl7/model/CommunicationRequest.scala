@@ -37,7 +37,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     override type ResourceType = Payload
     override type ParentType   = Payload
     override val parentType: CompanionFor[ResourceType] = Payload
-    type ContentChoice = Choice[Union_1750183386]
+    type ContentChoice = Choice[UnionAttachmentOrReferenceOrString]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -58,7 +58,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Payload.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[Union_1750183386])
+      FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[UnionAttachmentOrReferenceOrString])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -77,7 +77,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
           new Payload(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_1750183386]("content"),
+            cursor.decodeRef[UnionAttachmentOrReferenceOrString]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -91,7 +91,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OccurrenceChoice = Choice[Union_0934386166]
+  type OccurrenceChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -208,7 +208,11 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[CommunicationRequest.OccurrenceChoice]] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Option[CommunicationRequest.OccurrenceChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta(
+      "occurrence",
+      lTagOf[Option[CommunicationRequest.OccurrenceChoice]],
+      true,
+      lTagOf[UnionFHIRDateTimeOrPeriod])
   val groupIdentifier: FHIRComponentFieldMeta[Option[Identifier]] =
     FHIRComponentFieldMeta("groupIdentifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
   val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -360,7 +364,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
           cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[Union_0934386166]("occurrence"),
+          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("occurrence"),
           cursor.decodeAs[Option[Identifier]]("groupIdentifier", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

@@ -53,12 +53,12 @@ public interface Claim_AccidentBuilder {
     return new Impl(date);
   }
 
-  public static Choice00434638053 location(Address a) {
-    return new Choice00434638053(a);
+  public static ChoiceAddressOrReference location(Address a) {
+    return new ChoiceAddressOrReference(a);
   }
 
-  public static Choice00434638053 location(Reference r) {
-    return new Choice00434638053(r);
+  public static ChoiceAddressOrReference location(Reference r) {
+    return new ChoiceAddressOrReference(r);
   }
 
   public class Impl implements Claim_AccidentBuilder {
@@ -66,7 +66,7 @@ public interface Claim_AccidentBuilder {
     private FHIRDate date;
     private Optional<CodeableConcept> _type = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice00434638053> location = Optional.empty();
+    private Optional<ChoiceAddressOrReference> location = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -130,7 +130,7 @@ public interface Claim_AccidentBuilder {
      * @param location Field is a 'choice' field. Type should be one of Address, Reference. To pass
      *     the value in, wrap with one of the Claim_AccidentBuilder.location static methods
      */
-    public Claim_AccidentBuilder.Impl withLocation(@NonNull Choice00434638053 location) {
+    public Claim_AccidentBuilder.Impl withLocation(@NonNull ChoiceAddressOrReference location) {
       this.location = Optional.of(location);
       return this;
     }

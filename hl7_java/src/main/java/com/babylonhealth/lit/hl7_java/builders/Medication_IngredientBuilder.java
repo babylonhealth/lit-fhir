@@ -45,25 +45,25 @@ import static java.util.stream.Collectors.toList;
 public interface Medication_IngredientBuilder {
   public Medication.Ingredient build();
 
-  public static Impl init(@NonNull Choice01025009075 item) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrReference item) {
     return new Impl(item);
   }
 
-  public static Impl builder(@NonNull Choice01025009075 item) {
+  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference item) {
     return new Impl(item);
   }
 
-  public static Choice01025009075 item(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference item(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 item(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference item(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Medication_IngredientBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice01025009075 item;
+    private ChoiceCodeableConceptOrReference item;
     private Optional<Boolean> isActive = Optional.empty();
     private Optional<Ratio> strength = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
@@ -75,7 +75,7 @@ public interface Medication_IngredientBuilder {
      * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
      *     pass the value in, wrap with one of the Medication_IngredientBuilder.item static methods
      */
-    public Impl(@NonNull Choice01025009075 item) {
+    public Impl(@NonNull ChoiceCodeableConceptOrReference item) {
       this.item = item;
     }
 

@@ -49,7 +49,7 @@ object CodeSystem extends CompanionFor[CodeSystem] {
       override type ResourceType = Property
       override type ParentType   = Property
       override val parentType: CompanionFor[ResourceType] = Property
-      type ValueChoice = Choice[Union_1489367071]
+      type ValueChoice = Choice[UnionProperty_Value]
       def apply(
           id: Option[String] = None,
           code: Code,
@@ -72,7 +72,7 @@ object CodeSystem extends CompanionFor[CodeSystem] {
       val code: FHIRComponentFieldMeta[Code] =
         FHIRComponentFieldMeta("code", lTagOf[Code], false, lTagOf[Code])
       val value: FHIRComponentFieldMeta[Property.ValueChoice] =
-        FHIRComponentFieldMeta("value", lTagOf[Property.ValueChoice], true, lTagOf[Union_1489367071])
+        FHIRComponentFieldMeta("value", lTagOf[Property.ValueChoice], true, lTagOf[UnionProperty_Value])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -94,7 +94,7 @@ object CodeSystem extends CompanionFor[CodeSystem] {
             new Property(
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[Code]("code", None),
-              cursor.decodeRef[Union_1489367071]("value"),
+              cursor.decodeRef[UnionProperty_Value]("value"),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)

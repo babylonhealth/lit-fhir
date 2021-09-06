@@ -29,7 +29,7 @@ trait BaseFieldImplicits {
     def scalaName: String = CodegenUtils.fieldScalaName(baseField.noParensName)
 
     def choiceAlias: Option[String] = {
-      val baseString = ElementTreee.getUnionAlias(baseField.pkg, baseField.types)
+      val baseString = ElementTreee.getUnionAlias(baseField.pkg, baseField.types, baseField)
       if (baseString.matches("Union.+")) {
         Some(s"${baseField.capitalName}Choice")
       } else None
@@ -37,7 +37,7 @@ trait BaseFieldImplicits {
 
     private def wrapInit(s: Seq[String], clashingClasses: Set[String], wrapInRef: Boolean = true): String = {
       val declaringClass = baseField.firstBase.getOrElse(baseField).scalaClassName
-      val baseString     = ElementTreee.getUnionAlias(baseField.pkg, s)
+      val baseString     = ElementTreee.getUnionAlias(baseField.pkg, s, baseField)
       val inRef =
         if (baseString.matches("Union.+") && wrapInRef) s"${baseField.scalaClassName}.${choiceAlias.get}"
         else if (baseString.matches("Union.+")) baseString
@@ -122,7 +122,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     s""""""
   def fieldDecoder(field: BaseField, allClashingTypes: Set[String]): String = {
     if (field.types.sizeCompare(1) > 0) {
-      val tpe = ElementTreee.getUnionAlias(field.pkg, field.types)
+      val tpe = ElementTreee.getUnionAlias(field.pkg, field.types, field)
       def wrap(s: String): String =
         s"""${field.cardinality.cursorDecodeRef}[$tpe]("$s")"""
       wrap(field.scalaName)
@@ -335,7 +335,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       val choiceAliases = fields
         .filter(_.choiceAlias.isDefined)
         .map { f =>
-          val choiceType = s"Choice[${ElementTreee.getUnionAlias(f.pkg, f.types)}]"
+          val choiceType = s"Choice[${ElementTreee.getUnionAlias(f.pkg, f.types, f)}]"
           s"type ${f.choiceAlias.get} = $choiceType"
         }
         .mkString("\n  ")
@@ -527,7 +527,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     val choiceAliases = fields
       .filter(_.choiceAlias.isDefined)
       .map { f =>
-        val choiceType = s"Choice[${ElementTreee.getUnionAlias(f.pkg, f.types)}]"
+        val choiceType = s"Choice[${ElementTreee.getUnionAlias(f.pkg, f.types, f)}]"
         s"type ${f.choiceAlias.get} = $choiceType"
       }
       .mkString("\n  ")

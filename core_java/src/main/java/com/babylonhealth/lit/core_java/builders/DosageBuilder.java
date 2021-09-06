@@ -50,12 +50,12 @@ public interface DosageBuilder extends BackboneElementBuilder {
     return new Impl();
   }
 
-  public static Choice_1768247138 asNeeded(Boolean b) {
-    return new Choice_1768247138(b);
+  public static ChoiceBooleanOrCodeableConcept asNeeded(Boolean b) {
+    return new ChoiceBooleanOrCodeableConcept(b);
   }
 
-  public static Choice_1768247138 asNeeded(CodeableConcept c) {
-    return new Choice_1768247138(c);
+  public static ChoiceBooleanOrCodeableConcept asNeeded(CodeableConcept c) {
+    return new ChoiceBooleanOrCodeableConcept(c);
   }
 
   public class Impl implements DosageBuilder {
@@ -67,7 +67,7 @@ public interface DosageBuilder extends BackboneElementBuilder {
     private Optional<CodeableConcept> method = Optional.empty();
     private Optional<Integer> sequence = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_1768247138> asNeeded = Optional.empty();
+    private Optional<ChoiceBooleanOrCodeableConcept> asNeeded = Optional.empty();
     private Optional<Ratio> maxDosePerPeriod = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<String> patientInstruction = Optional.empty();
@@ -174,7 +174,7 @@ public interface DosageBuilder extends BackboneElementBuilder {
      *     Boolean, CodeableConcept. To pass the value in, wrap with one of the
      *     DosageBuilder.asNeeded static methods
      */
-    public DosageBuilder.Impl withAsNeeded(@NonNull Choice_1768247138 asNeeded) {
+    public DosageBuilder.Impl withAsNeeded(@NonNull ChoiceBooleanOrCodeableConcept asNeeded) {
       this.asNeeded = Optional.of(asNeeded);
       return this;
     }

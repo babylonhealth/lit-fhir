@@ -54,12 +54,12 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     return new Impl(status, subject.build());
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements ClinicalImpressionBuilder {
@@ -83,7 +83,7 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<CodeableConcept> statusReason = Optional.empty();
-    private Optional<Choice_0934386166> effective = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriod> effective = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Reference> supportingInfo = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -356,7 +356,8 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
      *     a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap
      *     with one of the ClinicalImpressionBuilder.effective static methods
      */
-    public ClinicalImpressionBuilder.Impl withEffective(@NonNull Choice_0934386166 effective) {
+    public ClinicalImpressionBuilder.Impl withEffective(
+        @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
       this.effective = Optional.of(effective);
       return this;
     }

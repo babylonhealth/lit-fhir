@@ -183,7 +183,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EventChoice = Choice[Union01583485927]
+  type EventChoice = Choice[UnionCodingOrUriStr]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -286,7 +286,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
   val replaces: FHIRComponentFieldMeta[LitSeq[Canonical]] =
     FHIRComponentFieldMeta("replaces", lTagOf[LitSeq[Canonical]], false, lTagOf[Canonical])
   val event: FHIRComponentFieldMeta[MessageDefinition.EventChoice] =
-    FHIRComponentFieldMeta("event", lTagOf[MessageDefinition.EventChoice], true, lTagOf[Union01583485927])
+    FHIRComponentFieldMeta("event", lTagOf[MessageDefinition.EventChoice], true, lTagOf[UnionCodingOrUriStr])
   val category: FHIRComponentFieldMeta[Option[MESSAGE_SIGNIFICANCE_CATEGORY]] =
     FHIRComponentFieldMeta(
       "category",
@@ -474,7 +474,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
           cursor.decodeAs[Option[Markdown]]("purpose", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Canonical]]("replaces", Some(LitSeq.empty)),
-          cursor.decodeRef[Union01583485927]("event"),
+          cursor.decodeRef[UnionCodingOrUriStr]("event"),
           cursor.decodeAs[Option[MESSAGE_SIGNIFICANCE_CATEGORY]]("category", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),

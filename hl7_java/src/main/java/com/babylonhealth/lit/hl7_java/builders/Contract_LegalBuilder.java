@@ -45,26 +45,26 @@ import static java.util.stream.Collectors.toList;
 public interface Contract_LegalBuilder {
   public Contract.Legal build();
 
-  public static Impl init(@NonNull Choice_0340660840 content) {
+  public static Impl init(@NonNull ChoiceAttachmentOrReference content) {
     return new Impl(content);
   }
 
-  public static Impl builder(@NonNull Choice_0340660840 content) {
+  public static Impl builder(@NonNull ChoiceAttachmentOrReference content) {
     return new Impl(content);
   }
 
-  public static Choice_0340660840 content(Attachment a) {
-    return new Choice_0340660840(a);
+  public static ChoiceAttachmentOrReference content(Attachment a) {
+    return new ChoiceAttachmentOrReference(a);
   }
 
-  public static Choice_0340660840 content(Reference r) {
-    return new Choice_0340660840(r);
+  public static ChoiceAttachmentOrReference content(Reference r) {
+    return new ChoiceAttachmentOrReference(r);
   }
 
   public class Impl implements Contract_LegalBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice_0340660840 content;
+    private ChoiceAttachmentOrReference content;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -73,7 +73,7 @@ public interface Contract_LegalBuilder {
      * @param content Field is a 'choice' field. Type should be one of Attachment, Reference. To
      *     pass the value in, wrap with one of the Contract_LegalBuilder.content static methods
      */
-    public Impl(@NonNull Choice_0340660840 content) {
+    public Impl(@NonNull ChoiceAttachmentOrReference content) {
       this.content = content;
     }
 

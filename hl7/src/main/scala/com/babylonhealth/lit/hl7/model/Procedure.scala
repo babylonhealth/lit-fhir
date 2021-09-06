@@ -172,7 +172,7 @@ object Procedure extends CompanionFor[Procedure] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type PerformedChoice = Choice[Union01352864625]
+  type PerformedChoice = Choice[UnionAllergyIntolerance_Onset]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -301,7 +301,7 @@ object Procedure extends CompanionFor[Procedure] {
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val performed: FHIRComponentFieldMeta[Option[Procedure.PerformedChoice]] =
-    FHIRComponentFieldMeta("performed", lTagOf[Option[Procedure.PerformedChoice]], true, lTagOf[Union01352864625])
+    FHIRComponentFieldMeta("performed", lTagOf[Option[Procedure.PerformedChoice]], true, lTagOf[UnionAllergyIntolerance_Onset])
   val complication: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("complication", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -483,7 +483,7 @@ object Procedure extends CompanionFor[Procedure] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
-          cursor.decodeOptRef[Union01352864625]("performed"),
+          cursor.decodeOptRef[UnionAllergyIntolerance_Onset]("performed"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("complication", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("usedReference", Some(LitSeq.empty)),

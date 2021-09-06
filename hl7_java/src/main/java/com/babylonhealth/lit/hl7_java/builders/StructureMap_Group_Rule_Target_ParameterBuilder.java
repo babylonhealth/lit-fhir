@@ -45,37 +45,37 @@ import static java.util.stream.Collectors.toList;
 public interface StructureMap_Group_Rule_Target_ParameterBuilder {
   public StructureMap$Group$Rule$Target$Parameter build();
 
-  public static Impl init(@NonNull Choice00600764285 value) {
+  public static Impl init(@NonNull ChoiceParameter_Value value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice00600764285 value) {
+  public static Impl builder(@NonNull ChoiceParameter_Value value) {
     return new Impl(value);
   }
 
-  public static Choice00600764285 value(BigDecimal b) {
-    return new Choice00600764285(b);
+  public static ChoiceParameter_Value value(BigDecimal b) {
+    return new ChoiceParameter_Value(b);
   }
 
-  public static Choice00600764285 value(Boolean b) {
-    return new Choice00600764285(b);
+  public static ChoiceParameter_Value value(Boolean b) {
+    return new ChoiceParameter_Value(b);
   }
 
-  public static Choice00600764285 value(Integer i) {
-    return new Choice00600764285(i);
+  public static ChoiceParameter_Value value(Integer i) {
+    return new ChoiceParameter_Value(i);
   }
 
-  public static Choice00600764285 valueId(String s) {
-    return Choice00600764285.Choice00600764285Id(s);
+  public static ChoiceParameter_Value valueId(String s) {
+    return ChoiceParameter_Value.ChoiceParameter_ValueId(s);
   }
 
-  public static Choice00600764285 valueString(String s) {
-    return Choice00600764285.Choice00600764285String(s);
+  public static ChoiceParameter_Value valueString(String s) {
+    return ChoiceParameter_Value.ChoiceParameter_ValueString(s);
   }
 
   public class Impl implements StructureMap_Group_Rule_Target_ParameterBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice00600764285 value;
+    private ChoiceParameter_Value value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -86,7 +86,7 @@ public interface StructureMap_Group_Rule_Target_ParameterBuilder {
      *     Integer. To pass the value in, wrap with one of the
      *     StructureMap_Group_Rule_Target_ParameterBuilder.value static methods
      */
-    public Impl(@NonNull Choice00600764285 value) {
+    public Impl(@NonNull ChoiceParameter_Value value) {
       this.value = value;
     }
 

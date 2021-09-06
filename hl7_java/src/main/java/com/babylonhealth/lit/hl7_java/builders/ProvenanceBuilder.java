@@ -60,12 +60,12 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
         new LitSeq<>(agent).map(Provenance_AgentBuilder::build));
   }
 
-  public static Choice_0934386166 occurred(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod occurred(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 occurred(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod occurred(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements ProvenanceBuilder {
@@ -82,7 +82,7 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Signature> signature = Collections.emptyList();
-    private Optional<Choice_0934386166> occurred = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriod> occurred = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Provenance.Agent> agent;
@@ -281,7 +281,7 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
      *     Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
      *     ProvenanceBuilder.occurred static methods
      */
-    public ProvenanceBuilder.Impl withOccurred(@NonNull Choice_0934386166 occurred) {
+    public ProvenanceBuilder.Impl withOccurred(@NonNull ChoiceFHIRDateTimeOrPeriod occurred) {
       this.occurred = Optional.of(occurred);
       return this;
     }

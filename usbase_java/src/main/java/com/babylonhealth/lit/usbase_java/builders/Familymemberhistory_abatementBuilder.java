@@ -48,29 +48,29 @@ import static java.util.stream.Collectors.toList;
 public interface Familymemberhistory_abatementBuilder extends ExtensionBuilder {
   public Familymemberhistory_abatement build();
 
-  public static Impl init(@NonNull Choice00813350082 value) {
+  public static Impl init(@NonNull ChoiceAgeOrBooleanOrFHIRDate value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice00813350082 value) {
+  public static Impl builder(@NonNull ChoiceAgeOrBooleanOrFHIRDate value) {
     return new Impl(value);
   }
 
-  public static Choice00813350082 value(Age a) {
-    return new Choice00813350082(a);
+  public static ChoiceAgeOrBooleanOrFHIRDate value(Age a) {
+    return new ChoiceAgeOrBooleanOrFHIRDate(a);
   }
 
-  public static Choice00813350082 value(Boolean b) {
-    return new Choice00813350082(b);
+  public static ChoiceAgeOrBooleanOrFHIRDate value(Boolean b) {
+    return new ChoiceAgeOrBooleanOrFHIRDate(b);
   }
 
-  public static Choice00813350082 value(FHIRDate f) {
-    return new Choice00813350082(f);
+  public static ChoiceAgeOrBooleanOrFHIRDate value(FHIRDate f) {
+    return new ChoiceAgeOrBooleanOrFHIRDate(f);
   }
 
   public class Impl implements Familymemberhistory_abatementBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice00813350082 value;
+    private ChoiceAgeOrBooleanOrFHIRDate value;
 
     /**
      * Required fields for {@link Familymemberhistory_abatement}
@@ -80,7 +80,7 @@ public interface Familymemberhistory_abatementBuilder extends ExtensionBuilder {
      *     field. Type should be one of Age, Boolean, FHIRDate. To pass the value in, wrap with one
      *     of the Familymemberhistory_abatementBuilder.value static methods
      */
-    public Impl(@NonNull Choice00813350082 value) {
+    public Impl(@NonNull ChoiceAgeOrBooleanOrFHIRDate value) {
       this.value = value;
     }
 

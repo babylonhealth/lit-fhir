@@ -50,7 +50,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override type ResourceType = Page
       override type ParentType   = Page
       override val parentType: CompanionFor[ResourceType] = Page
-      type NameChoice = Choice[Union01831019594]
+      type NameChoice = Choice[UnionReferenceOrUrlStr]
       def apply(
           id: Option[String] = None,
           page: LitSeq[ImplementationGuide.Definition.Page] = LitSeq.empty,
@@ -84,7 +84,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       val title: FHIRComponentFieldMeta[String] =
         FHIRComponentFieldMeta("title", lTagOf[String], false, lTagOf[String])
       val name: FHIRComponentFieldMeta[Page.NameChoice] =
-        FHIRComponentFieldMeta("name", lTagOf[Page.NameChoice], true, lTagOf[Union01831019594])
+        FHIRComponentFieldMeta("name", lTagOf[Page.NameChoice], true, lTagOf[UnionReferenceOrUrlStr])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val generation: FHIRComponentFieldMeta[GUIDE_PAGE_GENERATION] =
@@ -111,7 +111,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[LitSeq[ImplementationGuide.Definition.Page]]("page", Some(LitSeq.empty)),
               cursor.decodeAs[String]("title", None),
-              cursor.decodeRef[Union01831019594]("name"),
+              cursor.decodeRef[UnionReferenceOrUrlStr]("name"),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[GUIDE_PAGE_GENERATION]("generation", None),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -202,7 +202,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override type ResourceType = Resource
       override type ParentType   = Resource
       override val parentType: CompanionFor[ResourceType] = Resource
-      type ExampleChoice = Choice[Union00683246261]
+      type ExampleChoice = Choice[UnionBooleanOrCanonical]
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,
@@ -238,7 +238,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       val reference: FHIRComponentFieldMeta[Reference] =
         FHIRComponentFieldMeta("reference", lTagOf[Reference], false, lTagOf[Reference])
       val example: FHIRComponentFieldMeta[Option[Resource.ExampleChoice]] =
-        FHIRComponentFieldMeta("example", lTagOf[Option[Resource.ExampleChoice]], true, lTagOf[Union00683246261])
+        FHIRComponentFieldMeta("example", lTagOf[Option[Resource.ExampleChoice]], true, lTagOf[UnionBooleanOrCanonical])
       val groupingId: FHIRComponentFieldMeta[Option[Id]] =
         FHIRComponentFieldMeta("groupingId", lTagOf[Option[Id]], false, lTagOf[Id])
       val fhirVersion: FHIRComponentFieldMeta[LitSeq[FHIR_VERSION]] =
@@ -271,7 +271,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
               cursor.decodeAs[Option[String]]("name", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[Reference]("reference", None),
-              cursor.decodeOptRef[Union00683246261]("example"),
+              cursor.decodeOptRef[UnionBooleanOrCanonical]("example"),
               cursor.decodeAs[Option[Id]]("groupingId", Some(None)),
               cursor.decodeAs[LitSeq[FHIR_VERSION]]("fhirVersion", Some(LitSeq.empty)),
               cursor.decodeAs[Option[String]]("description", Some(None)),
@@ -601,7 +601,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override type ResourceType = Resource
       override type ParentType   = Resource
       override val parentType: CompanionFor[ResourceType] = Resource
-      type ExampleChoice = Choice[Union00683246261]
+      type ExampleChoice = Choice[UnionBooleanOrCanonical]
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -629,7 +629,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       val reference: FHIRComponentFieldMeta[Reference] =
         FHIRComponentFieldMeta("reference", lTagOf[Reference], false, lTagOf[Reference])
       val example: FHIRComponentFieldMeta[Option[Resource.ExampleChoice]] =
-        FHIRComponentFieldMeta("example", lTagOf[Option[Resource.ExampleChoice]], true, lTagOf[Union00683246261])
+        FHIRComponentFieldMeta("example", lTagOf[Option[Resource.ExampleChoice]], true, lTagOf[UnionBooleanOrCanonical])
       val relativePath: FHIRComponentFieldMeta[Option[UrlStr]] =
         FHIRComponentFieldMeta("relativePath", lTagOf[Option[UrlStr]], false, lTagOf[UrlStr])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -653,7 +653,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[Reference]("reference", None),
-              cursor.decodeOptRef[Union00683246261]("example"),
+              cursor.decodeOptRef[UnionBooleanOrCanonical]("example"),
               cursor.decodeAs[Option[UrlStr]]("relativePath", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)

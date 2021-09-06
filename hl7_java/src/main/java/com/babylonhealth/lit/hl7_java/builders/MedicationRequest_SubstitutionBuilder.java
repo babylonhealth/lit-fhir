@@ -45,27 +45,27 @@ import static java.util.stream.Collectors.toList;
 public interface MedicationRequest_SubstitutionBuilder {
   public MedicationRequest.Substitution build();
 
-  public static Impl init(@NonNull Choice_1768247138 allowed) {
+  public static Impl init(@NonNull ChoiceBooleanOrCodeableConcept allowed) {
     return new Impl(allowed);
   }
 
-  public static Impl builder(@NonNull Choice_1768247138 allowed) {
+  public static Impl builder(@NonNull ChoiceBooleanOrCodeableConcept allowed) {
     return new Impl(allowed);
   }
 
-  public static Choice_1768247138 allowed(Boolean b) {
-    return new Choice_1768247138(b);
+  public static ChoiceBooleanOrCodeableConcept allowed(Boolean b) {
+    return new ChoiceBooleanOrCodeableConcept(b);
   }
 
-  public static Choice_1768247138 allowed(CodeableConcept c) {
-    return new Choice_1768247138(c);
+  public static ChoiceBooleanOrCodeableConcept allowed(CodeableConcept c) {
+    return new ChoiceBooleanOrCodeableConcept(c);
   }
 
   public class Impl implements MedicationRequest_SubstitutionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> reason = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice_1768247138 allowed;
+    private ChoiceBooleanOrCodeableConcept allowed;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -75,7 +75,7 @@ public interface MedicationRequest_SubstitutionBuilder {
      *     pass the value in, wrap with one of the MedicationRequest_SubstitutionBuilder.allowed
      *     static methods
      */
-    public Impl(@NonNull Choice_1768247138 allowed) {
+    public Impl(@NonNull ChoiceBooleanOrCodeableConcept allowed) {
       this.allowed = allowed;
     }
 

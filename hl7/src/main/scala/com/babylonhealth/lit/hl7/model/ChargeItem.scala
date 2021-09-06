@@ -98,8 +98,8 @@ object ChargeItem extends CompanionFor[ChargeItem] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type ProductChoice    = Choice[Union01025009075]
-  type OccurrenceChoice = Choice[Union00609373412]
+  type ProductChoice    = Choice[UnionCodeableConceptOrReference]
+  type OccurrenceChoice = Choice[UnionFHIRDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -214,7 +214,7 @@ object ChargeItem extends CompanionFor[ChargeItem] {
   val costCenter: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("costCenter", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val product: FHIRComponentFieldMeta[Option[ChargeItem.ProductChoice]] =
-    FHIRComponentFieldMeta("product", lTagOf[Option[ChargeItem.ProductChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("product", lTagOf[Option[ChargeItem.ProductChoice]], true, lTagOf[UnionCodeableConceptOrReference])
   val enteredDate: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("enteredDate", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -222,7 +222,11 @@ object ChargeItem extends CompanionFor[ChargeItem] {
   val definitionUri: FHIRComponentFieldMeta[LitSeq[UriStr]] =
     FHIRComponentFieldMeta("definitionUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[ChargeItem.OccurrenceChoice]] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Option[ChargeItem.OccurrenceChoice]], true, lTagOf[Union00609373412])
+    FHIRComponentFieldMeta(
+      "occurrence",
+      lTagOf[Option[ChargeItem.OccurrenceChoice]],
+      true,
+      lTagOf[UnionFHIRDateTimeOrPeriodOrTiming])
   val priceOverride: FHIRComponentFieldMeta[Option[Money]] =
     FHIRComponentFieldMeta("priceOverride", lTagOf[Option[Money]], false, lTagOf[Money])
   val factorOverride: FHIRComponentFieldMeta[Option[BigDecimal]] =
@@ -392,11 +396,11 @@ object ChargeItem extends CompanionFor[ChargeItem] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("costCenter", Some(None)),
-          cursor.decodeOptRef[Union01025009075]("product"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("product"),
           cursor.decodeAs[Option[FHIRDateTime]]("enteredDate", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[UriStr]]("definitionUri", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union00609373412]("occurrence"),
+          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[Option[Money]]("priceOverride", Some(None)),
           cursor.decodeAs[Option[BigDecimal]]("factorOverride", Some(None)),
           cursor.decodeAs[Option[String]]("overrideReason", Some(None)),

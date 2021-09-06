@@ -46,27 +46,29 @@ public interface MedicinalProductIndication_OtherTherapyBuilder {
   public MedicinalProductIndication.OtherTherapy build();
 
   public static Impl init(
-      @NonNull Choice01025009075 medication, CodeableConcept therapyRelationshipType) {
+      @NonNull ChoiceCodeableConceptOrReference medication,
+      CodeableConcept therapyRelationshipType) {
     return new Impl(medication, therapyRelationshipType);
   }
 
   public static Impl builder(
-      @NonNull Choice01025009075 medication, CodeableConceptBuilder therapyRelationshipType) {
+      @NonNull ChoiceCodeableConceptOrReference medication,
+      CodeableConceptBuilder therapyRelationshipType) {
     return new Impl(medication, therapyRelationshipType.build());
   }
 
-  public static Choice01025009075 medication(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 medication(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference medication(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicinalProductIndication_OtherTherapyBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice01025009075 medication;
+    private ChoiceCodeableConceptOrReference medication;
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private CodeableConcept therapyRelationshipType;
 
@@ -78,7 +80,9 @@ public interface MedicinalProductIndication_OtherTherapyBuilder {
      *     MedicinalProductIndication_OtherTherapyBuilder.medication static methods
      * @param therapyRelationshipType
      */
-    public Impl(@NonNull Choice01025009075 medication, CodeableConcept therapyRelationshipType) {
+    public Impl(
+        @NonNull ChoiceCodeableConceptOrReference medication,
+        CodeableConcept therapyRelationshipType) {
       this.medication = medication;
       this.therapyRelationshipType = therapyRelationshipType;
     }

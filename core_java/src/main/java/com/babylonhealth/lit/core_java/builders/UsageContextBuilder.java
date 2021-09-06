@@ -42,34 +42,34 @@ import static java.util.stream.Collectors.toList;
 public interface UsageContextBuilder extends ElementBuilder {
   public UsageContext build();
 
-  public static Impl init(Coding code, @NonNull Choice_0119127717 value) {
+  public static Impl init(Coding code, @NonNull ChoiceUsageContext_Value value) {
     return new Impl(code, value);
   }
 
-  public static Impl builder(CodingBuilder code, @NonNull Choice_0119127717 value) {
+  public static Impl builder(CodingBuilder code, @NonNull ChoiceUsageContext_Value value) {
     return new Impl(code.build(), value);
   }
 
-  public static Choice_0119127717 value(CodeableConcept c) {
-    return new Choice_0119127717(c);
+  public static ChoiceUsageContext_Value value(CodeableConcept c) {
+    return new ChoiceUsageContext_Value(c);
   }
 
-  public static Choice_0119127717 value(Quantity q) {
-    return new Choice_0119127717(q);
+  public static ChoiceUsageContext_Value value(Quantity q) {
+    return new ChoiceUsageContext_Value(q);
   }
 
-  public static Choice_0119127717 value(Range r) {
-    return new Choice_0119127717(r);
+  public static ChoiceUsageContext_Value value(Range r) {
+    return new ChoiceUsageContext_Value(r);
   }
 
-  public static Choice_0119127717 value(Reference r) {
-    return new Choice_0119127717(r);
+  public static ChoiceUsageContext_Value value(Reference r) {
+    return new ChoiceUsageContext_Value(r);
   }
 
   public class Impl implements UsageContextBuilder {
     private Optional<String> id = Optional.empty();
     private Coding code;
-    private Choice_0119127717 value;
+    private ChoiceUsageContext_Value value;
     private Collection<Extension> extension = Collections.emptyList();
 
     /**
@@ -82,7 +82,7 @@ public interface UsageContextBuilder extends ElementBuilder {
      *     should be one of CodeableConcept, Quantity, Range, Reference. To pass the value in, wrap
      *     with one of the UsageContextBuilder.value static methods
      */
-    public Impl(Coding code, @NonNull Choice_0119127717 value) {
+    public Impl(Coding code, @NonNull ChoiceUsageContext_Value value) {
       this.code = code;
       this.value = value;
     }

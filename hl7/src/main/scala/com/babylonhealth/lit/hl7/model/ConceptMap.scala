@@ -463,8 +463,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
       val element: NonEmptyLitSeq[Group.Element],
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SourceChoice = Choice[Union00545979821]
-  type TargetChoice = Choice[Union00545979821]
+  type SourceChoice = Choice[UnionCanonicalOrUriStr]
+  type TargetChoice = Choice[UnionCanonicalOrUriStr]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -555,9 +555,9 @@ object ConceptMap extends CompanionFor[ConceptMap] {
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val source: FHIRComponentFieldMeta[Option[ConceptMap.SourceChoice]] =
-    FHIRComponentFieldMeta("source", lTagOf[Option[ConceptMap.SourceChoice]], true, lTagOf[Union00545979821])
+    FHIRComponentFieldMeta("source", lTagOf[Option[ConceptMap.SourceChoice]], true, lTagOf[UnionCanonicalOrUriStr])
   val target: FHIRComponentFieldMeta[Option[ConceptMap.TargetChoice]] =
-    FHIRComponentFieldMeta("target", lTagOf[Option[ConceptMap.TargetChoice]], true, lTagOf[Union00545979821])
+    FHIRComponentFieldMeta("target", lTagOf[Option[ConceptMap.TargetChoice]], true, lTagOf[UnionCanonicalOrUriStr])
   val identifier: FHIRComponentFieldMeta[Option[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
@@ -708,8 +708,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("publisher", Some(None)),
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
-          cursor.decodeOptRef[Union00545979821]("source"),
-          cursor.decodeOptRef[Union00545979821]("target"),
+          cursor.decodeOptRef[UnionCanonicalOrUriStr]("source"),
+          cursor.decodeOptRef[UnionCanonicalOrUriStr]("target"),
           cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),

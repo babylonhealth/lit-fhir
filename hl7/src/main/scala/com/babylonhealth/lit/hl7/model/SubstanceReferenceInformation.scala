@@ -193,7 +193,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
     override type ResourceType = Target
     override type ParentType   = Target
     override val parentType: CompanionFor[ResourceType] = Target
-    type AmountChoice = Choice[Union_1527751898]
+    type AmountChoice = Choice[UnionQuantityOrRangeOrString]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -249,7 +249,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val amount: FHIRComponentFieldMeta[Option[Target.AmountChoice]] =
-      FHIRComponentFieldMeta("amount", lTagOf[Option[Target.AmountChoice]], true, lTagOf[Union_1527751898])
+      FHIRComponentFieldMeta("amount", lTagOf[Option[Target.AmountChoice]], true, lTagOf[UnionQuantityOrRangeOrString])
     val amountType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("amountType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val interaction: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -286,7 +286,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
             cursor.decodeAs[LitSeq[Reference]]("source", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("organism", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_1527751898]("amount"),
+            cursor.decodeOptRef[UnionQuantityOrRangeOrString]("amount"),
             cursor.decodeAs[Option[CodeableConcept]]("amountType", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("interaction", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("organismType", Some(None)),

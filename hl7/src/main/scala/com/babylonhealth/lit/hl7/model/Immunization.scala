@@ -37,8 +37,8 @@ object Immunization extends CompanionFor[Immunization] {
     override type ResourceType = ProtocolApplied
     override type ParentType   = ProtocolApplied
     override val parentType: CompanionFor[ResourceType] = ProtocolApplied
-    type DoseNumberChoice  = Choice[Union_0839638734]
-    type SeriesDosesChoice = Choice[Union_0839638734]
+    type DoseNumberChoice  = Choice[UnionPositiveIntOrString]
+    type SeriesDosesChoice = Choice[UnionPositiveIntOrString]
     def apply(
         id: Option[String] = None,
         series: Option[String] = None,
@@ -74,9 +74,13 @@ object Immunization extends CompanionFor[Immunization] {
     val targetDisease: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("targetDisease", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val doseNumber: FHIRComponentFieldMeta[ProtocolApplied.DoseNumberChoice] =
-      FHIRComponentFieldMeta("doseNumber", lTagOf[ProtocolApplied.DoseNumberChoice], true, lTagOf[Union_0839638734])
+      FHIRComponentFieldMeta("doseNumber", lTagOf[ProtocolApplied.DoseNumberChoice], true, lTagOf[UnionPositiveIntOrString])
     val seriesDoses: FHIRComponentFieldMeta[Option[ProtocolApplied.SeriesDosesChoice]] =
-      FHIRComponentFieldMeta("seriesDoses", lTagOf[Option[ProtocolApplied.SeriesDosesChoice]], true, lTagOf[Union_0839638734])
+      FHIRComponentFieldMeta(
+        "seriesDoses",
+        lTagOf[Option[ProtocolApplied.SeriesDosesChoice]],
+        true,
+        lTagOf[UnionPositiveIntOrString])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -103,8 +107,8 @@ object Immunization extends CompanionFor[Immunization] {
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Reference]]("authority", Some(None)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("targetDisease", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0839638734]("doseNumber"),
-            cursor.decodeOptRef[Union_0839638734]("seriesDoses"),
+            cursor.decodeRef[UnionPositiveIntOrString]("doseNumber"),
+            cursor.decodeOptRef[UnionPositiveIntOrString]("seriesDoses"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -345,7 +349,7 @@ object Immunization extends CompanionFor[Immunization] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OccurrenceChoice = Choice[Union_1715923163]
+  type OccurrenceChoice = Choice[UnionFHIRDateTimeOrString]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -472,7 +476,7 @@ object Immunization extends CompanionFor[Immunization] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Immunization.OccurrenceChoice] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Immunization.OccurrenceChoice], true, lTagOf[Union_1715923163])
+    FHIRComponentFieldMeta("occurrence", lTagOf[Immunization.OccurrenceChoice], true, lTagOf[UnionFHIRDateTimeOrString])
   val primarySource: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("primarySource", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val fundingSource: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -659,7 +663,7 @@ object Immunization extends CompanionFor[Immunization] {
           cursor.decodeAs[Option[Reference]]("manufacturer", Some(None)),
           cursor.decodeAs[Option[Quantity]]("doseQuantity", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeRef[Union_1715923163]("occurrence"),
+          cursor.decodeRef[UnionFHIRDateTimeOrString]("occurrence"),
           cursor.decodeAs[Option[Boolean]]("primarySource", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("fundingSource", Some(None)),
           cursor.decodeAs[Option[FHIRDate]]("expirationDate", Some(None)),

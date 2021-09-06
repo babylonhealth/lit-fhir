@@ -133,7 +133,7 @@ object Observation extends CompanionFor[Observation] {
     override type ResourceType = Component
     override type ParentType   = Component
     override val parentType: CompanionFor[ResourceType] = Component
-    type ValueChoice = Choice[Union_0802685816]
+    type ValueChoice = Choice[UnionObservation_Value]
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -163,7 +163,7 @@ object Observation extends CompanionFor[Observation] {
     val code: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("code", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Option[Component.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[Component.ValueChoice]], true, lTagOf[Union_0802685816])
+      FHIRComponentFieldMeta("value", lTagOf[Option[Component.ValueChoice]], true, lTagOf[UnionObservation_Value])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -199,7 +199,7 @@ object Observation extends CompanionFor[Observation] {
           new Component(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("code", None),
-            cursor.decodeOptRef[Union_0802685816]("value"),
+            cursor.decodeOptRef[UnionObservation_Value]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Observation.ReferenceRange]]("referenceRange", Some(LitSeq.empty)),
@@ -221,8 +221,8 @@ object Observation extends CompanionFor[Observation] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type ValueChoice     = Choice[Union_0802685816]
-  type EffectiveChoice = Choice[Union01473702374]
+  type ValueChoice     = Choice[UnionObservation_Value]
+  type EffectiveChoice = Choice[UnionObservation_Effective]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -323,7 +323,7 @@ object Observation extends CompanionFor[Observation] {
   val category: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val value: FHIRComponentFieldMeta[Option[Observation.ValueChoice]] =
-    FHIRComponentFieldMeta("value", lTagOf[Option[Observation.ValueChoice]], true, lTagOf[Union_0802685816])
+    FHIRComponentFieldMeta("value", lTagOf[Option[Observation.ValueChoice]], true, lTagOf[UnionObservation_Value])
   val bodySite: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val specimen: FHIRComponentFieldMeta[Option[Reference]] =
@@ -343,7 +343,7 @@ object Observation extends CompanionFor[Observation] {
   val derivedFrom: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("derivedFrom", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Option[Observation.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[Observation.EffectiveChoice]], true, lTagOf[Union01473702374])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[Observation.EffectiveChoice]], true, lTagOf[UnionObservation_Effective])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -545,7 +545,7 @@ object Observation extends CompanionFor[Observation] {
           cursor.decodeAs[Option[Reference]]("subject", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_0802685816]("value"),
+          cursor.decodeOptRef[UnionObservation_Value]("value"),
           cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
           cursor.decodeAs[Option[Reference]]("specimen", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -555,7 +555,7 @@ object Observation extends CompanionFor[Observation] {
           cursor.decodeAs[LitSeq[Reference]]("hasMember", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01473702374]("effective"),
+          cursor.decodeOptRef[UnionObservation_Effective]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

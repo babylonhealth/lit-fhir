@@ -32,7 +32,7 @@ object Specimen_processingTime extends CompanionFor[Specimen_processingTime] {
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/specimen-processingTime")
-  type ValueChoice = Choice[Union00284192631]
+  type ValueChoice = Choice[UnionDurationOrPeriod]
   def apply(
       id: Option[String] = None,
       value: Specimen_processingTime.ValueChoice,
@@ -45,7 +45,7 @@ object Specimen_processingTime extends CompanionFor[Specimen_processingTime] {
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Specimen_processingTime.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Specimen_processingTime.ValueChoice], true, lTagOf[Union00284192631])
+    FHIRComponentFieldMeta("value", lTagOf[Specimen_processingTime.ValueChoice], true, lTagOf[UnionDurationOrPeriod])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -64,7 +64,7 @@ object Specimen_processingTime extends CompanionFor[Specimen_processingTime] {
       Try(
         new Specimen_processingTime(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union00284192631]("value"),
+          cursor.decodeRef[UnionDurationOrPeriod]("value"),
           decodeAttributes(cursor)
         )
       ))

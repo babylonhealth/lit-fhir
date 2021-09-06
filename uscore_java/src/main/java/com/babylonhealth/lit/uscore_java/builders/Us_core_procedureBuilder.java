@@ -56,7 +56,7 @@ public interface Us_core_procedureBuilder extends ProcedureBuilder {
       CodeableConcept code,
       EVENT_STATUS status,
       Reference subject,
-      @NonNull Choice_0934386166 performed) {
+      @NonNull ChoiceFHIRDateTimeOrPeriod performed) {
     return new Impl(code, status, subject, performed);
   }
 
@@ -64,16 +64,16 @@ public interface Us_core_procedureBuilder extends ProcedureBuilder {
       CodeableConceptBuilder code,
       EVENT_STATUS status,
       ReferenceBuilder subject,
-      @NonNull Choice_0934386166 performed) {
+      @NonNull ChoiceFHIRDateTimeOrPeriod performed) {
     return new Impl(code.build(), status, subject.build(), performed);
   }
 
-  public static Choice_0934386166 performed(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod performed(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 performed(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod performed(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements Us_core_procedureBuilder {
@@ -106,7 +106,7 @@ public interface Us_core_procedureBuilder extends ProcedureBuilder {
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<CodeableConcept> statusReason = Optional.empty();
-    private Choice_0934386166 performed;
+    private ChoiceFHIRDateTimeOrPeriod performed;
     private Collection<CodeableConcept> complication = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Reference> usedReference = Collections.emptyList();
@@ -136,7 +136,7 @@ public interface Us_core_procedureBuilder extends ProcedureBuilder {
         CodeableConcept code,
         EVENT_STATUS status,
         Reference subject,
-        @NonNull Choice_0934386166 performed) {
+        @NonNull ChoiceFHIRDateTimeOrPeriod performed) {
       this.code = code;
       this.status = status;
       this.subject = subject;

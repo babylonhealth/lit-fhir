@@ -64,44 +64,44 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
         code.build(), subject.build(), new LitSeq<>(category).map(CodeableConceptBuilder::build));
   }
 
-  public static Choice01352864625 onset(Age a) {
-    return new Choice01352864625(a);
+  public static ChoiceAllergyIntolerance_Onset onset(Age a) {
+    return new ChoiceAllergyIntolerance_Onset(a);
   }
 
-  public static Choice01352864625 onset(FHIRDateTime f) {
-    return new Choice01352864625(f);
+  public static ChoiceAllergyIntolerance_Onset onset(FHIRDateTime f) {
+    return new ChoiceAllergyIntolerance_Onset(f);
   }
 
-  public static Choice01352864625 onset(Period p) {
-    return new Choice01352864625(p);
+  public static ChoiceAllergyIntolerance_Onset onset(Period p) {
+    return new ChoiceAllergyIntolerance_Onset(p);
   }
 
-  public static Choice01352864625 onset(Range r) {
-    return new Choice01352864625(r);
+  public static ChoiceAllergyIntolerance_Onset onset(Range r) {
+    return new ChoiceAllergyIntolerance_Onset(r);
   }
 
-  public static Choice01352864625 onset(String s) {
-    return new Choice01352864625(s);
+  public static ChoiceAllergyIntolerance_Onset onset(String s) {
+    return new ChoiceAllergyIntolerance_Onset(s);
   }
 
-  public static Choice01352864625 abatement(Age a) {
-    return new Choice01352864625(a);
+  public static ChoiceAllergyIntolerance_Onset abatement(Age a) {
+    return new ChoiceAllergyIntolerance_Onset(a);
   }
 
-  public static Choice01352864625 abatement(FHIRDateTime f) {
-    return new Choice01352864625(f);
+  public static ChoiceAllergyIntolerance_Onset abatement(FHIRDateTime f) {
+    return new ChoiceAllergyIntolerance_Onset(f);
   }
 
-  public static Choice01352864625 abatement(Period p) {
-    return new Choice01352864625(p);
+  public static ChoiceAllergyIntolerance_Onset abatement(Period p) {
+    return new ChoiceAllergyIntolerance_Onset(p);
   }
 
-  public static Choice01352864625 abatement(Range r) {
-    return new Choice01352864625(r);
+  public static ChoiceAllergyIntolerance_Onset abatement(Range r) {
+    return new ChoiceAllergyIntolerance_Onset(r);
   }
 
-  public static Choice01352864625 abatement(String s) {
-    return new Choice01352864625(s);
+  public static ChoiceAllergyIntolerance_Onset abatement(String s) {
+    return new ChoiceAllergyIntolerance_Onset(s);
   }
 
   public class Impl implements Us_core_conditionBuilder {
@@ -119,14 +119,14 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
     private Collection<CodeableConcept> category;
     private Optional<CodeableConcept> severity = Optional.empty();
     private Collection<CodeableConcept> bodySite = Collections.emptyList();
-    private Optional<Choice01352864625> onset = Optional.empty();
+    private Optional<ChoiceAllergyIntolerance_Onset> onset = Optional.empty();
     private Optional<Reference> recorder = Optional.empty();
     private Optional<Reference> asserter = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01352864625> abatement = Optional.empty();
+    private Optional<ChoiceAllergyIntolerance_Onset> abatement = Optional.empty();
     private Optional<FHIRDateTime> recordedDate = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<CodeableConcept> clinicalStatus = Optional.empty();
@@ -247,7 +247,7 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
      *     Period, Range, String. To pass the value in, wrap with one of the
      *     Us_core_conditionBuilder.onset static methods
      */
-    public Us_core_conditionBuilder.Impl withOnset(@NonNull Choice01352864625 onset) {
+    public Us_core_conditionBuilder.Impl withOnset(@NonNull ChoiceAllergyIntolerance_Onset onset) {
       this.onset = Optional.of(onset);
       return this;
     }
@@ -369,7 +369,8 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
      *     Period, Range, String. To pass the value in, wrap with one of the
      *     Us_core_conditionBuilder.abatement static methods
      */
-    public Us_core_conditionBuilder.Impl withAbatement(@NonNull Choice01352864625 abatement) {
+    public Us_core_conditionBuilder.Impl withAbatement(
+        @NonNull ChoiceAllergyIntolerance_Onset abatement) {
       this.abatement = Optional.of(abatement);
       return this;
     }

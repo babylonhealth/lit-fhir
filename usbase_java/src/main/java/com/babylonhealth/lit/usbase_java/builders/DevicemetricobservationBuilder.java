@@ -67,40 +67,40 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     return new Impl(code.build(), status, device.build(), subject.build(), effective);
   }
 
-  public static Choice_1915626029 value(CodeableConcept c) {
-    return new Choice_1915626029(c);
+  public static ChoiceDevicemetricobservation_Value value(CodeableConcept c) {
+    return new ChoiceDevicemetricobservation_Value(c);
   }
 
-  public static Choice_1915626029 value(FHIRDateTime f) {
-    return new Choice_1915626029(f);
+  public static ChoiceDevicemetricobservation_Value value(FHIRDateTime f) {
+    return new ChoiceDevicemetricobservation_Value(f);
   }
 
-  public static Choice_1915626029 value(LocalTime l) {
-    return new Choice_1915626029(l);
+  public static ChoiceDevicemetricobservation_Value value(LocalTime l) {
+    return new ChoiceDevicemetricobservation_Value(l);
   }
 
-  public static Choice_1915626029 value(Period p) {
-    return new Choice_1915626029(p);
+  public static ChoiceDevicemetricobservation_Value value(Period p) {
+    return new ChoiceDevicemetricobservation_Value(p);
   }
 
-  public static Choice_1915626029 value(Quantity q) {
-    return new Choice_1915626029(q);
+  public static ChoiceDevicemetricobservation_Value value(Quantity q) {
+    return new ChoiceDevicemetricobservation_Value(q);
   }
 
-  public static Choice_1915626029 value(Range r) {
-    return new Choice_1915626029(r);
+  public static ChoiceDevicemetricobservation_Value value(Range r) {
+    return new ChoiceDevicemetricobservation_Value(r);
   }
 
-  public static Choice_1915626029 value(Ratio r) {
-    return new Choice_1915626029(r);
+  public static ChoiceDevicemetricobservation_Value value(Ratio r) {
+    return new ChoiceDevicemetricobservation_Value(r);
   }
 
-  public static Choice_1915626029 value(SampledData s) {
-    return new Choice_1915626029(s);
+  public static ChoiceDevicemetricobservation_Value value(SampledData s) {
+    return new ChoiceDevicemetricobservation_Value(s);
   }
 
-  public static Choice_1915626029 value(String s) {
-    return new Choice_1915626029(s);
+  public static ChoiceDevicemetricobservation_Value value(String s) {
+    return new ChoiceDevicemetricobservation_Value(s);
   }
 
   public class Impl implements DevicemetricobservationBuilder {
@@ -122,7 +122,7 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     private Reference subject;
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
-    private Optional<Choice_1915626029> value = Optional.empty();
+    private Optional<ChoiceDevicemetricobservation_Value> value = Optional.empty();
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
@@ -336,7 +336,8 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
      *     String. To pass the value in, wrap with one of the DevicemetricobservationBuilder.value
      *     static methods
      */
-    public DevicemetricobservationBuilder.Impl withValue(@NonNull Choice_1915626029 value) {
+    public DevicemetricobservationBuilder.Impl withValue(
+        @NonNull ChoiceDevicemetricobservation_Value value) {
       this.value = Optional.of(value);
       return this;
     }

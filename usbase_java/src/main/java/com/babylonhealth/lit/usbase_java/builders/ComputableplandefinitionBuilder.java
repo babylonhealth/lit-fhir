@@ -57,12 +57,12 @@ public interface ComputableplandefinitionBuilder extends PlanDefinitionBuilder {
     return new Impl(status, library);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements ComputableplandefinitionBuilder {
@@ -96,7 +96,7 @@ public interface ComputableplandefinitionBuilder extends PlanDefinitionBuilder {
     private Optional<String> publisher = Optional.empty();
     private Optional<String> copyright = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<Boolean> experimental = Optional.empty();
@@ -496,7 +496,8 @@ public interface ComputableplandefinitionBuilder extends PlanDefinitionBuilder {
      *     To pass the value in, wrap with one of the ComputableplandefinitionBuilder.subject static
      *     methods
      */
-    public ComputableplandefinitionBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public ComputableplandefinitionBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

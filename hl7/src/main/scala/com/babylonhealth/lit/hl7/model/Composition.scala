@@ -43,7 +43,7 @@ object Composition extends CompanionFor[Composition] {
     override type ResourceType = RelatesTo
     override type ParentType   = RelatesTo
     override val parentType: CompanionFor[ResourceType] = RelatesTo
-    type TargetChoice = Choice[Union_0983418289]
+    type TargetChoice = Choice[UnionIdentifierOrReference]
     def apply(
         id: Option[String] = None,
         code: DOCUMENT_RELATIONSHIP_TYPE,
@@ -69,7 +69,7 @@ object Composition extends CompanionFor[Composition] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val target: FHIRComponentFieldMeta[RelatesTo.TargetChoice] =
-      FHIRComponentFieldMeta("target", lTagOf[RelatesTo.TargetChoice], true, lTagOf[Union_0983418289])
+      FHIRComponentFieldMeta("target", lTagOf[RelatesTo.TargetChoice], true, lTagOf[UnionIdentifierOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, extension, target, modifierExtension)
@@ -90,7 +90,7 @@ object Composition extends CompanionFor[Composition] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[DOCUMENT_RELATIONSHIP_TYPE]("code", None),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0983418289]("target"),
+            cursor.decodeRef[UnionIdentifierOrReference]("target"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )

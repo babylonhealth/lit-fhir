@@ -45,33 +45,34 @@ import static java.util.stream.Collectors.toList;
 public interface Group_CharacteristicBuilder {
   public Group.Characteristic build();
 
-  public static Impl init(CodeableConcept code, Boolean exclude, @NonNull Choice01646729908 value) {
+  public static Impl init(
+      CodeableConcept code, Boolean exclude, @NonNull ChoiceCharacteristic_Value value) {
     return new Impl(code, exclude, value);
   }
 
   public static Impl builder(
-      CodeableConceptBuilder code, Boolean exclude, @NonNull Choice01646729908 value) {
+      CodeableConceptBuilder code, Boolean exclude, @NonNull ChoiceCharacteristic_Value value) {
     return new Impl(code.build(), exclude, value);
   }
 
-  public static Choice01646729908 value(Boolean b) {
-    return new Choice01646729908(b);
+  public static ChoiceCharacteristic_Value value(Boolean b) {
+    return new ChoiceCharacteristic_Value(b);
   }
 
-  public static Choice01646729908 value(CodeableConcept c) {
-    return new Choice01646729908(c);
+  public static ChoiceCharacteristic_Value value(CodeableConcept c) {
+    return new ChoiceCharacteristic_Value(c);
   }
 
-  public static Choice01646729908 value(Quantity q) {
-    return new Choice01646729908(q);
+  public static ChoiceCharacteristic_Value value(Quantity q) {
+    return new ChoiceCharacteristic_Value(q);
   }
 
-  public static Choice01646729908 value(Range r) {
-    return new Choice01646729908(r);
+  public static ChoiceCharacteristic_Value value(Range r) {
+    return new ChoiceCharacteristic_Value(r);
   }
 
-  public static Choice01646729908 value(Reference r) {
-    return new Choice01646729908(r);
+  public static ChoiceCharacteristic_Value value(Reference r) {
+    return new ChoiceCharacteristic_Value(r);
   }
 
   public class Impl implements Group_CharacteristicBuilder {
@@ -79,7 +80,7 @@ public interface Group_CharacteristicBuilder {
     private CodeableConcept code;
     private Optional<Period> period = Optional.empty();
     private Boolean exclude;
-    private Choice01646729908 value;
+    private ChoiceCharacteristic_Value value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -93,7 +94,7 @@ public interface Group_CharacteristicBuilder {
      *     Quantity, Range, Reference. To pass the value in, wrap with one of the
      *     Group_CharacteristicBuilder.value static methods
      */
-    public Impl(CodeableConcept code, Boolean exclude, @NonNull Choice01646729908 value) {
+    public Impl(CodeableConcept code, Boolean exclude, @NonNull ChoiceCharacteristic_Value value) {
       this.code = code;
       this.exclude = exclude;
       this.value = value;

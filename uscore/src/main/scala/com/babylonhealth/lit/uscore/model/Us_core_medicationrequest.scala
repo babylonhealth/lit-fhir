@@ -40,8 +40,8 @@ object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest]
   override val baseType: CompanionFor[ResourceType] = MedicationRequest
   override val parentType: CompanionFor[ParentType] = MedicationRequest
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest")
-  type ReportedChoice   = Choice[Union_1524702593]
-  type MedicationChoice = Choice[Union01025009075]
+  type ReportedChoice   = Choice[UnionBooleanOrReference]
+  type MedicationChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -171,7 +171,11 @@ object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest]
   val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val reported: FHIRComponentFieldMeta[Option[Us_core_medicationrequest.ReportedChoice]] =
-    FHIRComponentFieldMeta("reported", lTagOf[Option[Us_core_medicationrequest.ReportedChoice]], true, lTagOf[Union_1524702593])
+    FHIRComponentFieldMeta(
+      "reported",
+      lTagOf[Option[Us_core_medicationrequest.ReportedChoice]],
+      true,
+      lTagOf[UnionBooleanOrReference])
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
@@ -181,7 +185,11 @@ object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest]
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val medication: FHIRComponentFieldMeta[Us_core_medicationrequest.MedicationChoice] =
-    FHIRComponentFieldMeta("medication", lTagOf[Us_core_medicationrequest.MedicationChoice], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "medication",
+      lTagOf[Us_core_medicationrequest.MedicationChoice],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val performerType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("performerType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val detectedIssue: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -369,12 +377,12 @@ object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest]
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[FHIRDateTime]("authoredOn", None),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1524702593]("reported"),
+          cursor.decodeOptRef[UnionBooleanOrReference]("reported"),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
           cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("eventHistory", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeRef[Union01025009075]("medication"),
+          cursor.decodeRef[UnionCodeableConceptOrReference]("medication"),
           cursor.decodeAs[Option[CodeableConcept]]("performerType", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("detectedIssue", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),

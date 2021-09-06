@@ -55,24 +55,24 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     return new Impl(code.build(), status, subject.build());
   }
 
-  public static Choice01025009075 product(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference product(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 product(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference product(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static Choice00609373412 occurrence(FHIRDateTime f) {
-    return new Choice00609373412(f);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
   }
 
-  public static Choice00609373412 occurrence(Period p) {
-    return new Choice00609373412(p);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
   }
 
-  public static Choice00609373412 occurrence(Timing t) {
-    return new Choice00609373412(t);
+  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements ChargeItemBuilder {
@@ -96,11 +96,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<Reference> costCenter = Optional.empty();
-    private Optional<Choice01025009075> product = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> product = Optional.empty();
     private Optional<FHIRDateTime> enteredDate = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<String> definitionUri = Collections.emptyList();
-    private Optional<Choice00609373412> occurrence = Optional.empty();
+    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Optional<Money> priceOverride = Optional.empty();
     private Optional<BigDecimal> factorOverride = Optional.empty();
     private Optional<String> overrideReason = Optional.empty();
@@ -376,7 +376,7 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
      *     CodeableConcept, Reference. To pass the value in, wrap with one of the
      *     ChargeItemBuilder.product static methods
      */
-    public ChargeItemBuilder.Impl withProduct(@NonNull Choice01025009075 product) {
+    public ChargeItemBuilder.Impl withProduct(@NonNull ChoiceCodeableConceptOrReference product) {
       this.product = Optional.of(product);
       return this;
     }
@@ -416,7 +416,8 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
      *     'choice' field. Type should be one of FHIRDateTime, Period, Timing. To pass the value in,
      *     wrap with one of the ChargeItemBuilder.occurrence static methods
      */
-    public ChargeItemBuilder.Impl withOccurrence(@NonNull Choice00609373412 occurrence) {
+    public ChargeItemBuilder.Impl withOccurrence(
+        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

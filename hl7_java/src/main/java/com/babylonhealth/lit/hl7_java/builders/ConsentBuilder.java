@@ -59,12 +59,12 @@ public interface ConsentBuilder extends DomainResourceBuilder {
         scope.build(), status, new LitSeq<>(category).map(CodeableConceptBuilder::build));
   }
 
-  public static Choice_0340660840 source(Attachment a) {
-    return new Choice_0340660840(a);
+  public static ChoiceAttachmentOrReference source(Attachment a) {
+    return new ChoiceAttachmentOrReference(a);
   }
 
-  public static Choice_0340660840 source(Reference r) {
-    return new Choice_0340660840(r);
+  public static ChoiceAttachmentOrReference source(Reference r) {
+    return new ChoiceAttachmentOrReference(r);
   }
 
   public class Impl implements ConsentBuilder {
@@ -80,7 +80,7 @@ public interface ConsentBuilder extends DomainResourceBuilder {
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Reference> performer = Collections.emptyList();
-    private Optional<Choice_0340660840> source = Optional.empty();
+    private Optional<ChoiceAttachmentOrReference> source = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<CodeableConcept> policyRule = Optional.empty();
     private Collection<Reference> organization = Collections.emptyList();
@@ -246,7 +246,7 @@ public interface ConsentBuilder extends DomainResourceBuilder {
      *     document. Field is a 'choice' field. Type should be one of Attachment, Reference. To pass
      *     the value in, wrap with one of the ConsentBuilder.source static methods
      */
-    public ConsentBuilder.Impl withSource(@NonNull Choice_0340660840 source) {
+    public ConsentBuilder.Impl withSource(@NonNull ChoiceAttachmentOrReference source) {
       this.source = Optional.of(source);
       return this;
     }

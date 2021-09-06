@@ -186,7 +186,7 @@ object Provenance extends CompanionFor[Provenance] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OccurredChoice = Choice[Union_0934386166]
+  type OccurredChoice = Choice[UnionFHIRDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -255,7 +255,7 @@ object Provenance extends CompanionFor[Provenance] {
   val signature: FHIRComponentFieldMeta[LitSeq[Signature]] =
     FHIRComponentFieldMeta("signature", lTagOf[LitSeq[Signature]], false, lTagOf[Signature])
   val occurred: FHIRComponentFieldMeta[Option[Provenance.OccurredChoice]] =
-    FHIRComponentFieldMeta("occurred", lTagOf[Option[Provenance.OccurredChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("occurred", lTagOf[Option[Provenance.OccurredChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -375,7 +375,7 @@ object Provenance extends CompanionFor[Provenance] {
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Signature]]("signature", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_0934386166]("occurred"),
+          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("occurred"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[NonEmptyLitSeq[Provenance.Agent]]("agent", None),

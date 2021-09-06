@@ -53,12 +53,12 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
     return new Impl();
   }
 
-  public static Choice_2072987899 minimumVolume(Quantity q) {
-    return new Choice_2072987899(q);
+  public static ChoiceQuantityOrString minimumVolume(Quantity q) {
+    return new ChoiceQuantityOrString(q);
   }
 
-  public static Choice_2072987899 minimumVolume(String s) {
-    return new Choice_2072987899(s);
+  public static ChoiceQuantityOrString minimumVolume(String s) {
+    return new ChoiceQuantityOrString(s);
   }
 
   public class Impl implements SpecimenDefinition_TypeTested_ContainerBuilder {
@@ -70,7 +70,7 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<String> preparation = Optional.empty();
-    private Optional<Choice_2072987899> minimumVolume = Optional.empty();
+    private Optional<ChoiceQuantityOrString> minimumVolume = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<SpecimenDefinition$TypeTested$Container$Additive> additive =
         Collections.emptyList();
@@ -182,7 +182,7 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
      *     SpecimenDefinition_TypeTested_ContainerBuilder.minimumVolume static methods
      */
     public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withMinimumVolume(
-        @NonNull Choice_2072987899 minimumVolume) {
+        @NonNull ChoiceQuantityOrString minimumVolume) {
       this.minimumVolume = Optional.of(minimumVolume);
       return this;
     }

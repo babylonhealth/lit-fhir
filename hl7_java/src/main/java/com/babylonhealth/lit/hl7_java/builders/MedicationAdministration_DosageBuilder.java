@@ -53,12 +53,12 @@ public interface MedicationAdministration_DosageBuilder {
     return new Impl();
   }
 
-  public static Choice_0964108894 rate(Quantity q) {
-    return new Choice_0964108894(q);
+  public static ChoiceQuantityOrRatio rate(Quantity q) {
+    return new ChoiceQuantityOrRatio(q);
   }
 
-  public static Choice_0964108894 rate(Ratio r) {
-    return new Choice_0964108894(r);
+  public static ChoiceQuantityOrRatio rate(Ratio r) {
+    return new ChoiceQuantityOrRatio(r);
   }
 
   public class Impl implements MedicationAdministration_DosageBuilder {
@@ -68,7 +68,7 @@ public interface MedicationAdministration_DosageBuilder {
     private Optional<Quantity> dose = Optional.empty();
     private Optional<CodeableConcept> route = Optional.empty();
     private Optional<CodeableConcept> method = Optional.empty();
-    private Optional<Choice_0964108894> rate = Optional.empty();
+    private Optional<ChoiceQuantityOrRatio> rate = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -141,7 +141,8 @@ public interface MedicationAdministration_DosageBuilder {
      * @param rate Field is a 'choice' field. Type should be one of Quantity, Ratio. To pass the
      *     value in, wrap with one of the MedicationAdministration_DosageBuilder.rate static methods
      */
-    public MedicationAdministration_DosageBuilder.Impl withRate(@NonNull Choice_0964108894 rate) {
+    public MedicationAdministration_DosageBuilder.Impl withRate(
+        @NonNull ChoiceQuantityOrRatio rate) {
       this.rate = Optional.of(rate);
       return this;
     }

@@ -58,7 +58,7 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
       ZonedDateTime issued,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull Choice_0934386166 effective) {
+      @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
     return new Impl(code, status, issued, subject, category, effective);
   }
 
@@ -68,7 +68,7 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
       ZonedDateTime issued,
       ReferenceBuilder subject,
       Collection<CodeableConceptBuilder> category,
-      @NonNull Choice_0934386166 effective) {
+      @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
     return new Impl(
         code.build(),
         status,
@@ -78,12 +78,12 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
         effective);
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceFHIRDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
+    return new ChoiceFHIRDateTimeOrPeriod(p);
   }
 
   public class Impl implements Us_core_diagnosticreport_labBuilder {
@@ -110,7 +110,7 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     private Collection<Reference> performer = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> conclusion = Optional.empty();
-    private Choice_0934386166 effective;
+    private ChoiceFHIRDateTimeOrPeriod effective;
     private Collection<Reference> imagingStudy = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Attachment> presentedForm = Collections.emptyList();
@@ -143,7 +143,7 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
         ZonedDateTime issued,
         Reference subject,
         Collection<CodeableConcept> category,
-        @NonNull Choice_0934386166 effective) {
+        @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
       this.code = code;
       this.status = status;
       this.issued = issued;
