@@ -49,6 +49,10 @@ public interface NamingSystem_UniqueIdBuilder {
     return new Impl(_type, value);
   }
 
+  public static Impl builder(NAMINGSYSTEM_IDENTIFIER_TYPE _type, String value) {
+    return new Impl(_type, value);
+  }
+
   public class Impl implements NamingSystem_UniqueIdBuilder {
     private Optional<String> id = Optional.empty();
     private NAMINGSYSTEM_IDENTIFIER_TYPE _type;

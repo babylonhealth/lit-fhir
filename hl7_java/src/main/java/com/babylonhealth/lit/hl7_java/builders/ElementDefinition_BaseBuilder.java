@@ -49,6 +49,10 @@ public interface ElementDefinition_BaseBuilder {
     return new Impl(min, max, path);
   }
 
+  public static Impl builder(Integer min, String max, String path) {
+    return new Impl(min, max, path);
+  }
+
   public class Impl implements ElementDefinition_BaseBuilder {
     private Optional<String> id = Optional.empty();
     private Integer min;

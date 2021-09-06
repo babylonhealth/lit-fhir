@@ -49,6 +49,10 @@ public interface MedicationKnowledge_DrugCharacteristicBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1309404550 value(byte[] b) {
     return new Choice_1309404550(b);
   }

@@ -52,6 +52,10 @@ public interface Elementdefinition_equivalenceBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CONCEPT_MAP_EQUIVALENCE value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Elementdefinition_equivalenceBuilder {
     private Optional<String> id = Optional.empty();
     private CONCEPT_MAP_EQUIVALENCE value;

@@ -52,6 +52,10 @@ public interface Organization_periodBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(PeriodBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Organization_periodBuilder {
     private Optional<String> id = Optional.empty();
     private Period value;

@@ -56,6 +56,10 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(CodeableConceptBuilder code) {
+    return new Impl(code.build());
+  }
+
   public class Impl implements Us_core_medicationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

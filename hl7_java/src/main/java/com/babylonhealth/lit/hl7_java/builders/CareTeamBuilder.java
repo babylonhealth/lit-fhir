@@ -50,6 +50,10 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements CareTeamBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

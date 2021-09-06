@@ -49,6 +49,10 @@ public interface InsurancePlan_PlanBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements InsurancePlan_PlanBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

@@ -49,6 +49,10 @@ public interface MedicationKnowledge_Regulatory_SubstitutionBuilder {
     return new Impl(_type, allowed);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, Boolean allowed) {
+    return new Impl(_type.build(), allowed);
+  }
+
   public class Impl implements MedicationKnowledge_Regulatory_SubstitutionBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

@@ -51,6 +51,11 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
     return new Impl(status, intent, subject);
   }
 
+  public static Impl builder(
+      REQUEST_STATUS status, CARE_PLAN_INTENT intent, ReferenceBuilder subject) {
+    return new Impl(status, intent, subject.build());
+  }
+
   public class Impl implements CarePlanBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

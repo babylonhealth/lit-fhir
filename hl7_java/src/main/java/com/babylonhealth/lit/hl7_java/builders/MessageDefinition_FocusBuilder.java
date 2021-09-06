@@ -49,6 +49,10 @@ public interface MessageDefinition_FocusBuilder {
     return new Impl(min, code);
   }
 
+  public static Impl builder(Integer min, RESOURCE_TYPES code) {
+    return new Impl(min, code);
+  }
+
   public class Impl implements MessageDefinition_FocusBuilder {
     private Optional<String> id = Optional.empty();
     private Integer min;

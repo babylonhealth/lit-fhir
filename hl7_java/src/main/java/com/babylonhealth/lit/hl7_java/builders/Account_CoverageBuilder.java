@@ -49,6 +49,10 @@ public interface Account_CoverageBuilder {
     return new Impl(coverage);
   }
 
+  public static Impl builder(ReferenceBuilder coverage) {
+    return new Impl(coverage.build());
+  }
+
   public class Impl implements Account_CoverageBuilder {
     private Optional<String> id = Optional.empty();
     private Reference coverage;

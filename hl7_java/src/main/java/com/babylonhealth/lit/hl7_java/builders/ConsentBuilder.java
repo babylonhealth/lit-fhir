@@ -51,6 +51,14 @@ public interface ConsentBuilder extends DomainResourceBuilder {
     return new Impl(scope, status, category);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder scope,
+      CONSENT_STATE_CODES status,
+      Collection<CodeableConceptBuilder> category) {
+    return new Impl(
+        scope.build(), status, new LitSeq<>(category).map(CodeableConceptBuilder::build));
+  }
+
   public static Choice_0340660840 source(Attachment a) {
     return new Choice_0340660840(a);
   }

@@ -50,6 +50,10 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(RESEARCH_STUDY_STATUS status) {
+    return new Impl(status);
+  }
+
   public class Impl implements ResearchStudyBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

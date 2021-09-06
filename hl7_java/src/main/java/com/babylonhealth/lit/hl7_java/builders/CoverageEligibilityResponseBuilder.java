@@ -59,6 +59,18 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
     return new Impl(status, purpose, patient, created, request, outcome, insurer);
   }
 
+  public static Impl builder(
+      FM_STATUS status,
+      Collection<ELIGIBILITYRESPONSE_PURPOSE> purpose,
+      ReferenceBuilder patient,
+      FHIRDateTime created,
+      ReferenceBuilder request,
+      REMITTANCE_OUTCOME outcome,
+      ReferenceBuilder insurer) {
+    return new Impl(
+        status, purpose, patient.build(), created, request.build(), outcome, insurer.build());
+  }
+
   public static Choice_0503196159 serviced(FHIRDate f) {
     return new Choice_0503196159(f);
   }

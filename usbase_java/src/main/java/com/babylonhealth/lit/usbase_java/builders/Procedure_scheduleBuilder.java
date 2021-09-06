@@ -52,6 +52,10 @@ public interface Procedure_scheduleBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(TimingBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Procedure_scheduleBuilder {
     private Optional<String> id = Optional.empty();
     private Timing value;

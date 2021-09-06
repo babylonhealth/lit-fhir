@@ -52,6 +52,10 @@ public interface Specimen_processingTimeBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice00284192631 value) {
+    return new Impl(value);
+  }
+
   public static Choice00284192631 value(Duration d) {
     return new Choice00284192631(d);
   }

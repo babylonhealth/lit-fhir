@@ -52,6 +52,10 @@ public interface MinLengthBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Integer value) {
+    return new Impl(value);
+  }
+
   public class Impl implements MinLengthBuilder {
     private Optional<String> id = Optional.empty();
     private Integer value;

@@ -50,6 +50,10 @@ public interface AccountBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(ACCOUNT_STATUS status) {
+    return new Impl(status);
+  }
+
   public class Impl implements AccountBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

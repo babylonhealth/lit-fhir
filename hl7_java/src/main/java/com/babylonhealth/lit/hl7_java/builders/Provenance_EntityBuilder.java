@@ -49,6 +49,10 @@ public interface Provenance_EntityBuilder {
     return new Impl(role, what);
   }
 
+  public static Impl builder(PROVENANCE_ENTITY_ROLE role, ReferenceBuilder what) {
+    return new Impl(role, what.build());
+  }
+
   public class Impl implements Provenance_EntityBuilder {
     private Optional<String> id = Optional.empty();
     private PROVENANCE_ENTITY_ROLE role;

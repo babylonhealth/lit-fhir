@@ -49,6 +49,10 @@ public interface CompartmentDefinition_ResourceBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(RESOURCE_TYPES code) {
+    return new Impl(code);
+  }
+
   public class Impl implements CompartmentDefinition_ResourceBuilder {
     private Optional<String> id = Optional.empty();
     private RESOURCE_TYPES code;

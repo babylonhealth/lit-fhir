@@ -49,6 +49,10 @@ public interface VisionPrescription_LensSpecification_PrismBuilder {
     return new Impl(base, amount);
   }
 
+  public static Impl builder(VISION_BASE_CODES base, BigDecimal amount) {
+    return new Impl(base, amount);
+  }
+
   public class Impl implements VisionPrescription_LensSpecification_PrismBuilder {
     private Optional<String> id = Optional.empty();
     private VISION_BASE_CODES base;

@@ -49,6 +49,10 @@ public interface MedicationRequest_SubstitutionBuilder {
     return new Impl(allowed);
   }
 
+  public static Impl builder(@NonNull Choice_1768247138 allowed) {
+    return new Impl(allowed);
+  }
+
   public static Choice_1768247138 allowed(Boolean b) {
     return new Choice_1768247138(b);
   }

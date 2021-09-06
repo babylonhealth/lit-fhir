@@ -52,6 +52,10 @@ public interface Structuredefinition_explicit_type_nameBuilder extends Extension
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_explicit_type_nameBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

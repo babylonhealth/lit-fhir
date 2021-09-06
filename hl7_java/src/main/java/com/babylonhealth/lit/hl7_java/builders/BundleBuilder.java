@@ -50,6 +50,10 @@ public interface BundleBuilder extends ResourceBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(BUNDLE_TYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements BundleBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

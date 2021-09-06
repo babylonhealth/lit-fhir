@@ -49,6 +49,10 @@ public interface AuditEvent_Agent_NetworkBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements AuditEvent_Agent_NetworkBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<NETWORK_TYPE> _type = Optional.empty();

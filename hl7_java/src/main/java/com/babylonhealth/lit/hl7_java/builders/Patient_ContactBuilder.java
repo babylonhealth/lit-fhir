@@ -49,6 +49,10 @@ public interface Patient_ContactBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Patient_ContactBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<HumanName> name = Optional.empty();

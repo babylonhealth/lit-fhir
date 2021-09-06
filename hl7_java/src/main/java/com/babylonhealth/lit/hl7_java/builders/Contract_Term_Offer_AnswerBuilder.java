@@ -49,6 +49,10 @@ public interface Contract_Term_Offer_AnswerBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice_2101127777 value) {
+    return new Impl(value);
+  }
+
   public static Choice_2101127777 value(Attachment a) {
     return new Choice_2101127777(a);
   }

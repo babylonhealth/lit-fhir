@@ -49,6 +49,10 @@ public interface MedicinalProductAuthorization_ProcedureBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type) {
+    return new Impl(_type.build());
+  }
+
   public static Choice_0934386166 date(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

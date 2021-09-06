@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_ProcessNoteBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ExplanationOfBenefit_ProcessNoteBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<NOTE_TYPE> _type = Optional.empty();

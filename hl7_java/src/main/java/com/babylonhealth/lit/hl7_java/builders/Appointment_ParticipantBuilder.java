@@ -50,6 +50,10 @@ public interface Appointment_ParticipantBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(PARTICIPATIONSTATUS status) {
+    return new Impl(status);
+  }
+
   public class Impl implements Appointment_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<CodeableConcept> _type = Collections.emptyList();

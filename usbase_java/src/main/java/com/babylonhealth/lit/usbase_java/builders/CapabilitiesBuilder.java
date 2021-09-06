@@ -52,6 +52,10 @@ public interface CapabilitiesBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(SMART_CAPABILITIES value) {
+    return new Impl(value);
+  }
+
   public class Impl implements CapabilitiesBuilder {
     private Optional<String> id = Optional.empty();
     private SMART_CAPABILITIES value;

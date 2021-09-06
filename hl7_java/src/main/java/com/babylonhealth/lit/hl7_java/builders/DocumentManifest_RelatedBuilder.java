@@ -49,6 +49,10 @@ public interface DocumentManifest_RelatedBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements DocumentManifest_RelatedBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> ref = Optional.empty();

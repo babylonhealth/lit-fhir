@@ -52,6 +52,10 @@ public interface Questionnaire_choiceOrientationBuilder extends ExtensionBuilder
     return new Impl(value);
   }
 
+  public static Impl builder(CHOICE_LIST_ORIENTATION value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Questionnaire_choiceOrientationBuilder {
     private Optional<String> id = Optional.empty();
     private CHOICE_LIST_ORIENTATION value;

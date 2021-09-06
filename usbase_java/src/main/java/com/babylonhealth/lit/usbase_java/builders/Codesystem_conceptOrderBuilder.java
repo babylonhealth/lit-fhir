@@ -52,6 +52,10 @@ public interface Codesystem_conceptOrderBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Integer value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Codesystem_conceptOrderBuilder {
     private Optional<String> id = Optional.empty();
     private Integer value;

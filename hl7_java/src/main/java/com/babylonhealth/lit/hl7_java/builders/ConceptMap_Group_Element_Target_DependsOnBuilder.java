@@ -49,6 +49,10 @@ public interface ConceptMap_Group_Element_Target_DependsOnBuilder {
     return new Impl(value, property);
   }
 
+  public static Impl builder(String value, String property) {
+    return new Impl(value, property);
+  }
+
   public class Impl implements ConceptMap_Group_Element_Target_DependsOnBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

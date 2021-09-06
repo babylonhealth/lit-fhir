@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_PaymentBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ExplanationOfBenefit_PaymentBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

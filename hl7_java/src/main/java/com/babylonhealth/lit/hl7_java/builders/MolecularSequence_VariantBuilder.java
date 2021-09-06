@@ -49,6 +49,10 @@ public interface MolecularSequence_VariantBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MolecularSequence_VariantBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Integer> end = Optional.empty();

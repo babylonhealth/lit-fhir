@@ -60,6 +60,18 @@ public interface Us_core_encounterBuilder extends EncounterBuilder {
     return new Impl(_type, _class, status, subject);
   }
 
+  public static Impl builder(
+      Collection<CodeableConceptBuilder> _type,
+      CodingBuilder _class,
+      ENCOUNTER_STATUS status,
+      ReferenceBuilder subject) {
+    return new Impl(
+        new LitSeq<>(_type).map(CodeableConceptBuilder::build),
+        _class.build(),
+        status,
+        subject.build());
+  }
+
   public class Impl implements Us_core_encounterBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

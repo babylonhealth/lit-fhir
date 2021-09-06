@@ -52,6 +52,10 @@ public interface Structuredefinition_display_hintBuilder extends ExtensionBuilde
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_display_hintBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

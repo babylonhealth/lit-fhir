@@ -49,6 +49,10 @@ public interface TerminologyCapabilities_TranslationBuilder {
     return new Impl(needsMap);
   }
 
+  public static Impl builder(Boolean needsMap) {
+    return new Impl(needsMap);
+  }
+
   public class Impl implements TerminologyCapabilities_TranslationBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean needsMap;

@@ -49,6 +49,10 @@ public interface Contract_Term_AssetBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Contract_Term_AssetBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<CodeableConcept> _type = Collections.emptyList();

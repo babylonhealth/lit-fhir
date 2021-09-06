@@ -52,6 +52,10 @@ public interface DisplayBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements DisplayBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

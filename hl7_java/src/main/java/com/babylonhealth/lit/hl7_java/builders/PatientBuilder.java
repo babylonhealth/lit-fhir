@@ -50,6 +50,10 @@ public interface PatientBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_2131715935 deceased(Boolean b) {
     return new Choice_2131715935(b);
   }

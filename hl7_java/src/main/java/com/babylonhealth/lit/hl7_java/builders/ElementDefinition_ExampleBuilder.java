@@ -49,6 +49,10 @@ public interface ElementDefinition_ExampleBuilder {
     return new Impl(label, value);
   }
 
+  public static Impl builder(String label, @NonNull Choice_1349125893 value) {
+    return new Impl(label, value);
+  }
+
   public static Choice_1349125893 value(Address a) {
     return new Choice_1349125893(a);
   }

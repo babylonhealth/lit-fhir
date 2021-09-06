@@ -50,6 +50,11 @@ public interface RiskEvidenceSynthesisBuilder extends DomainResourceBuilder {
     return new Impl(status, outcome, population);
   }
 
+  public static Impl builder(
+      PUBLICATION_STATUS status, ReferenceBuilder outcome, ReferenceBuilder population) {
+    return new Impl(status, outcome.build(), population.build());
+  }
+
   public class Impl implements RiskEvidenceSynthesisBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

@@ -52,6 +52,10 @@ public interface Structuredefinition_wgBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(HL7_WORK_GROUP value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_wgBuilder {
     private Optional<String> id = Optional.empty();
     private HL7_WORK_GROUP value;

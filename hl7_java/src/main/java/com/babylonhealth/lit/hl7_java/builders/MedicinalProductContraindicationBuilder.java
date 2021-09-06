@@ -49,6 +49,10 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MedicinalProductContraindicationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

@@ -52,6 +52,10 @@ public interface Specimen_sequenceNumberBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Integer value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Specimen_sequenceNumberBuilder {
     private Optional<String> id = Optional.empty();
     private Integer value;

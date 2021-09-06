@@ -49,6 +49,10 @@ public interface Bundle_EntryBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Bundle_EntryBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Bundle.Link> link = Collections.emptyList();

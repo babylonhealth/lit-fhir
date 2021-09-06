@@ -49,6 +49,10 @@ public interface Location_PositionBuilder {
     return new Impl(latitude, longitude);
   }
 
+  public static Impl builder(BigDecimal latitude, BigDecimal longitude) {
+    return new Impl(latitude, longitude);
+  }
+
   public class Impl implements Location_PositionBuilder {
     private Optional<String> id = Optional.empty();
     private BigDecimal latitude;

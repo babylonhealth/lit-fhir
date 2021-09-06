@@ -52,6 +52,10 @@ public interface Cqf_initialValueBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Cqf_initialValueBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

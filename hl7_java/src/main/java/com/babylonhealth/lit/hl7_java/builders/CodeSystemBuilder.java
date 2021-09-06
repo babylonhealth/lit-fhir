@@ -52,6 +52,10 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
     return new Impl(status, content);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status, CODESYSTEM_CONTENT_MODE content) {
+    return new Impl(status, content);
+  }
+
   public class Impl implements CodeSystemBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

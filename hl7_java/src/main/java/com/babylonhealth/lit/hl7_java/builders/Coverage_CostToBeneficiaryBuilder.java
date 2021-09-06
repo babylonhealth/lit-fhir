@@ -49,6 +49,10 @@ public interface Coverage_CostToBeneficiaryBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice_0221283134 value) {
+    return new Impl(value);
+  }
+
   public static Choice_0221283134 value(Money m) {
     return new Choice_0221283134(m);
   }

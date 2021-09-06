@@ -49,6 +49,10 @@ public interface RiskAssessment_PredictionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01200936722 when(Period p) {
     return new Choice01200936722(p);
   }

@@ -46,6 +46,10 @@ public interface ExpressionBuilder extends ElementBuilder {
     return new Impl(language);
   }
 
+  public static Impl builder(EXPRESSION_LANGUAGE language) {
+    return new Impl(language);
+  }
+
   public class Impl implements ExpressionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

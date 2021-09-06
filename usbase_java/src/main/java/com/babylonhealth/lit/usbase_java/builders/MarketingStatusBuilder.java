@@ -52,6 +52,11 @@ public interface MarketingStatusBuilder extends BackboneElementBuilder {
     return new Impl(status, country, dateRange);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder status, CodeableConceptBuilder country, PeriodBuilder dateRange) {
+    return new Impl(status.build(), country.build(), dateRange.build());
+  }
+
   public class Impl implements MarketingStatusBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept status;

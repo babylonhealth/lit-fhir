@@ -49,6 +49,10 @@ public interface Claim_RelatedBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Claim_RelatedBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> claim = Optional.empty();

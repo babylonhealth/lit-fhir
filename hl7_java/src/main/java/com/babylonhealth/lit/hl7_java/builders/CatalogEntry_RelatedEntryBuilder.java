@@ -49,6 +49,10 @@ public interface CatalogEntry_RelatedEntryBuilder {
     return new Impl(item, relationtype);
   }
 
+  public static Impl builder(ReferenceBuilder item, RELATION_TYPE relationtype) {
+    return new Impl(item.build(), relationtype);
+  }
+
   public class Impl implements CatalogEntry_RelatedEntryBuilder {
     private Optional<String> id = Optional.empty();
     private Reference item;

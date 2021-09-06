@@ -52,6 +52,10 @@ public interface Valueset_parameterSourceBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(EXPANSION_PARAMETER_SOURCE value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_parameterSourceBuilder {
     private Optional<String> id = Optional.empty();
     private EXPANSION_PARAMETER_SOURCE value;

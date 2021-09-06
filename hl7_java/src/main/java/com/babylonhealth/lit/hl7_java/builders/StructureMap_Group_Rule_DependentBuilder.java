@@ -49,6 +49,10 @@ public interface StructureMap_Group_Rule_DependentBuilder {
     return new Impl(name, variable);
   }
 
+  public static Impl builder(String name, Collection<String> variable) {
+    return new Impl(name, variable);
+  }
+
   public class Impl implements StructureMap_Group_Rule_DependentBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

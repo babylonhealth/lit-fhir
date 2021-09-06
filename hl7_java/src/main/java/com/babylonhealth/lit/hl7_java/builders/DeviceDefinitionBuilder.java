@@ -49,6 +49,10 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1128709984 manufacturer(Reference r) {
     return new Choice_1128709984(r);
   }

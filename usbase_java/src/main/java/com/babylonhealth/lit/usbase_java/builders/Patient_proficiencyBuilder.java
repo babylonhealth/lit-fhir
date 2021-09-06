@@ -52,6 +52,10 @@ public interface Patient_proficiencyBuilder extends ExtensionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1349125893 value(Address a) {
     return new Choice_1349125893(a);
   }

@@ -49,6 +49,10 @@ public interface ClinicalImpression_InvestigationBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(CodeableConceptBuilder code) {
+    return new Impl(code.build());
+  }
+
   public class Impl implements ClinicalImpression_InvestigationBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;

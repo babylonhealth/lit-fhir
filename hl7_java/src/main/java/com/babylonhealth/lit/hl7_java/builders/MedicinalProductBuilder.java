@@ -49,6 +49,10 @@ public interface MedicinalProductBuilder extends DomainResourceBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(Collection<MedicinalProduct_NameBuilder> name) {
+    return new Impl(new LitSeq<>(name).map(MedicinalProduct_NameBuilder::build));
+  }
+
   public class Impl implements MedicinalProductBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

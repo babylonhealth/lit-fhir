@@ -49,6 +49,10 @@ public interface TestScript_Metadata_CapabilityBuilder {
     return new Impl(required, validated, capabilities);
   }
 
+  public static Impl builder(Boolean required, Boolean validated, String capabilities) {
+    return new Impl(required, validated, capabilities);
+  }
+
   public class Impl implements TestScript_Metadata_CapabilityBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<String> link = Collections.emptyList();

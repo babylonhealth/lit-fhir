@@ -49,6 +49,10 @@ public interface Claim_CareTeamBuilder {
     return new Impl(sequence, provider);
   }
 
+  public static Impl builder(Integer sequence, ReferenceBuilder provider) {
+    return new Impl(sequence, provider.build());
+  }
+
   public class Impl implements Claim_CareTeamBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> role = Optional.empty();

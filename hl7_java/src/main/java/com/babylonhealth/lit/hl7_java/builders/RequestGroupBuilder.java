@@ -52,6 +52,10 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     return new Impl(status, intent);
   }
 
+  public static Impl builder(REQUEST_STATUS status, REQUEST_INTENT intent) {
+    return new Impl(status, intent);
+  }
+
   public class Impl implements RequestGroupBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

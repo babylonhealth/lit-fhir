@@ -49,6 +49,10 @@ public interface ValueSet_ExpansionBuilder {
     return new Impl(timestamp);
   }
 
+  public static Impl builder(FHIRDateTime timestamp) {
+    return new Impl(timestamp);
+  }
+
   public class Impl implements ValueSet_ExpansionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Integer> total = Optional.empty();

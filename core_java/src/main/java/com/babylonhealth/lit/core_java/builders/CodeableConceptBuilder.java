@@ -46,6 +46,10 @@ public interface CodeableConceptBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements CodeableConceptBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> text = Optional.empty();

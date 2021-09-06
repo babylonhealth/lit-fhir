@@ -49,6 +49,10 @@ public interface ExampleScenario_ProcessBuilder {
     return new Impl(title);
   }
 
+  public static Impl builder(String title) {
+    return new Impl(title);
+  }
+
   public class Impl implements ExampleScenario_ProcessBuilder {
     private Optional<String> id = Optional.empty();
     private String title;

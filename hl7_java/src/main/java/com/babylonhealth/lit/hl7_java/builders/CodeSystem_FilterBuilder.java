@@ -49,6 +49,10 @@ public interface CodeSystem_FilterBuilder {
     return new Impl(code, value, operator);
   }
 
+  public static Impl builder(String code, String value, Collection<FILTER_OPERATOR> operator) {
+    return new Impl(code, value, operator);
+  }
+
   public class Impl implements CodeSystem_FilterBuilder {
     private Optional<String> id = Optional.empty();
     private String code;

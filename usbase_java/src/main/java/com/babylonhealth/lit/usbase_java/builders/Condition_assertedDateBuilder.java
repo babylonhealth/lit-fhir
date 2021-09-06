@@ -52,6 +52,10 @@ public interface Condition_assertedDateBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDateTime value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Condition_assertedDateBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDateTime value;

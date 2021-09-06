@@ -49,6 +49,10 @@ public interface AdverseEvent_SuspectEntityBuilder {
     return new Impl(instance);
   }
 
+  public static Impl builder(ReferenceBuilder instance) {
+    return new Impl(instance.build());
+  }
+
   public class Impl implements AdverseEvent_SuspectEntityBuilder {
     private Optional<String> id = Optional.empty();
     private Reference instance;

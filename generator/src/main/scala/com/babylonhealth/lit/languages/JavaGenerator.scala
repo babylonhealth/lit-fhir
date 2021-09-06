@@ -44,30 +44,34 @@ trait JavaGenerator extends Commonish {
           bf.copy(default = default, valueEnumeration = nearestValueSet)
         }
     def toCallableScalaName(f: BaseField): String = CodegenUtils.fieldScalaNameFromJavaName(f.javaName)
-    def eraseSubtypes(t: String, f: BaseField): String = t match {
+    def eraseSubtypes(t: String, f: BaseField, builder: Boolean = false): String = t match {
       case "Code" if f.valueEnumeration.isDefined =>
         EnumerationUtils.valueSetToEnumName(f.valueEnumeration.get.valueSet)
       case "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" if !f.isGenerated =>
         "String"
-      case "Base64Binary"                                          => "byte[]"
-      case "PositiveInt" | "UnsignedInt" | "Int" if !f.isGenerated => "Integer"
+      case "Base64Binary"                                                 => "byte[]"
+      case "PositiveInt" | "UnsignedInt" | "Int" if !f.isGenerated        => "Integer"
+      case x if !f.isGenerated && isPrimitiveSuffix(inverseTypeLookup(x)) => x
       case x if f.isGenerated && f.declaringClasses.size > 1 =>
-        f.declaringClasses.mkString("$") + "$" + x
+        if (builder) f.declaringClasses.mkString("_") + "_" + x + "Builder"
+        else f.declaringClasses.mkString("$") + "$" + x
       case x if f.isGenerated =>
         val progenitorClass = f.firstBase.map(_.scalaClassName) getOrElse topLevelClass.scalaClassName
-        s"${progenitorClass}.$x"
-      case x if x.count(_ == '.') > 1 => x.split("\\.").mkString("$")
-      case x if x.contains('"')       => "Choice"
-      case x                          => x
+        if (builder) s"${progenitorClass}_${x}Builder" else s"$progenitorClass.$x"
+      case x if x.count(_ == '.') > 1 =>
+        if (builder) x.split("\\.").mkString("_") + "Builder"
+        else x.split("\\.").mkString("$")
+      case x if x.contains('"') => "Choice"
+      case x                    => x + (if (builder) "Builder" else "")
     }
-    def eraseUninferrableChoices(f: BaseField) = {
+    def eraseUninferrableChoices(f: BaseField, builder: Boolean = false) = {
       f.types match {
-        case x if x.size == 1 => eraseSubtypes(x.head, f)
-        case x                => choiceClassName(f)
+        case x if x.size == 1 => eraseSubtypes(x.head, f, builder)
+        case _                => choiceClassName(f)
       }
     }
-    def toJavaType(f: BaseField, wrapInOptional: Boolean = true): String = {
-      f.cardinality.wrapJavaType(eraseUninferrableChoices(f))
+    def toJavaType(f: BaseField, builder: Boolean = false): String = {
+      f.cardinality.wrapJavaType(eraseUninferrableChoices(f, builder = builder))
     }
     def toBuilderMutatorType(f: BaseField, wrapInOptional: Boolean = true, asCollection: Boolean = false): String = {
       if (asCollection) {
@@ -80,11 +84,12 @@ trait JavaGenerator extends Commonish {
     def genPrivateFields(fs: Seq[BaseField]): String =
       fs.map(f => s"""private ${toJavaType(f)} ${f.javaName}${default(f)};""").mkString("\n")
 
-    def genBuilderParam(f: BaseField): String = {
-      if (f.types.size == 1) s"${toJavaType(f)} ${f.javaName}"
+    def genInitialParam(f: BaseField, builder: Boolean): String = {
+      if (f.types.size == 1) s"${toJavaType(f, builder = builder)} ${f.javaName}"
       else s"@NonNull ${choiceClassName(f)} ${f.javaName}"
     }
-    def genBuilderParams(fs: Seq[BaseField]): String = fs.map(genBuilderParam).mkString(", ")
+    def genInitialParams(fs: Seq[BaseField], builder: Boolean = false): String =
+      fs.map(genInitialParam(_, builder = builder)).mkString(", ")
 
     def genFieldAssignment(f: BaseField, targetClassName: String): String =
       s"this.${f.javaName} = ${f.javaName};"
@@ -131,12 +136,13 @@ trait JavaGenerator extends Commonish {
       s"@param ${f.javaName}${getNearestDescription(f, topLevelClass) getOrElse ""}${if (f.types.size > 1) {
         val value = f.types.map(t => t -> eraseSubtypes(t, f))
         s"\n  * Field is a 'choice' field. Type should be one of ${value.map(_._2).distinct.mkString(", ")}. To pass the" +
-          s" value in, wrap with one of the $builderName.${f.javaName} static methods"
+        s" value in, wrap with one of the $builderName.${f.javaName} static methods"
       } else ""}"
     val builderName                         = s"${topLevelClass.scalaClassName}Builder"
     val privateFields                       = genPrivateFields(fields)
     val (nonOptionalFields, optionalFields) = fields.partition(_.cardinality.required)
-    val builderParams                       = genBuilderParams(nonOptionalFields)
+    val initialParams                       = genInitialParams(nonOptionalFields)
+    val builderParams                       = genInitialParams(nonOptionalFields, builder = true)
     val fieldAssignments                    = genFieldAssignments(nonOptionalFields, topLevelClass.scalaClassName)
     def convertToScala(f: BaseField) = {
       val isErasedRef =
@@ -237,11 +243,12 @@ trait JavaGenerator extends Commonish {
         else mungedClassName.replace('_', '$')
       val privateFields                       = genPrivateFields(f.childFields)
       val (nonOptionalFields, optionalFields) = f.childFields.partition(_.cardinality.required)
-      val builderParams                       = genBuilderParams(nonOptionalFields)
+      val initialParams                       = genInitialParams(nonOptionalFields)
+      val builderParams                       = genInitialParams(nonOptionalFields, builder = true)
       val fieldAssignments                    = genFieldAssignments(nonOptionalFields, targetClassName)
       val optionalFieldAppenders              = genOptionalFieldAppenders(optionalFields, builderName, targetClassName)
       val choiceConstructorAliases            = f.childFields.map(choiceConstructorMethods).mkString("\n")
-      val paramStrs                           = nonOptionalFields.map(paramStr(_, isRequired = true, builderName)).mkString("\n  * ")
+      val paramStrs = nonOptionalFields.map(paramStr(_, isRequired = true, builderName)).mkString("\n  * ")
       val javaDoc =
         s""" /** Required fields for {@link $targetClassName}
            |  *
@@ -253,8 +260,12 @@ trait JavaGenerator extends Commonish {
            |public interface $builderName$implementationExtension {
            |  public $targetClassName build();
            |
-           |  public static Impl init($builderParams) {
+           |  public static Impl init($initialParams) {
            |    return new Impl(${nonOptionalFields.map(_.javaName).mkString(", ")});
+           |  }
+           |
+           |  public static Impl builder($builderParams) {
+           |    return new Impl(${nonOptionalFields.map(_.javaBuildName((t, f) => eraseSubtypes(t, f, true))).mkString(", ")});
            |  }
            |
            |  $choiceConstructorAliases
@@ -263,7 +274,7 @@ trait JavaGenerator extends Commonish {
            |    $privateFields
            |
            |    $javaDoc
-           |    public Impl($builderParams) {
+           |    public Impl($initialParams) {
            |      $fieldAssignments
            |    }
            |
@@ -315,8 +326,12 @@ trait JavaGenerator extends Commonish {
          |public interface $builderName$implementationExtension {
          |  public ${topLevelClass.scalaClassName} build();
          |
-         |  public static Impl init($builderParams) {
+         |  public static Impl init($initialParams) {
          |    return new Impl(${nonOptionalFields.map(_.javaName).mkString(", ")});
+         |  }
+         |
+         |  public static Impl builder($builderParams) {
+         |    return new Impl(${nonOptionalFields.map(_.javaBuildName((t, f) => eraseSubtypes(t, f, true))).mkString(", ")});
          |  }
          |
          |  $choiceConstructorAliases
@@ -325,7 +340,7 @@ trait JavaGenerator extends Commonish {
          |    $privateFields
          |
          |    $javaDoc
-         |    public Impl($builderParams) {
+         |    public Impl($initialParams) {
          |      $fieldAssignments
          |    }
          |

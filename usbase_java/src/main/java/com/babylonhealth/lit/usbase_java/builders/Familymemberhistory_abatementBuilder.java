@@ -52,6 +52,10 @@ public interface Familymemberhistory_abatementBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice00813350082 value) {
+    return new Impl(value);
+  }
+
   public static Choice00813350082 value(Age a) {
     return new Choice00813350082(a);
   }

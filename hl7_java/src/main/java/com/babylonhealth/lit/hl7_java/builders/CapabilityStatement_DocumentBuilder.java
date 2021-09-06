@@ -49,6 +49,10 @@ public interface CapabilityStatement_DocumentBuilder {
     return new Impl(mode, profile);
   }
 
+  public static Impl builder(DOCUMENT_MODE mode, String profile) {
+    return new Impl(mode, profile);
+  }
+
   public class Impl implements CapabilityStatement_DocumentBuilder {
     private Optional<String> id = Optional.empty();
     private DOCUMENT_MODE mode;

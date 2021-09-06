@@ -49,6 +49,10 @@ public interface CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type) {
+    return new Impl(_type.build());
+  }
+
   public static Choice_0040864668 used(Money m) {
     return new Choice_0040864668(m);
   }

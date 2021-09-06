@@ -52,6 +52,10 @@ public interface Hla_genotyping_results_methodBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Hla_genotyping_results_methodBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

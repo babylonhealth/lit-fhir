@@ -52,6 +52,10 @@ public interface Condition_relatedBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Condition_relatedBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

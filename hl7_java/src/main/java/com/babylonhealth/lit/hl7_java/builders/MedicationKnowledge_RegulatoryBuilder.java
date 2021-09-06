@@ -49,6 +49,10 @@ public interface MedicationKnowledge_RegulatoryBuilder {
     return new Impl(regulatoryAuthority);
   }
 
+  public static Impl builder(ReferenceBuilder regulatoryAuthority) {
+    return new Impl(regulatoryAuthority.build());
+  }
+
   public class Impl implements MedicationKnowledge_RegulatoryBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

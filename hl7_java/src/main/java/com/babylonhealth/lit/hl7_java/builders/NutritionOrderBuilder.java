@@ -52,6 +52,14 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
     return new Impl(status, intent, patient, dateTime);
   }
 
+  public static Impl builder(
+      REQUEST_STATUS status,
+      REQUEST_INTENT intent,
+      ReferenceBuilder patient,
+      FHIRDateTime dateTime) {
+    return new Impl(status, intent, patient.build(), dateTime);
+  }
+
   public class Impl implements NutritionOrderBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

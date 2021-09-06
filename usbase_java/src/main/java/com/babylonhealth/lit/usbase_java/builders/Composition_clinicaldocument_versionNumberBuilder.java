@@ -52,6 +52,10 @@ public interface Composition_clinicaldocument_versionNumberBuilder extends Exten
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Composition_clinicaldocument_versionNumberBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

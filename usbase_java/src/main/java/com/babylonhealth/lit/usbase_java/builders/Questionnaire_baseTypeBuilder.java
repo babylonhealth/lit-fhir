@@ -52,6 +52,10 @@ public interface Questionnaire_baseTypeBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(DATA_TYPES value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Questionnaire_baseTypeBuilder {
     private Optional<String> id = Optional.empty();
     private DATA_TYPES value;

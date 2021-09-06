@@ -49,6 +49,10 @@ public interface CoverageEligibilityResponse_Insurance_ItemBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements CoverageEligibilityResponse_Insurance_ItemBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

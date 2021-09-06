@@ -49,6 +49,10 @@ public interface InsurancePlan_Coverage_Benefit_LimitBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements InsurancePlan_Coverage_Benefit_LimitBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();

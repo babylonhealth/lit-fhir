@@ -49,6 +49,10 @@ public interface RelatedPerson_CommunicationBuilder {
     return new Impl(language);
   }
 
+  public static Impl builder(CodeableConceptBuilder language) {
+    return new Impl(language.build());
+  }
+
   public class Impl implements RelatedPerson_CommunicationBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept language;

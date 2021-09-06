@@ -51,6 +51,10 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
     return new Impl(mode, status);
   }
 
+  public static Impl builder(LIST_MODE mode, LIST_STATUS status) {
+    return new Impl(mode, status);
+  }
+
   public class Impl implements FHIRListBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

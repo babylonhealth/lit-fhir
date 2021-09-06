@@ -46,6 +46,10 @@ public interface DurationBuilder extends QuantityBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements DurationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> unit = Optional.empty();

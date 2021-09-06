@@ -49,6 +49,10 @@ public interface MedicationKnowledge_AdministrationGuidelines_PatientCharacteris
     return new Impl(characteristic);
   }
 
+  public static Impl builder(@NonNull Choice_0970951552 characteristic) {
+    return new Impl(characteristic);
+  }
+
   public static Choice_0970951552 characteristic(CodeableConcept c) {
     return new Choice_0970951552(c);
   }

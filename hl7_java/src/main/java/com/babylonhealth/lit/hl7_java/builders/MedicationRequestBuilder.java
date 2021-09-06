@@ -56,6 +56,14 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     return new Impl(status, intent, subject, medication);
   }
 
+  public static Impl builder(
+      MEDICATIONREQUEST_STATUS status,
+      MEDICATIONREQUEST_INTENT intent,
+      ReferenceBuilder subject,
+      @NonNull Choice01025009075 medication) {
+    return new Impl(status, intent, subject.build(), medication);
+  }
+
   public static Choice_1524702593 reported(Boolean b) {
     return new Choice_1524702593(b);
   }

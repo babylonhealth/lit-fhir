@@ -52,6 +52,11 @@ public interface GraphDefinition_Link_Target_CompartmentBuilder {
     return new Impl(use, code, rule);
   }
 
+  public static Impl builder(
+      GRAPH_COMPARTMENT_USE use, COMPARTMENT_TYPE code, GRAPH_COMPARTMENT_RULE rule) {
+    return new Impl(use, code, rule);
+  }
+
   public class Impl implements GraphDefinition_Link_Target_CompartmentBuilder {
     private Optional<String> id = Optional.empty();
     private GRAPH_COMPARTMENT_USE use;

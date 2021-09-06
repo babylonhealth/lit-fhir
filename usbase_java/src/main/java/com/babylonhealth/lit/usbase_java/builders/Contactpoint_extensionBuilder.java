@@ -52,6 +52,10 @@ public interface Contactpoint_extensionBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Contactpoint_extensionBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

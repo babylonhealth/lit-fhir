@@ -52,6 +52,10 @@ public interface Location_boundary_geojsonBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(AttachmentBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Location_boundary_geojsonBuilder {
     private Optional<String> id = Optional.empty();
     private Attachment value;

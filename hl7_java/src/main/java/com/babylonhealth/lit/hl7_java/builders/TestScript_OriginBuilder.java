@@ -49,6 +49,10 @@ public interface TestScript_OriginBuilder {
     return new Impl(index, profile);
   }
 
+  public static Impl builder(Integer index, CodingBuilder profile) {
+    return new Impl(index, profile.build());
+  }
+
   public class Impl implements TestScript_OriginBuilder {
     private Optional<String> id = Optional.empty();
     private Integer index;

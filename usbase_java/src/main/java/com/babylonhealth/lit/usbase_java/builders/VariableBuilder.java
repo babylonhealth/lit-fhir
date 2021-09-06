@@ -52,6 +52,10 @@ public interface VariableBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ExpressionBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements VariableBuilder {
     private Optional<String> id = Optional.empty();
     private Expression value;

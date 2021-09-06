@@ -49,6 +49,11 @@ public interface Contract_ContentDefinitionBuilder {
     return new Impl(_type, publicationStatus);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder _type, CONTRACT_PUBLICATIONSTATUS publicationStatus) {
+    return new Impl(_type.build(), publicationStatus);
+  }
+
   public class Impl implements Contract_ContentDefinitionBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

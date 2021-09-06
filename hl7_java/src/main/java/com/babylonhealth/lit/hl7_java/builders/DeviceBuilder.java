@@ -50,6 +50,10 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements DeviceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

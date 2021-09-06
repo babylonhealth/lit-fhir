@@ -49,6 +49,10 @@ public interface Device_DeviceNameBuilder {
     return new Impl(name, _type);
   }
 
+  public static Impl builder(String name, DEVICE_NAMETYPE _type) {
+    return new Impl(name, _type);
+  }
+
   public class Impl implements Device_DeviceNameBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

@@ -49,6 +49,10 @@ public interface SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilde
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> degree = Optional.empty();

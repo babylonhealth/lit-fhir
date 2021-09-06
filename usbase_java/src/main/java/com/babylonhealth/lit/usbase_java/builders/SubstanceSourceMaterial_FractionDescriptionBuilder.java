@@ -52,6 +52,10 @@ public interface SubstanceSourceMaterial_FractionDescriptionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceSourceMaterial_FractionDescriptionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> fraction = Optional.empty();

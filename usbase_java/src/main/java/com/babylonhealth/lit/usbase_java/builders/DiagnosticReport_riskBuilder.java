@@ -52,6 +52,10 @@ public interface DiagnosticReport_riskBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements DiagnosticReport_riskBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

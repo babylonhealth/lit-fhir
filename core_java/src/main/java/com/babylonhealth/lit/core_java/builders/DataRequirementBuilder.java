@@ -46,6 +46,10 @@ public interface DataRequirementBuilder extends ElementBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(ALL_TYPES _type) {
+    return new Impl(_type);
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

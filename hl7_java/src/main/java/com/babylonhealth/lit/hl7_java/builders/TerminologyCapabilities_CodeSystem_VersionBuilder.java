@@ -49,6 +49,10 @@ public interface TerminologyCapabilities_CodeSystem_VersionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements TerminologyCapabilities_CodeSystem_VersionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> code = Optional.empty();

@@ -50,6 +50,11 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(status, trigger);
   }
 
+  public static Impl builder(
+      PUBLICATION_STATUS status, Collection<TriggerDefinitionBuilder> trigger) {
+    return new Impl(status, new LitSeq<>(trigger).map(TriggerDefinitionBuilder::build));
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

@@ -52,6 +52,10 @@ public interface Elementdefinition_translatableBuilder extends ExtensionBuilder 
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Elementdefinition_translatableBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

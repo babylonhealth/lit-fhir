@@ -49,6 +49,10 @@ public interface ImplementationGuide_GlobalBuilder {
     return new Impl(_type, profile);
   }
 
+  public static Impl builder(RESOURCE_TYPES _type, String profile) {
+    return new Impl(_type, profile);
+  }
+
   public class Impl implements ImplementationGuide_GlobalBuilder {
     private Optional<String> id = Optional.empty();
     private RESOURCE_TYPES _type;

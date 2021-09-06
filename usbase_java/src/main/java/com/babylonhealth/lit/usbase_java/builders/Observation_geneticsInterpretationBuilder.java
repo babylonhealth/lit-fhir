@@ -52,6 +52,10 @@ public interface Observation_geneticsInterpretationBuilder extends ExtensionBuil
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Observation_geneticsInterpretationBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

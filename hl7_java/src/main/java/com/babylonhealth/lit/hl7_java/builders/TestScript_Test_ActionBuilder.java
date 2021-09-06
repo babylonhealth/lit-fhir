@@ -49,6 +49,10 @@ public interface TestScript_Test_ActionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements TestScript_Test_ActionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<TestScript$Setup$Action$Assert> _assert = Optional.empty();

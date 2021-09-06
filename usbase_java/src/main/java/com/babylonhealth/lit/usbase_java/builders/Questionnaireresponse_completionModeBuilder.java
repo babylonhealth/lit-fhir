@@ -52,6 +52,10 @@ public interface Questionnaireresponse_completionModeBuilder extends ExtensionBu
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Questionnaireresponse_completionModeBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

@@ -56,6 +56,13 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
     return new Impl(name, identifier);
   }
 
+  public static Impl builder(
+      Collection<HumanNameBuilder> name, Collection<IdentifierBuilder> identifier) {
+    return new Impl(
+        new LitSeq<>(name).map(HumanNameBuilder::build),
+        new LitSeq<>(identifier).map(IdentifierBuilder::build));
+  }
+
   public class Impl implements Us_core_practitionerBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

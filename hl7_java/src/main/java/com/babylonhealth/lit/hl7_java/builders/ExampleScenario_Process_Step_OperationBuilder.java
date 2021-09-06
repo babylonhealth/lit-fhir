@@ -49,6 +49,10 @@ public interface ExampleScenario_Process_Step_OperationBuilder {
     return new Impl(number);
   }
 
+  public static Impl builder(String number) {
+    return new Impl(number);
+  }
+
   public class Impl implements ExampleScenario_Process_Step_OperationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> _type = Optional.empty();

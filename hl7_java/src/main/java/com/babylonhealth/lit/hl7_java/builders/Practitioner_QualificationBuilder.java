@@ -49,6 +49,10 @@ public interface Practitioner_QualificationBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(CodeableConceptBuilder code) {
+    return new Impl(code.build());
+  }
+
   public class Impl implements Practitioner_QualificationBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;

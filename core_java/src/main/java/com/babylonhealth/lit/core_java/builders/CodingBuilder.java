@@ -46,6 +46,10 @@ public interface CodingBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements CodingBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> code = Optional.empty();

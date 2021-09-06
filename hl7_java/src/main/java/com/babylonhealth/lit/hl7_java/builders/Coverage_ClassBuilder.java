@@ -49,6 +49,10 @@ public interface Coverage_ClassBuilder {
     return new Impl(_type, value);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, String value) {
+    return new Impl(_type.build(), value);
+  }
+
   public class Impl implements Coverage_ClassBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

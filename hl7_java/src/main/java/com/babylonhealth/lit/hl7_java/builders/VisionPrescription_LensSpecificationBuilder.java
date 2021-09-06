@@ -49,6 +49,10 @@ public interface VisionPrescription_LensSpecificationBuilder {
     return new Impl(eye, product);
   }
 
+  public static Impl builder(VISION_EYE_CODES eye, CodeableConceptBuilder product) {
+    return new Impl(eye, product.build());
+  }
+
   public class Impl implements VisionPrescription_LensSpecificationBuilder {
     private Optional<String> id = Optional.empty();
     private VISION_EYE_CODES eye;

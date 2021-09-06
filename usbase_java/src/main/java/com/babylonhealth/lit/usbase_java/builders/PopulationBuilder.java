@@ -52,6 +52,10 @@ public interface PopulationBuilder extends BackboneElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1946587936 age(CodeableConcept c) {
     return new Choice_1946587936(c);
   }

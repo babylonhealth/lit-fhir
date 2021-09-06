@@ -58,6 +58,20 @@ public interface VitalsignsBuilder extends ObservationBuilder {
     return new Impl(code, status, subject, category, effective);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      OBSERVATION_STATUS status,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category,
+      @NonNull Choice_0934386166 effective) {
+    return new Impl(
+        code.build(),
+        status,
+        subject.build(),
+        new LitSeq<>(category).map(CodeableConceptBuilder::build),
+        effective);
+  }
+
   public static Choice_0802685816 value(Boolean b) {
     return new Choice_0802685816(b);
   }

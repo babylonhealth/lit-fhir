@@ -59,6 +59,26 @@ public interface ClaimBuilder extends DomainResourceBuilder {
     return new Impl(use, _type, status, patient, created, provider, priority, insurance);
   }
 
+  public static Impl builder(
+      CLAIM_USE use,
+      CodeableConceptBuilder _type,
+      FM_STATUS status,
+      ReferenceBuilder patient,
+      FHIRDateTime created,
+      ReferenceBuilder provider,
+      CodeableConceptBuilder priority,
+      Collection<Claim_InsuranceBuilder> insurance) {
+    return new Impl(
+        use,
+        _type.build(),
+        status,
+        patient.build(),
+        created,
+        provider.build(),
+        priority.build(),
+        new LitSeq<>(insurance).map(Claim_InsuranceBuilder::build));
+  }
+
   public class Impl implements ClaimBuilder {
     private Optional<String> id = Optional.empty();
     private CLAIM_USE use;

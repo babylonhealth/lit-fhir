@@ -52,6 +52,10 @@ public interface Codesystem_warningBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Codesystem_warningBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

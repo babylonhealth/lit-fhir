@@ -49,6 +49,10 @@ public interface CoverageEligibilityRequest_ItemBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements CoverageEligibilityRequest_ItemBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Reference> detail = Collections.emptyList();

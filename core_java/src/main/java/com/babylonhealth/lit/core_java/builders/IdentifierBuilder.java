@@ -46,6 +46,10 @@ public interface IdentifierBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements IdentifierBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<IDENTIFIER_USE> use = Optional.empty();

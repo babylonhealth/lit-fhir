@@ -52,6 +52,10 @@ public interface Structuredefinition_xml_no_orderBuilder extends ExtensionBuilde
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_xml_no_orderBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

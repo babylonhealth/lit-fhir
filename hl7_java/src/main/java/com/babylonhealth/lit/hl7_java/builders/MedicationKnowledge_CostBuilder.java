@@ -49,6 +49,10 @@ public interface MedicationKnowledge_CostBuilder {
     return new Impl(_type, cost);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, MoneyBuilder cost) {
+    return new Impl(_type.build(), cost.build());
+  }
+
   public class Impl implements MedicationKnowledge_CostBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

@@ -60,6 +60,14 @@ public interface Us_core_procedureBuilder extends ProcedureBuilder {
     return new Impl(code, status, subject, performed);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      EVENT_STATUS status,
+      ReferenceBuilder subject,
+      @NonNull Choice_0934386166 performed) {
+    return new Impl(code.build(), status, subject.build(), performed);
+  }
+
   public static Choice_0934386166 performed(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

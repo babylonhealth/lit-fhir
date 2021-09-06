@@ -52,6 +52,10 @@ public interface Data_absent_reasonBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(DATA_ABSENT_REASON value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Data_absent_reasonBuilder {
     private Optional<String> id = Optional.empty();
     private DATA_ABSENT_REASON value;

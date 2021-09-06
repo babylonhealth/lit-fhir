@@ -49,6 +49,10 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
     return new Impl(forecastStatus);
   }
 
+  public static Impl builder(CodeableConceptBuilder forecastStatus) {
+    return new Impl(forecastStatus.build());
+  }
+
   public static Choice_0839638734 doseNumber(Integer i) {
     return new Choice_0839638734(i);
   }

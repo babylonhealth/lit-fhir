@@ -46,6 +46,10 @@ public interface RangeBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements RangeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Quantity> low = Optional.empty();

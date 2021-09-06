@@ -49,6 +49,10 @@ public interface Immunization_ReactionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Immunization_ReactionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<FHIRDateTime> date = Optional.empty();

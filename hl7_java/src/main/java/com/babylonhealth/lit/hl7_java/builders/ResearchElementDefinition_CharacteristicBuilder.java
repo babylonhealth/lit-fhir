@@ -50,6 +50,10 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
     return new Impl(definition);
   }
 
+  public static Impl builder(@NonNull Choice_1750128470 definition) {
+    return new Impl(definition);
+  }
+
   public static Choice_1750128470 definition(String s) {
     return new Choice_1750128470(s);
   }

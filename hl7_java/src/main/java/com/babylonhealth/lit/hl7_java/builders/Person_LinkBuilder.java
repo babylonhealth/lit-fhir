@@ -49,6 +49,10 @@ public interface Person_LinkBuilder {
     return new Impl(target);
   }
 
+  public static Impl builder(ReferenceBuilder target) {
+    return new Impl(target.build());
+  }
+
   public class Impl implements Person_LinkBuilder {
     private Optional<String> id = Optional.empty();
     private Reference target;

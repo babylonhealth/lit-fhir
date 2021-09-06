@@ -49,6 +49,10 @@ public interface ExampleScenario_Instance_VersionBuilder {
     return new Impl(versionId, description);
   }
 
+  public static Impl builder(String versionId, String description) {
+    return new Impl(versionId, description);
+  }
+
   public class Impl implements ExampleScenario_Instance_VersionBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

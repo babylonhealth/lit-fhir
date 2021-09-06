@@ -49,6 +49,10 @@ public interface VerificationResult_PrimarySourceBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements VerificationResult_PrimarySourceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> who = Optional.empty();

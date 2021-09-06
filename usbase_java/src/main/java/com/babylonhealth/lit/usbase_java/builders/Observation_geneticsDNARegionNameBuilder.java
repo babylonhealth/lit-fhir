@@ -52,6 +52,10 @@ public interface Observation_geneticsDNARegionNameBuilder extends ExtensionBuild
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Observation_geneticsDNARegionNameBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

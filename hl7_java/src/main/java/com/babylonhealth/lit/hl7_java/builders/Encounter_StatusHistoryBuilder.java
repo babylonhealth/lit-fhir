@@ -49,6 +49,10 @@ public interface Encounter_StatusHistoryBuilder {
     return new Impl(status, period);
   }
 
+  public static Impl builder(ENCOUNTER_STATUS status, PeriodBuilder period) {
+    return new Impl(status, period.build());
+  }
+
   public class Impl implements Encounter_StatusHistoryBuilder {
     private Optional<String> id = Optional.empty();
     private ENCOUNTER_STATUS status;

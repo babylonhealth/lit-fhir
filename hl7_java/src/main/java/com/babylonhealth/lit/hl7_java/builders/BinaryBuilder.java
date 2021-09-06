@@ -49,6 +49,10 @@ public interface BinaryBuilder extends ResourceBuilder {
     return new Impl(contentType);
   }
 
+  public static Impl builder(String contentType) {
+    return new Impl(contentType);
+  }
+
   public class Impl implements BinaryBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

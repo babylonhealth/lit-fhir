@@ -49,6 +49,10 @@ public interface Bundle_LinkBuilder {
     return new Impl(url, relation);
   }
 
+  public static Impl builder(String url, String relation) {
+    return new Impl(url, relation);
+  }
+
   public class Impl implements Bundle_LinkBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

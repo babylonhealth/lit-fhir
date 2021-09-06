@@ -49,6 +49,10 @@ public interface StructureMap_Group_InputBuilder {
     return new Impl(name, mode);
   }
 
+  public static Impl builder(String name, MAP_INPUT_MODE mode) {
+    return new Impl(name, mode);
+  }
+
   public class Impl implements StructureMap_Group_InputBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

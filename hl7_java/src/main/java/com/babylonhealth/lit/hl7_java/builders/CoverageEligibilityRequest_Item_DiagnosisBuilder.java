@@ -49,6 +49,10 @@ public interface CoverageEligibilityRequest_Item_DiagnosisBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01025009075 diagnosis(CodeableConcept c) {
     return new Choice01025009075(c);
   }

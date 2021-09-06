@@ -49,6 +49,10 @@ public interface MedicinalProductIndicationBuilder extends DomainResourceBuilder
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MedicinalProductIndicationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

@@ -49,6 +49,10 @@ public interface ClaimResponse_Item_Detail_SubDetailBuilder {
     return new Impl(subDetailSequence);
   }
 
+  public static Impl builder(Integer subDetailSequence) {
+    return new Impl(subDetailSequence);
+  }
+
   public class Impl implements ClaimResponse_Item_Detail_SubDetailBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

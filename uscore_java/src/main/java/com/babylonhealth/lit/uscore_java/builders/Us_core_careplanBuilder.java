@@ -62,6 +62,20 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
     return new Impl(status, intent, subject, category, text);
   }
 
+  public static Impl builder(
+      REQUEST_STATUS status,
+      CARE_PLAN_INTENT intent,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category,
+      NarrativeBuilder text) {
+    return new Impl(
+        status,
+        intent,
+        subject.build(),
+        new LitSeq<>(category).map(CodeableConceptBuilder::build),
+        text.build());
+  }
+
   public class Impl implements Us_core_careplanBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

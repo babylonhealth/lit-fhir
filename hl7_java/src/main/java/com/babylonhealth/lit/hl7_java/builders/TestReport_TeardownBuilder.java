@@ -49,6 +49,10 @@ public interface TestReport_TeardownBuilder {
     return new Impl(action);
   }
 
+  public static Impl builder(Collection<TestReport_Teardown_ActionBuilder> action) {
+    return new Impl(new LitSeq<>(action).map(TestReport_Teardown_ActionBuilder::build));
+  }
+
   public class Impl implements TestReport_TeardownBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

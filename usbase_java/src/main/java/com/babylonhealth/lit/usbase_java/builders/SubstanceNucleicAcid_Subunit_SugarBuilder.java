@@ -52,6 +52,10 @@ public interface SubstanceNucleicAcid_Subunit_SugarBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceNucleicAcid_Subunit_SugarBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

@@ -49,6 +49,10 @@ public interface OperationDefinition_Parameter_BindingBuilder {
     return new Impl(strength, valueSet);
   }
 
+  public static Impl builder(BINDING_STRENGTH strength, String valueSet) {
+    return new Impl(strength, valueSet);
+  }
+
   public class Impl implements OperationDefinition_Parameter_BindingBuilder {
     private Optional<String> id = Optional.empty();
     private BINDING_STRENGTH strength;

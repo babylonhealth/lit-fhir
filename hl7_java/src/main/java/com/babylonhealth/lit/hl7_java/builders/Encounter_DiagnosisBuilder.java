@@ -49,6 +49,10 @@ public interface Encounter_DiagnosisBuilder {
     return new Impl(condition);
   }
 
+  public static Impl builder(ReferenceBuilder condition) {
+    return new Impl(condition.build());
+  }
+
   public class Impl implements Encounter_DiagnosisBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> use = Optional.empty();

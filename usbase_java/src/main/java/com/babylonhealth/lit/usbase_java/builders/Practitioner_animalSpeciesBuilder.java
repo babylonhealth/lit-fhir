@@ -52,6 +52,10 @@ public interface Practitioner_animalSpeciesBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Practitioner_animalSpeciesBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

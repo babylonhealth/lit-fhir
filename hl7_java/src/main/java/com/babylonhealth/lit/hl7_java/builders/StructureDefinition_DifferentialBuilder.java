@@ -49,6 +49,10 @@ public interface StructureDefinition_DifferentialBuilder {
     return new Impl(element);
   }
 
+  public static Impl builder(Collection<ElementDefinitionBuilder> element) {
+    return new Impl(new LitSeq<>(element).map(ElementDefinitionBuilder::build));
+  }
+
   public class Impl implements StructureDefinition_DifferentialBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<ElementDefinition> element;

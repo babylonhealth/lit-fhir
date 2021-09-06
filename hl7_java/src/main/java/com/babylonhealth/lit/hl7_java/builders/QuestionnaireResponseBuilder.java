@@ -50,6 +50,10 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(QUESTIONNAIRE_ANSWERS_STATUS status) {
+    return new Impl(status);
+  }
+
   public class Impl implements QuestionnaireResponseBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

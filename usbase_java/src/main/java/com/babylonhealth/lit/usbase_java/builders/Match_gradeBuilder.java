@@ -52,6 +52,10 @@ public interface Match_gradeBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(MATCH_GRADE value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Match_gradeBuilder {
     private Optional<String> id = Optional.empty();
     private MATCH_GRADE value;

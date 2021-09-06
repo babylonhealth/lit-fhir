@@ -51,6 +51,10 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(name, start, status);
   }
 
+  public static Impl builder(String name, RESOURCE_TYPES start, PUBLICATION_STATUS status) {
+    return new Impl(name, start, status);
+  }
+
   public class Impl implements GraphDefinitionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

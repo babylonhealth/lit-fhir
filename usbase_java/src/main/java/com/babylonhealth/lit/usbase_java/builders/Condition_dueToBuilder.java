@@ -52,6 +52,10 @@ public interface Condition_dueToBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice01025009075 value) {
+    return new Impl(value);
+  }
+
   public static Choice01025009075 value(CodeableConcept c) {
     return new Choice01025009075(c);
   }

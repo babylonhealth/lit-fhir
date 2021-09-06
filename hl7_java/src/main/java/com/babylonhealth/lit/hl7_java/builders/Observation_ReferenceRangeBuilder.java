@@ -49,6 +49,10 @@ public interface Observation_ReferenceRangeBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Observation_ReferenceRangeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Quantity> low = Optional.empty();

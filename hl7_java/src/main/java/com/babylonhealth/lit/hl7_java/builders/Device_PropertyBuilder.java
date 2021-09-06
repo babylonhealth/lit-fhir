@@ -49,6 +49,10 @@ public interface Device_PropertyBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type) {
+    return new Impl(_type.build());
+  }
+
   public class Impl implements Device_PropertyBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

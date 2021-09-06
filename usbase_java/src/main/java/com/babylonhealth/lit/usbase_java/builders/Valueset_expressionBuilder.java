@@ -52,6 +52,10 @@ public interface Valueset_expressionBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ExpressionBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Valueset_expressionBuilder {
     private Optional<String> id = Optional.empty();
     private Expression value;

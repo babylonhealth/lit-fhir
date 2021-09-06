@@ -47,6 +47,10 @@ public interface ParameterDefinitionBuilder extends ElementBuilder {
     return new Impl(use, _type);
   }
 
+  public static Impl builder(OPERATION_PARAMETER_USE use, ALL_TYPES _type) {
+    return new Impl(use, _type);
+  }
+
   public class Impl implements ParameterDefinitionBuilder {
     private Optional<String> id = Optional.empty();
     private OPERATION_PARAMETER_USE use;

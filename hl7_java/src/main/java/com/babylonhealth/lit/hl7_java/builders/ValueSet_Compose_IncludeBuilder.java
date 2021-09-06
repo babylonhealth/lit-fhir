@@ -49,6 +49,10 @@ public interface ValueSet_Compose_IncludeBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ValueSet_Compose_IncludeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> system = Optional.empty();

@@ -46,6 +46,10 @@ public interface HumanNameBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements HumanNameBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<NAME_USE> use = Optional.empty();

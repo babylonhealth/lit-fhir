@@ -46,6 +46,10 @@ public interface MetaBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MetaBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Coding> tag = Collections.emptyList();

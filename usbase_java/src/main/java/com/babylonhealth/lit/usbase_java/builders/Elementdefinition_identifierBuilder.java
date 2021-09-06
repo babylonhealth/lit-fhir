@@ -52,6 +52,10 @@ public interface Elementdefinition_identifierBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(IdentifierBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Elementdefinition_identifierBuilder {
     private Optional<String> id = Optional.empty();
     private Identifier value;

@@ -49,6 +49,10 @@ public interface Substance_IngredientBuilder {
     return new Impl(substance);
   }
 
+  public static Impl builder(@NonNull Choice01025009075 substance) {
+    return new Impl(substance);
+  }
+
   public static Choice01025009075 substance(CodeableConcept c) {
     return new Choice01025009075(c);
   }

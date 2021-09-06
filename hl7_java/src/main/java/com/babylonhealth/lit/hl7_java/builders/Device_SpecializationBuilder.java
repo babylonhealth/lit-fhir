@@ -49,6 +49,10 @@ public interface Device_SpecializationBuilder {
     return new Impl(systemType);
   }
 
+  public static Impl builder(CodeableConceptBuilder systemType) {
+    return new Impl(systemType.build());
+  }
+
   public class Impl implements Device_SpecializationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> version = Optional.empty();

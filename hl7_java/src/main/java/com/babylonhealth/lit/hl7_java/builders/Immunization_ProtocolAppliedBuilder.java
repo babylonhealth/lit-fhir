@@ -49,6 +49,10 @@ public interface Immunization_ProtocolAppliedBuilder {
     return new Impl(doseNumber);
   }
 
+  public static Impl builder(@NonNull Choice_0839638734 doseNumber) {
+    return new Impl(doseNumber);
+  }
+
   public static Choice_0839638734 doseNumber(Integer i) {
     return new Choice_0839638734(i);
   }

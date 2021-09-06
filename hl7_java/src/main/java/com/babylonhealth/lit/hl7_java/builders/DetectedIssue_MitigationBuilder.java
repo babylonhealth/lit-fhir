@@ -49,6 +49,10 @@ public interface DetectedIssue_MitigationBuilder {
     return new Impl(action);
   }
 
+  public static Impl builder(CodeableConceptBuilder action) {
+    return new Impl(action.build());
+  }
+
   public class Impl implements DetectedIssue_MitigationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<FHIRDateTime> date = Optional.empty();

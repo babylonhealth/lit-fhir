@@ -49,6 +49,10 @@ public interface CodeSystem_ConceptBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(String code) {
+    return new Impl(code);
+  }
+
   public class Impl implements CodeSystem_ConceptBuilder {
     private Optional<String> id = Optional.empty();
     private String code;

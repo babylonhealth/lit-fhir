@@ -49,6 +49,10 @@ public interface StructureMap_Group_Rule_Target_ParameterBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice00600764285 value) {
+    return new Impl(value);
+  }
+
   public static Choice00600764285 value(BigDecimal b) {
     return new Choice00600764285(b);
   }

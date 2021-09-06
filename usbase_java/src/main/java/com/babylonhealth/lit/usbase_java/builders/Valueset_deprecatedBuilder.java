@@ -52,6 +52,10 @@ public interface Valueset_deprecatedBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_deprecatedBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

@@ -53,6 +53,10 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status) {
+    return new Impl(status);
+  }
+
   public static Choice_0181779868 timing(Age a) {
     return new Choice_0181779868(a);
   }

@@ -57,6 +57,18 @@ public interface SynthesisBuilder extends EvidenceBuilder {
     return new Impl(status, outcome, exposureVariant, exposureBackground);
   }
 
+  public static Impl builder(
+      PUBLICATION_STATUS status,
+      Collection<ReferenceBuilder> outcome,
+      Collection<ReferenceBuilder> exposureVariant,
+      ReferenceBuilder exposureBackground) {
+    return new Impl(
+        status,
+        new LitSeq<>(outcome).map(ReferenceBuilder::build),
+        new LitSeq<>(exposureVariant).map(ReferenceBuilder::build),
+        exposureBackground.build());
+  }
+
   public class Impl implements SynthesisBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

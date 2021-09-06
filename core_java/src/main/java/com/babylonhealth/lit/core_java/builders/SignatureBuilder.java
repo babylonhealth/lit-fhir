@@ -46,6 +46,11 @@ public interface SignatureBuilder extends ElementBuilder {
     return new Impl(who, _type, when);
   }
 
+  public static Impl builder(
+      ReferenceBuilder who, Collection<CodingBuilder> _type, ZonedDateTime when) {
+    return new Impl(who.build(), new LitSeq<>(_type).map(CodingBuilder::build), when);
+  }
+
   public class Impl implements SignatureBuilder {
     private Optional<String> id = Optional.empty();
     private Reference who;

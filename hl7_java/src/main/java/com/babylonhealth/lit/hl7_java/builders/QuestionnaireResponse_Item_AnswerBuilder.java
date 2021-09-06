@@ -49,6 +49,10 @@ public interface QuestionnaireResponse_Item_AnswerBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_2101127777 value(Attachment a) {
     return new Choice_2101127777(a);
   }

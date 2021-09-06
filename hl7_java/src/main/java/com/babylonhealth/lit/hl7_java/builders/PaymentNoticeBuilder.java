@@ -55,6 +55,15 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
     return new Impl(status, amount, created, payment, recipient);
   }
 
+  public static Impl builder(
+      FM_STATUS status,
+      MoneyBuilder amount,
+      FHIRDateTime created,
+      ReferenceBuilder payment,
+      ReferenceBuilder recipient) {
+    return new Impl(status, amount.build(), created, payment.build(), recipient.build());
+  }
+
   public class Impl implements PaymentNoticeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

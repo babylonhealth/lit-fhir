@@ -51,6 +51,14 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
     return new Impl(status, reason, criteria, channel);
   }
 
+  public static Impl builder(
+      SUBSCRIPTION_STATUS status,
+      String reason,
+      String criteria,
+      Subscription_ChannelBuilder channel) {
+    return new Impl(status, reason, criteria, channel.build());
+  }
+
   public class Impl implements SubscriptionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<ZonedDateTime> end = Optional.empty();

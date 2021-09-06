@@ -52,6 +52,10 @@ public interface Questionnaireresponse_signatureBuilder extends ExtensionBuilder
     return new Impl(value);
   }
 
+  public static Impl builder(SignatureBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Questionnaireresponse_signatureBuilder {
     private Optional<String> id = Optional.empty();
     private Signature value;

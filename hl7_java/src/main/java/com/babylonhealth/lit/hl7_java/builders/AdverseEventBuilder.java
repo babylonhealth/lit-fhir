@@ -50,6 +50,10 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
     return new Impl(subject, actuality);
   }
 
+  public static Impl builder(ReferenceBuilder subject, ADVERSE_EVENT_ACTUALITY actuality) {
+    return new Impl(subject.build(), actuality);
+  }
+
   public class Impl implements AdverseEventBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

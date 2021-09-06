@@ -49,6 +49,10 @@ public interface ImplementationGuide_DependsOnBuilder {
     return new Impl(uri);
   }
 
+  public static Impl builder(String uri) {
+    return new Impl(uri);
+  }
+
   public class Impl implements ImplementationGuide_DependsOnBuilder {
     private Optional<String> id = Optional.empty();
     private String uri;

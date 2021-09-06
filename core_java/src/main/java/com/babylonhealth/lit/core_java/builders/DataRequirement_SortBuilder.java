@@ -46,6 +46,10 @@ public interface DataRequirement_SortBuilder {
     return new Impl(path, direction);
   }
 
+  public static Impl builder(String path, SORT_DIRECTION direction) {
+    return new Impl(path, direction);
+  }
+
   public class Impl implements DataRequirement_SortBuilder {
     private Optional<String> id = Optional.empty();
     private String path;

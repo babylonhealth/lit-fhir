@@ -49,6 +49,10 @@ public interface PlanDefinition_Action_RelatedActionBuilder {
     return new Impl(actionId, relationship);
   }
 
+  public static Impl builder(String actionId, ACTION_RELATIONSHIP_TYPE relationship) {
+    return new Impl(actionId, relationship);
+  }
+
   public static Choice00801828838 offset(Duration d) {
     return new Choice00801828838(d);
   }

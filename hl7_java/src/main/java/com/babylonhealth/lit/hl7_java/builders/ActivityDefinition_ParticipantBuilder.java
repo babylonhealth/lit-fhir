@@ -49,6 +49,10 @@ public interface ActivityDefinition_ParticipantBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(ACTION_PARTICIPANT_TYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements ActivityDefinition_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
     private ACTION_PARTICIPANT_TYPE _type;

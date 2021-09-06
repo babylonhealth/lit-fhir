@@ -49,6 +49,10 @@ public interface BiologicallyDerivedProduct_StorageBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements BiologicallyDerivedProduct_StorageBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<PRODUCT_STORAGE_SCALE> scale = Optional.empty();

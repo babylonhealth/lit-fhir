@@ -49,6 +49,10 @@ public interface LinkageBuilder extends DomainResourceBuilder {
     return new Impl(item);
   }
 
+  public static Impl builder(Collection<Linkage_ItemBuilder> item) {
+    return new Impl(new LitSeq<>(item).map(Linkage_ItemBuilder::build));
+  }
+
   public class Impl implements LinkageBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

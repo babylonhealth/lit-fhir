@@ -46,6 +46,10 @@ public interface DataRequirement_CodeFilterBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements DataRequirement_CodeFilterBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> path = Optional.empty();

@@ -56,6 +56,16 @@ public interface CompositionBuilder extends DomainResourceBuilder {
     return new Impl(_type, date, title, status, author);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder _type,
+      FHIRDateTime date,
+      String title,
+      COMPOSITION_STATUS status,
+      Collection<ReferenceBuilder> author) {
+    return new Impl(
+        _type.build(), date, title, status, new LitSeq<>(author).map(ReferenceBuilder::build));
+  }
+
   public class Impl implements CompositionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

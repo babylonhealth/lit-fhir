@@ -52,6 +52,10 @@ public interface Careplan_activity_titleBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Careplan_activity_titleBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

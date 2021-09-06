@@ -52,6 +52,10 @@ public interface Patient_interpreterRequiredBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Patient_interpreterRequiredBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

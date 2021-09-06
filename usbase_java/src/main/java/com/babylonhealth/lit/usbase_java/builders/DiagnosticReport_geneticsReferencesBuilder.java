@@ -52,6 +52,10 @@ public interface DiagnosticReport_geneticsReferencesBuilder extends ExtensionBui
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1349125893 value(Address a) {
     return new Choice_1349125893(a);
   }

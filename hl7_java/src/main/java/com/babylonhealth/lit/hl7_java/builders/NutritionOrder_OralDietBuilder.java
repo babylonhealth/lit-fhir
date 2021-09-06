@@ -49,6 +49,10 @@ public interface NutritionOrder_OralDietBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements NutritionOrder_OralDietBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<CodeableConcept> _type = Collections.emptyList();

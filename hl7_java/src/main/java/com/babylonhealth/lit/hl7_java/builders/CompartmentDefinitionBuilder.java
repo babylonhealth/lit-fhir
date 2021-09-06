@@ -52,6 +52,11 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(url, name, code, status, search);
   }
 
+  public static Impl builder(
+      String url, String name, COMPARTMENT_TYPE code, PUBLICATION_STATUS status, Boolean search) {
+    return new Impl(url, name, code, status, search);
+  }
+
   public class Impl implements CompartmentDefinitionBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

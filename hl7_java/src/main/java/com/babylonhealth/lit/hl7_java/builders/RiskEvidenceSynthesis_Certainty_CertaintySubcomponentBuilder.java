@@ -49,6 +49,10 @@ public interface RiskEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements RiskEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

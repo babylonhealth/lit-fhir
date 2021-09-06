@@ -53,6 +53,10 @@ public interface ComputableplandefinitionBuilder extends PlanDefinitionBuilder {
     return new Impl(status, library);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status, String library) {
+    return new Impl(status, library);
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

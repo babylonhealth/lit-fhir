@@ -49,6 +49,10 @@ public interface SupplyDelivery_SuppliedItemBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01025009075 item(CodeableConcept c) {
     return new Choice01025009075(c);
   }

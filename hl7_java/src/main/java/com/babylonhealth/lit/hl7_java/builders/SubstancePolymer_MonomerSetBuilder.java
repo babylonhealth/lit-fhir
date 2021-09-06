@@ -49,6 +49,10 @@ public interface SubstancePolymer_MonomerSetBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstancePolymer_MonomerSetBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

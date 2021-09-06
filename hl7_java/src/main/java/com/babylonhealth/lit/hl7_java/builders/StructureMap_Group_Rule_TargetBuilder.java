@@ -51,6 +51,10 @@ public interface StructureMap_Group_Rule_TargetBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements StructureMap_Group_Rule_TargetBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> context = Optional.empty();

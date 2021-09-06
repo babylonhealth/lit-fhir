@@ -46,6 +46,10 @@ public interface TriggerDefinitionBuilder extends ElementBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(TRIGGER_TYPE _type) {
+    return new Impl(_type);
+  }
+
   public static Choice_1051729086 timing(FHIRDate f) {
     return new Choice_1051729086(f);
   }

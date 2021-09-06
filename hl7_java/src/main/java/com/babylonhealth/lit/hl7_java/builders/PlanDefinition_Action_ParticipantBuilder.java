@@ -49,6 +49,10 @@ public interface PlanDefinition_Action_ParticipantBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(ACTION_PARTICIPANT_TYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements PlanDefinition_Action_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
     private ACTION_PARTICIPANT_TYPE _type;

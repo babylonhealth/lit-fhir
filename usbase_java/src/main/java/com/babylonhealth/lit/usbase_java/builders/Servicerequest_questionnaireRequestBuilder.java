@@ -52,6 +52,10 @@ public interface Servicerequest_questionnaireRequestBuilder extends ExtensionBui
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Servicerequest_questionnaireRequestBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

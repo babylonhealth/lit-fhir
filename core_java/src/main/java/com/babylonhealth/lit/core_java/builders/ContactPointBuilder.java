@@ -47,6 +47,10 @@ public interface ContactPointBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ContactPointBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CONTACT_POINT_USE> use = Optional.empty();

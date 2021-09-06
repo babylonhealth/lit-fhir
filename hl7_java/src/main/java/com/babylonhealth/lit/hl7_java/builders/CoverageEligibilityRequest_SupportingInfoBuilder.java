@@ -49,6 +49,10 @@ public interface CoverageEligibilityRequest_SupportingInfoBuilder {
     return new Impl(sequence, information);
   }
 
+  public static Impl builder(Integer sequence, ReferenceBuilder information) {
+    return new Impl(sequence, information.build());
+  }
+
   public class Impl implements CoverageEligibilityRequest_SupportingInfoBuilder {
     private Optional<String> id = Optional.empty();
     private Integer sequence;

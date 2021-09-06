@@ -49,6 +49,10 @@ public interface RiskEvidenceSynthesis_SampleSizeBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements RiskEvidenceSynthesis_SampleSizeBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

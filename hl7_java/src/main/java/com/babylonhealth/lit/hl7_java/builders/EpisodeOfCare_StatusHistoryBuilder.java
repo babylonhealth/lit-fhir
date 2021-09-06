@@ -49,6 +49,10 @@ public interface EpisodeOfCare_StatusHistoryBuilder {
     return new Impl(status, period);
   }
 
+  public static Impl builder(EPISODE_OF_CARE_STATUS status, PeriodBuilder period) {
+    return new Impl(status, period.build());
+  }
+
   public class Impl implements EpisodeOfCare_StatusHistoryBuilder {
     private Optional<String> id = Optional.empty();
     private EPISODE_OF_CARE_STATUS status;

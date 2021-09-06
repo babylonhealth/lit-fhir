@@ -52,6 +52,10 @@ public interface SubstanceProtein_SubunitBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceProtein_SubunitBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Integer> length = Optional.empty();

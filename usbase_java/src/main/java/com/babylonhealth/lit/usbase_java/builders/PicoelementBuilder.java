@@ -55,6 +55,13 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
     return new Impl(status, characteristic);
   }
 
+  public static Impl builder(
+      PUBLICATION_STATUS status,
+      Collection<EvidenceVariable_CharacteristicBuilder> characteristic) {
+    return new Impl(
+        status, new LitSeq<>(characteristic).map(EvidenceVariable_CharacteristicBuilder::build));
+  }
+
   public class Impl implements PicoelementBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

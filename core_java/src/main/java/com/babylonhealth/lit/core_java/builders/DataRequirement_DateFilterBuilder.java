@@ -46,6 +46,10 @@ public interface DataRequirement_DateFilterBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1947777294 value(Duration d) {
     return new Choice_1947777294(d);
   }

@@ -57,6 +57,15 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
     return new Impl(url, name, status, packageId, fhirVersion);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      PUBLICATION_STATUS status,
+      String packageId,
+      Collection<FHIR_VERSION> fhirVersion) {
+    return new Impl(url, name, status, packageId, fhirVersion);
+  }
+
   public class Impl implements ImplementationGuideBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

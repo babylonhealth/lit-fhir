@@ -49,6 +49,10 @@ public interface MedicationDispense_PerformerBuilder {
     return new Impl(actor);
   }
 
+  public static Impl builder(ReferenceBuilder actor) {
+    return new Impl(actor.build());
+  }
+
   public class Impl implements MedicationDispense_PerformerBuilder {
     private Optional<String> id = Optional.empty();
     private Reference actor;

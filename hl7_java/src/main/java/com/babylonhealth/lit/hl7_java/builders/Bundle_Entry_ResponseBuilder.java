@@ -49,6 +49,10 @@ public interface Bundle_Entry_ResponseBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(String status) {
+    return new Impl(status);
+  }
+
   public class Impl implements Bundle_Entry_ResponseBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> etag = Optional.empty();

@@ -49,6 +49,10 @@ public interface AuditEvent_SourceBuilder {
     return new Impl(observer);
   }
 
+  public static Impl builder(ReferenceBuilder observer) {
+    return new Impl(observer.build());
+  }
+
   public class Impl implements AuditEvent_SourceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> site = Optional.empty();

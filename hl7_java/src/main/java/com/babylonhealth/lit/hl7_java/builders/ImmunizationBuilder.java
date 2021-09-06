@@ -54,6 +54,14 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
     return new Impl(status, patient, vaccineCode, occurrence);
   }
 
+  public static Impl builder(
+      IMMUNIZATION_STATUS status,
+      ReferenceBuilder patient,
+      CodeableConceptBuilder vaccineCode,
+      @NonNull Choice_1715923163 occurrence) {
+    return new Impl(status, patient.build(), vaccineCode.build(), occurrence);
+  }
+
   public static Choice_1715923163 occurrence(FHIRDateTime f) {
     return new Choice_1715923163(f);
   }

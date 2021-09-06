@@ -52,6 +52,10 @@ public interface Composition_clinicaldocument_otherConfidentialityBuilder extend
     return new Impl(value);
   }
 
+  public static Impl builder(CodingBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Composition_clinicaldocument_otherConfidentialityBuilder {
     private Optional<String> id = Optional.empty();
     private Coding value;

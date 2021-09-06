@@ -49,6 +49,10 @@ public interface DeviceDefinition_MaterialBuilder {
     return new Impl(substance);
   }
 
+  public static Impl builder(CodeableConceptBuilder substance) {
+    return new Impl(substance.build());
+  }
+
   public class Impl implements DeviceDefinition_MaterialBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

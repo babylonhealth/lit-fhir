@@ -52,6 +52,10 @@ public interface Valueset_toocostlyBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_toocostlyBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

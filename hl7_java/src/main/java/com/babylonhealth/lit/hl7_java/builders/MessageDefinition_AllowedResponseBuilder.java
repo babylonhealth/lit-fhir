@@ -49,6 +49,10 @@ public interface MessageDefinition_AllowedResponseBuilder {
     return new Impl(message);
   }
 
+  public static Impl builder(String message) {
+    return new Impl(message);
+  }
+
   public class Impl implements MessageDefinition_AllowedResponseBuilder {
     private Optional<String> id = Optional.empty();
     private String message;

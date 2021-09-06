@@ -46,6 +46,10 @@ public interface ExtensionBuilder extends ElementBuilder {
     return new Impl(url);
   }
 
+  public static Impl builder(String url) {
+    return new Impl(url);
+  }
+
   public static Choice_1349125893 value(Address a) {
     return new Choice_1349125893(a);
   }

@@ -49,6 +49,10 @@ public interface Medication_IngredientBuilder {
     return new Impl(item);
   }
 
+  public static Impl builder(@NonNull Choice01025009075 item) {
+    return new Impl(item);
+  }
+
   public static Choice01025009075 item(CodeableConcept c) {
     return new Choice01025009075(c);
   }

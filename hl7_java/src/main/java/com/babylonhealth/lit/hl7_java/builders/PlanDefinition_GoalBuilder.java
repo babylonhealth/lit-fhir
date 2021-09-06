@@ -49,6 +49,10 @@ public interface PlanDefinition_GoalBuilder {
     return new Impl(description);
   }
 
+  public static Impl builder(CodeableConceptBuilder description) {
+    return new Impl(description.build());
+  }
+
   public class Impl implements PlanDefinition_GoalBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> start = Optional.empty();

@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_RelatedBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ExplanationOfBenefit_RelatedBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> claim = Optional.empty();

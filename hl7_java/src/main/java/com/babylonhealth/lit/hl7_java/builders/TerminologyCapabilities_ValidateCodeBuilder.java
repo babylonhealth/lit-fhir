@@ -49,6 +49,10 @@ public interface TerminologyCapabilities_ValidateCodeBuilder {
     return new Impl(translations);
   }
 
+  public static Impl builder(Boolean translations) {
+    return new Impl(translations);
+  }
+
   public class Impl implements TerminologyCapabilities_ValidateCodeBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

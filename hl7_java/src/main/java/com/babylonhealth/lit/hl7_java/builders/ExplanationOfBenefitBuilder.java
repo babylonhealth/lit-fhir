@@ -61,6 +61,28 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     return new Impl(use, _type, status, patient, created, insurer, outcome, provider, insurance);
   }
 
+  public static Impl builder(
+      CLAIM_USE use,
+      CodeableConceptBuilder _type,
+      EXPLANATIONOFBENEFIT_STATUS status,
+      ReferenceBuilder patient,
+      FHIRDateTime created,
+      ReferenceBuilder insurer,
+      REMITTANCE_OUTCOME outcome,
+      ReferenceBuilder provider,
+      Collection<ExplanationOfBenefit_InsuranceBuilder> insurance) {
+    return new Impl(
+        use,
+        _type.build(),
+        status,
+        patient.build(),
+        created,
+        insurer.build(),
+        outcome,
+        provider.build(),
+        new LitSeq<>(insurance).map(ExplanationOfBenefit_InsuranceBuilder::build));
+  }
+
   public class Impl implements ExplanationOfBenefitBuilder {
     private Optional<String> id = Optional.empty();
     private CLAIM_USE use;

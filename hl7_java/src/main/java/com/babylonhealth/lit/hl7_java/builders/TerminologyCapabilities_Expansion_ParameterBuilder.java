@@ -49,6 +49,10 @@ public interface TerminologyCapabilities_Expansion_ParameterBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public class Impl implements TerminologyCapabilities_Expansion_ParameterBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

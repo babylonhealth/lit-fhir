@@ -52,6 +52,10 @@ public interface Patient_birthTimeBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDateTime value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Patient_birthTimeBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDateTime value;

@@ -55,6 +55,20 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     return new Impl(status, patient, doseStatus, targetDisease, immunizationEvent);
   }
 
+  public static Impl builder(
+      IMMUNIZATION_EVALUATION_STATUS status,
+      ReferenceBuilder patient,
+      CodeableConceptBuilder doseStatus,
+      CodeableConceptBuilder targetDisease,
+      ReferenceBuilder immunizationEvent) {
+    return new Impl(
+        status,
+        patient.build(),
+        doseStatus.build(),
+        targetDisease.build(),
+        immunizationEvent.build());
+  }
+
   public static Choice_0839638734 doseNumber(Integer i) {
     return new Choice_0839638734(i);
   }

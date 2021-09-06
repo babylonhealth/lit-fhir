@@ -47,6 +47,10 @@ public interface AddressBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements AddressBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<ADDRESS_USE> use = Optional.empty();

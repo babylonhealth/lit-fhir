@@ -49,6 +49,10 @@ public interface Observation_ComponentBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(CodeableConceptBuilder code) {
+    return new Impl(code.build());
+  }
+
   public static Choice_0802685816 value(Boolean b) {
     return new Choice_0802685816(b);
   }

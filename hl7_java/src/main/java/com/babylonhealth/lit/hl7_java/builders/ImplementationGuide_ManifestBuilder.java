@@ -49,6 +49,11 @@ public interface ImplementationGuide_ManifestBuilder {
     return new Impl(resource);
   }
 
+  public static Impl builder(Collection<ImplementationGuide_Manifest_ResourceBuilder> resource) {
+    return new Impl(
+        new LitSeq<>(resource).map(ImplementationGuide_Manifest_ResourceBuilder::build));
+  }
+
   public class Impl implements ImplementationGuide_ManifestBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<String> image = Collections.emptyList();

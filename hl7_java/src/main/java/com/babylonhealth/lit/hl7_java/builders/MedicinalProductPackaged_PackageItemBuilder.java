@@ -49,6 +49,10 @@ public interface MedicinalProductPackaged_PackageItemBuilder {
     return new Impl(_type, quantity);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, QuantityBuilder quantity) {
+    return new Impl(_type.build(), quantity.build());
+  }
+
   public class Impl implements MedicinalProductPackaged_PackageItemBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

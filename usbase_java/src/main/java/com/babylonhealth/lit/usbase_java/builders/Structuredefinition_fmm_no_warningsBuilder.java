@@ -52,6 +52,10 @@ public interface Structuredefinition_fmm_no_warningsBuilder extends ExtensionBui
     return new Impl(value);
   }
 
+  public static Impl builder(Integer value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_fmm_no_warningsBuilder {
     private Optional<String> id = Optional.empty();
     private Integer value;

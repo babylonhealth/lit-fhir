@@ -49,6 +49,10 @@ public interface Timing_RepeatBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_0731860109 bounds(Duration d) {
     return new Choice_0731860109(d);
   }

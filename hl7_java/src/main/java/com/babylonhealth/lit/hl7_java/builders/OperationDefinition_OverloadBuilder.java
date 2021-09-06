@@ -49,6 +49,10 @@ public interface OperationDefinition_OverloadBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements OperationDefinition_OverloadBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> comment = Optional.empty();

@@ -49,6 +49,10 @@ public interface ImmunizationRecommendation_Recommendation_DateCriterionBuilder 
     return new Impl(code, value);
   }
 
+  public static Impl builder(CodeableConceptBuilder code, FHIRDateTime value) {
+    return new Impl(code.build(), value);
+  }
+
   public class Impl implements ImmunizationRecommendation_Recommendation_DateCriterionBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;

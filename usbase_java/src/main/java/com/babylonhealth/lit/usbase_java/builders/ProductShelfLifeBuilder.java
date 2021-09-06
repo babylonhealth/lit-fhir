@@ -52,6 +52,10 @@ public interface ProductShelfLifeBuilder extends BackboneElementBuilder {
     return new Impl(_type, period);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, QuantityBuilder period) {
+    return new Impl(_type.build(), period.build());
+  }
+
   public class Impl implements ProductShelfLifeBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

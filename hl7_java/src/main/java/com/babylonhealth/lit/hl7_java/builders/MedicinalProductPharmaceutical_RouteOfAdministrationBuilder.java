@@ -49,6 +49,10 @@ public interface MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(CodeableConceptBuilder code) {
+    return new Impl(code.build());
+  }
+
   public class Impl implements MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;

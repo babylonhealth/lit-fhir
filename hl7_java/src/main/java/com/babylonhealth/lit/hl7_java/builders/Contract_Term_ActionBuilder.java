@@ -49,6 +49,11 @@ public interface Contract_Term_ActionBuilder {
     return new Impl(_type, intent, status);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder _type, CodeableConceptBuilder intent, CodeableConceptBuilder status) {
+    return new Impl(_type.build(), intent.build(), status.build());
+  }
+
   public static Choice00609373412 occurrence(FHIRDateTime f) {
     return new Choice00609373412(f);
   }

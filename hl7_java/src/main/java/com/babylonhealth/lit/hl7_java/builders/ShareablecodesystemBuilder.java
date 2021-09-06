@@ -62,6 +62,28 @@ public interface ShareablecodesystemBuilder extends CodeSystemBuilder {
         url, name, status, version, content, publisher, description, experimental, concept);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      PUBLICATION_STATUS status,
+      String version,
+      CODESYSTEM_CONTENT_MODE content,
+      String publisher,
+      String description,
+      Boolean experimental,
+      Collection<CodeSystem_ConceptBuilder> concept) {
+    return new Impl(
+        url,
+        name,
+        status,
+        version,
+        content,
+        publisher,
+        description,
+        experimental,
+        new LitSeq<>(concept).map(CodeSystem_ConceptBuilder::build));
+  }
+
   public class Impl implements ShareablecodesystemBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

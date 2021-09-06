@@ -58,6 +58,15 @@ public interface DevicemetricobservationBuilder extends ObservationBuilder {
     return new Impl(code, status, device, subject, effective);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      OBSERVATION_STATUS status,
+      ReferenceBuilder device,
+      ReferenceBuilder subject,
+      FHIRDateTime effective) {
+    return new Impl(code.build(), status, device.build(), subject.build(), effective);
+  }
+
   public static Choice_1915626029 value(CodeableConcept c) {
     return new Choice_1915626029(c);
   }

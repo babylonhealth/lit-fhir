@@ -52,6 +52,10 @@ public interface Elementdefinition_bindingNameBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Elementdefinition_bindingNameBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

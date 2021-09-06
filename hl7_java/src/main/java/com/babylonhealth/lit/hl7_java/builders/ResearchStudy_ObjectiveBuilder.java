@@ -49,6 +49,10 @@ public interface ResearchStudy_ObjectiveBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ResearchStudy_ObjectiveBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

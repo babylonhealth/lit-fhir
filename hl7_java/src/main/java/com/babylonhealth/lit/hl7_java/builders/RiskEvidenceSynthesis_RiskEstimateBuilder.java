@@ -49,6 +49,10 @@ public interface RiskEvidenceSynthesis_RiskEstimateBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements RiskEvidenceSynthesis_RiskEstimateBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

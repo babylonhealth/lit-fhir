@@ -52,6 +52,10 @@ public interface Composition_section_subjectBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Composition_section_subjectBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

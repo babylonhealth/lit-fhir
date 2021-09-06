@@ -49,6 +49,10 @@ public interface Questionnaire_Item_AnswerOptionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice_1132894602 value) {
+    return new Impl(value);
+  }
+
   public static Choice_1132894602 value(Coding c) {
     return new Choice_1132894602(c);
   }

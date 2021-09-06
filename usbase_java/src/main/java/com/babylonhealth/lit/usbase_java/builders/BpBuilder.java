@@ -59,6 +59,22 @@ public interface BpBuilder extends VitalsignsBuilder {
     return new Impl(status, subject, category, effective, code, component);
   }
 
+  public static Impl builder(
+      OBSERVATION_STATUS status,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category,
+      @NonNull Choice_0934386166 effective,
+      CodeableConceptBuilder code,
+      Collection<Observation_ComponentBuilder> component) {
+    return new Impl(
+        status,
+        subject.build(),
+        new LitSeq<>(category).map(CodeableConceptBuilder::build),
+        effective,
+        code.build(),
+        new LitSeq<>(component).map(Observation_ComponentBuilder::build));
+  }
+
   public static Choice_0934386166 effective(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

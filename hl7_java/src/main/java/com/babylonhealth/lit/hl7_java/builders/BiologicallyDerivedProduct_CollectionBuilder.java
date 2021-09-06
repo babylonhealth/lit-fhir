@@ -49,6 +49,10 @@ public interface BiologicallyDerivedProduct_CollectionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_0934386166 collected(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

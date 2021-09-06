@@ -61,6 +61,15 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
     return new Impl(status, patient, vaccineCode, occurrence, primarySource);
   }
 
+  public static Impl builder(
+      IMMUNIZATION_STATUS status,
+      ReferenceBuilder patient,
+      CodeableConceptBuilder vaccineCode,
+      @NonNull Choice_1715923163 occurrence,
+      Boolean primarySource) {
+    return new Impl(status, patient.build(), vaccineCode.build(), occurrence, primarySource);
+  }
+
   public static Choice_1715923163 occurrence(FHIRDateTime f) {
     return new Choice_1715923163(f);
   }

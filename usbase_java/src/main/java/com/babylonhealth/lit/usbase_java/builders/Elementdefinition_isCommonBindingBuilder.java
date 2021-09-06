@@ -52,6 +52,10 @@ public interface Elementdefinition_isCommonBindingBuilder extends ExtensionBuild
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Elementdefinition_isCommonBindingBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

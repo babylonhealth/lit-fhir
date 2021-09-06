@@ -50,6 +50,10 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     return new Impl(_class, status);
   }
 
+  public static Impl builder(CodingBuilder _class, ENCOUNTER_STATUS status) {
+    return new Impl(_class.build(), status);
+  }
+
   public class Impl implements EncounterBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

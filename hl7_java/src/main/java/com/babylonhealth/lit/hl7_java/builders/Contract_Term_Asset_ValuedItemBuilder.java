@@ -49,6 +49,10 @@ public interface Contract_Term_Asset_ValuedItemBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01025009075 entity(CodeableConcept c) {
     return new Choice01025009075(c);
   }

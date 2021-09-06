@@ -49,6 +49,10 @@ public interface ClaimResponse_TotalBuilder {
     return new Impl(amount, category);
   }
 
+  public static Impl builder(MoneyBuilder amount, CodeableConceptBuilder category) {
+    return new Impl(amount.build(), category.build());
+  }
+
   public class Impl implements ClaimResponse_TotalBuilder {
     private Optional<String> id = Optional.empty();
     private Money amount;

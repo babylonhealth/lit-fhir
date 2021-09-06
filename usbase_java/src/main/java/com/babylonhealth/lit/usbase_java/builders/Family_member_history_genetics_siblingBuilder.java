@@ -52,6 +52,10 @@ public interface Family_member_history_genetics_siblingBuilder extends Extension
     return new Impl(extension);
   }
 
+  public static Impl builder(Collection<ExtensionBuilder> extension) {
+    return new Impl(new LitSeq<>(extension).map(ExtensionBuilder::build));
+  }
+
   public static Choice_1349125893 value(Address a) {
     return new Choice_1349125893(a);
   }

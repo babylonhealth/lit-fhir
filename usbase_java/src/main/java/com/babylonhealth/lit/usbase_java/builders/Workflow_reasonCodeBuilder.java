@@ -52,6 +52,10 @@ public interface Workflow_reasonCodeBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Workflow_reasonCodeBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

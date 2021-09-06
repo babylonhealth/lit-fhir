@@ -53,6 +53,10 @@ public interface TestScript_Setup_Action_AssertBuilder {
     return new Impl(warningOnly);
   }
 
+  public static Impl builder(Boolean warningOnly) {
+    return new Impl(warningOnly);
+  }
+
   public class Impl implements TestScript_Setup_Action_AssertBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> path = Optional.empty();

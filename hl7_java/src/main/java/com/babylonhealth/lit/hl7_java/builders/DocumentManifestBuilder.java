@@ -50,6 +50,11 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
     return new Impl(status, content);
   }
 
+  public static Impl builder(
+      DOCUMENT_REFERENCE_STATUS status, Collection<ReferenceBuilder> content) {
+    return new Impl(status, new LitSeq<>(content).map(ReferenceBuilder::build));
+  }
+
   public class Impl implements DocumentManifestBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

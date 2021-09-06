@@ -50,6 +50,10 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status) {
+    return new Impl(status);
+  }
+
   public class Impl implements ExampleScenarioBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

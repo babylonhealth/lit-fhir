@@ -49,6 +49,10 @@ public interface Consent_PolicyBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Consent_PolicyBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> uri = Optional.empty();

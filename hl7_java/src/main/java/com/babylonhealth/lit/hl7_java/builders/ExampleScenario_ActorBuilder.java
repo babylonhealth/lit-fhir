@@ -49,6 +49,10 @@ public interface ExampleScenario_ActorBuilder {
     return new Impl(_type, actorId);
   }
 
+  public static Impl builder(EXAMPLESCENARIO_ACTOR_TYPE _type, String actorId) {
+    return new Impl(_type, actorId);
+  }
+
   public class Impl implements ExampleScenario_ActorBuilder {
     private Optional<String> id = Optional.empty();
     private EXAMPLESCENARIO_ACTOR_TYPE _type;

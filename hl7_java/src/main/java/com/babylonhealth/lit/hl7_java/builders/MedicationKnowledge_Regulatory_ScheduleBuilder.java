@@ -49,6 +49,10 @@ public interface MedicationKnowledge_Regulatory_ScheduleBuilder {
     return new Impl(schedule);
   }
 
+  public static Impl builder(CodeableConceptBuilder schedule) {
+    return new Impl(schedule.build());
+  }
+
   public class Impl implements MedicationKnowledge_Regulatory_ScheduleBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept schedule;

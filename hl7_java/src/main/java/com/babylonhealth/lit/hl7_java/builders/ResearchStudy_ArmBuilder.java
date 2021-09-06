@@ -49,6 +49,10 @@ public interface ResearchStudy_ArmBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public class Impl implements ResearchStudy_ArmBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

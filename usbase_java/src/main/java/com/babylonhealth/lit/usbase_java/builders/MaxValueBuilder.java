@@ -52,6 +52,10 @@ public interface MaxValueBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice00315627715 value) {
+    return new Impl(value);
+  }
+
   public static Choice00315627715 value(BigDecimal b) {
     return new Choice00315627715(b);
   }

@@ -49,6 +49,10 @@ public interface Invoice_ParticipantBuilder {
     return new Impl(actor);
   }
 
+  public static Impl builder(ReferenceBuilder actor) {
+    return new Impl(actor.build());
+  }
+
   public class Impl implements Invoice_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> role = Optional.empty();

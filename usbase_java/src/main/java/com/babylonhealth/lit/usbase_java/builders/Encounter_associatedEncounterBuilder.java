@@ -52,6 +52,10 @@ public interface Encounter_associatedEncounterBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Encounter_associatedEncounterBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

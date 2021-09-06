@@ -52,6 +52,10 @@ public interface Location_distanceBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(DistanceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Location_distanceBuilder {
     private Optional<String> id = Optional.empty();
     private Distance value;

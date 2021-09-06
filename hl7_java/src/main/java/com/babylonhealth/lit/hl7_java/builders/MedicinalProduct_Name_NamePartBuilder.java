@@ -49,6 +49,10 @@ public interface MedicinalProduct_Name_NamePartBuilder {
     return new Impl(part, _type);
   }
 
+  public static Impl builder(String part, CodingBuilder _type) {
+    return new Impl(part, _type.build());
+  }
+
   public class Impl implements MedicinalProduct_Name_NamePartBuilder {
     private Optional<String> id = Optional.empty();
     private String part;

@@ -52,6 +52,10 @@ public interface Iso21090_AD_useBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(POSTAL_ADDRESS_USE value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Iso21090_AD_useBuilder {
     private Optional<String> id = Optional.empty();
     private POSTAL_ADDRESS_USE value;

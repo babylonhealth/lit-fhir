@@ -49,6 +49,10 @@ public interface AuditEvent_EntityBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements AuditEvent_EntityBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> what = Optional.empty();

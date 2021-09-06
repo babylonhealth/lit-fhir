@@ -49,6 +49,10 @@ public interface CapabilityStatement_Rest_SecurityBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements CapabilityStatement_Rest_SecurityBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> cors = Optional.empty();

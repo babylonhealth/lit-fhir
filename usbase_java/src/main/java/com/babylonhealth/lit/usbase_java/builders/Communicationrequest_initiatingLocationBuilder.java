@@ -52,6 +52,10 @@ public interface Communicationrequest_initiatingLocationBuilder extends Extensio
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Communicationrequest_initiatingLocationBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

@@ -50,6 +50,10 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
     return new Impl(orderable, referencedItem);
   }
 
+  public static Impl builder(Boolean orderable, ReferenceBuilder referencedItem) {
+    return new Impl(orderable, referencedItem.build());
+  }
+
   public class Impl implements CatalogEntryBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

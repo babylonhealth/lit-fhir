@@ -49,6 +49,10 @@ public interface GraphDefinition_LinkBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements GraphDefinition_LinkBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Integer> min = Optional.empty();

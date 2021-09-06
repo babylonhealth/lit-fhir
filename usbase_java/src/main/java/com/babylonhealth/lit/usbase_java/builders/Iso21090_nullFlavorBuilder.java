@@ -52,6 +52,10 @@ public interface Iso21090_nullFlavorBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(V3_NULLFLAVOR value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Iso21090_nullFlavorBuilder {
     private Optional<String> id = Optional.empty();
     private V3_NULLFLAVOR value;

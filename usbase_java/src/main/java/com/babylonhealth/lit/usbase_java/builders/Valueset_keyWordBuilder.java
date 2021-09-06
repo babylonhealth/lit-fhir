@@ -52,6 +52,10 @@ public interface Valueset_keyWordBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_keyWordBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

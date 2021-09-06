@@ -49,6 +49,10 @@ public interface Account_GuarantorBuilder {
     return new Impl(party);
   }
 
+  public static Impl builder(ReferenceBuilder party) {
+    return new Impl(party.build());
+  }
+
   public class Impl implements Account_GuarantorBuilder {
     private Optional<String> id = Optional.empty();
     private Reference party;

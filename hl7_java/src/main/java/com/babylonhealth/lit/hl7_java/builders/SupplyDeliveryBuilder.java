@@ -50,6 +50,10 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice00609373412 occurrence(FHIRDateTime f) {
     return new Choice00609373412(f);
   }

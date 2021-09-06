@@ -50,6 +50,16 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
     return new Impl(target, recorded, agent);
   }
 
+  public static Impl builder(
+      Collection<ReferenceBuilder> target,
+      ZonedDateTime recorded,
+      Collection<Provenance_AgentBuilder> agent) {
+    return new Impl(
+        new LitSeq<>(target).map(ReferenceBuilder::build),
+        recorded,
+        new LitSeq<>(agent).map(Provenance_AgentBuilder::build));
+  }
+
   public static Choice_0934386166 occurred(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

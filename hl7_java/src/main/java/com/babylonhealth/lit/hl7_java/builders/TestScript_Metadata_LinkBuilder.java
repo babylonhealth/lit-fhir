@@ -49,6 +49,10 @@ public interface TestScript_Metadata_LinkBuilder {
     return new Impl(url);
   }
 
+  public static Impl builder(String url) {
+    return new Impl(url);
+  }
+
   public class Impl implements TestScript_Metadata_LinkBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

@@ -49,6 +49,10 @@ public interface Measure_GroupBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Measure_GroupBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();

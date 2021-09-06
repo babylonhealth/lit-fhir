@@ -59,6 +59,22 @@ public interface VitalspanelBuilder extends VitalsignsBuilder {
     return new Impl(status, subject, category, hasMember, effective, code);
   }
 
+  public static Impl builder(
+      OBSERVATION_STATUS status,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category,
+      Collection<ReferenceBuilder> hasMember,
+      @NonNull Choice_0934386166 effective,
+      CodeableConceptBuilder code) {
+    return new Impl(
+        status,
+        subject.build(),
+        new LitSeq<>(category).map(CodeableConceptBuilder::build),
+        new LitSeq<>(hasMember).map(ReferenceBuilder::build),
+        effective,
+        code.build());
+  }
+
   public static Choice_0802685816 value(Boolean b) {
     return new Choice_0802685816(b);
   }

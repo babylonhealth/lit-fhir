@@ -52,6 +52,10 @@ public interface Workflow_instantiatesUriBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Workflow_instantiatesUriBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

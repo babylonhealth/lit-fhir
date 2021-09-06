@@ -50,6 +50,11 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     return new Impl(code, status, subject);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code, CHARGEITEM_STATUS status, ReferenceBuilder subject) {
+    return new Impl(code.build(), status, subject.build());
+  }
+
   public static Choice01025009075 product(CodeableConcept c) {
     return new Choice01025009075(c);
   }

@@ -49,6 +49,10 @@ public interface TestReport_TestBuilder {
     return new Impl(action);
   }
 
+  public static Impl builder(Collection<TestReport_Test_ActionBuilder> action) {
+    return new Impl(new LitSeq<>(action).map(TestReport_Test_ActionBuilder::build));
+  }
+
   public class Impl implements TestReport_TestBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

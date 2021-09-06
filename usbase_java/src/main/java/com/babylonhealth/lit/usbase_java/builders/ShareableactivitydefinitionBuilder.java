@@ -63,6 +63,17 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     return new Impl(url, name, status, version, publisher, description, experimental);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      PUBLICATION_STATUS status,
+      String version,
+      String publisher,
+      String description,
+      Boolean experimental) {
+    return new Impl(url, name, status, version, publisher, description, experimental);
+  }
+
   public static Choice_0181779868 timing(Age a) {
     return new Choice_0181779868(a);
   }

@@ -52,6 +52,10 @@ public interface Observation_geneticsGenomicSourceClassBuilder extends Extension
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Observation_geneticsGenomicSourceClassBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

@@ -49,6 +49,10 @@ public interface NutritionOrder_EnteralFormulaBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements NutritionOrder_EnteralFormulaBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

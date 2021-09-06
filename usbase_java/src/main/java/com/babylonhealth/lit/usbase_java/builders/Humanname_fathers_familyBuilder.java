@@ -52,6 +52,10 @@ public interface Humanname_fathers_familyBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Humanname_fathers_familyBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

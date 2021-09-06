@@ -49,6 +49,11 @@ public interface MedicinalProductPackagedBuilder extends DomainResourceBuilder {
     return new Impl(packageItem);
   }
 
+  public static Impl builder(Collection<MedicinalProductPackaged_PackageItemBuilder> packageItem) {
+    return new Impl(
+        new LitSeq<>(packageItem).map(MedicinalProductPackaged_PackageItemBuilder::build));
+  }
+
   public class Impl implements MedicinalProductPackagedBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

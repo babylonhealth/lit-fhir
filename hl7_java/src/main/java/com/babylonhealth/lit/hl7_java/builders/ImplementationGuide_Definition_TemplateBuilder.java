@@ -49,6 +49,10 @@ public interface ImplementationGuide_Definition_TemplateBuilder {
     return new Impl(code, source);
   }
 
+  public static Impl builder(String code, String source) {
+    return new Impl(code, source);
+  }
+
   public class Impl implements ImplementationGuide_Definition_TemplateBuilder {
     private Optional<String> id = Optional.empty();
     private String code;

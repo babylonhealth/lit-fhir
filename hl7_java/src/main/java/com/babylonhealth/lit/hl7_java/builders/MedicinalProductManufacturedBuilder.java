@@ -49,6 +49,11 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
     return new Impl(quantity, manufacturedDoseForm);
   }
 
+  public static Impl builder(
+      QuantityBuilder quantity, CodeableConceptBuilder manufacturedDoseForm) {
+    return new Impl(quantity.build(), manufacturedDoseForm.build());
+  }
+
   public class Impl implements MedicinalProductManufacturedBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

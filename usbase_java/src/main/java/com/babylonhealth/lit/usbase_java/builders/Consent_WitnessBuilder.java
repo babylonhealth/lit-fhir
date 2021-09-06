@@ -52,6 +52,10 @@ public interface Consent_WitnessBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Consent_WitnessBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

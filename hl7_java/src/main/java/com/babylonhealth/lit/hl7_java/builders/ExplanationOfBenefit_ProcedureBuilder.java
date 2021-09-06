@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_ProcedureBuilder {
     return new Impl(sequence, procedure);
   }
 
+  public static Impl builder(Integer sequence, @NonNull Choice01025009075 procedure) {
+    return new Impl(sequence, procedure);
+  }
+
   public static Choice01025009075 procedure(CodeableConcept c) {
     return new Choice01025009075(c);
   }

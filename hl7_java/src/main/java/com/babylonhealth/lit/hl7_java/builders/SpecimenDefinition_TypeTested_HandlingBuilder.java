@@ -49,6 +49,10 @@ public interface SpecimenDefinition_TypeTested_HandlingBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SpecimenDefinition_TypeTested_HandlingBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

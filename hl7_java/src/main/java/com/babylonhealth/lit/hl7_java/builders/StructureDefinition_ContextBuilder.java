@@ -49,6 +49,10 @@ public interface StructureDefinition_ContextBuilder {
     return new Impl(_type, expression);
   }
 
+  public static Impl builder(EXTENSION_CONTEXT_TYPE _type, String expression) {
+    return new Impl(_type, expression);
+  }
+
   public class Impl implements StructureDefinition_ContextBuilder {
     private Optional<String> id = Optional.empty();
     private EXTENSION_CONTEXT_TYPE _type;

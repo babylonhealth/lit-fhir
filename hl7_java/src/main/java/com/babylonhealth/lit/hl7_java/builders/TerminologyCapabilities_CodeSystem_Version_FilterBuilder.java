@@ -49,6 +49,10 @@ public interface TerminologyCapabilities_CodeSystem_Version_FilterBuilder {
     return new Impl(op, code);
   }
 
+  public static Impl builder(Collection<String> op, String code) {
+    return new Impl(op, code);
+  }
+
   public class Impl implements TerminologyCapabilities_CodeSystem_Version_FilterBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<String> op;

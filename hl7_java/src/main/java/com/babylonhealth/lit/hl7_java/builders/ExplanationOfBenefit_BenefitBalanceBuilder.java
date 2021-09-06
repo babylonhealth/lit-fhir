@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_BenefitBalanceBuilder {
     return new Impl(category);
   }
 
+  public static Impl builder(CodeableConceptBuilder category) {
+    return new Impl(category.build());
+  }
+
   public class Impl implements ExplanationOfBenefit_BenefitBalanceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

@@ -50,6 +50,10 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
     return new Impl(coordinateSystem);
   }
 
+  public static Impl builder(Integer coordinateSystem) {
+    return new Impl(coordinateSystem);
+  }
+
   public class Impl implements MolecularSequenceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

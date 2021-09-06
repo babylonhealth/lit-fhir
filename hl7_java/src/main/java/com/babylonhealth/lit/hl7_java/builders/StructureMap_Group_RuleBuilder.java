@@ -49,6 +49,11 @@ public interface StructureMap_Group_RuleBuilder {
     return new Impl(name, source);
   }
 
+  public static Impl builder(
+      String name, Collection<StructureMap_Group_Rule_SourceBuilder> source) {
+    return new Impl(name, new LitSeq<>(source).map(StructureMap_Group_Rule_SourceBuilder::build));
+  }
+
   public class Impl implements StructureMap_Group_RuleBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

@@ -49,6 +49,10 @@ public interface ConceptMap_Group_ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ConceptMap_Group_ElementBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> code = Optional.empty();

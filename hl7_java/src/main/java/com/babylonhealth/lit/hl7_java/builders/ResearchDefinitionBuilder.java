@@ -50,6 +50,10 @@ public interface ResearchDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(status, population);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status, ReferenceBuilder population) {
+    return new Impl(status, population.build());
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

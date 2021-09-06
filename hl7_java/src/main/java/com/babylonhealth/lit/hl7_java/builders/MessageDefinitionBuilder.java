@@ -53,6 +53,11 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(date, status, event);
   }
 
+  public static Impl builder(
+      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull Choice01583485927 event) {
+    return new Impl(date, status, event);
+  }
+
   public static Choice01583485927 event(Coding c) {
     return new Choice01583485927(c);
   }

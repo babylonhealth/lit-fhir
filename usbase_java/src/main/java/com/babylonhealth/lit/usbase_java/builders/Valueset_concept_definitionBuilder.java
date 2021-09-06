@@ -52,6 +52,10 @@ public interface Valueset_concept_definitionBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_concept_definitionBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

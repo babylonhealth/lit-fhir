@@ -49,6 +49,10 @@ public interface CapabilityStatement_Messaging_EndpointBuilder {
     return new Impl(address, protocol);
   }
 
+  public static Impl builder(String address, CodingBuilder protocol) {
+    return new Impl(address, protocol.build());
+  }
+
   public class Impl implements CapabilityStatement_Messaging_EndpointBuilder {
     private Optional<String> id = Optional.empty();
     private String address;

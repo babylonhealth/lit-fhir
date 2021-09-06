@@ -56,6 +56,16 @@ public interface NamingSystemBuilder extends DomainResourceBuilder {
     return new Impl(name, kind, date, status, uniqueId);
   }
 
+  public static Impl builder(
+      String name,
+      NAMINGSYSTEM_TYPE kind,
+      FHIRDateTime date,
+      PUBLICATION_STATUS status,
+      Collection<NamingSystem_UniqueIdBuilder> uniqueId) {
+    return new Impl(
+        name, kind, date, status, new LitSeq<>(uniqueId).map(NamingSystem_UniqueIdBuilder::build));
+  }
+
   public class Impl implements NamingSystemBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

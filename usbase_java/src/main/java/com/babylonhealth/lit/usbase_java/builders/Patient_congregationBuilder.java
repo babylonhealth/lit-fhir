@@ -52,6 +52,10 @@ public interface Patient_congregationBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Patient_congregationBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

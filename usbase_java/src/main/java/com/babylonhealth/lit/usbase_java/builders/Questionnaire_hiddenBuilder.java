@@ -52,6 +52,10 @@ public interface Questionnaire_hiddenBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Questionnaire_hiddenBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

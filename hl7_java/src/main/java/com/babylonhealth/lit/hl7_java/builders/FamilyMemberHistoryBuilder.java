@@ -50,6 +50,11 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     return new Impl(status, patient, relationship);
   }
 
+  public static Impl builder(
+      HISTORY_STATUS status, ReferenceBuilder patient, CodeableConceptBuilder relationship) {
+    return new Impl(status, patient.build(), relationship.build());
+  }
+
   public static Choice_1507098327 age(Age a) {
     return new Choice_1507098327(a);
   }

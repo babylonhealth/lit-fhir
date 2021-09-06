@@ -49,6 +49,12 @@ public interface Contract_SignerBuilder {
     return new Impl(_type, party, signature);
   }
 
+  public static Impl builder(
+      CodingBuilder _type, ReferenceBuilder party, Collection<SignatureBuilder> signature) {
+    return new Impl(
+        _type.build(), party.build(), new LitSeq<>(signature).map(SignatureBuilder::build));
+  }
+
   public class Impl implements Contract_SignerBuilder {
     private Optional<String> id = Optional.empty();
     private Coding _type;

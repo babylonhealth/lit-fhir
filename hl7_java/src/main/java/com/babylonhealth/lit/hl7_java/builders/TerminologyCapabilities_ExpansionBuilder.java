@@ -49,6 +49,10 @@ public interface TerminologyCapabilities_ExpansionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements TerminologyCapabilities_ExpansionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> paging = Optional.empty();

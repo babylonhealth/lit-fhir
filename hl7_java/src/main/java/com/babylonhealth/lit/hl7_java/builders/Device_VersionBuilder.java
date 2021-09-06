@@ -49,6 +49,10 @@ public interface Device_VersionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Device_VersionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

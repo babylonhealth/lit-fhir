@@ -49,6 +49,10 @@ public interface TestReport_Setup_Action_OperationBuilder {
     return new Impl(result);
   }
 
+  public static Impl builder(REPORT_ACTION_RESULT_CODES result) {
+    return new Impl(result);
+  }
+
   public class Impl implements TestReport_Setup_Action_OperationBuilder {
     private Optional<String> id = Optional.empty();
     private REPORT_ACTION_RESULT_CODES result;

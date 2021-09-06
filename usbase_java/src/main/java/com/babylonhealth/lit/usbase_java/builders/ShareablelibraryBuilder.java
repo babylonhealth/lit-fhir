@@ -61,6 +61,19 @@ public interface ShareablelibraryBuilder extends LibraryBuilder {
     return new Impl(url, name, _type, status, version, publisher, description, experimental);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      CodeableConceptBuilder _type,
+      PUBLICATION_STATUS status,
+      String version,
+      String publisher,
+      String description,
+      Boolean experimental) {
+    return new Impl(
+        url, name, _type.build(), status, version, publisher, description, experimental);
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

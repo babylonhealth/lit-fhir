@@ -50,6 +50,10 @@ public interface LibraryBuilder extends DomainResourceBuilder {
     return new Impl(_type, status);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, PUBLICATION_STATUS status) {
+    return new Impl(_type.build(), status);
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

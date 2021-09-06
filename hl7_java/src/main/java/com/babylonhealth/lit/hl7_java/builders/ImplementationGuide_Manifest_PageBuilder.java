@@ -49,6 +49,10 @@ public interface ImplementationGuide_Manifest_PageBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public class Impl implements ImplementationGuide_Manifest_PageBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

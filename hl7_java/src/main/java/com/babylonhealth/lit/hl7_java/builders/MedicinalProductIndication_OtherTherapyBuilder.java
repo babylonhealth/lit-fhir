@@ -50,6 +50,11 @@ public interface MedicinalProductIndication_OtherTherapyBuilder {
     return new Impl(medication, therapyRelationshipType);
   }
 
+  public static Impl builder(
+      @NonNull Choice01025009075 medication, CodeableConceptBuilder therapyRelationshipType) {
+    return new Impl(medication, therapyRelationshipType.build());
+  }
+
   public static Choice01025009075 medication(CodeableConcept c) {
     return new Choice01025009075(c);
   }

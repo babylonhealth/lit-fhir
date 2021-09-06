@@ -49,6 +49,10 @@ public interface ImagingStudy_Series_PerformerBuilder {
     return new Impl(actor);
   }
 
+  public static Impl builder(ReferenceBuilder actor) {
+    return new Impl(actor.build());
+  }
+
   public class Impl implements ImagingStudy_Series_PerformerBuilder {
     private Optional<String> id = Optional.empty();
     private Reference actor;

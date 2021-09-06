@@ -52,6 +52,10 @@ public interface Practitionerrole_primaryIndBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Practitionerrole_primaryIndBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

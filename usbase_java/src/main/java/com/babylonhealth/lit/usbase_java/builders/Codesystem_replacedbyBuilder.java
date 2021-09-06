@@ -52,6 +52,10 @@ public interface Codesystem_replacedbyBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodingBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Codesystem_replacedbyBuilder {
     private Optional<String> id = Optional.empty();
     private Coding value;

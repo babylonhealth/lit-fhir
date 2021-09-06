@@ -49,6 +49,10 @@ public interface SubstanceSpecification_CodeBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceSpecification_CodeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();

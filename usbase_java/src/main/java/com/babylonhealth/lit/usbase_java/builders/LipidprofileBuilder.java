@@ -54,6 +54,13 @@ public interface LipidprofileBuilder extends DiagnosticReportBuilder {
     return new Impl(code, status, result);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      DIAGNOSTIC_REPORT_STATUS status,
+      Collection<ReferenceBuilder> result) {
+    return new Impl(code.build(), status, new LitSeq<>(result).map(ReferenceBuilder::build));
+  }
+
   public static Choice_0934386166 effective(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

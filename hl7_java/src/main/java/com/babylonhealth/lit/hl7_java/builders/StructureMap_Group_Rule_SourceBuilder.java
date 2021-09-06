@@ -49,6 +49,10 @@ public interface StructureMap_Group_Rule_SourceBuilder {
     return new Impl(context);
   }
 
+  public static Impl builder(String context) {
+    return new Impl(context);
+  }
+
   public static Choice_1349125893 defaultValue(Address a) {
     return new Choice_1349125893(a);
   }

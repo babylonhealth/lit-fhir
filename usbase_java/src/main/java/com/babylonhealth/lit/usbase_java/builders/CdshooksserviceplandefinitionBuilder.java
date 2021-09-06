@@ -53,6 +53,10 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     return new Impl(status, extension);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status, Collection<ExtensionBuilder> extension) {
+    return new Impl(status, new LitSeq<>(extension).map(ExtensionBuilder::build));
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

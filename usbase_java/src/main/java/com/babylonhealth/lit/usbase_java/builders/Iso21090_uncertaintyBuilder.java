@@ -52,6 +52,10 @@ public interface Iso21090_uncertaintyBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(BigDecimal value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Iso21090_uncertaintyBuilder {
     private Optional<String> id = Optional.empty();
     private BigDecimal value;

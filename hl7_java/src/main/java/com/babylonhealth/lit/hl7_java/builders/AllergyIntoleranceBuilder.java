@@ -52,6 +52,10 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
     return new Impl(patient);
   }
 
+  public static Impl builder(ReferenceBuilder patient) {
+    return new Impl(patient.build());
+  }
+
   public static Choice01352864625 onset(Age a) {
     return new Choice01352864625(a);
   }

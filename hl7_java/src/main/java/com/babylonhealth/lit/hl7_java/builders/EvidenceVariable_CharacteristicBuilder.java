@@ -49,6 +49,10 @@ public interface EvidenceVariable_CharacteristicBuilder {
     return new Impl(definition);
   }
 
+  public static Impl builder(@NonNull Choice_0358050020 definition) {
+    return new Impl(definition);
+  }
+
   public static Choice_0358050020 definition(String s) {
     return new Choice_0358050020(s);
   }

@@ -52,6 +52,10 @@ public interface Elementdefinition_allowedUnitsBuilder extends ExtensionBuilder 
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice01054268719 value) {
+    return new Impl(value);
+  }
+
   public static Choice01054268719 value(String s) {
     return new Choice01054268719(s);
   }

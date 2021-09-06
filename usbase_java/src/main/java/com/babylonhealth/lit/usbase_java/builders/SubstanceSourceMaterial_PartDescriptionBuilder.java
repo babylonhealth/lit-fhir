@@ -52,6 +52,10 @@ public interface SubstanceSourceMaterial_PartDescriptionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceSourceMaterial_PartDescriptionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> part = Optional.empty();

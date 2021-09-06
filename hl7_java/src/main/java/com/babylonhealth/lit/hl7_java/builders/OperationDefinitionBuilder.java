@@ -59,6 +59,17 @@ public interface OperationDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(name, kind, code, _type, status, system, instance);
   }
 
+  public static Impl builder(
+      String name,
+      OPERATION_KIND kind,
+      String code,
+      Boolean _type,
+      PUBLICATION_STATUS status,
+      Boolean system,
+      Boolean instance) {
+    return new Impl(name, kind, code, _type, status, system, instance);
+  }
+
   public class Impl implements OperationDefinitionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

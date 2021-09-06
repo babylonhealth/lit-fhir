@@ -49,6 +49,10 @@ public interface ChargeItemDefinition_PropertyGroup_PriceComponentBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(INVOICE_PRICECOMPONENTTYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements ChargeItemDefinition_PropertyGroup_PriceComponentBuilder {
     private Optional<String> id = Optional.empty();
     private INVOICE_PRICECOMPONENTTYPE _type;

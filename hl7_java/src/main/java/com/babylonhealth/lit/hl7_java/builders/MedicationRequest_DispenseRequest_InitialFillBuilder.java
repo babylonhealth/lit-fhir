@@ -49,6 +49,10 @@ public interface MedicationRequest_DispenseRequest_InitialFillBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MedicationRequest_DispenseRequest_InitialFillBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Quantity> quantity = Optional.empty();

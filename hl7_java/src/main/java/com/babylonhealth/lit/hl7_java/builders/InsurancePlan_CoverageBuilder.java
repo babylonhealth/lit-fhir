@@ -50,6 +50,12 @@ public interface InsurancePlan_CoverageBuilder {
     return new Impl(_type, benefit);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder _type, Collection<InsurancePlan_Coverage_BenefitBuilder> benefit) {
+    return new Impl(
+        _type.build(), new LitSeq<>(benefit).map(InsurancePlan_Coverage_BenefitBuilder::build));
+  }
+
   public class Impl implements InsurancePlan_CoverageBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

@@ -49,6 +49,10 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
     return new Impl(patient);
   }
 
+  public static Impl builder(ReferenceBuilder patient) {
+    return new Impl(patient.build());
+  }
+
   public class Impl implements BodyStructureBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

@@ -50,6 +50,10 @@ public interface GroupBuilder extends DomainResourceBuilder {
     return new Impl(_type, actual);
   }
 
+  public static Impl builder(GROUP_TYPE _type, Boolean actual) {
+    return new Impl(_type, actual);
+  }
+
   public class Impl implements GroupBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

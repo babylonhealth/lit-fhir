@@ -49,6 +49,10 @@ public interface MedicationDispense_SubstitutionBuilder {
     return new Impl(wasSubstituted);
   }
 
+  public static Impl builder(Boolean wasSubstituted) {
+    return new Impl(wasSubstituted);
+  }
+
   public class Impl implements MedicationDispense_SubstitutionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

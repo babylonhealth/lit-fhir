@@ -49,6 +49,10 @@ public interface DocumentReference_ContextBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements DocumentReference_ContextBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<CodeableConcept> event = Collections.emptyList();

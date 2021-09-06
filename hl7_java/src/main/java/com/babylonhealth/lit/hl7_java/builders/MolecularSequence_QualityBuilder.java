@@ -49,6 +49,10 @@ public interface MolecularSequence_QualityBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(QUALITY_TYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements MolecularSequence_QualityBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Integer> end = Optional.empty();

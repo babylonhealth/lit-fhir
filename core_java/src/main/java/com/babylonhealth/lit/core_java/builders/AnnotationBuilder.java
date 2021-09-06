@@ -46,6 +46,10 @@ public interface AnnotationBuilder extends ElementBuilder {
     return new Impl(text);
   }
 
+  public static Impl builder(String text) {
+    return new Impl(text);
+  }
+
   public static Choice_1128709984 author(Reference r) {
     return new Choice_1128709984(r);
   }

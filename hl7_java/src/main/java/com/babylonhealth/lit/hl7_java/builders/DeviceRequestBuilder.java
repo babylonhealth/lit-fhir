@@ -53,6 +53,11 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     return new Impl(intent, code, subject);
   }
 
+  public static Impl builder(
+      REQUEST_INTENT intent, @NonNull Choice01025009075 code, ReferenceBuilder subject) {
+    return new Impl(intent, code, subject.build());
+  }
+
   public static Choice01025009075 code(CodeableConcept c) {
     return new Choice01025009075(c);
   }

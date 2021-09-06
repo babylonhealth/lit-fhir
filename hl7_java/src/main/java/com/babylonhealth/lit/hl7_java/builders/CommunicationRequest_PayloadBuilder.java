@@ -49,6 +49,10 @@ public interface CommunicationRequest_PayloadBuilder {
     return new Impl(content);
   }
 
+  public static Impl builder(@NonNull Choice_1750183386 content) {
+    return new Impl(content);
+  }
+
   public static Choice_1750183386 content(Attachment a) {
     return new Choice_1750183386(a);
   }

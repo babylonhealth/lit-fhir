@@ -52,6 +52,10 @@ public interface Elementdefinition_maxValueSetBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice00545979821 value) {
+    return new Impl(value);
+  }
+
   public static Choice00545979821 valueCanonical(String s) {
     return Choice00545979821.Choice00545979821Canonical(s);
   }

@@ -50,6 +50,11 @@ public interface DeviceUseStatementBuilder extends DomainResourceBuilder {
     return new Impl(status, device, subject);
   }
 
+  public static Impl builder(
+      DEVICE_STATEMENT_STATUS status, ReferenceBuilder device, ReferenceBuilder subject) {
+    return new Impl(status, device.build(), subject.build());
+  }
+
   public static Choice00609373412 timing(FHIRDateTime f) {
     return new Choice00609373412(f);
   }

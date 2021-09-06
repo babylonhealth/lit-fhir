@@ -49,6 +49,10 @@ public interface MolecularSequence_StructureVariantBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MolecularSequence_StructureVariantBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> exact = Optional.empty();

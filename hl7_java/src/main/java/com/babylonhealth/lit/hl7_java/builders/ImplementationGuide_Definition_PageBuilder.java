@@ -50,6 +50,11 @@ public interface ImplementationGuide_Definition_PageBuilder {
     return new Impl(title, name, generation);
   }
 
+  public static Impl builder(
+      String title, @NonNull Choice01831019594 name, GUIDE_PAGE_GENERATION generation) {
+    return new Impl(title, name, generation);
+  }
+
   public static Choice01831019594 name(Reference r) {
     return new Choice01831019594(r);
   }

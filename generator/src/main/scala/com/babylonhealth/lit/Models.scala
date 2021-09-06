@@ -2,6 +2,8 @@ package com.babylonhealth.lit
 
 import java.io.File
 
+import com.babylonhealth.lit.Cardinality.{ AtLeastOne, Many, One }
+import com.babylonhealth.lit.ElementTreee.{ inverseTypeLookup, isPrimitiveSuffix }
 import com.babylonhealth.lit.common.CodegenUtils
 import com.babylonhealth.lit.core.{ NonEmptyLitSeq, UriStr }
 import com.babylonhealth.lit.hl7.BINDING_STRENGTH
@@ -88,9 +90,16 @@ case class BaseField(
     case squareReg(n) => n
     case n            => n
   }
-  def capitalName            = noParensName.capitalize
-  val backtickRegex          = """`(.+)`""".r
-  def javaName: String       = CodegenUtils.fieldJavaName(noParensName)
+  def capitalName         = noParensName.capitalize
+  val backtickRegex       = """`(.+)`""".r
+  def javaName: String    = CodegenUtils.fieldJavaName(noParensName)
+  def isFHIRType: Boolean = isGenerated || (types.size == 1 && !isPrimitiveSuffix(inverseTypeLookup(types.head)))
+  def javaBuildName(getBuilderName: (String, BaseField) => String): String = (isFHIRType, cardinality) match {
+    case (false, _)  => CodegenUtils.fieldJavaName(noParensName)
+    case (true, One) => CodegenUtils.fieldJavaName(noParensName) + ".build()"
+    case (true, AtLeastOne) =>
+      "new LitSeq<>(" + CodegenUtils.fieldJavaName(noParensName) + s").map(${getBuilderName(types.head, this)}::build)"
+  }
   def scalaClassName: String = CodegenUtils.profileScalaName(className)
   def getAllEnumerations: Map[String, CodeValueSet] =
     valueEnumeration.map(x => x.valueSet -> x).toMap ++ childFields.flatMap(_.getAllEnumerations)

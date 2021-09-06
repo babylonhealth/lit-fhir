@@ -49,6 +49,10 @@ public interface Contract_LegalBuilder {
     return new Impl(content);
   }
 
+  public static Impl builder(@NonNull Choice_0340660840 content) {
+    return new Impl(content);
+  }
+
   public static Choice_0340660840 content(Attachment a) {
     return new Choice_0340660840(a);
   }

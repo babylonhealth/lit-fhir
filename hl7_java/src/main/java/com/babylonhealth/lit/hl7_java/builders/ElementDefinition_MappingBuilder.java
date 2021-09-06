@@ -49,6 +49,10 @@ public interface ElementDefinition_MappingBuilder {
     return new Impl(map, identity);
   }
 
+  public static Impl builder(String map, String identity) {
+    return new Impl(map, identity);
+  }
+
   public class Impl implements ElementDefinition_MappingBuilder {
     private Optional<String> id = Optional.empty();
     private String map;

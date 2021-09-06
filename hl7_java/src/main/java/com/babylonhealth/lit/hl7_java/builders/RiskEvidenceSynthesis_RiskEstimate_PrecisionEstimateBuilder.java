@@ -49,6 +49,10 @@ public interface RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimateBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimateBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<BigDecimal> to = Optional.empty();

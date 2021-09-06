@@ -57,6 +57,17 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
     return new Impl(url, name, status, version, publisher, description, experimental);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      PUBLICATION_STATUS status,
+      String version,
+      String publisher,
+      String description,
+      Boolean experimental) {
+    return new Impl(url, name, status, version, publisher, description, experimental);
+  }
+
   public class Impl implements ShareablevaluesetBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

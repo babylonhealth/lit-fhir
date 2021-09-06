@@ -49,6 +49,10 @@ public interface TestReport_ParticipantBuilder {
     return new Impl(uri, _type);
   }
 
+  public static Impl builder(String uri, REPORT_PARTICIPANT_TYPE _type) {
+    return new Impl(uri, _type);
+  }
+
   public class Impl implements TestReport_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
     private String uri;

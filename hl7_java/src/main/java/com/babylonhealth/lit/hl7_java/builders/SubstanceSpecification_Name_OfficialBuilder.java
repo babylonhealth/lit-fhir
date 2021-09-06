@@ -49,6 +49,10 @@ public interface SubstanceSpecification_Name_OfficialBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceSpecification_Name_OfficialBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<FHIRDateTime> date = Optional.empty();

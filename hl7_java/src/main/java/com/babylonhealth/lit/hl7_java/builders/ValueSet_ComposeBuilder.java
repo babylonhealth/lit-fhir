@@ -49,6 +49,10 @@ public interface ValueSet_ComposeBuilder {
     return new Impl(include);
   }
 
+  public static Impl builder(Collection<ValueSet_Compose_IncludeBuilder> include) {
+    return new Impl(new LitSeq<>(include).map(ValueSet_Compose_IncludeBuilder::build));
+  }
+
   public class Impl implements ValueSet_ComposeBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<ValueSet$Compose$Include> exclude = Collections.emptyList();

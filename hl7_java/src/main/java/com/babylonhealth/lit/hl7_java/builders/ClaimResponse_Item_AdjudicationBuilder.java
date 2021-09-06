@@ -49,6 +49,10 @@ public interface ClaimResponse_Item_AdjudicationBuilder {
     return new Impl(category);
   }
 
+  public static Impl builder(CodeableConceptBuilder category) {
+    return new Impl(category.build());
+  }
+
   public class Impl implements ClaimResponse_Item_AdjudicationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<BigDecimal> value = Optional.empty();

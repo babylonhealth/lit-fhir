@@ -46,6 +46,10 @@ public interface UsageContextBuilder extends ElementBuilder {
     return new Impl(code, value);
   }
 
+  public static Impl builder(CodingBuilder code, @NonNull Choice_0119127717 value) {
+    return new Impl(code.build(), value);
+  }
+
   public static Choice_0119127717 value(CodeableConcept c) {
     return new Choice_0119127717(c);
   }

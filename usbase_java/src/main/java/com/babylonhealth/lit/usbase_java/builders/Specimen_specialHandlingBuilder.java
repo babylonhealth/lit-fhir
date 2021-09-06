@@ -52,6 +52,10 @@ public interface Specimen_specialHandlingBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Specimen_specialHandlingBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

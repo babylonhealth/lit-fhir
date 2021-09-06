@@ -52,6 +52,10 @@ public interface Observation_specimenCodeBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Observation_specimenCodeBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

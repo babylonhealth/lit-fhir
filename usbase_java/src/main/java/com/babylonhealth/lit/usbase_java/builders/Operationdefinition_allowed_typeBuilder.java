@@ -52,6 +52,10 @@ public interface Operationdefinition_allowed_typeBuilder extends ExtensionBuilde
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Operationdefinition_allowed_typeBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

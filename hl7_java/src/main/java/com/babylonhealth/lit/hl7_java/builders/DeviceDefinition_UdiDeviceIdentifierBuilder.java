@@ -49,6 +49,10 @@ public interface DeviceDefinition_UdiDeviceIdentifierBuilder {
     return new Impl(issuer, jurisdiction, deviceIdentifier);
   }
 
+  public static Impl builder(String issuer, String jurisdiction, String deviceIdentifier) {
+    return new Impl(issuer, jurisdiction, deviceIdentifier);
+  }
+
   public class Impl implements DeviceDefinition_UdiDeviceIdentifierBuilder {
     private Optional<String> id = Optional.empty();
     private String issuer;

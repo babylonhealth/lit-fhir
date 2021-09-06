@@ -52,6 +52,10 @@ public interface TaskBuilder extends DomainResourceBuilder {
     return new Impl(status, intent);
   }
 
+  public static Impl builder(TASK_STATUS status, TASK_INTENT intent) {
+    return new Impl(status, intent);
+  }
+
   public class Impl implements TaskBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> _for = Optional.empty();

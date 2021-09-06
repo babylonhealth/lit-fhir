@@ -49,6 +49,10 @@ public interface DocumentReference_RelatesToBuilder {
     return new Impl(code, target);
   }
 
+  public static Impl builder(DOCUMENT_RELATIONSHIP_TYPE code, ReferenceBuilder target) {
+    return new Impl(code, target.build());
+  }
+
   public class Impl implements DocumentReference_RelatesToBuilder {
     private Optional<String> id = Optional.empty();
     private DOCUMENT_RELATIONSHIP_TYPE code;

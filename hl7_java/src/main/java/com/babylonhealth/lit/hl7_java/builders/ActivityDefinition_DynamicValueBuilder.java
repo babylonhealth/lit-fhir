@@ -49,6 +49,10 @@ public interface ActivityDefinition_DynamicValueBuilder {
     return new Impl(path, expression);
   }
 
+  public static Impl builder(String path, ExpressionBuilder expression) {
+    return new Impl(path, expression.build());
+  }
+
   public class Impl implements ActivityDefinition_DynamicValueBuilder {
     private Optional<String> id = Optional.empty();
     private String path;

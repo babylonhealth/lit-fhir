@@ -49,6 +49,10 @@ public interface MedicationKnowledge_AdministrationGuidelines_DosageBuilder {
     return new Impl(_type, dosage);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, Collection<DosageBuilder> dosage) {
+    return new Impl(_type.build(), new LitSeq<>(dosage).map(DosageBuilder::build));
+  }
+
   public class Impl implements MedicationKnowledge_AdministrationGuidelines_DosageBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

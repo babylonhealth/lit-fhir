@@ -52,6 +52,10 @@ public interface Allergyintolerance_resolutionAgeBuilder extends ExtensionBuilde
     return new Impl(value);
   }
 
+  public static Impl builder(AgeBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Allergyintolerance_resolutionAgeBuilder {
     private Optional<String> id = Optional.empty();
     private Age value;

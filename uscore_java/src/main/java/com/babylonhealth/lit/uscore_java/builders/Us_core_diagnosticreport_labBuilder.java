@@ -62,6 +62,22 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
     return new Impl(code, status, issued, subject, category, effective);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      DIAGNOSTIC_REPORT_STATUS status,
+      ZonedDateTime issued,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category,
+      @NonNull Choice_0934386166 effective) {
+    return new Impl(
+        code.build(),
+        status,
+        issued,
+        subject.build(),
+        new LitSeq<>(category).map(CodeableConceptBuilder::build),
+        effective);
+  }
+
   public static Choice_0934386166 effective(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

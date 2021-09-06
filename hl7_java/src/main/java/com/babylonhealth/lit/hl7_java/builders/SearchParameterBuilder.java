@@ -63,6 +63,17 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
     return new Impl(url, name, code, base, _type, status, description);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      String code,
+      Collection<RESOURCE_TYPES> base,
+      SEARCH_PARAM_TYPE _type,
+      PUBLICATION_STATUS status,
+      String description) {
+    return new Impl(url, name, code, base, _type, status, description);
+  }
+
   public class Impl implements SearchParameterBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

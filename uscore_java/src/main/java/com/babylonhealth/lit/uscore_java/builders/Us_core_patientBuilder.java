@@ -57,6 +57,16 @@ public interface Us_core_patientBuilder extends PatientBuilder {
     return new Impl(gender, name, identifier);
   }
 
+  public static Impl builder(
+      ADMINISTRATIVE_GENDER gender,
+      Collection<HumanNameBuilder> name,
+      Collection<IdentifierBuilder> identifier) {
+    return new Impl(
+        gender,
+        new LitSeq<>(name).map(HumanNameBuilder::build),
+        new LitSeq<>(identifier).map(IdentifierBuilder::build));
+  }
+
   public static Choice_2131715935 deceased(Boolean b) {
     return new Choice_2131715935(b);
   }

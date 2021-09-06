@@ -49,6 +49,10 @@ public interface ElementDefinition_SlicingBuilder {
     return new Impl(rules);
   }
 
+  public static Impl builder(RESOURCE_SLICING_RULES rules) {
+    return new Impl(rules);
+  }
+
   public class Impl implements ElementDefinition_SlicingBuilder {
     private Optional<String> id = Optional.empty();
     private RESOURCE_SLICING_RULES rules;

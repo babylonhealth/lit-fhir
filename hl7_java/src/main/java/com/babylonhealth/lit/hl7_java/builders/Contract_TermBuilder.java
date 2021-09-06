@@ -49,6 +49,10 @@ public interface Contract_TermBuilder {
     return new Impl(offer);
   }
 
+  public static Impl builder(Contract_Term_OfferBuilder offer) {
+    return new Impl(offer.build());
+  }
+
   public static Choice01025009075 topic(CodeableConcept c) {
     return new Choice01025009075(c);
   }

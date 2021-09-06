@@ -49,6 +49,10 @@ public interface Measure_Group_PopulationBuilder {
     return new Impl(criteria);
   }
 
+  public static Impl builder(ExpressionBuilder criteria) {
+    return new Impl(criteria.build());
+  }
+
   public class Impl implements Measure_Group_PopulationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();

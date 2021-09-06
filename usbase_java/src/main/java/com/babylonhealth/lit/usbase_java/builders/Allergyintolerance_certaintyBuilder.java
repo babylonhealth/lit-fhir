@@ -52,6 +52,10 @@ public interface Allergyintolerance_certaintyBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Allergyintolerance_certaintyBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

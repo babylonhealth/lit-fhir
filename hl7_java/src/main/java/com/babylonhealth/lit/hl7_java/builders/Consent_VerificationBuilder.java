@@ -49,6 +49,10 @@ public interface Consent_VerificationBuilder {
     return new Impl(verified);
   }
 
+  public static Impl builder(Boolean verified) {
+    return new Impl(verified);
+  }
+
   public class Impl implements Consent_VerificationBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean verified;

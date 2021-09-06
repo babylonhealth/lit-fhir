@@ -49,6 +49,10 @@ public interface ValueSet_Expansion_ParameterBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public static Choice_1427970408 value(BigDecimal b) {
     return new Choice_1427970408(b);
   }

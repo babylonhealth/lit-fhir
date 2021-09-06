@@ -49,6 +49,10 @@ public interface Group_MemberBuilder {
     return new Impl(entity);
   }
 
+  public static Impl builder(ReferenceBuilder entity) {
+    return new Impl(entity.build());
+  }
+
   public class Impl implements Group_MemberBuilder {
     private Optional<String> id = Optional.empty();
     private Reference entity;

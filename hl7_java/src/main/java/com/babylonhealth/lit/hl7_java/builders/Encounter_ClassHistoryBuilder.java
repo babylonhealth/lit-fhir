@@ -49,6 +49,10 @@ public interface Encounter_ClassHistoryBuilder {
     return new Impl(_class, period);
   }
 
+  public static Impl builder(CodingBuilder _class, PeriodBuilder period) {
+    return new Impl(_class.build(), period.build());
+  }
+
   public class Impl implements Encounter_ClassHistoryBuilder {
     private Optional<String> id = Optional.empty();
     private Coding _class;

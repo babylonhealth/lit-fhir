@@ -49,6 +49,10 @@ public interface MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder {
     return new Impl(presentation);
   }
 
+  public static Impl builder(RatioBuilder presentation) {
+    return new Impl(presentation.build());
+  }
+
   public class Impl implements MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<CodeableConcept> country = Collections.emptyList();

@@ -52,6 +52,10 @@ public interface ProdCharacteristicBuilder extends BackboneElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ProdCharacteristicBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Quantity> width = Optional.empty();

@@ -49,6 +49,10 @@ public interface Patient_LinkBuilder {
     return new Impl(_type, other);
   }
 
+  public static Impl builder(LINK_TYPE _type, ReferenceBuilder other) {
+    return new Impl(_type, other.build());
+  }
+
   public class Impl implements Patient_LinkBuilder {
     private Optional<String> id = Optional.empty();
     private LINK_TYPE _type;

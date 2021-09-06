@@ -52,6 +52,10 @@ public interface Iso21090_ADXP_deliveryModeIdentifierBuilder extends ExtensionBu
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Iso21090_ADXP_deliveryModeIdentifierBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

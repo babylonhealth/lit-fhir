@@ -52,6 +52,10 @@ public interface Rendered_valueBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Rendered_valueBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

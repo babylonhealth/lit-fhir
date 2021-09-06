@@ -49,6 +49,10 @@ public interface Composition_EventBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Composition_EventBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<CodeableConcept> code = Collections.emptyList();

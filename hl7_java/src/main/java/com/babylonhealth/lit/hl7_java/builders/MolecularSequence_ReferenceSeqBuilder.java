@@ -50,6 +50,10 @@ public interface MolecularSequence_ReferenceSeqBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MolecularSequence_ReferenceSeqBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<STRAND_TYPE> strand = Optional.empty();

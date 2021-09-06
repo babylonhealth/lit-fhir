@@ -49,6 +49,10 @@ public interface Location_HoursOfOperationBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Location_HoursOfOperationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> allDay = Optional.empty();

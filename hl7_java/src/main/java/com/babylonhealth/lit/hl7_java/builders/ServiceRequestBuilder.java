@@ -52,6 +52,11 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     return new Impl(status, intent, subject);
   }
 
+  public static Impl builder(
+      REQUEST_STATUS status, REQUEST_INTENT intent, ReferenceBuilder subject) {
+    return new Impl(status, intent, subject.build());
+  }
+
   public static Choice_0575082635 quantity(Quantity q) {
     return new Choice_0575082635(q);
   }

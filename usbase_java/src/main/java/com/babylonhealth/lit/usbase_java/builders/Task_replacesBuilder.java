@@ -52,6 +52,10 @@ public interface Task_replacesBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Task_replacesBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

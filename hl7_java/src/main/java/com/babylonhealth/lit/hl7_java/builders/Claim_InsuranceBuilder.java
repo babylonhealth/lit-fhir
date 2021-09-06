@@ -49,6 +49,10 @@ public interface Claim_InsuranceBuilder {
     return new Impl(focal, sequence, coverage);
   }
 
+  public static Impl builder(Boolean focal, Integer sequence, ReferenceBuilder coverage) {
+    return new Impl(focal, sequence, coverage.build());
+  }
+
   public class Impl implements Claim_InsuranceBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean focal;

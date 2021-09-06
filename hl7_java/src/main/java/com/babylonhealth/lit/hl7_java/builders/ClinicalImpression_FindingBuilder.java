@@ -49,6 +49,10 @@ public interface ClinicalImpression_FindingBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ClinicalImpression_FindingBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> basis = Optional.empty();

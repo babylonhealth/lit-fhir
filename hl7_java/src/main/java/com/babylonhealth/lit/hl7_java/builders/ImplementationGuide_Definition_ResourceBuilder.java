@@ -49,6 +49,10 @@ public interface ImplementationGuide_Definition_ResourceBuilder {
     return new Impl(reference);
   }
 
+  public static Impl builder(ReferenceBuilder reference) {
+    return new Impl(reference.build());
+  }
+
   public static Choice00683246261 example(Boolean b) {
     return new Choice00683246261(b);
   }

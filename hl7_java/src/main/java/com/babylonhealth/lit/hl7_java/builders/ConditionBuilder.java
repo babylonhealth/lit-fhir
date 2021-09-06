@@ -49,6 +49,10 @@ public interface ConditionBuilder extends DomainResourceBuilder {
     return new Impl(subject);
   }
 
+  public static Impl builder(ReferenceBuilder subject) {
+    return new Impl(subject.build());
+  }
+
   public static Choice01352864625 onset(Age a) {
     return new Choice01352864625(a);
   }

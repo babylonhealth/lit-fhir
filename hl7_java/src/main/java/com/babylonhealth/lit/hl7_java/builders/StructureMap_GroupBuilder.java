@@ -53,6 +53,18 @@ public interface StructureMap_GroupBuilder {
     return new Impl(name, typeMode, input, rule);
   }
 
+  public static Impl builder(
+      String name,
+      MAP_GROUP_TYPE_MODE typeMode,
+      Collection<StructureMap_Group_InputBuilder> input,
+      Collection<StructureMap_Group_RuleBuilder> rule) {
+    return new Impl(
+        name,
+        typeMode,
+        new LitSeq<>(input).map(StructureMap_Group_InputBuilder::build),
+        new LitSeq<>(rule).map(StructureMap_Group_RuleBuilder::build));
+  }
+
   public class Impl implements StructureMap_GroupBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

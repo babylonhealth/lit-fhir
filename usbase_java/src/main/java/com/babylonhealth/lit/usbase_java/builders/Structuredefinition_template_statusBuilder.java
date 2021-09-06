@@ -52,6 +52,10 @@ public interface Structuredefinition_template_statusBuilder extends ExtensionBui
     return new Impl(value);
   }
 
+  public static Impl builder(TEMPLATE_STATUS_CODE value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_template_statusBuilder {
     private Optional<String> id = Optional.empty();
     private TEMPLATE_STATUS_CODE value;

@@ -49,6 +49,10 @@ public interface ValueSet_Compose_Include_FilterBuilder {
     return new Impl(op, value, property);
   }
 
+  public static Impl builder(FILTER_OPERATOR op, String value, String property) {
+    return new Impl(op, value, property);
+  }
+
   public class Impl implements ValueSet_Compose_Include_FilterBuilder {
     private Optional<String> id = Optional.empty();
     private FILTER_OPERATOR op;

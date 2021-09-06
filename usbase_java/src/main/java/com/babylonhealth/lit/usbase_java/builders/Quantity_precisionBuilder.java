@@ -52,6 +52,10 @@ public interface Quantity_precisionBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Integer value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Quantity_precisionBuilder {
     private Optional<String> id = Optional.empty();
     private Integer value;

@@ -59,6 +59,17 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     return new Impl(use, _type, status, patient, created, insurer, outcome);
   }
 
+  public static Impl builder(
+      CLAIM_USE use,
+      CodeableConceptBuilder _type,
+      FM_STATUS status,
+      ReferenceBuilder patient,
+      FHIRDateTime created,
+      ReferenceBuilder insurer,
+      REMITTANCE_OUTCOME outcome) {
+    return new Impl(use, _type.build(), status, patient.build(), created, insurer.build(), outcome);
+  }
+
   public class Impl implements ClaimResponseBuilder {
     private Optional<String> id = Optional.empty();
     private CLAIM_USE use;

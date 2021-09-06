@@ -49,6 +49,10 @@ public interface CapabilityStatement_Rest_Resource_OperationBuilder {
     return new Impl(name, definition);
   }
 
+  public static Impl builder(String name, String definition) {
+    return new Impl(name, definition);
+  }
+
   public class Impl implements CapabilityStatement_Rest_Resource_OperationBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

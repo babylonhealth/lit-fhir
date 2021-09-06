@@ -64,6 +64,16 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     return new Impl(status, intent, subject, requester, authoredOn, medication);
   }
 
+  public static Impl builder(
+      MEDICATIONREQUEST_STATUS status,
+      MEDICATIONREQUEST_INTENT intent,
+      ReferenceBuilder subject,
+      ReferenceBuilder requester,
+      FHIRDateTime authoredOn,
+      @NonNull Choice01025009075 medication) {
+    return new Impl(status, intent, subject.build(), requester.build(), authoredOn, medication);
+  }
+
   public static Choice_1524702593 reported(Boolean b) {
     return new Choice_1524702593(b);
   }

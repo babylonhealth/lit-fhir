@@ -52,6 +52,16 @@ public interface ImmunizationRecommendationBuilder extends DomainResourceBuilder
     return new Impl(date, patient, recommendation);
   }
 
+  public static Impl builder(
+      FHIRDateTime date,
+      ReferenceBuilder patient,
+      Collection<ImmunizationRecommendation_RecommendationBuilder> recommendation) {
+    return new Impl(
+        date,
+        patient.build(),
+        new LitSeq<>(recommendation).map(ImmunizationRecommendation_RecommendationBuilder::build));
+  }
+
   public class Impl implements ImmunizationRecommendationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

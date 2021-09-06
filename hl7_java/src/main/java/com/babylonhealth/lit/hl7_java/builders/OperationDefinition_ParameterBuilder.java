@@ -51,6 +51,10 @@ public interface OperationDefinition_ParameterBuilder {
     return new Impl(use, min, max, name);
   }
 
+  public static Impl builder(OPERATION_PARAMETER_USE use, Integer min, String max, String name) {
+    return new Impl(use, min, max, name);
+  }
+
   public class Impl implements OperationDefinition_ParameterBuilder {
     private Optional<String> id = Optional.empty();
     private OPERATION_PARAMETER_USE use;

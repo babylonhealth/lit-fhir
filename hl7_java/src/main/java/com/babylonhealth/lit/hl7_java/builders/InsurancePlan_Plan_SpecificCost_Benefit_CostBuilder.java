@@ -49,6 +49,10 @@ public interface InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type) {
+    return new Impl(_type.build());
+  }
+
   public class Impl implements InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

@@ -49,6 +49,10 @@ public interface MolecularSequence_RepositoryBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(REPOSITORY_TYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements MolecularSequence_RepositoryBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

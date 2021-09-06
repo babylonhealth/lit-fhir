@@ -52,6 +52,10 @@ public interface Capabilitystatement_expectationBuilder extends ExtensionBuilder
     return new Impl(value);
   }
 
+  public static Impl builder(CONFORMANCE_EXPECTATION value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Capabilitystatement_expectationBuilder {
     private Optional<String> id = Optional.empty();
     private CONFORMANCE_EXPECTATION value;

@@ -49,6 +49,10 @@ public interface Bundle_Entry_SearchBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Bundle_Entry_SearchBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<SEARCH_ENTRY_MODE> mode = Optional.empty();

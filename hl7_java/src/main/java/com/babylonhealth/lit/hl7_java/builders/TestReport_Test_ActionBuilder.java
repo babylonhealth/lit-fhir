@@ -49,6 +49,10 @@ public interface TestReport_Test_ActionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements TestReport_Test_ActionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<TestReport$Setup$Action$Assert> _assert = Optional.empty();

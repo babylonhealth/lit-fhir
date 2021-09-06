@@ -49,6 +49,10 @@ public interface Device_UdiCarrierBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Device_UdiCarrierBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> issuer = Optional.empty();

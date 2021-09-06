@@ -49,6 +49,10 @@ public interface Contract_Term_Action_SubjectBuilder {
     return new Impl(reference);
   }
 
+  public static Impl builder(Collection<ReferenceBuilder> reference) {
+    return new Impl(new LitSeq<>(reference).map(ReferenceBuilder::build));
+  }
+
   public class Impl implements Contract_Term_Action_SubjectBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> role = Optional.empty();

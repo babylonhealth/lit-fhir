@@ -49,6 +49,10 @@ public interface Procedure_FocalDeviceBuilder {
     return new Impl(manipulated);
   }
 
+  public static Impl builder(ReferenceBuilder manipulated) {
+    return new Impl(manipulated.build());
+  }
+
   public class Impl implements Procedure_FocalDeviceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> action = Optional.empty();

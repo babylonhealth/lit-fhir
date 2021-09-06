@@ -52,6 +52,10 @@ public interface Capabilitystatement_supported_systemBuilder extends ExtensionBu
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Capabilitystatement_supported_systemBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

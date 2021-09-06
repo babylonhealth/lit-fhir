@@ -49,6 +49,10 @@ public interface ElementDefinition_BindingBuilder {
     return new Impl(strength);
   }
 
+  public static Impl builder(BINDING_STRENGTH strength) {
+    return new Impl(strength);
+  }
+
   public class Impl implements ElementDefinition_BindingBuilder {
     private Optional<String> id = Optional.empty();
     private BINDING_STRENGTH strength;

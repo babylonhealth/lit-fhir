@@ -59,6 +59,22 @@ public interface BmiBuilder extends VitalsignsBuilder {
     return new Impl(status, subject, category, value, effective, code);
   }
 
+  public static Impl builder(
+      OBSERVATION_STATUS status,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category,
+      QuantityBuilder value,
+      @NonNull Choice_0934386166 effective,
+      CodeableConceptBuilder code) {
+    return new Impl(
+        status,
+        subject.build(),
+        new LitSeq<>(category).map(CodeableConceptBuilder::build),
+        value.build(),
+        effective,
+        code.build());
+  }
+
   public static Choice_0934386166 effective(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

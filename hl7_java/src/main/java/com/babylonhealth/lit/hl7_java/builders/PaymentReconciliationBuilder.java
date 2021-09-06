@@ -52,6 +52,11 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     return new Impl(status, created, paymentDate, paymentAmount);
   }
 
+  public static Impl builder(
+      FM_STATUS status, FHIRDateTime created, FHIRDate paymentDate, MoneyBuilder paymentAmount) {
+    return new Impl(status, created, paymentDate, paymentAmount.build());
+  }
+
   public class Impl implements PaymentReconciliationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

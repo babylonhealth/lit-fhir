@@ -49,6 +49,10 @@ public interface ImagingStudy_SeriesBuilder {
     return new Impl(uid, modality);
   }
 
+  public static Impl builder(String uid, CodingBuilder modality) {
+    return new Impl(uid, modality.build());
+  }
+
   public class Impl implements ImagingStudy_SeriesBuilder {
     private Optional<String> id = Optional.empty();
     private String uid;

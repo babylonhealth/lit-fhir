@@ -57,6 +57,20 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
     return new Impl(target, recorded, activity, occurred, agent);
   }
 
+  public static Impl builder(
+      Collection<ReferenceBuilder> target,
+      ZonedDateTime recorded,
+      CodeableConceptBuilder activity,
+      FHIRDateTime occurred,
+      Collection<Provenance_AgentBuilder> agent) {
+    return new Impl(
+        new LitSeq<>(target).map(ReferenceBuilder::build),
+        recorded,
+        activity.build(),
+        occurred,
+        new LitSeq<>(agent).map(Provenance_AgentBuilder::build));
+  }
+
   public class Impl implements Provenance_relevant_historyBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

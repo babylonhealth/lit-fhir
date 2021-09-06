@@ -49,6 +49,10 @@ public interface ValueSet_Compose_Include_Concept_DesignationBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements ValueSet_Compose_Include_Concept_DesignationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Coding> use = Optional.empty();

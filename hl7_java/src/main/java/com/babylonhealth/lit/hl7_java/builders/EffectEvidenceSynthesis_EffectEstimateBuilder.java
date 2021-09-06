@@ -49,6 +49,10 @@ public interface EffectEvidenceSynthesis_EffectEstimateBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements EffectEvidenceSynthesis_EffectEstimateBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

@@ -55,6 +55,16 @@ public interface ResearchElementDefinitionBuilder extends DomainResourceBuilder 
     return new Impl(_type, status, characteristic);
   }
 
+  public static Impl builder(
+      RESEARCH_ELEMENT_TYPE _type,
+      PUBLICATION_STATUS status,
+      Collection<ResearchElementDefinition_CharacteristicBuilder> characteristic) {
+    return new Impl(
+        _type,
+        status,
+        new LitSeq<>(characteristic).map(ResearchElementDefinition_CharacteristicBuilder::build));
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

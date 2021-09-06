@@ -49,6 +49,10 @@ public interface PractitionerRole_AvailableTimeBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements PractitionerRole_AvailableTimeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> allDay = Optional.empty();

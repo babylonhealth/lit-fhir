@@ -49,6 +49,10 @@ public interface CodeSystem_PropertyBuilder {
     return new Impl(code, _type);
   }
 
+  public static Impl builder(String code, CONCEPT_PROPERTY_TYPE _type) {
+    return new Impl(code, _type);
+  }
+
   public class Impl implements CodeSystem_PropertyBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> uri = Optional.empty();

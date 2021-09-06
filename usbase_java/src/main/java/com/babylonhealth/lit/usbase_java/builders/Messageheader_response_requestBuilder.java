@@ -52,6 +52,10 @@ public interface Messageheader_response_requestBuilder extends ExtensionBuilder 
     return new Impl(value);
   }
 
+  public static Impl builder(MESSAGEHEADER_RESPONSE_REQUEST value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Messageheader_response_requestBuilder {
     private Optional<String> id = Optional.empty();
     private MESSAGEHEADER_RESPONSE_REQUEST value;

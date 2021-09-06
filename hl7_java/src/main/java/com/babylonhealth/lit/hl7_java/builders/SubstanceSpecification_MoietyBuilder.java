@@ -49,6 +49,10 @@ public interface SubstanceSpecification_MoietyBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_2072987899 amount(Quantity q) {
     return new Choice_2072987899(q);
   }

@@ -49,6 +49,10 @@ public interface Provenance_AgentBuilder {
     return new Impl(who);
   }
 
+  public static Impl builder(ReferenceBuilder who) {
+    return new Impl(who.build());
+  }
+
   public class Impl implements Provenance_AgentBuilder {
     private Optional<String> id = Optional.empty();
     private Reference who;

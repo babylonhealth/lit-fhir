@@ -49,6 +49,10 @@ public interface TestScript_Teardown_ActionBuilder {
     return new Impl(operation);
   }
 
+  public static Impl builder(TestScript_Setup_Action_OperationBuilder operation) {
+    return new Impl(operation.build());
+  }
+
   public class Impl implements TestScript_Teardown_ActionBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

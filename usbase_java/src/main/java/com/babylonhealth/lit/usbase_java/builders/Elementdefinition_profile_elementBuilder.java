@@ -52,6 +52,10 @@ public interface Elementdefinition_profile_elementBuilder extends ExtensionBuild
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Elementdefinition_profile_elementBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

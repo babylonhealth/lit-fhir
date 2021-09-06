@@ -52,6 +52,10 @@ public interface Iso21090_EN_qualifierBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(NAME_PART_QUALIFIER value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Iso21090_EN_qualifierBuilder {
     private Optional<String> id = Optional.empty();
     private NAME_PART_QUALIFIER value;

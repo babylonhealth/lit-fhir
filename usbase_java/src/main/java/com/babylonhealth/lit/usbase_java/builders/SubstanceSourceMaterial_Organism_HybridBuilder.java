@@ -52,6 +52,10 @@ public interface SubstanceSourceMaterial_Organism_HybridBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceSourceMaterial_Organism_HybridBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

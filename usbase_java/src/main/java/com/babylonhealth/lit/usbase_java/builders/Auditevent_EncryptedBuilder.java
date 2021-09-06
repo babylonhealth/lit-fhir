@@ -52,6 +52,10 @@ public interface Auditevent_EncryptedBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Auditevent_EncryptedBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

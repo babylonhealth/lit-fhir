@@ -50,6 +50,10 @@ public interface MeasureBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status) {
+    return new Impl(status);
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

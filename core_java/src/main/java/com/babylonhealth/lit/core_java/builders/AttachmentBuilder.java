@@ -46,6 +46,10 @@ public interface AttachmentBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements AttachmentBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

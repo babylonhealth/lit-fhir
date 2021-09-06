@@ -53,6 +53,11 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     return new Impl(date, kind, status);
   }
 
+  public static Impl builder(
+      FHIRDateTime date, CAPABILITY_STATEMENT_KIND kind, PUBLICATION_STATUS status) {
+    return new Impl(date, kind, status);
+  }
+
   public class Impl implements TerminologyCapabilitiesBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

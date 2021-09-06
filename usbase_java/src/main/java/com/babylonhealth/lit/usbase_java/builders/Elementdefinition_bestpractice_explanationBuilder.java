@@ -52,6 +52,10 @@ public interface Elementdefinition_bestpractice_explanationBuilder extends Exten
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Elementdefinition_bestpractice_explanationBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

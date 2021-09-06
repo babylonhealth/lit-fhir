@@ -49,6 +49,10 @@ public interface QuestionnaireResponse_ItemBuilder {
     return new Impl(linkId);
   }
 
+  public static Impl builder(String linkId) {
+    return new Impl(linkId);
+  }
+
   public class Impl implements QuestionnaireResponse_ItemBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> text = Optional.empty();

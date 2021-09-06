@@ -50,6 +50,10 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(INVOICE_STATUS status) {
+    return new Impl(status);
+  }
+
   public class Impl implements InvoiceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

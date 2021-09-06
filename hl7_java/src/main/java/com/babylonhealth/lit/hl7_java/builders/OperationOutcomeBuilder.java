@@ -49,6 +49,10 @@ public interface OperationOutcomeBuilder extends DomainResourceBuilder {
     return new Impl(issue);
   }
 
+  public static Impl builder(Collection<OperationOutcome_IssueBuilder> issue) {
+    return new Impl(new LitSeq<>(issue).map(OperationOutcome_IssueBuilder::build));
+  }
+
   public class Impl implements OperationOutcomeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

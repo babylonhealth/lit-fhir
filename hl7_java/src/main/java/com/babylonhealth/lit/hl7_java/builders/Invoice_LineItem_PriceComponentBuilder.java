@@ -49,6 +49,10 @@ public interface Invoice_LineItem_PriceComponentBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(INVOICE_PRICECOMPONENTTYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements Invoice_LineItem_PriceComponentBuilder {
     private Optional<String> id = Optional.empty();
     private INVOICE_PRICECOMPONENTTYPE _type;

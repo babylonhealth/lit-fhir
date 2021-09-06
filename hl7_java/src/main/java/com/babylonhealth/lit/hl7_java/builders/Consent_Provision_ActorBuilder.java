@@ -49,6 +49,10 @@ public interface Consent_Provision_ActorBuilder {
     return new Impl(role, reference);
   }
 
+  public static Impl builder(CodeableConceptBuilder role, ReferenceBuilder reference) {
+    return new Impl(role.build(), reference.build());
+  }
+
   public class Impl implements Consent_Provision_ActorBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept role;

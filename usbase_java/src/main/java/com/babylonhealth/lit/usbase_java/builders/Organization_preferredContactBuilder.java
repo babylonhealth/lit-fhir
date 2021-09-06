@@ -52,6 +52,10 @@ public interface Organization_preferredContactBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Organization_preferredContactBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

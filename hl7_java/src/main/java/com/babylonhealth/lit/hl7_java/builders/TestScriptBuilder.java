@@ -50,6 +50,10 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
     return new Impl(url, name, status);
   }
 
+  public static Impl builder(String url, String name, PUBLICATION_STATUS status) {
+    return new Impl(url, name, status);
+  }
+
   public class Impl implements TestScriptBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

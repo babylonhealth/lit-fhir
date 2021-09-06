@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_AccidentBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice00434638053 location(Address a) {
     return new Choice00434638053(a);
   }

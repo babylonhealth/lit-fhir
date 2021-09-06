@@ -46,6 +46,10 @@ public interface ContactDetailBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ContactDetailBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

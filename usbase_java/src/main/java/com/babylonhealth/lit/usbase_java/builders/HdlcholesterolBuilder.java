@@ -54,6 +54,13 @@ public interface HdlcholesterolBuilder extends ObservationBuilder {
     return new Impl(code, status, referenceRange);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      OBSERVATION_STATUS status,
+      Observation_ReferenceRangeBuilder referenceRange) {
+    return new Impl(code.build(), status, referenceRange.build());
+  }
+
   public static Choice01473702374 effective(FHIRDateTime f) {
     return new Choice01473702374(f);
   }

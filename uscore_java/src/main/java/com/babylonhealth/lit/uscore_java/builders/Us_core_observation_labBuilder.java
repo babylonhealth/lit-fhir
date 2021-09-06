@@ -60,6 +60,18 @@ public interface Us_core_observation_labBuilder extends ObservationBuilder {
     return new Impl(code, status, subject, category);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      OBSERVATION_STATUS status,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category) {
+    return new Impl(
+        code.build(),
+        status,
+        subject.build(),
+        new LitSeq<>(category).map(CodeableConceptBuilder::build));
+  }
+
   public static Choice_0802685816 value(Boolean b) {
     return new Choice_0802685816(b);
   }

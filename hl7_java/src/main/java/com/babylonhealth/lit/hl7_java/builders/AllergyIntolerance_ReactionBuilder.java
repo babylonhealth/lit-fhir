@@ -49,6 +49,10 @@ public interface AllergyIntolerance_ReactionBuilder {
     return new Impl(manifestation);
   }
 
+  public static Impl builder(Collection<CodeableConceptBuilder> manifestation) {
+    return new Impl(new LitSeq<>(manifestation).map(CodeableConceptBuilder::build));
+  }
+
   public class Impl implements AllergyIntolerance_ReactionBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();

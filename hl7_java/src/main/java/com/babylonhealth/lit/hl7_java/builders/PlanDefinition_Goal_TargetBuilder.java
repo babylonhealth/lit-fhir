@@ -49,6 +49,10 @@ public interface PlanDefinition_Goal_TargetBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01560785079 detail(CodeableConcept c) {
     return new Choice01560785079(c);
   }

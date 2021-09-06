@@ -50,6 +50,10 @@ public interface DeviceMetric_CalibrationBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements DeviceMetric_CalibrationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<METRIC_CALIBRATION_TYPE> _type = Optional.empty();

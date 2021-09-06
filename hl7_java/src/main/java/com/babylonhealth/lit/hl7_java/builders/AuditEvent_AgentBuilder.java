@@ -49,6 +49,10 @@ public interface AuditEvent_AgentBuilder {
     return new Impl(requestor);
   }
 
+  public static Impl builder(Boolean requestor) {
+    return new Impl(requestor);
+  }
+
   public class Impl implements AuditEvent_AgentBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> who = Optional.empty();

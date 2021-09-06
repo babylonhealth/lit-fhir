@@ -52,6 +52,10 @@ public interface OpenEHR_locationBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements OpenEHR_locationBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

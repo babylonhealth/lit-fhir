@@ -50,6 +50,10 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status) {
+    return new Impl(status);
+  }
+
   public static Choice00545979821 sourceCanonical(String s) {
     return Choice00545979821.Choice00545979821Canonical(s);
   }

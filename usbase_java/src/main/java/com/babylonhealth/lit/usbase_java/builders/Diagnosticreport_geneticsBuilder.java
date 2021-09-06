@@ -53,6 +53,10 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
     return new Impl(code, status);
   }
 
+  public static Impl builder(CodeableConceptBuilder code, DIAGNOSTIC_REPORT_STATUS status) {
+    return new Impl(code.build(), status);
+  }
+
   public static Choice_0934386166 effective(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

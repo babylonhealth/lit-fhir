@@ -50,6 +50,11 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     return new Impl(status, medication);
   }
 
+  public static Impl builder(
+      MEDICATIONDISPENSE_STATUS status, @NonNull Choice01025009075 medication) {
+    return new Impl(status, medication);
+  }
+
   public static Choice01025009075 medication(CodeableConcept c) {
     return new Choice01025009075(c);
   }

@@ -49,6 +49,10 @@ public interface ExampleScenario_Instance_ContainedInstanceBuilder {
     return new Impl(resourceId);
   }
 
+  public static Impl builder(String resourceId) {
+    return new Impl(resourceId);
+  }
+
   public class Impl implements ExampleScenario_Instance_ContainedInstanceBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

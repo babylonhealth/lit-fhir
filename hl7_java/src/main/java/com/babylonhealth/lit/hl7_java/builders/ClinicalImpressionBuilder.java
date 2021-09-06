@@ -50,6 +50,10 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     return new Impl(status, subject);
   }
 
+  public static Impl builder(CLINICALIMPRESSION_STATUS status, ReferenceBuilder subject) {
+    return new Impl(status, subject.build());
+  }
+
   public static Choice_0934386166 effective(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

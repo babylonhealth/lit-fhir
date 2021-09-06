@@ -49,6 +49,10 @@ public interface SearchParameter_ComponentBuilder {
     return new Impl(definition, expression);
   }
 
+  public static Impl builder(String definition, String expression) {
+    return new Impl(definition, expression);
+  }
+
   public class Impl implements SearchParameter_ComponentBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

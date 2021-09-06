@@ -51,6 +51,11 @@ public interface SlotBuilder extends DomainResourceBuilder {
     return new Impl(end, start, status, schedule);
   }
 
+  public static Impl builder(
+      ZonedDateTime end, ZonedDateTime start, SLOTSTATUS status, ReferenceBuilder schedule) {
+    return new Impl(end, start, status, schedule.build());
+  }
+
   public class Impl implements SlotBuilder {
     private Optional<String> id = Optional.empty();
     private ZonedDateTime end;

@@ -51,6 +51,10 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(OBSERVATION_STATUS status) {
+    return new Impl(status);
+  }
+
   public static Choice_0934386166 identified(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

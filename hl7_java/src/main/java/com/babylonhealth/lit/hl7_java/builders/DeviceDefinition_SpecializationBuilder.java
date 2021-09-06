@@ -49,6 +49,10 @@ public interface DeviceDefinition_SpecializationBuilder {
     return new Impl(systemType);
   }
 
+  public static Impl builder(String systemType) {
+    return new Impl(systemType);
+  }
+
   public class Impl implements DeviceDefinition_SpecializationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> version = Optional.empty();

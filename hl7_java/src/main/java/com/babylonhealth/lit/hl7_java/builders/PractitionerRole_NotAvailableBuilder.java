@@ -49,6 +49,10 @@ public interface PractitionerRole_NotAvailableBuilder {
     return new Impl(description);
   }
 
+  public static Impl builder(String description) {
+    return new Impl(description);
+  }
+
   public class Impl implements PractitionerRole_NotAvailableBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Period> during = Optional.empty();

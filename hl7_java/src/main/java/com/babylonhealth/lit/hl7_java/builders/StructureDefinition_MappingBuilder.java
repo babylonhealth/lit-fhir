@@ -49,6 +49,10 @@ public interface StructureDefinition_MappingBuilder {
     return new Impl(identity);
   }
 
+  public static Impl builder(String identity) {
+    return new Impl(identity);
+  }
+
   public class Impl implements StructureDefinition_MappingBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> uri = Optional.empty();

@@ -52,6 +52,10 @@ public interface Structuredefinition_table_nameBuilder extends ExtensionBuilder 
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_table_nameBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

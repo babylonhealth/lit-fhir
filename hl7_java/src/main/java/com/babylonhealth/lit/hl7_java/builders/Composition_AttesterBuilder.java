@@ -49,6 +49,10 @@ public interface Composition_AttesterBuilder {
     return new Impl(mode);
   }
 
+  public static Impl builder(COMPOSITION_ATTESTATION_MODE mode) {
+    return new Impl(mode);
+  }
+
   public class Impl implements Composition_AttesterBuilder {
     private Optional<String> id = Optional.empty();
     private COMPOSITION_ATTESTATION_MODE mode;

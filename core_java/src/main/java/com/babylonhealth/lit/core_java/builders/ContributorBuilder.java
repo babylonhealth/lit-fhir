@@ -46,6 +46,10 @@ public interface ContributorBuilder extends ElementBuilder {
     return new Impl(_type, name);
   }
 
+  public static Impl builder(CONTRIBUTOR_TYPE _type, String name) {
+    return new Impl(_type, name);
+  }
+
   public class Impl implements ContributorBuilder {
     private Optional<String> id = Optional.empty();
     private CONTRIBUTOR_TYPE _type;

@@ -46,6 +46,10 @@ public interface DosageBuilder extends BackboneElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1768247138 asNeeded(Boolean b) {
     return new Choice_1768247138(b);
   }

@@ -49,6 +49,11 @@ public interface Group_CharacteristicBuilder {
     return new Impl(code, exclude, value);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code, Boolean exclude, @NonNull Choice01646729908 value) {
+    return new Impl(code.build(), exclude, value);
+  }
+
   public static Choice01646729908 value(Boolean b) {
     return new Choice01646729908(b);
   }

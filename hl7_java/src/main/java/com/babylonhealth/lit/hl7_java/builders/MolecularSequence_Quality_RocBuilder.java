@@ -49,6 +49,10 @@ public interface MolecularSequence_Quality_RocBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MolecularSequence_Quality_RocBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Integer> score = Collections.emptyList();

@@ -52,6 +52,11 @@ public interface TestReportBuilder extends DomainResourceBuilder {
     return new Impl(status, result, testScript);
   }
 
+  public static Impl builder(
+      REPORT_STATUS_CODES status, REPORT_RESULT_CODES result, ReferenceBuilder testScript) {
+    return new Impl(status, result, testScript.build());
+  }
+
   public class Impl implements TestReportBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

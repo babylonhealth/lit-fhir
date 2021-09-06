@@ -49,6 +49,10 @@ public interface ElementDefinition_Slicing_DiscriminatorBuilder {
     return new Impl(_type, path);
   }
 
+  public static Impl builder(DISCRIMINATOR_TYPE _type, String path) {
+    return new Impl(_type, path);
+  }
+
   public class Impl implements ElementDefinition_Slicing_DiscriminatorBuilder {
     private Optional<String> id = Optional.empty();
     private DISCRIMINATOR_TYPE _type;

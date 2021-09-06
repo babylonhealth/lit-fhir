@@ -50,6 +50,10 @@ public interface OperationOutcome_IssueBuilder {
     return new Impl(code, severity);
   }
 
+  public static Impl builder(ISSUE_TYPE code, ISSUE_SEVERITY severity) {
+    return new Impl(code, severity);
+  }
+
   public class Impl implements OperationOutcome_IssueBuilder {
     private Optional<String> id = Optional.empty();
     private ISSUE_TYPE code;

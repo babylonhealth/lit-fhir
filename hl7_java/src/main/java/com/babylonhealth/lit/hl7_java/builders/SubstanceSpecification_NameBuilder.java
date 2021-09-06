@@ -49,6 +49,10 @@ public interface SubstanceSpecification_NameBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public class Impl implements SubstanceSpecification_NameBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

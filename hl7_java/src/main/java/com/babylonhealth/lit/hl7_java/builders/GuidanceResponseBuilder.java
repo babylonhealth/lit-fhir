@@ -50,6 +50,10 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
     return new Impl(status, module);
   }
 
+  public static Impl builder(GUIDANCE_RESPONSE_STATUS status, @NonNull Choice_0687680458 module) {
+    return new Impl(status, module);
+  }
+
   public static Choice_0687680458 module(CodeableConcept c) {
     return new Choice_0687680458(c);
   }

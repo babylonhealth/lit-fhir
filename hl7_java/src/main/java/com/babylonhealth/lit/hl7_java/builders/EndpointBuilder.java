@@ -54,6 +54,18 @@ public interface EndpointBuilder extends DomainResourceBuilder {
     return new Impl(status, address, payloadType, connectionType);
   }
 
+  public static Impl builder(
+      ENDPOINT_STATUS status,
+      String address,
+      Collection<CodeableConceptBuilder> payloadType,
+      CodingBuilder connectionType) {
+    return new Impl(
+        status,
+        address,
+        new LitSeq<>(payloadType).map(CodeableConceptBuilder::build),
+        connectionType.build());
+  }
+
   public class Impl implements EndpointBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

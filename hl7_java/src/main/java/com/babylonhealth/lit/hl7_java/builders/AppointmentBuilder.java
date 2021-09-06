@@ -51,6 +51,11 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
     return new Impl(status, participant);
   }
 
+  public static Impl builder(
+      APPOINTMENTSTATUS status, Collection<Appointment_ParticipantBuilder> participant) {
+    return new Impl(status, new LitSeq<>(participant).map(Appointment_ParticipantBuilder::build));
+  }
+
   public class Impl implements AppointmentBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<ZonedDateTime> end = Optional.empty();

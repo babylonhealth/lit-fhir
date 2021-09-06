@@ -49,6 +49,10 @@ public interface CapabilityStatement_Messaging_SupportedMessageBuilder {
     return new Impl(mode, definition);
   }
 
+  public static Impl builder(EVENT_CAPABILITY_MODE mode, String definition) {
+    return new Impl(mode, definition);
+  }
+
   public class Impl implements CapabilityStatement_Messaging_SupportedMessageBuilder {
     private Optional<String> id = Optional.empty();
     private EVENT_CAPABILITY_MODE mode;

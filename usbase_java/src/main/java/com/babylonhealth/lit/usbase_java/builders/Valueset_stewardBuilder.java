@@ -52,6 +52,10 @@ public interface Valueset_stewardBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ContactDetailBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Valueset_stewardBuilder {
     private Optional<String> id = Optional.empty();
     private ContactDetail value;

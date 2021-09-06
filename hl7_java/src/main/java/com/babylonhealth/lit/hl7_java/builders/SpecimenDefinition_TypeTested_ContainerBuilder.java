@@ -49,6 +49,10 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_2072987899 minimumVolume(Quantity q) {
     return new Choice_2072987899(q);
   }

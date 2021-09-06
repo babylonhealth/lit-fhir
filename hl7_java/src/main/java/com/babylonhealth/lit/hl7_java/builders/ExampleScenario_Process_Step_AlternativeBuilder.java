@@ -49,6 +49,10 @@ public interface ExampleScenario_Process_Step_AlternativeBuilder {
     return new Impl(title);
   }
 
+  public static Impl builder(String title) {
+    return new Impl(title);
+  }
+
   public class Impl implements ExampleScenario_Process_Step_AlternativeBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<ExampleScenario$Process$Step> step = Collections.emptyList();

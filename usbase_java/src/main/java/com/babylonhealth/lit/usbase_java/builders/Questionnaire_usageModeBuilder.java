@@ -52,6 +52,10 @@ public interface Questionnaire_usageModeBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(QUESTIONNAIRE_USAGE_MODE value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Questionnaire_usageModeBuilder {
     private Optional<String> id = Optional.empty();
     private QUESTIONNAIRE_USAGE_MODE value;

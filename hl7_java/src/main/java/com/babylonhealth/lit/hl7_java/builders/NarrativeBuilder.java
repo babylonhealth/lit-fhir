@@ -49,6 +49,10 @@ public interface NarrativeBuilder extends ElementBuilder {
     return new Impl(div, status);
   }
 
+  public static Impl builder(String div, NARRATIVE_STATUS status) {
+    return new Impl(div, status);
+  }
+
   public class Impl implements NarrativeBuilder {
     private Optional<String> id = Optional.empty();
     private String div;

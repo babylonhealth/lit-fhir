@@ -52,6 +52,10 @@ public interface Observation_secondaryFindingBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Observation_secondaryFindingBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

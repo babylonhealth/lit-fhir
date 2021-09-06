@@ -49,6 +49,10 @@ public interface SpecimenDefinition_TypeTestedBuilder {
     return new Impl(preference);
   }
 
+  public static Impl builder(SPECIMEN_CONTAINED_PREFERENCE preference) {
+    return new Impl(preference);
+  }
+
   public class Impl implements SpecimenDefinition_TypeTestedBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

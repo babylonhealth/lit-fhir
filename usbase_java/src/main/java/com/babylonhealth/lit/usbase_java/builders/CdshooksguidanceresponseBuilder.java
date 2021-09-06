@@ -58,6 +58,20 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
     return new Impl(status, extension, module, identifier, requestIdentifier);
   }
 
+  public static Impl builder(
+      GUIDANCE_RESPONSE_STATUS status,
+      Collection<ExtensionBuilder> extension,
+      String module,
+      IdentifierBuilder identifier,
+      IdentifierBuilder requestIdentifier) {
+    return new Impl(
+        status,
+        new LitSeq<>(extension).map(ExtensionBuilder::build),
+        module,
+        identifier.build(),
+        requestIdentifier.build());
+  }
+
   public class Impl implements CdshooksguidanceresponseBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

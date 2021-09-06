@@ -49,6 +49,10 @@ public interface NutritionOrder_EnteralFormula_AdministrationBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_0964108894 rate(Quantity q) {
     return new Choice_0964108894(q);
   }

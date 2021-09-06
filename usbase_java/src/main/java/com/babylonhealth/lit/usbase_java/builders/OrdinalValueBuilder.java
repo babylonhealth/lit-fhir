@@ -52,6 +52,10 @@ public interface OrdinalValueBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(BigDecimal value) {
+    return new Impl(value);
+  }
+
   public class Impl implements OrdinalValueBuilder {
     private Optional<String> id = Optional.empty();
     private BigDecimal value;

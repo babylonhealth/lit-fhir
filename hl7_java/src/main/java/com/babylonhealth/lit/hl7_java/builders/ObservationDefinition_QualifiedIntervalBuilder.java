@@ -50,6 +50,10 @@ public interface ObservationDefinition_QualifiedIntervalBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ObservationDefinition_QualifiedIntervalBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Range> age = Optional.empty();

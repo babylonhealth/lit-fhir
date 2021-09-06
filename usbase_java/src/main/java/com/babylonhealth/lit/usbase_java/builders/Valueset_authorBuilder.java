@@ -52,6 +52,10 @@ public interface Valueset_authorBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(ContactDetailBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Valueset_authorBuilder {
     private Optional<String> id = Optional.empty();
     private ContactDetail value;

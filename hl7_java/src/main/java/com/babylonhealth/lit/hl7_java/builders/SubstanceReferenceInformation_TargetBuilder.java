@@ -49,6 +49,10 @@ public interface SubstanceReferenceInformation_TargetBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1527751898 amount(Quantity q) {
     return new Choice_1527751898(q);
   }

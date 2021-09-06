@@ -49,6 +49,10 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
     return new Impl(actor);
   }
 
+  public static Impl builder(Collection<ReferenceBuilder> actor) {
+    return new Impl(new LitSeq<>(actor).map(ReferenceBuilder::build));
+  }
+
   public class Impl implements ScheduleBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

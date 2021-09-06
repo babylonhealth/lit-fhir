@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_DiagnosisBuilder {
     return new Impl(sequence, diagnosis);
   }
 
+  public static Impl builder(Integer sequence, @NonNull Choice01025009075 diagnosis) {
+    return new Impl(sequence, diagnosis);
+  }
+
   public static Choice01025009075 diagnosis(CodeableConcept c) {
     return new Choice01025009075(c);
   }

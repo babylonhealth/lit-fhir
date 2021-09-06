@@ -49,6 +49,10 @@ public interface GraphDefinition_Link_TargetBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(RESOURCE_TYPES _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements GraphDefinition_Link_TargetBuilder {
     private Optional<String> id = Optional.empty();
     private RESOURCE_TYPES _type;

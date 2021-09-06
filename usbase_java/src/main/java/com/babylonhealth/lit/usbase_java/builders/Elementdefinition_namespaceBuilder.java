@@ -52,6 +52,10 @@ public interface Elementdefinition_namespaceBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Elementdefinition_namespaceBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

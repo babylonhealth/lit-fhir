@@ -49,6 +49,10 @@ public interface EffectEvidenceSynthesis_CertaintyBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements EffectEvidenceSynthesis_CertaintyBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();

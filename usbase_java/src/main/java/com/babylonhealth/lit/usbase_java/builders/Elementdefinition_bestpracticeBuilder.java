@@ -52,6 +52,10 @@ public interface Elementdefinition_bestpracticeBuilder extends ExtensionBuilder 
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice_1768247138 value) {
+    return new Impl(value);
+  }
+
   public static Choice_1768247138 value(Boolean b) {
     return new Choice_1768247138(b);
   }

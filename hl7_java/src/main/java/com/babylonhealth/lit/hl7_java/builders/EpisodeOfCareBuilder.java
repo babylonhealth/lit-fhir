@@ -50,6 +50,10 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
     return new Impl(status, patient);
   }
 
+  public static Impl builder(EPISODE_OF_CARE_STATUS status, ReferenceBuilder patient) {
+    return new Impl(status, patient.build());
+  }
+
   public class Impl implements EpisodeOfCareBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

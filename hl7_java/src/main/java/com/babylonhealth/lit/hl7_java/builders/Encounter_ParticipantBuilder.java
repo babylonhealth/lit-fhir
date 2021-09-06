@@ -49,6 +49,10 @@ public interface Encounter_ParticipantBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Encounter_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<CodeableConcept> _type = Collections.emptyList();

@@ -58,6 +58,10 @@ public interface Us_core_allergyintoleranceBuilder extends AllergyIntoleranceBui
     return new Impl(code, patient);
   }
 
+  public static Impl builder(CodeableConceptBuilder code, ReferenceBuilder patient) {
+    return new Impl(code.build(), patient.build());
+  }
+
   public static Choice01352864625 onset(Age a) {
     return new Choice01352864625(a);
   }

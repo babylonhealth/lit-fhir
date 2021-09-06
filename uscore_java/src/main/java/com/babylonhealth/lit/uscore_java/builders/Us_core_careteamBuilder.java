@@ -56,6 +56,12 @@ public interface Us_core_careteamBuilder extends CareTeamBuilder {
     return new Impl(subject, participant);
   }
 
+  public static Impl builder(
+      ReferenceBuilder subject, Collection<CareTeam_ParticipantBuilder> participant) {
+    return new Impl(
+        subject.build(), new LitSeq<>(participant).map(CareTeam_ParticipantBuilder::build));
+  }
+
   public class Impl implements Us_core_careteamBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

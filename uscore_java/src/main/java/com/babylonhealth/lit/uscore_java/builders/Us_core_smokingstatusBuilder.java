@@ -61,6 +61,15 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     return new Impl(code, status, issued, subject, value);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      OBSERVATION_STATUS status,
+      ZonedDateTime issued,
+      ReferenceBuilder subject,
+      CodeableConceptBuilder value) {
+    return new Impl(code.build(), status, issued, subject.build(), value.build());
+  }
+
   public static Choice01473702374 effective(FHIRDateTime f) {
     return new Choice01473702374(f);
   }

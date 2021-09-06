@@ -62,6 +62,20 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
     return new Impl(_type, status, subject, category, content);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder _type,
+      DOCUMENT_REFERENCE_STATUS status,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category,
+      DocumentReference_ContentBuilder content) {
+    return new Impl(
+        _type.build(),
+        status,
+        subject.build(),
+        new LitSeq<>(category).map(CodeableConceptBuilder::build),
+        content.build());
+  }
+
   public class Impl implements Us_core_documentreferenceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

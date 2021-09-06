@@ -55,6 +55,10 @@ public interface Us_core_birthsexBuilder extends ExtensionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Us_core_birthsexBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> value = Optional.empty();

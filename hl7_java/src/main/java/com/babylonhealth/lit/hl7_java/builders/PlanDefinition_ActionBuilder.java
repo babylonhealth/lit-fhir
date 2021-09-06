@@ -54,6 +54,10 @@ public interface PlanDefinition_ActionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_0181779868 timing(Age a) {
     return new Choice_0181779868(a);
   }

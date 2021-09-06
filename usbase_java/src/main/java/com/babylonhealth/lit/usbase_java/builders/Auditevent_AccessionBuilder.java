@@ -52,6 +52,10 @@ public interface Auditevent_AccessionBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(IdentifierBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Auditevent_AccessionBuilder {
     private Optional<String> id = Optional.empty();
     private Identifier value;

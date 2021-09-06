@@ -49,6 +49,10 @@ public interface AuditEvent_Entity_DetailBuilder {
     return new Impl(_type, value);
   }
 
+  public static Impl builder(String _type, @NonNull Choice00483057553 value) {
+    return new Impl(_type, value);
+  }
+
   public static Choice00483057553 value(byte[] b) {
     return new Choice00483057553(b);
   }

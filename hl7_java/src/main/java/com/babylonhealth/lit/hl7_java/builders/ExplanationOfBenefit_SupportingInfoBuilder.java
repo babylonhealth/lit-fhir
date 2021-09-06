@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
     return new Impl(sequence, category);
   }
 
+  public static Impl builder(Integer sequence, CodeableConceptBuilder category) {
+    return new Impl(sequence, category.build());
+  }
+
   public static Choice_0543144563 value(Attachment a) {
     return new Choice_0543144563(a);
   }

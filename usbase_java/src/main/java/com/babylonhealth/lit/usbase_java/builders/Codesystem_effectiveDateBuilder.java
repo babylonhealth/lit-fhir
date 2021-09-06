@@ -52,6 +52,10 @@ public interface Codesystem_effectiveDateBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDate value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Codesystem_effectiveDateBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDate value;

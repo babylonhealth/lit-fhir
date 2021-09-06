@@ -52,6 +52,10 @@ public interface Questionnaire_referenceResourceBuilder extends ExtensionBuilder
     return new Impl(value);
   }
 
+  public static Impl builder(RESOURCE_TYPES value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Questionnaire_referenceResourceBuilder {
     private Optional<String> id = Optional.empty();
     private RESOURCE_TYPES value;

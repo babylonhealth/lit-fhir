@@ -49,6 +49,10 @@ public interface StructureMap_StructureBuilder {
     return new Impl(url, mode);
   }
 
+  public static Impl builder(String url, MAP_MODEL_MODE mode) {
+    return new Impl(url, mode);
+  }
+
   public class Impl implements StructureMap_StructureBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

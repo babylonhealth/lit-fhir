@@ -52,6 +52,10 @@ public interface _11179_objectClassBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodingBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements _11179_objectClassBuilder {
     private Optional<String> id = Optional.empty();
     private Coding value;

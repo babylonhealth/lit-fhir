@@ -56,6 +56,14 @@ public interface Us_core_conditionBuilder extends ConditionBuilder {
     return new Impl(code, subject, category);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code,
+      ReferenceBuilder subject,
+      Collection<CodeableConceptBuilder> category) {
+    return new Impl(
+        code.build(), subject.build(), new LitSeq<>(category).map(CodeableConceptBuilder::build));
+  }
+
   public static Choice01352864625 onset(Age a) {
     return new Choice01352864625(a);
   }

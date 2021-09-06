@@ -49,6 +49,10 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstancePolymer_Repeat_RepeatUnitBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Choice> amount = Optional.empty();

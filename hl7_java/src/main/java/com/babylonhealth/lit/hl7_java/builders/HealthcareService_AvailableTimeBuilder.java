@@ -49,6 +49,10 @@ public interface HealthcareService_AvailableTimeBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements HealthcareService_AvailableTimeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> allDay = Optional.empty();

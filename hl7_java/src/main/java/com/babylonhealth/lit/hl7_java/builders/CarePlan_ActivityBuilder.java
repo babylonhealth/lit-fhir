@@ -49,6 +49,10 @@ public interface CarePlan_ActivityBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements CarePlan_ActivityBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Annotation> progress = Collections.emptyList();

@@ -52,6 +52,10 @@ public interface OpenEHR_exposureDateBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDateTime value) {
+    return new Impl(value);
+  }
+
   public class Impl implements OpenEHR_exposureDateBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDateTime value;

@@ -49,6 +49,10 @@ public interface MedicationKnowledge_RelatedMedicationKnowledgeBuilder {
     return new Impl(_type, reference);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, Collection<ReferenceBuilder> reference) {
+    return new Impl(_type.build(), new LitSeq<>(reference).map(ReferenceBuilder::build));
+  }
+
   public class Impl implements MedicationKnowledge_RelatedMedicationKnowledgeBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

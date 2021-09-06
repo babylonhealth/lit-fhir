@@ -49,6 +49,10 @@ public interface Invoice_LineItemBuilder {
     return new Impl(chargeItem);
   }
 
+  public static Impl builder(@NonNull Choice01025009075 chargeItem) {
+    return new Impl(chargeItem);
+  }
+
   public static Choice01025009075 chargeItem(CodeableConcept c) {
     return new Choice01025009075(c);
   }

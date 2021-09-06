@@ -49,6 +49,10 @@ public interface TestScript_FixtureBuilder {
     return new Impl(autocreate, autodelete);
   }
 
+  public static Impl builder(Boolean autocreate, Boolean autodelete) {
+    return new Impl(autocreate, autodelete);
+  }
+
   public class Impl implements TestScript_FixtureBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> resource = Optional.empty();

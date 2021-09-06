@@ -52,6 +52,10 @@ public interface Auditevent_NumberOfInstancesBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Integer value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Auditevent_NumberOfInstancesBuilder {
     private Optional<String> id = Optional.empty();
     private Integer value;

@@ -52,6 +52,10 @@ public interface Humanname_assembly_orderBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(NAME_ASSEMBLY_ORDER value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Humanname_assembly_orderBuilder {
     private Optional<String> id = Optional.empty();
     private NAME_ASSEMBLY_ORDER value;

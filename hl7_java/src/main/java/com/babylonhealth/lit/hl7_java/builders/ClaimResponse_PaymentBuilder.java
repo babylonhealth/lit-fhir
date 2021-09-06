@@ -49,6 +49,10 @@ public interface ClaimResponse_PaymentBuilder {
     return new Impl(_type, amount);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, MoneyBuilder amount) {
+    return new Impl(_type.build(), amount.build());
+  }
+
   public class Impl implements ClaimResponse_PaymentBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

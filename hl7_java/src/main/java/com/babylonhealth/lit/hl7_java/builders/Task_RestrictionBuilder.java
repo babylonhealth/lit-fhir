@@ -49,6 +49,10 @@ public interface Task_RestrictionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Task_RestrictionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Period> period = Optional.empty();

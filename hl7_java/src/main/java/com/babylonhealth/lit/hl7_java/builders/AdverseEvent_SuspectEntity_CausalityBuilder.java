@@ -49,6 +49,10 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements AdverseEvent_SuspectEntity_CausalityBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> author = Optional.empty();

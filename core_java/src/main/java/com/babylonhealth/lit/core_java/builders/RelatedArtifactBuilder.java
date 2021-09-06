@@ -46,6 +46,10 @@ public interface RelatedArtifactBuilder extends ElementBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(RELATED_ARTIFACT_TYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements RelatedArtifactBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

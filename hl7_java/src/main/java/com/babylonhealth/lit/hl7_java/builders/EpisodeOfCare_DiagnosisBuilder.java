@@ -49,6 +49,10 @@ public interface EpisodeOfCare_DiagnosisBuilder {
     return new Impl(condition);
   }
 
+  public static Impl builder(ReferenceBuilder condition) {
+    return new Impl(condition.build());
+  }
+
   public class Impl implements EpisodeOfCare_DiagnosisBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> role = Optional.empty();

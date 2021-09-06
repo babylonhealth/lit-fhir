@@ -49,6 +49,10 @@ public interface OperationDefinition_Parameter_ReferencedFromBuilder {
     return new Impl(source);
   }
 
+  public static Impl builder(String source) {
+    return new Impl(source);
+  }
+
   public class Impl implements OperationDefinition_Parameter_ReferencedFromBuilder {
     private Optional<String> id = Optional.empty();
     private String source;

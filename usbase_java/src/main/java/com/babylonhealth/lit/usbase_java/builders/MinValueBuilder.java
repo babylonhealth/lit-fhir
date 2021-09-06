@@ -52,6 +52,10 @@ public interface MinValueBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(@NonNull Choice01613806391 value) {
+    return new Impl(value);
+  }
+
   public static Choice01613806391 value(BigDecimal b) {
     return new Choice01613806391(b);
   }

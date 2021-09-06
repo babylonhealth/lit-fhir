@@ -49,6 +49,10 @@ public interface SubstanceReferenceInformation_GeneElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceReferenceInformation_GeneElementBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

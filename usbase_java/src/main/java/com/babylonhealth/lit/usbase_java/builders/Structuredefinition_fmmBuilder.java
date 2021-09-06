@@ -52,6 +52,10 @@ public interface Structuredefinition_fmmBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(Integer value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_fmmBuilder {
     private Optional<String> id = Optional.empty();
     private Integer value;

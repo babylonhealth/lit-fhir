@@ -49,6 +49,10 @@ public interface Encounter_HospitalizationBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Encounter_HospitalizationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> origin = Optional.empty();

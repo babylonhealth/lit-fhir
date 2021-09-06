@@ -49,6 +49,10 @@ public interface ConceptMap_Group_UnmappedBuilder {
     return new Impl(mode);
   }
 
+  public static Impl builder(CONCEPTMAP_UNMAPPED_MODE mode) {
+    return new Impl(mode);
+  }
+
   public class Impl implements ConceptMap_Group_UnmappedBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

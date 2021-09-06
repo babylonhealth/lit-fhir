@@ -49,6 +49,10 @@ public interface ChargeItemDefinition_ApplicabilityBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ChargeItemDefinition_ApplicabilityBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> language = Optional.empty();

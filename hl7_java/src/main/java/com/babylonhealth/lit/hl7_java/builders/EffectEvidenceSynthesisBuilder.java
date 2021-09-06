@@ -55,6 +55,16 @@ public interface EffectEvidenceSynthesisBuilder extends DomainResourceBuilder {
     return new Impl(status, outcome, exposure, population, exposureAlternative);
   }
 
+  public static Impl builder(
+      PUBLICATION_STATUS status,
+      ReferenceBuilder outcome,
+      ReferenceBuilder exposure,
+      ReferenceBuilder population,
+      ReferenceBuilder exposureAlternative) {
+    return new Impl(
+        status, outcome.build(), exposure.build(), population.build(), exposureAlternative.build());
+  }
+
   public class Impl implements EffectEvidenceSynthesisBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

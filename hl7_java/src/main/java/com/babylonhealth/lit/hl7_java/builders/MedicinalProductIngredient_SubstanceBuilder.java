@@ -49,6 +49,10 @@ public interface MedicinalProductIngredient_SubstanceBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(CodeableConceptBuilder code) {
+    return new Impl(code.build());
+  }
+
   public class Impl implements MedicinalProductIngredient_SubstanceBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;

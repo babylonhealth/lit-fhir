@@ -49,6 +49,10 @@ public interface FamilyMemberHistory_ConditionBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(CodeableConceptBuilder code) {
+    return new Impl(code.build());
+  }
+
   public static Choice01727798874 onset(Age a) {
     return new Choice01727798874(a);
   }

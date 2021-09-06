@@ -52,6 +52,10 @@ public interface Resource_effectivePeriodBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(PeriodBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Resource_effectivePeriodBuilder {
     private Optional<String> id = Optional.empty();
     private Period value;

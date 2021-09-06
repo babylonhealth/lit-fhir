@@ -49,6 +49,10 @@ public interface CareTeam_ParticipantBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements CareTeam_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<CodeableConcept> role = Collections.emptyList();

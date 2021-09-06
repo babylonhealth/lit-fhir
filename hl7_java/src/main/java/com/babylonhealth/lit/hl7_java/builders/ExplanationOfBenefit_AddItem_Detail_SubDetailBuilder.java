@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_AddItem_Detail_SubDetailBuilder {
     return new Impl(productOrService);
   }
 
+  public static Impl builder(CodeableConceptBuilder productOrService) {
+    return new Impl(productOrService.build());
+  }
+
   public class Impl implements ExplanationOfBenefit_AddItem_Detail_SubDetailBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Money> net = Optional.empty();

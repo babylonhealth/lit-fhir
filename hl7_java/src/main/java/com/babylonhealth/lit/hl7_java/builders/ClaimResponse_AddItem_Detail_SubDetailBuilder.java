@@ -50,6 +50,14 @@ public interface ClaimResponse_AddItem_Detail_SubDetailBuilder {
     return new Impl(adjudication, productOrService);
   }
 
+  public static Impl builder(
+      Collection<ClaimResponse_Item_AdjudicationBuilder> adjudication,
+      CodeableConceptBuilder productOrService) {
+    return new Impl(
+        new LitSeq<>(adjudication).map(ClaimResponse_Item_AdjudicationBuilder::build),
+        productOrService.build());
+  }
+
   public class Impl implements ClaimResponse_AddItem_Detail_SubDetailBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Money> net = Optional.empty();

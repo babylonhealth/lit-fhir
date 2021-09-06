@@ -49,6 +49,10 @@ public interface MedicinalProduct_Name_CountryLanguageBuilder {
     return new Impl(country, language);
   }
 
+  public static Impl builder(CodeableConceptBuilder country, CodeableConceptBuilder language) {
+    return new Impl(country.build(), language.build());
+  }
+
   public class Impl implements MedicinalProduct_Name_CountryLanguageBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept country;

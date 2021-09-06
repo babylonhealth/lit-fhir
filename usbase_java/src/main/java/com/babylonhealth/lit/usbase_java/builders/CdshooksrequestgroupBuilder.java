@@ -56,6 +56,14 @@ public interface CdshooksrequestgroupBuilder extends RequestGroupBuilder {
     return new Impl(status, intent, identifier, instantiatesUri);
   }
 
+  public static Impl builder(
+      REQUEST_STATUS status,
+      REQUEST_INTENT intent,
+      IdentifierBuilder identifier,
+      String instantiatesUri) {
+    return new Impl(status, intent, identifier.build(), instantiatesUri);
+  }
+
   public class Impl implements CdshooksrequestgroupBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

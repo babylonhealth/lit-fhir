@@ -49,6 +49,10 @@ public interface FHIRList_EntryBuilder {
     return new Impl(item);
   }
 
+  public static Impl builder(ReferenceBuilder item) {
+    return new Impl(item.build());
+  }
+
   public class Impl implements FHIRList_EntryBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> flag = Optional.empty();

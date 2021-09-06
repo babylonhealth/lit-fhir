@@ -49,6 +49,10 @@ public interface Linkage_ItemBuilder {
     return new Impl(_type, resource);
   }
 
+  public static Impl builder(LINKAGE_TYPE _type, ReferenceBuilder resource) {
+    return new Impl(_type, resource.build());
+  }
+
   public class Impl implements Linkage_ItemBuilder {
     private Optional<String> id = Optional.empty();
     private LINKAGE_TYPE _type;

@@ -49,6 +49,10 @@ public interface EffectEvidenceSynthesis_ResultsByExposureBuilder {
     return new Impl(riskEvidenceSynthesis);
   }
 
+  public static Impl builder(ReferenceBuilder riskEvidenceSynthesis) {
+    return new Impl(riskEvidenceSynthesis.build());
+  }
+
   public class Impl implements EffectEvidenceSynthesis_ResultsByExposureBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

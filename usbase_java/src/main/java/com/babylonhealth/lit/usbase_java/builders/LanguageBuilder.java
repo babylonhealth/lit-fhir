@@ -52,6 +52,10 @@ public interface LanguageBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(LANGUAGES value) {
+    return new Impl(value);
+  }
+
   public class Impl implements LanguageBuilder {
     private Optional<String> id = Optional.empty();
     private LANGUAGES value;

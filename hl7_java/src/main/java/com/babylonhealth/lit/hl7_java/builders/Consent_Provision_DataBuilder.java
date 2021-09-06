@@ -49,6 +49,10 @@ public interface Consent_Provision_DataBuilder {
     return new Impl(meaning, reference);
   }
 
+  public static Impl builder(CONSENT_DATA_MEANING meaning, ReferenceBuilder reference) {
+    return new Impl(meaning, reference.build());
+  }
+
   public class Impl implements Consent_Provision_DataBuilder {
     private Optional<String> id = Optional.empty();
     private CONSENT_DATA_MEANING meaning;

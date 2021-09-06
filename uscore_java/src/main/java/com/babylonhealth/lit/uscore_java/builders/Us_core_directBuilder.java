@@ -55,6 +55,10 @@ public interface Us_core_directBuilder extends ExtensionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Us_core_directBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> value = Optional.empty();

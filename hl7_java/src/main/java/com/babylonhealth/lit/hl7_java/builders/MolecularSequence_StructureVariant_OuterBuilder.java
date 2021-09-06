@@ -49,6 +49,10 @@ public interface MolecularSequence_StructureVariant_OuterBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MolecularSequence_StructureVariant_OuterBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Integer> end = Optional.empty();

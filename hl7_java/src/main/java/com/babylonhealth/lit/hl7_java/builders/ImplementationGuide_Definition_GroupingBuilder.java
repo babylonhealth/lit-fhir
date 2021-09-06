@@ -49,6 +49,10 @@ public interface ImplementationGuide_Definition_GroupingBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public class Impl implements ImplementationGuide_Definition_GroupingBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

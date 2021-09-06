@@ -49,6 +49,10 @@ public interface CoverageEligibilityResponse_InsuranceBuilder {
     return new Impl(coverage);
   }
 
+  public static Impl builder(ReferenceBuilder coverage) {
+    return new Impl(coverage.build());
+  }
+
   public class Impl implements CoverageEligibilityResponse_InsuranceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> inforce = Optional.empty();

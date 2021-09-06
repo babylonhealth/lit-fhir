@@ -52,6 +52,10 @@ public interface SubstanceSourceMaterial_OrganismBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceSourceMaterial_OrganismBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> genus = Optional.empty();

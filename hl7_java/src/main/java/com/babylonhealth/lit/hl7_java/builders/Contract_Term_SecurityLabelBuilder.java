@@ -49,6 +49,10 @@ public interface Contract_Term_SecurityLabelBuilder {
     return new Impl(classification);
   }
 
+  public static Impl builder(CodingBuilder classification) {
+    return new Impl(classification.build());
+  }
+
   public class Impl implements Contract_Term_SecurityLabelBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Integer> number = Collections.emptyList();

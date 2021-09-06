@@ -49,6 +49,10 @@ public interface MedicinalProduct_NameBuilder {
     return new Impl(productName);
   }
 
+  public static Impl builder(String productName) {
+    return new Impl(productName);
+  }
+
   public class Impl implements MedicinalProduct_NameBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

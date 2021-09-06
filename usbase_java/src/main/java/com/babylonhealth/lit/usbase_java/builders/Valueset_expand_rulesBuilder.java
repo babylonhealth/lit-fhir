@@ -52,6 +52,10 @@ public interface Valueset_expand_rulesBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(EXPANSION_PROCESSING_RULE value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_expand_rulesBuilder {
     private Optional<String> id = Optional.empty();
     private EXPANSION_PROCESSING_RULE value;

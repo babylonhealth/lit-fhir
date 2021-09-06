@@ -49,6 +49,10 @@ public interface CapabilityStatement_Rest_InteractionBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(SYSTEM_RESTFUL_INTERACTION code) {
+    return new Impl(code);
+  }
+
   public class Impl implements CapabilityStatement_Rest_InteractionBuilder {
     private Optional<String> id = Optional.empty();
     private SYSTEM_RESTFUL_INTERACTION code;

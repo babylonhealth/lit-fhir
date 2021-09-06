@@ -46,6 +46,10 @@ public interface Dosage_DoseAndRateBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01639511888 dose(Quantity q) {
     return new Choice01639511888(q);
   }

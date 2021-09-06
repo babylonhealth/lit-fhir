@@ -51,6 +51,11 @@ public interface GoalBuilder extends DomainResourceBuilder {
     return new Impl(subject, description, lifecycleStatus);
   }
 
+  public static Impl builder(
+      ReferenceBuilder subject, CodeableConceptBuilder description, GOAL_STATUS lifecycleStatus) {
+    return new Impl(subject.build(), description.build(), lifecycleStatus);
+  }
+
   public static Choice00078348305 start(CodeableConcept c) {
     return new Choice00078348305(c);
   }

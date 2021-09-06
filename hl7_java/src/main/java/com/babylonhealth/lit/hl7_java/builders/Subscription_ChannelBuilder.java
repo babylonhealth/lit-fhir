@@ -49,6 +49,10 @@ public interface Subscription_ChannelBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(SUBSCRIPTION_CHANNEL_TYPE _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements Subscription_ChannelBuilder {
     private Optional<String> id = Optional.empty();
     private SUBSCRIPTION_CHANNEL_TYPE _type;

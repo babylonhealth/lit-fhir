@@ -49,6 +49,10 @@ public interface CodeSystem_Concept_PropertyBuilder {
     return new Impl(code, value);
   }
 
+  public static Impl builder(String code, @NonNull Choice_1489367071 value) {
+    return new Impl(code, value);
+  }
+
   public static Choice_1489367071 value(BigDecimal b) {
     return new Choice_1489367071(b);
   }

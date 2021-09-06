@@ -52,6 +52,10 @@ public interface Workflow_instantiatesCanonicalBuilder extends ExtensionBuilder 
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Workflow_instantiatesCanonicalBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

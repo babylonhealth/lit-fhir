@@ -49,6 +49,10 @@ public interface MedicinalProductIngredientBuilder extends DomainResourceBuilder
     return new Impl(role);
   }
 
+  public static Impl builder(CodeableConceptBuilder role) {
+    return new Impl(role.build());
+  }
+
   public class Impl implements MedicinalProductIngredientBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

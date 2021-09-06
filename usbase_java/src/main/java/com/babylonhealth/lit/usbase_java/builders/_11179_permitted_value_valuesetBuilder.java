@@ -52,6 +52,10 @@ public interface _11179_permitted_value_valuesetBuilder extends ExtensionBuilder
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements _11179_permitted_value_valuesetBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

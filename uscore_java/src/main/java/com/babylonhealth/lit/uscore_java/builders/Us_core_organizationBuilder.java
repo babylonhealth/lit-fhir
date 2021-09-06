@@ -55,6 +55,10 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
     return new Impl(name, active);
   }
 
+  public static Impl builder(String name, Boolean active) {
+    return new Impl(name, active);
+  }
+
   public class Impl implements Us_core_organizationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

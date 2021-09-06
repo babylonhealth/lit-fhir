@@ -49,6 +49,10 @@ public interface MessageHeader_DestinationBuilder {
     return new Impl(endpoint);
   }
 
+  public static Impl builder(String endpoint) {
+    return new Impl(endpoint);
+  }
+
   public class Impl implements MessageHeader_DestinationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

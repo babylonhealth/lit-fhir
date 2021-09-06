@@ -49,6 +49,10 @@ public interface MedicationKnowledge_AdministrationGuidelinesBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01025009075 indication(CodeableConcept c) {
     return new Choice01025009075(c);
   }

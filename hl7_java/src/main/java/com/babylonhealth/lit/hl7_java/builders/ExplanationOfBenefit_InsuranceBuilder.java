@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_InsuranceBuilder {
     return new Impl(focal, coverage);
   }
 
+  public static Impl builder(Boolean focal, ReferenceBuilder coverage) {
+    return new Impl(focal, coverage.build());
+  }
+
   public class Impl implements ExplanationOfBenefit_InsuranceBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean focal;

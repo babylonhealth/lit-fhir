@@ -49,6 +49,10 @@ public interface ImplementationGuide_Definition_ParameterBuilder {
     return new Impl(code, value);
   }
 
+  public static Impl builder(GUIDE_PARAMETER_CODE code, String value) {
+    return new Impl(code, value);
+  }
+
   public class Impl implements ImplementationGuide_Definition_ParameterBuilder {
     private Optional<String> id = Optional.empty();
     private GUIDE_PARAMETER_CODE code;

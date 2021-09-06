@@ -49,6 +49,11 @@ public interface ImplementationGuide_DefinitionBuilder {
     return new Impl(resource);
   }
 
+  public static Impl builder(Collection<ImplementationGuide_Definition_ResourceBuilder> resource) {
+    return new Impl(
+        new LitSeq<>(resource).map(ImplementationGuide_Definition_ResourceBuilder::build));
+  }
+
   public class Impl implements ImplementationGuide_DefinitionBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

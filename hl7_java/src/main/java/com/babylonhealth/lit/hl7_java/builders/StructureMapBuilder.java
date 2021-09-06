@@ -51,6 +51,14 @@ public interface StructureMapBuilder extends DomainResourceBuilder {
     return new Impl(url, name, status, group);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      PUBLICATION_STATUS status,
+      Collection<StructureMap_GroupBuilder> group) {
+    return new Impl(url, name, status, new LitSeq<>(group).map(StructureMap_GroupBuilder::build));
+  }
+
   public class Impl implements StructureMapBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

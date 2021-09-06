@@ -60,6 +60,17 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
     return new Impl(url, name, status, version, publisher, description, experimental);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      PUBLICATION_STATUS status,
+      String version,
+      String publisher,
+      String description,
+      Boolean experimental) {
+    return new Impl(url, name, status, version, publisher, description, experimental);
+  }
+
   public static Choice01025009075 subject(CodeableConcept c) {
     return new Choice01025009075(c);
   }

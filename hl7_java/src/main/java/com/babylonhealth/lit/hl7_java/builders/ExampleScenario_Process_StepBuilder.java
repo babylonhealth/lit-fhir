@@ -49,6 +49,10 @@ public interface ExampleScenario_Process_StepBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ExampleScenario_Process_StepBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Boolean> pause = Optional.empty();

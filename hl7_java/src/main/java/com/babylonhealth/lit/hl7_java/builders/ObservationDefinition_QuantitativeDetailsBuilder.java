@@ -49,6 +49,10 @@ public interface ObservationDefinition_QuantitativeDetailsBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ObservationDefinition_QuantitativeDetailsBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> unit = Optional.empty();

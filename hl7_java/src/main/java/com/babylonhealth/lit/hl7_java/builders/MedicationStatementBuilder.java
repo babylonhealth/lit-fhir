@@ -53,6 +53,13 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     return new Impl(status, subject, medication);
   }
 
+  public static Impl builder(
+      MEDICATION_STATEMENT_STATUS status,
+      ReferenceBuilder subject,
+      @NonNull Choice01025009075 medication) {
+    return new Impl(status, subject.build(), medication);
+  }
+
   public static Choice_0934386166 effective(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

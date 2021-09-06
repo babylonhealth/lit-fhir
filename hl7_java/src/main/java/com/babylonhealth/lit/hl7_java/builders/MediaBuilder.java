@@ -50,6 +50,10 @@ public interface MediaBuilder extends DomainResourceBuilder {
     return new Impl(status, content);
   }
 
+  public static Impl builder(EVENT_STATUS status, AttachmentBuilder content) {
+    return new Impl(status, content.build());
+  }
+
   public static Choice_0934386166 created(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

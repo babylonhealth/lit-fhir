@@ -52,6 +52,10 @@ public interface Structuredefinition_codegen_superBuilder extends ExtensionBuild
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_codegen_superBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

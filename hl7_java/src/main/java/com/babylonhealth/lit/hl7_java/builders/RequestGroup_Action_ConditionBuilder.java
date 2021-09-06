@@ -49,6 +49,10 @@ public interface RequestGroup_Action_ConditionBuilder {
     return new Impl(kind);
   }
 
+  public static Impl builder(ACTION_CONDITION_KIND kind) {
+    return new Impl(kind);
+  }
+
   public class Impl implements RequestGroup_Action_ConditionBuilder {
     private Optional<String> id = Optional.empty();
     private ACTION_CONDITION_KIND kind;

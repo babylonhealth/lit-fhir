@@ -49,6 +49,10 @@ public interface VerificationResult_ValidatorBuilder {
     return new Impl(organization);
   }
 
+  public static Impl builder(ReferenceBuilder organization) {
+    return new Impl(organization.build());
+  }
+
   public class Impl implements VerificationResult_ValidatorBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

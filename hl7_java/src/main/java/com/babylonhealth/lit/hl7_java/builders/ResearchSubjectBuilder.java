@@ -50,6 +50,11 @@ public interface ResearchSubjectBuilder extends DomainResourceBuilder {
     return new Impl(study, status, individual);
   }
 
+  public static Impl builder(
+      ReferenceBuilder study, RESEARCH_SUBJECT_STATUS status, ReferenceBuilder individual) {
+    return new Impl(study.build(), status, individual.build());
+  }
+
   public class Impl implements ResearchSubjectBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

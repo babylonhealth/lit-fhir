@@ -56,6 +56,22 @@ public interface VisionPrescriptionBuilder extends DomainResourceBuilder {
     return new Impl(status, created, patient, prescriber, dateWritten, lensSpecification);
   }
 
+  public static Impl builder(
+      FM_STATUS status,
+      FHIRDateTime created,
+      ReferenceBuilder patient,
+      ReferenceBuilder prescriber,
+      FHIRDateTime dateWritten,
+      Collection<VisionPrescription_LensSpecificationBuilder> lensSpecification) {
+    return new Impl(
+        status,
+        created,
+        patient.build(),
+        prescriber.build(),
+        dateWritten,
+        new LitSeq<>(lensSpecification).map(VisionPrescription_LensSpecificationBuilder::build));
+  }
+
   public class Impl implements VisionPrescriptionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

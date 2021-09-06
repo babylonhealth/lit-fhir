@@ -53,6 +53,10 @@ public interface Observation_geneticsBuilder extends ObservationBuilder {
     return new Impl(code, status);
   }
 
+  public static Impl builder(CodeableConceptBuilder code, OBSERVATION_STATUS status) {
+    return new Impl(code.build(), status);
+  }
+
   public static Choice_0802685816 value(Boolean b) {
     return new Choice_0802685816(b);
   }

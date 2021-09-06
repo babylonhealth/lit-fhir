@@ -46,6 +46,10 @@ public interface ReferenceBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ReferenceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> _type = Optional.empty();

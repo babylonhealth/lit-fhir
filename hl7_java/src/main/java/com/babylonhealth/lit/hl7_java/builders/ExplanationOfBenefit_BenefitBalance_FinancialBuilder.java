@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type) {
+    return new Impl(_type.build());
+  }
+
   public static Choice_1289000811 used(Money m) {
     return new Choice_1289000811(m);
   }

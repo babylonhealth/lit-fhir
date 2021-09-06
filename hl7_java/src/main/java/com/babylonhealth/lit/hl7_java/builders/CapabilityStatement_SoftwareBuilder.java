@@ -49,6 +49,10 @@ public interface CapabilityStatement_SoftwareBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public class Impl implements CapabilityStatement_SoftwareBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

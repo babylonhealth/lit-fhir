@@ -52,6 +52,10 @@ public interface Resource_lastReviewDateBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDate value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Resource_lastReviewDateBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDate value;

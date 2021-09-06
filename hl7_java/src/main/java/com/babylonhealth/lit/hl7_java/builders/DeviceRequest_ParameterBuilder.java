@@ -49,6 +49,10 @@ public interface DeviceRequest_ParameterBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice_1516277229 value(Boolean b) {
     return new Choice_1516277229(b);
   }

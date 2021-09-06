@@ -55,6 +55,18 @@ public interface AuditEventBuilder extends DomainResourceBuilder {
     return new Impl(_type, recorded, source, agent);
   }
 
+  public static Impl builder(
+      CodingBuilder _type,
+      ZonedDateTime recorded,
+      AuditEvent_SourceBuilder source,
+      Collection<AuditEvent_AgentBuilder> agent) {
+    return new Impl(
+        _type.build(),
+        recorded,
+        source.build(),
+        new LitSeq<>(agent).map(AuditEvent_AgentBuilder::build));
+  }
+
   public class Impl implements AuditEventBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

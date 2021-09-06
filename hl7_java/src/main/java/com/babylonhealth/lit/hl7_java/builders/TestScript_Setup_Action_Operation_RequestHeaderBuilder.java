@@ -49,6 +49,10 @@ public interface TestScript_Setup_Action_Operation_RequestHeaderBuilder {
     return new Impl(field, value);
   }
 
+  public static Impl builder(String field, String value) {
+    return new Impl(field, value);
+  }
+
   public class Impl implements TestScript_Setup_Action_Operation_RequestHeaderBuilder {
     private Optional<String> id = Optional.empty();
     private String field;

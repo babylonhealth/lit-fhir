@@ -52,6 +52,10 @@ public interface Auditevent_ParticipantObjectContainsStudyBuilder extends Extens
     return new Impl(value);
   }
 
+  public static Impl builder(IdentifierBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Auditevent_ParticipantObjectContainsStudyBuilder {
     private Optional<String> id = Optional.empty();
     private Identifier value;

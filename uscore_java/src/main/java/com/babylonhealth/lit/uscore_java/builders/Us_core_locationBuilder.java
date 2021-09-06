@@ -57,6 +57,10 @@ public interface Us_core_locationBuilder extends LocationBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public class Impl implements Us_core_locationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

@@ -49,6 +49,10 @@ public interface ExplanationOfBenefit_AddItemBuilder {
     return new Impl(productOrService);
   }
 
+  public static Impl builder(CodeableConceptBuilder productOrService) {
+    return new Impl(productOrService.build());
+  }
+
   public static Choice_0503196159 serviced(FHIRDate f) {
     return new Choice_0503196159(f);
   }

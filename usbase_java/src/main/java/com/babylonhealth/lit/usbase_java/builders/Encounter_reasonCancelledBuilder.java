@@ -52,6 +52,10 @@ public interface Encounter_reasonCancelledBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Encounter_reasonCancelledBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

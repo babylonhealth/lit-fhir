@@ -52,6 +52,10 @@ public interface Allergyintolerance_reasonRefutedBuilder extends ExtensionBuilde
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Allergyintolerance_reasonRefutedBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

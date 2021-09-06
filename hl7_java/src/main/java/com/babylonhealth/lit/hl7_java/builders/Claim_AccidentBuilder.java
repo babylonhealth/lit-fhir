@@ -49,6 +49,10 @@ public interface Claim_AccidentBuilder {
     return new Impl(date);
   }
 
+  public static Impl builder(FHIRDate date) {
+    return new Impl(date);
+  }
+
   public static Choice00434638053 location(Address a) {
     return new Choice00434638053(a);
   }

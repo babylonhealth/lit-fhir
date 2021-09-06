@@ -52,6 +52,10 @@ public interface OpenEHR_exposureDurationBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(DurationBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements OpenEHR_exposureDurationBuilder {
     private Optional<String> id = Optional.empty();
     private Duration value;

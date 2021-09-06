@@ -50,6 +50,10 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
     return new Impl(appointment, participantStatus);
   }
 
+  public static Impl builder(ReferenceBuilder appointment, PARTICIPATIONSTATUS participantStatus) {
+    return new Impl(appointment.build(), participantStatus);
+  }
+
   public class Impl implements AppointmentResponseBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<ZonedDateTime> end = Optional.empty();

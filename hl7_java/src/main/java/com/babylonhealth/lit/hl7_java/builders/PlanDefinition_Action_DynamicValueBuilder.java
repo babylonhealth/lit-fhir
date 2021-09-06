@@ -49,6 +49,10 @@ public interface PlanDefinition_Action_DynamicValueBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements PlanDefinition_Action_DynamicValueBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> path = Optional.empty();

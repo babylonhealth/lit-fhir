@@ -46,6 +46,10 @@ public interface PeriodBuilder extends ElementBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements PeriodBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<FHIRDateTime> end = Optional.empty();

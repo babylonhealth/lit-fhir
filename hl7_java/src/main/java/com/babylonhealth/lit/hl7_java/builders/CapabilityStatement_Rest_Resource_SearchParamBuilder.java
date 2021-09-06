@@ -49,6 +49,10 @@ public interface CapabilityStatement_Rest_Resource_SearchParamBuilder {
     return new Impl(name, _type);
   }
 
+  public static Impl builder(String name, SEARCH_PARAM_TYPE _type) {
+    return new Impl(name, _type);
+  }
+
   public class Impl implements CapabilityStatement_Rest_Resource_SearchParamBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

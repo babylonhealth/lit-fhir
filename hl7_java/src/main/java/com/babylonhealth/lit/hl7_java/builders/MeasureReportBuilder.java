@@ -52,6 +52,14 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
     return new Impl(_type, status, period, measure);
   }
 
+  public static Impl builder(
+      MEASURE_REPORT_TYPE _type,
+      MEASURE_REPORT_STATUS status,
+      PeriodBuilder period,
+      String measure) {
+    return new Impl(_type, status, period.build(), measure);
+  }
+
   public class Impl implements MeasureReportBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

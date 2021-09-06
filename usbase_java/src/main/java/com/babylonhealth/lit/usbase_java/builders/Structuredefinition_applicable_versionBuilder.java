@@ -52,6 +52,10 @@ public interface Structuredefinition_applicable_versionBuilder extends Extension
     return new Impl(value);
   }
 
+  public static Impl builder(FHIR_VERSION value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_applicable_versionBuilder {
     private Optional<String> id = Optional.empty();
     private FHIR_VERSION value;

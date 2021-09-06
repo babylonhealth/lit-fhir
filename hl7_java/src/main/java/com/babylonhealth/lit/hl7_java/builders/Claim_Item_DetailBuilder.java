@@ -49,6 +49,10 @@ public interface Claim_Item_DetailBuilder {
     return new Impl(sequence, productOrService);
   }
 
+  public static Impl builder(Integer sequence, CodeableConceptBuilder productOrService) {
+    return new Impl(sequence, productOrService.build());
+  }
+
   public class Impl implements Claim_Item_DetailBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Money> net = Optional.empty();

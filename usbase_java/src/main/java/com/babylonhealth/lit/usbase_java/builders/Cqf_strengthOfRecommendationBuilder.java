@@ -52,6 +52,10 @@ public interface Cqf_strengthOfRecommendationBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Cqf_strengthOfRecommendationBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

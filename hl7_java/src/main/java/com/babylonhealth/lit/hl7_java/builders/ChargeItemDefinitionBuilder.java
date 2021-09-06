@@ -50,6 +50,10 @@ public interface ChargeItemDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(url, status);
   }
 
+  public static Impl builder(String url, PUBLICATION_STATUS status) {
+    return new Impl(url, status);
+  }
+
   public class Impl implements ChargeItemDefinitionBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

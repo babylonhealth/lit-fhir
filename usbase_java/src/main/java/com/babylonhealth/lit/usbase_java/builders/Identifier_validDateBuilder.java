@@ -52,6 +52,10 @@ public interface Identifier_validDateBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDateTime value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Identifier_validDateBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDateTime value;

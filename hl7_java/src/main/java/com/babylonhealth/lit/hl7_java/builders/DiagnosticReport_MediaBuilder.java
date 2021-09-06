@@ -49,6 +49,10 @@ public interface DiagnosticReport_MediaBuilder {
     return new Impl(link);
   }
 
+  public static Impl builder(ReferenceBuilder link) {
+    return new Impl(link.build());
+  }
+
   public class Impl implements DiagnosticReport_MediaBuilder {
     private Optional<String> id = Optional.empty();
     private Reference link;

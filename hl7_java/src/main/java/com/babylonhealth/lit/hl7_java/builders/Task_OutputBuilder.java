@@ -49,6 +49,10 @@ public interface Task_OutputBuilder {
     return new Impl(_type, value);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, @NonNull Choice_1349125893 value) {
+    return new Impl(_type.build(), value);
+  }
+
   public static Choice_1349125893 value(Address a) {
     return new Choice_1349125893(a);
   }

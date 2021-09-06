@@ -49,6 +49,10 @@ public interface ClaimResponse_ProcessNoteBuilder {
     return new Impl(text);
   }
 
+  public static Impl builder(String text) {
+    return new Impl(text);
+  }
+
   public class Impl implements ClaimResponse_ProcessNoteBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<NOTE_TYPE> _type = Optional.empty();

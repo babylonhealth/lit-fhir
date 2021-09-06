@@ -49,6 +49,10 @@ public interface DocumentReference_ContentBuilder {
     return new Impl(attachment);
   }
 
+  public static Impl builder(AttachmentBuilder attachment) {
+    return new Impl(attachment.build());
+  }
+
   public class Impl implements DocumentReference_ContentBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Coding> format = Optional.empty();

@@ -49,6 +49,10 @@ public interface SubstancePolymer_MonomerSet_StartingMaterialBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstancePolymer_MonomerSet_StartingMaterialBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

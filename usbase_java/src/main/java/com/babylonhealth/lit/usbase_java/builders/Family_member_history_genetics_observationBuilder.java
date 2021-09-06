@@ -52,6 +52,10 @@ public interface Family_member_history_genetics_observationBuilder extends Exten
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Family_member_history_genetics_observationBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

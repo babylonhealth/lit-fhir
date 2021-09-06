@@ -49,6 +49,10 @@ public interface Coverage_CostToBeneficiary_ExceptionBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type) {
+    return new Impl(_type.build());
+  }
+
   public class Impl implements Coverage_CostToBeneficiary_ExceptionBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;

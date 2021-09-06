@@ -49,6 +49,10 @@ public interface TestScript_MetadataBuilder {
     return new Impl(capability);
   }
 
+  public static Impl builder(Collection<TestScript_Metadata_CapabilityBuilder> capability) {
+    return new Impl(new LitSeq<>(capability).map(TestScript_Metadata_CapabilityBuilder::build));
+  }
+
   public class Impl implements TestScript_MetadataBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

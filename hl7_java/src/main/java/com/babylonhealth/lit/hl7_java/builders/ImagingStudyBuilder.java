@@ -50,6 +50,10 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
     return new Impl(status, subject);
   }
 
+  public static Impl builder(IMAGINGSTUDY_STATUS status, ReferenceBuilder subject) {
+    return new Impl(status, subject.build());
+  }
+
   public class Impl implements ImagingStudyBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

@@ -52,6 +52,10 @@ public interface OpenEHR_exposureDescriptionBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements OpenEHR_exposureDescriptionBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

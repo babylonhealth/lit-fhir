@@ -49,6 +49,10 @@ public interface CapabilityStatement_RestBuilder {
     return new Impl(mode);
   }
 
+  public static Impl builder(RESTFUL_CAPABILITY_MODE mode) {
+    return new Impl(mode);
+  }
+
   public class Impl implements CapabilityStatement_RestBuilder {
     private Optional<String> id = Optional.empty();
     private RESTFUL_CAPABILITY_MODE mode;

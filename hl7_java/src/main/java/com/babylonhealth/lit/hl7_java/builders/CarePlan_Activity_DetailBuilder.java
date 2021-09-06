@@ -50,6 +50,10 @@ public interface CarePlan_Activity_DetailBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(CARE_PLAN_ACTIVITY_STATUS status) {
+    return new Impl(status);
+  }
+
   public static Choice01025009075 product(CodeableConcept c) {
     return new Choice01025009075(c);
   }

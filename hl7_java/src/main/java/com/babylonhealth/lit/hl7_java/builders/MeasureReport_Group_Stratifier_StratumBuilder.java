@@ -49,6 +49,10 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MeasureReport_Group_Stratifier_StratumBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> value = Optional.empty();

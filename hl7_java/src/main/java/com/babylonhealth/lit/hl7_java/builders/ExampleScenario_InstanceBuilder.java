@@ -49,6 +49,10 @@ public interface ExampleScenario_InstanceBuilder {
     return new Impl(resourceId, resourceType);
   }
 
+  public static Impl builder(String resourceId, RESOURCE_TYPES resourceType) {
+    return new Impl(resourceId, resourceType);
+  }
+
   public class Impl implements ExampleScenario_InstanceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> name = Optional.empty();

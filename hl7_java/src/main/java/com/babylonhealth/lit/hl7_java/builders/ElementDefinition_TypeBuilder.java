@@ -50,6 +50,10 @@ public interface ElementDefinition_TypeBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(String code) {
+    return new Impl(code);
+  }
+
   public class Impl implements ElementDefinition_TypeBuilder {
     private Optional<String> id = Optional.empty();
     private String code;

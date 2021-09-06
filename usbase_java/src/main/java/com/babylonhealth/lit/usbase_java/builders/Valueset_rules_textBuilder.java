@@ -52,6 +52,10 @@ public interface Valueset_rules_textBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_rules_textBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

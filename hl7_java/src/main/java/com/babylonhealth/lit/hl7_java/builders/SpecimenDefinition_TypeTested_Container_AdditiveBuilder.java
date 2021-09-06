@@ -49,6 +49,10 @@ public interface SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
     return new Impl(additive);
   }
 
+  public static Impl builder(@NonNull Choice01025009075 additive) {
+    return new Impl(additive);
+  }
+
   public static Choice01025009075 additive(CodeableConcept c) {
     return new Choice01025009075(c);
   }

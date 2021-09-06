@@ -52,6 +52,10 @@ public interface Organizationaffiliation_primaryIndBuilder extends ExtensionBuil
     return new Impl(value);
   }
 
+  public static Impl builder(Boolean value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Organizationaffiliation_primaryIndBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean value;

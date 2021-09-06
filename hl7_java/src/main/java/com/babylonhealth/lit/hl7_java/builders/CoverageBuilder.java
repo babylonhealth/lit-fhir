@@ -50,6 +50,11 @@ public interface CoverageBuilder extends DomainResourceBuilder {
     return new Impl(payor, status, beneficiary);
   }
 
+  public static Impl builder(
+      Collection<ReferenceBuilder> payor, FM_STATUS status, ReferenceBuilder beneficiary) {
+    return new Impl(new LitSeq<>(payor).map(ReferenceBuilder::build), status, beneficiary.build());
+  }
+
   public class Impl implements CoverageBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

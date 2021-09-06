@@ -49,6 +49,10 @@ public interface MedicationKnowledge_Regulatory_MaxDispenseBuilder {
     return new Impl(quantity);
   }
 
+  public static Impl builder(QuantityBuilder quantity) {
+    return new Impl(quantity.build());
+  }
+
   public class Impl implements MedicationKnowledge_Regulatory_MaxDispenseBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Duration> period = Optional.empty();

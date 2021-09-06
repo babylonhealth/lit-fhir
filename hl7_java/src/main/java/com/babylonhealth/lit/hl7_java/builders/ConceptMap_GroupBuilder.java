@@ -49,6 +49,10 @@ public interface ConceptMap_GroupBuilder {
     return new Impl(element);
   }
 
+  public static Impl builder(Collection<ConceptMap_Group_ElementBuilder> element) {
+    return new Impl(new LitSeq<>(element).map(ConceptMap_Group_ElementBuilder::build));
+  }
+
   public class Impl implements ConceptMap_GroupBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> source = Optional.empty();

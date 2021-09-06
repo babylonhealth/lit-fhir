@@ -49,6 +49,10 @@ public interface MedicinalProductPackaged_BatchIdentifierBuilder {
     return new Impl(outerPackaging);
   }
 
+  public static Impl builder(IdentifierBuilder outerPackaging) {
+    return new Impl(outerPackaging.build());
+  }
+
   public class Impl implements MedicinalProductPackaged_BatchIdentifierBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

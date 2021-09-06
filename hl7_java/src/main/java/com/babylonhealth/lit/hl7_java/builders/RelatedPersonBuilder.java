@@ -50,6 +50,10 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
     return new Impl(patient);
   }
 
+  public static Impl builder(ReferenceBuilder patient) {
+    return new Impl(patient.build());
+  }
+
   public class Impl implements RelatedPersonBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

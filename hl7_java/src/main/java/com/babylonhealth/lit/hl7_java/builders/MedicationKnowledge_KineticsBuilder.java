@@ -49,6 +49,10 @@ public interface MedicationKnowledge_KineticsBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MedicationKnowledge_KineticsBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

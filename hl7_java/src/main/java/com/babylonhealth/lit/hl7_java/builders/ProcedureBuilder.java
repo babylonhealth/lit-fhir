@@ -50,6 +50,10 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     return new Impl(status, subject);
   }
 
+  public static Impl builder(EVENT_STATUS status, ReferenceBuilder subject) {
+    return new Impl(status, subject.build());
+  }
+
   public static Choice01352864625 performed(Age a) {
     return new Choice01352864625(a);
   }

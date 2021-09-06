@@ -49,6 +49,10 @@ public interface ImagingStudy_Series_InstanceBuilder {
     return new Impl(uid, sopClass);
   }
 
+  public static Impl builder(String uid, CodingBuilder sopClass) {
+    return new Impl(uid, sopClass.build());
+  }
+
   public class Impl implements ImagingStudy_Series_InstanceBuilder {
     private Optional<String> id = Optional.empty();
     private String uid;

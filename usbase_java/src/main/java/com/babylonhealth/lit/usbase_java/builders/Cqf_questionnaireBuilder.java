@@ -54,6 +54,10 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status) {
+    return new Impl(status);
+  }
+
   public class Impl implements Cqf_questionnaireBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

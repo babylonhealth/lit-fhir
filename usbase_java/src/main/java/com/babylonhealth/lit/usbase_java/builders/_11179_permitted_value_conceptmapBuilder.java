@@ -52,6 +52,10 @@ public interface _11179_permitted_value_conceptmapBuilder extends ExtensionBuild
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements _11179_permitted_value_conceptmapBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

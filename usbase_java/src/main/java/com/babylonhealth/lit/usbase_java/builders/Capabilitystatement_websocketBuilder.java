@@ -52,6 +52,10 @@ public interface Capabilitystatement_websocketBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Capabilitystatement_websocketBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

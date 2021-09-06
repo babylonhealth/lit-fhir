@@ -52,6 +52,10 @@ public interface DiagnosticReport_locationPerformedBuilder extends ExtensionBuil
     return new Impl(value);
   }
 
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements DiagnosticReport_locationPerformedBuilder {
     private Optional<String> id = Optional.empty();
     private Reference value;

@@ -57,6 +57,15 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
     return new Impl(date, kind, status, format, fhirVersion);
   }
 
+  public static Impl builder(
+      FHIRDateTime date,
+      CAPABILITY_STATEMENT_KIND kind,
+      PUBLICATION_STATUS status,
+      Collection<String> format,
+      FHIR_VERSION fhirVersion) {
+    return new Impl(date, kind, status, format, fhirVersion);
+  }
+
   public class Impl implements CapabilityStatementBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

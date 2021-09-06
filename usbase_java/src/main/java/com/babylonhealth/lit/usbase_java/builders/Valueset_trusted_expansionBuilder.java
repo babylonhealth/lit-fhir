@@ -52,6 +52,10 @@ public interface Valueset_trusted_expansionBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(String value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_trusted_expansionBuilder {
     private Optional<String> id = Optional.empty();
     private String value;

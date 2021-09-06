@@ -49,6 +49,10 @@ public interface ElementDefinition_ConstraintBuilder {
     return new Impl(key, human, severity);
   }
 
+  public static Impl builder(String key, String human, CONSTRAINT_SEVERITY severity) {
+    return new Impl(key, human, severity);
+  }
+
   public class Impl implements ElementDefinition_ConstraintBuilder {
     private Optional<String> id = Optional.empty();
     private String key;

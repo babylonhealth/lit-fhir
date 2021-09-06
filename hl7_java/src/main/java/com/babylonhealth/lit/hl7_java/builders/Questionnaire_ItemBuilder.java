@@ -50,6 +50,10 @@ public interface Questionnaire_ItemBuilder {
     return new Impl(_type, linkId);
   }
 
+  public static Impl builder(ITEM_TYPE _type, String linkId) {
+    return new Impl(_type, linkId);
+  }
+
   public class Impl implements Questionnaire_ItemBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Coding> code = Collections.emptyList();

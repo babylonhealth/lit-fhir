@@ -50,6 +50,10 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
     return new Impl(status, exposureBackground);
   }
 
+  public static Impl builder(PUBLICATION_STATUS status, ReferenceBuilder exposureBackground) {
+    return new Impl(status, exposureBackground.build());
+  }
+
   public class Impl implements EvidenceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

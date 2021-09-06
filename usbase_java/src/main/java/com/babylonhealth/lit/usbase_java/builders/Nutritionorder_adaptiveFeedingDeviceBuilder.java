@@ -52,6 +52,10 @@ public interface Nutritionorder_adaptiveFeedingDeviceBuilder extends ExtensionBu
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Nutritionorder_adaptiveFeedingDeviceBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

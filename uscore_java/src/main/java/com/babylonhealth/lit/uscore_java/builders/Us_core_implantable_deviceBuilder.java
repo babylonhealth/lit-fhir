@@ -56,6 +56,10 @@ public interface Us_core_implantable_deviceBuilder extends DeviceBuilder {
     return new Impl(_type, patient);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, ReferenceBuilder patient) {
+    return new Impl(_type.build(), patient.build());
+  }
+
   public class Impl implements Us_core_implantable_deviceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

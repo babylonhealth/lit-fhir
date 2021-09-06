@@ -49,6 +49,10 @@ public interface CoverageEligibilityResponse_ErrorBuilder {
     return new Impl(code);
   }
 
+  public static Impl builder(CodeableConceptBuilder code) {
+    return new Impl(code.build());
+  }
+
   public class Impl implements CoverageEligibilityResponse_ErrorBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;

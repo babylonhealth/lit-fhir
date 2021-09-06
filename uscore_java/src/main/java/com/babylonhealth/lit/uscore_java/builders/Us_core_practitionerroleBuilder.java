@@ -55,6 +55,10 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
     return new Impl(practitioner, organization);
   }
 
+  public static Impl builder(ReferenceBuilder practitioner, ReferenceBuilder organization) {
+    return new Impl(practitioner.build(), organization.build());
+  }
+
   public class Impl implements Us_core_practitionerroleBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta =

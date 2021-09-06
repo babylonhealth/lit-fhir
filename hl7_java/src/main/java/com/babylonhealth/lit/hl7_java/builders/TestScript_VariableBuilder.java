@@ -49,6 +49,10 @@ public interface TestScript_VariableBuilder {
     return new Impl(name);
   }
 
+  public static Impl builder(String name) {
+    return new Impl(name);
+  }
+
   public class Impl implements TestScript_VariableBuilder {
     private Optional<String> id = Optional.empty();
     private String name;

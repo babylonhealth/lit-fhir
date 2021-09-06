@@ -52,6 +52,10 @@ public interface Hla_genotyping_results_allele_databaseBuilder extends Extension
     return new Impl(value);
   }
 
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
+  }
+
   public class Impl implements Hla_genotyping_results_allele_databaseBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept value;

@@ -49,6 +49,10 @@ public interface RiskEvidenceSynthesis_CertaintyBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements RiskEvidenceSynthesis_CertaintyBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();

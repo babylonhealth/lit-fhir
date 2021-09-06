@@ -51,6 +51,10 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
+  public static Impl builder(REQUEST_STATUS status) {
+    return new Impl(status);
+  }
+
   public static Choice_0934386166 occurrence(FHIRDateTime f) {
     return new Choice_0934386166(f);
   }

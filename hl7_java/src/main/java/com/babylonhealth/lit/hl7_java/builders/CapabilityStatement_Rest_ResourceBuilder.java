@@ -53,6 +53,10 @@ public interface CapabilityStatement_Rest_ResourceBuilder {
     return new Impl(_type);
   }
 
+  public static Impl builder(RESOURCE_TYPES _type) {
+    return new Impl(_type);
+  }
+
   public class Impl implements CapabilityStatement_Rest_ResourceBuilder {
     private Optional<String> id = Optional.empty();
     private RESOURCE_TYPES _type;

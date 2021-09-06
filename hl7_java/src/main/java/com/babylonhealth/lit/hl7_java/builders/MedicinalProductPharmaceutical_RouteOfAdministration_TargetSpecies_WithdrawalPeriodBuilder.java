@@ -51,6 +51,10 @@ interface MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_Wit
     return new Impl(value, tissue);
   }
 
+  public static Impl builder(QuantityBuilder value, CodeableConceptBuilder tissue) {
+    return new Impl(value.build(), tissue.build());
+  }
+
   public class Impl
       implements MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_WithdrawalPeriodBuilder {
     private Optional<String> id = Optional.empty();

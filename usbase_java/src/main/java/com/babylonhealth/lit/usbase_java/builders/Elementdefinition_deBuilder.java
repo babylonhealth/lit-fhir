@@ -52,6 +52,10 @@ public interface Elementdefinition_deBuilder extends ElementDefinitionBuilder {
     return new Impl(path);
   }
 
+  public static Impl builder(String path) {
+    return new Impl(path);
+  }
+
   public static Choice_1349125893 fixed(Address a) {
     return new Choice_1349125893(a);
   }

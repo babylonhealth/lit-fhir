@@ -52,6 +52,10 @@ public interface Cqm_ValidityPeriodBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDateTime value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Cqm_ValidityPeriodBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDateTime value;

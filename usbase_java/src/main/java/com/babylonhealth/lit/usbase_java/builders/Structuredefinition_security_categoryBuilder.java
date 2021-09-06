@@ -52,6 +52,10 @@ public interface Structuredefinition_security_categoryBuilder extends ExtensionB
     return new Impl(value);
   }
 
+  public static Impl builder(RESOURCE_SECURITY_CATEGORY value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_security_categoryBuilder {
     private Optional<String> id = Optional.empty();
     private RESOURCE_SECURITY_CATEGORY value;

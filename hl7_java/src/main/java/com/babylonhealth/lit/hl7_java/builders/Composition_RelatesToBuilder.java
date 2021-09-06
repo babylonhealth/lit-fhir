@@ -49,6 +49,10 @@ public interface Composition_RelatesToBuilder {
     return new Impl(code, target);
   }
 
+  public static Impl builder(DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Choice_0983418289 target) {
+    return new Impl(code, target);
+  }
+
   public static Choice_0983418289 target(Identifier i) {
     return new Choice_0983418289(i);
   }

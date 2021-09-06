@@ -51,6 +51,10 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     return new Impl(item, quantity);
   }
 
+  public static Impl builder(@NonNull Choice01025009075 item, QuantityBuilder quantity) {
+    return new Impl(item, quantity.build());
+  }
+
   public static Choice01025009075 item(CodeableConcept c) {
     return new Choice01025009075(c);
   }

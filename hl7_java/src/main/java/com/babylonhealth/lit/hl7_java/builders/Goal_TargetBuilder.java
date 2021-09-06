@@ -49,6 +49,10 @@ public interface Goal_TargetBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01219602913 due(Duration d) {
     return new Choice01219602913(d);
   }

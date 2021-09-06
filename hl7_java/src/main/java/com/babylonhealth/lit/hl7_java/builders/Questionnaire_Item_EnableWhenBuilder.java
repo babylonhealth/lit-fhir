@@ -50,6 +50,11 @@ public interface Questionnaire_Item_EnableWhenBuilder {
     return new Impl(question, operator, answer);
   }
 
+  public static Impl builder(
+      String question, QUESTIONNAIRE_ENABLE_OPERATOR operator, @NonNull Choice_0388264667 answer) {
+    return new Impl(question, operator, answer);
+  }
+
   public static Choice_0388264667 answer(BigDecimal b) {
     return new Choice_0388264667(b);
   }

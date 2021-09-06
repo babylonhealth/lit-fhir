@@ -49,6 +49,10 @@ public interface ConceptMap_Group_Element_TargetBuilder {
     return new Impl(equivalence);
   }
 
+  public static Impl builder(CONCEPT_MAP_EQUIVALENCE equivalence) {
+    return new Impl(equivalence);
+  }
+
   public class Impl implements ConceptMap_Group_Element_TargetBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> code = Optional.empty();

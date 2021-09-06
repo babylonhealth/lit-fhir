@@ -49,6 +49,10 @@ public interface SubstanceSpecification_RelationshipBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice00910671146 amount(Quantity q) {
     return new Choice00910671146(q);
   }

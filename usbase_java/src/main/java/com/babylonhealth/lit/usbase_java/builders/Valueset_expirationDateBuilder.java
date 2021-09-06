@@ -52,6 +52,10 @@ public interface Valueset_expirationDateBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDate value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_expirationDateBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDate value;

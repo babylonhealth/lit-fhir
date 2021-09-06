@@ -49,6 +49,10 @@ public interface SubstanceSpecification_StructureBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceSpecification_StructureBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Reference> source = Collections.emptyList();

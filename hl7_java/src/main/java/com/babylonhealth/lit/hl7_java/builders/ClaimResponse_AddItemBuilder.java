@@ -50,6 +50,14 @@ public interface ClaimResponse_AddItemBuilder {
     return new Impl(adjudication, productOrService);
   }
 
+  public static Impl builder(
+      Collection<ClaimResponse_Item_AdjudicationBuilder> adjudication,
+      CodeableConceptBuilder productOrService) {
+    return new Impl(
+        new LitSeq<>(adjudication).map(ClaimResponse_Item_AdjudicationBuilder::build),
+        productOrService.build());
+  }
+
   public static Choice_0503196159 serviced(FHIRDate f) {
     return new Choice_0503196159(f);
   }

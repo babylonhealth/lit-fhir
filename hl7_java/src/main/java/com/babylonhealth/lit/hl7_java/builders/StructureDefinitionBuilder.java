@@ -59,6 +59,16 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(url, name, kind, _type, status, _abstract);
   }
 
+  public static Impl builder(
+      String url,
+      String name,
+      STRUCTURE_DEFINITION_KIND kind,
+      String _type,
+      PUBLICATION_STATUS status,
+      Boolean _abstract) {
+    return new Impl(url, name, kind, _type, status, _abstract);
+  }
+
   public class Impl implements StructureDefinitionBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

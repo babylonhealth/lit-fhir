@@ -49,6 +49,10 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
     return new Impl(event, source);
   }
 
+  public static Impl builder(@NonNull Choice01583485927 event, MessageHeader_SourceBuilder source) {
+    return new Impl(event, source.build());
+  }
+
   public static Choice01583485927 event(Coding c) {
     return new Choice01583485927(c);
   }

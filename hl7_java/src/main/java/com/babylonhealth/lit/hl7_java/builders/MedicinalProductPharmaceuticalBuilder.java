@@ -51,6 +51,16 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
     return new Impl(administrableDoseForm, routeOfAdministration);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder administrableDoseForm,
+      Collection<MedicinalProductPharmaceutical_RouteOfAdministrationBuilder>
+          routeOfAdministration) {
+    return new Impl(
+        administrableDoseForm.build(),
+        new LitSeq<>(routeOfAdministration)
+            .map(MedicinalProductPharmaceutical_RouteOfAdministrationBuilder::build));
+  }
+
   public class Impl implements MedicinalProductPharmaceuticalBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

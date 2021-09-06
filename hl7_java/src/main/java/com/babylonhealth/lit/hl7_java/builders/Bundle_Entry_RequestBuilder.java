@@ -49,6 +49,10 @@ public interface Bundle_Entry_RequestBuilder {
     return new Impl(url, method);
   }
 
+  public static Impl builder(String url, HTTP_VERB method) {
+    return new Impl(url, method);
+  }
+
   public class Impl implements Bundle_Entry_RequestBuilder {
     private Optional<String> id = Optional.empty();
     private String url;

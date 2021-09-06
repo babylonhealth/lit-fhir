@@ -49,6 +49,10 @@ public interface Encounter_LocationBuilder {
     return new Impl(location);
   }
 
+  public static Impl builder(ReferenceBuilder location) {
+    return new Impl(location.build());
+  }
+
   public class Impl implements Encounter_LocationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<ENCOUNTER_LOCATION_STATUS> status = Optional.empty();

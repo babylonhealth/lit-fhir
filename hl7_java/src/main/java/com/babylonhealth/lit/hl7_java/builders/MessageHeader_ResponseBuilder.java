@@ -49,6 +49,10 @@ public interface MessageHeader_ResponseBuilder {
     return new Impl(code, identifier);
   }
 
+  public static Impl builder(RESPONSE_CODE code, String identifier) {
+    return new Impl(code, identifier);
+  }
+
   public class Impl implements MessageHeader_ResponseBuilder {
     private Optional<String> id = Optional.empty();
     private RESPONSE_CODE code;

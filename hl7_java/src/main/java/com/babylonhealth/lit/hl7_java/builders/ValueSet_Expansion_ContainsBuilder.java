@@ -49,6 +49,10 @@ public interface ValueSet_Expansion_ContainsBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements ValueSet_Expansion_ContainsBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> code = Optional.empty();

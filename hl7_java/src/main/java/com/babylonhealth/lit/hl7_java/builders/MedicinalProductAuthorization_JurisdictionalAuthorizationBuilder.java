@@ -49,6 +49,10 @@ public interface MedicinalProductAuthorization_JurisdictionalAuthorizationBuilde
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> country = Optional.empty();

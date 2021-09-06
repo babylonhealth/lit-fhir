@@ -49,6 +49,10 @@ public interface Contract_Term_Offer_PartyBuilder {
     return new Impl(role, reference);
   }
 
+  public static Impl builder(CodeableConceptBuilder role, Collection<ReferenceBuilder> reference) {
+    return new Impl(role.build(), new LitSeq<>(reference).map(ReferenceBuilder::build));
+  }
+
   public class Impl implements Contract_Term_Offer_PartyBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept role;

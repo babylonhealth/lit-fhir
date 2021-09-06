@@ -50,6 +50,11 @@ public interface FlagBuilder extends DomainResourceBuilder {
     return new Impl(code, status, subject);
   }
 
+  public static Impl builder(
+      CodeableConceptBuilder code, FLAG_STATUS status, ReferenceBuilder subject) {
+    return new Impl(code.build(), status, subject.build());
+  }
+
   public class Impl implements FlagBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

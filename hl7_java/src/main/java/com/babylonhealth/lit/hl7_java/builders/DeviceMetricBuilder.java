@@ -52,6 +52,10 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
     return new Impl(_type, category);
   }
 
+  public static Impl builder(CodeableConceptBuilder _type, METRIC_CATEGORY category) {
+    return new Impl(_type.build(), category);
+  }
+
   public class Impl implements DeviceMetricBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();

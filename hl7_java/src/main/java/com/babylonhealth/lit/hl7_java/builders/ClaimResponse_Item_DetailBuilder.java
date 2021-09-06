@@ -50,6 +50,13 @@ public interface ClaimResponse_Item_DetailBuilder {
     return new Impl(adjudication, detailSequence);
   }
 
+  public static Impl builder(
+      Collection<ClaimResponse_Item_AdjudicationBuilder> adjudication, Integer detailSequence) {
+    return new Impl(
+        new LitSeq<>(adjudication).map(ClaimResponse_Item_AdjudicationBuilder::build),
+        detailSequence);
+  }
+
   public class Impl implements ClaimResponse_Item_DetailBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();

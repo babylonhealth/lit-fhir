@@ -52,6 +52,10 @@ public interface Valueset_activityStatusDateBuilder extends ExtensionBuilder {
     return new Impl(value);
   }
 
+  public static Impl builder(FHIRDate value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Valueset_activityStatusDateBuilder {
     private Optional<String> id = Optional.empty();
     private FHIRDate value;

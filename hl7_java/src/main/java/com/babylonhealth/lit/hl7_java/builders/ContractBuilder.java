@@ -50,6 +50,10 @@ public interface ContractBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public static Choice01025009075 topic(CodeableConcept c) {
     return new Choice01025009075(c);
   }

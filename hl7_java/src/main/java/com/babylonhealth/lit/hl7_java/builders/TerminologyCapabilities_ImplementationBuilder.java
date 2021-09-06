@@ -49,6 +49,10 @@ public interface TerminologyCapabilities_ImplementationBuilder {
     return new Impl(description);
   }
 
+  public static Impl builder(String description) {
+    return new Impl(description);
+  }
+
   public class Impl implements TerminologyCapabilities_ImplementationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

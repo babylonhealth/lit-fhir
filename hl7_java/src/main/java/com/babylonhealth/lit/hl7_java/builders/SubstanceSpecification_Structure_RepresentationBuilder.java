@@ -49,6 +49,10 @@ public interface SubstanceSpecification_Structure_RepresentationBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceSpecification_Structure_RepresentationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();

@@ -52,6 +52,10 @@ public interface SubstanceAmount_ReferenceRangeBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements SubstanceAmount_ReferenceRangeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Quantity> lowLimit = Optional.empty();

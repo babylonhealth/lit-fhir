@@ -50,6 +50,10 @@ public interface TestScript_Setup_Action_OperationBuilder {
     return new Impl(encodeRequestUrl);
   }
 
+  public static Impl builder(Boolean encodeRequestUrl) {
+    return new Impl(encodeRequestUrl);
+  }
+
   public class Impl implements TestScript_Setup_Action_OperationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();

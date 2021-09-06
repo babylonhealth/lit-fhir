@@ -46,6 +46,10 @@ public interface SampledDataBuilder extends ElementBuilder {
     return new Impl(origin, period, dimensions);
   }
 
+  public static Impl builder(QuantityBuilder origin, BigDecimal period, Integer dimensions) {
+    return new Impl(origin.build(), period, dimensions);
+  }
+
   public class Impl implements SampledDataBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> data = Optional.empty();

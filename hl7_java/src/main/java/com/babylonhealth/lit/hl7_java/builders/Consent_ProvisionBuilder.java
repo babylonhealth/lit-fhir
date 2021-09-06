@@ -49,6 +49,10 @@ public interface Consent_ProvisionBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements Consent_ProvisionBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CONSENT_PROVISION_TYPE> _type = Optional.empty();

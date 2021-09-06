@@ -49,6 +49,10 @@ public interface NutritionOrder_OralDiet_TextureBuilder {
     return new Impl();
   }
 
+  public static Impl builder() {
+    return new Impl();
+  }
+
   public class Impl implements NutritionOrder_OralDiet_TextureBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> modifier = Optional.empty();

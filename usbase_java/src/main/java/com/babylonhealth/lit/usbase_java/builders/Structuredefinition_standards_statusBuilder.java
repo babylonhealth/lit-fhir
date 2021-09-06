@@ -52,6 +52,10 @@ public interface Structuredefinition_standards_statusBuilder extends ExtensionBu
     return new Impl(value);
   }
 
+  public static Impl builder(STANDARDS_STATUS value) {
+    return new Impl(value);
+  }
+
   public class Impl implements Structuredefinition_standards_statusBuilder {
     private Optional<String> id = Optional.empty();
     private STANDARDS_STATUS value;

@@ -49,6 +49,10 @@ public interface InsurancePlan_Plan_SpecificCostBuilder {
     return new Impl(category);
   }
 
+  public static Impl builder(CodeableConceptBuilder category) {
+    return new Impl(category.build());
+  }
+
   public class Impl implements InsurancePlan_Plan_SpecificCostBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept category;
