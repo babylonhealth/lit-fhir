@@ -92,7 +92,7 @@ class Condition_related(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Reference", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/condition-related",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

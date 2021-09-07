@@ -95,7 +95,7 @@ class Valueset_effectiveDate(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("DateTime", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/valueset-effectiveDate",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

@@ -92,7 +92,7 @@ class Consent_location(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Reference", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/consent-location",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

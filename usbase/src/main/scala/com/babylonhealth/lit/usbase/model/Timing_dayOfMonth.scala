@@ -94,7 +94,7 @@ class Timing_dayOfMonth(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("PositiveInt", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/timing-dayOfMonth",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

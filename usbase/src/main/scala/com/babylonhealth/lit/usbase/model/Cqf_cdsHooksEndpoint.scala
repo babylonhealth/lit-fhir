@@ -92,7 +92,7 @@ class Cqf_cdsHooksEndpoint(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Uri", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/cqf-cdsHooksEndpoint",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

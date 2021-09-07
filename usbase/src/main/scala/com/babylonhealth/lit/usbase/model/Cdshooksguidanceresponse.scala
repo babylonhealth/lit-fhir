@@ -358,7 +358,7 @@ class Cdshooksguidanceresponse(
       language = language,
       contained = contained,
       extension = extension.refine,
-      module = new Choice("Uri", module)(UnionCanonicalOrCodeableConceptOrUriTag),
+      module = choice(module),
       encounter = encounter,
       performer = performer,
       identifier = LitSeq(identifier),

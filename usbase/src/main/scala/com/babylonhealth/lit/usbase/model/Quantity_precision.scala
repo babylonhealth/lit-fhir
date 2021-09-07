@@ -93,7 +93,7 @@ class Quantity_precision(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Integer", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/quantity-precision",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

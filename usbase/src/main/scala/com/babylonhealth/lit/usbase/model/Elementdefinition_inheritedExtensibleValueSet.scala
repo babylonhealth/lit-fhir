@@ -103,7 +103,7 @@ class Elementdefinition_inheritedExtensibleValueSet(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice(value.suffix, value.value)(UnionAllTag)),
+      value = Some(value.toSuperRef),
       url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-inheritedExtensibleValueSet",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

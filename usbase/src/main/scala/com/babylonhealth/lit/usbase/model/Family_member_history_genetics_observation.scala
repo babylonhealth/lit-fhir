@@ -96,7 +96,7 @@ class Family_member_history_genetics_observation(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Reference", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-observation",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

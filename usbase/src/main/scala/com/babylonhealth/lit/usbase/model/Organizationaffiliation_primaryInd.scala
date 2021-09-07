@@ -95,7 +95,7 @@ class Organizationaffiliation_primaryInd(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Boolean", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/organizationaffiliation-primaryInd",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

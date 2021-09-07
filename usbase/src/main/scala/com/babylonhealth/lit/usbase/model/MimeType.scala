@@ -92,7 +92,7 @@ class MimeType(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Code", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/mimeType",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

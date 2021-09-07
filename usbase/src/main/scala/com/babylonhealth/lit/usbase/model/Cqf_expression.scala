@@ -92,7 +92,7 @@ class Cqf_expression(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Expression", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/cqf-expression",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

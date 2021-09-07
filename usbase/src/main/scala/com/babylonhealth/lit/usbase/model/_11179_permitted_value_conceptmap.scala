@@ -94,7 +94,7 @@ class _11179_permitted_value_conceptmap(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Canonical", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

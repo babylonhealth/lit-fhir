@@ -428,16 +428,14 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       val parentWasRefButThisAint = f.parent.map(_.types.size).exists(_ > 1) && f.types.size == 1
       val parentWasMoreReffy      = f.parent.map(_.types.size) exists (_ != f.types.size)
       def thisIsAnEnum            = f.valueEnumeration.isDefined
-      def parentUnionTag          = ElementTreee.getUnionAlias("!!!", f.parent.get.types, f) + "Tag"
-      def choiceSuffixString      = typeLookdown(f.types.head)
 
       val parentCard = f.parent.map(_.cardinality).getOrElse(f.cardinality)
 
       val reffedValue = f.cardinality.applyFunction(f.scalaName) { x =>
         if (parentWasRefButThisAint) {
-          if (thisIsAnEnum) s"choiceFromEnum($x)" else s"""new Choice("$choiceSuffixString", $x)($parentUnionTag)"""
+          if (thisIsAnEnum) s"choiceFromEnum($x)" else s"choice($x)"
         } else if (parentWasMoreReffy) {
-          s"new Choice($x.suffix, $x.value)($parentUnionTag)"
+          s"$x.toSuperRef"
         } else {
           x
         }

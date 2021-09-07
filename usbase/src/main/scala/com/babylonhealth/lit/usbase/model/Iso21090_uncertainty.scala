@@ -94,7 +94,7 @@ class Iso21090_uncertainty(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Decimal", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/iso21090-uncertainty",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

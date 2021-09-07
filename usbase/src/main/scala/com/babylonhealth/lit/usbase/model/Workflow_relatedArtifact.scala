@@ -95,7 +95,7 @@ class Workflow_relatedArtifact(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("RelatedArtifact", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/workflow-relatedArtifact",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

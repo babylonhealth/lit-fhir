@@ -326,7 +326,7 @@ class Provenance_relevant_history(
       contained = contained,
       extension = extension,
       signature = signature,
-      occurred = Some(new Choice("DateTime", occurred)(UnionDateTimeOrPeriodTag)),
+      occurred = Some(choice(occurred)),
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       agent = agent,

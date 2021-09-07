@@ -92,7 +92,7 @@ class Location_distance(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Distance", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/location-distance",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

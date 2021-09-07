@@ -207,7 +207,7 @@ object Triglyceride extends CompanionFor[Triglyceride] {
       FHIRComponentField[Option[Reference]](subject, t.subject),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-      FHIRComponentField[Option[Quantity]](value, t.value.map(x => x.toSubRefNonUnion[Quantity])),
+      FHIRComponentField[Option[Quantity]](value, t.value.map(_.toSubRefNonUnion[Quantity])),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -239,7 +239,7 @@ object Triglyceride extends CompanionFor[Triglyceride] {
   def extractSubject(t: Triglyceride): Option[Reference]                      = t.subject
   def extractLanguage(t: Triglyceride): Option[LANGUAGES]                     = t.language
   def extractCategory(t: Triglyceride): LitSeq[CodeableConcept]               = t.category
-  def extractValue(t: Triglyceride): Option[Quantity]                         = t.value.map(x => x.toSubRefNonUnion[Quantity])
+  def extractValue(t: Triglyceride): Option[Quantity]                         = t.value.map(_.toSubRefNonUnion[Quantity])
   def extractBodySite(t: Triglyceride): Option[CodeableConcept]               = t.bodySite
   def extractSpecimen(t: Triglyceride): Option[Reference]                     = t.specimen
   def extractContained(t: Triglyceride): LitSeq[Resource]                     = t.contained
@@ -444,7 +444,7 @@ class Triglyceride(
       subject = subject,
       language = language,
       category = category,
-      value = value.map(x => new Choice("Quantity", x)(Union01239641171Tag)),
+      value = value.map(choice(_)),
       bodySite = bodySite,
       specimen = specimen,
       contained = contained,

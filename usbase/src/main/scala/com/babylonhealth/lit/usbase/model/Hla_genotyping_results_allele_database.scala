@@ -94,7 +94,7 @@ class Hla_genotyping_results_allele_database(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("CodeableConcept", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/hla-genotyping-results-allele-database",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

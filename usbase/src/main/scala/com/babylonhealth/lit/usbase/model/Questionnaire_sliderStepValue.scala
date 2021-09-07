@@ -93,7 +93,7 @@ class Questionnaire_sliderStepValue(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Integer", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

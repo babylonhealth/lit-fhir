@@ -201,7 +201,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-      FHIRComponentField[Option[Devicemetricobservation.ValueChoice]](value, t.value.map(x => x.toSubRef)),
+      FHIRComponentField[Option[Devicemetricobservation.ValueChoice]](value, t.value.map(_.toSubRef)),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -231,7 +231,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
   def extractSubject(t: Devicemetricobservation): Reference                                 = t.subject.get
   def extractLanguage(t: Devicemetricobservation): Option[LANGUAGES]                        = t.language
   def extractCategory(t: Devicemetricobservation): LitSeq[CodeableConcept]                  = t.category
-  def extractValue(t: Devicemetricobservation): Option[Devicemetricobservation.ValueChoice] = t.value.map(x => x.toSubRef)
+  def extractValue(t: Devicemetricobservation): Option[Devicemetricobservation.ValueChoice] = t.value.map(_.toSubRef)
   def extractBodySite(t: Devicemetricobservation): Option[CodeableConcept]                  = t.bodySite
   def extractContained(t: Devicemetricobservation): LitSeq[Resource]                        = t.contained
   def extractExtension(t: Devicemetricobservation): LitSeq[Extension]                       = t.extension
@@ -430,7 +430,7 @@ class Devicemetricobservation(
       subject = Some(subject),
       language = language,
       category = category,
-      value = value.map(x => new Choice(x.suffix, x.value)(Union01239641171Tag)),
+      value = value.map(_.toSuperRef),
       bodySite = bodySite,
       contained = contained,
       extension = extension,
@@ -438,7 +438,7 @@ class Devicemetricobservation(
       hasMember = hasMember,
       identifier = identifier,
       derivedFrom = derivedFrom,
-      effective = Some(new Choice("DateTime", effective)(Union_1926447453Tag)),
+      effective = Some(choice(effective)),
       implicitRules = implicitRules,
       interpretation = interpretation.to(LitSeq),
       modifierExtension = modifierExtension,

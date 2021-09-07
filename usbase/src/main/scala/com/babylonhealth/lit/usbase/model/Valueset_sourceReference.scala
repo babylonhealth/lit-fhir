@@ -94,7 +94,7 @@ class Valueset_sourceReference(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Uri", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/valueset-sourceReference",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

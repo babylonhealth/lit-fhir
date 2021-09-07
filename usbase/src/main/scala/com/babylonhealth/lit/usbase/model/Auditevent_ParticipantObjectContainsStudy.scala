@@ -95,7 +95,7 @@ class Auditevent_ParticipantObjectContainsStudy(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("Identifier", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/auditevent-ParticipantObjectContainsStudy",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

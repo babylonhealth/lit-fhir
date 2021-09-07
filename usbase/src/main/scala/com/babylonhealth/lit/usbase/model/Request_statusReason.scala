@@ -93,7 +93,7 @@ class Request_statusReason(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("CodeableConcept", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/request-statusReason",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

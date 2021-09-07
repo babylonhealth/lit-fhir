@@ -239,7 +239,7 @@ object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
       FHIRComponentField[LitSeq[Reference]](hasMember, t.hasMember),
       FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
       FHIRComponentField[LitSeq[Reference]](derivedFrom, t.derivedFrom),
-      FHIRComponentField[Option[Us_core_observation_lab.EffectiveChoice]](effective, t.effective.map(x => x.toSubRef)),
+      FHIRComponentField[Option[Us_core_observation_lab.EffectiveChoice]](effective, t.effective.map(_.toSubRef)),
       FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
       FHIRComponentField[LitSeq[CodeableConcept]](interpretation, t.interpretation),
       FHIRComponentField[Option[CodeableConcept]](dataAbsentReason, t.dataAbsentReason),
@@ -247,42 +247,41 @@ object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
       FHIRComponentField[LitSeq[Observation.Component]](component, t.component),
       FHIRComponentField[LitSeq[Observation.ReferenceRange]](referenceRange, t.referenceRange)
     ))
-  override def fields(t: Us_core_observation_lab): Seq[FHIRComponentField[_]]               = fieldsFromParent(t).get
-  def extractId(t: Us_core_observation_lab): Option[String]                                 = t.id
-  def extractMeta(t: Us_core_observation_lab): Option[Meta]                                 = t.meta
-  def extractText(t: Us_core_observation_lab): Option[Narrative]                            = t.text
-  def extractCode(t: Us_core_observation_lab): CodeableConcept                              = t.code
-  def extractNote(t: Us_core_observation_lab): LitSeq[Annotation]                           = t.note
-  def extractFocus(t: Us_core_observation_lab): LitSeq[Reference]                           = t.focus
-  def extractPartOf(t: Us_core_observation_lab): LitSeq[Reference]                          = t.partOf
-  def extractStatus(t: Us_core_observation_lab): OBSERVATION_STATUS                         = t.status
-  def extractIssued(t: Us_core_observation_lab): Option[ZonedDateTime]                      = t.issued
-  def extractMethod(t: Us_core_observation_lab): Option[CodeableConcept]                    = t.method
-  def extractDevice(t: Us_core_observation_lab): Option[Reference]                          = t.device
-  def extractBasedOn(t: Us_core_observation_lab): LitSeq[Reference]                         = t.basedOn
-  def extractSubject(t: Us_core_observation_lab): Reference                                 = t.subject.get
-  def extractLanguage(t: Us_core_observation_lab): Option[LANGUAGES]                        = t.language
-  def extractCategory(t: Us_core_observation_lab): NonEmptyLitSeq[CodeableConcept]          = t.category.asNonEmpty
-  def extractValue(t: Us_core_observation_lab): Option[Us_core_observation_lab.ValueChoice] = t.value
-  def extractBodySite(t: Us_core_observation_lab): Option[CodeableConcept]                  = t.bodySite
-  def extractSpecimen(t: Us_core_observation_lab): Option[Reference]                        = t.specimen
-  def extractContained(t: Us_core_observation_lab): LitSeq[Resource]                        = t.contained
-  def extractExtension(t: Us_core_observation_lab): LitSeq[Extension]                       = t.extension
-  def extractEncounter(t: Us_core_observation_lab): Option[Reference]                       = t.encounter
-  def extractPerformer(t: Us_core_observation_lab): LitSeq[Reference]                       = t.performer
-  def extractHasMember(t: Us_core_observation_lab): LitSeq[Reference]                       = t.hasMember
-  def extractIdentifier(t: Us_core_observation_lab): LitSeq[Identifier]                     = t.identifier
-  def extractDerivedFrom(t: Us_core_observation_lab): LitSeq[Reference]                     = t.derivedFrom
-  def extractEffective(t: Us_core_observation_lab): Option[Us_core_observation_lab.EffectiveChoice] =
-    t.effective.map(x => x.toSubRef)
-  def extractImplicitRules(t: Us_core_observation_lab): Option[UriStr]                      = t.implicitRules
-  def extractInterpretation(t: Us_core_observation_lab): LitSeq[CodeableConcept]            = t.interpretation
-  def extractDataAbsentReason(t: Us_core_observation_lab): Option[CodeableConcept]          = t.dataAbsentReason
-  def extractModifierExtension(t: Us_core_observation_lab): LitSeq[Extension]               = t.modifierExtension
-  def extractComponent(t: Us_core_observation_lab): LitSeq[Observation.Component]           = t.component
-  def extractReferenceRange(t: Us_core_observation_lab): LitSeq[Observation.ReferenceRange] = t.referenceRange
-  override val thisName: String                                                             = "Us_core_observation_lab"
-  override val searchParams: Map[String, Us_core_observation_lab => Seq[Any]]               = Observation.searchParams
+  override def fields(t: Us_core_observation_lab): Seq[FHIRComponentField[_]]                       = fieldsFromParent(t).get
+  def extractId(t: Us_core_observation_lab): Option[String]                                         = t.id
+  def extractMeta(t: Us_core_observation_lab): Option[Meta]                                         = t.meta
+  def extractText(t: Us_core_observation_lab): Option[Narrative]                                    = t.text
+  def extractCode(t: Us_core_observation_lab): CodeableConcept                                      = t.code
+  def extractNote(t: Us_core_observation_lab): LitSeq[Annotation]                                   = t.note
+  def extractFocus(t: Us_core_observation_lab): LitSeq[Reference]                                   = t.focus
+  def extractPartOf(t: Us_core_observation_lab): LitSeq[Reference]                                  = t.partOf
+  def extractStatus(t: Us_core_observation_lab): OBSERVATION_STATUS                                 = t.status
+  def extractIssued(t: Us_core_observation_lab): Option[ZonedDateTime]                              = t.issued
+  def extractMethod(t: Us_core_observation_lab): Option[CodeableConcept]                            = t.method
+  def extractDevice(t: Us_core_observation_lab): Option[Reference]                                  = t.device
+  def extractBasedOn(t: Us_core_observation_lab): LitSeq[Reference]                                 = t.basedOn
+  def extractSubject(t: Us_core_observation_lab): Reference                                         = t.subject.get
+  def extractLanguage(t: Us_core_observation_lab): Option[LANGUAGES]                                = t.language
+  def extractCategory(t: Us_core_observation_lab): NonEmptyLitSeq[CodeableConcept]                  = t.category.asNonEmpty
+  def extractValue(t: Us_core_observation_lab): Option[Us_core_observation_lab.ValueChoice]         = t.value
+  def extractBodySite(t: Us_core_observation_lab): Option[CodeableConcept]                          = t.bodySite
+  def extractSpecimen(t: Us_core_observation_lab): Option[Reference]                                = t.specimen
+  def extractContained(t: Us_core_observation_lab): LitSeq[Resource]                                = t.contained
+  def extractExtension(t: Us_core_observation_lab): LitSeq[Extension]                               = t.extension
+  def extractEncounter(t: Us_core_observation_lab): Option[Reference]                               = t.encounter
+  def extractPerformer(t: Us_core_observation_lab): LitSeq[Reference]                               = t.performer
+  def extractHasMember(t: Us_core_observation_lab): LitSeq[Reference]                               = t.hasMember
+  def extractIdentifier(t: Us_core_observation_lab): LitSeq[Identifier]                             = t.identifier
+  def extractDerivedFrom(t: Us_core_observation_lab): LitSeq[Reference]                             = t.derivedFrom
+  def extractEffective(t: Us_core_observation_lab): Option[Us_core_observation_lab.EffectiveChoice] = t.effective.map(_.toSubRef)
+  def extractImplicitRules(t: Us_core_observation_lab): Option[UriStr]                              = t.implicitRules
+  def extractInterpretation(t: Us_core_observation_lab): LitSeq[CodeableConcept]                    = t.interpretation
+  def extractDataAbsentReason(t: Us_core_observation_lab): Option[CodeableConcept]                  = t.dataAbsentReason
+  def extractModifierExtension(t: Us_core_observation_lab): LitSeq[Extension]                       = t.modifierExtension
+  def extractComponent(t: Us_core_observation_lab): LitSeq[Observation.Component]                   = t.component
+  def extractReferenceRange(t: Us_core_observation_lab): LitSeq[Observation.ReferenceRange]         = t.referenceRange
+  override val thisName: String                                                                     = "Us_core_observation_lab"
+  override val searchParams: Map[String, Us_core_observation_lab => Seq[Any]]                       = Observation.searchParams
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_observation_lab] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -495,7 +494,7 @@ class Us_core_observation_lab(
       hasMember = hasMember,
       identifier = identifier,
       derivedFrom = derivedFrom,
-      effective = effective.map(x => new Choice(x.suffix, x.value)(Union_1926447453Tag)),
+      effective = effective.map(_.toSuperRef),
       implicitRules = implicitRules,
       interpretation = interpretation,
       dataAbsentReason = dataAbsentReason,

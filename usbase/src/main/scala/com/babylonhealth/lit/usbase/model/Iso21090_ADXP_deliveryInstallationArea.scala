@@ -96,7 +96,7 @@ class Iso21090_ADXP_deliveryInstallationArea(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(new Choice("String", value)(UnionAllTag)),
+      value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryInstallationArea",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
