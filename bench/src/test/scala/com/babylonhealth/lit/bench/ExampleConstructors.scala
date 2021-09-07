@@ -56,7 +56,7 @@ trait ExampleConstructors {
       LitSeq(Coding(system = Some("http://terminology.hl7.org/CodeSystem/observation-category"), code = Some("vital-signs")))))
   def mkEffectiveQuantityLit(value: Double): Quantity =
     Quantity(system = Some("http://unitsofmeasure.org"), code = Some("kg/m2"), unit = Some("bmi"), value = Some(value))
-  def mkEffectiveChoiceLit(ts: ZonedDateTime): Bmi.EffectiveChoice = choose(FHIRDateTime(dateTime = ts))
+  def mkEffectiveChoiceLit(ts: ZonedDateTime): Bmi.EffectiveChoice = choice(FHIRDateTime(dateTime = ts))
   def mkBmiLit(ts: ZonedDateTime, value: Double, patientId: String): Bmi =
     Bmi(
       identifier = LitSeq(Identifier(system = Some("http://system.foo/bar"), value = Some("123"))),
@@ -66,7 +66,7 @@ trait ExampleConstructors {
         CodeableConcept(coding = LitSeq(
           Coding(system = Some("http://terminology.hl7.org/CodeSystem/observation-category"), code = Some("vital-signs"))))),
       value = Quantity(system = Some("http://unitsofmeasure.org"), code = Some("kg/m2"), unit = Some("bmi"), value = Some(value)),
-      effective = choose(FHIRDateTime(dateTime = ts)),
+      effective = choice(FHIRDateTime(dateTime = ts)),
       code = CodeableConcept(coding = LitSeq(Coding(system = Some("http://loinc.org"), code = Some("39156-5"))))
     )
 
