@@ -64,9 +64,19 @@ object LitSeq extends IterableFactory[LitSeq] {
 //  implicit def _fromSeq[T](seq: Seq[T]): LitSeq[T]          = new LitSeq[T](seq)
 
   // specialised
-  @varargs def nonempty[A](head: A, rest: A*): NonEmptyLitSeq[A] = new NonEmptyLitSeq[A](head +: rest)
-  def apply[A](): LitSeq[A]                                      = empty
-  @varargs def apply[A](head: A, rest: A*): NonEmptyLitSeq[A]    = nonempty(head, rest: _*)
+  @varargs def nonempty[A](head: A, rest: A*): NonEmptyLitSeq[A] = {
+    val len  = 1 + rest.length
+    val arr_ = new Array[Object](len)
+    arr_(0) = head.asInstanceOf[Object]
+    val it = rest.iterator
+    var i  = 1
+    while (it.hasNext) {
+      arr_(i) = it.next().asInstanceOf[Object]; i += 1
+    }
+    new NonEmptyLitSeq[A](arr_, wasChecked = true)
+  }
+  def apply[A](): LitSeq[A]                                   = empty
+  @varargs def apply[A](head: A, rest: A*): NonEmptyLitSeq[A] = nonempty(head, rest: _*)
 }
 
 class LitSeqIterator[+T](private val xs: Array[_], initialIndex: Int = 0)
@@ -103,7 +113,7 @@ class LitSeqIterator[+T](private val xs: Array[_], initialIndex: Int = 0)
   def set(x$1: T @uncheckedVariance): Unit = !!!
 }
 
-class LitSeq[+T] protected (protected val _contents: Array[Object])
+class LitSeq[+T] private[core] (protected val _contents: Array[Object])
     extends scala.collection.IterableOps[T, LitSeq, LitSeq[T]]
     with PartialFunction[Int, T]
     with JList[T @uncheckedVariance] {
@@ -253,7 +263,7 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
   def refine: LitSeq[T]             = if (_contents.isEmpty) LitSeq.empty else new NonEmptyLitSeq[T](toSeq)
 }
 
-class NonEmptyLitSeq[+T] protected (override protected val _contents: Array[Object], wasChecked: Boolean)
+class NonEmptyLitSeq[+T] private[core] (override protected val _contents: Array[Object], wasChecked: Boolean)
     extends LitSeq[T](_contents) {
   if (!wasChecked && _contents.isEmpty) throw new IllegalStateException(s"Non-empty seq can't be empty")
   def this(initial: JCollection[T]) = {
