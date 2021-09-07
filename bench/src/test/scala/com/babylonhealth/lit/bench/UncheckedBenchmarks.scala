@@ -23,7 +23,7 @@ object RegressionBenchmarks0 extends RegressionBenchmark with ExampleConstructor
   val loadUsCore        = com.babylonhealth.lit.uscore.Module
   val ts: ZonedDateTime = ZonedDateTime.now(ZoneId.of("+01:00")).truncatedTo(ChronoUnit.MILLIS)
 
-  performance of "object construction" in {
+  performance of "Bmi object construction" in {
     measure method "lit-scala" in {
       using(singleTest) in (_ => mkBmiLit(ts, 20.5, "dummy-patient-123"))
     }
@@ -48,7 +48,7 @@ object RegressionBenchmarks_1 extends RegressionBenchmark with ExampleConstructo
   val bmiFHIRProto      = mkProtoBMI(ts, 20.5, "dummy-patient-123")
   val r4Context         = FhirContext.forR4
 
-  performance of "json round-trip" in {
+  performance of "json round-trip Bmi" in {
     measure method "lit-scala" in {
       using(singleTest) in (_ => io.circe.parser.decode[Bmi](bmiLit.asJson.noSpaces))
     }
@@ -77,7 +77,7 @@ object RegressionBenchmarks_2 extends RegressionBenchmark with ExampleConstructo
   val loadUsCore        = com.babylonhealth.lit.uscore.Module
   val ts: ZonedDateTime = ZonedDateTime.now(ZoneId.of("+01:00")).truncatedTo(ChronoUnit.MILLIS)
 
-  performance of "object construction" in {
+  performance of "Bmi.effective[x] construction" in {
     measure method "lit-scala" in {
       using(singleTest) in (_ => mkEffectiveChoiceLit(ts))
     }
@@ -102,7 +102,7 @@ object RegressionBenchmarks_3 extends RegressionBenchmark with ExampleConstructo
   val loadUsCore = com.babylonhealth.lit.uscore.Module
   val v          = 12.34
 
-  performance of "object construction" in {
+  performance of "Quantity construction (naive)" in {
     measure method "lit-scala" in {
       using(singleTest) in (_ => mkEffectiveQuantityLit(v))
     }
@@ -127,7 +127,7 @@ object RegressionBenchmarks_4 extends RegressionBenchmark with ExampleConstructo
   val loadUsCore = com.babylonhealth.lit.uscore.Module
   val v          = 12.34
 
-  performance of "object construction" in {
+  performance of "Bmi.categories construction (uses LitSeq)" in {
     measure method "lit-scala" in {
       using(singleTest) in (_ => mkCategoriesLit)
     }
