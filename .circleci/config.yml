@@ -164,6 +164,11 @@ jobs:
   benchmark12: *benchmark_template
   benchmark13: *benchmark_template
   benchmark14: *benchmark_template
+  benchmark0: *benchmark_template
+  benchmark_1: *benchmark_template
+  benchmark_2: *benchmark_template
+  benchmark_3: *benchmark_template
+  benchmark_4: *benchmark_template
   deploy:
     docker:
       - image: circleci/openjdk:11-jdk
@@ -235,6 +240,11 @@ workflows:
       - benchmark12: *requires-build
       - benchmark13: *requires-build
       - benchmark14: *requires-build
+      - benchmark0: *requires-build
+      - benchmark_1: *requires-build
+      - benchmark_2: *requires-build
+      - benchmark_3: *requires-build
+      - benchmark_4: *requires-build
       - deploy:
           context: babylon
           filters:

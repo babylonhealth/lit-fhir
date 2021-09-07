@@ -54,6 +54,7 @@ publish:
 	$(SBT) +fhirpath/publish
 	$(SBT) gproto/publish
 	$(SBT) +protoshim/publish
+	$(SBT) sbt +'bench/testOnly *ExampleTest'
 
 publish-generator:
 	$(SBT_G) +common/publish || echo "cannot publish commmon. Continuing anyway"
