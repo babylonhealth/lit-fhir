@@ -2,6 +2,8 @@ package com.babylonhealth.lit
 
 import scala.annotation.tailrec
 
+import com.babylonhealth.lit.common.SuffixUtils
+
 trait Commonish {
 
   def isPrimitiveSuffix(s: String): Boolean = s.toLowerCase() match {
@@ -47,20 +49,7 @@ trait Commonish {
     case "FHIRList"               => "List"
     case x                        => x
   }
-  def typeLookdown(s: String) = s match {
-    case "UrlStr"        => "Url"
-    case "UriStr"        => "Uri"
-    case "UUID"          => "Uuid"
-    case "OID"           => "Oid"
-    case "XHTML"         => "Xhtml"
-    case "BigDecimal"    => "Decimal"
-    case "Int"           => "Integer"
-    case "ZonedDateTime" => "Instant"
-    case "FHIRDateTime"  => "DateTime"
-    case "FHIRDate"      => "Date"
-    case "LocalTime"     => "Time"
-    case x               => x
-  }
+  def typeLookdown(s: String): String = SuffixUtils.typeLookdown(s)
 
   def sortIsh[T1](coll: Seq[(T1, String, Option[String])], indexer: T1 => Int): Seq[(T1, String, Option[String])] = {
     assert(coll.exists(_._3.isEmpty), "no root elements ")

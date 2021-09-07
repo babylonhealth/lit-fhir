@@ -1,6 +1,7 @@
 package com.babylonhealth.lit.core
 
 import scala.annotation.implicitNotFound
+import scala.language.experimental.macros
 import scala.reflect.runtime.universe.TypeTag
 
 import izumi.reflect.macrortti.{ LTT, LTag }
@@ -8,7 +9,8 @@ import izumi.reflect.macrortti.{ LTT, LTag }
 import com.babylonhealth.lit.core.\/.\::/
 import com.babylonhealth.lit.core.model.typeSuffixMap
 
-abstract class UnionWitness[U, T] private[core] (implicit ut: LTag[U], val tt: LTag[T]) {
+@implicitNotFound("No Code or ${S} option for union ${U}")
+abstract class UnionWitness[U, T] private[core] (implicit val ut: LTag[U], val tt: LTag[T]) {
   def buildTo(t: T): U
   val suffix: String
 }
@@ -51,14 +53,16 @@ object ChoiceImplicits {
   def buildTypeSafeUnion[U <: _ \/ _: LTag, S: LTag](t: S)(implicit witness: UnionWitness[U, S]): U =
     witness.buildTo(t)
 
-  def choice[U <: _ \/ _: LTag, S: LTag](t: S)(implicit
-      @implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}") witness: UnionWitness[U, S]): Choice[U] =
-    Choice.fromValAndSuffix[U, S](t, witness.suffix)
+  // Because it has a decision to abort in it, it's not too surprising that intelliJ doesn't complain on an invalid choice...
+  def choice[U <: _ \/ _: LTag, S](t: S): Choice[U] = macro FastChoiceMacro.choiceMacro[U, S]
 
-  // Semantically redundant, but works around a macro expansion issue in intelliJ
-  def choose[U <: _ \/ _: TypeTag, S: TypeTag](t: S)(implicit
-      @implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}") witness: UnionWitness[U, S]): Choice[U] =
-    Choice.fromValAndSuffix[U, S](t, witness.suffix)(LTag(LTT[U]))
+  // You might expect this one to be more IDE-friendly than the above, but for some reason it's not - even valid options are considered invalid
+  def choiceLTag[U <: _ \/ _: LTag, S: LTag](t: S)(implicit uw: UnionWitness[U, S]): Choice[U] =
+    macro FastChoiceMacro.choiceLTagMacro[U, S]
+
+  // Works around issues with the above in intelliJ
+  def choose[U <: _ \/ _, S](t: S)(implicit uw: UnionWitness[U, S], ult: LTag[U], ut: TypeTag[U], lt: TypeTag[U]): Choice[U] =
+    macro FastChoiceMacro.choiceTypeTagMacro[U, S]
 
   // Use case for this constructor is specifically extensions which limit their value range to a single enum
   def choiceFromEnum[U <: _ \/ _: LTag, S <: EnumBase: LTag](t: S)(implicit
