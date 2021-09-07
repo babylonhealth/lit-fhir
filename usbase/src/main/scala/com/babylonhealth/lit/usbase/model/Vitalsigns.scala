@@ -479,7 +479,7 @@ class Vitalsigns(
       hasMember = hasMember,
       identifier = identifier,
       derivedFrom = derivedFrom,
-      effective = Some(effective.toSuperRef),
+      effective = Some(new Choice(effective.suffix, effective.value)(Union_1926447453Tag)),
       implicitRules = implicitRules,
       interpretation = interpretation,
       dataAbsentReason = dataAbsentReason,

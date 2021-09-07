@@ -520,7 +520,7 @@ class Us_core_procedure(
       identifier = identifier,
       reasonCode = reasonCode,
       statusReason = statusReason,
-      performed = Some(performed.toSuperRef),
+      performed = Some(new Choice(performed.suffix, performed.value)(Union01946981731Tag)),
       complication = complication,
       implicitRules = implicitRules,
       usedReference = usedReference,

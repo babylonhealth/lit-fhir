@@ -94,7 +94,7 @@ class Observation_delta(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("CodeableConcept", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/observation-delta",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

@@ -477,7 +477,7 @@ class Us_core_smokingstatus(
       subject = Some(subject),
       language = language,
       category = category,
-      value = Some(choice(value)),
+      value = Some(new Choice("CodeableConcept", value)(Union01239641171Tag)),
       bodySite = bodySite,
       specimen = specimen,
       contained = contained,

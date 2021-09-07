@@ -473,7 +473,7 @@ class Pediatric_weight_for_height(
       subject = subject,
       language = language,
       category = category,
-      value = Some(choice(value)),
+      value = Some(new Choice("Quantity", value)(Union01239641171Tag)),
       bodySite = bodySite,
       specimen = specimen,
       contained = contained,

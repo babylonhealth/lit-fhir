@@ -22,8 +22,7 @@ class CoptMethods(val c: blackbox.Context) {
       case other: NamedArg if !ifExistsDef =>
         toPlainName(other.lhs) == x.name.decodedName.toString && toPlainName(other.lhs) == toPlainName(other.rhs)
       case other: NamedArg if ifExistsDef =>
-        toPlainName(other.lhs) == x.name.decodedName.toString && !Set("choice", "toSuperRef").exists(
-          toPlainName(other.rhs).contains)
+        toPlainName(other.lhs) == x.name.decodedName.toString && !toPlainName(other.rhs).contains("Choice")
       case _ => false
     }
 

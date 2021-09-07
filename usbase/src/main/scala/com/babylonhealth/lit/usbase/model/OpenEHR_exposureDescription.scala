@@ -94,7 +94,7 @@ class OpenEHR_exposureDescription(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("String", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/openEHR-exposureDescription",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

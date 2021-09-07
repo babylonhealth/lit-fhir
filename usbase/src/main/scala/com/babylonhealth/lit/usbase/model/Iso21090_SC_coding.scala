@@ -92,7 +92,7 @@ class Iso21090_SC_coding(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("Coding", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/iso21090-SC-coding",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

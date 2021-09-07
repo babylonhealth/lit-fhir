@@ -94,7 +94,7 @@ class _11179_objectClass(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("Coding", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/11179-objectClass",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

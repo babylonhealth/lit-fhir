@@ -223,7 +223,7 @@ object Us_core_pulse_oximetry extends CompanionFor[Us_core_pulse_oximetry] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-      FHIRComponentField[Option[Quantity]](value, t.value.map(_.toSubRefNonUnion[Quantity])),
+      FHIRComponentField[Option[Quantity]](value, t.value.map(x => x.toSubRefNonUnion[Quantity])),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -257,7 +257,7 @@ object Us_core_pulse_oximetry extends CompanionFor[Us_core_pulse_oximetry] {
   def extractSubject(t: Us_core_pulse_oximetry): Reference                        = t.subject.get
   def extractLanguage(t: Us_core_pulse_oximetry): Option[LANGUAGES]               = t.language
   def extractCategory(t: Us_core_pulse_oximetry): NonEmptyLitSeq[CodeableConcept] = t.category.asNonEmpty
-  def extractValue(t: Us_core_pulse_oximetry): Option[Quantity]                   = t.value.map(_.toSubRefNonUnion[Quantity])
+  def extractValue(t: Us_core_pulse_oximetry): Option[Quantity]                   = t.value.map(x => x.toSubRefNonUnion[Quantity])
   def extractBodySite(t: Us_core_pulse_oximetry): Option[CodeableConcept]         = t.bodySite
   def extractSpecimen(t: Us_core_pulse_oximetry): Option[Reference]               = t.specimen
   def extractContained(t: Us_core_pulse_oximetry): LitSeq[Resource]               = t.contained

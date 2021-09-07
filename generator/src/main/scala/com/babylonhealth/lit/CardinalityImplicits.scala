@@ -75,9 +75,9 @@ object CardinalityImplicits {
     def applyFunction(value: String)(function: String => String): String = card match {
       case One => s"${function(value)}"
       case _ =>
-        val applied = function("_")
+        val applied = function("x")
         // Avoid pointless maps of the identity function
-        if (applied == "_") value else s"$value.map($applied)"
+        if (applied == "x") value else s"$value.map(x => $applied)"
     }
 
     def cursorDecodeRef: String = card match {

@@ -92,7 +92,7 @@ class Coding_sctdescid(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("Id", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/coding-sctdescid",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

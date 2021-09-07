@@ -207,7 +207,7 @@ object Cholesterol extends CompanionFor[Cholesterol] {
       FHIRComponentField[Option[Reference]](subject, t.subject),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-      FHIRComponentField[Option[Quantity]](value, t.value.map(_.toSubRefNonUnion[Quantity])),
+      FHIRComponentField[Option[Quantity]](value, t.value.map(x => x.toSubRefNonUnion[Quantity])),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -239,7 +239,7 @@ object Cholesterol extends CompanionFor[Cholesterol] {
   def extractSubject(t: Cholesterol): Option[Reference]                     = t.subject
   def extractLanguage(t: Cholesterol): Option[LANGUAGES]                    = t.language
   def extractCategory(t: Cholesterol): LitSeq[CodeableConcept]              = t.category
-  def extractValue(t: Cholesterol): Option[Quantity]                        = t.value.map(_.toSubRefNonUnion[Quantity])
+  def extractValue(t: Cholesterol): Option[Quantity]                        = t.value.map(x => x.toSubRefNonUnion[Quantity])
   def extractBodySite(t: Cholesterol): Option[CodeableConcept]              = t.bodySite
   def extractSpecimen(t: Cholesterol): Option[Reference]                    = t.specimen
   def extractContained(t: Cholesterol): LitSeq[Resource]                    = t.contained
@@ -446,7 +446,7 @@ class Cholesterol(
       subject = subject,
       language = language,
       category = category,
-      value = value.map(choice(_)),
+      value = value.map(x => new Choice("Quantity", x)(Union01239641171Tag)),
       bodySite = bodySite,
       specimen = specimen,
       contained = contained,

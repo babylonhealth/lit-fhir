@@ -93,7 +93,7 @@ class MinValue(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(value.toSuperRef),
+      value = Some(new Choice(value.suffix, value.value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/minValue",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

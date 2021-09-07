@@ -53,17 +53,17 @@ object Us_core_direct extends CompanionFor[Us_core_direct] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Option[Boolean]](value, t.value.map(_.toSubRefNonUnion[Boolean])),
+      FHIRComponentField[Option[Boolean]](value, t.value.map(x => x.toSubRefNonUnion[Boolean])),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension)
     ))
   override def fields(t: Us_core_direct): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Us_core_direct): Option[String]                   = t.id
-  def extractValue(t: Us_core_direct): Option[Boolean]               = t.value.map(_.toSubRefNonUnion[Boolean])
+  def extractValue(t: Us_core_direct): Option[Boolean]               = t.value.map(x => x.toSubRefNonUnion[Boolean])
   def extractExtension(t: Us_core_direct): LitSeq[Extension]         = t.extension
   override val thisName: String                                      = "Us_core_direct"
   override val searchParams: Map[String, Us_core_direct => Seq[Any]] = Extension.searchParams
   def unapply(o: Us_core_direct): Option[(Option[String], Option[Boolean], LitSeq[Extension])] = Some(
-    (o.id, o.value.map(_.toSubRefNonUnion[Boolean]), o.extension))
+    (o.id, o.value.map(x => x.toSubRefNonUnion[Boolean]), o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_direct] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -106,7 +106,7 @@ class Us_core_direct(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = value.map(choice(_)),
+      value = value.map(x => new Choice("Boolean", x)(UnionAllTag)),
       extension = extension,
       url = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
       primitiveAttributes = primitiveAttributes) {

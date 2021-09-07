@@ -94,7 +94,7 @@ class Resource_approvalDate(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("Date", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/resource-approvalDate",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

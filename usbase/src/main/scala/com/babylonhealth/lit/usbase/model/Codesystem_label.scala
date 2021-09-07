@@ -92,7 +92,7 @@ class Codesystem_label(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("String", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/codesystem-label",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

@@ -92,7 +92,7 @@ class Iso21090_TEL_address(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("Url", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/iso21090-TEL-address",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

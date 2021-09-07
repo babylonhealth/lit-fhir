@@ -92,7 +92,7 @@ class OpenEHR_test(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("Reference", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/openEHR-test",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

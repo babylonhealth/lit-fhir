@@ -92,7 +92,7 @@ class Http_response_header(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("String", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/http-response-header",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

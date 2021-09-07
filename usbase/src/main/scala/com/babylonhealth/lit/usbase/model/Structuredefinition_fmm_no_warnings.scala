@@ -94,7 +94,7 @@ class Structuredefinition_fmm_no_warnings(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(new Choice("Integer", value)(UnionAllTag)),
       url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm-no-warnings",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
