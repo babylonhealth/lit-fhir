@@ -1,26 +1,66 @@
 package com.babylonhealth.lit.bench
 
 import java.time.temporal.ChronoUnit
-import java.time.{ZoneId, ZonedDateTime}
-import java.util.{Date, List => JList}
+import java.time.{ ZoneId, ZonedDateTime }
+import java.util.{ Date, List => JList }
 
 import ca.uhn.fhir.context.FhirContext
 import ca.uhn.fhir.model.api.TemporalPrecisionEnum
 import com.google.fhir.r4.core.DateTime.Precision
-import com.google.fhir.r4.core.Observation.{EffectiveX, ValueX}
-import com.google.fhir.r4.core.{Canonical => GPBCanonical, Code => GPBCode, CodeableConcept => GPBCodeableConcept, Coding => GPBCoding, DateTime => GPBDateTime, Decimal => GPBDecimal, Identifier => GPBIdentifier, Meta => GPBMeta, Observation => GPBObservation, ObservationStatusCode => GPBObservationStatusCode, Quantity => GPBQuantity, Reference => GPBReference, ReferenceId => GPBReferenceId, String => GPBString, Uri => GPBUri}
-import com.google.fhir.stu3.proto.{Bmi => STU3Bmi, Code => STU3Code, CodeableConcept => STU3CodeableConcept, Coding => STU3Coding, DateTime => STU3DateTime, Decimal => STU3Decimal, Identifier => STU3Identifier, Meta => STU3Meta, ObservationStatusCode => STU3ObservationStatusCode, Quantity => STU3Quantity, Reference => STU3Reference, ReferenceId => STU3ReferenceId, String => STU3String, Uri => STU3Uri}
+import com.google.fhir.r4.core.Observation.{ EffectiveX, ValueX }
+import com.google.fhir.r4.core.{
+  Canonical => GPBCanonical,
+  Code => GPBCode,
+  CodeableConcept => GPBCodeableConcept,
+  Coding => GPBCoding,
+  DateTime => GPBDateTime,
+  Decimal => GPBDecimal,
+  Identifier => GPBIdentifier,
+  Meta => GPBMeta,
+  Observation => GPBObservation,
+  ObservationStatusCode => GPBObservationStatusCode,
+  Quantity => GPBQuantity,
+  Reference => GPBReference,
+  ReferenceId => GPBReferenceId,
+  String => GPBString,
+  Uri => GPBUri
+}
+import com.google.fhir.stu3.proto.{
+  Bmi => STU3Bmi,
+  Code => STU3Code,
+  CodeableConcept => STU3CodeableConcept,
+  Coding => STU3Coding,
+  DateTime => STU3DateTime,
+  Decimal => STU3Decimal,
+  Identifier => STU3Identifier,
+  Meta => STU3Meta,
+  ObservationStatusCode => STU3ObservationStatusCode,
+  Quantity => STU3Quantity,
+  Reference => STU3Reference,
+  ReferenceId => STU3ReferenceId,
+  String => STU3String,
+  Uri => STU3Uri
+}
 import io.circe.syntax._
 import org.hl7.fhir.r4.model.Observation.ObservationStatus
-import org.hl7.fhir.r4.model.{CodeableConcept => HAPICodeableConcept, Coding => HAPICoding, DateTimeType => HAPIDateTimeType, Identifier => HAPIIdentifier, Meta => HAPIMeta, Observation => HAPIObservation, Quantity => HAPIQuantity, Reference => HAPIReference}
+import org.hl7.fhir.r4.model.{
+  CodeableConcept => HAPICodeableConcept,
+  Coding => HAPICoding,
+  DateTimeType => HAPIDateTimeType,
+  Identifier => HAPIIdentifier,
+  Meta => HAPIMeta,
+  Observation => HAPIObservation,
+  Quantity => HAPIQuantity,
+  Reference => HAPIReference
+}
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 import org.skyscreamer.jsonassert.JSONAssert
 
 import com.babylonhealth.lit.core.ChoiceImplicits._
-import com.babylonhealth.lit.core.model.{CodeableConcept, Coding, Identifier, Quantity, Reference}
+import com.babylonhealth.lit.core.model.{ CodeableConcept, Coding, Identifier, Quantity, Reference }
 import com.babylonhealth.lit.core.serdes.objectEncoder
-import com.babylonhealth.lit.core.{FHIRDateTime, LitSeq, NonEmptyLitSeq}
+import com.babylonhealth.lit.core.{ FHIRDateTime, LitSeq, NonEmptyLitSeq, toCode, toUri }
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS
 import com.babylonhealth.lit.protoshim.Translator
 import com.babylonhealth.lit.usbase.model.Bmi
