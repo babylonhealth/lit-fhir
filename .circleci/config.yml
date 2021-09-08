@@ -136,7 +136,8 @@ jobs:
       - restore_build_cache
       - restore_cache:
           keys:
-            - bench-v6-{{ .Environment.CIRCLE_JOB }}-{{ .Revision }}
+            - bench-v6-{{ .Environment.CIRCLE_JOB }}-master
+            - bench-v6-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}
             - bench-v6-{{ .Environment.CIRCLE_JOB }}-
           paths:
             - "~/project/bench/target/benchmarks"
@@ -144,7 +145,7 @@ jobs:
           name: Run performance regression tests {{ .Environment.CIRCLE_JOB }}
           command: git apply bench.patch && make benchmark
       - save_cache:
-          key: bench-v6-{{ .Environment.CIRCLE_JOB }}-{{ .Revision }}
+          key: bench-v6-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}
           paths:
             - "~/project/bench/target/benchmarks"
       - store_artifacts:
