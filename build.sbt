@@ -195,7 +195,8 @@ lazy val bench = project
       "ca.uhn.hapi.fhir"   % "hapi-fhir-structures-r4" % "4.0.3"             % Test,
       "org.jline"          % "jline"                   % "3.14.1"            % Test,
       "com.storm-enroute" %% "scalameter"              % V.scalaMeterVersion % Test,
-      "org.scalatest"     %% "scalatest"               % V.scalaTest         % Test
+      "org.scalatest"     %% "scalatest"               % V.scalaTest         % Test,
+      "org.skyscreamer"    % "jsonassert"              % V.jsonassert        % Test
     ),
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
     logBuffered               := false,
@@ -274,8 +275,9 @@ lazy val protoshim = project
   .settings(publishSettings: _*)
   .settings(
     libraryDependencies ++= Seq(
-      "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.scalatest" %% "scalatest"     % V.scalaTest % Test
+      "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
+      "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
+      "org.skyscreamer" % "jsonassert"    % V.jsonassert % Test
     )
   )
   .dependsOn(core, hl7, uscore, gproto)
