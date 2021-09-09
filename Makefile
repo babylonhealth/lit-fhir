@@ -46,6 +46,7 @@ test:
 	$(SBT) $(foreach i,$(US_MODULES),$iJava/test)
 	$(SBT) +fhirpath/test
 	$(SBT) +protoshim/test
+	$(SBT) +'bench/testOnly *ExampleTest'
 
 publish:
 	$(SBT) +common/publish +macros/publish
@@ -54,7 +55,6 @@ publish:
 	$(SBT) +fhirpath/publish
 	$(SBT) gproto/publish
 	$(SBT) +protoshim/publish
-	$(SBT) sbt +'bench/testOnly *ExampleTest'
 
 publish-generator:
 	$(SBT_G) +common/publish || echo "cannot publish commmon. Continuing anyway"
