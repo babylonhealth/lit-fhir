@@ -7,7 +7,7 @@ val artifactory     = s"https://$artifactoryHost/"
 val thisVersion = sys.props.get("version") getOrElse "local"
 
 val scala2Version = "2.13.6"
-val scala3Version = "3.0.1"
+val scala3Version = "3.0.2"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
@@ -18,7 +18,7 @@ val V = new {
   val enumeratum             = "1.5.15"
   val scalaMeterVersion      = "0.22.BBL"
   val izumiReflect           = "1.1.2"
-  val litVersionForGenerator = "0.14.1"
+  val litVersionForGenerator = "0.14.2"
   val scalaTest              = "3.2.9"
   val jsonassert             = "1.5.0"
   val lombok                 = "1.16.22"
