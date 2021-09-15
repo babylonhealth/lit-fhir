@@ -624,7 +624,7 @@ public interface Us_core_encounterBuilder extends EncounterBuilder {
       return this;
     }
 
-    public Us_core_encounterBuilder withoutMeta() {
+    public Us_core_encounterBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

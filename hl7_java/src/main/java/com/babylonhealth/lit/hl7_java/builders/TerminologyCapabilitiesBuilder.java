@@ -549,7 +549,7 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public TerminologyCapabilitiesBuilder withoutMeta() {
+    public TerminologyCapabilitiesBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

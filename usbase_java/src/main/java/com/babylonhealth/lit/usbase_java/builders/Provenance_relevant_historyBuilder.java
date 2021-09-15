@@ -360,7 +360,7 @@ public interface Provenance_relevant_historyBuilder extends ProvenanceBuilder {
       return this;
     }
 
-    public Provenance_relevant_historyBuilder withoutMeta() {
+    public Provenance_relevant_historyBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

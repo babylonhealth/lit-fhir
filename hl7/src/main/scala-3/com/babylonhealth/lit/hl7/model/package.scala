@@ -10,21 +10,23 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 
 object UnionAliases {
-  type Union00228735254 = Age | Period | Range | String
-  type Union00304335386 = BigDecimal | Boolean | Coding | FHIRDate | FHIRDateTime | Int | LocalTime | Quantity | Reference |
-    String
-  type Union00515330545 = Age | Boolean | FHIRDate | Range | String
-  type Union00566743606 = BigDecimal | Boolean | Code | Coding | FHIRDateTime | Int | String
-  type Union00836574492 = Canonical | CodeableConcept | DataRequirement | Expression
-  type Union01138203188 = Quantity | Range | Ratio | String
-  type Union01239641171 = Boolean | CodeableConcept | FHIRDateTime | Int | LocalTime | Period | Quantity | Range | Ratio |
-    SampledData | String
-  type Union01434501542 = Canonical | CodeableConcept | DataRequirement | Expression | Reference | TriggerDefinition
-  type Union01491947217 = BigDecimal | Boolean | Id | Int | String
-  type Union01554328235 = Coding | FHIRDate | Int | LocalTime | Reference | String
-  type Union01946981731 = Age | FHIRDateTime | Period | Range | String
-  type Union02135982830 = Attachment | BigDecimal | Boolean | Coding | FHIRDate | FHIRDateTime | Int | LocalTime | Quantity |
+  type Union00107722725 = FHIRDateTime | Period | Timing | ZonedDateTime
+  type Union00133982841 = Quantity | Range | Ratio | String
+  type Union00193937709 = Canonical | CodeableConcept | DataRequirement | Expression | Reference | TriggerDefinition
+  type Union00551919141 = BigDecimal | Boolean | Id | Int | String
+  type Union00659500323 = Age | Boolean | FHIRDate | Range | String
+  type Union00857130015 = Coding | FHIRDate | Int | LocalTime | Reference | String
+  type Union01113166363 = Attachment | BigDecimal | Boolean | Coding | FHIRDate | FHIRDateTime | Int | LocalTime | Quantity |
     Reference | String | UriStr
+  type Union01405873694 = Age | Duration | FHIRDateTime | Period | Range | Timing
+  type Union01474038381 = Age | FHIRDateTime | Period | Range | String
+  type Union01475253842 = BigDecimal | Boolean | Code | FHIRDateTime | Int | String | UriStr
+  type Union01480857620 = BigDecimal | FHIRDate | FHIRDateTime | Int | LocalTime | PositiveInt | Quantity | UnsignedInt |
+    ZonedDateTime
+  type Union01763000476 = Duration | FHIRDateTime | Period | Timing
+  type Union01850316684 = Boolean | CodeableConcept | Quantity | Range
+  type Union02118820890 = Boolean | CodeableConcept | FHIRDateTime | Int | LocalTime | Period | Quantity | Range | Ratio |
+    SampledData | String
   type UnionAddressOrCodeableConceptOrReference = Address | CodeableConcept | Reference
   type UnionAddressOrReference                  = Address | Reference
   type UnionAgeOrRangeOrString                  = Age | Range | String
@@ -61,30 +63,30 @@ object UnionAliases {
   type UnionQuantityOrRatio                     = Quantity | Ratio
   type UnionQuantityOrString                    = Quantity | String
   type UnionReferenceOrUrl                      = Reference | UrlStr
-  type Union_0075792257                         = Age | Duration | FHIRDateTime | Period | Range | Timing
-  type Union_0536852827                         = Boolean | CodeableConcept | Quantity | Range
-  type Union_0603252906 = BigDecimal | FHIRDate | FHIRDateTime | Int | LocalTime | PositiveInt | Quantity | UnsignedInt |
-    ZonedDateTime
-  type Union_0861648458 = Attachment | Boolean | Quantity | Reference | String
-  type Union_0865080338 = BigDecimal | Boolean | Code | FHIRDateTime | Int | String | UriStr
-  type Union_1011524451 = Boolean | CodeableConcept | Int | Quantity | Range | Ratio | String
-  type Union_1213298663 = Boolean | CodeableConcept | Quantity | Range | Reference
-  type Union_1534826566 = Base64Binary | CodeableConcept | Quantity | String
-  type Union_1926447453 = FHIRDateTime | Period | Timing | ZonedDateTime
-  type Union_1938137622 = Duration | FHIRDateTime | Period | Timing
+  type Union_0044338899                         = Canonical | CodeableConcept | DataRequirement | Expression
+  type Union_0059314669                         = BigDecimal | Boolean | Code | Coding | FHIRDateTime | Int | String
+  type Union_0600299688                         = Base64Binary | CodeableConcept | Quantity | String
+  type Union_1061953715                         = Boolean | CodeableConcept | Int | Quantity | Range | Ratio | String
+  type Union_1204024681                         = Age | Period | Range | String
+  type Union_1280102327 = BigDecimal | Boolean | Coding | FHIRDate | FHIRDateTime | Int | LocalTime | Quantity | Reference |
+    String
+  type Union_1690912481 = Boolean | CodeableConcept | Quantity | Range | Reference
+  type Union_2028408917 = Attachment | Boolean | Quantity | Reference | String
 
-  val Union00228735254Tag: LTag[Union00228735254] = LTag[Union00228735254]
-  val Union00304335386Tag: LTag[Union00304335386] = LTag[Union00304335386]
-  val Union00515330545Tag: LTag[Union00515330545] = LTag[Union00515330545]
-  val Union00566743606Tag: LTag[Union00566743606] = LTag[Union00566743606]
-  val Union00836574492Tag: LTag[Union00836574492] = LTag[Union00836574492]
-  val Union01138203188Tag: LTag[Union01138203188] = LTag[Union01138203188]
-  val Union01239641171Tag: LTag[Union01239641171] = LTag[Union01239641171]
-  val Union01434501542Tag: LTag[Union01434501542] = LTag[Union01434501542]
-  val Union01491947217Tag: LTag[Union01491947217] = LTag[Union01491947217]
-  val Union01554328235Tag: LTag[Union01554328235] = LTag[Union01554328235]
-  val Union01946981731Tag: LTag[Union01946981731] = LTag[Union01946981731]
-  val Union02135982830Tag: LTag[Union02135982830] = LTag[Union02135982830]
+  val Union00107722725Tag: LTag[Union00107722725] = LTag[Union00107722725]
+  val Union00133982841Tag: LTag[Union00133982841] = LTag[Union00133982841]
+  val Union00193937709Tag: LTag[Union00193937709] = LTag[Union00193937709]
+  val Union00551919141Tag: LTag[Union00551919141] = LTag[Union00551919141]
+  val Union00659500323Tag: LTag[Union00659500323] = LTag[Union00659500323]
+  val Union00857130015Tag: LTag[Union00857130015] = LTag[Union00857130015]
+  val Union01113166363Tag: LTag[Union01113166363] = LTag[Union01113166363]
+  val Union01405873694Tag: LTag[Union01405873694] = LTag[Union01405873694]
+  val Union01474038381Tag: LTag[Union01474038381] = LTag[Union01474038381]
+  val Union01475253842Tag: LTag[Union01475253842] = LTag[Union01475253842]
+  val Union01480857620Tag: LTag[Union01480857620] = LTag[Union01480857620]
+  val Union01763000476Tag: LTag[Union01763000476] = LTag[Union01763000476]
+  val Union01850316684Tag: LTag[Union01850316684] = LTag[Union01850316684]
+  val Union02118820890Tag: LTag[Union02118820890] = LTag[Union02118820890]
   val UnionAddressOrCodeableConceptOrReferenceTag: LTag[UnionAddressOrCodeableConceptOrReference] =
     LTag[UnionAddressOrCodeableConceptOrReference]
   val UnionAddressOrReferenceTag: LTag[UnionAddressOrReference]                       = LTag[UnionAddressOrReference]
@@ -124,16 +126,14 @@ object UnionAliases {
   val UnionQuantityOrRatioTag: LTag[UnionQuantityOrRatio]                       = LTag[UnionQuantityOrRatio]
   val UnionQuantityOrStringTag: LTag[UnionQuantityOrString]                     = LTag[UnionQuantityOrString]
   val UnionReferenceOrUrlTag: LTag[UnionReferenceOrUrl]                         = LTag[UnionReferenceOrUrl]
-  val Union_0075792257Tag: LTag[Union_0075792257]                               = LTag[Union_0075792257]
-  val Union_0536852827Tag: LTag[Union_0536852827]                               = LTag[Union_0536852827]
-  val Union_0603252906Tag: LTag[Union_0603252906]                               = LTag[Union_0603252906]
-  val Union_0861648458Tag: LTag[Union_0861648458]                               = LTag[Union_0861648458]
-  val Union_0865080338Tag: LTag[Union_0865080338]                               = LTag[Union_0865080338]
-  val Union_1011524451Tag: LTag[Union_1011524451]                               = LTag[Union_1011524451]
-  val Union_1213298663Tag: LTag[Union_1213298663]                               = LTag[Union_1213298663]
-  val Union_1534826566Tag: LTag[Union_1534826566]                               = LTag[Union_1534826566]
-  val Union_1926447453Tag: LTag[Union_1926447453]                               = LTag[Union_1926447453]
-  val Union_1938137622Tag: LTag[Union_1938137622]                               = LTag[Union_1938137622]
+  val Union_0044338899Tag: LTag[Union_0044338899]                               = LTag[Union_0044338899]
+  val Union_0059314669Tag: LTag[Union_0059314669]                               = LTag[Union_0059314669]
+  val Union_0600299688Tag: LTag[Union_0600299688]                               = LTag[Union_0600299688]
+  val Union_1061953715Tag: LTag[Union_1061953715]                               = LTag[Union_1061953715]
+  val Union_1204024681Tag: LTag[Union_1204024681]                               = LTag[Union_1204024681]
+  val Union_1280102327Tag: LTag[Union_1280102327]                               = LTag[Union_1280102327]
+  val Union_1690912481Tag: LTag[Union_1690912481]                               = LTag[Union_1690912481]
+  val Union_2028408917Tag: LTag[Union_2028408917]                               = LTag[Union_2028408917]
 }
 
 object Module

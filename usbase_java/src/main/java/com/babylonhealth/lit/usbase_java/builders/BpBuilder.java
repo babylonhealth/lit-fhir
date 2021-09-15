@@ -593,7 +593,7 @@ public interface BpBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public BpBuilder withoutMeta() {
+    public BpBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -446,7 +446,7 @@ public interface LocationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public LocationBuilder withoutMeta() {
+    public LocationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

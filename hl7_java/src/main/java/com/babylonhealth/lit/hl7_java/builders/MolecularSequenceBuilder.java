@@ -461,7 +461,7 @@ public interface MolecularSequenceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MolecularSequenceBuilder withoutMeta() {
+    public MolecularSequenceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

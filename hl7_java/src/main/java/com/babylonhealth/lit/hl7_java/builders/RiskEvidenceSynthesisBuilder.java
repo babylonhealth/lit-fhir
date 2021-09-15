@@ -690,7 +690,7 @@ public interface RiskEvidenceSynthesisBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public RiskEvidenceSynthesisBuilder withoutMeta() {
+    public RiskEvidenceSynthesisBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

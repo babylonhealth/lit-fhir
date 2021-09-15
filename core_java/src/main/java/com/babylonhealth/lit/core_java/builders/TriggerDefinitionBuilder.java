@@ -50,20 +50,20 @@ public interface TriggerDefinitionBuilder extends ElementBuilder {
     return new Impl(_type);
   }
 
-  public static Choice01769853217 timing(FHIRDate f) {
-    return new Choice01769853217(f);
+  public static Choice01658422381 timing(FHIRDate f) {
+    return new Choice01658422381(f);
   }
 
-  public static Choice01769853217 timing(FHIRDateTime f) {
-    return new Choice01769853217(f);
+  public static Choice01658422381 timing(FHIRDateTime f) {
+    return new Choice01658422381(f);
   }
 
-  public static Choice01769853217 timing(Reference r) {
-    return new Choice01769853217(r);
+  public static Choice01658422381 timing(Reference r) {
+    return new Choice01658422381(r);
   }
 
-  public static Choice01769853217 timing(Timing t) {
-    return new Choice01769853217(t);
+  public static Choice01658422381 timing(Timing t) {
+    return new Choice01658422381(t);
   }
 
   public class Impl implements TriggerDefinitionBuilder {
@@ -72,7 +72,7 @@ public interface TriggerDefinitionBuilder extends ElementBuilder {
     private Optional<String> name = Optional.empty();
     private Collection<DataRequirement> data = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice01769853217> timing = Optional.empty();
+    private Optional<Choice01658422381> timing = Optional.empty();
     private Optional<Expression> condition = Optional.empty();
 
     /**
@@ -154,7 +154,7 @@ public interface TriggerDefinitionBuilder extends ElementBuilder {
      *     field. Type should be one of FHIRDate, FHIRDateTime, Reference, Timing. To pass the value
      *     in, wrap with one of the TriggerDefinitionBuilder.timing static methods
      */
-    public TriggerDefinitionBuilder.Impl withTiming(@NonNull Choice01769853217 timing) {
+    public TriggerDefinitionBuilder.Impl withTiming(@NonNull Choice01658422381 timing) {
       this.timing = Optional.of(timing);
       return this;
     }

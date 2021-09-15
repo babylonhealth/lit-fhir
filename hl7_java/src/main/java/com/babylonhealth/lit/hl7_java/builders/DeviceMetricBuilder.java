@@ -359,7 +359,7 @@ public interface DeviceMetricBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DeviceMetricBuilder withoutMeta() {
+    public DeviceMetricBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -332,7 +332,7 @@ public interface PaymentNoticeBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public PaymentNoticeBuilder withoutMeta() {
+    public PaymentNoticeBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

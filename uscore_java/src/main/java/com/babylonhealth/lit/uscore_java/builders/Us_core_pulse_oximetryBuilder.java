@@ -631,7 +631,7 @@ public interface Us_core_pulse_oximetryBuilder extends OxygensatBuilder {
       return this;
     }
 
-    public Us_core_pulse_oximetryBuilder withoutMeta() {
+    public Us_core_pulse_oximetryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -448,7 +448,7 @@ public interface Us_core_goalBuilder extends GoalBuilder {
       return this;
     }
 
-    public Us_core_goalBuilder withoutMeta() {
+    public Us_core_goalBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

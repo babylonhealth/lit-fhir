@@ -360,7 +360,7 @@ public interface OrganizationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public OrganizationBuilder withoutMeta() {
+    public OrganizationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

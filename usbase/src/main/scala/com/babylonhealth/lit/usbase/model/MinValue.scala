@@ -31,7 +31,7 @@ object MinValue extends CompanionFor[MinValue] {
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/minValue")
-  type ValueChoice = Choice[Union_1391615921]
+  type ValueChoice = Choice[Union01845407622]
   def apply(
       id: Option[String] = None,
       value: MinValue.ValueChoice,
@@ -44,7 +44,7 @@ object MinValue extends CompanionFor[MinValue] {
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[MinValue.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[MinValue.ValueChoice], true, lTagOf[Union_1391615921])
+    FHIRComponentFieldMeta("value", lTagOf[MinValue.ValueChoice], true, lTagOf[Union01845407622])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -62,7 +62,7 @@ object MinValue extends CompanionFor[MinValue] {
       Try(
         new MinValue(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union_1391615921]("value"),
+          cursor.decodeRef[Union01845407622]("value"),
           decodeAttributes(cursor)
         )
       ))

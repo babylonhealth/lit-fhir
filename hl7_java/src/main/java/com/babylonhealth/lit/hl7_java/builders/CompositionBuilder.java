@@ -428,7 +428,7 @@ public interface CompositionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CompositionBuilder withoutMeta() {
+    public CompositionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

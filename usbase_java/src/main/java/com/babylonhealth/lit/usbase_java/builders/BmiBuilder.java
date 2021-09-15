@@ -596,7 +596,7 @@ public interface BmiBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public BmiBuilder withoutMeta() {
+    public BmiBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

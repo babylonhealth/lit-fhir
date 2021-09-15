@@ -592,7 +592,7 @@ public interface Us_core_implantable_deviceBuilder extends DeviceBuilder {
       return this;
     }
 
-    public Us_core_implantable_deviceBuilder withoutMeta() {
+    public Us_core_implantable_deviceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

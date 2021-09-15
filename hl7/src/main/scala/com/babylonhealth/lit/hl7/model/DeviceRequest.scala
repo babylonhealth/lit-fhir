@@ -37,7 +37,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     override type ResourceType = Parameter
     override type ParentType   = Parameter
     override val parentType: CompanionFor[ResourceType] = Parameter
-    type ValueChoice = Choice[Union_0536852827]
+    type ValueChoice = Choice[Union01850316684]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,
@@ -61,7 +61,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     val code: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Option[Parameter.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[Union_0536852827])
+      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[Union01850316684])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -83,7 +83,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
           new Parameter(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
-            cursor.decodeOptRef[Union_0536852827]("value"),
+            cursor.decodeOptRef[Union01850316684]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)

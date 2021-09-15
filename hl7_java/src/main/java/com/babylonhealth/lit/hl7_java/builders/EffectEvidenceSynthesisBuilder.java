@@ -743,7 +743,7 @@ public interface EffectEvidenceSynthesisBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public EffectEvidenceSynthesisBuilder withoutMeta() {
+    public EffectEvidenceSynthesisBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

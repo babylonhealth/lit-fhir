@@ -335,7 +335,7 @@ public interface AuditEventBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public AuditEventBuilder withoutMeta() {
+    public AuditEventBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

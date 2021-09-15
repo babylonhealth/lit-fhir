@@ -445,7 +445,7 @@ public interface InvoiceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public InvoiceBuilder withoutMeta() {
+    public InvoiceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

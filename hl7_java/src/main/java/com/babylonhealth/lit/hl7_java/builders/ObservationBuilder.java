@@ -54,64 +54,64 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     return new Impl(code.build(), status);
   }
 
-  public static Choice01239641171 value(Boolean b) {
-    return new Choice01239641171(b);
+  public static Choice02118820890 value(Boolean b) {
+    return new Choice02118820890(b);
   }
 
-  public static Choice01239641171 value(CodeableConcept c) {
-    return new Choice01239641171(c);
+  public static Choice02118820890 value(CodeableConcept c) {
+    return new Choice02118820890(c);
   }
 
-  public static Choice01239641171 value(FHIRDateTime f) {
-    return new Choice01239641171(f);
+  public static Choice02118820890 value(FHIRDateTime f) {
+    return new Choice02118820890(f);
   }
 
-  public static Choice01239641171 value(Integer i) {
-    return new Choice01239641171(i);
+  public static Choice02118820890 value(Integer i) {
+    return new Choice02118820890(i);
   }
 
-  public static Choice01239641171 value(LocalTime l) {
-    return new Choice01239641171(l);
+  public static Choice02118820890 value(LocalTime l) {
+    return new Choice02118820890(l);
   }
 
-  public static Choice01239641171 value(Period p) {
-    return new Choice01239641171(p);
+  public static Choice02118820890 value(Period p) {
+    return new Choice02118820890(p);
   }
 
-  public static Choice01239641171 value(Quantity q) {
-    return new Choice01239641171(q);
+  public static Choice02118820890 value(Quantity q) {
+    return new Choice02118820890(q);
   }
 
-  public static Choice01239641171 value(Range r) {
-    return new Choice01239641171(r);
+  public static Choice02118820890 value(Range r) {
+    return new Choice02118820890(r);
   }
 
-  public static Choice01239641171 value(Ratio r) {
-    return new Choice01239641171(r);
+  public static Choice02118820890 value(Ratio r) {
+    return new Choice02118820890(r);
   }
 
-  public static Choice01239641171 value(SampledData s) {
-    return new Choice01239641171(s);
+  public static Choice02118820890 value(SampledData s) {
+    return new Choice02118820890(s);
   }
 
-  public static Choice01239641171 value(String s) {
-    return new Choice01239641171(s);
+  public static Choice02118820890 value(String s) {
+    return new Choice02118820890(s);
   }
 
-  public static Choice_1926447453 effective(FHIRDateTime f) {
-    return new Choice_1926447453(f);
+  public static Choice00107722725 effective(FHIRDateTime f) {
+    return new Choice00107722725(f);
   }
 
-  public static Choice_1926447453 effective(Period p) {
-    return new Choice_1926447453(p);
+  public static Choice00107722725 effective(Period p) {
+    return new Choice00107722725(p);
   }
 
-  public static Choice_1926447453 effective(Timing t) {
-    return new Choice_1926447453(t);
+  public static Choice00107722725 effective(Timing t) {
+    return new Choice00107722725(t);
   }
 
-  public static Choice_1926447453 effective(ZonedDateTime z) {
-    return new Choice_1926447453(z);
+  public static Choice00107722725 effective(ZonedDateTime z) {
+    return new Choice00107722725(z);
   }
 
   public class Impl implements ObservationBuilder {
@@ -130,7 +130,7 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     private Optional<Reference> subject = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
-    private Optional<Choice01239641171> value = Optional.empty();
+    private Optional<Choice02118820890> value = Optional.empty();
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Optional<Reference> specimen = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -140,7 +140,7 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     private Collection<Reference> hasMember = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private Optional<Choice_1926447453> effective = Optional.empty();
+    private Optional<Choice00107722725> effective = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
     private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -360,7 +360,7 @@ public interface ObservationBuilder extends DomainResourceBuilder {
      *     SampledData, String. To pass the value in, wrap with one of the ObservationBuilder.value
      *     static methods
      */
-    public ObservationBuilder.Impl withValue(@NonNull Choice01239641171 value) {
+    public ObservationBuilder.Impl withValue(@NonNull Choice02118820890 value) {
       this.value = Optional.of(value);
       return this;
     }
@@ -533,7 +533,7 @@ public interface ObservationBuilder extends DomainResourceBuilder {
      *     ZonedDateTime. To pass the value in, wrap with one of the ObservationBuilder.effective
      *     static methods
      */
-    public ObservationBuilder.Impl withEffective(@NonNull Choice_1926447453 effective) {
+    public ObservationBuilder.Impl withEffective(@NonNull Choice00107722725 effective) {
       this.effective = Optional.of(effective);
       return this;
     }
@@ -682,7 +682,7 @@ public interface ObservationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ObservationBuilder withoutMeta() {
+    public ObservationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -611,7 +611,7 @@ public interface HeadcircumBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public HeadcircumBuilder withoutMeta() {
+    public HeadcircumBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

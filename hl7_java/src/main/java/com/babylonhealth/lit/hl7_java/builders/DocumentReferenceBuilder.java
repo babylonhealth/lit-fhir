@@ -453,7 +453,7 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DocumentReferenceBuilder withoutMeta() {
+    public DocumentReferenceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

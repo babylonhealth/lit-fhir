@@ -461,7 +461,7 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ConceptMapBuilder withoutMeta() {
+    public ConceptMapBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -679,7 +679,7 @@ object MedicationKnowledge extends CompanionFor[MedicationKnowledge] {
     override type ResourceType = DrugCharacteristic
     override type ParentType   = DrugCharacteristic
     override val parentType: CompanionFor[ResourceType] = DrugCharacteristic
-    type ValueChoice = Choice[Union_1534826566]
+    type ValueChoice = Choice[Union_0600299688]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -703,7 +703,7 @@ object MedicationKnowledge extends CompanionFor[MedicationKnowledge] {
     val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Option[DrugCharacteristic.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[DrugCharacteristic.ValueChoice]], true, lTagOf[Union_1534826566])
+      FHIRComponentFieldMeta("value", lTagOf[Option[DrugCharacteristic.ValueChoice]], true, lTagOf[Union_0600299688])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -725,7 +725,7 @@ object MedicationKnowledge extends CompanionFor[MedicationKnowledge] {
           new DrugCharacteristic(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
-            cursor.decodeOptRef[Union_1534826566]("value"),
+            cursor.decodeOptRef[Union_0600299688]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)

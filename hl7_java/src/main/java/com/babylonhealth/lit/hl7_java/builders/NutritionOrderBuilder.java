@@ -520,7 +520,7 @@ public interface NutritionOrderBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public NutritionOrderBuilder withoutMeta() {
+    public NutritionOrderBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

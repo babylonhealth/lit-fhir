@@ -360,7 +360,7 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MeasureReportBuilder withoutMeta() {
+    public MeasureReportBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

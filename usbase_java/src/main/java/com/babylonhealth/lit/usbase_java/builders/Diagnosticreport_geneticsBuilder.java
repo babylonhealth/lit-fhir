@@ -526,7 +526,7 @@ public interface Diagnosticreport_geneticsBuilder extends DiagnosticReportBuilde
       return this;
     }
 
-    public Diagnosticreport_geneticsBuilder withoutMeta() {
+    public Diagnosticreport_geneticsBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

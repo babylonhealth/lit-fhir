@@ -427,7 +427,7 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CareTeamBuilder withoutMeta() {
+    public CareTeamBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

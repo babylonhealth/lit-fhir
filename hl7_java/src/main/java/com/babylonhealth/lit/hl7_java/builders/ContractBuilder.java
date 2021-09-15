@@ -765,7 +765,7 @@ public interface ContractBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ContractBuilder withoutMeta() {
+    public ContractBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

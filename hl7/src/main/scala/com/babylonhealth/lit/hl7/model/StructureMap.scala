@@ -373,7 +373,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           override type ResourceType = Parameter
           override type ParentType   = Parameter
           override val parentType: CompanionFor[ResourceType] = Parameter
-          type ValueChoice = Choice[Union01491947217]
+          type ValueChoice = Choice[Union00551919141]
           def apply(
               id: Option[String] = None,
               value: Parameter.ValueChoice,
@@ -392,7 +392,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           val id: FHIRComponentFieldMeta[Option[String]] =
             FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
           val value: FHIRComponentFieldMeta[Parameter.ValueChoice] =
-            FHIRComponentFieldMeta("value", lTagOf[Parameter.ValueChoice], true, lTagOf[Union01491947217])
+            FHIRComponentFieldMeta("value", lTagOf[Parameter.ValueChoice], true, lTagOf[Union00551919141])
           val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
             FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
           val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -412,7 +412,7 @@ object StructureMap extends CompanionFor[StructureMap] {
               Try(
                 new Parameter(
                   cursor.decodeAs[Option[String]]("id", Some(None)),
-                  cursor.decodeRef[Union01491947217]("value"),
+                  cursor.decodeRef[Union00551919141]("value"),
                   cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
                   cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                   decodeAttributes(cursor)

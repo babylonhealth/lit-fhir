@@ -610,7 +610,7 @@ public interface ResprateBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public ResprateBuilder withoutMeta() {
+    public ResprateBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

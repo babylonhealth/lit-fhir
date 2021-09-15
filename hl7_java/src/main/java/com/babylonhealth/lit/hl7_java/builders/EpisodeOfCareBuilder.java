@@ -419,7 +419,7 @@ public interface EpisodeOfCareBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public EpisodeOfCareBuilder withoutMeta() {
+    public EpisodeOfCareBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

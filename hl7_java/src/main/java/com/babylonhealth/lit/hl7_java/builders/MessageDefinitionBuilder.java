@@ -551,7 +551,7 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MessageDefinitionBuilder withoutMeta() {
+    public MessageDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

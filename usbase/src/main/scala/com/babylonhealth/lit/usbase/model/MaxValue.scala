@@ -31,7 +31,7 @@ object MaxValue extends CompanionFor[MaxValue] {
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/maxValue")
-  type ValueChoice = Choice[Union00863392741]
+  type ValueChoice = Choice[Union00916299533]
   def apply(
       id: Option[String] = None,
       value: MaxValue.ValueChoice,
@@ -44,7 +44,7 @@ object MaxValue extends CompanionFor[MaxValue] {
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[MaxValue.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[MaxValue.ValueChoice], true, lTagOf[Union00863392741])
+    FHIRComponentFieldMeta("value", lTagOf[MaxValue.ValueChoice], true, lTagOf[Union00916299533])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -62,7 +62,7 @@ object MaxValue extends CompanionFor[MaxValue] {
       Try(
         new MaxValue(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union00863392741]("value"),
+          cursor.decodeRef[Union00916299533]("value"),
           decodeAttributes(cursor)
         )
       ))

@@ -220,7 +220,7 @@ public interface OperationOutcomeBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public OperationOutcomeBuilder withoutMeta() {
+    public OperationOutcomeBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

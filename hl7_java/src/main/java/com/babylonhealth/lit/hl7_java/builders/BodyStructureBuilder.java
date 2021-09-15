@@ -318,7 +318,7 @@ public interface BodyStructureBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public BodyStructureBuilder withoutMeta() {
+    public BodyStructureBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -435,7 +435,7 @@ public interface GoalBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public GoalBuilder withoutMeta() {
+    public GoalBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

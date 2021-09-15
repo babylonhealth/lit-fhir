@@ -531,7 +531,7 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DiagnosticReportBuilder withoutMeta() {
+    public DiagnosticReportBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

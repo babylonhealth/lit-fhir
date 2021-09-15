@@ -371,7 +371,7 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ImmunizationEvaluationBuilder withoutMeta() {
+    public ImmunizationEvaluationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

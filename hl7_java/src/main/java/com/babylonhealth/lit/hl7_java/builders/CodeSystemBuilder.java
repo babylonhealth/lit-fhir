@@ -553,7 +553,7 @@ public interface CodeSystemBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CodeSystemBuilder withoutMeta() {
+    public CodeSystemBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

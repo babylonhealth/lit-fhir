@@ -499,7 +499,7 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ImplementationGuideBuilder withoutMeta() {
+    public ImplementationGuideBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

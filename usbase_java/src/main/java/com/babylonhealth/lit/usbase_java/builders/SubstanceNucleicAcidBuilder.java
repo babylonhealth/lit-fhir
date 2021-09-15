@@ -297,7 +297,7 @@ public interface SubstanceNucleicAcidBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SubstanceNucleicAcidBuilder withoutMeta() {
+    public SubstanceNucleicAcidBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

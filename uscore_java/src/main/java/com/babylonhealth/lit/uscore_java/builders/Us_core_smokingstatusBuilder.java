@@ -70,20 +70,20 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     return new Impl(code.build(), status, issued, subject.build(), value.build());
   }
 
-  public static Choice_1926447453 effective(FHIRDateTime f) {
-    return new Choice_1926447453(f);
+  public static Choice00107722725 effective(FHIRDateTime f) {
+    return new Choice00107722725(f);
   }
 
-  public static Choice_1926447453 effective(Period p) {
-    return new Choice_1926447453(p);
+  public static Choice00107722725 effective(Period p) {
+    return new Choice00107722725(p);
   }
 
-  public static Choice_1926447453 effective(Timing t) {
-    return new Choice_1926447453(t);
+  public static Choice00107722725 effective(Timing t) {
+    return new Choice00107722725(t);
   }
 
-  public static Choice_1926447453 effective(ZonedDateTime z) {
-    return new Choice_1926447453(z);
+  public static Choice00107722725 effective(ZonedDateTime z) {
+    return new Choice00107722725(z);
   }
 
   public class Impl implements Us_core_smokingstatusBuilder {
@@ -117,7 +117,7 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
     private Collection<Reference> hasMember = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private Optional<Choice_1926447453> effective = Optional.empty();
+    private Optional<Choice00107722725> effective = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
     private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -503,7 +503,7 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
      *     ZonedDateTime. To pass the value in, wrap with one of the
      *     Us_core_smokingstatusBuilder.effective static methods
      */
-    public Us_core_smokingstatusBuilder.Impl withEffective(@NonNull Choice_1926447453 effective) {
+    public Us_core_smokingstatusBuilder.Impl withEffective(@NonNull Choice00107722725 effective) {
       this.effective = Optional.of(effective);
       return this;
     }
@@ -656,7 +656,7 @@ public interface Us_core_smokingstatusBuilder extends ObservationBuilder {
       return this;
     }
 
-    public Us_core_smokingstatusBuilder withoutMeta() {
+    public Us_core_smokingstatusBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

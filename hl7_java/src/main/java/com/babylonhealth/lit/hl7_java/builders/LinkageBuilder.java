@@ -245,7 +245,7 @@ public interface LinkageBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public LinkageBuilder withoutMeta() {
+    public LinkageBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

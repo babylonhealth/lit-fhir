@@ -414,7 +414,7 @@ public interface SpecimenBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SpecimenBuilder withoutMeta() {
+    public SpecimenBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

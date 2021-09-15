@@ -117,7 +117,7 @@ public interface ParametersBuilder extends ResourceBuilder {
       return this;
     }
 
-    public ParametersBuilder withoutMeta() {
+    public ParametersBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -376,7 +376,7 @@ public interface QuestionnaireResponseBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public QuestionnaireResponseBuilder withoutMeta() {
+    public QuestionnaireResponseBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

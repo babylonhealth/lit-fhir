@@ -504,7 +504,7 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public AdverseEventBuilder withoutMeta() {
+    public AdverseEventBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -699,7 +699,7 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public PlanDefinitionBuilder withoutMeta() {
+    public PlanDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

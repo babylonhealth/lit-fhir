@@ -326,7 +326,7 @@ trait JavaGenerator extends Commonish {
     val optionalFieldAppenders = genOptionalFieldAppenders(optionalFields, builderName, topLevelClass.scalaClassName)
     val withoutMeta =
       if (fields.exists(_.javaName == "meta"))
-        s"""public $builderName withoutMeta() {
+        s"""public $builderName.Impl withoutMeta() {
            |  this.meta = Optional.empty();
            |  return this;
            |}""".stripMargin

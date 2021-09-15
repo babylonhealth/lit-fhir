@@ -329,7 +329,7 @@ public interface GroupBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public GroupBuilder withoutMeta() {
+    public GroupBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

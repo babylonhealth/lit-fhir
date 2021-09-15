@@ -313,7 +313,7 @@ public interface ActualgroupBuilder extends GroupBuilder {
       return this;
     }
 
-    public ActualgroupBuilder withoutMeta() {
+    public ActualgroupBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -533,7 +533,7 @@ public interface SearchParameterBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SearchParameterBuilder withoutMeta() {
+    public SearchParameterBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

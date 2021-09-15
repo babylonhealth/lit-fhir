@@ -38,9 +38,9 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
     override type ResourceType = Characteristic
     override type ParentType   = Characteristic
     override val parentType: CompanionFor[ResourceType] = Characteristic
-    type DefinitionChoice           = Choice[Union00836574492]
-    type StudyEffectiveChoice       = Choice[Union_1938137622]
-    type ParticipantEffectiveChoice = Choice[Union_1938137622]
+    type DefinitionChoice           = Choice[Union_0044338899]
+    type StudyEffectiveChoice       = Choice[Union01763000476]
+    type ParticipantEffectiveChoice = Choice[Union01763000476]
     def apply(
         id: Option[String] = None,
         exclude: Option[Boolean] = None,
@@ -104,7 +104,7 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
     val usageContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
       FHIRComponentFieldMeta("usageContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
     val definition: FHIRComponentFieldMeta[Characteristic.DefinitionChoice] =
-      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union00836574492])
+      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union_0044338899])
     val unitOfMeasure: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("unitOfMeasure", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -114,13 +114,13 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
         "studyEffective",
         lTagOf[Option[Characteristic.StudyEffectiveChoice]],
         true,
-        lTagOf[Union_1938137622])
+        lTagOf[Union01763000476])
     val participantEffective: FHIRComponentFieldMeta[Option[Characteristic.ParticipantEffectiveChoice]] =
       FHIRComponentFieldMeta(
         "participantEffective",
         lTagOf[Option[Characteristic.ParticipantEffectiveChoice]],
         true,
-        lTagOf[Union_1938137622])
+        lTagOf[Union01763000476])
     val studyEffectiveDescription: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("studyEffectiveDescription", lTagOf[Option[String]], false, lTagOf[String])
     val studyEffectiveGroupMeasure: FHIRComponentFieldMeta[Option[GROUP_MEASURE]] =
@@ -178,11 +178,11 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
             cursor.decodeAs[Option[Boolean]]("exclude", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[UsageContext]]("usageContext", Some(LitSeq.empty)),
-            cursor.decodeRef[Union00836574492]("definition"),
+            cursor.decodeRef[Union_0044338899]("definition"),
             cursor.decodeAs[Option[CodeableConcept]]("unitOfMeasure", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_1938137622]("studyEffective"),
-            cursor.decodeOptRef[Union_1938137622]("participantEffective"),
+            cursor.decodeOptRef[Union01763000476]("studyEffective"),
+            cursor.decodeOptRef[Union01763000476]("participantEffective"),
             cursor.decodeAs[Option[String]]("studyEffectiveDescription", Some(None)),
             cursor.decodeAs[Option[GROUP_MEASURE]]("studyEffectiveGroupMeasure", Some(None)),
             cursor.decodeAs[Option[Duration]]("studyEffectiveTimeFromStart", Some(None)),

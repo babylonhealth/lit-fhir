@@ -570,7 +570,7 @@ public interface ClaimBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ClaimBuilder withoutMeta() {
+    public ClaimBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

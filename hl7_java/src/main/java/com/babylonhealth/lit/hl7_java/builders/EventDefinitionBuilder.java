@@ -629,7 +629,7 @@ public interface EventDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public EventDefinitionBuilder withoutMeta() {
+    public EventDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

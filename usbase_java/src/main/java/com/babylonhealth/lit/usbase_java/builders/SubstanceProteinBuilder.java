@@ -302,7 +302,7 @@ public interface SubstanceProteinBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SubstanceProteinBuilder withoutMeta() {
+    public SubstanceProteinBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

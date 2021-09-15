@@ -275,7 +275,7 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SubscriptionBuilder withoutMeta() {
+    public SubscriptionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -454,7 +454,7 @@ public interface ValueSetBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ValueSetBuilder withoutMeta() {
+    public ValueSetBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

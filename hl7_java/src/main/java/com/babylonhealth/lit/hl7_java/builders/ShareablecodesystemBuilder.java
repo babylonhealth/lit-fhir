@@ -555,7 +555,7 @@ public interface ShareablecodesystemBuilder extends CodeSystemBuilder {
       return this;
     }
 
-    public ShareablecodesystemBuilder withoutMeta() {
+    public ShareablecodesystemBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

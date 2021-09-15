@@ -353,7 +353,7 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ProvenanceBuilder withoutMeta() {
+    public ProvenanceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

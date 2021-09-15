@@ -417,7 +417,7 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
       return this;
     }
 
-    public CoverageEligibilityRequestBuilder withoutMeta() {
+    public CoverageEligibilityRequestBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

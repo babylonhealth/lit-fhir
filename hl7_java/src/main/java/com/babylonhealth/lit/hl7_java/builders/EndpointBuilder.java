@@ -355,7 +355,7 @@ public interface EndpointBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public EndpointBuilder withoutMeta() {
+    public EndpointBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

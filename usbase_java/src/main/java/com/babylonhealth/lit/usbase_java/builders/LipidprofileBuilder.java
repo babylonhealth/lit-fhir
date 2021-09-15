@@ -497,7 +497,7 @@ public interface LipidprofileBuilder extends DiagnosticReportBuilder {
       return this;
     }
 
-    public LipidprofileBuilder withoutMeta() {
+    public LipidprofileBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

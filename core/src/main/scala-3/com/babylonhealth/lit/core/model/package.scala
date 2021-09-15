@@ -153,8 +153,7 @@ package object model {
 }
 
 object UnionAliases {
-  type Union00624997139 = CodeableConcept | Quantity | Range | Reference
-  type Union01769853217 = FHIRDate | FHIRDateTime | Reference | Timing
+  type Union01658422381 = FHIRDate | FHIRDateTime | Reference | Timing
   type UnionAll = Address | Age | Annotation | Attachment | Base64Binary | BigDecimal | Boolean | Canonical | Code |
     CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage |
     Duration | Expression | FHIRDate | FHIRDateTime | HumanName | Id | Identifier | Int | LocalTime | Markdown | Meta | Money |
@@ -167,9 +166,9 @@ object UnionAliases {
   type UnionQuantityOrRange            = Quantity | Range
   type UnionQuantityOrRangeOrRatio     = Quantity | Range | Ratio
   type UnionReferenceOrString          = Reference | String
+  type Union_1548929031                = CodeableConcept | Quantity | Range | Reference
 
-  val Union00624997139Tag: LTag[Union00624997139]                               = LTag[Union00624997139]
-  val Union01769853217Tag: LTag[Union01769853217]                               = LTag[Union01769853217]
+  val Union01658422381Tag: LTag[Union01658422381]                               = LTag[Union01658422381]
   val UnionAllTag: LTag[UnionAll]                                               = LTag[UnionAll]
   val UnionBooleanOrCodeableConceptTag: LTag[UnionBooleanOrCodeableConcept]     = LTag[UnionBooleanOrCodeableConcept]
   val UnionCodeableConceptOrReferenceTag: LTag[UnionCodeableConceptOrReference] = LTag[UnionCodeableConceptOrReference]
@@ -178,6 +177,7 @@ object UnionAliases {
   val UnionQuantityOrRangeOrRatioTag: LTag[UnionQuantityOrRangeOrRatio]         = LTag[UnionQuantityOrRangeOrRatio]
   val UnionQuantityOrRangeTag: LTag[UnionQuantityOrRange]                       = LTag[UnionQuantityOrRange]
   val UnionReferenceOrStringTag: LTag[UnionReferenceOrString]                   = LTag[UnionReferenceOrString]
+  val Union_1548929031Tag: LTag[Union_1548929031]                               = LTag[Union_1548929031]
 }
 
 object Module

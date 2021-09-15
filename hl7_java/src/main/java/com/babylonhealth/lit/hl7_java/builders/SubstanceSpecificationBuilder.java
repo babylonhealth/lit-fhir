@@ -497,7 +497,7 @@ public interface SubstanceSpecificationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SubstanceSpecificationBuilder withoutMeta() {
+    public SubstanceSpecificationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

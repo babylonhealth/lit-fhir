@@ -474,7 +474,7 @@ public interface SubstanceSourceMaterialBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SubstanceSourceMaterialBuilder withoutMeta() {
+    public SubstanceSourceMaterialBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -391,7 +391,7 @@ public interface RelatedPersonBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public RelatedPersonBuilder withoutMeta() {
+    public RelatedPersonBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

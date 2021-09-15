@@ -330,7 +330,7 @@ public interface MedicinalProductPharmaceuticalBuilder extends DomainResourceBui
       return this;
     }
 
-    public MedicinalProductPharmaceuticalBuilder withoutMeta() {
+    public MedicinalProductPharmaceuticalBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

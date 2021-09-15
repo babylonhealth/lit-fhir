@@ -521,7 +521,7 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ClinicalImpressionBuilder withoutMeta() {
+    public ClinicalImpressionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

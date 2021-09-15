@@ -635,7 +635,7 @@ public interface Pediatric_weight_for_heightBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public Pediatric_weight_for_heightBuilder withoutMeta() {
+    public Pediatric_weight_for_heightBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

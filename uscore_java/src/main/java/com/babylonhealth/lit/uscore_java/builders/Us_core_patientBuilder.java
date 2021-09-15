@@ -451,7 +451,7 @@ public interface Us_core_patientBuilder extends PatientBuilder {
       return this;
     }
 
-    public Us_core_patientBuilder withoutMeta() {
+    public Us_core_patientBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

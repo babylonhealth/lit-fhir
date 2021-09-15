@@ -393,7 +393,7 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
       return this;
     }
 
-    public CoverageEligibilityResponseBuilder withoutMeta() {
+    public CoverageEligibilityResponseBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

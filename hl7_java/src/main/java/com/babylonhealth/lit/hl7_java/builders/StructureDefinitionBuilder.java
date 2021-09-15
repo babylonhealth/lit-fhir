@@ -597,7 +597,7 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public StructureDefinitionBuilder withoutMeta() {
+    public StructureDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

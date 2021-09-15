@@ -523,7 +523,7 @@ public interface Cqf_questionnaireBuilder extends QuestionnaireBuilder {
       return this;
     }
 
-    public Cqf_questionnaireBuilder withoutMeta() {
+    public Cqf_questionnaireBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

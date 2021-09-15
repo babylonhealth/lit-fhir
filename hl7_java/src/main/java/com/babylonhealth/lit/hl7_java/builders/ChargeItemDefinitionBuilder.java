@@ -571,7 +571,7 @@ public interface ChargeItemDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ChargeItemDefinitionBuilder withoutMeta() {
+    public ChargeItemDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

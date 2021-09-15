@@ -387,7 +387,7 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SupplyDeliveryBuilder withoutMeta() {
+    public SupplyDeliveryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

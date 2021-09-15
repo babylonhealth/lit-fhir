@@ -413,7 +413,7 @@ public interface DeviceUseStatementBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DeviceUseStatementBuilder withoutMeta() {
+    public DeviceUseStatementBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

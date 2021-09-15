@@ -213,7 +213,7 @@ public interface DomainResourceBuilder extends ResourceBuilder {
       return this;
     }
 
-    public DomainResourceBuilder withoutMeta() {
+    public DomainResourceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

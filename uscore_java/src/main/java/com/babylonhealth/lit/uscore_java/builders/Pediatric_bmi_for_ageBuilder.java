@@ -622,7 +622,7 @@ public interface Pediatric_bmi_for_ageBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public Pediatric_bmi_for_ageBuilder withoutMeta() {
+    public Pediatric_bmi_for_ageBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

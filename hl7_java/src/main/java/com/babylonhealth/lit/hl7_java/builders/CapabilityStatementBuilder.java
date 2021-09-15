@@ -597,7 +597,7 @@ public interface CapabilityStatementBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CapabilityStatementBuilder withoutMeta() {
+    public CapabilityStatementBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

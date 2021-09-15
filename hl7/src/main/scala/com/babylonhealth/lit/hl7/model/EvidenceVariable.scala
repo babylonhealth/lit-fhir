@@ -37,8 +37,8 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     override type ResourceType = Characteristic
     override type ParentType   = Characteristic
     override val parentType: CompanionFor[ResourceType] = Characteristic
-    type DefinitionChoice           = Choice[Union01434501542]
-    type ParticipantEffectiveChoice = Choice[Union_1938137622]
+    type DefinitionChoice           = Choice[Union00193937709]
+    type ParticipantEffectiveChoice = Choice[Union01763000476]
     def apply(
         id: Option[String] = None,
         exclude: Option[Boolean] = None,
@@ -91,7 +91,7 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     val groupMeasure: FHIRComponentFieldMeta[Option[GROUP_MEASURE]] =
       FHIRComponentFieldMeta("groupMeasure", lTagOf[Option[GROUP_MEASURE]], false, lTagOf[GROUP_MEASURE])
     val definition: FHIRComponentFieldMeta[Characteristic.DefinitionChoice] =
-      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union01434501542])
+      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union00193937709])
     val timeFromStart: FHIRComponentFieldMeta[Option[Duration]] =
       FHIRComponentFieldMeta("timeFromStart", lTagOf[Option[Duration]], false, lTagOf[Duration])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -101,7 +101,7 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
         "participantEffective",
         lTagOf[Option[Characteristic.ParticipantEffectiveChoice]],
         true,
-        lTagOf[Union_1938137622])
+        lTagOf[Union01763000476])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
       id,
       exclude,
@@ -138,10 +138,10 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
             cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[LitSeq[UsageContext]]("usageContext", Some(LitSeq.empty)),
             cursor.decodeAs[Option[GROUP_MEASURE]]("groupMeasure", Some(None)),
-            cursor.decodeRef[Union01434501542]("definition"),
+            cursor.decodeRef[Union00193937709]("definition"),
             cursor.decodeAs[Option[Duration]]("timeFromStart", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_1938137622]("participantEffective"),
+            cursor.decodeOptRef[Union01763000476]("participantEffective"),
             decodeAttributes(cursor)
           )
         ))

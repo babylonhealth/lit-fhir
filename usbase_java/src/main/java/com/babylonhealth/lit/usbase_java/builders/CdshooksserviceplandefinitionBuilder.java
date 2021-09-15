@@ -720,7 +720,7 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
       return this;
     }
 
-    public CdshooksserviceplandefinitionBuilder withoutMeta() {
+    public CdshooksserviceplandefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

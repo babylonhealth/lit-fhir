@@ -447,7 +447,7 @@ public interface CdshooksguidanceresponseBuilder extends GuidanceResponseBuilder
       return this;
     }
 
-    public CdshooksguidanceresponseBuilder withoutMeta() {
+    public CdshooksguidanceresponseBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

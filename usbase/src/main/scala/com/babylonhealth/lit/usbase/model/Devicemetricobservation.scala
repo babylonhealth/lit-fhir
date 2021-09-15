@@ -33,7 +33,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/devicemetricobservation")
-  type ValueChoice = Choice[Union00999522603]
+  type ValueChoice = Choice[Union_0110816169]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/devicemetricobservation"))),
@@ -124,7 +124,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
   val category: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val value: FHIRComponentFieldMeta[Option[Devicemetricobservation.ValueChoice]] =
-    FHIRComponentFieldMeta("value", lTagOf[Option[Devicemetricobservation.ValueChoice]], true, lTagOf[Union00999522603])
+    FHIRComponentFieldMeta("value", lTagOf[Option[Devicemetricobservation.ValueChoice]], true, lTagOf[Union_0110816169])
   val bodySite: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
@@ -265,7 +265,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union00999522603]("value"),
+          cursor.decodeOptRef[Union_0110816169]("value"),
           cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),

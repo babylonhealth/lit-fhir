@@ -619,7 +619,7 @@ public interface TaskBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public TaskBuilder withoutMeta() {
+    public TaskBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

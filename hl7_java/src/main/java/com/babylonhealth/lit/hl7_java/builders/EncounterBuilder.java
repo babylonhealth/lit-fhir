@@ -607,7 +607,7 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public EncounterBuilder withoutMeta() {
+    public EncounterBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

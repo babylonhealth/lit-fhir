@@ -45,52 +45,52 @@ import static java.util.stream.Collectors.toList;
 public interface EvidenceVariable_CharacteristicBuilder {
   public EvidenceVariable.Characteristic build();
 
-  public static Impl init(@NonNull Choice01434501542 definition) {
+  public static Impl init(@NonNull Choice00193937709 definition) {
     return new Impl(definition);
   }
 
-  public static Impl builder(@NonNull Choice01434501542 definition) {
+  public static Impl builder(@NonNull Choice00193937709 definition) {
     return new Impl(definition);
   }
 
-  public static Choice01434501542 definition(String s) {
-    return new Choice01434501542(s);
+  public static Choice00193937709 definition(String s) {
+    return new Choice00193937709(s);
   }
 
-  public static Choice01434501542 definition(CodeableConcept c) {
-    return new Choice01434501542(c);
+  public static Choice00193937709 definition(CodeableConcept c) {
+    return new Choice00193937709(c);
   }
 
-  public static Choice01434501542 definition(DataRequirement d) {
-    return new Choice01434501542(d);
+  public static Choice00193937709 definition(DataRequirement d) {
+    return new Choice00193937709(d);
   }
 
-  public static Choice01434501542 definition(Expression e) {
-    return new Choice01434501542(e);
+  public static Choice00193937709 definition(Expression e) {
+    return new Choice00193937709(e);
   }
 
-  public static Choice01434501542 definition(Reference r) {
-    return new Choice01434501542(r);
+  public static Choice00193937709 definition(Reference r) {
+    return new Choice00193937709(r);
   }
 
-  public static Choice01434501542 definition(TriggerDefinition t) {
-    return new Choice01434501542(t);
+  public static Choice00193937709 definition(TriggerDefinition t) {
+    return new Choice00193937709(t);
   }
 
-  public static Choice_1938137622 participantEffective(Duration d) {
-    return new Choice_1938137622(d);
+  public static Choice01763000476 participantEffective(Duration d) {
+    return new Choice01763000476(d);
   }
 
-  public static Choice_1938137622 participantEffective(FHIRDateTime f) {
-    return new Choice_1938137622(f);
+  public static Choice01763000476 participantEffective(FHIRDateTime f) {
+    return new Choice01763000476(f);
   }
 
-  public static Choice_1938137622 participantEffective(Period p) {
-    return new Choice_1938137622(p);
+  public static Choice01763000476 participantEffective(Period p) {
+    return new Choice01763000476(p);
   }
 
-  public static Choice_1938137622 participantEffective(Timing t) {
-    return new Choice_1938137622(t);
+  public static Choice01763000476 participantEffective(Timing t) {
+    return new Choice01763000476(t);
   }
 
   public class Impl implements EvidenceVariable_CharacteristicBuilder {
@@ -100,10 +100,10 @@ public interface EvidenceVariable_CharacteristicBuilder {
     private Optional<String> description = Optional.empty();
     private Collection<UsageContext> usageContext = Collections.emptyList();
     private Optional<GROUP_MEASURE> groupMeasure = Optional.empty();
-    private Choice01434501542 definition;
+    private Choice00193937709 definition;
     private Optional<Duration> timeFromStart = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Optional<Choice_1938137622> participantEffective = Optional.empty();
+    private Optional<Choice01763000476> participantEffective = Optional.empty();
 
     /**
      * Required fields for {@link EvidenceVariable.Characteristic}
@@ -112,7 +112,7 @@ public interface EvidenceVariable_CharacteristicBuilder {
      *     DataRequirement, Expression, Reference, TriggerDefinition. To pass the value in, wrap
      *     with one of the EvidenceVariable_CharacteristicBuilder.definition static methods
      */
-    public Impl(@NonNull Choice01434501542 definition) {
+    public Impl(@NonNull Choice00193937709 definition) {
       this.definition = definition;
     }
 
@@ -253,7 +253,7 @@ public interface EvidenceVariable_CharacteristicBuilder {
      *     EvidenceVariable_CharacteristicBuilder.participantEffective static methods
      */
     public EvidenceVariable_CharacteristicBuilder.Impl withParticipantEffective(
-        @NonNull Choice_1938137622 participantEffective) {
+        @NonNull Choice01763000476 participantEffective) {
       this.participantEffective = Optional.of(participantEffective);
       return this;
     }

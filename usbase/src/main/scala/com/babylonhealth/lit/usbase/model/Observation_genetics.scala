@@ -32,8 +32,8 @@ object Observation_genetics extends CompanionFor[Observation_genetics] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/observation-genetics")
-  type ValueChoice     = Choice[Union01239641171]
-  type EffectiveChoice = Choice[Union_1926447453]
+  type ValueChoice     = Choice[Union02118820890]
+  type EffectiveChoice = Choice[Union00107722725]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/observation-genetics"))),
@@ -134,7 +134,7 @@ object Observation_genetics extends CompanionFor[Observation_genetics] {
   val category: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val value: FHIRComponentFieldMeta[Option[Observation_genetics.ValueChoice]] =
-    FHIRComponentFieldMeta("value", lTagOf[Option[Observation_genetics.ValueChoice]], true, lTagOf[Union01239641171])
+    FHIRComponentFieldMeta("value", lTagOf[Option[Observation_genetics.ValueChoice]], true, lTagOf[Union02118820890])
   val bodySite: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val specimen: FHIRComponentFieldMeta[Option[Reference]] =
@@ -154,7 +154,7 @@ object Observation_genetics extends CompanionFor[Observation_genetics] {
   val derivedFrom: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("derivedFrom", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Option[Observation_genetics.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[Observation_genetics.EffectiveChoice]], true, lTagOf[Union_1926447453])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[Observation_genetics.EffectiveChoice]], true, lTagOf[Union00107722725])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -294,7 +294,7 @@ object Observation_genetics extends CompanionFor[Observation_genetics] {
           cursor.decodeAs[Option[Reference]]("subject", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01239641171]("value"),
+          cursor.decodeOptRef[Union02118820890]("value"),
           cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
           cursor.decodeAs[Option[Reference]]("specimen", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -304,7 +304,7 @@ object Observation_genetics extends CompanionFor[Observation_genetics] {
           cursor.decodeAs[LitSeq[Reference]]("hasMember", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1926447453]("effective"),
+          cursor.decodeOptRef[Union00107722725]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

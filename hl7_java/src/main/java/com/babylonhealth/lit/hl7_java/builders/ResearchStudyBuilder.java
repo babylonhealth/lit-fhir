@@ -641,7 +641,7 @@ public interface ResearchStudyBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ResearchStudyBuilder withoutMeta() {
+    public ResearchStudyBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

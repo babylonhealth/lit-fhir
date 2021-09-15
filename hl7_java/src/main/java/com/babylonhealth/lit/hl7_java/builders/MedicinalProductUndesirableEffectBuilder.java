@@ -291,7 +291,7 @@ public interface MedicinalProductUndesirableEffectBuilder extends DomainResource
       return this;
     }
 
-    public MedicinalProductUndesirableEffectBuilder withoutMeta() {
+    public MedicinalProductUndesirableEffectBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

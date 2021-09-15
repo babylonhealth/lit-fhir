@@ -54,24 +54,24 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     return new Impl(status, subject.build());
   }
 
-  public static Choice01946981731 performed(Age a) {
-    return new Choice01946981731(a);
+  public static Choice01474038381 performed(Age a) {
+    return new Choice01474038381(a);
   }
 
-  public static Choice01946981731 performed(FHIRDateTime f) {
-    return new Choice01946981731(f);
+  public static Choice01474038381 performed(FHIRDateTime f) {
+    return new Choice01474038381(f);
   }
 
-  public static Choice01946981731 performed(Period p) {
-    return new Choice01946981731(p);
+  public static Choice01474038381 performed(Period p) {
+    return new Choice01474038381(p);
   }
 
-  public static Choice01946981731 performed(Range r) {
-    return new Choice01946981731(r);
+  public static Choice01474038381 performed(Range r) {
+    return new Choice01474038381(r);
   }
 
-  public static Choice01946981731 performed(String s) {
-    return new Choice01946981731(s);
+  public static Choice01474038381 performed(String s) {
+    return new Choice01474038381(s);
   }
 
   public class Impl implements ProcedureBuilder {
@@ -100,7 +100,7 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<CodeableConcept> statusReason = Optional.empty();
-    private Optional<Choice01946981731> performed = Optional.empty();
+    private Optional<Choice01474038381> performed = Optional.empty();
     private Collection<CodeableConcept> complication = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Reference> usedReference = Collections.emptyList();
@@ -491,7 +491,7 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
      *     field. Type should be one of Age, FHIRDateTime, Period, Range, String. To pass the value
      *     in, wrap with one of the ProcedureBuilder.performed static methods
      */
-    public ProcedureBuilder.Impl withPerformed(@NonNull Choice01946981731 performed) {
+    public ProcedureBuilder.Impl withPerformed(@NonNull Choice01474038381 performed) {
       this.performed = Optional.of(performed);
       return this;
     }
@@ -709,7 +709,7 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ProcedureBuilder withoutMeta() {
+    public ProcedureBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

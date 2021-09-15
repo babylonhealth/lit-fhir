@@ -464,7 +464,7 @@ public interface Us_core_practitionerroleBuilder extends PractitionerRoleBuilder
       return this;
     }
 
-    public Us_core_practitionerroleBuilder withoutMeta() {
+    public Us_core_practitionerroleBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -723,7 +723,7 @@ public interface ComputableplandefinitionBuilder extends PlanDefinitionBuilder {
       return this;
     }
 
-    public ComputableplandefinitionBuilder withoutMeta() {
+    public ComputableplandefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

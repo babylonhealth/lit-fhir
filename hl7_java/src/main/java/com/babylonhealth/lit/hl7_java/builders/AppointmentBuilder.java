@@ -574,7 +574,7 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public AppointmentBuilder withoutMeta() {
+    public AppointmentBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

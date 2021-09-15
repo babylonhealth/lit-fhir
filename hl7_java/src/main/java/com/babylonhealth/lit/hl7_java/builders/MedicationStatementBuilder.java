@@ -522,7 +522,7 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MedicationStatementBuilder withoutMeta() {
+    public MedicationStatementBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

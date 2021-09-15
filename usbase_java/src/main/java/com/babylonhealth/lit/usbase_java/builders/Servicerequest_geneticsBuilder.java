@@ -832,7 +832,7 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
       return this;
     }
 
-    public Servicerequest_geneticsBuilder withoutMeta() {
+    public Servicerequest_geneticsBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

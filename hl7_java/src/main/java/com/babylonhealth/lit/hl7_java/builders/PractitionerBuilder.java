@@ -375,7 +375,7 @@ public interface PractitionerBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public PractitionerBuilder withoutMeta() {
+    public PractitionerBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

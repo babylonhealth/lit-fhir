@@ -486,7 +486,7 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public GuidanceResponseBuilder withoutMeta() {
+    public GuidanceResponseBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -396,7 +396,7 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CatalogEntryBuilder withoutMeta() {
+    public CatalogEntryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

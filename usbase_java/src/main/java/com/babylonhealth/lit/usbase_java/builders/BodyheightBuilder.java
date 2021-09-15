@@ -611,7 +611,7 @@ public interface BodyheightBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public BodyheightBuilder withoutMeta() {
+    public BodyheightBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

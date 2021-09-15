@@ -404,7 +404,7 @@ public interface VerificationResultBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public VerificationResultBuilder withoutMeta() {
+    public VerificationResultBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -365,7 +365,7 @@ public interface Us_core_provenanceBuilder extends ProvenanceBuilder {
       return this;
     }
 
-    public Us_core_provenanceBuilder withoutMeta() {
+    public Us_core_provenanceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -306,7 +306,7 @@ public interface SpecimenDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SpecimenDefinitionBuilder withoutMeta() {
+    public SpecimenDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

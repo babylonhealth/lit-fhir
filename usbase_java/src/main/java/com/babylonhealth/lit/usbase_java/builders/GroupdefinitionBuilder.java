@@ -324,7 +324,7 @@ public interface GroupdefinitionBuilder extends GroupBuilder {
       return this;
     }
 
-    public GroupdefinitionBuilder withoutMeta() {
+    public GroupdefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

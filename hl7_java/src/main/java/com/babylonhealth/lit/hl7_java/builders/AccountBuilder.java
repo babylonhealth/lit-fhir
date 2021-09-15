@@ -372,7 +372,7 @@ public interface AccountBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public AccountBuilder withoutMeta() {
+    public AccountBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

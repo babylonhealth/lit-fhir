@@ -629,7 +629,7 @@ public interface SynthesisBuilder extends EvidenceBuilder {
       return this;
     }
 
-    public SynthesisBuilder withoutMeta() {
+    public SynthesisBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

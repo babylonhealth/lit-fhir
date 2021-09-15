@@ -272,7 +272,7 @@ public interface BasicBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public BasicBuilder withoutMeta() {
+    public BasicBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

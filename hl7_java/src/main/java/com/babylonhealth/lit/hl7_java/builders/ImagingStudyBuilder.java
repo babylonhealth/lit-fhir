@@ -517,7 +517,7 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ImagingStudyBuilder withoutMeta() {
+    public ImagingStudyBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

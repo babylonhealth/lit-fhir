@@ -293,7 +293,7 @@ public interface VisionPrescriptionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public VisionPrescriptionBuilder withoutMeta() {
+    public VisionPrescriptionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

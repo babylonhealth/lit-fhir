@@ -484,7 +484,7 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public RequestGroupBuilder withoutMeta() {
+    public RequestGroupBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }
