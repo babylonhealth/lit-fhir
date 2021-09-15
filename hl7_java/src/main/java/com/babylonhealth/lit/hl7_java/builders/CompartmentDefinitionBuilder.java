@@ -378,7 +378,7 @@ public interface CompartmentDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CompartmentDefinitionBuilder withoutMeta() {
+    public CompartmentDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -374,7 +374,7 @@ public interface Us_core_organizationBuilder extends OrganizationBuilder {
       return this;
     }
 
-    public Us_core_organizationBuilder withoutMeta() {
+    public Us_core_organizationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

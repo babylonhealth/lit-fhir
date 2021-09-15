@@ -37,7 +37,7 @@ object Goal extends CompanionFor[Goal] {
     override type ParentType   = Target
     override val parentType: CompanionFor[ResourceType] = Target
     type DueChoice    = Choice[UnionDurationOrDate]
-    type DetailChoice = Choice[Union_1011524451]
+    type DetailChoice = Choice[Union_1061953715]
     def apply(
         id: Option[String] = None,
         due: Option[Target.DueChoice] = None,
@@ -67,7 +67,7 @@ object Goal extends CompanionFor[Goal] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val detail: FHIRComponentFieldMeta[Option[Target.DetailChoice]] =
-      FHIRComponentFieldMeta("detail", lTagOf[Option[Target.DetailChoice]], true, lTagOf[Union_1011524451])
+      FHIRComponentFieldMeta("detail", lTagOf[Option[Target.DetailChoice]], true, lTagOf[Union_1061953715])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, due, measure, extension, detail, modifierExtension)
@@ -90,7 +90,7 @@ object Goal extends CompanionFor[Goal] {
             cursor.decodeOptRef[UnionDurationOrDate]("due"),
             cursor.decodeAs[Option[CodeableConcept]]("measure", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_1011524451]("detail"),
+            cursor.decodeOptRef[Union_1061953715]("detail"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )

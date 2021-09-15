@@ -475,7 +475,7 @@ public interface CdshooksrequestgroupBuilder extends RequestGroupBuilder {
       return this;
     }
 
-    public CdshooksrequestgroupBuilder withoutMeta() {
+    public CdshooksrequestgroupBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

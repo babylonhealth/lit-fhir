@@ -628,7 +628,7 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MedicationDispenseBuilder withoutMeta() {
+    public MedicationDispenseBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

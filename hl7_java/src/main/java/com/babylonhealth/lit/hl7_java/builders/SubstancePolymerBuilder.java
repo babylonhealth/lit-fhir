@@ -303,7 +303,7 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SubstancePolymerBuilder withoutMeta() {
+    public SubstancePolymerBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

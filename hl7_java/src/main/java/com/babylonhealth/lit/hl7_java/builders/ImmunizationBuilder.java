@@ -613,7 +613,7 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ImmunizationBuilder withoutMeta() {
+    public ImmunizationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

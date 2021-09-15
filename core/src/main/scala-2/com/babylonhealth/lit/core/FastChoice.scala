@@ -33,8 +33,7 @@ class FastChoiceMacro(val c: Context) {
     c.Expr(q"""new com.babylonhealth.lit.core.Choice($suffixLiteral, $t)($ut)""")
   }
 
-  def choiceLTagMacro[U <: _ \/ _, S](
-      t: c.Expr[S])(ult: c.Expr[LTag[U]], slt: c.Expr[LTag[S]], uw: c.Expr[UnionWitness[U, S]])(
+  def choiceLTagMacro[U <: _ \/ _, S](t: c.Expr[S])(ult: c.Expr[LTag[U]], slt: c.Expr[LTag[S]], uw: c.Expr[UnionWitness[U, S]])(
       implicit
       UV: c.WeakTypeTag[U],
       TV: c.WeakTypeTag[S]

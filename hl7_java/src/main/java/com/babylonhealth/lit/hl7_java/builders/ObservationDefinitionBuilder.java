@@ -417,7 +417,7 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ObservationDefinitionBuilder withoutMeta() {
+    public ObservationDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

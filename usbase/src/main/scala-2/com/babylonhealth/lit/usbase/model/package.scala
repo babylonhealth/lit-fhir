@@ -10,22 +10,22 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.usbase.model._
 
 object UnionAliases {
-  type Union00863392741 = BigDecimal \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime \/ ZonedDateTime
-  type Union00999522603 =
-    CodeableConcept \/ FHIRDateTime \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/ String
+  type Union00916299533                = BigDecimal \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime \/ ZonedDateTime
+  type Union01845407622                = BigDecimal \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime
   type UnionAgeOrBooleanOrDate         = Age \/ Boolean \/ FHIRDate
   type UnionCanonicalOrCodeableConcept = Canonical \/ CodeableConcept
   type UnionCodeableConceptOrRange     = CodeableConcept \/ Range
   type UnionDurationOrPeriod           = Duration \/ Period
-  type Union_1391615921                = BigDecimal \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime
+  type Union_0110816169 =
+    CodeableConcept \/ FHIRDateTime \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/ String
 
-  val Union00863392741Tag: LTag[Union00863392741]                               = LTag[Union00863392741]
-  val Union00999522603Tag: LTag[Union00999522603]                               = LTag[Union00999522603]
+  val Union00916299533Tag: LTag[Union00916299533]                               = LTag[Union00916299533]
+  val Union01845407622Tag: LTag[Union01845407622]                               = LTag[Union01845407622]
   val UnionAgeOrBooleanOrDateTag: LTag[UnionAgeOrBooleanOrDate]                 = LTag[UnionAgeOrBooleanOrDate]
   val UnionCanonicalOrCodeableConceptTag: LTag[UnionCanonicalOrCodeableConcept] = LTag[UnionCanonicalOrCodeableConcept]
   val UnionCodeableConceptOrRangeTag: LTag[UnionCodeableConceptOrRange]         = LTag[UnionCodeableConceptOrRange]
   val UnionDurationOrPeriodTag: LTag[UnionDurationOrPeriod]                     = LTag[UnionDurationOrPeriod]
-  val Union_1391615921Tag: LTag[Union_1391615921]                               = LTag[Union_1391615921]
+  val Union_0110816169Tag: LTag[Union_0110816169]                               = LTag[Union_0110816169]
 }
 
 object Module

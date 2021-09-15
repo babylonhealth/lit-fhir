@@ -400,7 +400,7 @@ public interface GraphDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public GraphDefinitionBuilder withoutMeta() {
+    public GraphDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -345,7 +345,7 @@ public interface PersonBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public PersonBuilder withoutMeta() {
+    public PersonBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

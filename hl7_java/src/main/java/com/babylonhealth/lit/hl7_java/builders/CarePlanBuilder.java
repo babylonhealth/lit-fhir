@@ -581,7 +581,7 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CarePlanBuilder withoutMeta() {
+    public CarePlanBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

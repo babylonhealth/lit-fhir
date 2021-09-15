@@ -462,7 +462,7 @@ public interface Us_core_locationBuilder extends LocationBuilder {
       return this;
     }
 
-    public Us_core_locationBuilder withoutMeta() {
+    public Us_core_locationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

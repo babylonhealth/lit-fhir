@@ -53,24 +53,24 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
     return new Impl(sequence, category.build());
   }
 
-  public static Choice_0861648458 value(Attachment a) {
-    return new Choice_0861648458(a);
+  public static Choice_2028408917 value(Attachment a) {
+    return new Choice_2028408917(a);
   }
 
-  public static Choice_0861648458 value(Boolean b) {
-    return new Choice_0861648458(b);
+  public static Choice_2028408917 value(Boolean b) {
+    return new Choice_2028408917(b);
   }
 
-  public static Choice_0861648458 value(Quantity q) {
-    return new Choice_0861648458(q);
+  public static Choice_2028408917 value(Quantity q) {
+    return new Choice_2028408917(q);
   }
 
-  public static Choice_0861648458 value(Reference r) {
-    return new Choice_0861648458(r);
+  public static Choice_2028408917 value(Reference r) {
+    return new Choice_2028408917(r);
   }
 
-  public static Choice_0861648458 value(String s) {
-    return new Choice_0861648458(s);
+  public static Choice_2028408917 value(String s) {
+    return new Choice_2028408917(s);
   }
 
   public static ChoiceDateOrPeriod timing(FHIRDate f) {
@@ -87,7 +87,7 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
     private Optional<Coding> reason = Optional.empty();
     private Integer sequence;
     private CodeableConcept category;
-    private Optional<Choice_0861648458> value = Optional.empty();
+    private Optional<Choice_2028408917> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<ChoiceDateOrPeriod> timing = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -139,7 +139,7 @@ public interface ExplanationOfBenefit_SupportingInfoBuilder {
      *     ExplanationOfBenefit_SupportingInfoBuilder.value static methods
      */
     public ExplanationOfBenefit_SupportingInfoBuilder.Impl withValue(
-        @NonNull Choice_0861648458 value) {
+        @NonNull Choice_2028408917 value) {
       this.value = Optional.of(value);
       return this;
     }

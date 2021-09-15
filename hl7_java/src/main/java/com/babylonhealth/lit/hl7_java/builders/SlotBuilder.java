@@ -349,7 +349,7 @@ public interface SlotBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SlotBuilder withoutMeta() {
+    public SlotBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

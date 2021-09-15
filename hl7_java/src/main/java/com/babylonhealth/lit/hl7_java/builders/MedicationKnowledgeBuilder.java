@@ -642,7 +642,7 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MedicationKnowledgeBuilder withoutMeta() {
+    public MedicationKnowledgeBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

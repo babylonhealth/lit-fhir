@@ -525,7 +525,7 @@ public interface OperationDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public OperationDefinitionBuilder withoutMeta() {
+    public OperationDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

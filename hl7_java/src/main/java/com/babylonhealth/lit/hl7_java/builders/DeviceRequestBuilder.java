@@ -598,7 +598,7 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DeviceRequestBuilder withoutMeta() {
+    public DeviceRequestBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

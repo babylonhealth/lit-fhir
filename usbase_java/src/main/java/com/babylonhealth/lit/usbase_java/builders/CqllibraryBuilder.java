@@ -694,7 +694,7 @@ public interface CqllibraryBuilder extends LibraryBuilder {
       return this;
     }
 
-    public CqllibraryBuilder withoutMeta() {
+    public CqllibraryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -455,7 +455,7 @@ public interface PractitionerRoleBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public PractitionerRoleBuilder withoutMeta() {
+    public PractitionerRoleBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

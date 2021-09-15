@@ -339,7 +339,7 @@ public interface TestReportBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public TestReportBuilder withoutMeta() {
+    public TestReportBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

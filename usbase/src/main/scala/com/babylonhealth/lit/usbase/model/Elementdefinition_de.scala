@@ -31,8 +31,8 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   override val baseType: CompanionFor[ResourceType] = ElementDefinition
   override val parentType: CompanionFor[ParentType] = ElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-de")
-  type MinValueChoice     = Choice[Union_0603252906]
-  type MaxValueChoice     = Choice[Union_0603252906]
+  type MinValueChoice     = Choice[Union01480857620]
+  type MaxValueChoice     = Choice[Union01480857620]
   type DefaultValueChoice = Choice[UnionAll]
   def apply(
       id: Option[String] = None,
@@ -124,9 +124,9 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   val definition: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("definition", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val minValue: FHIRComponentFieldMeta[Option[Elementdefinition_de.MinValueChoice]] =
-    FHIRComponentFieldMeta("minValue", lTagOf[Option[Elementdefinition_de.MinValueChoice]], true, lTagOf[Union_0603252906])
+    FHIRComponentFieldMeta("minValue", lTagOf[Option[Elementdefinition_de.MinValueChoice]], true, lTagOf[Union01480857620])
   val maxValue: FHIRComponentFieldMeta[Option[Elementdefinition_de.MaxValueChoice]] =
-    FHIRComponentFieldMeta("maxValue", lTagOf[Option[Elementdefinition_de.MaxValueChoice]], true, lTagOf[Union_0603252906])
+    FHIRComponentFieldMeta("maxValue", lTagOf[Option[Elementdefinition_de.MaxValueChoice]], true, lTagOf[Union01480857620])
   val mustSupport: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("mustSupport", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val requirements: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -271,8 +271,8 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
           cursor.decodeAs[Option[Int]]("maxLength", Some(None)),
           cursor.decodeAs[LitSeq[Id]]("condition", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("definition", Some(None)),
-          cursor.decodeOptRef[Union_0603252906]("minValue"),
-          cursor.decodeOptRef[Union_0603252906]("maxValue"),
+          cursor.decodeOptRef[Union01480857620]("minValue"),
+          cursor.decodeOptRef[Union01480857620]("maxValue"),
           cursor.decodeAs[Option[Boolean]]("mustSupport", Some(None)),
           cursor.decodeAs[Option[Markdown]]("requirements", Some(None)),
           cursor.decodeAs[Option[String]]("orderMeaning", Some(None)),

@@ -684,7 +684,7 @@ public interface LibraryBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public LibraryBuilder withoutMeta() {
+    public LibraryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

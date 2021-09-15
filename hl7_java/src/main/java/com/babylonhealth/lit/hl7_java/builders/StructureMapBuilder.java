@@ -451,7 +451,7 @@ public interface StructureMapBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public StructureMapBuilder withoutMeta() {
+    public StructureMapBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -394,7 +394,7 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       return this;
     }
 
-    public BiologicallyDerivedProductBuilder withoutMeta() {
+    public BiologicallyDerivedProductBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

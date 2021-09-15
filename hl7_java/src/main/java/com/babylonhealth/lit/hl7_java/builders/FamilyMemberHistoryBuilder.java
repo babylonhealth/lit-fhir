@@ -79,24 +79,24 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     return new ChoiceDateOrPeriodOrString(s);
   }
 
-  public static Choice00515330545 deceased(Age a) {
-    return new Choice00515330545(a);
+  public static Choice00659500323 deceased(Age a) {
+    return new Choice00659500323(a);
   }
 
-  public static Choice00515330545 deceased(Boolean b) {
-    return new Choice00515330545(b);
+  public static Choice00659500323 deceased(Boolean b) {
+    return new Choice00659500323(b);
   }
 
-  public static Choice00515330545 deceased(FHIRDate f) {
-    return new Choice00515330545(f);
+  public static Choice00659500323 deceased(FHIRDate f) {
+    return new Choice00659500323(f);
   }
 
-  public static Choice00515330545 deceased(Range r) {
-    return new Choice00515330545(r);
+  public static Choice00659500323 deceased(Range r) {
+    return new Choice00659500323(r);
   }
 
-  public static Choice00515330545 deceased(String s) {
-    return new Choice00515330545(s);
+  public static Choice00659500323 deceased(String s) {
+    return new Choice00659500323(s);
   }
 
   public class Impl implements FamilyMemberHistoryBuilder {
@@ -116,7 +116,7 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-    private Optional<Choice00515330545> deceased = Optional.empty();
+    private Optional<Choice00659500323> deceased = Optional.empty();
     private CodeableConcept relationship;
     private Optional<Boolean> estimatedAge = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
@@ -356,7 +356,7 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
      *     one of Age, Boolean, FHIRDate, Range, String. To pass the value in, wrap with one of the
      *     FamilyMemberHistoryBuilder.deceased static methods
      */
-    public FamilyMemberHistoryBuilder.Impl withDeceased(@NonNull Choice00515330545 deceased) {
+    public FamilyMemberHistoryBuilder.Impl withDeceased(@NonNull Choice00659500323 deceased) {
       this.deceased = Optional.of(deceased);
       return this;
     }
@@ -522,7 +522,7 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public FamilyMemberHistoryBuilder withoutMeta() {
+    public FamilyMemberHistoryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

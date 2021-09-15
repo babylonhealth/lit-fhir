@@ -637,7 +637,7 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       return this;
     }
 
-    public Us_core_immunizationBuilder withoutMeta() {
+    public Us_core_immunizationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

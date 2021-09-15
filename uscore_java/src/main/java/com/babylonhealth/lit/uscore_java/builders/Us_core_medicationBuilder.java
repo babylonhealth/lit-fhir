@@ -328,7 +328,7 @@ public interface Us_core_medicationBuilder extends MedicationBuilder {
       return this;
     }
 
-    public Us_core_medicationBuilder withoutMeta() {
+    public Us_core_medicationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

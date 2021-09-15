@@ -311,7 +311,7 @@ public interface FlagBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public FlagBuilder withoutMeta() {
+    public FlagBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

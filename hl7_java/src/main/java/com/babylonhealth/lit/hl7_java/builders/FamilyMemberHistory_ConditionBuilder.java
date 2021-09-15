@@ -53,20 +53,20 @@ public interface FamilyMemberHistory_ConditionBuilder {
     return new Impl(code.build());
   }
 
-  public static Choice00228735254 onset(Age a) {
-    return new Choice00228735254(a);
+  public static Choice_1204024681 onset(Age a) {
+    return new Choice_1204024681(a);
   }
 
-  public static Choice00228735254 onset(Period p) {
-    return new Choice00228735254(p);
+  public static Choice_1204024681 onset(Period p) {
+    return new Choice_1204024681(p);
   }
 
-  public static Choice00228735254 onset(Range r) {
-    return new Choice00228735254(r);
+  public static Choice_1204024681 onset(Range r) {
+    return new Choice_1204024681(r);
   }
 
-  public static Choice00228735254 onset(String s) {
-    return new Choice00228735254(s);
+  public static Choice_1204024681 onset(String s) {
+    return new Choice_1204024681(s);
   }
 
   public class Impl implements FamilyMemberHistory_ConditionBuilder {
@@ -74,7 +74,7 @@ public interface FamilyMemberHistory_ConditionBuilder {
     private CodeableConcept code;
     private Collection<Annotation> note = Collections.emptyList();
     private Optional<CodeableConcept> outcome = Optional.empty();
-    private Optional<Choice00228735254> onset = Optional.empty();
+    private Optional<Choice_1204024681> onset = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<Boolean> contributedToDeath = Optional.empty();
@@ -136,7 +136,7 @@ public interface FamilyMemberHistory_ConditionBuilder {
      *     pass the value in, wrap with one of the FamilyMemberHistory_ConditionBuilder.onset static
      *     methods
      */
-    public FamilyMemberHistory_ConditionBuilder.Impl withOnset(@NonNull Choice00228735254 onset) {
+    public FamilyMemberHistory_ConditionBuilder.Impl withOnset(@NonNull Choice_1204024681 onset) {
       this.onset = Optional.of(onset);
       return this;
     }

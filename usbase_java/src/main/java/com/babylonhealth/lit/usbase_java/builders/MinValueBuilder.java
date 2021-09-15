@@ -48,37 +48,37 @@ import static java.util.stream.Collectors.toList;
 public interface MinValueBuilder extends ExtensionBuilder {
   public MinValue build();
 
-  public static Impl init(@NonNull Choice_1391615921 value) {
+  public static Impl init(@NonNull Choice01845407622 value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice_1391615921 value) {
+  public static Impl builder(@NonNull Choice01845407622 value) {
     return new Impl(value);
   }
 
-  public static Choice_1391615921 value(BigDecimal b) {
-    return new Choice_1391615921(b);
+  public static Choice01845407622 value(BigDecimal b) {
+    return new Choice01845407622(b);
   }
 
-  public static Choice_1391615921 value(FHIRDate f) {
-    return new Choice_1391615921(f);
+  public static Choice01845407622 value(FHIRDate f) {
+    return new Choice01845407622(f);
   }
 
-  public static Choice_1391615921 value(FHIRDateTime f) {
-    return new Choice_1391615921(f);
+  public static Choice01845407622 value(FHIRDateTime f) {
+    return new Choice01845407622(f);
   }
 
-  public static Choice_1391615921 value(Integer i) {
-    return new Choice_1391615921(i);
+  public static Choice01845407622 value(Integer i) {
+    return new Choice01845407622(i);
   }
 
-  public static Choice_1391615921 value(LocalTime l) {
-    return new Choice_1391615921(l);
+  public static Choice01845407622 value(LocalTime l) {
+    return new Choice01845407622(l);
   }
 
   public class Impl implements MinValueBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice_1391615921 value;
+    private Choice01845407622 value;
 
     /**
      * Required fields for {@link MinValue}
@@ -88,7 +88,7 @@ public interface MinValueBuilder extends ExtensionBuilder {
      *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime. To
      *     pass the value in, wrap with one of the MinValueBuilder.value static methods
      */
-    public Impl(@NonNull Choice_1391615921 value) {
+    public Impl(@NonNull Choice01845407622 value) {
       this.value = value;
     }
 

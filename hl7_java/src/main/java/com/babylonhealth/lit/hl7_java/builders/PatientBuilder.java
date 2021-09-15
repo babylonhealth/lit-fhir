@@ -464,7 +464,7 @@ public interface PatientBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public PatientBuilder withoutMeta() {
+    public PatientBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

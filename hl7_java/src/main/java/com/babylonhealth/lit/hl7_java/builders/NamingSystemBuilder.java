@@ -380,7 +380,7 @@ public interface NamingSystemBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public NamingSystemBuilder withoutMeta() {
+    public NamingSystemBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

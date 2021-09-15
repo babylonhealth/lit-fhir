@@ -116,7 +116,7 @@ object Contract extends CompanionFor[Contract] {
         override type ResourceType = Answer
         override type ParentType   = Answer
         override val parentType: CompanionFor[ResourceType] = Answer
-        type ValueChoice = Choice[Union02135982830]
+        type ValueChoice = Choice[Union01113166363]
         def apply(
             id: Option[String] = None,
             value: Answer.ValueChoice,
@@ -135,7 +135,7 @@ object Contract extends CompanionFor[Contract] {
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val value: FHIRComponentFieldMeta[Answer.ValueChoice] =
-          FHIRComponentFieldMeta("value", lTagOf[Answer.ValueChoice], true, lTagOf[Union02135982830])
+          FHIRComponentFieldMeta("value", lTagOf[Answer.ValueChoice], true, lTagOf[Union01113166363])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -155,7 +155,7 @@ object Contract extends CompanionFor[Contract] {
             Try(
               new Answer(
                 cursor.decodeAs[Option[String]]("id", Some(None)),
-                cursor.decodeRef[Union02135982830]("value"),
+                cursor.decodeRef[Union01113166363]("value"),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 decodeAttributes(cursor)

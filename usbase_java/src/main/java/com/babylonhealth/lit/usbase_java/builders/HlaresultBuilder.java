@@ -523,7 +523,7 @@ public interface HlaresultBuilder extends DiagnosticReportBuilder {
       return this;
     }
 
-    public HlaresultBuilder withoutMeta() {
+    public HlaresultBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

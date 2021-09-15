@@ -551,7 +551,7 @@ public interface Us_core_diagnosticreport_labBuilder extends DiagnosticReportBui
       return this;
     }
 
-    public Us_core_diagnosticreport_labBuilder withoutMeta() {
+    public Us_core_diagnosticreport_labBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

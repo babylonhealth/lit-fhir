@@ -573,7 +573,7 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ChargeItemBuilder withoutMeta() {
+    public ChargeItemBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

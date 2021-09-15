@@ -313,7 +313,7 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public SubstanceBuilder withoutMeta() {
+    public SubstanceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

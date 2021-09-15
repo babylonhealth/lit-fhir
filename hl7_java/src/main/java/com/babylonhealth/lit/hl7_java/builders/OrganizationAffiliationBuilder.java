@@ -436,7 +436,7 @@ public interface OrganizationAffiliationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public OrganizationAffiliationBuilder withoutMeta() {
+    public OrganizationAffiliationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -428,7 +428,7 @@ public interface ClinicaldocumentBuilder extends CompositionBuilder {
       return this;
     }
 
-    public ClinicaldocumentBuilder withoutMeta() {
+    public ClinicaldocumentBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

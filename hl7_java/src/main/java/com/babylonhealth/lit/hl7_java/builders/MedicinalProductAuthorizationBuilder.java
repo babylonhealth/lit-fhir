@@ -456,7 +456,7 @@ public interface MedicinalProductAuthorizationBuilder extends DomainResourceBuil
       return this;
     }
 
-    public MedicinalProductAuthorizationBuilder withoutMeta() {
+    public MedicinalProductAuthorizationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -303,7 +303,7 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
       return this;
     }
 
-    public SubstanceReferenceInformationBuilder withoutMeta() {
+    public SubstanceReferenceInformationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

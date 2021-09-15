@@ -53,20 +53,20 @@ public interface SubstanceSpecification_RelationshipBuilder {
     return new Impl();
   }
 
-  public static Choice01138203188 amount(Quantity q) {
-    return new Choice01138203188(q);
+  public static Choice00133982841 amount(Quantity q) {
+    return new Choice00133982841(q);
   }
 
-  public static Choice01138203188 amount(Range r) {
-    return new Choice01138203188(r);
+  public static Choice00133982841 amount(Range r) {
+    return new Choice00133982841(r);
   }
 
-  public static Choice01138203188 amount(Ratio r) {
-    return new Choice01138203188(r);
+  public static Choice00133982841 amount(Ratio r) {
+    return new Choice00133982841(r);
   }
 
-  public static Choice01138203188 amount(String s) {
-    return new Choice01138203188(s);
+  public static Choice00133982841 amount(String s) {
+    return new Choice00133982841(s);
   }
 
   public static ChoiceCodeableConceptOrReference substance(CodeableConcept c) {
@@ -81,7 +81,7 @@ public interface SubstanceSpecification_RelationshipBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Reference> source = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice01138203188> amount = Optional.empty();
+    private Optional<Choice00133982841> amount = Optional.empty();
     private Optional<Boolean> isDefining = Optional.empty();
     private Optional<CodeableConcept> amountType = Optional.empty();
     private Optional<ChoiceCodeableConceptOrReference> substance = Optional.empty();
@@ -154,7 +154,7 @@ public interface SubstanceSpecification_RelationshipBuilder {
      *     SubstanceSpecification_RelationshipBuilder.amount static methods
      */
     public SubstanceSpecification_RelationshipBuilder.Impl withAmount(
-        @NonNull Choice01138203188 amount) {
+        @NonNull Choice00133982841 amount) {
       this.amount = Optional.of(amount);
       return this;
     }

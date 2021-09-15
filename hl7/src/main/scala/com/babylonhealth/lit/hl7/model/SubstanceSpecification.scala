@@ -412,7 +412,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
     override type ResourceType = Relationship
     override type ParentType   = Relationship
     override val parentType: CompanionFor[ResourceType] = Relationship
-    type AmountChoice    = Choice[Union01138203188]
+    type AmountChoice    = Choice[Union00133982841]
     type SubstanceChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
@@ -460,7 +460,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val amount: FHIRComponentFieldMeta[Option[Relationship.AmountChoice]] =
-      FHIRComponentFieldMeta("amount", lTagOf[Option[Relationship.AmountChoice]], true, lTagOf[Union01138203188])
+      FHIRComponentFieldMeta("amount", lTagOf[Option[Relationship.AmountChoice]], true, lTagOf[Union00133982841])
     val isDefining: FHIRComponentFieldMeta[Option[Boolean]] =
       FHIRComponentFieldMeta("isDefining", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val amountType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -501,7 +501,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Reference]]("source", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union01138203188]("amount"),
+            cursor.decodeOptRef[Union00133982841]("amount"),
             cursor.decodeAs[Option[Boolean]]("isDefining", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("amountType", Some(None)),
             cursor.decodeOptRef[UnionCodeableConceptOrReference]("substance"),

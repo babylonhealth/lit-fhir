@@ -484,7 +484,7 @@ public interface MediaBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MediaBuilder withoutMeta() {
+    public MediaBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

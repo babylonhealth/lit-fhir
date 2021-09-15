@@ -590,7 +590,7 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CommunicationRequestBuilder withoutMeta() {
+    public CommunicationRequestBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

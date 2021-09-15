@@ -468,7 +468,7 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ExampleScenarioBuilder withoutMeta() {
+    public ExampleScenarioBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

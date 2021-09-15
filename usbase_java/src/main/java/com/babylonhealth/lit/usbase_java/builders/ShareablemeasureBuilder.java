@@ -822,7 +822,7 @@ public interface ShareablemeasureBuilder extends MeasureBuilder {
       return this;
     }
 
-    public ShareablemeasureBuilder withoutMeta() {
+    public ShareablemeasureBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

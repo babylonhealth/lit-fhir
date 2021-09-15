@@ -865,7 +865,7 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ExplanationOfBenefitBuilder withoutMeta() {
+    public ExplanationOfBenefitBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -451,7 +451,7 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
       return this;
     }
 
-    public Us_core_documentreferenceBuilder withoutMeta() {
+    public Us_core_documentreferenceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -433,7 +433,7 @@ public interface InsurancePlanBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public InsurancePlanBuilder withoutMeta() {
+    public InsurancePlanBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

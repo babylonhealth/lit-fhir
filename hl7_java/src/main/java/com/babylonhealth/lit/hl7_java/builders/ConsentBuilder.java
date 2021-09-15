@@ -406,7 +406,7 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ConsentBuilder withoutMeta() {
+    public ConsentBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -623,7 +623,7 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public EvidenceVariableBuilder withoutMeta() {
+    public EvidenceVariableBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -324,7 +324,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type TimingChoice     = Choice[Union_0075792257]
+    type TimingChoice     = Choice[Union01405873694]
     type SubjectChoice    = Choice[UnionCodeableConceptOrReference]
     type DefinitionChoice = Choice[UnionCanonicalOrUri]
     def apply(
@@ -419,7 +419,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val timing: FHIRComponentFieldMeta[Option[Action.TimingChoice]] =
-      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[Union_0075792257])
+      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[Union01405873694])
     val transform: FHIRComponentFieldMeta[Option[Canonical]] =
       FHIRComponentFieldMeta("transform", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
     val subject: FHIRComponentFieldMeta[Option[Action.SubjectChoice]] =
@@ -556,7 +556,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
             cursor.decodeAs[LitSeq[TriggerDefinition]]("trigger", Some(LitSeq.empty)),
             cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0075792257]("timing"),
+            cursor.decodeOptRef[Union01405873694]("timing"),
             cursor.decodeAs[Option[Canonical]]("transform", Some(None)),
             cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
             cursor.decodeAs[Option[String]]("description", Some(None)),

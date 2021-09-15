@@ -393,7 +393,7 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DetectedIssueBuilder withoutMeta() {
+    public DetectedIssueBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

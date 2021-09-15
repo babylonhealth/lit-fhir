@@ -32,7 +32,7 @@ object Ldlcholesterol extends CompanionFor[Ldlcholesterol] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ldlcholesterol")
-  type EffectiveChoice = Choice[Union_1926447453]
+  type EffectiveChoice = Choice[Union00107722725]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/ldlcholesterol"))),
@@ -145,7 +145,7 @@ object Ldlcholesterol extends CompanionFor[Ldlcholesterol] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val effective: FHIRComponentFieldMeta[Option[Ldlcholesterol.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[Ldlcholesterol.EffectiveChoice]], true, lTagOf[Union_1926447453])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[Ldlcholesterol.EffectiveChoice]], true, lTagOf[Union00107722725])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -283,7 +283,7 @@ object Ldlcholesterol extends CompanionFor[Ldlcholesterol] {
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1926447453]("effective"),
+          cursor.decodeOptRef[Union00107722725]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeFromListAs[Option[CodeableConcept]]("interpretation", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

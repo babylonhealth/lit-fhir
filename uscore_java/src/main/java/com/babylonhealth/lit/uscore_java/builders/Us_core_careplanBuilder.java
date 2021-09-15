@@ -585,7 +585,7 @@ public interface Us_core_careplanBuilder extends CarePlanBuilder {
       return this;
     }
 
-    public Us_core_careplanBuilder withoutMeta() {
+    public Us_core_careplanBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

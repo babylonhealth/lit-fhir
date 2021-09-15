@@ -647,7 +647,7 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public EvidenceBuilder withoutMeta() {
+    public EvidenceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

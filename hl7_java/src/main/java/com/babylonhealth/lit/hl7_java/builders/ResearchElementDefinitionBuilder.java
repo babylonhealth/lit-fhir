@@ -727,7 +727,7 @@ public interface ResearchElementDefinitionBuilder extends DomainResourceBuilder 
       return this;
     }
 
-    public ResearchElementDefinitionBuilder withoutMeta() {
+    public ResearchElementDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

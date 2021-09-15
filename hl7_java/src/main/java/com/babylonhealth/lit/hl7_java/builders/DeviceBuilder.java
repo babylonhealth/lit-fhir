@@ -573,7 +573,7 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DeviceBuilder withoutMeta() {
+    public DeviceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

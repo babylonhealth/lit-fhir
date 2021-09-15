@@ -388,7 +388,7 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public PaymentReconciliationBuilder withoutMeta() {
+    public PaymentReconciliationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

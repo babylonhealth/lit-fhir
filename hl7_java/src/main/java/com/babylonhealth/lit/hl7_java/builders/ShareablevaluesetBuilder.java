@@ -456,7 +456,7 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
       return this;
     }
 
-    public ShareablevaluesetBuilder withoutMeta() {
+    public ShareablevaluesetBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

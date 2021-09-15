@@ -553,7 +553,7 @@ public interface Us_core_diagnosticreport_noteBuilder extends DiagnosticReportBu
       return this;
     }
 
-    public Us_core_diagnosticreport_noteBuilder withoutMeta() {
+    public Us_core_diagnosticreport_noteBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

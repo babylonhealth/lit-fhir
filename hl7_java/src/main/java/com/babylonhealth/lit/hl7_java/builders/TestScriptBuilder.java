@@ -557,7 +557,7 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public TestScriptBuilder withoutMeta() {
+    public TestScriptBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

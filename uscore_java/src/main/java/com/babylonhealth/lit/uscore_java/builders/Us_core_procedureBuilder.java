@@ -723,7 +723,7 @@ public interface Us_core_procedureBuilder extends ProcedureBuilder {
       return this;
     }
 
-    public Us_core_procedureBuilder withoutMeta() {
+    public Us_core_procedureBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

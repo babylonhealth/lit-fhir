@@ -413,7 +413,7 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CoverageBuilder withoutMeta() {
+    public CoverageBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

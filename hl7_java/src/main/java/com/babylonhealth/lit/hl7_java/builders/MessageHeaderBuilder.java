@@ -366,7 +366,7 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MessageHeaderBuilder withoutMeta() {
+    public MessageHeaderBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

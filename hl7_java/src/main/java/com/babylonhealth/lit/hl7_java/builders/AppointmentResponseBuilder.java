@@ -310,7 +310,7 @@ public interface AppointmentResponseBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public AppointmentResponseBuilder withoutMeta() {
+    public AppointmentResponseBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

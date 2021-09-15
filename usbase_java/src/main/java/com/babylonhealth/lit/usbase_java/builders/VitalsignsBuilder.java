@@ -72,48 +72,48 @@ public interface VitalsignsBuilder extends ObservationBuilder {
         effective);
   }
 
-  public static Choice01239641171 value(Boolean b) {
-    return new Choice01239641171(b);
+  public static Choice02118820890 value(Boolean b) {
+    return new Choice02118820890(b);
   }
 
-  public static Choice01239641171 value(CodeableConcept c) {
-    return new Choice01239641171(c);
+  public static Choice02118820890 value(CodeableConcept c) {
+    return new Choice02118820890(c);
   }
 
-  public static Choice01239641171 value(FHIRDateTime f) {
-    return new Choice01239641171(f);
+  public static Choice02118820890 value(FHIRDateTime f) {
+    return new Choice02118820890(f);
   }
 
-  public static Choice01239641171 value(Integer i) {
-    return new Choice01239641171(i);
+  public static Choice02118820890 value(Integer i) {
+    return new Choice02118820890(i);
   }
 
-  public static Choice01239641171 value(LocalTime l) {
-    return new Choice01239641171(l);
+  public static Choice02118820890 value(LocalTime l) {
+    return new Choice02118820890(l);
   }
 
-  public static Choice01239641171 value(Period p) {
-    return new Choice01239641171(p);
+  public static Choice02118820890 value(Period p) {
+    return new Choice02118820890(p);
   }
 
-  public static Choice01239641171 value(Quantity q) {
-    return new Choice01239641171(q);
+  public static Choice02118820890 value(Quantity q) {
+    return new Choice02118820890(q);
   }
 
-  public static Choice01239641171 value(Range r) {
-    return new Choice01239641171(r);
+  public static Choice02118820890 value(Range r) {
+    return new Choice02118820890(r);
   }
 
-  public static Choice01239641171 value(Ratio r) {
-    return new Choice01239641171(r);
+  public static Choice02118820890 value(Ratio r) {
+    return new Choice02118820890(r);
   }
 
-  public static Choice01239641171 value(SampledData s) {
-    return new Choice01239641171(s);
+  public static Choice02118820890 value(SampledData s) {
+    return new Choice02118820890(s);
   }
 
-  public static Choice01239641171 value(String s) {
-    return new Choice01239641171(s);
+  public static Choice02118820890 value(String s) {
+    return new Choice02118820890(s);
   }
 
   public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
@@ -144,7 +144,7 @@ public interface VitalsignsBuilder extends ObservationBuilder {
     private Reference subject;
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category;
-    private Optional<Choice01239641171> value = Optional.empty();
+    private Optional<Choice02118820890> value = Optional.empty();
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Optional<Reference> specimen = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -360,7 +360,7 @@ public interface VitalsignsBuilder extends ObservationBuilder {
      *     Integer, LocalTime, Period, Quantity, Range, Ratio, SampledData, String. To pass the
      *     value in, wrap with one of the VitalsignsBuilder.value static methods
      */
-    public VitalsignsBuilder.Impl withValue(@NonNull Choice01239641171 value) {
+    public VitalsignsBuilder.Impl withValue(@NonNull Choice02118820890 value) {
       this.value = Optional.of(value);
       return this;
     }
@@ -653,7 +653,7 @@ public interface VitalsignsBuilder extends ObservationBuilder {
       return this;
     }
 
-    public VitalsignsBuilder withoutMeta() {
+    public VitalsignsBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

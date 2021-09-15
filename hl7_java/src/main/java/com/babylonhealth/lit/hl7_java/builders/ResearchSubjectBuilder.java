@@ -286,7 +286,7 @@ public interface ResearchSubjectBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ResearchSubjectBuilder withoutMeta() {
+    public ResearchSubjectBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

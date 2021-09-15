@@ -362,7 +362,7 @@ public interface Ehrsrle_provenanceBuilder extends ProvenanceBuilder {
       return this;
     }
 
-    public Ehrsrle_provenanceBuilder withoutMeta() {
+    public Ehrsrle_provenanceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

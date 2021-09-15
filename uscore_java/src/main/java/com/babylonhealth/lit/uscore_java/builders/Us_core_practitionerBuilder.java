@@ -369,7 +369,7 @@ public interface Us_core_practitionerBuilder extends PractitionerBuilder {
       return this;
     }
 
-    public Us_core_practitionerBuilder withoutMeta() {
+    public Us_core_practitionerBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

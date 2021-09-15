@@ -578,7 +578,7 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MedicationAdministrationBuilder withoutMeta() {
+    public MedicationAdministrationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

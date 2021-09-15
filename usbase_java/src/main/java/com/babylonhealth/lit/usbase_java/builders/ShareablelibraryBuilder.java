@@ -698,7 +698,7 @@ public interface ShareablelibraryBuilder extends LibraryBuilder {
       return this;
     }
 
-    public ShareablelibraryBuilder withoutMeta() {
+    public ShareablelibraryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

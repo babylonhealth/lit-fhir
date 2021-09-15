@@ -383,7 +383,7 @@ public interface DocumentManifestBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DocumentManifestBuilder withoutMeta() {
+    public DocumentManifestBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

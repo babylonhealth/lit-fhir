@@ -814,7 +814,7 @@ public interface MeasureBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MeasureBuilder withoutMeta() {
+    public MeasureBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

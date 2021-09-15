@@ -798,7 +798,7 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       return this;
     }
 
-    public Us_core_medicationrequestBuilder withoutMeta() {
+    public Us_core_medicationrequestBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

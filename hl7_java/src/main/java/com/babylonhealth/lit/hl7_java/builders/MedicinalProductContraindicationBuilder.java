@@ -348,7 +348,7 @@ public interface MedicinalProductContraindicationBuilder extends DomainResourceB
       return this;
     }
 
-    public MedicinalProductContraindicationBuilder withoutMeta() {
+    public MedicinalProductContraindicationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

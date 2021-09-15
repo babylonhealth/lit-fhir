@@ -575,7 +575,7 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public DeviceDefinitionBuilder withoutMeta() {
+    public DeviceDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

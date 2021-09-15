@@ -28,7 +28,7 @@ object UsageContext extends CompanionFor[UsageContext] {
   override val baseType: CompanionFor[ResourceType] = UsageContext
   override val parentType: CompanionFor[ParentType] = UsageContext
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/UsageContext")
-  type ValueChoice = Choice[Union00624997139]
+  type ValueChoice = Choice[Union_1548929031]
   def apply(
       id: Option[String] = None,
       code: Coding,
@@ -47,7 +47,7 @@ object UsageContext extends CompanionFor[UsageContext] {
   val code: FHIRComponentFieldMeta[Coding] =
     FHIRComponentFieldMeta("code", lTagOf[Coding], false, lTagOf[Coding])
   val value: FHIRComponentFieldMeta[UsageContext.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[UsageContext.ValueChoice], true, lTagOf[Union00624997139])
+    FHIRComponentFieldMeta("value", lTagOf[UsageContext.ValueChoice], true, lTagOf[Union_1548929031])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, value, extension)
@@ -71,7 +71,7 @@ object UsageContext extends CompanionFor[UsageContext] {
         new UsageContext(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Coding]("code", None),
-          cursor.decodeRef[Union00624997139]("value"),
+          cursor.decodeRef[Union_1548929031]("value"),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )

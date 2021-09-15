@@ -336,7 +336,7 @@ public interface ScheduleBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ScheduleBuilder withoutMeta() {
+    public ScheduleBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

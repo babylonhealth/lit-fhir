@@ -34,7 +34,7 @@ object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab")
-  type ValueChoice     = Choice[Union01239641171]
+  type ValueChoice     = Choice[Union02118820890]
   type EffectiveChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
@@ -137,7 +137,7 @@ object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
   val category: FHIRComponentFieldMeta[NonEmptyLitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("category", lTagOf[NonEmptyLitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val value: FHIRComponentFieldMeta[Option[Us_core_observation_lab.ValueChoice]] =
-    FHIRComponentFieldMeta("value", lTagOf[Option[Us_core_observation_lab.ValueChoice]], true, lTagOf[Union01239641171])
+    FHIRComponentFieldMeta("value", lTagOf[Option[Us_core_observation_lab.ValueChoice]], true, lTagOf[Union02118820890])
   val bodySite: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val specimen: FHIRComponentFieldMeta[Option[Reference]] =
@@ -301,7 +301,7 @@ object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[NonEmptyLitSeq[CodeableConcept]]("category", None),
-          cursor.decodeOptRef[Union01239641171]("value"),
+          cursor.decodeOptRef[Union02118820890]("value"),
           cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
           cursor.decodeAs[Option[Reference]]("specimen", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),

@@ -723,7 +723,7 @@ public interface ShareableplandefinitionBuilder extends PlanDefinitionBuilder {
       return this;
     }
 
-    public ShareableplandefinitionBuilder withoutMeta() {
+    public ShareableplandefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

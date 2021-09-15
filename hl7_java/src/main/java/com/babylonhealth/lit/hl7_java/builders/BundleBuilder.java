@@ -190,7 +190,7 @@ public interface BundleBuilder extends ResourceBuilder {
       return this;
     }
 
-    public BundleBuilder withoutMeta() {
+    public BundleBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

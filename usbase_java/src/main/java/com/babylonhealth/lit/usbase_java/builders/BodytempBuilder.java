@@ -610,7 +610,7 @@ public interface BodytempBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public BodytempBuilder withoutMeta() {
+    public BodytempBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

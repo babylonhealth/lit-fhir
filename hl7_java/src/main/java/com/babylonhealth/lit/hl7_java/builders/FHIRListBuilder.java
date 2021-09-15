@@ -365,7 +365,7 @@ public interface FHIRListBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public FHIRListBuilder withoutMeta() {
+    public FHIRListBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

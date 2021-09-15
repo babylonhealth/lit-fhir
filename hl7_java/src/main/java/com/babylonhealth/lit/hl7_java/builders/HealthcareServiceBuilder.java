@@ -632,7 +632,7 @@ public interface HealthcareServiceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public HealthcareServiceBuilder withoutMeta() {
+    public HealthcareServiceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

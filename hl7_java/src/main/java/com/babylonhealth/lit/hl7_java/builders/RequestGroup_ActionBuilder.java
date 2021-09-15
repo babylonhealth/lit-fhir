@@ -58,28 +58,28 @@ public interface RequestGroup_ActionBuilder {
     return new Impl();
   }
 
-  public static Choice_0075792257 timing(Age a) {
-    return new Choice_0075792257(a);
+  public static Choice01405873694 timing(Age a) {
+    return new Choice01405873694(a);
   }
 
-  public static Choice_0075792257 timing(Duration d) {
-    return new Choice_0075792257(d);
+  public static Choice01405873694 timing(Duration d) {
+    return new Choice01405873694(d);
   }
 
-  public static Choice_0075792257 timing(FHIRDateTime f) {
-    return new Choice_0075792257(f);
+  public static Choice01405873694 timing(FHIRDateTime f) {
+    return new Choice01405873694(f);
   }
 
-  public static Choice_0075792257 timing(Period p) {
-    return new Choice_0075792257(p);
+  public static Choice01405873694 timing(Period p) {
+    return new Choice01405873694(p);
   }
 
-  public static Choice_0075792257 timing(Range r) {
-    return new Choice_0075792257(r);
+  public static Choice01405873694 timing(Range r) {
+    return new Choice01405873694(r);
   }
 
-  public static Choice_0075792257 timing(Timing t) {
-    return new Choice_0075792257(t);
+  public static Choice01405873694 timing(Timing t) {
+    return new Choice01405873694(t);
   }
 
   public class Impl implements RequestGroup_ActionBuilder {
@@ -92,7 +92,7 @@ public interface RequestGroup_ActionBuilder {
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
     private Optional<Reference> resource = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_0075792257> timing = Optional.empty();
+    private Optional<Choice01405873694> timing = Optional.empty();
     private Optional<String> description = Optional.empty();
     private Collection<Reference> participant = Collections.emptyList();
     private Collection<RelatedArtifact> documentation = Collections.emptyList();
@@ -219,7 +219,7 @@ public interface RequestGroup_ActionBuilder {
      *     Period, Range, Timing. To pass the value in, wrap with one of the
      *     RequestGroup_ActionBuilder.timing static methods
      */
-    public RequestGroup_ActionBuilder.Impl withTiming(@NonNull Choice_0075792257 timing) {
+    public RequestGroup_ActionBuilder.Impl withTiming(@NonNull Choice01405873694 timing) {
       this.timing = Optional.of(timing);
       return this;
     }

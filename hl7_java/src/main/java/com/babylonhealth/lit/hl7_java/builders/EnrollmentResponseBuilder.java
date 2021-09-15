@@ -295,7 +295,7 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public EnrollmentResponseBuilder withoutMeta() {
+    public EnrollmentResponseBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

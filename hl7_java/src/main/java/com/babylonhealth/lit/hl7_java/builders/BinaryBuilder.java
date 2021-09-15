@@ -135,7 +135,7 @@ public interface BinaryBuilder extends ResourceBuilder {
       return this;
     }
 
-    public BinaryBuilder withoutMeta() {
+    public BinaryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

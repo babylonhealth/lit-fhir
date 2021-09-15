@@ -610,7 +610,7 @@ public interface HeartrateBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public HeartrateBuilder withoutMeta() {
+    public HeartrateBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

@@ -776,7 +776,7 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public MedicationRequestBuilder withoutMeta() {
+    public MedicationRequestBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

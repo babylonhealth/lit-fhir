@@ -447,7 +447,7 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public RiskAssessmentBuilder withoutMeta() {
+    public RiskAssessmentBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

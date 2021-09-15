@@ -627,7 +627,7 @@ public interface PicoelementBuilder extends EvidenceVariableBuilder {
       return this;
     }
 
-    public PicoelementBuilder withoutMeta() {
+    public PicoelementBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

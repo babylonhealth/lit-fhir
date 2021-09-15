@@ -317,7 +317,7 @@ public interface MedicinalProductManufacturedBuilder extends DomainResourceBuild
       return this;
     }
 
-    public MedicinalProductManufacturedBuilder withoutMeta() {
+    public MedicinalProductManufacturedBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

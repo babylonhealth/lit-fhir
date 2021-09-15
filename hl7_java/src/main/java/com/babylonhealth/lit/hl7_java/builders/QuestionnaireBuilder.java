@@ -523,7 +523,7 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public QuestionnaireBuilder withoutMeta() {
+    public QuestionnaireBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

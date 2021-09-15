@@ -345,7 +345,7 @@ public interface Ehrsrle_auditeventBuilder extends AuditEventBuilder {
       return this;
     }
 
-    public Ehrsrle_auditeventBuilder withoutMeta() {
+    public Ehrsrle_auditeventBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

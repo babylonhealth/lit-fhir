@@ -610,7 +610,7 @@ public interface OxygensatBuilder extends VitalsignsBuilder {
       return this;
     }
 
-    public OxygensatBuilder withoutMeta() {
+    public OxygensatBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

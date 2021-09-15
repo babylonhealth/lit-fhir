@@ -453,76 +453,76 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     return ChoiceAll.ChoiceAllUrlStr(s);
   }
 
-  public static Choice_0603252906 minValue(BigDecimal b) {
-    return new Choice_0603252906(b);
+  public static Choice01480857620 minValue(BigDecimal b) {
+    return new Choice01480857620(b);
   }
 
-  public static Choice_0603252906 minValue(FHIRDate f) {
-    return new Choice_0603252906(f);
+  public static Choice01480857620 minValue(FHIRDate f) {
+    return new Choice01480857620(f);
   }
 
-  public static Choice_0603252906 minValue(FHIRDateTime f) {
-    return new Choice_0603252906(f);
+  public static Choice01480857620 minValue(FHIRDateTime f) {
+    return new Choice01480857620(f);
   }
 
-  public static Choice_0603252906 minValue(LocalTime l) {
-    return new Choice_0603252906(l);
+  public static Choice01480857620 minValue(LocalTime l) {
+    return new Choice01480857620(l);
   }
 
-  public static Choice_0603252906 minValue(Quantity q) {
-    return new Choice_0603252906(q);
+  public static Choice01480857620 minValue(Quantity q) {
+    return new Choice01480857620(q);
   }
 
-  public static Choice_0603252906 minValue(ZonedDateTime z) {
-    return new Choice_0603252906(z);
+  public static Choice01480857620 minValue(ZonedDateTime z) {
+    return new Choice01480857620(z);
   }
 
-  public static Choice_0603252906 minValueInteger(Integer i) {
-    return Choice_0603252906.Choice_0603252906Int(i);
+  public static Choice01480857620 minValueInteger(Integer i) {
+    return Choice01480857620.Choice01480857620Int(i);
   }
 
-  public static Choice_0603252906 minValuePositiveInt(Integer i) {
-    return Choice_0603252906.Choice_0603252906PositiveInt(i);
+  public static Choice01480857620 minValuePositiveInt(Integer i) {
+    return Choice01480857620.Choice01480857620PositiveInt(i);
   }
 
-  public static Choice_0603252906 minValueUnsignedInt(Integer i) {
-    return Choice_0603252906.Choice_0603252906UnsignedInt(i);
+  public static Choice01480857620 minValueUnsignedInt(Integer i) {
+    return Choice01480857620.Choice01480857620UnsignedInt(i);
   }
 
-  public static Choice_0603252906 maxValue(BigDecimal b) {
-    return new Choice_0603252906(b);
+  public static Choice01480857620 maxValue(BigDecimal b) {
+    return new Choice01480857620(b);
   }
 
-  public static Choice_0603252906 maxValue(FHIRDate f) {
-    return new Choice_0603252906(f);
+  public static Choice01480857620 maxValue(FHIRDate f) {
+    return new Choice01480857620(f);
   }
 
-  public static Choice_0603252906 maxValue(FHIRDateTime f) {
-    return new Choice_0603252906(f);
+  public static Choice01480857620 maxValue(FHIRDateTime f) {
+    return new Choice01480857620(f);
   }
 
-  public static Choice_0603252906 maxValue(LocalTime l) {
-    return new Choice_0603252906(l);
+  public static Choice01480857620 maxValue(LocalTime l) {
+    return new Choice01480857620(l);
   }
 
-  public static Choice_0603252906 maxValue(Quantity q) {
-    return new Choice_0603252906(q);
+  public static Choice01480857620 maxValue(Quantity q) {
+    return new Choice01480857620(q);
   }
 
-  public static Choice_0603252906 maxValue(ZonedDateTime z) {
-    return new Choice_0603252906(z);
+  public static Choice01480857620 maxValue(ZonedDateTime z) {
+    return new Choice01480857620(z);
   }
 
-  public static Choice_0603252906 maxValueInteger(Integer i) {
-    return Choice_0603252906.Choice_0603252906Int(i);
+  public static Choice01480857620 maxValueInteger(Integer i) {
+    return Choice01480857620.Choice01480857620Int(i);
   }
 
-  public static Choice_0603252906 maxValuePositiveInt(Integer i) {
-    return Choice_0603252906.Choice_0603252906PositiveInt(i);
+  public static Choice01480857620 maxValuePositiveInt(Integer i) {
+    return Choice01480857620.Choice01480857620PositiveInt(i);
   }
 
-  public static Choice_0603252906 maxValueUnsignedInt(Integer i) {
-    return Choice_0603252906.Choice_0603252906UnsignedInt(i);
+  public static Choice01480857620 maxValueUnsignedInt(Integer i) {
+    return Choice01480857620.Choice01480857620UnsignedInt(i);
   }
 
   public static ChoiceAll defaultValue(Address a) {
@@ -744,8 +744,8 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     private Optional<String> definition = Optional.empty();
     private Optional<ChoiceAll> pattern = Optional.empty();
     private Optional<Boolean> isModifier = Optional.empty();
-    private Optional<Choice_0603252906> minValue = Optional.empty();
-    private Optional<Choice_0603252906> maxValue = Optional.empty();
+    private Optional<Choice01480857620> minValue = Optional.empty();
+    private Optional<Choice01480857620> maxValue = Optional.empty();
     private Optional<Boolean> mustSupport = Optional.empty();
     private Optional<String> requirements = Optional.empty();
     private Optional<String> orderMeaning = Optional.empty();
@@ -992,7 +992,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     Integer, LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
      *     ElementDefinitionBuilder.minValue static methods
      */
-    public ElementDefinitionBuilder.Impl withMinValue(@NonNull Choice_0603252906 minValue) {
+    public ElementDefinitionBuilder.Impl withMinValue(@NonNull Choice01480857620 minValue) {
       this.minValue = Optional.of(minValue);
       return this;
     }
@@ -1003,7 +1003,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     Integer, LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
      *     ElementDefinitionBuilder.maxValue static methods
      */
-    public ElementDefinitionBuilder.Impl withMaxValue(@NonNull Choice_0603252906 maxValue) {
+    public ElementDefinitionBuilder.Impl withMaxValue(@NonNull Choice01480857620 maxValue) {
       this.maxValue = Optional.of(maxValue);
       return this;
     }

@@ -810,7 +810,7 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public ServiceRequestBuilder withoutMeta() {
+    public ServiceRequestBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

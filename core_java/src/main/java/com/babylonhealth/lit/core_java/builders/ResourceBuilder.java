@@ -97,7 +97,7 @@ public interface ResourceBuilder {
       return this;
     }
 
-    public ResourceBuilder withoutMeta() {
+    public ResourceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

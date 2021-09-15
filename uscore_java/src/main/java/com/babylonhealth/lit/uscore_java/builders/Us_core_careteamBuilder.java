@@ -418,7 +418,7 @@ public interface Us_core_careteamBuilder extends CareTeamBuilder {
       return this;
     }
 
-    public Us_core_careteamBuilder withoutMeta() {
+    public Us_core_careteamBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }
