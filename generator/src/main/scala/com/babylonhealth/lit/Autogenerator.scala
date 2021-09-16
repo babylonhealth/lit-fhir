@@ -64,7 +64,11 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
     val structureDef      = getFileAsJson(resourceModel.file).as[StructureDefinition].fold(throw _, identity)
     val className: String = structureDef.id.get
     val typeName: String  = structureDef.`type`
-    val url: String       = structureDef.url
+    // slightly gnarly hack. .url is optional in 4.6.0 but mandatory in 4.0.1
+    val url: String = structureDef.url.asInstanceOf[Any] match {
+      case Some(s: String) => s
+      case s: String       => s
+    }
     // establish base class
     // This should be defined for everything except 'resource' and 'element'
     val baseDefinitionURL: Option[String]           = structureDef.baseDefinition
@@ -225,7 +229,8 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
               valueSetEarliestDeclarations,
               args.moduleDependencies,
               j,
-              pkgUnionsLookup.values.flatten.map { case (k, v) => v -> k.replaceFirst("Union", "Choice") }.toMap)
+              pkgUnionsLookup.values.flatten.map { case (k, v) => v -> k.replaceFirst("Union", "Choice") }.toMap
+            )
           catch {
             case NonFatal(ex) =>
               log.error(s"Unable to gen Java file for $p.$o", ex)

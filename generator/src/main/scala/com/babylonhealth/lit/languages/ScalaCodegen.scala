@@ -37,7 +37,7 @@ trait BaseFieldImplicits {
 
     private def wrapInit(s: Seq[String], clashingClasses: Set[String], wrapInRef: Boolean = true): String = {
       val declaringClass = baseField.firstBase.getOrElse(baseField).scalaClassName
-      val baseString     = ElementTreee.getUnionAlias(baseField.pkg, s, baseField)
+      val baseString     = CodegenUtils.profileScalaName(ElementTreee.getUnionAlias(baseField.pkg, s, baseField))
       val inRef =
         if (baseString.matches("Union.+") && wrapInRef) s"${baseField.scalaClassName}.${choiceAlias.get}"
         else if (baseString.matches("Union.+")) baseString
@@ -279,7 +279,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         case "BackboneElement" => backboneElement
       }
       val field                    = _field.copy(base = Some(baseTopClass))
-      val className: String        = field.capitalName
+      val className: String        = field.scalaFieldType
       val fields                   = field.childFields
       val recursiveClassDefs       = fields.map(scalaStrForField(_, element, backboneElement)).collect { case Some(d) => d }
       val recursiveClassDefsString = recursiveClassDefs.mkString("\n\n")
@@ -419,6 +419,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       packagesWithNewTypes: Set[String]): ClassGenInfo = {
     val className: String = topLevelClass.scalaClassName
     val fields            = topLevelClass.modifiedFields
+    val comma             = if (fields.isEmpty) "" else ","
     val otherClassDefs = fields.foldLeft("") { case (acc, next) =>
       val nextStr =
         if (next.parent.isEmpty) scalaStrForField(next, element, backboneElement).map(_ + "\n") getOrElse "" else ""
@@ -460,9 +461,12 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
               else wrapIfParentIsOptional(f)
             s"${f.scalaName} = $foo"
           } ++ urlField)
-          .mkString(s" extends ${bd.scalaClassName}(", ", ", ", primitiveAttributes = primitiveAttributes)")
+          .mkString(
+            s" extends ${bd.scalaClassName}(",
+            ", ",
+            s"${if (bd.fields.isEmpty) "" else ","} primitiveAttributes = primitiveAttributes)")
     }
-    val allClashingTypes   = fields.filter(_.isGenerated).map(_.capitalName).toSet
+    val allClashingTypes   = fields.filter(_.isGenerated).map(_.scalaFieldType).toSet
     val eachFieldsMetaImpl = fields.map(f => f.fieldMeta(allClashingTypes)).mkString("\n    ")
     val fieldsMetaImpl =
       fields.map(_.scalaName).mkString("val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(", ", ", ")")
@@ -480,20 +484,23 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
 
     def extractFieldsImpl                  = fields.map(f => f.getField(allClashingTypes)).mkString("\n    ")
     def unapplyField(f: BaseField): String = f.refineField(allClashingTypes, "o")
-    val unapplyImpl =
-      if (fields.size <= 22) s"""def unapply(o: $className): Option[(${fields
+    val unapplyImpl = {
+      if (fields.isEmpty) s"def unapply(o: $className): Option[Unit] = Some(())"
+      else if (fields.size <= 22) s"""def unapply(o: $className): Option[(${fields
         .map(f => f.typeForClass(allClashingTypes))
         .mkString(", ")})] = Some((${fields.map(unapplyField).mkString(", ")}))"""
       else ""
+    }
 
     // scalafmt can't format the produced code for about 4-5 files
-    val excludeFromScalafmt: Boolean = (fields.size > 45 || className == "MedicationKnowledge")
+    val excludeFromScalafmt: Boolean =
+      (fields.size > 42 || className == "MedicationKnowledge")
     val decodeImpl =
       s"""${if (excludeFromScalafmt) "// format: off" else ""}
          |  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[$className] =
          |    checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ => Try(
          |      new $className(
-         |        ${fields.map(fieldDecoder(_, allClashingTypes)).mkString(",\n        ")},
+         |        ${fields.map(fieldDecoder(_, allClashingTypes)).mkString(",\n        ")}$comma
          |        decodeAttributes(cursor)
          |      )
          |    ))
@@ -510,18 +517,18 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       .mkString(
         "",
         ",\n  ",
-        ",\n  override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts")
+        s"$comma\n  override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts")
     val applyArgsStr: String = fields
       .map(f => s"${f.scalaName}: ${f.typeForClass(allClashingTypes)}${f.default.map(" = " + _).getOrElse("")}")
       .mkString(
         "",
         ",\n    ",
-        ",\n    primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts")
+        s"$comma\n    primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts")
     val applyImpl =
       s"""  def apply(
          |    $applyArgsStr
          |  ): $className = new $className(
-         |    ${fields.map(_.scalaName).mkString(",\n    ")},
+         |    ${fields.map(_.scalaName).mkString(",\n    ")}$comma
          |    primitiveAttributes = primitiveAttributes
          |  )""".stripMargin
     val choiceAliases = fields
@@ -559,7 +566,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
           else
             Seq(s""" "$k" -> (obj => $v)""")
         }
-      if (fields.forall(_.parent.isDefined))
+      if (fields.forall(_.parent.isDefined) && fields.nonEmpty)
         s"override val searchParams: Map[String, ${topLevelClass.scalaClassName} => Seq[Any]] = ${topLevelClass.parentClass.get.scalaClassName}.searchParams"
       // .asInstanceOf[Map[String, ${topLevelClass.scalaClassName} => Seq[Any]]
       else {
@@ -846,7 +853,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    "Reference"         -> DecoderAndTag[Reference](Reference.decoder(_), lTagOf[Reference]),
       |    "ContactDetail"     -> DecoderAndTag[ContactDetail](ContactDetail.decoder(_), lTagOf[ContactDetail]),
       |    "Date"              -> DecoderAndTag[FHIRDate](_ => decodeFHIRDate, lTagOf[FHIRDate]),
-      |    "Decimal"           -> DecoderAndTag[BigDecimal](_ => Decoder.decodeBigDecimal, lTagOf[BigDecimal])
+      |    "Decimal"           -> DecoderAndTag[BigDecimal](_ => Decoder.decodeBigDecimal, lTagOf[BigDecimal]),
+      |    "Integer64"         -> DecoderAndTag[Long](_ => Decoder.decodeLong, lTagOf[Long])
       |  )
       |
       |

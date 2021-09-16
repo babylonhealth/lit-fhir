@@ -9,7 +9,7 @@ import com.babylonhealth.lit.hl7.model.ElementDefinition
 object ElementTreee extends Commonish with Logging {
   private val unionDeclarations = TrieMap.empty[Seq[String], String]
   def hashForUnion(s: Seq[String], declaringClass: String, fieldName: String): String =
-    if (s.size == 50) "All"
+    if (s.size >= 50) "All" // in 4.0.1 there are 50, in 4.6.0 there are 51 TODO: equality with the right size depending on version
     else if (s.size <= 3) s.map(typeLookdown).mkString("Or")
     // If no other good name, use the first declaration site
     // TODO: disabled because of type clashes, but some types would be clearer with this
