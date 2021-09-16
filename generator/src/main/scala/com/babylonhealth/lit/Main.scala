@@ -75,16 +75,18 @@ trait DefaultPlugins extends FileUtils {
       }
       .unsafeRunSync()
       .map(getFileAsJson)
-      .map(_.as[ValueSet]).filter(_.isRight).map(_.fold(throw _, identity))
+      .map(_.as[ValueSet])
+      .filter(_.isRight)
+      .map(_.fold(throw _, identity))
       .flatMap(toCodeValueSet)
       .map(vs => vs.valueSet -> vs)
       .toMap
 
-  def genPlugins: (Map[String, Seq[ClassGenInfo]], (String, BINDING_STRENGTH) => Option[CodeValueSet]) = {
+  def genPlugins: (Map[String, Seq[ClassGenInfo]], (String, BINDING_STRENGTH) => Option[CodeValueSet], () => Unit) = {
     val fetchValueSets: (String, BINDING_STRENGTH) => Option[CodeValueSet] = (key, strength) =>
       defaultValueSets.get(key).orElse(defaultValueSets.get(key.split('|').head)).map(_.copy(binding = strength))
     println(s"Have instantiated ${defaultValueSets.size} value sets to inspect")
-    (extensions, fetchValueSets)
+    (extensions, fetchValueSets, () => ())
   }
 }
 
@@ -150,12 +152,13 @@ trait ArgParser {
 }
 
 trait IOGenerator extends RawGenerator with ArgParser { this: IOApp =>
-  def genPlugins: (Map[String, Seq[ClassGenInfo]], (String, BINDING_STRENGTH) => Option[CodeValueSet])
+  def genPlugins: (Map[String, Seq[ClassGenInfo]], (String, BINDING_STRENGTH) => Option[CodeValueSet], () => Unit)
   override def run(args: List[String]): IO[ExitCode] = {
-    val (extensions, fetchValueSets) = genPlugins
+    val (extensions, fetchValueSets, finalise) = genPlugins
     args match {
       case "generate" +: args =>
         doRawGen(parseArgs(args), extensions, fetchValueSets)
+        finalise()
       case other => println(s"cannot parse args $other")
     }
     IO(ExitCode.Success)
