@@ -28,8 +28,8 @@ object DAG {
             recursiveAddElements(acc.copy(children = acc.children :+ DAG(next, Vector.empty)), rest)
           case None if isParent(next, acc.parent) =>
             recursiveAddElements(DAG(next, Vector(acc)), rest)
-          case None => ???
-          //              throw UnprocessableEntityException(s"I don't know how this happened! Couldn't add ${next} to ${acc.parent}")
+          case None =>
+            recursiveAddElements(DAG(null.asInstanceOf[T], Vector(acc, DAG(next, Vector.empty))), rest)
           case Some(v) =>
             val otherChildren = acc.children.filterNot(_ eq v)
             recursiveAddElements(acc.copy(children = otherChildren :+ recursiveAddElements(v, Vector(next))), rest)
