@@ -75,7 +75,7 @@ trait DefaultPlugins extends FileUtils {
       }
       .unsafeRunSync()
       .map(getFileAsJson)
-      .map(_.as[ValueSet].fold(throw _, identity))
+      .map(_.as[ValueSet]).filter(_.isRight).map(_.fold(throw _, identity))
       .flatMap(toCodeValueSet)
       .map(vs => vs.valueSet -> vs)
       .toMap

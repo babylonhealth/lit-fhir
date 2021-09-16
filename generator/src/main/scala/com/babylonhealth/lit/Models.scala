@@ -90,9 +90,11 @@ case class BaseField(
     case squareReg(n) => n
     case n            => n
   }
-  def capitalName      = noParensName.capitalize
-  val backtickRegex    = """`(.+)`""".r
-  def javaName: String = CodegenUtils.fieldJavaName(noParensName)
+  def capitalName            = noParensName.capitalize
+  def scalaFieldType         = CodegenUtils.profileScalaName(noParensName.capitalize)
+  val backtickRegex          = """`(.+)`""".r
+  def javaName: String       = CodegenUtils.fieldJavaName(noParensName)
+  def scalaClassName: String = CodegenUtils.profileScalaName(className)
   def isBuildableFHIRType: Boolean =
     isGenerated || (types.size == 1 && !isPrimitiveSuffix(inverseTypeLookup(types.head)) && !types.head.contains('"'))
   def javaBuildName(getBuilderName: (String, BaseField) => String): String = (isBuildableFHIRType, cardinality) match {
@@ -101,7 +103,6 @@ case class BaseField(
     case (true, AtLeastOne) =>
       "new LitSeq<>(" + CodegenUtils.fieldJavaName(noParensName) + s").map(${getBuilderName(types.head, this)}::build)"
   }
-  def scalaClassName: String = CodegenUtils.profileScalaName(className)
   def getAllEnumerations: Map[String, CodeValueSet] =
     valueEnumeration.map(x => x.valueSet -> x).toMap ++ childFields.flatMap(_.getAllEnumerations)
 

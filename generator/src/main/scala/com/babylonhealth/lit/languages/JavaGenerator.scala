@@ -21,6 +21,11 @@ import com.babylonhealth.lit.{
 trait JavaGenerator extends Commonish {
   def choiceClassName(f: BaseField): String = "Choice" + ElementTreee.hashForUnion(f.types, "!!!ERROR!!!", "!!!ERROR!!!")
 
+  def generatedClassNameToScala(s: String): String = s match {
+    case "Option" => "FHIROption"
+    case x        => x
+  }
+
   def genTheJavaForClass(
       topLevelClass: TopLevelClass,
       packageStr: String,
@@ -43,7 +48,6 @@ trait JavaGenerator extends Commonish {
           val nearestValueSet = bf.nearestValueSet
           bf.copy(default = default, valueEnumeration = nearestValueSet)
         }
-    def toCallableScalaName(f: BaseField): String = CodegenUtils.fieldScalaNameFromJavaName(f.javaName)
     def eraseSubtypes(t: String, f: BaseField, builder: Boolean = false): String = t match {
       case "Code" if f.valueEnumeration.isDefined =>
         EnumerationUtils.valueSetToEnumName(f.valueEnumeration.get.valueSet)
@@ -54,13 +58,13 @@ trait JavaGenerator extends Commonish {
       case x if !f.isGenerated && isPrimitiveSuffix(inverseTypeLookup(x)) => x
       case x if f.isGenerated && f.declaringClasses.size > 1 =>
         if (builder) f.declaringClasses.mkString("_") + "_" + x + "Builder"
-        else f.declaringClasses.mkString("$") + "$" + x
+        else f.declaringClasses.map(generatedClassNameToScala).mkString("$") + "$" + generatedClassNameToScala(x)
       case x if f.isGenerated =>
         val progenitorClass = f.firstBase.map(_.scalaClassName) getOrElse topLevelClass.scalaClassName
         if (builder) s"${progenitorClass}_${x}Builder" else s"$progenitorClass.$x"
       case x if x.count(_ == '.') > 1 =>
         if (builder) x.split("\\.").mkString("_") + "Builder"
-        else x.split("\\.").mkString("$")
+        else x.split("\\.").map(generatedClassNameToScala).mkString("$")
       case x if x.contains('"') => "Choice"
       case x if builder         => x.replace('.', '_') + "Builder"
       case x                    => x
@@ -158,7 +162,7 @@ trait JavaGenerator extends Commonish {
           f.types.forall(_ startsWith "Choice[\"") // last case is for the Choice["literallyTheClassName"] hack
 
       val possiblyObjectCast = f.cardinality.applyJavaFunction(f.javaName) { value =>
-        if (f.cardinality != Cardinality.One && f.types.size == 1 && Set("Integer", "Boolean").contains(
+        if (f.cardinality != Cardinality.One && f.types.size == 1 && Set("Integer", "Boolean", "Long").contains(
             eraseSubtypes(f.types.head, f)))
           s"(Object) $value"
         else value
@@ -259,7 +263,7 @@ trait JavaGenerator extends Commonish {
       val builderName     = s"${mungedClassName}Builder"
       val targetClassName =
         if (mungedClassName.count(_ == '_') == 1) mungedClassName.replace('_', '.')
-        else mungedClassName.replace('_', '$')
+        else mungedClassName.replace('_', '$').replaceAll("\\$Option($|\\$)", "\\$FHIROption$1")
       val privateFields                       = genPrivateFields(f.childFields)
       val (nonOptionalFields, optionalFields) = f.childFields.partition(_.cardinality.required)
       val initialParams                       = genInitialParams(nonOptionalFields)
@@ -274,6 +278,7 @@ trait JavaGenerator extends Commonish {
            |  * $paramStrs
            |  */""".stripMargin
       val implementationExtension = if (f.parent.isDefined) s" extends ${f.parent.get.capitalName}Builder" else ""
+      val comma                   = if (f.childFields.nonEmpty) "," else ""
       val fileContents =
         s"""${imports(isTop = false, f.childFields.flatMap(_.nearestValueSet.map(_.valueSet)))}
            |public interface $builderName$implementationExtension {
@@ -302,7 +307,7 @@ trait JavaGenerator extends Commonish {
            |    public $targetClassName build() {
            |      return new $targetClassName(${f.childFields
           .map(convertToScala)
-          .mkString(", ")}, LitUtils.emptyMetaElMap());
+          .mkString(", ")}$comma LitUtils.emptyMetaElMap());
            |    }
            |  }
            |}""".stripMargin
@@ -339,6 +344,7 @@ trait JavaGenerator extends Commonish {
          |  */""".stripMargin
     val implementationExtension =
       if (topLevelClass.parentClass.isDefined) s" extends ${topLevelClass.parentClass.get.scalaClassName}Builder" else ""
+    val comma = if (fields.nonEmpty) "," else ""
     val file =
       s"""${imports(isTop = true, topLevelClass.fields.flatMap(_.nearestValueSet.map(_.valueSet)))}
          |
@@ -370,7 +376,7 @@ trait JavaGenerator extends Commonish {
          |    public ${topLevelClass.scalaClassName} build() {
          |      return new ${topLevelClass.scalaClassName}(${fields
         .map(convertToScala)
-        .mkString(", ")}, LitUtils.emptyMetaElMap());
+        .mkString(", ")}$comma LitUtils.emptyMetaElMap());
          |    }
          |  }
          |}""".stripMargin

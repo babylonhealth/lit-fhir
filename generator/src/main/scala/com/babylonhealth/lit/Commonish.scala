@@ -8,7 +8,8 @@ trait Commonish {
 
   def isPrimitiveSuffix(s: String): Boolean = s.toLowerCase() match {
     case "boolean" | "positiveint" | "unsignedint" | "base64binary" | "canonical" | "code" | "id" | "markdown" | "string" |
-        "integer" | "decimal" | "uuid" | "oid" | "xhtml" | "url" | "uri" | "instant" | "datetime" | "date" | "time" =>
+        "integer" | "decimal" | "uuid" | "oid" | "xhtml" | "url" | "uri" | "instant" | "datetime" | "date" | "time" |
+        "integer64" =>
       true
     case _ => false
   }
@@ -18,24 +19,27 @@ trait Commonish {
     case fhirSystemType(x) => x
     case "boolean" | "positiveInt" | "unsignedInt" | "base64Binary" | "canonical" | "code" | "id" | "markdown" | "string" =>
       s.capitalize
-    case "integer"                => "Int"
-    case "decimal"                => "BigDecimal"
-    case "uuid" | "oid" | "xhtml" => s.map(_.toUpper)
-    case "url"                    => "UrlStr"
-    case "uri"                    => "UriStr"
-    case "instant"                => "ZonedDateTime"
-    case "dateTime"               => "FHIRDateTime"
-    case "date"                   => "FHIRDate"
-    case "time"                   => "LocalTime"
+    case "integer64" | "Integer64" => "Long" // 4.6.0 json capitalises this code :shrug:
+    case "integer"                 => "Int"
+    case "decimal"                 => "BigDecimal"
+    case "uuid" | "oid" | "xhtml"  => s.map(_.toUpper)
+    case "url"                     => "UrlStr"
+    case "uri"                     => "UriStr"
+    case "instant"                 => "ZonedDateTime"
+    case "dateTime"                => "FHIRDateTime"
+    case "date"                    => "FHIRDate"
+    case "time"                    => "LocalTime"
     // TODO: Where are the resources for these?
     case "ProductShelfLife" | "ProdCharacteristic" | "MarketingStatus" | "Population" | "SubstanceAmount" =>
       s"""Choice["$s"]"""
-    case "List" => "FHIRList"
-    case x      => x
+    case "List"   => "FHIRList"
+    case "Option" => "FHIROption"
+    case x        => x
   }
   def inverseTypeLookup(s: String): String = s match {
     case "Boolean" | "PositiveInt" | "UnsignedInt" | "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "String" =>
       s.head.toLower +: s.tail
+    case "Long"                   => "Integer64"
     case "Int"                    => "integer"
     case "BigDecimal"             => "decimal"
     case "UUID" | "OID" | "XHTML" => s.map(_.toLower)
@@ -47,6 +51,7 @@ trait Commonish {
     case "LocalTime"              => "time"
     case experimentalModel(mod)   => mod
     case "FHIRList"               => "List"
+    case "FHIROption"             => "Option"
     case x                        => x
   }
   def typeLookdown(s: String): String = SuffixUtils.typeLookdown(s)

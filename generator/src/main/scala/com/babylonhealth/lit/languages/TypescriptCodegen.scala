@@ -19,7 +19,7 @@ object TypescriptCodegen {
   def tpe(f: BaseField): String = {
     def toTSType(s: String): String =
       (s match {
-        case "PositiveInt" | "UnsignedInt" | "Int" | "BigDecimal" => "number"
+        case "PositiveInt" | "UnsignedInt" | "Int" | "BigDecimal" | "Integer64" => "number"
         case "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" | "String" |
             "UUID" =>
           "string"
