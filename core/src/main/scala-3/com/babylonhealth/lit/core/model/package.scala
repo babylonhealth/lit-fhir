@@ -109,7 +109,8 @@ package object model {
     "Reference"           -> DecoderAndTag[Reference](Reference.decoder(_), lTagOf[Reference]),
     "ContactDetail"       -> DecoderAndTag[ContactDetail](ContactDetail.decoder(_), lTagOf[ContactDetail]),
     "Date"                -> DecoderAndTag[FHIRDate](_ => decodeFHIRDate, lTagOf[FHIRDate]),
-    "Decimal"             -> DecoderAndTag[BigDecimal](_ => Decoder.decodeBigDecimal, lTagOf[BigDecimal])
+    "Decimal"             -> DecoderAndTag[BigDecimal](_ => Decoder.decodeBigDecimal, lTagOf[BigDecimal]),
+    "Integer64"           -> DecoderAndTag[Long](_ => Decoder.decodeLong, lTagOf[Long])
   )
 
   val suffixTypeMap: Map[String, LightTypeTag] =
