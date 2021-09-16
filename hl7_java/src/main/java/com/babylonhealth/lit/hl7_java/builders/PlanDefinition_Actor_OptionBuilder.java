@@ -43,7 +43,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
 public interface PlanDefinition_Actor_OptionBuilder {
-  public PlanDefinition$Actor$Option build();
+  public PlanDefinition$Actor$FHIROption build();
 
   public static Impl init() {
     return new Impl();
@@ -61,7 +61,7 @@ public interface PlanDefinition_Actor_OptionBuilder {
     private Optional<Reference> typeReference = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
-    /** Required fields for {@link PlanDefinition$Actor$Option} */
+    /** Required fields for {@link PlanDefinition$Actor$FHIROption} */
     public Impl() {}
 
     /**
@@ -176,8 +176,8 @@ public interface PlanDefinition_Actor_OptionBuilder {
       return this;
     }
 
-    public PlanDefinition$Actor$Option build() {
-      return new PlanDefinition$Actor$Option(
+    public PlanDefinition$Actor$FHIROption build() {
+      return new PlanDefinition$Actor$FHIROption(
           OptionConverters.toScala(id),
           OptionConverters.toScala(_type),
           OptionConverters.toScala(role),

@@ -45,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 public interface PlanDefinition_ActorBuilder {
   public PlanDefinition.Actor build();
 
-  public static Impl init(Collection<PlanDefinition$Actor$Option> option) {
+  public static Impl init(Collection<PlanDefinition$Actor$FHIROption> option) {
     return new Impl(option);
   }
 
@@ -59,14 +59,14 @@ public interface PlanDefinition_ActorBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<PlanDefinition$Actor$Option> option;
+    private Collection<PlanDefinition$Actor$FHIROption> option;
 
     /**
      * Required fields for {@link PlanDefinition.Actor}
      *
      * @param option
      */
-    public Impl(Collection<PlanDefinition$Actor$Option> option) {
+    public Impl(Collection<PlanDefinition$Actor$FHIROption> option) {
       this.option = option;
     }
 

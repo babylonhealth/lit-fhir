@@ -191,7 +191,7 @@ public interface AttachmentBuilder extends DataTypeBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(url),
           OptionConverters.toScala(data),
-          OptionConverters.toScala(size),
+          OptionConverters.toScala(size.map(x -> (Object) x)),
           OptionConverters.toScala(hash),
           OptionConverters.toScala(title),
           OptionConverters.toScala(width.map(x -> (Object) x)),
