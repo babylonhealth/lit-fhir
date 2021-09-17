@@ -43,15 +43,9 @@ trait BaseFieldImplicits {
         else if (baseString.matches("Union.+")) baseString
         else if (baseField.isGenerated) s"$declaringClass.$baseString"
         else if (baseField.types.head == "Code") {
-          if (baseField.valueEnumeration.isDefined)
-            EnumerationUtils.valueSetToEnumName(baseField.valueEnumeration.get.valueSet)
-          else {
-            baseField.latestBaseWith(_.valueEnumeration.isDefined) match {
-              case Some(base) => EnumerationUtils.valueSetToEnumName(base.valueEnumeration.get.valueSet)
-              case None =>
-                if (!baseField.isGenerated && clashingClasses("Code")) "com.babylonhealth.lit.core.Code" else "Code"
-            }
-          }
+          if (baseField.nearestValueSet.isDefined) EnumerationUtils.valueSetToEnumName(baseField.nearestValueSet.get.valueSet)
+          else if (!baseField.isGenerated && clashingClasses("Code")) "com.babylonhealth.lit.core.Code"
+          else "Code"
         } else if (!baseField.isGenerated && clashingClasses(baseString)) baseString match {
           case "UnsignedInt" | "PositiveInt" | "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" |
               "UrlStr" | "XHTML" =>
@@ -89,7 +83,7 @@ trait BaseFieldImplicits {
         if (baseField.firstBase.forall(_.types.sizeCompare(baseField.types) == 0)) {
           arg
         } else if (baseField.types.size == 1) {
-          if (baseField.types.head == "Code" && baseField.valueEnumeration.isDefined)
+          if (baseField.types.head == "Code" && baseField.nearestValueSet.isDefined)
             s"$tpe.withName($arg.toSubRefNonUnion[Code])"
           else s"$arg.toSubRefNonUnion[$tpe]"
         } else {
@@ -428,7 +422,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     def wrapIfParentIsOptional(f: BaseField): String = {
       val parentWasRefButThisAint = f.parent.map(_.types.size).exists(_ > 1) && f.types.size == 1
       val parentWasMoreReffy      = f.parent.map(_.types.size) exists (_ != f.types.size)
-      def thisIsAnEnum            = f.valueEnumeration.isDefined
+      def thisIsAnEnum            = f.nearestValueSet.isDefined
 
       val parentCard = f.parent.map(_.cardinality).getOrElse(f.cardinality)
 
