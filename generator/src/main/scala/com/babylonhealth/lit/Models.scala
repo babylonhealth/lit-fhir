@@ -106,9 +106,15 @@ case class BaseField(
   def getAllEnumerations: Map[String, CodeValueSet] =
     valueEnumeration.map(x => x.valueSet -> x).toMap ++ childFields.flatMap(_.getAllEnumerations)
 
-  // workaround for valuesets that aren't currently available in the generator's resources,  e.g. us-code-smokingstatus,
-  // which claims a binding of 'http://hl7.org/fhir/us/core/ValueSet/us-core-observation-smoking-status-status' for the status field
-  def nearestValueSet: Option[CodeValueSet] = valueEnumeration orElse parent.flatMap(_.valueEnumeration)
+  val nearestValueSet: Option[CodeValueSet] = (valueEnumeration, parent.flatMap(_.nearestValueSet)) match {
+    case (None, None)    => None
+    case (Some(s), None) => Some(s)
+    // workaround for valuesets that aren't currently available in the generator's resources, e.g. us-code-smokingstatus,
+    // which claims a binding of 'http://hl7.org/fhir/us/core/ValueSet/us-core-observation-smoking-status-status' for the status field
+    case (None, Some(s)) => Some(s)
+    // At the moment, we don't implement refined value sets in children, so we have to use the parent value set in the case that they differ
+    case (Some(_), Some(s2)) => Some(s2)
+  }
 
 }
 

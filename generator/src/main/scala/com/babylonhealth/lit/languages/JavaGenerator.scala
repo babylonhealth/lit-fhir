@@ -46,11 +46,11 @@ trait JavaGenerator extends Commonish {
               Some(s"""Optional.of(MetaBuilder.init().withProfile("${topLevelClass.url}").build())""")
             else bf.cardinality.defaultValue
           val nearestValueSet = bf.nearestValueSet
-          bf.copy(default = default, valueEnumeration = nearestValueSet)
+          bf.copy(default = default)
         }
     def eraseSubtypes(t: String, f: BaseField, builder: Boolean = false): String = t match {
-      case "Code" if f.valueEnumeration.isDefined =>
-        EnumerationUtils.valueSetToEnumName(f.valueEnumeration.get.valueSet)
+      case "Code" if f.nearestValueSet.isDefined =>
+        EnumerationUtils.valueSetToEnumName(f.nearestValueSet.get.valueSet)
       case "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" if !f.isGenerated =>
         "String"
       case "Base64Binary"                                                 => "byte[]"
