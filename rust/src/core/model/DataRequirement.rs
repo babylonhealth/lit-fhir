@@ -17,3 +17,17 @@ pub struct DataRequirement {
     // pub(crate) codeFilter: Vector<CodeFilter>,
     // pub(crate) dateFilter: Vector<DateFilter>,
 }
+//
+// impl From<&DataRequirement> for DataRequirement {
+//     fn from(dr: &DataRequirement) -> Self {
+//         DataRequirement{
+//             id: dr.id.into(),
+//             _type: dr._type.into(),
+//             limit: dr.limit.into(),
+//             profile: dr.profile.into(),
+//             extension: dr.extension.into(),
+//             subject: dr.subject.into(),
+//             mustSupport: dr.mustSupport.into()
+//         }
+//     }
+// }

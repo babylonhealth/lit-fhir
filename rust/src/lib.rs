@@ -71,7 +71,10 @@ mod tests {
             }).try_into().unwrap()),
             mustSupport: Vector::new(),
         };
+        let data_requirement_3 = DataRequirement { id: Some("asd".to_string()), ..(&data_requirement).clone() };
         println!("{:?}", data_requirement);
+        println!("{:?}", data_requirement_2);
+        println!("{:?}", data_requirement_3);
         println!("//data_requirement!");
     }
 }
