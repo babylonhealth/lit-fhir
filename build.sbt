@@ -21,7 +21,7 @@ val V = new {
   val litVersionForGenerator = "0.14.3"
   val scalaTest              = "3.2.9"
   val jsonassert             = "1.5.0"
-  val lombok                 = "1.16.22"
+  val lombok                 = "1.18.20"
   val jUnit                  = "5.6.0"
 }
 
