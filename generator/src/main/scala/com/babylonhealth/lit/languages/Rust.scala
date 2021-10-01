@@ -77,12 +77,14 @@ object Rust {
       if (topLevelClass.isProfile) ""
       else topLevelClass.fields.map(genStructuralClass(_, s"${className}_")).filter(_.nonEmpty).mkString("\n")
     val classBody =
-      s"""$structuralClasses
+      s"""${commonImports(Seq(topLevelClass.targetDir))}
+         |
+         |$structuralClasses
          |
          |pub struct $className {
          |  $fieldDecls
          |}""".stripMargin
-    Seq(ClassGenInfo(classBody, "", null))
+    Seq(ClassGenInfo(classBody, className, topLevelClass.targetDir))
   }
 
 }
