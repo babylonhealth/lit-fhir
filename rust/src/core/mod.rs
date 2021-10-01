@@ -1,3 +1,4 @@
+use im::Vector;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
@@ -53,6 +54,15 @@ sub_enum!(UnionCodeableConceptOrReference {
     FHIRReference(Reference)
 });
 
+// impl Clone for Vector<T> {
+//     fn clone(&self) -> Self {
+//         todo!()
+//     }
+// }
+//
+// impl Copy for Vector<T> {
+//
+// }
 
 pub fn suffix(u: UnionAll) -> String {
     match u {
