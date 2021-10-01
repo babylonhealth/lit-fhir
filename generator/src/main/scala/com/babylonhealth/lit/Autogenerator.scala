@@ -270,7 +270,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
           try Rust.genRustForClass(k)
           catch {
             case NonFatal(ex) =>
-              log.error(s"Unable to gen Typescript file for $p.$o", ex)
+              log.error(s"Unable to gen Rust file for $p.$o", ex)
               Nil
           }
         }.toSeq
@@ -321,7 +321,10 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       if (typescriptClassGenInfo.nonEmpty) new File(args.typescriptDir.get).mkdirs()
       typescriptClassGenInfo.foreach(c =>
         write(s"${args.typescriptDir.get}/DomainModel.ts", c.map(_.fileContents).mkString("\n\n")))
-      if (rustClassGenInfo.nonEmpty) new File(args.typescriptDir.get).mkdirs()
+      if (rustClassGenInfo.nonEmpty)
+        rustClassGenInfo.toSeq
+          .flatMap(_.map(_.pkg).distinct)
+          .foreach(p => new File(s"${args.rustDir.get}/src/$p/model").mkdirs())
       rustClassGenInfo.foreach(_.foreach(c => write(s"${args.rustDir.get}/src/${c.pkg}/model/${c.fileName}.rs", c.fileContents)))
     }
   }
