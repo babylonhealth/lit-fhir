@@ -1,15 +1,15 @@
 use bigdecimal::BigDecimal;
 use im::vector::Vector;
 
-use crate::core::model::*;
-use crate::core::*;
+use crate::core::model::Period::Period;
+// use crate::core::*;
 
 
 
 
 #[derive(Clone, Debug)]
 pub struct Address {
-  pub(crate) use: Option<String>,
+  pub(crate) _use: Option<String>,
   pub(crate) _type: Option<String>,
   pub(crate) text: Option<String>,
   pub(crate) line: Vector<String>,
