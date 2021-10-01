@@ -9,7 +9,7 @@ mod tests {
     use crate::core::model::Quantity::Quantity;
     use crate::core::UnionAll::*;
     use bigdecimal::BigDecimal;
-    use crate::core::model::DataRequirement::DataRequirement;
+    use crate::core::model::DataRequirement::{DataRequirement, Sort};
     use crate::core::model::Reference::Reference;
     use crate::core::{UnionAll, UnionCodeableConceptOrReference};
 
@@ -55,6 +55,9 @@ mod tests {
                 reference: Some("123".to_string()),
             })),
             mustSupport: Vector::new(),
+            sort: Vector::new(),
+            codeFilter: Vector::new(),
+            dateFilter: Vector::new(),
         };
         let data_requirement_2 = DataRequirement {
             id: None,
@@ -70,8 +73,25 @@ mod tests {
                 reference: Some("123".to_string()),
             }).try_into().unwrap()),
             mustSupport: Vector::new(),
+            sort: Vector::new(),
+            codeFilter: Vector::new(),
+            dateFilter: Vector::new(),
         };
-        let data_requirement_3 = DataRequirement { id: Some("asd".to_string()), ..(&data_requirement).clone() };
+        let data_requirement_3 = DataRequirement {
+            sort: Vector::unit(Sort {
+                id: None,
+                _type: "some sort type".to_string(),
+                limit: None,
+                profile: Vector::new(),
+                extension: Vector::new(),
+                subject: None,
+                mustSupport: Vector::new(),
+                sort: Vector::new(),
+                codeFilter: Vector::new(),
+                dateFilter: Vector::new(),
+            }),
+            ..(&data_requirement).clone()
+        };
         println!("{:?}", data_requirement);
         println!("{:?}", data_requirement_2);
         println!("{:?}", data_requirement_3);

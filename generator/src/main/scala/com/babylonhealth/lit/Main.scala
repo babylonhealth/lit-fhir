@@ -101,8 +101,10 @@ case class MainArgs(
     models: Seq[SourceFile] = Nil,
     javaPackageSuffix: Option[String] = None,
     typescriptDir: Option[String] = None,
+    rustDir: Option[String] = None,
     moduleDependencies: ModuleDependencies = ModuleDependencies(Nil),
-    dryRun: Boolean = false)
+    dryRun: Boolean = false,
+    excludeJVM: Boolean = false)
 
 object ArgParser extends ArgParser
 trait ArgParser {
@@ -143,9 +145,12 @@ trait ArgParser {
       case argRegex("models", s)             => args.copy(models = modelsFromStringUnsafe(s))
       case argRegex("javaPackageSuffix", s)  => args.copy(javaPackageSuffix = Some(s))
       case argRegex("typescriptDir", s)      => args.copy(typescriptDir = Some(s))
+      case argRegex("rustDir", s)            => args.copy(rustDir = Some(s))
       case argRegex("moduleDependencies", s) => args.copy(moduleDependencies = moduleDependenciesFromString(s))
       case argRegex("dryRun", b)             => args.copy(dryRun = b.toBoolean)
       case noArgRegex("dryRun")              => args.copy(dryRun = true)
+      case argRegex("excludeJVM", b)         => args.copy(excludeJVM = b.toBoolean)
+      case noArgRegex("excludeJVM")          => args.copy(excludeJVM = true)
       case x                                 => println(s"Could not parse arg $x"); sys.exit(1)
     }
   }

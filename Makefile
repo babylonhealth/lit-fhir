@@ -98,6 +98,18 @@ build-all-class-models:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
+build-hl7-typescript-models:
+	$(SBT) 'project generator' 'run "generate" \
+		--javaPackageSuffix=_java \
+		--excludeJVM \
+		--typescriptDir="./generated_typescript"'
+
+build-hl7-rust-models:
+	$(SBT) 'project generator' 'run "generate" \
+		--javaPackageSuffix=_java \
+		--excludeJVM \
+		--rustDir="./rust"'
+
 clean-target:
 	rm -rf target/ */target
 
@@ -139,3 +151,6 @@ find-weird-ones:
 	cat generator/src/main/resources/searchParams.json | jq '.[] | select(.base[1] != null) | .name'
 	echo NO EXPRESSION:
 	cat generator/src/main/resources/searchParams/SearchParameter-* | jq 'select (.expression == null) | .id'
+
+test-rust:
+	cd rust && cargo test -- --nocapture

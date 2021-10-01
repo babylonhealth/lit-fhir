@@ -220,7 +220,8 @@ case class JavaClassGenInfo(builders: Seq[ClassGenInfo], codes: Seq[ClassGenInfo
 case class AllGeneratedFiles(
     scalaClassGenInfo: Seq[ClassGenInfo],
     javaClassGenInfo: Option[JavaClassGenInfo],
-    typescriptClassGenInfo: Option[Seq[ClassGenInfo]])
+    typescriptClassGenInfo: Option[Seq[ClassGenInfo]],
+    rustClassGenInfo: Option[Seq[ClassGenInfo]])
 
 case class ElementWithSlices(
     el: ElementDefinition,
