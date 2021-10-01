@@ -1,4 +1,5 @@
 pub mod core;
+mod hl7;
 
 
 #[cfg(test)]

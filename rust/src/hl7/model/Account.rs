@@ -1,5 +1,10 @@
 use bigdecimal::BigDecimal;
 use im::vector::Vector;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Period::Period;
+use crate::core::model::Reference::Reference;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
@@ -21,7 +26,7 @@ pub struct Account_Coverage {
 pub struct Account_Guarantor {
   pub(crate) id: Option<String>,
   pub(crate) party: Reference,
-  pub(crate) onHold: Option<Boolean>,
+  pub(crate) onHold: Option<bool>,
   pub(crate) period: Option<Period>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,

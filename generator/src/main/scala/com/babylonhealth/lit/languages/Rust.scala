@@ -15,8 +15,8 @@ object Rust {
     case _                => "?"
   }
   def toRustName(s: String): String = s match {
-    case "type" => "_type"
-    case x      => x
+    case x @ ("type" | "use") => s"_$x"
+    case x                    => x
   }
   def toRustClassName(s: String): String = s match {
     case "Element"    => "FHIRElement"
@@ -35,6 +35,7 @@ object Rust {
         case "Int"                         => "i32"
         case "Integer64"                   => "i64"
         case "BigDecimal"                  => "BigDecimal"
+        case "Boolean"                     => "bool"
         case "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" | "String" |
             "UUID" =>
           "String"
@@ -62,7 +63,7 @@ object Rust {
 //        case _                 => None
 //      }.headOption getOrElse ""
       val parentFields  = field.parent.toSeq.flatMap(_.childFields)
-      val refinedFields = field.childFields//.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
+      val refinedFields = field.childFields //.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
       val fieldDecls    = refinedFields.map(asParam).mkString("\n  ")
       val recursive =
         field.childFields.filter(_.isGenerated).map(genStructuralClass(_, className + "_")).mkString("\n\n")
