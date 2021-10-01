@@ -7,25 +7,27 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct RelatedPerson_Communication {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) language: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) preferred?: Boolean,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) preferred: Option<Boolean>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct RelatedPerson {
-  pub(crate) name?: HumanName,
-  pub(crate) photo?: Attachment,
-  pub(crate) active?: Boolean,
-  pub(crate) gender?: String,
-  pub(crate) period?: Period,
+  pub(crate) name: Vector<HumanName>,
+  pub(crate) photo: Vector<Attachment>,
+  pub(crate) active: Option<Boolean>,
+  pub(crate) gender: Option<String>,
+  pub(crate) period: Option<Period>,
   pub(crate) patient: Reference,
-  pub(crate) telecom?: ContactPoint,
-  pub(crate) address?: Address,
-  pub(crate) birthDate?: FHIRDate,
-  pub(crate) identifier?: Identifier,
-  pub(crate) relationship?: CodeableConcept,
-  pub(crate) communication?: RelatedPerson_Communication,
+  pub(crate) telecom: Vector<ContactPoint>,
+  pub(crate) address: Vector<Address>,
+  pub(crate) birthDate: Option<FHIRDate>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) relationship: Vector<CodeableConcept>,
+  pub(crate) communication: Vector<RelatedPerson_Communication>,
 }

@@ -7,12 +7,13 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductManufactured {
   pub(crate) quantity: Quantity,
-  pub(crate) ingredient?: Reference,
-  pub(crate) manufacturer?: Reference,
-  pub(crate) unitOfPresentation?: CodeableConcept,
+  pub(crate) ingredient: Vector<Reference>,
+  pub(crate) manufacturer: Vector<Reference>,
+  pub(crate) unitOfPresentation: Option<CodeableConcept>,
   pub(crate) manufacturedDoseForm: CodeableConcept,
-  pub(crate) otherCharacteristics?: CodeableConcept,
-  pub(crate) physicalCharacteristics?: any,
+  pub(crate) otherCharacteristics: Vector<CodeableConcept>,
+  pub(crate) physicalCharacteristics: Option<any>,
 }

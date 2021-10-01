@@ -7,7 +7,8 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct FHIRElement {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
 }

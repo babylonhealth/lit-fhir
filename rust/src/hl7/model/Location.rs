@@ -7,42 +7,45 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Location_Position {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) latitude: BigDecimal,
-  pub(crate) altitude?: BigDecimal,
-  pub(crate) extension?: Extension,
+  pub(crate) altitude: Option<BigDecimal>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) longitude: BigDecimal,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Location_HoursOfOperation {
-  pub(crate) id?: String,
-  pub(crate) allDay?: Boolean,
-  pub(crate) extension?: Extension,
-  pub(crate) daysOfWeek?: String,
-  pub(crate) openingTime?: Date,
-  pub(crate) closingTime?: Date,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) allDay: Option<Boolean>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) daysOfWeek: Vector<String>,
+  pub(crate) openingTime: Option<Date>,
+  pub(crate) closingTime: Option<Date>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Location {
-  pub(crate) name?: String,
-  pub(crate) mode?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) alias?: String,
-  pub(crate) status?: String,
-  pub(crate) partOf?: Reference,
-  pub(crate) telecom?: ContactPoint,
-  pub(crate) address?: Address,
-  pub(crate) endpoint?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) description?: String,
-  pub(crate) physicalType?: CodeableConcept,
-  pub(crate) operationalStatus?: Coding,
-  pub(crate) managingOrganization?: Reference,
-  pub(crate) availabilityExceptions?: String,
-  pub(crate) position?: Location_Position,
-  pub(crate) hoursOfOperation?: Location_HoursOfOperation,
+  pub(crate) name: Option<String>,
+  pub(crate) mode: Option<String>,
+  pub(crate) _type: Vector<CodeableConcept>,
+  pub(crate) alias: Vector<String>,
+  pub(crate) status: Option<String>,
+  pub(crate) partOf: Option<Reference>,
+  pub(crate) telecom: Vector<ContactPoint>,
+  pub(crate) address: Option<Address>,
+  pub(crate) endpoint: Vector<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) description: Option<String>,
+  pub(crate) physicalType: Option<CodeableConcept>,
+  pub(crate) operationalStatus: Option<Coding>,
+  pub(crate) managingOrganization: Option<Reference>,
+  pub(crate) availabilityExceptions: Option<String>,
+  pub(crate) position: Option<Location_Position>,
+  pub(crate) hoursOfOperation: Vector<Location_HoursOfOperation>,
 }

@@ -7,12 +7,13 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct ParameterDefinition {
   pub(crate) use: String,
-  pub(crate) min?: i32,
-  pub(crate) max?: String,
-  pub(crate) name?: String,
+  pub(crate) min: Option<i32>,
+  pub(crate) max: Option<String>,
+  pub(crate) name: Option<String>,
   pub(crate) _type: String,
-  pub(crate) profile?: String,
-  pub(crate) documentation?: String,
+  pub(crate) profile: Option<String>,
+  pub(crate) documentation: Option<String>,
 }

@@ -7,22 +7,24 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductIndication_OtherTherapy {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) medication: CodeableConcept | Reference,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) therapyRelationshipType: CodeableConcept,
 }
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductIndication {
-  pub(crate) subject?: Reference,
-  pub(crate) duration?: Quantity,
-  pub(crate) population?: any,
-  pub(crate) comorbidity?: CodeableConcept,
-  pub(crate) diseaseStatus?: CodeableConcept,
-  pub(crate) intendedEffect?: CodeableConcept,
-  pub(crate) undesirableEffect?: Reference,
-  pub(crate) diseaseSymptomProcedure?: CodeableConcept,
-  pub(crate) otherTherapy?: MedicinalProductIndication_OtherTherapy,
+  pub(crate) subject: Vector<Reference>,
+  pub(crate) duration: Option<Quantity>,
+  pub(crate) population: Vector<any>,
+  pub(crate) comorbidity: Vector<CodeableConcept>,
+  pub(crate) diseaseStatus: Option<CodeableConcept>,
+  pub(crate) intendedEffect: Option<CodeableConcept>,
+  pub(crate) undesirableEffect: Vector<Reference>,
+  pub(crate) diseaseSymptomProcedure: Option<CodeableConcept>,
+  pub(crate) otherTherapy: Vector<MedicinalProductIndication_OtherTherapy>,
 }

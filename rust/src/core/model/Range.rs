@@ -7,7 +7,8 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Range {
-  pub(crate) low?: Quantity,
-  pub(crate) high?: Quantity,
+  pub(crate) low: Option<Quantity>,
+  pub(crate) high: Option<Quantity>,
 }

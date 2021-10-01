@@ -7,45 +7,48 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct PaymentReconciliation_Detail {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) _type: CodeableConcept,
-  pub(crate) date?: FHIRDate,
-  pub(crate) payee?: Reference,
-  pub(crate) amount?: Money,
-  pub(crate) request?: Reference,
-  pub(crate) response?: Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) submitter?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) predecessor?: Identifier,
-  pub(crate) responsible?: Reference,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) date: Option<FHIRDate>,
+  pub(crate) payee: Option<Reference>,
+  pub(crate) amount: Option<Money>,
+  pub(crate) request: Option<Reference>,
+  pub(crate) response: Option<Reference>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) submitter: Option<Reference>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) predecessor: Option<Identifier>,
+  pub(crate) responsible: Option<Reference>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct PaymentReconciliation_ProcessNote {
-  pub(crate) id?: String,
-  pub(crate) _type?: String,
-  pub(crate) text?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<String>,
+  pub(crate) text: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct PaymentReconciliation {
   pub(crate) status: String,
-  pub(crate) period?: Period,
+  pub(crate) period: Option<Period>,
   pub(crate) created: Date,
-  pub(crate) request?: Reference,
-  pub(crate) outcome?: String,
-  pub(crate) formCode?: CodeableConcept,
-  pub(crate) requestor?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) disposition?: String,
+  pub(crate) request: Option<Reference>,
+  pub(crate) outcome: Option<String>,
+  pub(crate) formCode: Option<CodeableConcept>,
+  pub(crate) requestor: Option<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) disposition: Option<String>,
   pub(crate) paymentDate: FHIRDate,
-  pub(crate) paymentIssuer?: Reference,
+  pub(crate) paymentIssuer: Option<Reference>,
   pub(crate) paymentAmount: Money,
-  pub(crate) paymentIdentifier?: Identifier,
-  pub(crate) detail?: PaymentReconciliation_Detail,
-  pub(crate) processNote?: PaymentReconciliation_ProcessNote,
+  pub(crate) paymentIdentifier: Option<Identifier>,
+  pub(crate) detail: Vector<PaymentReconciliation_Detail>,
+  pub(crate) processNote: Vector<PaymentReconciliation_ProcessNote>,
 }

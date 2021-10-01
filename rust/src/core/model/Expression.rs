@@ -7,10 +7,11 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Expression {
-  pub(crate) name?: String,
+  pub(crate) name: Option<String>,
   pub(crate) language: String,
-  pub(crate) reference?: String,
-  pub(crate) expression?: String,
-  pub(crate) description?: String,
+  pub(crate) reference: Option<String>,
+  pub(crate) expression: Option<String>,
+  pub(crate) description: Option<String>,
 }

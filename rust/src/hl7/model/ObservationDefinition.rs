@@ -7,43 +7,46 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct ObservationDefinition_QualifiedInterval {
-  pub(crate) id?: String,
-  pub(crate) age?: Range,
-  pub(crate) range?: Range,
-  pub(crate) gender?: String,
-  pub(crate) context?: CodeableConcept,
-  pub(crate) category?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) appliesTo?: CodeableConcept,
-  pub(crate) condition?: String,
-  pub(crate) gestationalAge?: Range,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) age: Option<Range>,
+  pub(crate) range: Option<Range>,
+  pub(crate) gender: Option<String>,
+  pub(crate) context: Option<CodeableConcept>,
+  pub(crate) category: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) appliesTo: Vector<CodeableConcept>,
+  pub(crate) condition: Option<String>,
+  pub(crate) gestationalAge: Option<Range>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct ObservationDefinition_QuantitativeDetails {
-  pub(crate) id?: String,
-  pub(crate) unit?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) customaryUnit?: CodeableConcept,
-  pub(crate) conversionFactor?: BigDecimal,
-  pub(crate) decimalPrecision?: i32,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) unit: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) customaryUnit: Option<CodeableConcept>,
+  pub(crate) conversionFactor: Option<BigDecimal>,
+  pub(crate) decimalPrecision: Option<i32>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct ObservationDefinition {
   pub(crate) code: CodeableConcept,
-  pub(crate) method?: CodeableConcept,
-  pub(crate) category?: CodeableConcept,
-  pub(crate) identifier?: Identifier,
-  pub(crate) permittedDataType?: String,
-  pub(crate) validCodedValueSet?: Reference,
-  pub(crate) preferredReportName?: String,
-  pub(crate) normalCodedValueSet?: Reference,
-  pub(crate) abnormalCodedValueSet?: Reference,
-  pub(crate) criticalCodedValueSet?: Reference,
-  pub(crate) multipleResultsAllowed?: Boolean,
-  pub(crate) qualifiedInterval?: ObservationDefinition_QualifiedInterval,
-  pub(crate) quantitativeDetails?: ObservationDefinition_QuantitativeDetails,
+  pub(crate) method: Option<CodeableConcept>,
+  pub(crate) category: Vector<CodeableConcept>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) permittedDataType: Vector<String>,
+  pub(crate) validCodedValueSet: Option<Reference>,
+  pub(crate) preferredReportName: Option<String>,
+  pub(crate) normalCodedValueSet: Option<Reference>,
+  pub(crate) abnormalCodedValueSet: Option<Reference>,
+  pub(crate) criticalCodedValueSet: Option<Reference>,
+  pub(crate) multipleResultsAllowed: Option<Boolean>,
+  pub(crate) qualifiedInterval: Vector<ObservationDefinition_QualifiedInterval>,
+  pub(crate) quantitativeDetails: Option<ObservationDefinition_QuantitativeDetails>,
 }

@@ -7,35 +7,38 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Group_Member {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) entity: Reference,
-  pub(crate) period?: Period,
-  pub(crate) inactive?: Boolean,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) period: Option<Period>,
+  pub(crate) inactive: Option<Boolean>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Group_Characteristic {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) code: CodeableConcept,
-  pub(crate) period?: Period,
+  pub(crate) period: Option<Period>,
   pub(crate) exclude: Boolean,
   pub(crate) value: Boolean | CodeableConcept | Quantity | Range | Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Group {
   pub(crate) _type: String,
-  pub(crate) code?: CodeableConcept,
-  pub(crate) name?: String,
-  pub(crate) active?: Boolean,
+  pub(crate) code: Option<CodeableConcept>,
+  pub(crate) name: Option<String>,
+  pub(crate) active: Option<Boolean>,
   pub(crate) actual: Boolean,
-  pub(crate) quantity?: u32,
-  pub(crate) identifier?: Identifier,
-  pub(crate) managingEntity?: Reference,
-  pub(crate) member?: Group_Member,
-  pub(crate) characteristic?: Group_Characteristic,
+  pub(crate) quantity: Option<u32>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) managingEntity: Option<Reference>,
+  pub(crate) member: Vector<Group_Member>,
+  pub(crate) characteristic: Vector<Group_Characteristic>,
 }

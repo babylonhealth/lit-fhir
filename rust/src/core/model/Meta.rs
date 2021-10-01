@@ -7,11 +7,12 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Meta {
-  pub(crate) tag?: Coding,
-  pub(crate) source?: String,
-  pub(crate) profile?: String,
-  pub(crate) security?: Coding,
-  pub(crate) versionId?: String,
-  pub(crate) lastUpdated?: Date,
+  pub(crate) tag: Vector<Coding>,
+  pub(crate) source: Option<String>,
+  pub(crate) profile: Vector<String>,
+  pub(crate) security: Vector<Coding>,
+  pub(crate) versionId: Option<String>,
+  pub(crate) lastUpdated: Option<Date>,
 }

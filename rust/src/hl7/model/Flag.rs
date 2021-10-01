@@ -7,13 +7,14 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Flag {
   pub(crate) code: CodeableConcept,
   pub(crate) status: String,
-  pub(crate) period?: Period,
-  pub(crate) author?: Reference,
+  pub(crate) period: Option<Period>,
+  pub(crate) author: Option<Reference>,
   pub(crate) subject: Reference,
-  pub(crate) category?: CodeableConcept,
-  pub(crate) encounter?: Reference,
-  pub(crate) identifier?: Identifier,
+  pub(crate) category: Vector<CodeableConcept>,
+  pub(crate) encounter: Option<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
 }

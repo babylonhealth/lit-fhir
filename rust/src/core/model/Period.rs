@@ -7,7 +7,8 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Period {
-  pub(crate) end?: Date,
-  pub(crate) start?: Date,
+  pub(crate) end: Option<Date>,
+  pub(crate) start: Option<Date>,
 }

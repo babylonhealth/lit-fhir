@@ -1,6 +1,6 @@
 package com.babylonhealth.lit.languages
 
-import com.babylonhealth.lit.Cardinality.{ AtLeastOne, One }
+import com.babylonhealth.lit.Cardinality.{ AtLeastOne, Many, One, Optional }
 import com.babylonhealth.lit.{ BaseField, ClassGenInfo, TopLevelClass }
 
 object Rust {
@@ -23,7 +23,12 @@ object Rust {
     case "Parameters" => "FHIRParameters"
     case x            => x
   }
-  def tpe(f: BaseField): String = {
+  def tpe(f: BaseField): String = f.cardinality match {
+    case One               => rawType(f)
+    case AtLeastOne | Many => s"Vector<${rawType(f)}>"
+    case Optional          => s"Option<${rawType(f)}>"
+  }
+  def rawType(f: BaseField): String = {
     def toRustType(s: String): String =
       (s match {
         case "PositiveInt" | "UnsignedInt" => "u32"
@@ -46,7 +51,7 @@ object Rust {
       })
     f.types.map(toRustType).mkString(" | ")
   }
-  def asParam(f: BaseField) = s"pub(crate) ${toRustName(f.noParensName)}${Q(f)}: ${tpe(f)},"
+  def asParam(f: BaseField) = s"pub(crate) ${toRustName(f.noParensName)}: ${tpe(f)},"
   def genStructuralClass(field: BaseField, prefix: String): String =
     if (!field.isGenerated) ""
     else {
@@ -57,12 +62,13 @@ object Rust {
 //        case _                 => None
 //      }.headOption getOrElse ""
       val parentFields  = field.parent.toSeq.flatMap(_.childFields)
-      val refinedFields = field.childFields.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
+      val refinedFields = field.childFields//.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
       val fieldDecls    = refinedFields.map(asParam).mkString("\n  ")
       val recursive =
         field.childFields.filter(_.isGenerated).map(genStructuralClass(_, className + "_")).mkString("\n\n")
       s"""$recursive
          |
+         |#[derive(Clone, Debug)]
          |pub struct $className {
          |  $fieldDecls
          |}""".stripMargin
@@ -81,6 +87,7 @@ object Rust {
          |
          |$structuralClasses
          |
+         |#[derive(Clone, Debug)]
          |pub struct $className {
          |  $fieldDecls
          |}""".stripMargin

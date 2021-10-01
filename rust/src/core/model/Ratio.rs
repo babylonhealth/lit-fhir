@@ -7,7 +7,8 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Ratio {
-  pub(crate) numerator?: Quantity,
-  pub(crate) denominator?: Quantity,
+  pub(crate) numerator: Option<Quantity>,
+  pub(crate) denominator: Option<Quantity>,
 }

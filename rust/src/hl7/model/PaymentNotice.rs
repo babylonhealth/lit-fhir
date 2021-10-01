@@ -7,17 +7,18 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct PaymentNotice {
-  pub(crate) payee?: Reference,
+  pub(crate) payee: Option<Reference>,
   pub(crate) status: String,
   pub(crate) amount: Money,
-  pub(crate) request?: Reference,
+  pub(crate) request: Option<Reference>,
   pub(crate) created: Date,
   pub(crate) payment: Reference,
-  pub(crate) response?: Reference,
-  pub(crate) provider?: Reference,
+  pub(crate) response: Option<Reference>,
+  pub(crate) provider: Option<Reference>,
   pub(crate) recipient: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) paymentDate?: FHIRDate,
-  pub(crate) paymentStatus?: CodeableConcept,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) paymentDate: Option<FHIRDate>,
+  pub(crate) paymentStatus: Option<CodeableConcept>,
 }

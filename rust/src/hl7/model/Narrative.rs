@@ -7,6 +7,7 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Narrative {
   pub(crate) div: String,
   pub(crate) status: String,

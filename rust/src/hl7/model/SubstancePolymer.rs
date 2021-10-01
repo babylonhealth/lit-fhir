@@ -7,70 +7,77 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct SubstancePolymer_MonomerSet_StartingMaterial {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) amount?: any,
-  pub(crate) material?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) isDefining?: Boolean,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) amount: Option<any>,
+  pub(crate) material: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) isDefining: Option<Boolean>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstancePolymer_MonomerSet {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) ratioType?: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) startingMaterial?: SubstancePolymer_MonomerSet_StartingMaterial,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) ratioType: Option<CodeableConcept>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) startingMaterial: Vector<SubstancePolymer_MonomerSet_StartingMaterial>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisation {
-  pub(crate) id?: String,
-  pub(crate) degree?: CodeableConcept,
-  pub(crate) amount?: any,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) degree: Option<CodeableConcept>,
+  pub(crate) amount: Option<any>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
 
+#[derive(Clone, Debug)]
 pub struct SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) attachment?: Attachment,
-  pub(crate) representation?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) attachment: Option<Attachment>,
+  pub(crate) representation: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstancePolymer_Repeat_RepeatUnit {
-  pub(crate) id?: String,
-  pub(crate) amount?: any,
-  pub(crate) extension?: Extension,
-  pub(crate) repeatUnit?: String,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) orientationOfPolymerisation?: CodeableConcept,
-  pub(crate) degreeOfPolymerisation?: SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisation,
-  pub(crate) structuralRepresentation?: SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation,
+  pub(crate) id: Option<String>,
+  pub(crate) amount: Option<any>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) repeatUnit: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) orientationOfPolymerisation: Option<CodeableConcept>,
+  pub(crate) degreeOfPolymerisation: Vector<SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisation>,
+  pub(crate) structuralRepresentation: Vector<SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentation>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstancePolymer_Repeat {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) numberOfUnits?: i32,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) repeatUnitAmountType?: CodeableConcept,
-  pub(crate) averageMolecularFormula?: String,
-  pub(crate) repeatUnit?: SubstancePolymer_Repeat_RepeatUnit,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) numberOfUnits: Option<i32>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) repeatUnitAmountType: Option<CodeableConcept>,
+  pub(crate) averageMolecularFormula: Option<String>,
+  pub(crate) repeatUnit: Vector<SubstancePolymer_Repeat_RepeatUnit>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstancePolymer {
-  pub(crate) class?: CodeableConcept,
-  pub(crate) geometry?: CodeableConcept,
-  pub(crate) modification?: String,
-  pub(crate) copolymerConnectivity?: CodeableConcept,
-  pub(crate) monomerSet?: SubstancePolymer_MonomerSet,
-  pub(crate) repeat?: SubstancePolymer_Repeat,
+  pub(crate) class: Option<CodeableConcept>,
+  pub(crate) geometry: Option<CodeableConcept>,
+  pub(crate) modification: Vector<String>,
+  pub(crate) copolymerConnectivity: Vector<CodeableConcept>,
+  pub(crate) monomerSet: Vector<SubstancePolymer_MonomerSet>,
+  pub(crate) repeat: Vector<SubstancePolymer_Repeat>,
 }

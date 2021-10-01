@@ -7,23 +7,25 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Person_Link {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) target: Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) assurance?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) assurance: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Person {
-  pub(crate) name?: HumanName,
-  pub(crate) photo?: Attachment,
-  pub(crate) gender?: String,
-  pub(crate) active?: Boolean,
-  pub(crate) telecom?: ContactPoint,
-  pub(crate) address?: Address,
-  pub(crate) birthDate?: FHIRDate,
-  pub(crate) identifier?: Identifier,
-  pub(crate) managingOrganization?: Reference,
-  pub(crate) link?: Person_Link,
+  pub(crate) name: Vector<HumanName>,
+  pub(crate) photo: Option<Attachment>,
+  pub(crate) gender: Option<String>,
+  pub(crate) active: Option<Boolean>,
+  pub(crate) telecom: Vector<ContactPoint>,
+  pub(crate) address: Vector<Address>,
+  pub(crate) birthDate: Option<FHIRDate>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) managingOrganization: Option<Reference>,
+  pub(crate) link: Vector<Person_Link>,
 }

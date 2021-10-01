@@ -7,29 +7,31 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct NamingSystem_UniqueId {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) _type: String,
   pub(crate) value: String,
-  pub(crate) period?: Period,
-  pub(crate) comment?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) preferred?: Boolean,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) period: Option<Period>,
+  pub(crate) comment: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) preferred: Option<Boolean>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct NamingSystem {
   pub(crate) name: String,
   pub(crate) kind: String,
   pub(crate) date: Date,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) usage?: String,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) usage: Option<String>,
   pub(crate) status: String,
-  pub(crate) contact?: ContactDetail,
-  pub(crate) publisher?: String,
-  pub(crate) useContext?: UsageContext,
-  pub(crate) responsible?: String,
-  pub(crate) description?: String,
-  pub(crate) jurisdiction?: CodeableConcept,
-  pub(crate) uniqueId: NamingSystem_UniqueId,
+  pub(crate) contact: Vector<ContactDetail>,
+  pub(crate) publisher: Option<String>,
+  pub(crate) useContext: Vector<UsageContext>,
+  pub(crate) responsible: Option<String>,
+  pub(crate) description: Option<String>,
+  pub(crate) jurisdiction: Vector<CodeableConcept>,
+  pub(crate) uniqueId: Vector<NamingSystem_UniqueId>,
 }

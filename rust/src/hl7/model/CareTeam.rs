@@ -7,28 +7,30 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct CareTeam_Participant {
-  pub(crate) id?: String,
-  pub(crate) role?: CodeableConcept,
-  pub(crate) member?: Reference,
-  pub(crate) period?: Period,
-  pub(crate) extension?: Extension,
-  pub(crate) onBehalfOf?: Reference,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) role: Vector<CodeableConcept>,
+  pub(crate) member: Option<Reference>,
+  pub(crate) period: Option<Period>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) onBehalfOf: Option<Reference>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct CareTeam {
-  pub(crate) name?: String,
-  pub(crate) note?: Annotation,
-  pub(crate) status?: String,
-  pub(crate) period?: Period,
-  pub(crate) subject?: Reference,
-  pub(crate) telecom?: ContactPoint,
-  pub(crate) category?: CodeableConcept,
-  pub(crate) encounter?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) reasonCode?: CodeableConcept,
-  pub(crate) reasonReference?: Reference,
-  pub(crate) managingOrganization?: Reference,
-  pub(crate) participant?: CareTeam_Participant,
+  pub(crate) name: Option<String>,
+  pub(crate) note: Vector<Annotation>,
+  pub(crate) status: Option<String>,
+  pub(crate) period: Option<Period>,
+  pub(crate) subject: Option<Reference>,
+  pub(crate) telecom: Vector<ContactPoint>,
+  pub(crate) category: Vector<CodeableConcept>,
+  pub(crate) encounter: Option<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) reasonCode: Vector<CodeableConcept>,
+  pub(crate) reasonReference: Vector<Reference>,
+  pub(crate) managingOrganization: Vector<Reference>,
+  pub(crate) participant: Vector<CareTeam_Participant>,
 }

@@ -7,35 +7,38 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct QuestionnaireResponse_Item_Answer {
-  pub(crate) id?: String,
-  pub(crate) item?: QuestionnaireResponse_Item,
-  pub(crate) value?: Attachment | BigDecimal | Boolean | Coding | FHIRDate | Date | i32 | Date | Quantity | Reference | String | String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) item: Vector<QuestionnaireResponse_Item>,
+  pub(crate) value: Option<Attachment | BigDecimal | Boolean | Coding | FHIRDate | Date | i32 | Date | Quantity | Reference | String | String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct QuestionnaireResponse_Item {
-  pub(crate) id?: String,
-  pub(crate) text?: String,
-  pub(crate) item?: QuestionnaireResponse_Item,
+  pub(crate) id: Option<String>,
+  pub(crate) text: Option<String>,
+  pub(crate) item: Vector<QuestionnaireResponse_Item>,
   pub(crate) linkId: String,
-  pub(crate) extension?: Extension,
-  pub(crate) definition?: String,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) answer?: QuestionnaireResponse_Item_Answer,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) definition: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) answer: Vector<QuestionnaireResponse_Item_Answer>,
 }
 
+#[derive(Clone, Debug)]
 pub struct QuestionnaireResponse {
-  pub(crate) partOf?: Reference,
+  pub(crate) partOf: Vector<Reference>,
   pub(crate) status: String,
-  pub(crate) author?: Reference,
-  pub(crate) source?: Reference,
-  pub(crate) basedOn?: Reference,
-  pub(crate) subject?: Reference,
-  pub(crate) authored?: Date,
-  pub(crate) encounter?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) questionnaire?: String,
-  pub(crate) item?: QuestionnaireResponse_Item,
+  pub(crate) author: Option<Reference>,
+  pub(crate) source: Option<Reference>,
+  pub(crate) basedOn: Vector<Reference>,
+  pub(crate) subject: Option<Reference>,
+  pub(crate) authored: Option<Date>,
+  pub(crate) encounter: Option<Reference>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) questionnaire: Option<String>,
+  pub(crate) item: Vector<QuestionnaireResponse_Item>,
 }

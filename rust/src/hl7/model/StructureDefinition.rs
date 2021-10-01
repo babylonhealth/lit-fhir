@@ -7,67 +7,72 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct StructureDefinition_Mapping {
-  pub(crate) id?: String,
-  pub(crate) uri?: String,
-  pub(crate) name?: String,
-  pub(crate) comment?: String,
+  pub(crate) id: Option<String>,
+  pub(crate) uri: Option<String>,
+  pub(crate) name: Option<String>,
+  pub(crate) comment: Option<String>,
   pub(crate) identity: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct StructureDefinition_Context {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) _type: String,
-  pub(crate) extension?: Extension,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) expression: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct StructureDefinition_Snapshot {
-  pub(crate) id?: String,
-  pub(crate) element: ElementDefinition,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) element: Vector<ElementDefinition>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct StructureDefinition_Differential {
-  pub(crate) id?: String,
-  pub(crate) element: ElementDefinition,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) element: Vector<ElementDefinition>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct StructureDefinition {
   pub(crate) url: String,
   pub(crate) name: String,
-  pub(crate) date?: Date,
+  pub(crate) date: Option<Date>,
   pub(crate) kind: String,
   pub(crate) _type: String,
-  pub(crate) title?: String,
+  pub(crate) title: Option<String>,
   pub(crate) status: String,
-  pub(crate) version?: String,
-  pub(crate) contact?: ContactDetail,
-  pub(crate) purpose?: String,
-  pub(crate) keyword?: Coding,
+  pub(crate) version: Option<String>,
+  pub(crate) contact: Vector<ContactDetail>,
+  pub(crate) purpose: Option<String>,
+  pub(crate) keyword: Vector<Coding>,
   pub(crate) abstract: Boolean,
-  pub(crate) publisher?: String,
-  pub(crate) copyright?: String,
-  pub(crate) identifier?: Identifier,
-  pub(crate) useContext?: UsageContext,
-  pub(crate) derivation?: String,
-  pub(crate) description?: String,
-  pub(crate) fhirVersion?: String,
-  pub(crate) experimental?: Boolean,
-  pub(crate) jurisdiction?: CodeableConcept,
-  pub(crate) baseDefinition?: String,
-  pub(crate) contextInvariant?: String,
-  pub(crate) mapping?: StructureDefinition_Mapping,
-  pub(crate) context?: StructureDefinition_Context,
-  pub(crate) snapshot?: StructureDefinition_Snapshot,
-  pub(crate) differential?: StructureDefinition_Differential,
+  pub(crate) publisher: Option<String>,
+  pub(crate) copyright: Option<String>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) useContext: Vector<UsageContext>,
+  pub(crate) derivation: Option<String>,
+  pub(crate) description: Option<String>,
+  pub(crate) fhirVersion: Option<String>,
+  pub(crate) experimental: Option<Boolean>,
+  pub(crate) jurisdiction: Vector<CodeableConcept>,
+  pub(crate) baseDefinition: Option<String>,
+  pub(crate) contextInvariant: Vector<String>,
+  pub(crate) mapping: Vector<StructureDefinition_Mapping>,
+  pub(crate) context: Vector<StructureDefinition_Context>,
+  pub(crate) snapshot: Option<StructureDefinition_Snapshot>,
+  pub(crate) differential: Option<StructureDefinition_Differential>,
 }

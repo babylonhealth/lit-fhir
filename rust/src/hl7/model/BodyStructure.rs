@@ -7,13 +7,14 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct BodyStructure {
-  pub(crate) image?: Attachment,
-  pub(crate) active?: Boolean,
+  pub(crate) image: Vector<Attachment>,
+  pub(crate) active: Option<Boolean>,
   pub(crate) patient: Reference,
-  pub(crate) location?: CodeableConcept,
-  pub(crate) identifier?: Identifier,
-  pub(crate) morphology?: CodeableConcept,
-  pub(crate) description?: String,
-  pub(crate) locationQualifier?: CodeableConcept,
+  pub(crate) location: Option<CodeableConcept>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) morphology: Option<CodeableConcept>,
+  pub(crate) description: Option<String>,
+  pub(crate) locationQualifier: Vector<CodeableConcept>,
 }
