@@ -7,28 +7,30 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct SupplyRequest_Parameter {
-  pub(crate) id?: String,
-  pub(crate) code?: CodeableConcept,
-  pub(crate) value?: Boolean | CodeableConcept | Quantity | Range,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) code: Option<CodeableConcept>,
+  pub(crate) value: Option<Boolean | CodeableConcept | Quantity | Range>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SupplyRequest {
-  pub(crate) status?: String,
+  pub(crate) status: Option<String>,
   pub(crate) item: CodeableConcept | Reference,
-  pub(crate) category?: CodeableConcept,
-  pub(crate) priority?: String,
+  pub(crate) category: Option<CodeableConcept>,
+  pub(crate) priority: Option<String>,
   pub(crate) quantity: Quantity,
-  pub(crate) supplier?: Reference,
-  pub(crate) requester?: Reference,
-  pub(crate) deliverTo?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) authoredOn?: Date,
-  pub(crate) reasonCode?: CodeableConcept,
-  pub(crate) deliverFrom?: Reference,
-  pub(crate) occurrence?: Date | Period | Timing,
-  pub(crate) reasonReference?: Reference,
-  pub(crate) parameter?: SupplyRequest_Parameter,
+  pub(crate) supplier: Vector<Reference>,
+  pub(crate) requester: Option<Reference>,
+  pub(crate) deliverTo: Option<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) authoredOn: Option<Date>,
+  pub(crate) reasonCode: Vector<CodeableConcept>,
+  pub(crate) deliverFrom: Option<Reference>,
+  pub(crate) occurrence: Option<Date | Period | Timing>,
+  pub(crate) reasonReference: Vector<Reference>,
+  pub(crate) parameter: Vector<SupplyRequest_Parameter>,
 }

@@ -7,30 +7,32 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Goal_Target {
-  pub(crate) id?: String,
-  pub(crate) due?: Duration | FHIRDate,
-  pub(crate) measure?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) detail?: Boolean | CodeableConcept | i32 | Quantity | Range | Ratio | String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) due: Option<Duration | FHIRDate>,
+  pub(crate) measure: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) detail: Option<Boolean | CodeableConcept | i32 | Quantity | Range | Ratio | String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Goal {
-  pub(crate) note?: Annotation,
+  pub(crate) note: Vector<Annotation>,
   pub(crate) subject: Reference,
-  pub(crate) category?: CodeableConcept,
-  pub(crate) priority?: CodeableConcept,
-  pub(crate) start?: CodeableConcept | FHIRDate,
-  pub(crate) addresses?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) statusDate?: FHIRDate,
+  pub(crate) category: Vector<CodeableConcept>,
+  pub(crate) priority: Option<CodeableConcept>,
+  pub(crate) start: Option<CodeableConcept | FHIRDate>,
+  pub(crate) addresses: Vector<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) statusDate: Option<FHIRDate>,
   pub(crate) description: CodeableConcept,
-  pub(crate) expressedBy?: Reference,
-  pub(crate) outcomeCode?: CodeableConcept,
-  pub(crate) statusReason?: String,
+  pub(crate) expressedBy: Option<Reference>,
+  pub(crate) outcomeCode: Vector<CodeableConcept>,
+  pub(crate) statusReason: Option<String>,
   pub(crate) lifecycleStatus: String,
-  pub(crate) outcomeReference?: Reference,
-  pub(crate) achievementStatus?: CodeableConcept,
-  pub(crate) target?: Goal_Target,
+  pub(crate) outcomeReference: Vector<Reference>,
+  pub(crate) achievementStatus: Option<CodeableConcept>,
+  pub(crate) target: Vector<Goal_Target>,
 }

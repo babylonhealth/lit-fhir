@@ -7,68 +7,74 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Bundle_Link {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) url: String,
   pub(crate) relation: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Bundle_Entry_Search {
-  pub(crate) id?: String,
-  pub(crate) mode?: String,
-  pub(crate) score?: BigDecimal,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) mode: Option<String>,
+  pub(crate) score: Option<BigDecimal>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
 
+#[derive(Clone, Debug)]
 pub struct Bundle_Entry_Request {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) url: String,
   pub(crate) method: String,
-  pub(crate) ifMatch?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) ifNoneMatch?: String,
-  pub(crate) ifNoneExist?: String,
-  pub(crate) ifModifiedSince?: Date,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) ifMatch: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) ifNoneMatch: Option<String>,
+  pub(crate) ifNoneExist: Option<String>,
+  pub(crate) ifModifiedSince: Option<Date>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
 
+#[derive(Clone, Debug)]
 pub struct Bundle_Entry_Response {
-  pub(crate) id?: String,
-  pub(crate) etag?: String,
+  pub(crate) id: Option<String>,
+  pub(crate) etag: Option<String>,
   pub(crate) status: String,
-  pub(crate) outcome?: Resource,
-  pub(crate) location?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) lastModified?: Date,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) outcome: Option<Resource>,
+  pub(crate) location: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) lastModified: Option<Date>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Bundle_Entry {
-  pub(crate) id?: String,
-  pub(crate) link?: Bundle_Link,
-  pub(crate) fullUrl?: String,
-  pub(crate) resource?: Resource,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) search?: Bundle_Entry_Search,
-  pub(crate) request?: Bundle_Entry_Request,
-  pub(crate) response?: Bundle_Entry_Response,
+  pub(crate) id: Option<String>,
+  pub(crate) link: Vector<Bundle_Link>,
+  pub(crate) fullUrl: Option<String>,
+  pub(crate) resource: Option<Resource>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) search: Option<Bundle_Entry_Search>,
+  pub(crate) request: Option<Bundle_Entry_Request>,
+  pub(crate) response: Option<Bundle_Entry_Response>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Bundle {
   pub(crate) _type: String,
-  pub(crate) total?: u32,
-  pub(crate) timestamp?: Date,
-  pub(crate) signature?: Signature,
-  pub(crate) identifier?: Identifier,
-  pub(crate) link?: Bundle_Link,
-  pub(crate) entry?: Bundle_Entry,
+  pub(crate) total: Option<u32>,
+  pub(crate) timestamp: Option<Date>,
+  pub(crate) signature: Option<Signature>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) link: Vector<Bundle_Link>,
+  pub(crate) entry: Vector<Bundle_Entry>,
 }

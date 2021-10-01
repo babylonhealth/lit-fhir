@@ -7,35 +7,38 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct DetectedIssue_Evidence {
-  pub(crate) id?: String,
-  pub(crate) code?: CodeableConcept,
-  pub(crate) detail?: Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) code: Vector<CodeableConcept>,
+  pub(crate) detail: Vector<Reference>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct DetectedIssue_Mitigation {
-  pub(crate) id?: String,
-  pub(crate) date?: Date,
+  pub(crate) id: Option<String>,
+  pub(crate) date: Option<Date>,
   pub(crate) action: CodeableConcept,
-  pub(crate) author?: Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) author: Option<Reference>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct DetectedIssue {
-  pub(crate) code?: CodeableConcept,
+  pub(crate) code: Option<CodeableConcept>,
   pub(crate) status: String,
-  pub(crate) author?: Reference,
-  pub(crate) detail?: String,
-  pub(crate) patient?: Reference,
-  pub(crate) severity?: String,
-  pub(crate) reference?: String,
-  pub(crate) identifier?: Identifier,
-  pub(crate) implicated?: Reference,
-  pub(crate) identified?: Date | Period,
-  pub(crate) evidence?: DetectedIssue_Evidence,
-  pub(crate) mitigation?: DetectedIssue_Mitigation,
+  pub(crate) author: Option<Reference>,
+  pub(crate) detail: Option<String>,
+  pub(crate) patient: Option<Reference>,
+  pub(crate) severity: Option<String>,
+  pub(crate) reference: Option<String>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) implicated: Vector<Reference>,
+  pub(crate) identified: Option<Date | Period>,
+  pub(crate) evidence: Vector<DetectedIssue_Evidence>,
+  pub(crate) mitigation: Vector<DetectedIssue_Mitigation>,
 }

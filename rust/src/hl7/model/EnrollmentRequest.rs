@@ -7,12 +7,13 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct EnrollmentRequest {
-  pub(crate) status?: String,
-  pub(crate) created?: Date,
-  pub(crate) insurer?: Reference,
-  pub(crate) provider?: Reference,
-  pub(crate) coverage?: Reference,
-  pub(crate) candidate?: Reference,
-  pub(crate) identifier?: Identifier,
+  pub(crate) status: Option<String>,
+  pub(crate) created: Option<Date>,
+  pub(crate) insurer: Option<Reference>,
+  pub(crate) provider: Option<Reference>,
+  pub(crate) coverage: Option<Reference>,
+  pub(crate) candidate: Option<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
 }

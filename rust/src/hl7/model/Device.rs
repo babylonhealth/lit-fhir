@@ -7,81 +7,87 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Device_Version {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
   pub(crate) value: String,
-  pub(crate) extension?: Extension,
-  pub(crate) component?: Identifier,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) component: Option<Identifier>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Device_Property {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) _type: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) valueCode?: CodeableConcept,
-  pub(crate) valueQuantity?: Quantity,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) valueCode: Vector<CodeableConcept>,
+  pub(crate) valueQuantity: Vector<Quantity>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Device_UdiCarrier {
-  pub(crate) id?: String,
-  pub(crate) issuer?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) entryType?: String,
-  pub(crate) carrierHRF?: String,
-  pub(crate) carrierAIDC?: String,
-  pub(crate) jurisdiction?: String,
-  pub(crate) deviceIdentifier?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) issuer: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) entryType: Option<String>,
+  pub(crate) carrierHRF: Option<String>,
+  pub(crate) carrierAIDC: Option<String>,
+  pub(crate) jurisdiction: Option<String>,
+  pub(crate) deviceIdentifier: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Device_DeviceName {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) name: String,
   pub(crate) _type: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Device_Specialization {
-  pub(crate) id?: String,
-  pub(crate) version?: String,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) version: Option<String>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) systemType: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Device {
-  pub(crate) url?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) note?: Annotation,
-  pub(crate) owner?: Reference,
-  pub(crate) status?: String,
-  pub(crate) safety?: CodeableConcept,
-  pub(crate) parent?: Reference,
-  pub(crate) patient?: Reference,
-  pub(crate) contact?: ContactPoint,
-  pub(crate) location?: Reference,
-  pub(crate) lotNumber?: String,
-  pub(crate) identifier?: Identifier,
-  pub(crate) definition?: Reference,
-  pub(crate) partNumber?: String,
-  pub(crate) modelNumber?: String,
-  pub(crate) statusReason?: CodeableConcept,
-  pub(crate) manufacturer?: String,
-  pub(crate) serialNumber?: String,
-  pub(crate) expirationDate?: Date,
-  pub(crate) manufactureDate?: Date,
-  pub(crate) distinctIdentifier?: String,
-  pub(crate) version?: Device_Version,
-  pub(crate) property?: Device_Property,
-  pub(crate) udiCarrier?: Device_UdiCarrier,
-  pub(crate) deviceName?: Device_DeviceName,
-  pub(crate) specialization?: Device_Specialization,
+  pub(crate) url: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) note: Vector<Annotation>,
+  pub(crate) owner: Option<Reference>,
+  pub(crate) status: Option<String>,
+  pub(crate) safety: Vector<CodeableConcept>,
+  pub(crate) parent: Option<Reference>,
+  pub(crate) patient: Option<Reference>,
+  pub(crate) contact: Vector<ContactPoint>,
+  pub(crate) location: Option<Reference>,
+  pub(crate) lotNumber: Option<String>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) definition: Option<Reference>,
+  pub(crate) partNumber: Option<String>,
+  pub(crate) modelNumber: Option<String>,
+  pub(crate) statusReason: Vector<CodeableConcept>,
+  pub(crate) manufacturer: Option<String>,
+  pub(crate) serialNumber: Option<String>,
+  pub(crate) expirationDate: Option<Date>,
+  pub(crate) manufactureDate: Option<Date>,
+  pub(crate) distinctIdentifier: Option<String>,
+  pub(crate) version: Vector<Device_Version>,
+  pub(crate) property: Vector<Device_Property>,
+  pub(crate) udiCarrier: Vector<Device_UdiCarrier>,
+  pub(crate) deviceName: Vector<Device_DeviceName>,
+  pub(crate) specialization: Vector<Device_Specialization>,
 }

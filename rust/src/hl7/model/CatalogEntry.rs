@@ -7,26 +7,28 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct CatalogEntry_RelatedEntry {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) item: Reference,
-  pub(crate) extension?: Extension,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) relationtype: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct CatalogEntry {
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) status?: String,
-  pub(crate) validTo?: Date,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) status: Option<String>,
+  pub(crate) validTo: Option<Date>,
   pub(crate) orderable: Boolean,
-  pub(crate) identifier?: Identifier,
-  pub(crate) lastUpdated?: Date,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) lastUpdated: Option<Date>,
   pub(crate) referencedItem: Reference,
-  pub(crate) classification?: CodeableConcept,
-  pub(crate) validityPeriod?: Period,
-  pub(crate) additionalIdentifier?: Identifier,
-  pub(crate) additionalCharacteristic?: CodeableConcept,
-  pub(crate) additionalClassification?: CodeableConcept,
-  pub(crate) relatedEntry?: CatalogEntry_RelatedEntry,
+  pub(crate) classification: Vector<CodeableConcept>,
+  pub(crate) validityPeriod: Option<Period>,
+  pub(crate) additionalIdentifier: Vector<Identifier>,
+  pub(crate) additionalCharacteristic: Vector<CodeableConcept>,
+  pub(crate) additionalClassification: Vector<CodeableConcept>,
+  pub(crate) relatedEntry: Vector<CatalogEntry_RelatedEntry>,
 }

@@ -7,41 +7,44 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductPackaged_BatchIdentifier {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) outerPackaging: Identifier,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) immediatePackaging?: Identifier,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) immediatePackaging: Option<Identifier>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductPackaged_PackageItem {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) _type: CodeableConcept,
-  pub(crate) device?: Reference,
+  pub(crate) device: Vector<Reference>,
   pub(crate) quantity: Quantity,
-  pub(crate) material?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) identifier?: Identifier,
-  pub(crate) packageItem?: MedicinalProductPackaged_PackageItem,
-  pub(crate) manufacturer?: Reference,
-  pub(crate) manufacturedItem?: Reference,
-  pub(crate) shelfLifeStorage?: any,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) alternateMaterial?: CodeableConcept,
-  pub(crate) otherCharacteristics?: CodeableConcept,
-  pub(crate) physicalCharacteristics?: any,
+  pub(crate) material: Vector<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) packageItem: Vector<MedicinalProductPackaged_PackageItem>,
+  pub(crate) manufacturer: Vector<Reference>,
+  pub(crate) manufacturedItem: Vector<Reference>,
+  pub(crate) shelfLifeStorage: Vector<any>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) alternateMaterial: Vector<CodeableConcept>,
+  pub(crate) otherCharacteristics: Vector<CodeableConcept>,
+  pub(crate) physicalCharacteristics: Option<any>,
 }
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductPackaged {
-  pub(crate) subject?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) description?: String,
-  pub(crate) manufacturer?: Reference,
-  pub(crate) marketingStatus?: any,
-  pub(crate) legalStatusOfSupply?: CodeableConcept,
-  pub(crate) marketingAuthorization?: Reference,
-  pub(crate) batchIdentifier?: MedicinalProductPackaged_BatchIdentifier,
-  pub(crate) packageItem: MedicinalProductPackaged_PackageItem,
+  pub(crate) subject: Vector<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) description: Option<String>,
+  pub(crate) manufacturer: Vector<Reference>,
+  pub(crate) marketingStatus: Vector<any>,
+  pub(crate) legalStatusOfSupply: Option<CodeableConcept>,
+  pub(crate) marketingAuthorization: Option<Reference>,
+  pub(crate) batchIdentifier: Vector<MedicinalProductPackaged_BatchIdentifier>,
+  pub(crate) packageItem: Vector<MedicinalProductPackaged_PackageItem>,
 }

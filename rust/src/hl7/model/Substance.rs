@@ -7,30 +7,33 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Substance_Instance {
-  pub(crate) id?: String,
-  pub(crate) expiry?: Date,
-  pub(crate) quantity?: Quantity,
-  pub(crate) extension?: Extension,
-  pub(crate) identifier?: Identifier,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) expiry: Option<Date>,
+  pub(crate) quantity: Option<Quantity>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Substance_Ingredient {
-  pub(crate) id?: String,
-  pub(crate) quantity?: Ratio,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) quantity: Option<Ratio>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) substance: CodeableConcept | Reference,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Substance {
   pub(crate) code: CodeableConcept,
-  pub(crate) status?: String,
-  pub(crate) category?: CodeableConcept,
-  pub(crate) identifier?: Identifier,
-  pub(crate) description?: String,
-  pub(crate) instance?: Substance_Instance,
-  pub(crate) ingredient?: Substance_Ingredient,
+  pub(crate) status: Option<String>,
+  pub(crate) category: Vector<CodeableConcept>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) description: Option<String>,
+  pub(crate) instance: Vector<Substance_Instance>,
+  pub(crate) ingredient: Vector<Substance_Ingredient>,
 }

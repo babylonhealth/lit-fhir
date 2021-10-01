@@ -7,78 +7,84 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct ConceptMap_Group_Unmapped {
-  pub(crate) id?: String,
-  pub(crate) url?: String,
+  pub(crate) id: Option<String>,
+  pub(crate) url: Option<String>,
   pub(crate) mode: String,
-  pub(crate) code?: String,
-  pub(crate) display?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) code: Option<String>,
+  pub(crate) display: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
 
+#[derive(Clone, Debug)]
 pub struct ConceptMap_Group_Element_Target_DependsOn {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) value: String,
-  pub(crate) system?: String,
-  pub(crate) display?: String,
+  pub(crate) system: Option<String>,
+  pub(crate) display: Option<String>,
   pub(crate) property: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct ConceptMap_Group_Element_Target {
-  pub(crate) id?: String,
-  pub(crate) code?: String,
-  pub(crate) display?: String,
-  pub(crate) comment?: String,
-  pub(crate) product?: ConceptMap_Group_Element_Target_DependsOn,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) code: Option<String>,
+  pub(crate) display: Option<String>,
+  pub(crate) comment: Option<String>,
+  pub(crate) product: Vector<ConceptMap_Group_Element_Target_DependsOn>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) equivalence: String,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) dependsOn?: ConceptMap_Group_Element_Target_DependsOn,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) dependsOn: Vector<ConceptMap_Group_Element_Target_DependsOn>,
 }
 
+#[derive(Clone, Debug)]
 pub struct ConceptMap_Group_Element {
-  pub(crate) id?: String,
-  pub(crate) code?: String,
-  pub(crate) display?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) target?: ConceptMap_Group_Element_Target,
+  pub(crate) id: Option<String>,
+  pub(crate) code: Option<String>,
+  pub(crate) display: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) target: Vector<ConceptMap_Group_Element_Target>,
 }
 
+#[derive(Clone, Debug)]
 pub struct ConceptMap_Group {
-  pub(crate) id?: String,
-  pub(crate) source?: String,
-  pub(crate) target?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) sourceVersion?: String,
-  pub(crate) targetVersion?: String,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) unmapped?: ConceptMap_Group_Unmapped,
-  pub(crate) element: FHIRElement,
+  pub(crate) id: Option<String>,
+  pub(crate) source: Option<String>,
+  pub(crate) target: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) sourceVersion: Option<String>,
+  pub(crate) targetVersion: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) unmapped: Option<ConceptMap_Group_Unmapped>,
+  pub(crate) element: Vector<FHIRElement>,
 }
 
+#[derive(Clone, Debug)]
 pub struct ConceptMap {
-  pub(crate) url?: String,
-  pub(crate) name?: String,
-  pub(crate) date?: Date,
-  pub(crate) title?: String,
+  pub(crate) url: Option<String>,
+  pub(crate) name: Option<String>,
+  pub(crate) date: Option<Date>,
+  pub(crate) title: Option<String>,
   pub(crate) status: String,
-  pub(crate) version?: String,
-  pub(crate) contact?: ContactDetail,
-  pub(crate) purpose?: String,
-  pub(crate) publisher?: String,
-  pub(crate) copyright?: String,
-  pub(crate) source?: String | String,
-  pub(crate) target?: String | String,
-  pub(crate) identifier?: Identifier,
-  pub(crate) useContext?: UsageContext,
-  pub(crate) description?: String,
-  pub(crate) experimental?: Boolean,
-  pub(crate) jurisdiction?: CodeableConcept,
-  pub(crate) group?: ConceptMap_Group,
+  pub(crate) version: Option<String>,
+  pub(crate) contact: Vector<ContactDetail>,
+  pub(crate) purpose: Option<String>,
+  pub(crate) publisher: Option<String>,
+  pub(crate) copyright: Option<String>,
+  pub(crate) source: Option<String | String>,
+  pub(crate) target: Option<String | String>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) useContext: Vector<UsageContext>,
+  pub(crate) description: Option<String>,
+  pub(crate) experimental: Option<Boolean>,
+  pub(crate) jurisdiction: Vector<CodeableConcept>,
+  pub(crate) group: Vector<ConceptMap_Group>,
 }

@@ -7,6 +7,7 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct BackboneElement {
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }

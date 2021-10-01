@@ -7,13 +7,14 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Schedule {
-  pub(crate) actor: Reference,
-  pub(crate) active?: Boolean,
-  pub(crate) comment?: String,
-  pub(crate) specialty?: CodeableConcept,
-  pub(crate) identifier?: Identifier,
-  pub(crate) serviceType?: CodeableConcept,
-  pub(crate) serviceCategory?: CodeableConcept,
-  pub(crate) planningHorizon?: Period,
+  pub(crate) actor: Vector<Reference>,
+  pub(crate) active: Option<Boolean>,
+  pub(crate) comment: Option<String>,
+  pub(crate) specialty: Vector<CodeableConcept>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) serviceType: Vector<CodeableConcept>,
+  pub(crate) serviceCategory: Vector<CodeableConcept>,
+  pub(crate) planningHorizon: Option<Period>,
 }

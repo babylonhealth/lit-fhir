@@ -7,6 +7,7 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Count {
   
 }

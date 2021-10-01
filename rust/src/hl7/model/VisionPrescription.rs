@@ -7,41 +7,44 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct VisionPrescription_LensSpecification_Prism {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) base: String,
   pub(crate) amount: BigDecimal,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct VisionPrescription_LensSpecification {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) eye: String,
-  pub(crate) add?: BigDecimal,
-  pub(crate) axis?: i32,
-  pub(crate) note?: Annotation,
-  pub(crate) power?: BigDecimal,
-  pub(crate) color?: String,
-  pub(crate) brand?: String,
-  pub(crate) sphere?: BigDecimal,
+  pub(crate) add: Option<BigDecimal>,
+  pub(crate) axis: Option<i32>,
+  pub(crate) note: Vector<Annotation>,
+  pub(crate) power: Option<BigDecimal>,
+  pub(crate) color: Option<String>,
+  pub(crate) brand: Option<String>,
+  pub(crate) sphere: Option<BigDecimal>,
   pub(crate) product: CodeableConcept,
-  pub(crate) cylinder?: BigDecimal,
-  pub(crate) diameter?: BigDecimal,
-  pub(crate) duration?: Quantity,
-  pub(crate) extension?: Extension,
-  pub(crate) backCurve?: BigDecimal,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) prism?: VisionPrescription_LensSpecification_Prism,
+  pub(crate) cylinder: Option<BigDecimal>,
+  pub(crate) diameter: Option<BigDecimal>,
+  pub(crate) duration: Option<Quantity>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) backCurve: Option<BigDecimal>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) prism: Vector<VisionPrescription_LensSpecification_Prism>,
 }
 
+#[derive(Clone, Debug)]
 pub struct VisionPrescription {
   pub(crate) status: String,
   pub(crate) created: Date,
   pub(crate) patient: Reference,
-  pub(crate) encounter?: Reference,
-  pub(crate) identifier?: Identifier,
+  pub(crate) encounter: Option<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
   pub(crate) prescriber: Reference,
   pub(crate) dateWritten: Date,
-  pub(crate) lensSpecification: VisionPrescription_LensSpecification,
+  pub(crate) lensSpecification: Vector<VisionPrescription_LensSpecification>,
 }

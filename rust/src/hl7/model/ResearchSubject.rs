@@ -7,13 +7,14 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct ResearchSubject {
   pub(crate) study: Reference,
   pub(crate) status: String,
-  pub(crate) period?: Period,
-  pub(crate) consent?: Reference,
-  pub(crate) actualArm?: String,
-  pub(crate) identifier?: Identifier,
+  pub(crate) period: Option<Period>,
+  pub(crate) consent: Option<Reference>,
+  pub(crate) actualArm: Option<String>,
+  pub(crate) identifier: Vector<Identifier>,
   pub(crate) individual: Reference,
-  pub(crate) assignedArm?: String,
+  pub(crate) assignedArm: Option<String>,
 }

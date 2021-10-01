@@ -7,9 +7,10 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct DomainResource {
-  pub(crate) text?: Narrative,
-  pub(crate) contained?: Resource,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) text: Option<Narrative>,
+  pub(crate) contained: Vector<Resource>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }

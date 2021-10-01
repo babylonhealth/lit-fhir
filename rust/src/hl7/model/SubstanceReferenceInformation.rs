@@ -7,55 +7,60 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceReferenceInformation_Gene {
-  pub(crate) id?: String,
-  pub(crate) gene?: CodeableConcept,
-  pub(crate) source?: Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) geneSequenceOrigin?: CodeableConcept,
+  pub(crate) id: Option<String>,
+  pub(crate) gene: Option<CodeableConcept>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) geneSequenceOrigin: Option<CodeableConcept>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceReferenceInformation_Target {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) target?: Identifier,
-  pub(crate) source?: Reference,
-  pub(crate) organism?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) amount?: Quantity | Range | String,
-  pub(crate) amountType?: CodeableConcept,
-  pub(crate) interaction?: CodeableConcept,
-  pub(crate) organismType?: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) target: Option<Identifier>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) organism: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) amount: Option<Quantity | Range | String>,
+  pub(crate) amountType: Option<CodeableConcept>,
+  pub(crate) interaction: Option<CodeableConcept>,
+  pub(crate) organismType: Option<CodeableConcept>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceReferenceInformation_GeneElement {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) source?: Reference,
-  pub(crate) element?: Identifier,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) element: Option<Identifier>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceReferenceInformation_Classification {
-  pub(crate) id?: String,
-  pub(crate) domain?: CodeableConcept,
-  pub(crate) source?: Reference,
-  pub(crate) subtype?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) classification?: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) domain: Option<CodeableConcept>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) subtype: Vector<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) classification: Option<CodeableConcept>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstanceReferenceInformation {
-  pub(crate) comment?: String,
-  pub(crate) gene?: SubstanceReferenceInformation_Gene,
-  pub(crate) target?: SubstanceReferenceInformation_Target,
-  pub(crate) geneElement?: SubstanceReferenceInformation_GeneElement,
-  pub(crate) classification?: SubstanceReferenceInformation_Classification,
+  pub(crate) comment: Option<String>,
+  pub(crate) gene: Vector<SubstanceReferenceInformation_Gene>,
+  pub(crate) target: Vector<SubstanceReferenceInformation_Target>,
+  pub(crate) geneElement: Vector<SubstanceReferenceInformation_GeneElement>,
+  pub(crate) classification: Vector<SubstanceReferenceInformation_Classification>,
 }

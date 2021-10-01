@@ -7,51 +7,56 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductPharmaceutical_Characteristics {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) code: CodeableConcept,
-  pub(crate) status?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) status: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_WithdrawalPeriod {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) value: Quantity,
   pub(crate) tissue: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) supportingInformation?: String,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) supportingInformation: Option<String>,
 }
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) code: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) withdrawalPeriod?: MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_WithdrawalPeriod,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) withdrawalPeriod: Vector<MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_WithdrawalPeriod>,
 }
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductPharmaceutical_RouteOfAdministration {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) code: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) firstDose?: Quantity,
-  pub(crate) maxSingleDose?: Quantity,
-  pub(crate) maxDosePerDay?: Quantity,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) maxTreatmentPeriod?: Duration,
-  pub(crate) maxDosePerTreatmentPeriod?: Ratio,
-  pub(crate) targetSpecies?: MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) firstDose: Option<Quantity>,
+  pub(crate) maxSingleDose: Option<Quantity>,
+  pub(crate) maxDosePerDay: Option<Quantity>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) maxTreatmentPeriod: Option<Duration>,
+  pub(crate) maxDosePerTreatmentPeriod: Option<Ratio>,
+  pub(crate) targetSpecies: Vector<MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies>,
 }
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductPharmaceutical {
-  pub(crate) device?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) ingredient?: Reference,
-  pub(crate) unitOfPresentation?: CodeableConcept,
+  pub(crate) device: Vector<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) ingredient: Vector<Reference>,
+  pub(crate) unitOfPresentation: Option<CodeableConcept>,
   pub(crate) administrableDoseForm: CodeableConcept,
-  pub(crate) characteristics?: MedicinalProductPharmaceutical_Characteristics,
-  pub(crate) routeOfAdministration: MedicinalProductPharmaceutical_RouteOfAdministration,
+  pub(crate) characteristics: Vector<MedicinalProductPharmaceutical_Characteristics>,
+  pub(crate) routeOfAdministration: Vector<MedicinalProductPharmaceutical_RouteOfAdministration>,
 }

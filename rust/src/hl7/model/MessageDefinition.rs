@@ -7,48 +7,51 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct MessageDefinition_Focus {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) min: u32,
-  pub(crate) max?: String,
+  pub(crate) max: Option<String>,
   pub(crate) code: String,
-  pub(crate) profile?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) profile: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct MessageDefinition_AllowedResponse {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) message: String,
-  pub(crate) extension?: Extension,
-  pub(crate) situation?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) situation: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct MessageDefinition {
-  pub(crate) url?: String,
-  pub(crate) name?: String,
+  pub(crate) url: Option<String>,
+  pub(crate) name: Option<String>,
   pub(crate) date: Date,
-  pub(crate) base?: String,
-  pub(crate) title?: String,
-  pub(crate) graph?: String,
+  pub(crate) base: Option<String>,
+  pub(crate) title: Option<String>,
+  pub(crate) graph: Vector<String>,
   pub(crate) status: String,
-  pub(crate) parent?: String,
-  pub(crate) version?: String,
-  pub(crate) contact?: ContactDetail,
-  pub(crate) purpose?: String,
-  pub(crate) replaces?: String,
+  pub(crate) parent: Vector<String>,
+  pub(crate) version: Option<String>,
+  pub(crate) contact: Vector<ContactDetail>,
+  pub(crate) purpose: Option<String>,
+  pub(crate) replaces: Vector<String>,
   pub(crate) event: Coding | String,
-  pub(crate) category?: String,
-  pub(crate) publisher?: String,
-  pub(crate) copyright?: String,
-  pub(crate) identifier?: Identifier,
-  pub(crate) useContext?: UsageContext,
-  pub(crate) description?: String,
-  pub(crate) experimental?: Boolean,
-  pub(crate) jurisdiction?: CodeableConcept,
-  pub(crate) responseRequired?: String,
-  pub(crate) focus?: MessageDefinition_Focus,
-  pub(crate) allowedResponse?: MessageDefinition_AllowedResponse,
+  pub(crate) category: Option<String>,
+  pub(crate) publisher: Option<String>,
+  pub(crate) copyright: Option<String>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) useContext: Vector<UsageContext>,
+  pub(crate) description: Option<String>,
+  pub(crate) experimental: Option<Boolean>,
+  pub(crate) jurisdiction: Vector<CodeableConcept>,
+  pub(crate) responseRequired: Option<String>,
+  pub(crate) focus: Vector<MessageDefinition_Focus>,
+  pub(crate) allowedResponse: Vector<MessageDefinition_AllowedResponse>,
 }

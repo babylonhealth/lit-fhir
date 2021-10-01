@@ -7,89 +7,96 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct NutritionOrder_Supplement {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) schedule?: Timing,
-  pub(crate) quantity?: Quantity,
-  pub(crate) extension?: Extension,
-  pub(crate) productName?: String,
-  pub(crate) instruction?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) schedule: Vector<Timing>,
+  pub(crate) quantity: Option<Quantity>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) productName: Option<String>,
+  pub(crate) instruction: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct NutritionOrder_OralDiet_Texture {
-  pub(crate) id?: String,
-  pub(crate) modifier?: CodeableConcept,
-  pub(crate) foodType?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) modifier: Option<CodeableConcept>,
+  pub(crate) foodType: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
 
+#[derive(Clone, Debug)]
 pub struct NutritionOrder_OralDiet_Nutrient {
-  pub(crate) id?: String,
-  pub(crate) amount?: Quantity,
-  pub(crate) modifier?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) amount: Option<Quantity>,
+  pub(crate) modifier: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct NutritionOrder_OralDiet {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) schedule?: Timing,
-  pub(crate) extension?: Extension,
-  pub(crate) instruction?: String,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) fluidConsistencyType?: CodeableConcept,
-  pub(crate) texture?: NutritionOrder_OralDiet_Texture,
-  pub(crate) nutrient?: NutritionOrder_OralDiet_Nutrient,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Vector<CodeableConcept>,
+  pub(crate) schedule: Vector<Timing>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) instruction: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) fluidConsistencyType: Vector<CodeableConcept>,
+  pub(crate) texture: Vector<NutritionOrder_OralDiet_Texture>,
+  pub(crate) nutrient: Vector<NutritionOrder_OralDiet_Nutrient>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct NutritionOrder_EnteralFormula_Administration {
-  pub(crate) id?: String,
-  pub(crate) rate?: Quantity | Ratio,
-  pub(crate) schedule?: Timing,
-  pub(crate) quantity?: Quantity,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) rate: Option<Quantity | Ratio>,
+  pub(crate) schedule: Option<Timing>,
+  pub(crate) quantity: Option<Quantity>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct NutritionOrder_EnteralFormula {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) additiveType?: CodeableConcept,
-  pub(crate) caloricDensity?: Quantity,
-  pub(crate) baseFormulaType?: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) maxVolumeToDeliver?: Quantity,
-  pub(crate) additiveProductName?: String,
-  pub(crate) routeofAdministration?: CodeableConcept,
-  pub(crate) baseFormulaProductName?: String,
-  pub(crate) administrationInstruction?: String,
-  pub(crate) administration?: NutritionOrder_EnteralFormula_Administration,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) additiveType: Option<CodeableConcept>,
+  pub(crate) caloricDensity: Option<Quantity>,
+  pub(crate) baseFormulaType: Option<CodeableConcept>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) maxVolumeToDeliver: Option<Quantity>,
+  pub(crate) additiveProductName: Option<String>,
+  pub(crate) routeofAdministration: Option<CodeableConcept>,
+  pub(crate) baseFormulaProductName: Option<String>,
+  pub(crate) administrationInstruction: Option<String>,
+  pub(crate) administration: Vector<NutritionOrder_EnteralFormula_Administration>,
 }
 
+#[derive(Clone, Debug)]
 pub struct NutritionOrder {
-  pub(crate) note?: Annotation,
+  pub(crate) note: Vector<Annotation>,
   pub(crate) status: String,
   pub(crate) intent: String,
   pub(crate) patient: Reference,
-  pub(crate) orderer?: Reference,
+  pub(crate) orderer: Option<Reference>,
   pub(crate) dateTime: Date,
-  pub(crate) encounter?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) instantiates?: String,
-  pub(crate) instantiatesUri?: String,
-  pub(crate) allergyIntolerance?: Reference,
-  pub(crate) excludeFoodModifier?: CodeableConcept,
-  pub(crate) instantiatesCanonical?: String,
-  pub(crate) foodPreferenceModifier?: CodeableConcept,
-  pub(crate) supplement?: NutritionOrder_Supplement,
-  pub(crate) oralDiet?: NutritionOrder_OralDiet,
-  pub(crate) enteralFormula?: NutritionOrder_EnteralFormula,
+  pub(crate) encounter: Option<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) instantiates: Vector<String>,
+  pub(crate) instantiatesUri: Vector<String>,
+  pub(crate) allergyIntolerance: Vector<Reference>,
+  pub(crate) excludeFoodModifier: Vector<CodeableConcept>,
+  pub(crate) instantiatesCanonical: Vector<String>,
+  pub(crate) foodPreferenceModifier: Vector<CodeableConcept>,
+  pub(crate) supplement: Vector<NutritionOrder_Supplement>,
+  pub(crate) oralDiet: Option<NutritionOrder_OralDiet>,
+  pub(crate) enteralFormula: Option<NutritionOrder_EnteralFormula>,
 }

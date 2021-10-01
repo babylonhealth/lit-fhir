@@ -7,58 +7,63 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct SpecimenDefinition_TypeTested_Handling {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) maxDuration?: Duration,
-  pub(crate) instruction?: String,
-  pub(crate) temperatureRange?: Range,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) temperatureQualifier?: CodeableConcept,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) maxDuration: Option<Duration>,
+  pub(crate) instruction: Option<String>,
+  pub(crate) temperatureRange: Option<Range>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) temperatureQualifier: Option<CodeableConcept>,
 }
 
 
 
+#[derive(Clone, Debug)]
 pub struct SpecimenDefinition_TypeTested_Container_Additive {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) additive: CodeableConcept | Reference,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SpecimenDefinition_TypeTested_Container {
-  pub(crate) id?: String,
-  pub(crate) cap?: CodeableConcept,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) material?: CodeableConcept,
-  pub(crate) capacity?: Quantity,
-  pub(crate) extension?: Extension,
-  pub(crate) description?: String,
-  pub(crate) preparation?: String,
-  pub(crate) minimumVolume?: Quantity | String,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) additive?: SpecimenDefinition_TypeTested_Container_Additive,
+  pub(crate) id: Option<String>,
+  pub(crate) cap: Option<CodeableConcept>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) material: Option<CodeableConcept>,
+  pub(crate) capacity: Option<Quantity>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) description: Option<String>,
+  pub(crate) preparation: Option<String>,
+  pub(crate) minimumVolume: Option<Quantity | String>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) additive: Vector<SpecimenDefinition_TypeTested_Container_Additive>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SpecimenDefinition_TypeTested {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) isDerived?: Boolean,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) isDerived: Option<Boolean>,
   pub(crate) preference: String,
-  pub(crate) requirement?: String,
-  pub(crate) retentionTime?: Duration,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) rejectionCriterion?: CodeableConcept,
-  pub(crate) handling?: SpecimenDefinition_TypeTested_Handling,
-  pub(crate) container?: SpecimenDefinition_TypeTested_Container,
+  pub(crate) requirement: Option<String>,
+  pub(crate) retentionTime: Option<Duration>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) rejectionCriterion: Vector<CodeableConcept>,
+  pub(crate) handling: Vector<SpecimenDefinition_TypeTested_Handling>,
+  pub(crate) container: Option<SpecimenDefinition_TypeTested_Container>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SpecimenDefinition {
-  pub(crate) identifier?: Identifier,
-  pub(crate) timeAspect?: String,
-  pub(crate) collection?: CodeableConcept,
-  pub(crate) typeCollected?: CodeableConcept,
-  pub(crate) patientPreparation?: CodeableConcept,
-  pub(crate) typeTested?: SpecimenDefinition_TypeTested,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) timeAspect: Option<String>,
+  pub(crate) collection: Vector<CodeableConcept>,
+  pub(crate) typeCollected: Option<CodeableConcept>,
+  pub(crate) patientPreparation: Vector<CodeableConcept>,
+  pub(crate) typeTested: Vector<SpecimenDefinition_TypeTested>,
 }

@@ -7,26 +7,28 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Dosage_DoseAndRate {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) dose?: Quantity | Range,
-  pub(crate) rate?: Quantity | Range | Ratio,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) dose: Option<Quantity | Range>,
+  pub(crate) rate: Option<Quantity | Range | Ratio>,
+  pub(crate) extension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Dosage {
-  pub(crate) text?: String,
-  pub(crate) site?: CodeableConcept,
-  pub(crate) route?: CodeableConcept,
-  pub(crate) timing?: Timing,
-  pub(crate) method?: CodeableConcept,
-  pub(crate) sequence?: i32,
-  pub(crate) asNeeded?: Boolean | CodeableConcept,
-  pub(crate) maxDosePerPeriod?: Ratio,
-  pub(crate) patientInstruction?: String,
-  pub(crate) maxDosePerLifetime?: Quantity,
-  pub(crate) additionalInstruction?: CodeableConcept,
-  pub(crate) doseAndRate?: Dosage_DoseAndRate,
-  pub(crate) maxDosePerAdministration?: Quantity,
+  pub(crate) text: Option<String>,
+  pub(crate) site: Option<CodeableConcept>,
+  pub(crate) route: Option<CodeableConcept>,
+  pub(crate) timing: Option<Timing>,
+  pub(crate) method: Option<CodeableConcept>,
+  pub(crate) sequence: Option<i32>,
+  pub(crate) asNeeded: Option<Boolean | CodeableConcept>,
+  pub(crate) maxDosePerPeriod: Option<Ratio>,
+  pub(crate) patientInstruction: Option<String>,
+  pub(crate) maxDosePerLifetime: Option<Quantity>,
+  pub(crate) additionalInstruction: Vector<CodeableConcept>,
+  pub(crate) doseAndRate: Vector<Dosage_DoseAndRate>,
+  pub(crate) maxDosePerAdministration: Option<Quantity>,
 }

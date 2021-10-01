@@ -7,6 +7,7 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct shareablevalueset {
   
 }

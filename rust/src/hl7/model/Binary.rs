@@ -7,8 +7,9 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Binary {
-  pub(crate) data?: String,
+  pub(crate) data: Option<String>,
   pub(crate) contentType: String,
-  pub(crate) securityContext?: Reference,
+  pub(crate) securityContext: Option<Reference>,
 }

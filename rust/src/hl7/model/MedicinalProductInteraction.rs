@@ -7,19 +7,21 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductInteraction_Interactant {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) item: CodeableConcept | Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct MedicinalProductInteraction {
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) effect?: CodeableConcept,
-  pub(crate) subject?: Reference,
-  pub(crate) incidence?: CodeableConcept,
-  pub(crate) management?: CodeableConcept,
-  pub(crate) description?: String,
-  pub(crate) interactant?: MedicinalProductInteraction_Interactant,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) effect: Option<CodeableConcept>,
+  pub(crate) subject: Vector<Reference>,
+  pub(crate) incidence: Option<CodeableConcept>,
+  pub(crate) management: Option<CodeableConcept>,
+  pub(crate) description: Option<String>,
+  pub(crate) interactant: Vector<MedicinalProductInteraction_Interactant>,
 }

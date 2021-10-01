@@ -7,120 +7,131 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_Closure {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) translation?: Boolean,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) translation: Option<Boolean>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_Software {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) name: String,
-  pub(crate) version?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) version: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_Translation {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) needsMap: Boolean,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_ValidateCode {
-  pub(crate) id?: String,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) translations: Boolean,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_Implementation {
-  pub(crate) id?: String,
-  pub(crate) url?: String,
-  pub(crate) extension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) url: Option<String>,
+  pub(crate) extension: Vector<Extension>,
   pub(crate) description: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_Expansion_Parameter {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) name: String,
-  pub(crate) extension?: Extension,
-  pub(crate) documentation?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) documentation: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_Expansion {
-  pub(crate) id?: String,
-  pub(crate) paging?: Boolean,
-  pub(crate) extension?: Extension,
-  pub(crate) incomplete?: Boolean,
-  pub(crate) textFilter?: String,
-  pub(crate) hierarchical?: Boolean,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) parameter?: TerminologyCapabilities_Expansion_Parameter,
+  pub(crate) id: Option<String>,
+  pub(crate) paging: Option<Boolean>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) incomplete: Option<Boolean>,
+  pub(crate) textFilter: Option<String>,
+  pub(crate) hierarchical: Option<Boolean>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) parameter: Vector<TerminologyCapabilities_Expansion_Parameter>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_CodeSystem_Version_Filter {
-  pub(crate) id?: String,
-  pub(crate) op: String,
+  pub(crate) id: Option<String>,
+  pub(crate) op: Vector<String>,
   pub(crate) code: String,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_CodeSystem_Version {
-  pub(crate) id?: String,
-  pub(crate) code?: String,
-  pub(crate) language?: String,
-  pub(crate) property?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) isDefault?: Boolean,
-  pub(crate) compositional?: Boolean,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) filter?: TerminologyCapabilities_CodeSystem_Version_Filter,
+  pub(crate) id: Option<String>,
+  pub(crate) code: Option<String>,
+  pub(crate) language: Vector<String>,
+  pub(crate) property: Vector<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) isDefault: Option<Boolean>,
+  pub(crate) compositional: Option<Boolean>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) filter: Vector<TerminologyCapabilities_CodeSystem_Version_Filter>,
 }
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_CodeSystem {
-  pub(crate) id?: String,
-  pub(crate) uri?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) subsumption?: Boolean,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) version?: TerminologyCapabilities_CodeSystem_Version,
+  pub(crate) id: Option<String>,
+  pub(crate) uri: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) subsumption: Option<Boolean>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) version: Vector<TerminologyCapabilities_CodeSystem_Version>,
 }
 
+#[derive(Clone, Debug)]
 pub struct TerminologyCapabilities {
-  pub(crate) url?: String,
-  pub(crate) name?: String,
+  pub(crate) url: Option<String>,
+  pub(crate) name: Option<String>,
   pub(crate) date: Date,
   pub(crate) kind: String,
-  pub(crate) title?: String,
+  pub(crate) title: Option<String>,
   pub(crate) status: String,
-  pub(crate) version?: String,
-  pub(crate) contact?: ContactDetail,
-  pub(crate) purpose?: String,
-  pub(crate) publisher?: String,
-  pub(crate) copyright?: String,
-  pub(crate) useContext?: UsageContext,
-  pub(crate) lockedDate?: Boolean,
-  pub(crate) codeSearch?: String,
-  pub(crate) description?: String,
-  pub(crate) experimental?: Boolean,
-  pub(crate) jurisdiction?: CodeableConcept,
-  pub(crate) closure?: TerminologyCapabilities_Closure,
-  pub(crate) software?: TerminologyCapabilities_Software,
-  pub(crate) translation?: TerminologyCapabilities_Translation,
-  pub(crate) validateCode?: TerminologyCapabilities_ValidateCode,
-  pub(crate) implementation?: TerminologyCapabilities_Implementation,
-  pub(crate) expansion?: TerminologyCapabilities_Expansion,
-  pub(crate) codeSystem?: TerminologyCapabilities_CodeSystem,
+  pub(crate) version: Option<String>,
+  pub(crate) contact: Vector<ContactDetail>,
+  pub(crate) purpose: Option<String>,
+  pub(crate) publisher: Option<String>,
+  pub(crate) copyright: Option<String>,
+  pub(crate) useContext: Vector<UsageContext>,
+  pub(crate) lockedDate: Option<Boolean>,
+  pub(crate) codeSearch: Option<String>,
+  pub(crate) description: Option<String>,
+  pub(crate) experimental: Option<Boolean>,
+  pub(crate) jurisdiction: Vector<CodeableConcept>,
+  pub(crate) closure: Option<TerminologyCapabilities_Closure>,
+  pub(crate) software: Option<TerminologyCapabilities_Software>,
+  pub(crate) translation: Option<TerminologyCapabilities_Translation>,
+  pub(crate) validateCode: Option<TerminologyCapabilities_ValidateCode>,
+  pub(crate) implementation: Option<TerminologyCapabilities_Implementation>,
+  pub(crate) expansion: Option<TerminologyCapabilities_Expansion>,
+  pub(crate) codeSystem: Vector<TerminologyCapabilities_CodeSystem>,
 }

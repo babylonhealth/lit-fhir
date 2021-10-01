@@ -7,25 +7,27 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct DocumentManifest_Related {
-  pub(crate) id?: String,
-  pub(crate) ref?: Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) identifier?: Identifier,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) ref: Option<Reference>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct DocumentManifest {
-  pub(crate) _type?: CodeableConcept,
+  pub(crate) _type: Option<CodeableConcept>,
   pub(crate) status: String,
-  pub(crate) author?: Reference,
-  pub(crate) source?: String,
-  pub(crate) subject?: Reference,
-  pub(crate) created?: Date,
-  pub(crate) content: Reference,
-  pub(crate) recipient?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) description?: String,
-  pub(crate) masterIdentifier?: Identifier,
-  pub(crate) related?: DocumentManifest_Related,
+  pub(crate) author: Vector<Reference>,
+  pub(crate) source: Option<String>,
+  pub(crate) subject: Option<Reference>,
+  pub(crate) created: Option<Date>,
+  pub(crate) content: Vector<Reference>,
+  pub(crate) recipient: Vector<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) description: Option<String>,
+  pub(crate) masterIdentifier: Option<Identifier>,
+  pub(crate) related: Vector<DocumentManifest_Related>,
 }

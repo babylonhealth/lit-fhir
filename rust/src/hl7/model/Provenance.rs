@@ -7,35 +7,38 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Provenance_Agent {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) who: Reference,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) role?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) onBehalfOf?: Reference,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) role: Vector<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) onBehalfOf: Option<Reference>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Provenance_Entity {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) role: String,
   pub(crate) what: Reference,
-  pub(crate) agent?: Provenance_Agent,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) agent: Vector<Provenance_Agent>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Provenance {
-  pub(crate) target: Reference,
-  pub(crate) policy?: String,
-  pub(crate) reason?: CodeableConcept,
+  pub(crate) target: Vector<Reference>,
+  pub(crate) policy: Vector<String>,
+  pub(crate) reason: Vector<CodeableConcept>,
   pub(crate) recorded: Date,
-  pub(crate) location?: Reference,
-  pub(crate) activity?: CodeableConcept,
-  pub(crate) signature?: Signature,
-  pub(crate) occurred?: Date | Period,
-  pub(crate) agent: Provenance_Agent,
-  pub(crate) entity?: Provenance_Entity,
+  pub(crate) location: Option<Reference>,
+  pub(crate) activity: Option<CodeableConcept>,
+  pub(crate) signature: Vector<Signature>,
+  pub(crate) occurred: Option<Date | Period>,
+  pub(crate) agent: Vector<Provenance_Agent>,
+  pub(crate) entity: Vector<Provenance_Entity>,
 }

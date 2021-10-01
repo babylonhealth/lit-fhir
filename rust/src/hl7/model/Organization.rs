@@ -7,25 +7,27 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Organization_Contact {
-  pub(crate) id?: String,
-  pub(crate) name?: HumanName,
-  pub(crate) purpose?: CodeableConcept,
-  pub(crate) telecom?: ContactPoint,
-  pub(crate) address?: Address,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) name: Option<HumanName>,
+  pub(crate) purpose: Option<CodeableConcept>,
+  pub(crate) telecom: Vector<ContactPoint>,
+  pub(crate) address: Option<Address>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Organization {
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) name?: String,
-  pub(crate) alias?: String,
-  pub(crate) active?: Boolean,
-  pub(crate) partOf?: Reference,
-  pub(crate) telecom?: ContactPoint,
-  pub(crate) address?: Address,
-  pub(crate) endpoint?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) contact?: Organization_Contact,
+  pub(crate) _type: Vector<CodeableConcept>,
+  pub(crate) name: Option<String>,
+  pub(crate) alias: Vector<String>,
+  pub(crate) active: Option<Boolean>,
+  pub(crate) partOf: Option<Reference>,
+  pub(crate) telecom: Vector<ContactPoint>,
+  pub(crate) address: Vector<Address>,
+  pub(crate) endpoint: Vector<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) contact: Vector<Organization_Contact>,
 }

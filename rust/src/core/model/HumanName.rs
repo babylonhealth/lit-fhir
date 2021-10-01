@@ -7,12 +7,13 @@ use crate::core::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct HumanName {
-  pub(crate) use?: String,
-  pub(crate) text?: String,
-  pub(crate) given?: String,
-  pub(crate) family?: String,
-  pub(crate) prefix?: String,
-  pub(crate) suffix?: String,
-  pub(crate) period?: Period,
+  pub(crate) use: Option<String>,
+  pub(crate) text: Option<String>,
+  pub(crate) given: Vector<String>,
+  pub(crate) family: Option<String>,
+  pub(crate) prefix: Vector<String>,
+  pub(crate) suffix: Vector<String>,
+  pub(crate) period: Option<Period>,
 }

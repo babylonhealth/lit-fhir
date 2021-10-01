@@ -7,63 +7,67 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct Task_Input {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) _type: CodeableConcept,
   pub(crate) value: Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Task_Output {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) _type: CodeableConcept,
   pub(crate) value: Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct Task_Restriction {
-  pub(crate) id?: String,
-  pub(crate) period?: Period,
-  pub(crate) extension?: Extension,
-  pub(crate) recipient?: Reference,
-  pub(crate) repetitions?: u32,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) period: Option<Period>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) recipient: Vector<Reference>,
+  pub(crate) repetitions: Option<u32>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct Task {
-  pub(crate) for?: Reference,
-  pub(crate) code?: CodeableConcept,
-  pub(crate) note?: Annotation,
-  pub(crate) focus?: Reference,
-  pub(crate) owner?: Reference,
-  pub(crate) partOf?: Reference,
+  pub(crate) for: Option<Reference>,
+  pub(crate) code: Option<CodeableConcept>,
+  pub(crate) note: Vector<Annotation>,
+  pub(crate) focus: Option<Reference>,
+  pub(crate) owner: Option<Reference>,
+  pub(crate) partOf: Vector<Reference>,
   pub(crate) status: String,
   pub(crate) intent: String,
-  pub(crate) basedOn?: Reference,
-  pub(crate) priority?: String,
-  pub(crate) location?: Reference,
-  pub(crate) encounter?: Reference,
-  pub(crate) requester?: Reference,
-  pub(crate) insurance?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) authoredOn?: Date,
-  pub(crate) reasonCode?: CodeableConcept,
-  pub(crate) description?: String,
-  pub(crate) statusReason?: CodeableConcept,
-  pub(crate) lastModified?: Date,
-  pub(crate) performerType?: CodeableConcept,
-  pub(crate) businessStatus?: CodeableConcept,
-  pub(crate) instantiatesUri?: String,
-  pub(crate) groupIdentifier?: Identifier,
-  pub(crate) executionPeriod?: Period,
-  pub(crate) reasonReference?: Reference,
-  pub(crate) relevantHistory?: Reference,
-  pub(crate) instantiatesCanonical?: String,
-  pub(crate) input?: Task_Input,
-  pub(crate) output?: Task_Output,
-  pub(crate) restriction?: Task_Restriction,
+  pub(crate) basedOn: Vector<Reference>,
+  pub(crate) priority: Option<String>,
+  pub(crate) location: Option<Reference>,
+  pub(crate) encounter: Option<Reference>,
+  pub(crate) requester: Option<Reference>,
+  pub(crate) insurance: Vector<Reference>,
+  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) authoredOn: Option<Date>,
+  pub(crate) reasonCode: Option<CodeableConcept>,
+  pub(crate) description: Option<String>,
+  pub(crate) statusReason: Option<CodeableConcept>,
+  pub(crate) lastModified: Option<Date>,
+  pub(crate) performerType: Vector<CodeableConcept>,
+  pub(crate) businessStatus: Option<CodeableConcept>,
+  pub(crate) instantiatesUri: Option<String>,
+  pub(crate) groupIdentifier: Option<Identifier>,
+  pub(crate) executionPeriod: Option<Period>,
+  pub(crate) reasonReference: Option<Reference>,
+  pub(crate) relevantHistory: Vector<Reference>,
+  pub(crate) instantiatesCanonical: Option<String>,
+  pub(crate) input: Vector<Task_Input>,
+  pub(crate) output: Vector<Task_Output>,
+  pub(crate) restriction: Option<Task_Restriction>,
 }

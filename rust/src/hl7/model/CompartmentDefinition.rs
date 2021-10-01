@@ -7,28 +7,30 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct CompartmentDefinition_Resource {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) code: String,
-  pub(crate) param?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) documentation?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) param: Vector<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) documentation: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct CompartmentDefinition {
   pub(crate) url: String,
   pub(crate) name: String,
-  pub(crate) date?: Date,
+  pub(crate) date: Option<Date>,
   pub(crate) code: String,
   pub(crate) status: String,
   pub(crate) search: Boolean,
-  pub(crate) version?: String,
-  pub(crate) contact?: ContactDetail,
-  pub(crate) purpose?: String,
-  pub(crate) publisher?: String,
-  pub(crate) useContext?: UsageContext,
-  pub(crate) description?: String,
-  pub(crate) experimental?: Boolean,
-  pub(crate) resource?: CompartmentDefinition_Resource,
+  pub(crate) version: Option<String>,
+  pub(crate) contact: Vector<ContactDetail>,
+  pub(crate) purpose: Option<String>,
+  pub(crate) publisher: Option<String>,
+  pub(crate) useContext: Vector<UsageContext>,
+  pub(crate) description: Option<String>,
+  pub(crate) experimental: Option<Boolean>,
+  pub(crate) resource: Vector<CompartmentDefinition_Resource>,
 }

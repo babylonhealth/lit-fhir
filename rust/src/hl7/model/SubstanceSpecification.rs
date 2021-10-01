@@ -7,148 +7,159 @@ use crate::hl7::*;
 
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Code {
-  pub(crate) id?: String,
-  pub(crate) code?: CodeableConcept,
-  pub(crate) status?: CodeableConcept,
-  pub(crate) source?: Reference,
-  pub(crate) comment?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) statusDate?: Date,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) code: Option<CodeableConcept>,
+  pub(crate) status: Option<CodeableConcept>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) comment: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) statusDate: Option<Date>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Moiety {
-  pub(crate) id?: String,
-  pub(crate) role?: CodeableConcept,
-  pub(crate) name?: String,
-  pub(crate) extension?: Extension,
-  pub(crate) amount?: Quantity | String,
-  pub(crate) identifier?: Identifier,
-  pub(crate) stereochemistry?: CodeableConcept,
-  pub(crate) opticalActivity?: CodeableConcept,
-  pub(crate) molecularFormula?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) role: Option<CodeableConcept>,
+  pub(crate) name: Option<String>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) amount: Option<Quantity | String>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) stereochemistry: Option<CodeableConcept>,
+  pub(crate) opticalActivity: Option<CodeableConcept>,
+  pub(crate) molecularFormula: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Property {
-  pub(crate) id?: String,
-  pub(crate) code?: CodeableConcept,
-  pub(crate) category?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) amount?: Quantity | String,
-  pub(crate) parameters?: String,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) definingSubstance?: CodeableConcept | Reference,
+  pub(crate) id: Option<String>,
+  pub(crate) code: Option<CodeableConcept>,
+  pub(crate) category: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) amount: Option<Quantity | String>,
+  pub(crate) parameters: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) definingSubstance: Option<CodeableConcept | Reference>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Name_Official {
-  pub(crate) id?: String,
-  pub(crate) date?: Date,
-  pub(crate) status?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) authority?: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) date: Option<Date>,
+  pub(crate) status: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) authority: Option<CodeableConcept>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Name {
-  pub(crate) id?: String,
+  pub(crate) id: Option<String>,
   pub(crate) name: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) status?: CodeableConcept,
-  pub(crate) domain?: CodeableConcept,
-  pub(crate) source?: Reference,
-  pub(crate) synonym?: SubstanceSpecification_Name,
-  pub(crate) language?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) preferred?: Boolean,
-  pub(crate) translation?: SubstanceSpecification_Name,
-  pub(crate) jurisdiction?: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) official?: SubstanceSpecification_Name_Official,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) status: Option<CodeableConcept>,
+  pub(crate) domain: Vector<CodeableConcept>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) synonym: Vector<SubstanceSpecification_Name>,
+  pub(crate) language: Vector<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) preferred: Option<Boolean>,
+  pub(crate) translation: Vector<SubstanceSpecification_Name>,
+  pub(crate) jurisdiction: Vector<CodeableConcept>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) official: Vector<SubstanceSpecification_Name_Official>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Relationship {
-  pub(crate) id?: String,
-  pub(crate) source?: Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) amount?: Quantity | Range | Ratio | String,
-  pub(crate) isDefining?: Boolean,
-  pub(crate) amountType?: CodeableConcept,
-  pub(crate) substance?: CodeableConcept | Reference,
-  pub(crate) relationship?: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) amountRatioLowLimit?: Ratio,
+  pub(crate) id: Option<String>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) amount: Option<Quantity | Range | Ratio | String>,
+  pub(crate) isDefining: Option<Boolean>,
+  pub(crate) amountType: Option<CodeableConcept>,
+  pub(crate) substance: Option<CodeableConcept | Reference>,
+  pub(crate) relationship: Option<CodeableConcept>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) amountRatioLowLimit: Option<Ratio>,
 }
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Structure_Representation {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) extension?: Extension,
-  pub(crate) attachment?: Attachment,
-  pub(crate) representation?: String,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) attachment: Option<Attachment>,
+  pub(crate) representation: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
 
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Structure_Isotope_MolecularWeight {
-  pub(crate) id?: String,
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) method?: CodeableConcept,
-  pub(crate) amount?: Quantity,
-  pub(crate) extension?: Extension,
-  pub(crate) modifierExtension?: Extension,
+  pub(crate) id: Option<String>,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) method: Option<CodeableConcept>,
+  pub(crate) amount: Option<Quantity>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Extension>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Structure_Isotope {
-  pub(crate) id?: String,
-  pub(crate) name?: CodeableConcept,
-  pub(crate) halfLife?: Quantity,
-  pub(crate) extension?: Extension,
-  pub(crate) identifier?: Identifier,
-  pub(crate) substitution?: CodeableConcept,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) molecularWeight?: SubstanceSpecification_Structure_Isotope_MolecularWeight,
+  pub(crate) id: Option<String>,
+  pub(crate) name: Option<CodeableConcept>,
+  pub(crate) halfLife: Option<Quantity>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) substitution: Option<CodeableConcept>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) molecularWeight: Option<SubstanceSpecification_Structure_Isotope_MolecularWeight>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Structure {
-  pub(crate) id?: String,
-  pub(crate) source?: Reference,
-  pub(crate) extension?: Extension,
-  pub(crate) stereochemistry?: CodeableConcept,
-  pub(crate) opticalActivity?: CodeableConcept,
-  pub(crate) molecularWeight?: SubstanceSpecification_Structure_Isotope_MolecularWeight,
-  pub(crate) molecularFormula?: String,
-  pub(crate) modifierExtension?: Extension,
-  pub(crate) molecularFormulaByMoiety?: String,
-  pub(crate) representation?: SubstanceSpecification_Structure_Representation,
-  pub(crate) isotope?: SubstanceSpecification_Structure_Isotope,
+  pub(crate) id: Option<String>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) extension: Vector<Extension>,
+  pub(crate) stereochemistry: Option<CodeableConcept>,
+  pub(crate) opticalActivity: Option<CodeableConcept>,
+  pub(crate) molecularWeight: Option<SubstanceSpecification_Structure_Isotope_MolecularWeight>,
+  pub(crate) molecularFormula: Option<String>,
+  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) molecularFormulaByMoiety: Option<String>,
+  pub(crate) representation: Vector<SubstanceSpecification_Structure_Representation>,
+  pub(crate) isotope: Vector<SubstanceSpecification_Structure_Isotope>,
 }
 
+#[derive(Clone, Debug)]
 pub struct SubstanceSpecification {
-  pub(crate) _type?: CodeableConcept,
-  pub(crate) status?: CodeableConcept,
-  pub(crate) domain?: CodeableConcept,
-  pub(crate) source?: Reference,
-  pub(crate) comment?: String,
-  pub(crate) polymer?: Reference,
-  pub(crate) protein?: Reference,
-  pub(crate) identifier?: Identifier,
-  pub(crate) description?: String,
-  pub(crate) nucleicAcid?: Reference,
-  pub(crate) sourceMaterial?: Reference,
-  pub(crate) molecularWeight?: SubstanceSpecification_Structure_Isotope_MolecularWeight,
-  pub(crate) referenceInformation?: Reference,
-  pub(crate) code?: String,
-  pub(crate) moiety?: SubstanceSpecification_Moiety,
-  pub(crate) property?: SubstanceSpecification_Property,
-  pub(crate) name?: SubstanceSpecification_Name,
-  pub(crate) relationship?: SubstanceSpecification_Relationship,
-  pub(crate) structure?: SubstanceSpecification_Structure,
+  pub(crate) _type: Option<CodeableConcept>,
+  pub(crate) status: Option<CodeableConcept>,
+  pub(crate) domain: Option<CodeableConcept>,
+  pub(crate) source: Vector<Reference>,
+  pub(crate) comment: Option<String>,
+  pub(crate) polymer: Option<Reference>,
+  pub(crate) protein: Option<Reference>,
+  pub(crate) identifier: Option<Identifier>,
+  pub(crate) description: Option<String>,
+  pub(crate) nucleicAcid: Option<Reference>,
+  pub(crate) sourceMaterial: Option<Reference>,
+  pub(crate) molecularWeight: Vector<SubstanceSpecification_Structure_Isotope_MolecularWeight>,
+  pub(crate) referenceInformation: Option<Reference>,
+  pub(crate) code: Vector<String>,
+  pub(crate) moiety: Vector<SubstanceSpecification_Moiety>,
+  pub(crate) property: Vector<SubstanceSpecification_Property>,
+  pub(crate) name: Vector<SubstanceSpecification_Name>,
+  pub(crate) relationship: Vector<SubstanceSpecification_Relationship>,
+  pub(crate) structure: Option<SubstanceSpecification_Structure>,
 }
