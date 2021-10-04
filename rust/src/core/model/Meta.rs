@@ -1,7 +1,8 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
-use crate::core::model::*;
+use crate::core::model::Coding::Coding;
 use crate::core::*;
 
 
@@ -14,5 +15,5 @@ pub struct Meta {
   pub(crate) profile: Vector<String>,
   pub(crate) security: Vector<Coding>,
   pub(crate) versionId: Option<String>,
-  pub(crate) lastUpdated: Option<Date>,
+  pub(crate) lastUpdated: Option<DateTime<FixedOffset>>,
 }

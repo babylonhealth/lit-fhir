@@ -6,6 +6,7 @@ import com.babylonhealth.lit.{ BaseField, ClassGenInfo, TopLevelClass }
 object Rust {
   def commonImports(pkgs: Seq[String]): String =
     s"""use bigdecimal::BigDecimal;
+       |use chrono::{DateTime, FixedOffset};
        |use im::vector::Vector;
        |
        |${pkgs.map(s => s"use crate::$s::model::*;\nuse crate::$s::*;").mkString("\n")}
@@ -39,10 +40,13 @@ object Rust {
         case "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" | "String" |
             "UUID" =>
           "String"
-        case "ZonedDateTime" | "FHIRDateTime" | "LocalDate" | "LocalTime" => "Date"
-        case "Element"                                                    => "FHIRElement"
-        case "Parameters"                                                 => "FHIRParameters"
-        case x if x.startsWith("Choice[\"")                               => "any"
+        case "ZonedDateTime" | "FHIRDateTime" => "DateTime<FixedOffset>" // TODO: specificity-aware wrapper for FHIRDateTime
+        // TODO: these two
+        case "LocalDate"                      => "Date"
+        case "LocalTime"                      => "Date"
+//        case "Element"                        => "FHIRElement"
+//        case "Parameters"                     => "FHIRParameters"
+        case x if x.startsWith("Choice[\"")   => "any"
         case x if f.isGenerated && f.declaringClasses.nonEmpty =>
           val h +: t = f.declaringClasses
           s"${(toRustClassName(h) +: t).mkString("_")}_${toRustClassName(x)}"
@@ -62,7 +66,7 @@ object Rust {
 //        case "Element"         => Some(" extends FHIRElement")
 //        case _                 => None
 //      }.headOption getOrElse ""
-      val parentFields  = field.parent.toSeq.flatMap(_.childFields)
+//      val parentFields  = field.parent.toSeq.flatMap(_.childFields)
       val refinedFields = field.childFields //.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
       val fieldDecls    = refinedFields.map(asParam).mkString("\n  ")
       val recursive =
