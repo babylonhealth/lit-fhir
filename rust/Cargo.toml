@@ -10,6 +10,7 @@ edition = "2018"
 
 [dependencies]
 bigdecimal = "0.2.0"
+chrono = "0.4.0"
 im = "15.0.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

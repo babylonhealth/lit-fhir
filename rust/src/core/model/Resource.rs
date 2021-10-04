@@ -1,7 +1,7 @@
 use bigdecimal::BigDecimal;
 use im::vector::Vector;
 
-use crate::core::model::*;
+use crate::core::model::Meta::Meta;
 use crate::core::*;
 
 
