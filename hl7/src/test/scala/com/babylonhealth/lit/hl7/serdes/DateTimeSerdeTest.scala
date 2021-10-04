@@ -78,7 +78,7 @@ class DateTimeSerdeTest extends AnyFreeSpec with Matchers {
     "handles micros time string" in {
       checkIdempotency(
         timeStr,
-        FHIRDateTime(ZonedDateTime.of(2019, 7, 19, 19, 37, 42, 7006 * 1000, ZoneOffset.UTC), FHIRDateTimeSpecificity.Time))
+        FHIRDateTime(ZonedDateTime.of(2019, 7, 19, 19, 37, 42, 7006 * 1000, ZoneOffset.UTC), FHIRDateTimeSpecificity.Micros))
     }
   }
 }
