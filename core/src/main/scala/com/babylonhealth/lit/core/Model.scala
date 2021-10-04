@@ -133,6 +133,10 @@ object FHIRDateTimeSpecificity {
     override val dtFormatter: DateTimeFormatter = DateTimeFormatter ofPattern "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
   }
 
+  case object Micros extends FHIRDateTimeSpecificity {
+    override val dtFormatter: DateTimeFormatter = DateTimeFormatter ofPattern "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX"
+  }
+
 }
 
 /** Wrapper around LocalDate to preserve the level of specificity of a Date field from an external resource

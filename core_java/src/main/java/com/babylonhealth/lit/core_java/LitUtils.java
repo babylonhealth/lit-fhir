@@ -168,5 +168,6 @@ public class LitUtils {
     public static final FHIRDateSpecificity Month = FHIRDateSpecificity.Month$.MODULE$;
     public static final FHIRDateSpecificity Day = FHIRDateSpecificity.Day$.MODULE$;
     public static final FHIRDateTimeSpecificity Time = FHIRDateSpecificity.Time$.MODULE$;
+    public static final FHIRDateTimeSpecificity Micros = FHIRDateSpecificity.Micros$.MODULE$;
   }
 }

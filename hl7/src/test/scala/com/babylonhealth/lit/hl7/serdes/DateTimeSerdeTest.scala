@@ -18,6 +18,7 @@ class DateTimeSerdeTest extends AnyFreeSpec with Matchers {
   val timeStr                        = "2019-07-19T19:37:42.007Z"
   val timeZonedPlusStr               = "2019-07-19T19:37:42.006+04:00"
   val timeZonedMinusStr              = "2019-07-19T19:37:42.007-09:00"
+  val timeMicrosStr                  = "2019-07-19T19:37:42.007006Z"
   def strWrapped(s: String): String  = s""""$s""""
   def read[T: Decoder](s: String): T = decode[T](s).fold(throw _, identity)
   def checkIdempotency[T: Decoder](in: String, expected: T): Unit = {
@@ -73,6 +74,11 @@ class DateTimeSerdeTest extends AnyFreeSpec with Matchers {
         FHIRDateTime(
           ZonedDateTime.of(2019, 7, 19, 19, 37, 42, 7 * 1000000, ZoneOffset.ofHours(-9)),
           FHIRDateTimeSpecificity.Time))
+    }
+    "handles micros time string" in {
+      checkIdempotency(
+        timeMicrosStr,
+        FHIRDateTime(ZonedDateTime.of(2019, 7, 19, 19, 37, 42, 7006 * 1000, ZoneOffset.UTC), FHIRDateTimeSpecificity.Micros))
     }
   }
 }
