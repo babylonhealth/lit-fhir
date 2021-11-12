@@ -2,9 +2,7 @@
 name = "lit"
 version = "0.0.1"
 authors = ["Hugh Simpson <hugh.simpson@babylonhealth.com>"]
-# TODO: I think it's worth waiting a few weeks for this
-#edition = "2021"
-edition = "2018"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
