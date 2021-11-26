@@ -8,8 +8,6 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::core::model::TestReport_Setup_Action_Assert::TestReport_Setup_Action_Assert;
-use crate::core::model::TestReport_Setup_Action_Operation::TestReport_Setup_Action_Operation;
 use crate::hl7::model::Narrative::Narrative;
 
 

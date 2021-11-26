@@ -7,8 +7,6 @@ use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Coding::Coding;
-use crate::core::model::Contract_Term::Contract_Term;
-use crate::core::model::Contract_Term_Offer_Answer::Contract_Term_Offer_Answer;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;

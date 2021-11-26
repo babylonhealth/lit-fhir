@@ -5,7 +5,6 @@ use im::vector::Vector;
 
 use crate::core::UnionAll;
 use crate::core::model::Extension::Extension;
-use crate::core::model::FHIRParameters_Parameter::FHIRParameters_Parameter;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Resource::Resource;
 

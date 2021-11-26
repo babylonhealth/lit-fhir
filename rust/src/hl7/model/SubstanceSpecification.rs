@@ -13,8 +13,6 @@ use crate::core::model::Quantity::Quantity;
 use crate::core::model::Ratio::Ratio;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::core::model::SubstanceSpecification_Name::SubstanceSpecification_Name;
-use crate::core::model::SubstanceSpecification_Structure_Isotope_MolecularWeight::SubstanceSpecification_Structure_Isotope_MolecularWeight;
 use crate::hl7::Union00133982841;
 use crate::hl7::UnionQuantityOrString;
 use crate::hl7::model::Narrative::Narrative;

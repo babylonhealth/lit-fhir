@@ -3,7 +3,6 @@ use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 
-use crate::core::model::Bundle_Link::Bundle_Link;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;

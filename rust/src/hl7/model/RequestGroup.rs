@@ -11,7 +11,6 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::RelatedArtifact::RelatedArtifact;
-use crate::core::model::RequestGroup_Action::RequestGroup_Action;
 use crate::core::model::Resource::Resource;
 use crate::hl7::Union01405873694;
 use crate::hl7::UnionDurationOrRange;

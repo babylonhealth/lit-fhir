@@ -5,7 +5,6 @@ use im::vector::Vector;
 
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Coding::Coding;
-use crate::core::model::Consent_Provision::Consent_Provision;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;

@@ -6,7 +6,6 @@ use im::vector::Vector;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
-use crate::core::model::QuestionnaireResponse_Item::QuestionnaireResponse_Item;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
 use crate::hl7::Union01113166363;

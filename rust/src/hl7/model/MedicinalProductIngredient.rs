@@ -6,7 +6,6 @@ use im::vector::Vector;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
-use crate::core::model::MedicinalProductIngredient_SpecifiedSubstance_Strength::MedicinalProductIngredient_SpecifiedSubstance_Strength;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Ratio::Ratio;
 use crate::core::model::Reference::Reference;

@@ -8,7 +8,6 @@ use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
-use crate::core::model::Invoice_LineItem_PriceComponent::Invoice_LineItem_PriceComponent;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Money::Money;
 use crate::core::model::Reference::Reference;

@@ -7,7 +7,6 @@ use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Attachment::Attachment;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Coding::Coding;
-use crate::core::model::ExplanationOfBenefit_Item_Adjudication::ExplanationOfBenefit_Item_Adjudication;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
