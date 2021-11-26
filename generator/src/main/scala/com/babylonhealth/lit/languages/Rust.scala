@@ -5,7 +5,8 @@ import com.babylonhealth.lit.ElementTreee.{ isPrimitiveSuffix, unionDeclaringPac
 import com.babylonhealth.lit.{ BaseField, ClassGenInfo, ElementTreee, TopLevelClass }
 
 case class Import(pkg: String, name: String, `enum`: Boolean) {
-  def toImport: String = if (`enum`) s"use crate::$pkg::$name;" else s"use crate::$pkg::model::$name::$name;"
+  val parentName: String = name.split('_').head
+  def toImport: String   = if (`enum`) s"use crate::$pkg::$name;" else s"use crate::$pkg::model::$parentName::$name;"
 }
 
 object Rust {
@@ -62,9 +63,9 @@ object Rust {
     if (f.types.size > 1) ElementTreee.getUnionAlias(pkg = f.pkg, s = f.types, field = f) else toRustType(f.types.head)
   }
   def asParam(f: BaseField): String = tpe(f) match {
-    case "Reference" => s"pub(crate) ${toRustName(f.noParensName)}: Box<Reference>,"
+    case "Reference"         => s"pub(crate) ${toRustName(f.noParensName)}: Box<Reference>,"
     case "Option<Reference>" => s"pub(crate) ${toRustName(f.noParensName)}: Option<Box<Reference>>,"
-    case rn          => s"pub(crate) ${toRustName(f.noParensName)}: $rn,"
+    case rn                  => s"pub(crate) ${toRustName(f.noParensName)}: $rn,"
   }
   def genStructuralClass(field: BaseField, prefix: String): String =
     if (!field.isGenerated) ""
@@ -108,10 +109,8 @@ object Rust {
     }
 
   def genRustForClass(topLevelClass: TopLevelClass, getDeclaringPkgForType: Map[String, String]): Seq[ClassGenInfo] = {
-    def definedHere(i: Import): Boolean = i.pkg == topLevelClass.fields.head.pkg && {
-      i.name == toRustClassName(topLevelClass.className) ||
-      i.name.startsWith(toRustClassName(topLevelClass.className) + "_")
-    }
+    def definedHere(i: Import): Boolean = i.parentName == toRustClassName(topLevelClass.className)
+
     val allFHIRTypesUsed =
       topLevelClass.fields.flatMap(getAllFHIRTypesUsed(getDeclaringPkgForType)).distinct.filterNot(definedHere)
     val requiredImports = allFHIRTypesUsed.map(_.toImport).sorted.mkString("\n")
