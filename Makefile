@@ -154,3 +154,6 @@ find-weird-ones:
 
 test-rust:
 	cd rust && cargo test -- --nocapture
+
+fetch-submodule:
+	git submodule update --init

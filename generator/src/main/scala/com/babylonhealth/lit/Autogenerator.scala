@@ -265,9 +265,10 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
     }
 
     val rustClassGenInfo: Option[Seq[ClassGenInfo]] = args.rustDir.map { o =>
+      def getDeclaringPkgForType: Map[String, String] = topLevelClasses.classes.map { case (name, ps) => name -> ps.keys.head }
       topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
         m.flatMap { case (p, k) =>
-          try Rust.genRustForClass(k)
+          try Rust.genRustForClass(k, getDeclaringPkgForType)
           catch {
             case NonFatal(ex) =>
               log.error(s"Unable to gen Rust file for $p.$o", ex)
