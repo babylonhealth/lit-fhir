@@ -4,7 +4,6 @@ use im::vector::Vector;
 
 
 use crate::core::model::Attachment::Attachment;
-use crate::core::model::ClaimResponse_Item_Adjudication::ClaimResponse_Item_Adjudication;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;

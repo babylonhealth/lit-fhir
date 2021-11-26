@@ -3,7 +3,6 @@ use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 
-use crate::core::model::CodeSystem_Concept::CodeSystem_Concept;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Coding::Coding;
 use crate::core::model::ContactDetail::ContactDetail;

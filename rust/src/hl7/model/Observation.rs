@@ -8,7 +8,6 @@ use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
-use crate::core::model::Observation_ReferenceRange::Observation_ReferenceRange;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Range::Range;
 use crate::core::model::Reference::Reference;

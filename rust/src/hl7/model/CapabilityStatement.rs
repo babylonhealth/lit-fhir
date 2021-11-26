@@ -3,8 +3,6 @@ use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 
-use crate::core::model::CapabilityStatement_Rest_Resource_Operation::CapabilityStatement_Rest_Resource_Operation;
-use crate::core::model::CapabilityStatement_Rest_Resource_SearchParam::CapabilityStatement_Rest_Resource_SearchParam;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Coding::Coding;
 use crate::core::model::ContactDetail::ContactDetail;

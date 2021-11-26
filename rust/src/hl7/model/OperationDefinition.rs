@@ -7,7 +7,6 @@ use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactDetail::ContactDetail;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Meta::Meta;
-use crate::core::model::OperationDefinition_Parameter::OperationDefinition_Parameter;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
 use crate::hl7::model::Narrative::Narrative;

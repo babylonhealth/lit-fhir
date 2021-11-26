@@ -11,8 +11,6 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::core::model::TestScript_Setup_Action_Assert::TestScript_Setup_Action_Assert;
-use crate::core::model::TestScript_Setup_Action_Operation::TestScript_Setup_Action_Operation;
 use crate::core::model::UsageContext::UsageContext;
 use crate::hl7::model::Narrative::Narrative;
 

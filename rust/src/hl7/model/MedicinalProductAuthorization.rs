@@ -6,7 +6,6 @@ use im::vector::Vector;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
-use crate::core::model::MedicinalProductAuthorization_Procedure::MedicinalProductAuthorization_Procedure;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;

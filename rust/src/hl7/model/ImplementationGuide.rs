@@ -6,7 +6,6 @@ use im::vector::Vector;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactDetail::ContactDetail;
 use crate::core::model::Extension::Extension;
-use crate::core::model::ImplementationGuide_Definition_Page::ImplementationGuide_Definition_Page;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;

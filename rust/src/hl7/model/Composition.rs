@@ -4,7 +4,6 @@ use im::vector::Vector;
 
 
 use crate::core::model::CodeableConcept::CodeableConcept;
-use crate::core::model::Composition_Section::Composition_Section;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;

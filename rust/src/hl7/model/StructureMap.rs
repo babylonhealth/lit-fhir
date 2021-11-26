@@ -10,7 +10,6 @@ use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Resource::Resource;
-use crate::core::model::StructureMap_Group_Rule::StructureMap_Group_Rule;
 use crate::core::model::UsageContext::UsageContext;
 use crate::hl7::Union00551919141;
 use crate::hl7::model::Narrative::Narrative;
