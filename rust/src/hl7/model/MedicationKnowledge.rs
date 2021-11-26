@@ -2,24 +2,21 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
-use crate::hl7::model::*;
-use crate::hl7::*;
 
-
-use crate::core::model::Meta::Meta;
-use crate::hl7::model::Narrative::Narrative;
-use crate::core::model::CodeableConcept::CodeableConcept;
-use crate::core::model::Quantity::Quantity;
-use crate::core::model::Resource::Resource;
-use crate::core::model::Extension::Extension;
-use crate::core::model::Reference::Reference;
-use crate::core::model::Money::Money;
-use crate::core::model::Duration::Duration;
 use crate::core::UnionCodeableConceptOrReference;
-use crate::core::model::Ratio::Ratio;
-use crate::hl7::Union_0600299688;
+use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Dosage::Dosage;
+use crate::core::model::Duration::Duration;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Meta::Meta;
+use crate::core::model::Money::Money;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Ratio::Ratio;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
 use crate::hl7::UnionCodeableConceptOrQuantity;
+use crate::hl7::Union_0600299688;
+use crate::hl7::model::Narrative::Narrative;
 
 
 

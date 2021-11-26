@@ -2,14 +2,11 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
-use crate::core::model::*;
-use crate::core::*;
 
-
-use crate::core::model::Extension::Extension;
 use crate::core::UnionCodeableConceptOrReference;
-use crate::core::model::Coding::Coding;
 use crate::core::UnionDurationOrDateTimeOrPeriod;
+use crate::core::model::Coding::Coding;
+use crate::core::model::Extension::Extension;
 
 
 
