@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Timing::Timing;
+use crate::core::model::Quantity::Quantity;
+use crate::hl7::UnionQuantityOrRatio;
 
 
 
@@ -57,7 +70,7 @@ pub struct NutritionOrder_OralDiet {
 #[derive(Clone, Debug)]
 pub struct NutritionOrder_EnteralFormula_Administration {
   pub(crate) id: Option<String>,
-  pub(crate) rate: Option<Quantity | Ratio>,
+  pub(crate) rate: Option<UnionQuantityOrRatio>,
   pub(crate) schedule: Option<Timing>,
   pub(crate) quantity: Option<Quantity>,
   pub(crate) extension: Vector<Extension>,
@@ -87,7 +100,7 @@ pub struct NutritionOrder {
   pub(crate) intent: String,
   pub(crate) patient: Reference,
   pub(crate) orderer: Option<Reference>,
-  pub(crate) dateTime: Date,
+  pub(crate) dateTime: DateTime<FixedOffset>,
   pub(crate) encounter: Option<Reference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) instantiates: Vector<String>,

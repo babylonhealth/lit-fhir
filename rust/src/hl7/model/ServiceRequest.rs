@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::UnionQuantityOrRangeOrRatio;
+use crate::core::UnionBooleanOrCodeableConcept;
+use crate::hl7::UnionDateTimeOrPeriodOrTiming;
 
 
 
@@ -25,15 +38,15 @@ pub struct ServiceRequest {
   pub(crate) performer: Vector<Reference>,
   pub(crate) insurance: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) authoredOn: Option<Date>,
+  pub(crate) authoredOn: Option<DateTime<FixedOffset>>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) requisition: Option<Identifier>,
   pub(crate) orderDetail: Vector<CodeableConcept>,
-  pub(crate) quantity: Option<Quantity | Range | Ratio>,
-  pub(crate) asNeeded: Option<Boolean | CodeableConcept>,
-  pub(crate) doNotPerform: Option<Boolean>,
+  pub(crate) quantity: Option<UnionQuantityOrRangeOrRatio>,
+  pub(crate) asNeeded: Option<UnionBooleanOrCodeableConcept>,
+  pub(crate) doNotPerform: Option<bool>,
   pub(crate) locationCode: Vector<CodeableConcept>,
-  pub(crate) occurrence: Option<Date | Period | Timing>,
+  pub(crate) occurrence: Option<UnionDateTimeOrPeriodOrTiming>,
   pub(crate) performerType: Option<CodeableConcept>,
   pub(crate) supportingInfo: Vector<Reference>,
   pub(crate) instantiatesUri: Vector<String>,

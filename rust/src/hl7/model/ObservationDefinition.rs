@@ -1,9 +1,19 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Range::Range;
 
 
 
@@ -46,7 +56,7 @@ pub struct ObservationDefinition {
   pub(crate) normalCodedValueSet: Option<Reference>,
   pub(crate) abnormalCodedValueSet: Option<Reference>,
   pub(crate) criticalCodedValueSet: Option<Reference>,
-  pub(crate) multipleResultsAllowed: Option<Boolean>,
+  pub(crate) multipleResultsAllowed: Option<bool>,
   pub(crate) qualifiedInterval: Vector<ObservationDefinition_QualifiedInterval>,
   pub(crate) quantitativeDetails: Option<ObservationDefinition_QuantitativeDetails>,
 }

@@ -1,9 +1,17 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::core::model::Signature::Signature;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Bundle_Link::Bundle_Link;
+use crate::core::model::Resource::Resource;
 
 
 
@@ -37,7 +45,7 @@ pub struct Bundle_Entry_Request {
   pub(crate) extension: Vector<Extension>,
   pub(crate) ifNoneMatch: Option<String>,
   pub(crate) ifNoneExist: Option<String>,
-  pub(crate) ifModifiedSince: Option<Date>,
+  pub(crate) ifModifiedSince: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -51,7 +59,7 @@ pub struct Bundle_Entry_Response {
   pub(crate) outcome: Option<Resource>,
   pub(crate) location: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) lastModified: Option<Date>,
+  pub(crate) lastModified: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -72,7 +80,7 @@ pub struct Bundle_Entry {
 pub struct Bundle {
   pub(crate) _type: String,
   pub(crate) total: Option<u32>,
-  pub(crate) timestamp: Option<Date>,
+  pub(crate) timestamp: Option<DateTime<FixedOffset>>,
   pub(crate) signature: Option<Signature>,
   pub(crate) identifier: Option<Identifier>,
   pub(crate) link: Vector<Bundle_Link>,

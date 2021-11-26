@@ -1,9 +1,19 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Reference::Reference;
+use crate::core::model::TestReport_Setup_Action_Assert::TestReport_Setup_Action_Assert;
+use crate::core::model::TestReport_Setup_Action_Operation::TestReport_Setup_Action_Operation;
 
 
 
@@ -101,7 +111,7 @@ pub struct TestReport {
   pub(crate) status: String,
   pub(crate) result: String,
   pub(crate) tester: Option<String>,
-  pub(crate) issued: Option<Date>,
+  pub(crate) issued: Option<DateTime<FixedOffset>>,
   pub(crate) identifier: Option<Identifier>,
   pub(crate) testScript: Reference,
   pub(crate) participant: Vector<TestReport_Participant>,

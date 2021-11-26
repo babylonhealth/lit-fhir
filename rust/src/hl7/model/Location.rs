@@ -1,9 +1,21 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::ContactPoint::ContactPoint;
+use crate::core::model::Address::Address;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Coding::Coding;
 
 
 
@@ -21,7 +33,7 @@ pub struct Location_Position {
 #[derive(Clone, Debug)]
 pub struct Location_HoursOfOperation {
   pub(crate) id: Option<String>,
-  pub(crate) allDay: Option<Boolean>,
+  pub(crate) allDay: Option<bool>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) daysOfWeek: Vector<String>,
   pub(crate) openingTime: Option<Date>,

@@ -1,9 +1,23 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Annotation::Annotation;
+use crate::hl7::UnionAgeOrRangeOrString;
+use crate::core::model::Reference::Reference;
+use crate::hl7::UnionDateOrPeriodOrString;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::Union00659500323;
+use crate::hl7::Union_1204024681;
 
 
 
@@ -13,27 +27,27 @@ pub struct FamilyMemberHistory_Condition {
   pub(crate) code: CodeableConcept,
   pub(crate) note: Vector<Annotation>,
   pub(crate) outcome: Option<CodeableConcept>,
-  pub(crate) onset: Option<Age | Period | Range | String>,
+  pub(crate) onset: Option<Union_1204024681>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) contributedToDeath: Option<Boolean>,
+  pub(crate) contributedToDeath: Option<bool>,
 }
 
 #[derive(Clone, Debug)]
 pub struct FamilyMemberHistory {
   pub(crate) sex: Option<CodeableConcept>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) name: Option<String>,
   pub(crate) note: Vector<Annotation>,
   pub(crate) status: String,
-  pub(crate) age: Option<Age | Range | String>,
+  pub(crate) age: Option<UnionAgeOrRangeOrString>,
   pub(crate) patient: Reference,
-  pub(crate) born: Option<FHIRDate | Period | String>,
+  pub(crate) born: Option<UnionDateOrPeriodOrString>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
-  pub(crate) deceased: Option<Age | Boolean | FHIRDate | Range | String>,
+  pub(crate) deceased: Option<Union00659500323>,
   pub(crate) relationship: CodeableConcept,
-  pub(crate) estimatedAge: Option<Boolean>,
+  pub(crate) estimatedAge: Option<bool>,
   pub(crate) instantiatesUri: Vector<String>,
   pub(crate) reasonReference: Vector<Reference>,
   pub(crate) dataAbsentReason: Option<CodeableConcept>,

@@ -1,9 +1,23 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionDateTimeOrPeriod;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::Quantity::Quantity;
+use crate::hl7::UnionQuantityOrRatio;
 
 
 
@@ -15,7 +29,7 @@ pub struct MedicationAdministration_Dosage {
   pub(crate) dose: Option<Quantity>,
   pub(crate) route: Option<CodeableConcept>,
   pub(crate) method: Option<CodeableConcept>,
-  pub(crate) rate: Option<Quantity | Ratio>,
+  pub(crate) rate: Option<UnionQuantityOrRatio>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -44,9 +58,9 @@ pub struct MedicationAdministration {
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) instantiates: Vector<String>,
   pub(crate) statusReason: Vector<CodeableConcept>,
-  pub(crate) effective: Date | Period,
+  pub(crate) effective: UnionDateTimeOrPeriod,
   pub(crate) eventHistory: Vector<Reference>,
-  pub(crate) medication: CodeableConcept | Reference,
+  pub(crate) medication: UnionCodeableConceptOrReference,
   pub(crate) reasonReference: Vector<Reference>,
   pub(crate) supportingInformation: Vector<Reference>,
   pub(crate) dosage: Option<MedicationAdministration_Dosage>,

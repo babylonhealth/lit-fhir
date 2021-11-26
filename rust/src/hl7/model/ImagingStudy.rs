@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Coding::Coding;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::CodeableConcept::CodeableConcept;
 
 
 
@@ -34,7 +45,7 @@ pub struct ImagingStudy_Series {
   pub(crate) id: Option<String>,
   pub(crate) uid: String,
   pub(crate) number: Option<u32>,
-  pub(crate) started: Option<Date>,
+  pub(crate) started: Option<DateTime<FixedOffset>>,
   pub(crate) modality: Coding,
   pub(crate) endpoint: Vector<Reference>,
   pub(crate) bodySite: Option<Coding>,
@@ -53,7 +64,7 @@ pub struct ImagingStudy {
   pub(crate) note: Vector<Annotation>,
   pub(crate) status: String,
   pub(crate) subject: Reference,
-  pub(crate) started: Option<Date>,
+  pub(crate) started: Option<DateTime<FixedOffset>>,
   pub(crate) basedOn: Vector<Reference>,
   pub(crate) modality: Vector<Coding>,
   pub(crate) referrer: Option<Reference>,

@@ -1,23 +1,39 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
 
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::Period::Period;
+use crate::core::model::RelatedArtifact::RelatedArtifact;
+use crate::hl7::Union_0044338899;
+use crate::hl7::Union01763000476;
+use crate::core::model::Duration::Duration;
+
 
 
 #[derive(Clone, Debug)]
 pub struct ResearchElementDefinition_Characteristic {
   pub(crate) id: Option<String>,
-  pub(crate) exclude: Option<Boolean>,
+  pub(crate) exclude: Option<bool>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) usageContext: Vector<UsageContext>,
-  pub(crate) definition: String | CodeableConcept | DataRequirement | Expression,
+  pub(crate) definition: Union_0044338899,
   pub(crate) unitOfMeasure: Option<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) studyEffective: Option<Duration | Date | Period | Timing>,
-  pub(crate) participantEffective: Option<Duration | Date | Period | Timing>,
+  pub(crate) studyEffective: Option<Union01763000476>,
+  pub(crate) participantEffective: Option<Union01763000476>,
   pub(crate) studyEffectiveDescription: Option<String>,
   pub(crate) studyEffectiveGroupMeasure: Option<String>,
   pub(crate) studyEffectiveTimeFromStart: Option<Duration>,
@@ -30,7 +46,7 @@ pub struct ResearchElementDefinition_Characteristic {
 pub struct ResearchElementDefinition {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) _type: String,
   pub(crate) title: Option<String>,
   pub(crate) usage: Option<String>,
@@ -50,10 +66,10 @@ pub struct ResearchElementDefinition {
   pub(crate) copyright: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) shortTitle: Option<String>,
-  pub(crate) subject: Option<CodeableConcept | Reference>,
+  pub(crate) subject: Option<UnionCodeableConceptOrReference>,
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) approvalDate: Option<FHIRDate>,
   pub(crate) variableType: Option<String>,

@@ -1,9 +1,23 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Period::Period;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Quantity::Quantity;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::hl7::UnionPeriodOrStringOrTiming;
 
 
 
@@ -19,12 +33,12 @@ pub struct CarePlan_Activity_Detail {
   pub(crate) extension: Vector<Extension>,
   pub(crate) performer: Vector<Reference>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
-  pub(crate) product: Option<CodeableConcept | Reference>,
+  pub(crate) product: Option<UnionCodeableConceptOrReference>,
   pub(crate) dailyAmount: Option<Quantity>,
   pub(crate) description: Option<String>,
   pub(crate) statusReason: Option<CodeableConcept>,
-  pub(crate) doNotPerform: Option<Boolean>,
-  pub(crate) scheduled: Option<Period | String | Timing>,
+  pub(crate) doNotPerform: Option<bool>,
+  pub(crate) scheduled: Option<UnionPeriodOrStringOrTiming>,
   pub(crate) instantiatesUri: Vector<String>,
   pub(crate) reasonReference: Vector<Reference>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -55,7 +69,7 @@ pub struct CarePlan {
   pub(crate) author: Option<Reference>,
   pub(crate) basedOn: Vector<Reference>,
   pub(crate) subject: Reference,
-  pub(crate) created: Option<Date>,
+  pub(crate) created: Option<DateTime<FixedOffset>>,
   pub(crate) replaces: Vector<Reference>,
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) careTeam: Vector<Reference>,

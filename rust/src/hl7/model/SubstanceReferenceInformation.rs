@@ -1,9 +1,19 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionQuantityOrRangeOrString;
 
 
 
@@ -26,7 +36,7 @@ pub struct SubstanceReferenceInformation_Target {
   pub(crate) source: Vector<Reference>,
   pub(crate) organism: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) amount: Option<Quantity | Range | String>,
+  pub(crate) amount: Option<UnionQuantityOrRangeOrString>,
   pub(crate) amountType: Option<CodeableConcept>,
   pub(crate) interaction: Option<CodeableConcept>,
   pub(crate) organismType: Option<CodeableConcept>,

@@ -1,9 +1,30 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Reference::Reference;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Period::Period;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionAttachmentOrReference;
+use crate::core::model::Coding::Coding;
+use crate::core::model::Signature::Signature;
+use crate::core::model::Contract_Term::Contract_Term;
+use crate::hl7::Union01113166363;
+use crate::core::model::Annotation::Annotation;
+use crate::hl7::UnionDateTimeOrPeriodOrTiming;
+use crate::core::model::Contract_Term_Offer_Answer::Contract_Term_Offer_Answer;
+use crate::core::model::Money::Money;
+use crate::core::model::Quantity::Quantity;
 
 
 
@@ -11,7 +32,7 @@ use crate::hl7::*;
 pub struct Contract_Rule {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) content: Attachment | Reference,
+  pub(crate) content: UnionAttachmentOrReference,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -20,7 +41,7 @@ pub struct Contract_Rule {
 pub struct Contract_Legal {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) content: Attachment | Reference,
+  pub(crate) content: UnionAttachmentOrReference,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -40,7 +61,7 @@ pub struct Contract_Signer {
 pub struct Contract_Friendly {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) content: Attachment | Reference,
+  pub(crate) content: UnionAttachmentOrReference,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -53,7 +74,7 @@ pub struct Contract_ContentDefinition {
   pub(crate) extension: Vector<Extension>,
   pub(crate) publisher: Option<Reference>,
   pub(crate) copyright: Option<String>,
-  pub(crate) publicationDate: Option<Date>,
+  pub(crate) publicationDate: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) publicationStatus: String,
 }
@@ -73,7 +94,7 @@ pub struct Contract_Term_Offer_Party {
 #[derive(Clone, Debug)]
 pub struct Contract_Term_Offer_Answer {
   pub(crate) id: Option<String>,
-  pub(crate) value: Attachment | BigDecimal | Boolean | Coding | FHIRDate | Date | i32 | Date | Quantity | Reference | String | String,
+  pub(crate) value: Union01113166363,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -133,10 +154,10 @@ pub struct Contract_Term_Action {
   pub(crate) requester: Vector<Reference>,
   pub(crate) performer: Option<Reference>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
-  pub(crate) doNotPerform: Option<Boolean>,
+  pub(crate) doNotPerform: Option<bool>,
   pub(crate) reasonLinkId: Vector<String>,
   pub(crate) contextLinkId: Vector<String>,
-  pub(crate) occurrence: Option<Date | Period | Timing>,
+  pub(crate) occurrence: Option<UnionDateTimeOrPeriodOrTiming>,
   pub(crate) performerType: Vector<CodeableConcept>,
   pub(crate) performerRole: Option<CodeableConcept>,
   pub(crate) requesterLinkId: Vector<String>,
@@ -171,13 +192,13 @@ pub struct Contract_Term_Asset_ValuedItem {
   pub(crate) payment: Option<String>,
   pub(crate) quantity: Option<Quantity>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) entity: Option<CodeableConcept | Reference>,
+  pub(crate) entity: Option<UnionCodeableConceptOrReference>,
   pub(crate) unitPrice: Option<Money>,
   pub(crate) recipient: Option<Reference>,
   pub(crate) identifier: Option<Identifier>,
-  pub(crate) paymentDate: Option<Date>,
+  pub(crate) paymentDate: Option<DateTime<FixedOffset>>,
   pub(crate) responsible: Option<Reference>,
-  pub(crate) effectiveTime: Option<Date>,
+  pub(crate) effectiveTime: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) securityLabelNumber: Vector<u32>,
 }
@@ -210,10 +231,10 @@ pub struct Contract_Term {
   pub(crate) _type: Option<CodeableConcept>,
   pub(crate) text: Option<String>,
   pub(crate) group: Vector<Contract_Term>,
-  pub(crate) issued: Option<Date>,
+  pub(crate) issued: Option<DateTime<FixedOffset>>,
   pub(crate) applies: Option<Period>,
   pub(crate) subType: Option<CodeableConcept>,
-  pub(crate) topic: Option<CodeableConcept | Reference>,
+  pub(crate) topic: Option<UnionCodeableConceptOrReference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) identifier: Option<Identifier>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -233,7 +254,7 @@ pub struct Contract {
   pub(crate) alias: Vector<String>,
   pub(crate) scope: Option<CodeableConcept>,
   pub(crate) status: Option<String>,
-  pub(crate) issued: Option<Date>,
+  pub(crate) issued: Option<DateTime<FixedOffset>>,
   pub(crate) domain: Vector<Reference>,
   pub(crate) author: Option<Reference>,
   pub(crate) version: Option<String>,
@@ -241,7 +262,7 @@ pub struct Contract {
   pub(crate) subject: Vector<Reference>,
   pub(crate) subType: Vector<CodeableConcept>,
   pub(crate) subtitle: Option<String>,
-  pub(crate) topic: Option<CodeableConcept | Reference>,
+  pub(crate) topic: Option<UnionCodeableConceptOrReference>,
   pub(crate) authority: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) legalState: Option<CodeableConcept>,
@@ -250,7 +271,7 @@ pub struct Contract {
   pub(crate) instantiatesUri: Option<String>,
   pub(crate) relevantHistory: Vector<Reference>,
   pub(crate) contentDerivative: Option<CodeableConcept>,
-  pub(crate) legallyBinding: Option<Attachment | Reference>,
+  pub(crate) legallyBinding: Option<UnionAttachmentOrReference>,
   pub(crate) instantiatesCanonical: Option<Reference>,
   pub(crate) rule: Vector<Contract_Rule>,
   pub(crate) legal: Vector<Contract_Legal>,

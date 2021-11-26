@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionAttachmentOrReferenceOrString;
 
 
 
@@ -11,13 +22,13 @@ use crate::hl7::*;
 pub struct Communication_Payload {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) content: Attachment | Reference | String,
+  pub(crate) content: UnionAttachmentOrReferenceOrString,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
 #[derive(Clone, Debug)]
 pub struct Communication {
-  pub(crate) sent: Option<Date>,
+  pub(crate) sent: Option<DateTime<FixedOffset>>,
   pub(crate) note: Vector<Annotation>,
   pub(crate) topic: Option<CodeableConcept>,
   pub(crate) about: Vector<Reference>,
@@ -29,7 +40,7 @@ pub struct Communication {
   pub(crate) subject: Option<Reference>,
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) priority: Option<String>,
-  pub(crate) received: Option<Date>,
+  pub(crate) received: Option<DateTime<FixedOffset>>,
   pub(crate) encounter: Option<Reference>,
   pub(crate) recipient: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,

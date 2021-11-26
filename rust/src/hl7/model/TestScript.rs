@@ -1,9 +1,23 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Coding::Coding;
+use crate::core::model::TestScript_Setup_Action_Assert::TestScript_Setup_Action_Assert;
+use crate::core::model::TestScript_Setup_Action_Operation::TestScript_Setup_Action_Operation;
 
 
 
@@ -22,8 +36,8 @@ pub struct TestScript_Fixture {
   pub(crate) id: Option<String>,
   pub(crate) resource: Option<Reference>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) autocreate: Boolean,
-  pub(crate) autodelete: Boolean,
+  pub(crate) autocreate: bool,
+  pub(crate) autodelete: bool,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -107,9 +121,9 @@ pub struct TestScript_Metadata_Capability {
   pub(crate) id: Option<String>,
   pub(crate) link: Vector<String>,
   pub(crate) origin: Vector<i32>,
-  pub(crate) required: Boolean,
+  pub(crate) required: bool,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) validated: Boolean,
+  pub(crate) validated: bool,
   pub(crate) description: Option<String>,
   pub(crate) destination: Option<i32>,
   pub(crate) capabilities: String,
@@ -144,10 +158,10 @@ pub struct TestScript_Setup_Action_Assert {
   pub(crate) description: Option<String>,
   pub(crate) contentType: Option<String>,
   pub(crate) headerField: Option<String>,
-  pub(crate) warningOnly: Boolean,
+  pub(crate) warningOnly: bool,
   pub(crate) responseCode: Option<String>,
   pub(crate) requestMethod: Option<String>,
-  pub(crate) navigationLinks: Option<Boolean>,
+  pub(crate) navigationLinks: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) compareToSourceId: Option<String>,
   pub(crate) validateProfileId: Option<String>,
@@ -185,7 +199,7 @@ pub struct TestScript_Setup_Action_Operation {
   pub(crate) description: Option<String>,
   pub(crate) contentType: Option<String>,
   pub(crate) destination: Option<i32>,
-  pub(crate) encodeRequestUrl: Boolean,
+  pub(crate) encodeRequestUrl: bool,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) requestHeader: Vector<TestScript_Setup_Action_Operation_RequestHeader>,
 }
@@ -211,7 +225,7 @@ pub struct TestScript_Setup {
 pub struct TestScript {
   pub(crate) url: String,
   pub(crate) name: String,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) title: Option<String>,
   pub(crate) status: String,
   pub(crate) version: Option<String>,
@@ -223,7 +237,7 @@ pub struct TestScript {
   pub(crate) identifier: Option<Identifier>,
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) origin: Vector<TestScript_Origin>,
   pub(crate) fixture: Vector<TestScript_Fixture>,

@@ -1,9 +1,12 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::core::model::*;
 use crate::core::*;
 
+
+use crate::core::model::Extension::Extension;
 
 
 
@@ -15,6 +18,6 @@ pub struct Attachment {
   pub(crate) hash: Option<String>,
   pub(crate) title: Option<String>,
   pub(crate) language: Option<String>,
-  pub(crate) creation: Option<Date>,
+  pub(crate) creation: Option<DateTime<FixedOffset>>,
   pub(crate) contentType: Option<String>,
 }

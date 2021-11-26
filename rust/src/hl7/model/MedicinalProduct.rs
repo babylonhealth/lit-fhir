@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Coding::Coding;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::UnionCodeableConceptOrReference;
 
 
 
@@ -11,13 +22,13 @@ use crate::hl7::*;
 pub struct MedicinalProduct_SpecialDesignation {
   pub(crate) id: Option<String>,
   pub(crate) _type: Option<CodeableConcept>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) status: Option<CodeableConcept>,
   pub(crate) species: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) intendedUse: Option<CodeableConcept>,
-  pub(crate) indication: Option<CodeableConcept | Reference>,
+  pub(crate) indication: Option<UnionCodeableConceptOrReference>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -61,7 +72,7 @@ pub struct MedicinalProduct_ManufacturingBusinessOperation {
   pub(crate) regulator: Option<Reference>,
   pub(crate) manufacturer: Vector<Reference>,
   pub(crate) operationType: Option<CodeableConcept>,
-  pub(crate) effectiveDate: Option<Date>,
+  pub(crate) effectiveDate: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) confidentialityIndicator: Option<CodeableConcept>,
   pub(crate) authorisationReferenceNumber: Option<Identifier>,

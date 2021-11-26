@@ -1,9 +1,18 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
 
 
 
@@ -29,13 +38,13 @@ pub struct AdverseEvent_SuspectEntity {
 
 #[derive(Clone, Debug)]
 pub struct AdverseEvent {
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) event: Option<CodeableConcept>,
   pub(crate) study: Vector<Reference>,
   pub(crate) subject: Reference,
   pub(crate) outcome: Option<CodeableConcept>,
   pub(crate) category: Vector<CodeableConcept>,
-  pub(crate) detected: Option<Date>,
+  pub(crate) detected: Option<DateTime<FixedOffset>>,
   pub(crate) location: Option<Reference>,
   pub(crate) severity: Option<CodeableConcept>,
   pub(crate) recorder: Option<Reference>,
@@ -44,7 +53,7 @@ pub struct AdverseEvent {
   pub(crate) identifier: Option<Identifier>,
   pub(crate) seriousness: Option<CodeableConcept>,
   pub(crate) contributor: Vector<Reference>,
-  pub(crate) recordedDate: Option<Date>,
+  pub(crate) recordedDate: Option<DateTime<FixedOffset>>,
   pub(crate) referenceDocument: Vector<Reference>,
   pub(crate) resultingCondition: Vector<Reference>,
   pub(crate) subjectMedicalHistory: Vector<Reference>,

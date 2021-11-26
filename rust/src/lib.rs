@@ -10,7 +10,7 @@ mod tests {
     use crate::core::model::Quantity::Quantity;
     use crate::core::UnionAll::*;
     use bigdecimal::BigDecimal;
-    use crate::core::model::DataRequirement::{DataRequirement, Sort};
+    use crate::core::model::DataRequirement::{DataRequirement, DataRequirement_Sort};
     use crate::core::model::Reference::Reference;
     use crate::core::{UnionAll, UnionCodeableConceptOrReference};
 
@@ -79,7 +79,7 @@ mod tests {
             dateFilter: Vector::new(),
         };
         let data_requirement_3 = DataRequirement {
-            sort: Vector::unit(Sort {
+            sort: Vector::unit(DataRequirement_Sort {
                 id: None,
                 _type: "some sort type".to_string(),
                 limit: None,

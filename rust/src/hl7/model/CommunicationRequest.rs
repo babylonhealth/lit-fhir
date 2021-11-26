@@ -1,9 +1,21 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionDateTimeOrPeriod;
+use crate::hl7::UnionAttachmentOrReferenceOrString;
 
 
 
@@ -11,7 +23,7 @@ use crate::hl7::*;
 pub struct CommunicationRequest_Payload {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) content: Attachment | Reference | String,
+  pub(crate) content: UnionAttachmentOrReferenceOrString,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -31,11 +43,11 @@ pub struct CommunicationRequest {
   pub(crate) requester: Option<Reference>,
   pub(crate) recipient: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) authoredOn: Option<Date>,
+  pub(crate) authoredOn: Option<DateTime<FixedOffset>>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) statusReason: Option<CodeableConcept>,
-  pub(crate) doNotPerform: Option<Boolean>,
-  pub(crate) occurrence: Option<Date | Period>,
+  pub(crate) doNotPerform: Option<bool>,
+  pub(crate) occurrence: Option<UnionDateTimeOrPeriod>,
   pub(crate) groupIdentifier: Option<Identifier>,
   pub(crate) reasonReference: Vector<Reference>,
   pub(crate) payload: Vector<CommunicationRequest_Payload>,

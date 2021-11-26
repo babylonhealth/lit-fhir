@@ -1,16 +1,29 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
 
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Reference::Reference;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionDateOrPeriod;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Money::Money;
+use crate::core::UnionCodeableConceptOrReference;
+
 
 
 #[derive(Clone, Debug)]
 pub struct CoverageEligibilityRequest_Insurance {
   pub(crate) id: Option<String>,
-  pub(crate) focal: Option<Boolean>,
+  pub(crate) focal: Option<bool>,
   pub(crate) coverage: Reference,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -24,7 +37,7 @@ pub struct CoverageEligibilityRequest_SupportingInfo {
   pub(crate) sequence: u32,
   pub(crate) extension: Vector<Extension>,
   pub(crate) information: Reference,
-  pub(crate) appliesToAll: Option<Boolean>,
+  pub(crate) appliesToAll: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -33,7 +46,7 @@ pub struct CoverageEligibilityRequest_SupportingInfo {
 pub struct CoverageEligibilityRequest_Item_Diagnosis {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) diagnosis: Option<CodeableConcept | Reference>,
+  pub(crate) diagnosis: Option<UnionCodeableConceptOrReference>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -59,14 +72,14 @@ pub struct CoverageEligibilityRequest {
   pub(crate) status: String,
   pub(crate) purpose: Vector<String>,
   pub(crate) patient: Reference,
-  pub(crate) created: Date,
+  pub(crate) created: DateTime<FixedOffset>,
   pub(crate) enterer: Option<Reference>,
   pub(crate) insurer: Reference,
   pub(crate) priority: Option<CodeableConcept>,
   pub(crate) provider: Option<Reference>,
   pub(crate) facility: Option<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) serviced: Option<FHIRDate | Period>,
+  pub(crate) serviced: Option<UnionDateOrPeriod>,
   pub(crate) insurance: Vector<CoverageEligibilityRequest_Insurance>,
   pub(crate) supportingInfo: Vector<CoverageEligibilityRequest_SupportingInfo>,
   pub(crate) item: Vector<CoverageEligibilityRequest_Item>,

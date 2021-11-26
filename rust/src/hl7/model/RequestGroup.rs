@@ -1,9 +1,24 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::RequestGroup_Action::RequestGroup_Action;
+use crate::hl7::Union01405873694;
+use crate::core::model::RelatedArtifact::RelatedArtifact;
+use crate::core::model::Expression::Expression;
+use crate::hl7::UnionDurationOrRange;
 
 
 
@@ -23,7 +38,7 @@ pub struct RequestGroup_Action_RelatedAction {
   pub(crate) id: Option<String>,
   pub(crate) actionId: String,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) offset: Option<Duration | Range>,
+  pub(crate) offset: Option<UnionDurationOrRange>,
   pub(crate) relationship: String,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -39,7 +54,7 @@ pub struct RequestGroup_Action {
   pub(crate) priority: Option<String>,
   pub(crate) resource: Option<Reference>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) timing: Option<Age | Duration | Date | Period | Range | Timing>,
+  pub(crate) timing: Option<Union01405873694>,
   pub(crate) description: Option<String>,
   pub(crate) participant: Vector<Reference>,
   pub(crate) documentation: Vector<RelatedArtifact>,
@@ -67,7 +82,7 @@ pub struct RequestGroup {
   pub(crate) priority: Option<String>,
   pub(crate) encounter: Option<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) authoredOn: Option<Date>,
+  pub(crate) authoredOn: Option<DateTime<FixedOffset>>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) instantiatesUri: Vector<String>,
   pub(crate) groupIdentifier: Option<Identifier>,

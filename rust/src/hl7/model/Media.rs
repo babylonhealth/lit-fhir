@@ -1,9 +1,21 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Attachment::Attachment;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionDateTimeOrPeriod;
 
 
 
@@ -15,7 +27,7 @@ pub struct Media {
   pub(crate) width: Option<u32>,
   pub(crate) partOf: Vector<Reference>,
   pub(crate) status: String,
-  pub(crate) issued: Option<Date>,
+  pub(crate) issued: Option<DateTime<FixedOffset>>,
   pub(crate) device: Option<Reference>,
   pub(crate) height: Option<u32>,
   pub(crate) frames: Option<u32>,
@@ -28,7 +40,7 @@ pub struct Media {
   pub(crate) duration: Option<BigDecimal>,
   pub(crate) encounter: Option<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) created: Option<Date | Period>,
+  pub(crate) created: Option<UnionDateTimeOrPeriod>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) deviceName: Option<String>,
 }

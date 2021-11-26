@@ -1,9 +1,21 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Coding::Coding;
+use crate::core::model::Period::Period;
+use crate::core::model::Duration::Duration;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
 
 
 
@@ -22,7 +34,7 @@ pub struct Encounter_Location {
 #[derive(Clone, Debug)]
 pub struct Encounter_Diagnosis {
   pub(crate) id: Option<String>,
-  pub(crate) use: Option<CodeableConcept>,
+  pub(crate) _use: Option<CodeableConcept>,
   pub(crate) rank: Option<u32>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) condition: Reference,

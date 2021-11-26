@@ -1,9 +1,25 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Attachment::Attachment;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::ClaimResponse_Item_Adjudication::ClaimResponse_Item_Adjudication;
+use crate::core::model::Period::Period;
+use crate::core::model::Money::Money;
+use crate::core::model::Quantity::Quantity;
+use crate::hl7::UnionDateOrPeriod;
+use crate::hl7::UnionAddressOrCodeableConceptOrReference;
 
 
 
@@ -58,7 +74,7 @@ pub struct ClaimResponse_ProcessNote {
 #[derive(Clone, Debug)]
 pub struct ClaimResponse_Insurance {
   pub(crate) id: Option<String>,
-  pub(crate) focal: Boolean,
+  pub(crate) focal: bool,
   pub(crate) sequence: u32,
   pub(crate) coverage: Reference,
   pub(crate) extension: Vector<Extension>,
@@ -159,8 +175,8 @@ pub struct ClaimResponse_AddItem {
   pub(crate) unitPrice: Option<Money>,
   pub(crate) noteNumber: Vector<u32>,
   pub(crate) programCode: Vector<CodeableConcept>,
-  pub(crate) serviced: Option<FHIRDate | Period>,
-  pub(crate) location: Option<Address | CodeableConcept | Reference>,
+  pub(crate) serviced: Option<UnionDateOrPeriod>,
+  pub(crate) location: Option<UnionAddressOrCodeableConceptOrReference>,
   pub(crate) itemSequence: Vector<u32>,
   pub(crate) adjudication: Vector<ClaimResponse_Item_Adjudication>,
   pub(crate) detailSequence: Vector<u32>,
@@ -172,13 +188,13 @@ pub struct ClaimResponse_AddItem {
 
 #[derive(Clone, Debug)]
 pub struct ClaimResponse {
-  pub(crate) use: String,
+  pub(crate) _use: String,
   pub(crate) _type: CodeableConcept,
   pub(crate) form: Option<Attachment>,
   pub(crate) status: String,
   pub(crate) subType: Option<CodeableConcept>,
   pub(crate) patient: Reference,
-  pub(crate) created: Date,
+  pub(crate) created: DateTime<FixedOffset>,
   pub(crate) insurer: Reference,
   pub(crate) request: Option<Reference>,
   pub(crate) outcome: String,

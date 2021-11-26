@@ -1,9 +1,21 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::hl7::UnionCanonicalOrUri;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::ConceptMap_Group_Element_Target_DependsOn::ConceptMap_Group_Element_Target_DependsOn;
 
 
 
@@ -64,14 +76,14 @@ pub struct ConceptMap_Group {
   pub(crate) targetVersion: Option<String>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) unmapped: Option<ConceptMap_Group_Unmapped>,
-  pub(crate) element: Vector<FHIRElement>,
+  pub(crate) element: Vector<ConceptMap_Group_FHIRElement>,
 }
 
 #[derive(Clone, Debug)]
 pub struct ConceptMap {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) title: Option<String>,
   pub(crate) status: String,
   pub(crate) version: Option<String>,
@@ -79,12 +91,12 @@ pub struct ConceptMap {
   pub(crate) purpose: Option<String>,
   pub(crate) publisher: Option<String>,
   pub(crate) copyright: Option<String>,
-  pub(crate) source: Option<String | String>,
-  pub(crate) target: Option<String | String>,
+  pub(crate) source: Option<UnionCanonicalOrUri>,
+  pub(crate) target: Option<UnionCanonicalOrUri>,
   pub(crate) identifier: Option<Identifier>,
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) group: Vector<ConceptMap_Group>,
 }

@@ -1,9 +1,18 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
 
 
 
@@ -11,7 +20,7 @@ use crate::hl7::*;
 pub struct TerminologyCapabilities_Closure {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) translation: Option<Boolean>,
+  pub(crate) translation: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -29,7 +38,7 @@ pub struct TerminologyCapabilities_Software {
 #[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_Translation {
   pub(crate) id: Option<String>,
-  pub(crate) needsMap: Boolean,
+  pub(crate) needsMap: bool,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -39,7 +48,7 @@ pub struct TerminologyCapabilities_Translation {
 pub struct TerminologyCapabilities_ValidateCode {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) translations: Boolean,
+  pub(crate) translations: bool,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -66,11 +75,11 @@ pub struct TerminologyCapabilities_Expansion_Parameter {
 #[derive(Clone, Debug)]
 pub struct TerminologyCapabilities_Expansion {
   pub(crate) id: Option<String>,
-  pub(crate) paging: Option<Boolean>,
+  pub(crate) paging: Option<bool>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) incomplete: Option<Boolean>,
+  pub(crate) incomplete: Option<bool>,
   pub(crate) textFilter: Option<String>,
-  pub(crate) hierarchical: Option<Boolean>,
+  pub(crate) hierarchical: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) parameter: Vector<TerminologyCapabilities_Expansion_Parameter>,
 }
@@ -92,8 +101,8 @@ pub struct TerminologyCapabilities_CodeSystem_Version {
   pub(crate) language: Vector<String>,
   pub(crate) property: Vector<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) isDefault: Option<Boolean>,
-  pub(crate) compositional: Option<Boolean>,
+  pub(crate) isDefault: Option<bool>,
+  pub(crate) compositional: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) filter: Vector<TerminologyCapabilities_CodeSystem_Version_Filter>,
 }
@@ -103,7 +112,7 @@ pub struct TerminologyCapabilities_CodeSystem {
   pub(crate) id: Option<String>,
   pub(crate) uri: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) subsumption: Option<Boolean>,
+  pub(crate) subsumption: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) version: Vector<TerminologyCapabilities_CodeSystem_Version>,
 }
@@ -112,7 +121,7 @@ pub struct TerminologyCapabilities_CodeSystem {
 pub struct TerminologyCapabilities {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) date: Date,
+  pub(crate) date: DateTime<FixedOffset>,
   pub(crate) kind: String,
   pub(crate) title: Option<String>,
   pub(crate) status: String,
@@ -122,10 +131,10 @@ pub struct TerminologyCapabilities {
   pub(crate) publisher: Option<String>,
   pub(crate) copyright: Option<String>,
   pub(crate) useContext: Vector<UsageContext>,
-  pub(crate) lockedDate: Option<Boolean>,
+  pub(crate) lockedDate: Option<bool>,
   pub(crate) codeSearch: Option<String>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) closure: Option<TerminologyCapabilities_Closure>,
   pub(crate) software: Option<TerminologyCapabilities_Software>,

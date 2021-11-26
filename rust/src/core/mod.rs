@@ -1,5 +1,7 @@
+use chrono::{DateTime, Duration, FixedOffset};
 use im::Vector;
 use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Period::Period;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 
@@ -17,6 +19,12 @@ pub enum UnionAll {
     FHIRInteger(i32),
     FHIRQuantity(Quantity),
     FHIRReference(Reference),
+}
+#[derive(Clone, Debug)]
+pub enum UnionDurationOrDateTimeOrPeriod {
+    FHIRDuration(Duration),
+    FHIRDateTime(DateTime<FixedOffset>),
+    FHIRPeriod(Period),
 }
 
 #[macro_export]

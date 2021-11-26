@@ -1,9 +1,15 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Coding::Coding;
+use crate::core::UnionAll;
+use crate::core::model::Extension::Extension;
+use crate::hl7::Union01480857620;
 
 
 
@@ -21,7 +27,7 @@ pub struct ElementDefinition_Base {
 pub struct ElementDefinition_Example {
   pub(crate) id: Option<String>,
   pub(crate) label: String,
-  pub(crate) value: Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date,
+  pub(crate) value: UnionAll,
   pub(crate) extension: Vector<Extension>,
 }
 
@@ -85,7 +91,7 @@ pub struct ElementDefinition_Slicing_Discriminator {
 pub struct ElementDefinition_Slicing {
   pub(crate) id: Option<String>,
   pub(crate) rules: String,
-  pub(crate) ordered: Option<Boolean>,
+  pub(crate) ordered: Option<bool>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) description: Option<String>,
   pub(crate) discriminator: Vector<ElementDefinition_Slicing_Discriminator>,
@@ -101,29 +107,29 @@ pub struct ElementDefinition {
   pub(crate) short: Option<String>,
   pub(crate) alias: Vector<String>,
   pub(crate) comment: Option<String>,
-  pub(crate) fixed: Option<Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date>,
+  pub(crate) fixed: Option<UnionAll>,
   pub(crate) sliceName: Option<String>,
   pub(crate) maxLength: Option<i32>,
   pub(crate) condition: Vector<String>,
-  pub(crate) isSummary: Option<Boolean>,
+  pub(crate) isSummary: Option<bool>,
   pub(crate) definition: Option<String>,
-  pub(crate) pattern: Option<Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date>,
-  pub(crate) isModifier: Option<Boolean>,
-  pub(crate) minValue: Option<BigDecimal | FHIRDate | Date | i32 | Date | u32 | Quantity | u32 | Date>,
-  pub(crate) maxValue: Option<BigDecimal | FHIRDate | Date | i32 | Date | u32 | Quantity | u32 | Date>,
-  pub(crate) mustSupport: Option<Boolean>,
+  pub(crate) pattern: Option<UnionAll>,
+  pub(crate) isModifier: Option<bool>,
+  pub(crate) minValue: Option<Union01480857620>,
+  pub(crate) maxValue: Option<Union01480857620>,
+  pub(crate) mustSupport: Option<bool>,
   pub(crate) requirements: Option<String>,
   pub(crate) orderMeaning: Option<String>,
   pub(crate) representation: Vector<String>,
   pub(crate) base: Option<ElementDefinition_Base>,
-  pub(crate) defaultValue: Option<Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date>,
+  pub(crate) defaultValue: Option<UnionAll>,
   pub(crate) contentReference: Option<String>,
   pub(crate) isModifierReason: Option<String>,
   pub(crate) example: Vector<ElementDefinition_Example>,
   pub(crate) mapping: Vector<ElementDefinition_Mapping>,
   pub(crate) _type: Vector<ElementDefinition_Type>,
   pub(crate) meaningWhenMissing: Option<String>,
-  pub(crate) sliceIsConstraining: Option<Boolean>,
+  pub(crate) sliceIsConstraining: Option<bool>,
   pub(crate) binding: Option<ElementDefinition_Binding>,
   pub(crate) constraint: Vector<ElementDefinition_Constraint>,
   pub(crate) slicing: Option<ElementDefinition_Slicing>,

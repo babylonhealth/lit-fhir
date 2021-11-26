@@ -1,9 +1,27 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Dosage::Dosage;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::hl7::Union01405873694;
+use crate::core::model::Identifier::Identifier;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::Period::Period;
+use crate::core::model::RelatedArtifact::RelatedArtifact;
+use crate::core::model::Expression::Expression;
 
 
 
@@ -30,7 +48,7 @@ pub struct ActivityDefinition_DynamicValue {
 pub struct ActivityDefinition {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) kind: Option<String>,
   pub(crate) code: Option<CodeableConcept>,
   pub(crate) title: Option<String>,
@@ -55,17 +73,17 @@ pub struct ActivityDefinition {
   pub(crate) bodySite: Vector<CodeableConcept>,
   pub(crate) publisher: Option<String>,
   pub(crate) copyright: Option<String>,
-  pub(crate) timing: Option<Age | Duration | Date | Period | Range | Timing>,
+  pub(crate) timing: Option<Union01405873694>,
   pub(crate) transform: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) subject: Option<CodeableConcept | Reference>,
+  pub(crate) subject: Option<UnionCodeableConceptOrReference>,
   pub(crate) useContext: Vector<UsageContext>,
-  pub(crate) product: Option<CodeableConcept | Reference>,
+  pub(crate) product: Option<UnionCodeableConceptOrReference>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) approvalDate: Option<FHIRDate>,
-  pub(crate) doNotPerform: Option<Boolean>,
+  pub(crate) doNotPerform: Option<bool>,
   pub(crate) lastReviewDate: Option<FHIRDate>,
   pub(crate) effectivePeriod: Option<Period>,
   pub(crate) relatedArtifact: Vector<RelatedArtifact>,

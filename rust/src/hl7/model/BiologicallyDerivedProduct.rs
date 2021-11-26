@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Period::Period;
+use crate::hl7::UnionDateTimeOrPeriod;
 
 
 
@@ -25,7 +36,7 @@ pub struct BiologicallyDerivedProduct_Collection {
   pub(crate) source: Option<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) collector: Option<Reference>,
-  pub(crate) collected: Option<Date | Period>,
+  pub(crate) collected: Option<UnionDateTimeOrPeriod>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -33,7 +44,7 @@ pub struct BiologicallyDerivedProduct_Collection {
 #[derive(Clone, Debug)]
 pub struct BiologicallyDerivedProduct_Processing {
   pub(crate) id: Option<String>,
-  pub(crate) time: Option<Date | Period>,
+  pub(crate) time: Option<UnionDateTimeOrPeriod>,
   pub(crate) additive: Option<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) procedure: Option<CodeableConcept>,
@@ -45,7 +56,7 @@ pub struct BiologicallyDerivedProduct_Processing {
 #[derive(Clone, Debug)]
 pub struct BiologicallyDerivedProduct_Manipulation {
   pub(crate) id: Option<String>,
-  pub(crate) time: Option<Date | Period>,
+  pub(crate) time: Option<UnionDateTimeOrPeriod>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) description: Option<String>,
   pub(crate) modifierExtension: Vector<Extension>,

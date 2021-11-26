@@ -1,16 +1,28 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
 
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionDateTimeOrPeriodOrTiming;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::Quantity::Quantity;
+
 
 
 #[derive(Clone, Debug)]
 pub struct SupplyDelivery_SuppliedItem {
   pub(crate) id: Option<String>,
-  pub(crate) item: Option<CodeableConcept | Reference>,
+  pub(crate) item: Option<UnionCodeableConceptOrReference>,
   pub(crate) quantity: Option<Quantity>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -27,6 +39,6 @@ pub struct SupplyDelivery {
   pub(crate) receiver: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) destination: Option<Reference>,
-  pub(crate) occurrence: Option<Date | Period | Timing>,
+  pub(crate) occurrence: Option<UnionDateTimeOrPeriodOrTiming>,
   pub(crate) suppliedItem: Option<SupplyDelivery_SuppliedItem>,
 }

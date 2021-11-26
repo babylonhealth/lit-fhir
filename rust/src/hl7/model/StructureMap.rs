@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::StructureMap_Group_Rule::StructureMap_Group_Rule;
+use crate::core::UnionAll;
+use crate::hl7::Union00551919141;
 
 
 
@@ -46,7 +59,7 @@ pub struct StructureMap_Group_Rule_Source {
   pub(crate) extension: Vector<Extension>,
   pub(crate) condition: Option<String>,
   pub(crate) logMessage: Option<String>,
-  pub(crate) defaultValue: Option<Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date>,
+  pub(crate) defaultValue: Option<UnionAll>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -66,7 +79,7 @@ pub struct StructureMap_Group_Rule_Dependent {
 #[derive(Clone, Debug)]
 pub struct StructureMap_Group_Rule_Target_Parameter {
   pub(crate) id: Option<String>,
-  pub(crate) value: BigDecimal | Boolean | String | i32 | String,
+  pub(crate) value: Union00551919141,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -116,7 +129,7 @@ pub struct StructureMap_Group {
 pub struct StructureMap {
   pub(crate) url: String,
   pub(crate) name: String,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) title: Option<String>,
   pub(crate) status: String,
   pub(crate) import: Vector<String>,
@@ -128,7 +141,7 @@ pub struct StructureMap {
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) structure: Vector<StructureMap_Structure>,
   pub(crate) group: Vector<StructureMap_Group>,

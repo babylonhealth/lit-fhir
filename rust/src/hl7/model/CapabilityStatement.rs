@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::CapabilityStatement_Rest_Resource_Operation::CapabilityStatement_Rest_Resource_Operation;
+use crate::core::model::CapabilityStatement_Rest_Resource_SearchParam::CapabilityStatement_Rest_Resource_SearchParam;
+use crate::core::model::Coding::Coding;
 
 
 
@@ -13,7 +26,7 @@ pub struct CapabilityStatement_Software {
   pub(crate) name: String,
   pub(crate) version: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) releaseDate: Option<Date>,
+  pub(crate) releaseDate: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -43,7 +56,7 @@ pub struct CapabilityStatement_Implementation {
 #[derive(Clone, Debug)]
 pub struct CapabilityStatement_Rest_Security {
   pub(crate) id: Option<String>,
-  pub(crate) cors: Option<Boolean>,
+  pub(crate) cors: Option<bool>,
   pub(crate) service: Vector<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) description: Option<String>,
@@ -104,8 +117,8 @@ pub struct CapabilityStatement_Rest_Resource {
   pub(crate) profile: Option<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) versioning: Option<String>,
-  pub(crate) readHistory: Option<Boolean>,
-  pub(crate) updateCreate: Option<Boolean>,
+  pub(crate) readHistory: Option<bool>,
+  pub(crate) updateCreate: Option<bool>,
   pub(crate) documentation: Option<String>,
   pub(crate) searchInclude: Vector<String>,
   pub(crate) conditionalRead: Option<String>,
@@ -113,8 +126,8 @@ pub struct CapabilityStatement_Rest_Resource {
   pub(crate) supportedProfile: Vector<String>,
   pub(crate) searchRevInclude: Vector<String>,
   pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) conditionalCreate: Option<Boolean>,
-  pub(crate) conditionalUpdate: Option<Boolean>,
+  pub(crate) conditionalCreate: Option<bool>,
+  pub(crate) conditionalUpdate: Option<bool>,
   pub(crate) conditionalDelete: Option<String>,
   pub(crate) operation: Vector<CapabilityStatement_Rest_Resource_Operation>,
   pub(crate) interaction: Vector<CapabilityStatement_Rest_Resource_Interaction>,
@@ -172,7 +185,7 @@ pub struct CapabilityStatement_Messaging {
 pub struct CapabilityStatement {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) date: Date,
+  pub(crate) date: DateTime<FixedOffset>,
   pub(crate) kind: String,
   pub(crate) title: Option<String>,
   pub(crate) status: String,
@@ -187,7 +200,7 @@ pub struct CapabilityStatement {
   pub(crate) description: Option<String>,
   pub(crate) fhirVersion: String,
   pub(crate) patchFormat: Vector<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) instantiates: Vector<String>,
   pub(crate) implementationGuide: Vector<String>,

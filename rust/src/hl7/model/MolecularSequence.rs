@@ -1,9 +1,19 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::CodeableConcept::CodeableConcept;
 
 
 
@@ -112,7 +122,7 @@ pub struct MolecularSequence_StructureVariant_Inner {
 #[derive(Clone, Debug)]
 pub struct MolecularSequence_StructureVariant {
   pub(crate) id: Option<String>,
-  pub(crate) exact: Option<Boolean>,
+  pub(crate) exact: Option<bool>,
   pub(crate) length: Option<i32>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) variantType: Option<CodeableConcept>,
