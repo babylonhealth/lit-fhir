@@ -1,6 +1,14 @@
 use bigdecimal::BigDecimal;
 use im::vector::Vector;
 
+use chrono::{DateTime, FixedOffset};
+
+// use crate::core::model::*;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Period::Period;
+use crate::core::model::Reference::Reference;
 use crate::hl7::model::*;
 use crate::hl7::*;
 
@@ -21,11 +29,11 @@ pub struct Appointment_Participant {
 
 #[derive(Clone, Debug)]
 pub struct Appointment {
-  pub(crate) end: Option<Date>,
+  pub(crate) end: Option<DateTime<FixedOffset>>,
   pub(crate) slot: Vector<Reference>,
-  pub(crate) start: Option<Date>,
+  pub(crate) start: Option<DateTime<FixedOffset>>,
   pub(crate) status: String,
-  pub(crate) created: Option<Date>,
+  pub(crate) created: Option<DateTime<FixedOffset>>,
   pub(crate) comment: Option<String>,
   pub(crate) basedOn: Vector<Reference>,
   pub(crate) priority: Option<u32>,
