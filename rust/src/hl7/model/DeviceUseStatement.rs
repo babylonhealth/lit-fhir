@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::hl7::UnionDateTimeOrPeriodOrTiming;
+use crate::core::model::Identifier::Identifier;
 
 
 
@@ -16,9 +27,9 @@ pub struct DeviceUseStatement {
   pub(crate) basedOn: Vector<Reference>,
   pub(crate) subject: Reference,
   pub(crate) bodySite: Option<CodeableConcept>,
-  pub(crate) timing: Option<Date | Period | Timing>,
+  pub(crate) timing: Option<UnionDateTimeOrPeriodOrTiming>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) recordedOn: Option<Date>,
+  pub(crate) recordedOn: Option<DateTime<FixedOffset>>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) derivedFrom: Vector<Reference>,
   pub(crate) reasonReference: Vector<Reference>,

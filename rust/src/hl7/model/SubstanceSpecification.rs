@@ -1,9 +1,26 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::SubstanceSpecification_Structure_Isotope_MolecularWeight::SubstanceSpecification_Structure_Isotope_MolecularWeight;
+use crate::hl7::UnionQuantityOrString;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::SubstanceSpecification_Name::SubstanceSpecification_Name;
+use crate::hl7::Union00133982841;
+use crate::core::model::Ratio::Ratio;
+use crate::core::model::Attachment::Attachment;
+use crate::core::model::Quantity::Quantity;
 
 
 
@@ -15,7 +32,7 @@ pub struct SubstanceSpecification_Code {
   pub(crate) source: Vector<Reference>,
   pub(crate) comment: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) statusDate: Option<Date>,
+  pub(crate) statusDate: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -26,7 +43,7 @@ pub struct SubstanceSpecification_Moiety {
   pub(crate) role: Option<CodeableConcept>,
   pub(crate) name: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) amount: Option<Quantity | String>,
+  pub(crate) amount: Option<UnionQuantityOrString>,
   pub(crate) identifier: Option<Identifier>,
   pub(crate) stereochemistry: Option<CodeableConcept>,
   pub(crate) opticalActivity: Option<CodeableConcept>,
@@ -41,17 +58,17 @@ pub struct SubstanceSpecification_Property {
   pub(crate) code: Option<CodeableConcept>,
   pub(crate) category: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) amount: Option<Quantity | String>,
+  pub(crate) amount: Option<UnionQuantityOrString>,
   pub(crate) parameters: Option<String>,
   pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) definingSubstance: Option<CodeableConcept | Reference>,
+  pub(crate) definingSubstance: Option<UnionCodeableConceptOrReference>,
 }
 
 
 #[derive(Clone, Debug)]
 pub struct SubstanceSpecification_Name_Official {
   pub(crate) id: Option<String>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) status: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) authority: Option<CodeableConcept>,
@@ -69,7 +86,7 @@ pub struct SubstanceSpecification_Name {
   pub(crate) synonym: Vector<SubstanceSpecification_Name>,
   pub(crate) language: Vector<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) preferred: Option<Boolean>,
+  pub(crate) preferred: Option<bool>,
   pub(crate) translation: Vector<SubstanceSpecification_Name>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -82,10 +99,10 @@ pub struct SubstanceSpecification_Relationship {
   pub(crate) id: Option<String>,
   pub(crate) source: Vector<Reference>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) amount: Option<Quantity | Range | Ratio | String>,
-  pub(crate) isDefining: Option<Boolean>,
+  pub(crate) amount: Option<Union00133982841>,
+  pub(crate) isDefining: Option<bool>,
   pub(crate) amountType: Option<CodeableConcept>,
-  pub(crate) substance: Option<CodeableConcept | Reference>,
+  pub(crate) substance: Option<UnionCodeableConceptOrReference>,
   pub(crate) relationship: Option<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) amountRatioLowLimit: Option<Ratio>,

@@ -1,9 +1,16 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactPoint::ContactPoint;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
 
 
 
@@ -20,7 +27,7 @@ pub struct Subscription_Channel {
 
 #[derive(Clone, Debug)]
 pub struct Subscription {
-  pub(crate) end: Option<Date>,
+  pub(crate) end: Option<DateTime<FixedOffset>>,
   pub(crate) error: Option<String>,
   pub(crate) status: String,
   pub(crate) reason: String,

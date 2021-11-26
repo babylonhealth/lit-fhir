@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::hl7::Union01474038381;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
 
 
 
@@ -35,13 +46,13 @@ pub struct Condition {
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) severity: Option<CodeableConcept>,
   pub(crate) bodySite: Vector<CodeableConcept>,
-  pub(crate) onset: Option<Age | Date | Period | Range | String>,
+  pub(crate) onset: Option<Union01474038381>,
   pub(crate) recorder: Option<Reference>,
   pub(crate) asserter: Option<Reference>,
   pub(crate) encounter: Option<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) abatement: Option<Age | Date | Period | Range | String>,
-  pub(crate) recordedDate: Option<Date>,
+  pub(crate) abatement: Option<Union01474038381>,
+  pub(crate) recordedDate: Option<DateTime<FixedOffset>>,
   pub(crate) clinicalStatus: Option<CodeableConcept>,
   pub(crate) verificationStatus: Option<CodeableConcept>,
   pub(crate) stage: Vector<Condition_Stage>,

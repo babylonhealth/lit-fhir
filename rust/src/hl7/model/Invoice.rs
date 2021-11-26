@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Money::Money;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Invoice_LineItem_PriceComponent::Invoice_LineItem_PriceComponent;
+use crate::core::UnionCodeableConceptOrReference;
 
 
 
@@ -33,7 +46,7 @@ pub struct Invoice_LineItem {
   pub(crate) id: Option<String>,
   pub(crate) sequence: Option<u32>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) chargeItem: CodeableConcept | Reference,
+  pub(crate) chargeItem: UnionCodeableConceptOrReference,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) priceComponent: Vector<Invoice_LineItem_PriceComponent>,
 }
@@ -41,7 +54,7 @@ pub struct Invoice_LineItem {
 #[derive(Clone, Debug)]
 pub struct Invoice {
   pub(crate) _type: Option<CodeableConcept>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) note: Vector<Annotation>,
   pub(crate) status: String,
   pub(crate) issuer: Option<Reference>,

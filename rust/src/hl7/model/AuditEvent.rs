@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Coding::Coding;
+use crate::core::model::Period::Period;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::hl7::UnionBase64BinaryOrString;
 
 
 
@@ -39,7 +50,7 @@ pub struct AuditEvent_Agent {
   pub(crate) policy: Vector<String>,
   pub(crate) location: Option<Reference>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) requestor: Boolean,
+  pub(crate) requestor: bool,
   pub(crate) purposeOfUse: Vector<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) network: Option<AuditEvent_Agent_Network>,
@@ -50,7 +61,7 @@ pub struct AuditEvent_Agent {
 pub struct AuditEvent_Entity_Detail {
   pub(crate) id: Option<String>,
   pub(crate) _type: String,
-  pub(crate) value: String | String,
+  pub(crate) value: UnionBase64BinaryOrString,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -78,7 +89,7 @@ pub struct AuditEvent {
   pub(crate) period: Option<Period>,
   pub(crate) subtype: Vector<Coding>,
   pub(crate) outcome: Option<String>,
-  pub(crate) recorded: Date,
+  pub(crate) recorded: DateTime<FixedOffset>,
   pub(crate) outcomeDesc: Option<String>,
   pub(crate) purposeOfEvent: Vector<CodeableConcept>,
   pub(crate) source: AuditEvent_Source,

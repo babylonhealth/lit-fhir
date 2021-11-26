@@ -1,9 +1,19 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
 
 
 
@@ -11,9 +21,9 @@ use crate::hl7::*;
 pub struct List_Entry {
   pub(crate) id: Option<String>,
   pub(crate) flag: Option<CodeableConcept>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) item: Reference,
-  pub(crate) deleted: Option<Boolean>,
+  pub(crate) deleted: Option<bool>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -22,7 +32,7 @@ pub struct List_Entry {
 pub struct List {
   pub(crate) mode: String,
   pub(crate) code: Option<CodeableConcept>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) note: Vector<Annotation>,
   pub(crate) title: Option<String>,
   pub(crate) status: String,

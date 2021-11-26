@@ -1,9 +1,14 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::core::model::*;
 use crate::core::*;
 
+
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Extension::Extension;
+use crate::core::UnionDurationOrPeriodOrRange;
 
 
 
@@ -17,7 +22,7 @@ pub struct Timing_Repeat {
   pub(crate) countMax: Option<u32>,
   pub(crate) duration: Option<BigDecimal>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) bounds: Option<Duration | Period | Range>,
+  pub(crate) bounds: Option<UnionDurationOrPeriodOrRange>,
   pub(crate) frequency: Option<u32>,
   pub(crate) periodMax: Option<BigDecimal>,
   pub(crate) dayOfWeek: Vector<String>,
@@ -31,6 +36,6 @@ pub struct Timing_Repeat {
 #[derive(Clone, Debug)]
 pub struct Timing {
   pub(crate) code: Option<CodeableConcept>,
-  pub(crate) event: Vector<Date>,
+  pub(crate) event: Vector<DateTime<FixedOffset>>,
   pub(crate) repeat: Option<Timing_Repeat>,
 }

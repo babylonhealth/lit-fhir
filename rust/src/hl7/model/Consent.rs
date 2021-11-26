@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::hl7::UnionAttachmentOrReference;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Coding::Coding;
+use crate::core::model::Period::Period;
+use crate::core::model::Consent_Provision::Consent_Provision;
 
 
 
@@ -20,10 +33,10 @@ pub struct Consent_Policy {
 #[derive(Clone, Debug)]
 pub struct Consent_Verification {
   pub(crate) id: Option<String>,
-  pub(crate) verified: Boolean,
+  pub(crate) verified: bool,
   pub(crate) extension: Vector<Extension>,
   pub(crate) verifiedWith: Option<Reference>,
-  pub(crate) verificationDate: Option<Date>,
+  pub(crate) verificationDate: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -72,9 +85,9 @@ pub struct Consent {
   pub(crate) status: String,
   pub(crate) patient: Option<Reference>,
   pub(crate) category: Vector<CodeableConcept>,
-  pub(crate) dateTime: Option<Date>,
+  pub(crate) dateTime: Option<DateTime<FixedOffset>>,
   pub(crate) performer: Vector<Reference>,
-  pub(crate) source: Option<Attachment | Reference>,
+  pub(crate) source: Option<UnionAttachmentOrReference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) policyRule: Option<CodeableConcept>,
   pub(crate) organization: Vector<Reference>,

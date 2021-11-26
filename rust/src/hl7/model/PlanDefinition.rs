@@ -1,9 +1,31 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::Period::Period;
+use crate::core::model::RelatedArtifact::RelatedArtifact;
+use crate::core::model::Duration::Duration;
+use crate::hl7::UnionCodeableConceptOrQuantityOrRange;
+use crate::core::model::DataRequirement::DataRequirement;
+use crate::core::model::PlanDefinition_Action::PlanDefinition_Action;
+use crate::core::model::TriggerDefinition::TriggerDefinition;
+use crate::hl7::Union01405873694;
+use crate::hl7::UnionCanonicalOrUri;
+use crate::core::model::Expression::Expression;
+use crate::hl7::UnionDurationOrRange;
 
 
 
@@ -13,7 +35,7 @@ pub struct PlanDefinition_Goal_Target {
   pub(crate) due: Option<Duration>,
   pub(crate) measure: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) detail: Option<CodeableConcept | Quantity | Range>,
+  pub(crate) detail: Option<UnionCodeableConceptOrQuantityOrRange>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -70,7 +92,7 @@ pub struct PlanDefinition_Action_RelatedAction {
   pub(crate) id: Option<String>,
   pub(crate) actionId: String,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) offset: Option<Duration | Range>,
+  pub(crate) offset: Option<UnionDurationOrRange>,
   pub(crate) relationship: String,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -90,12 +112,12 @@ pub struct PlanDefinition_Action {
   pub(crate) trigger: Vector<TriggerDefinition>,
   pub(crate) priority: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) timing: Option<Age | Duration | Date | Period | Range | Timing>,
+  pub(crate) timing: Option<Union01405873694>,
   pub(crate) transform: Option<String>,
-  pub(crate) subject: Option<CodeableConcept | Reference>,
+  pub(crate) subject: Option<UnionCodeableConceptOrReference>,
   pub(crate) description: Option<String>,
   pub(crate) documentation: Vector<RelatedArtifact>,
-  pub(crate) definition: Option<String | String>,
+  pub(crate) definition: Option<UnionCanonicalOrUri>,
   pub(crate) textEquivalent: Option<String>,
   pub(crate) groupingBehavior: Option<String>,
   pub(crate) requiredBehavior: Option<String>,
@@ -114,7 +136,7 @@ pub struct PlanDefinition {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
   pub(crate) _type: Option<CodeableConcept>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) title: Option<String>,
   pub(crate) usage: Option<String>,
   pub(crate) topic: Vector<CodeableConcept>,
@@ -131,10 +153,10 @@ pub struct PlanDefinition {
   pub(crate) publisher: Option<String>,
   pub(crate) copyright: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) subject: Option<CodeableConcept | Reference>,
+  pub(crate) subject: Option<UnionCodeableConceptOrReference>,
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) approvalDate: Option<FHIRDate>,
   pub(crate) lastReviewDate: Option<FHIRDate>,

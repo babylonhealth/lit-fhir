@@ -1,9 +1,24 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::hl7::Union02118820890;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::Union00107722725;
+use crate::core::model::Observation_ReferenceRange::Observation_ReferenceRange;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Range::Range;
 
 
 
@@ -11,7 +26,7 @@ use crate::hl7::*;
 pub struct Observation_Component {
   pub(crate) id: Option<String>,
   pub(crate) code: CodeableConcept,
-  pub(crate) value: Option<Boolean | CodeableConcept | Date | i32 | Date | Period | Quantity | Range | Ratio | SampledData | String>,
+  pub(crate) value: Option<Union02118820890>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) interpretation: Vector<CodeableConcept>,
   pub(crate) referenceRange: Vector<Observation_ReferenceRange>,
@@ -40,13 +55,13 @@ pub struct Observation {
   pub(crate) focus: Vector<Reference>,
   pub(crate) partOf: Vector<Reference>,
   pub(crate) status: String,
-  pub(crate) issued: Option<Date>,
+  pub(crate) issued: Option<DateTime<FixedOffset>>,
   pub(crate) method: Option<CodeableConcept>,
   pub(crate) device: Option<Reference>,
   pub(crate) basedOn: Vector<Reference>,
   pub(crate) subject: Option<Reference>,
   pub(crate) category: Vector<CodeableConcept>,
-  pub(crate) value: Option<Boolean | CodeableConcept | Date | i32 | Date | Period | Quantity | Range | Ratio | SampledData | String>,
+  pub(crate) value: Option<Union02118820890>,
   pub(crate) bodySite: Option<CodeableConcept>,
   pub(crate) specimen: Option<Reference>,
   pub(crate) encounter: Option<Reference>,
@@ -54,7 +69,7 @@ pub struct Observation {
   pub(crate) hasMember: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) derivedFrom: Vector<Reference>,
-  pub(crate) effective: Option<Date | Period | Timing | Date>,
+  pub(crate) effective: Option<Union00107722725>,
   pub(crate) interpretation: Vector<CodeableConcept>,
   pub(crate) dataAbsentReason: Option<CodeableConcept>,
   pub(crate) component: Vector<Observation_Component>,

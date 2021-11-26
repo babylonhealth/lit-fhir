@@ -1,9 +1,19 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::Period::Period;
 
 
 
@@ -15,7 +25,7 @@ pub struct NamingSystem_UniqueId {
   pub(crate) period: Option<Period>,
   pub(crate) comment: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) preferred: Option<Boolean>,
+  pub(crate) preferred: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -23,7 +33,7 @@ pub struct NamingSystem_UniqueId {
 pub struct NamingSystem {
   pub(crate) name: String,
   pub(crate) kind: String,
-  pub(crate) date: Date,
+  pub(crate) date: DateTime<FixedOffset>,
   pub(crate) _type: Option<CodeableConcept>,
   pub(crate) usage: Option<String>,
   pub(crate) status: String,

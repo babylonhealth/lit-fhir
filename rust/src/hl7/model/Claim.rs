@@ -1,9 +1,26 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Money::Money;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Period::Period;
+use crate::hl7::UnionAddressOrReference;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::hl7::Union_2028408917;
+use crate::hl7::UnionDateOrPeriod;
+use crate::core::model::Quantity::Quantity;
+use crate::hl7::UnionAddressOrCodeableConceptOrReference;
 
 
 
@@ -35,7 +52,7 @@ pub struct Claim_CareTeam {
   pub(crate) sequence: u32,
   pub(crate) provider: Reference,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) responsible: Option<Boolean>,
+  pub(crate) responsible: Option<bool>,
   pub(crate) qualification: Option<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -47,7 +64,7 @@ pub struct Claim_Accident {
   pub(crate) date: FHIRDate,
   pub(crate) _type: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) location: Option<Address | Reference>,
+  pub(crate) location: Option<UnionAddressOrReference>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -60,7 +77,7 @@ pub struct Claim_Diagnosis {
   pub(crate) extension: Vector<Extension>,
   pub(crate) onAdmission: Option<CodeableConcept>,
   pub(crate) packageCode: Option<CodeableConcept>,
-  pub(crate) diagnosis: CodeableConcept | Reference,
+  pub(crate) diagnosis: UnionCodeableConceptOrReference,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -70,10 +87,10 @@ pub struct Claim_Procedure {
   pub(crate) id: Option<String>,
   pub(crate) udi: Vector<Reference>,
   pub(crate) _type: Vector<CodeableConcept>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) sequence: u32,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) procedure: CodeableConcept | Reference,
+  pub(crate) procedure: UnionCodeableConceptOrReference,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -81,7 +98,7 @@ pub struct Claim_Procedure {
 #[derive(Clone, Debug)]
 pub struct Claim_Insurance {
   pub(crate) id: Option<String>,
-  pub(crate) focal: Boolean,
+  pub(crate) focal: bool,
   pub(crate) sequence: u32,
   pub(crate) coverage: Reference,
   pub(crate) extension: Vector<Extension>,
@@ -100,9 +117,9 @@ pub struct Claim_SupportingInfo {
   pub(crate) reason: Option<CodeableConcept>,
   pub(crate) sequence: u32,
   pub(crate) category: CodeableConcept,
-  pub(crate) value: Option<Attachment | Boolean | Quantity | Reference | String>,
+  pub(crate) value: Option<Union_2028408917>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) timing: Option<FHIRDate | Period>,
+  pub(crate) timing: Option<UnionDateOrPeriod>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -161,8 +178,8 @@ pub struct Claim_Item {
   pub(crate) unitPrice: Option<Money>,
   pub(crate) encounter: Vector<Reference>,
   pub(crate) programCode: Vector<CodeableConcept>,
-  pub(crate) serviced: Option<FHIRDate | Period>,
-  pub(crate) location: Option<Address | CodeableConcept | Reference>,
+  pub(crate) serviced: Option<UnionDateOrPeriod>,
+  pub(crate) location: Option<UnionAddressOrCodeableConceptOrReference>,
   pub(crate) careTeamSequence: Vector<u32>,
   pub(crate) productOrService: CodeableConcept,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -174,13 +191,13 @@ pub struct Claim_Item {
 
 #[derive(Clone, Debug)]
 pub struct Claim {
-  pub(crate) use: String,
+  pub(crate) _use: String,
   pub(crate) _type: CodeableConcept,
   pub(crate) total: Option<Money>,
   pub(crate) status: String,
   pub(crate) subType: Option<CodeableConcept>,
   pub(crate) patient: Reference,
-  pub(crate) created: Date,
+  pub(crate) created: DateTime<FixedOffset>,
   pub(crate) enterer: Option<Reference>,
   pub(crate) insurer: Option<Reference>,
   pub(crate) provider: Reference,

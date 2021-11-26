@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Reference::Reference;
+use crate::core::model::MedicinalProductIngredient_SpecifiedSubstance_Strength::MedicinalProductIngredient_SpecifiedSubstance_Strength;
+use crate::core::model::Ratio::Ratio;
 
 
 
@@ -59,7 +70,7 @@ pub struct MedicinalProductIngredient {
   pub(crate) role: CodeableConcept,
   pub(crate) identifier: Option<Identifier>,
   pub(crate) manufacturer: Vector<Reference>,
-  pub(crate) allergenicIndicator: Option<Boolean>,
+  pub(crate) allergenicIndicator: Option<bool>,
   pub(crate) substance: Option<MedicinalProductIngredient_Substance>,
   pub(crate) specifiedSubstance: Vector<MedicinalProductIngredient_SpecifiedSubstance>,
 }

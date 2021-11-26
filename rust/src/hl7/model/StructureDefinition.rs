@@ -1,9 +1,21 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Coding::Coding;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::hl7::model::ElementDefinition::ElementDefinition;
 
 
 
@@ -50,7 +62,7 @@ pub struct StructureDefinition_Differential {
 pub struct StructureDefinition {
   pub(crate) url: String,
   pub(crate) name: String,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) kind: String,
   pub(crate) _type: String,
   pub(crate) title: Option<String>,
@@ -59,7 +71,7 @@ pub struct StructureDefinition {
   pub(crate) contact: Vector<ContactDetail>,
   pub(crate) purpose: Option<String>,
   pub(crate) keyword: Vector<Coding>,
-  pub(crate) abstract: Boolean,
+  pub(crate) abstract: bool,
   pub(crate) publisher: Option<String>,
   pub(crate) copyright: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
@@ -67,7 +79,7 @@ pub struct StructureDefinition {
   pub(crate) derivation: Option<String>,
   pub(crate) description: Option<String>,
   pub(crate) fhirVersion: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) baseDefinition: Option<String>,
   pub(crate) contextInvariant: Vector<String>,

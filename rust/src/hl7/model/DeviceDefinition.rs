@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::ContactPoint::ContactPoint;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::UnionReferenceOrString;
 
 
 
@@ -43,9 +56,9 @@ pub struct DeviceDefinition_Material {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) substance: CodeableConcept,
-  pub(crate) alternate: Option<Boolean>,
+  pub(crate) alternate: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) allergenicIndicator: Option<Boolean>,
+  pub(crate) allergenicIndicator: Option<bool>,
 }
 
 
@@ -83,7 +96,7 @@ pub struct DeviceDefinition {
   pub(crate) modelNumber: Option<String>,
   pub(crate) languageCode: Vector<CodeableConcept>,
   pub(crate) parentDevice: Option<Reference>,
-  pub(crate) manufacturer: Option<Reference | String>,
+  pub(crate) manufacturer: Option<UnionReferenceOrString>,
   pub(crate) shelfLifeStorage: Vector<any>,
   pub(crate) onlineInformation: Option<String>,
   pub(crate) physicalCharacteristics: Option<any>,

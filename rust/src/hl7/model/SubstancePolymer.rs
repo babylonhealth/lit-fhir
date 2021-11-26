@@ -1,9 +1,17 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Attachment::Attachment;
 
 
 
@@ -14,7 +22,7 @@ pub struct SubstancePolymer_MonomerSet_StartingMaterial {
   pub(crate) amount: Option<any>,
   pub(crate) material: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) isDefining: Option<Boolean>,
+  pub(crate) isDefining: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 

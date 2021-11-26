@@ -1,9 +1,19 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::hl7::UnionPositiveIntOrString;
 
 
 
@@ -11,7 +21,7 @@ use crate::hl7::*;
 pub struct ImmunizationRecommendation_Recommendation_DateCriterion {
   pub(crate) id: Option<String>,
   pub(crate) code: CodeableConcept,
-  pub(crate) value: Date,
+  pub(crate) value: DateTime<FixedOffset>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -24,10 +34,10 @@ pub struct ImmunizationRecommendation_Recommendation {
   pub(crate) vaccineCode: Vector<CodeableConcept>,
   pub(crate) description: Option<String>,
   pub(crate) targetDisease: Option<CodeableConcept>,
-  pub(crate) doseNumber: Option<u32 | String>,
+  pub(crate) doseNumber: Option<UnionPositiveIntOrString>,
   pub(crate) forecastStatus: CodeableConcept,
   pub(crate) forecastReason: Vector<CodeableConcept>,
-  pub(crate) seriesDoses: Option<u32 | String>,
+  pub(crate) seriesDoses: Option<UnionPositiveIntOrString>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) supportingImmunization: Vector<Reference>,
   pub(crate) contraindicatedVaccineCode: Vector<CodeableConcept>,
@@ -37,7 +47,7 @@ pub struct ImmunizationRecommendation_Recommendation {
 
 #[derive(Clone, Debug)]
 pub struct ImmunizationRecommendation {
-  pub(crate) date: Date,
+  pub(crate) date: DateTime<FixedOffset>,
   pub(crate) patient: Reference,
   pub(crate) authority: Option<Reference>,
   pub(crate) identifier: Vector<Identifier>,

@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::hl7::UnionBooleanOrCanonical;
+use crate::core::model::ImplementationGuide_Definition_Page::ImplementationGuide_Definition_Page;
+use crate::hl7::UnionReferenceOrUrl;
 
 
 
@@ -45,7 +58,7 @@ pub struct ImplementationGuide_Manifest_Resource {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) reference: Reference,
-  pub(crate) example: Option<Boolean | String>,
+  pub(crate) example: Option<UnionBooleanOrCanonical>,
   pub(crate) relativePath: Option<String>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -68,7 +81,7 @@ pub struct ImplementationGuide_Definition_Page {
   pub(crate) id: Option<String>,
   pub(crate) page: Vector<ImplementationGuide_Definition_Page>,
   pub(crate) title: String,
-  pub(crate) name: Reference | String,
+  pub(crate) name: UnionReferenceOrUrl,
   pub(crate) extension: Vector<Extension>,
   pub(crate) generation: String,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -93,7 +106,7 @@ pub struct ImplementationGuide_Definition_Resource {
   pub(crate) name: Option<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) reference: Reference,
-  pub(crate) example: Option<Boolean | String>,
+  pub(crate) example: Option<UnionBooleanOrCanonical>,
   pub(crate) groupingId: Option<String>,
   pub(crate) fhirVersion: Vector<String>,
   pub(crate) description: Option<String>,
@@ -139,7 +152,7 @@ pub struct ImplementationGuide_Definition {
 pub struct ImplementationGuide {
   pub(crate) url: String,
   pub(crate) name: String,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) title: Option<String>,
   pub(crate) status: String,
   pub(crate) version: Option<String>,
@@ -151,7 +164,7 @@ pub struct ImplementationGuide {
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) description: Option<String>,
   pub(crate) fhirVersion: Vector<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) global: Vector<ImplementationGuide_Global>,
   pub(crate) dependsOn: Vector<ImplementationGuide_DependsOn>,

@@ -1,9 +1,23 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::Period::Period;
+use crate::core::model::RelatedArtifact::RelatedArtifact;
+use crate::core::model::Expression::Expression;
 
 
 
@@ -67,7 +81,7 @@ pub struct Measure_Group {
 pub struct Measure {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) _type: Vector<CodeableConcept>,
   pub(crate) title: Option<String>,
   pub(crate) usage: Option<String>,
@@ -88,12 +102,12 @@ pub struct Measure {
   pub(crate) copyright: Option<String>,
   pub(crate) rationale: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) subject: Option<CodeableConcept | Reference>,
+  pub(crate) subject: Option<UnionCodeableConceptOrReference>,
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) disclaimer: Option<String>,
   pub(crate) definition: Vector<String>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) approvalDate: Option<FHIRDate>,
   pub(crate) lastReviewDate: Option<FHIRDate>,

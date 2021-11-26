@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::Dosage::Dosage;
 
 
 
@@ -23,7 +36,7 @@ pub struct MedicationDispense_Substitution {
   pub(crate) _type: Option<CodeableConcept>,
   pub(crate) reason: Vector<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) wasSubstituted: Boolean,
+  pub(crate) wasSubstituted: bool,
   pub(crate) responsibleParty: Vector<Reference>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -43,12 +56,12 @@ pub struct MedicationDispense {
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) daysSupply: Option<Quantity>,
   pub(crate) destination: Option<Reference>,
-  pub(crate) whenPrepared: Option<Date>,
+  pub(crate) whenPrepared: Option<DateTime<FixedOffset>>,
   pub(crate) eventHistory: Vector<Reference>,
-  pub(crate) medication: CodeableConcept | Reference,
+  pub(crate) medication: UnionCodeableConceptOrReference,
   pub(crate) detectedIssue: Vector<Reference>,
-  pub(crate) whenHandedOver: Option<Date>,
-  pub(crate) statusReason: Option<CodeableConcept | Reference>,
+  pub(crate) whenHandedOver: Option<DateTime<FixedOffset>>,
+  pub(crate) statusReason: Option<UnionCodeableConceptOrReference>,
   pub(crate) dosageInstruction: Vector<Dosage>,
   pub(crate) supportingInformation: Vector<Reference>,
   pub(crate) authorizingPrescription: Vector<Reference>,

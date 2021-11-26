@@ -1,9 +1,18 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
 
 
 
@@ -20,7 +29,7 @@ pub struct SearchParameter_Component {
 pub struct SearchParameter {
   pub(crate) url: String,
   pub(crate) name: String,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) code: String,
   pub(crate) base: Vector<String>,
   pub(crate) _type: String,
@@ -36,12 +45,12 @@ pub struct SearchParameter {
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) expression: Option<String>,
   pub(crate) xpathUsage: Option<String>,
-  pub(crate) multipleOr: Option<Boolean>,
+  pub(crate) multipleOr: Option<bool>,
   pub(crate) comparator: Vector<String>,
   pub(crate) derivedFrom: Option<String>,
   pub(crate) description: String,
-  pub(crate) multipleAnd: Option<Boolean>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) multipleAnd: Option<bool>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) component: Vector<SearchParameter_Component>,
 }

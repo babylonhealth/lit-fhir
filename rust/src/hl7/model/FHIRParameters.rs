@@ -1,9 +1,16 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::core::model::FHIRParameters_Parameter::FHIRParameters_Parameter;
+use crate::core::UnionAll;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
 
 
 
@@ -12,7 +19,7 @@ pub struct FHIRParameters_Parameter {
   pub(crate) id: Option<String>,
   pub(crate) name: String,
   pub(crate) part: Vector<FHIRParameters_Parameter>,
-  pub(crate) value: Option<Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date>,
+  pub(crate) value: Option<UnionAll>,
   pub(crate) resource: Option<Resource>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,

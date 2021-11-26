@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::Union01474038381;
 
 
 
@@ -48,7 +59,7 @@ pub struct Procedure {
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) statusReason: Option<CodeableConcept>,
-  pub(crate) performed: Option<Age | Date | Period | Range | String>,
+  pub(crate) performed: Option<Union01474038381>,
   pub(crate) complication: Vector<CodeableConcept>,
   pub(crate) usedReference: Vector<Reference>,
   pub(crate) instantiatesUri: Vector<String>,

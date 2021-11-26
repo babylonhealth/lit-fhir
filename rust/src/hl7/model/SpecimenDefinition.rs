@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Duration::Duration;
+use crate::core::model::Range::Range;
+use crate::core::model::Quantity::Quantity;
+use crate::hl7::UnionQuantityOrString;
+use crate::core::UnionCodeableConceptOrReference;
 
 
 
@@ -24,7 +37,7 @@ pub struct SpecimenDefinition_TypeTested_Handling {
 pub struct SpecimenDefinition_TypeTested_Container_Additive {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) additive: CodeableConcept | Reference,
+  pub(crate) additive: UnionCodeableConceptOrReference,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -38,7 +51,7 @@ pub struct SpecimenDefinition_TypeTested_Container {
   pub(crate) extension: Vector<Extension>,
   pub(crate) description: Option<String>,
   pub(crate) preparation: Option<String>,
-  pub(crate) minimumVolume: Option<Quantity | String>,
+  pub(crate) minimumVolume: Option<UnionQuantityOrString>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) additive: Vector<SpecimenDefinition_TypeTested_Container_Additive>,
 }
@@ -48,7 +61,7 @@ pub struct SpecimenDefinition_TypeTested {
   pub(crate) id: Option<String>,
   pub(crate) _type: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) isDerived: Option<Boolean>,
+  pub(crate) isDerived: Option<bool>,
   pub(crate) preference: String,
   pub(crate) requirement: Option<String>,
   pub(crate) retentionTime: Option<Duration>,

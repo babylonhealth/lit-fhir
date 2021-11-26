@@ -1,9 +1,21 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Reference::Reference;
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::Period::Period;
+use crate::core::UnionAll;
 
 
 
@@ -11,7 +23,7 @@ use crate::hl7::*;
 pub struct Task_Input {
   pub(crate) id: Option<String>,
   pub(crate) _type: CodeableConcept,
-  pub(crate) value: Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date,
+  pub(crate) value: UnionAll,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -21,7 +33,7 @@ pub struct Task_Input {
 pub struct Task_Output {
   pub(crate) id: Option<String>,
   pub(crate) _type: CodeableConcept,
-  pub(crate) value: Address | Age | Annotation | Attachment | String | BigDecimal | Boolean | String | String | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage | Duration | Expression | FHIRDate | Date | HumanName | String | Identifier | i32 | Date | String | Meta | Money | String | ParameterDefinition | Period | u32 | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | String | u32 | String | String | UsageContext | Date,
+  pub(crate) value: UnionAll,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -54,11 +66,11 @@ pub struct Task {
   pub(crate) requester: Option<Reference>,
   pub(crate) insurance: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) authoredOn: Option<Date>,
+  pub(crate) authoredOn: Option<DateTime<FixedOffset>>,
   pub(crate) reasonCode: Option<CodeableConcept>,
   pub(crate) description: Option<String>,
   pub(crate) statusReason: Option<CodeableConcept>,
-  pub(crate) lastModified: Option<Date>,
+  pub(crate) lastModified: Option<DateTime<FixedOffset>>,
   pub(crate) performerType: Vector<CodeableConcept>,
   pub(crate) businessStatus: Option<CodeableConcept>,
   pub(crate) instantiatesUri: Option<String>,

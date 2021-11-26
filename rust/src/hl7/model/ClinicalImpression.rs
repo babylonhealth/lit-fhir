@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionDateTimeOrPeriod;
 
 
 
@@ -30,7 +41,7 @@ pub struct ClinicalImpression_Investigation {
 #[derive(Clone, Debug)]
 pub struct ClinicalImpression {
   pub(crate) code: Option<CodeableConcept>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) note: Vector<Annotation>,
   pub(crate) status: String,
   pub(crate) subject: Reference,
@@ -43,7 +54,7 @@ pub struct ClinicalImpression {
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) description: Option<String>,
   pub(crate) statusReason: Option<CodeableConcept>,
-  pub(crate) effective: Option<Date | Period>,
+  pub(crate) effective: Option<UnionDateTimeOrPeriod>,
   pub(crate) supportingInfo: Vector<Reference>,
   pub(crate) prognosisReference: Vector<Reference>,
   pub(crate) prognosisCodeableConcept: Vector<CodeableConcept>,

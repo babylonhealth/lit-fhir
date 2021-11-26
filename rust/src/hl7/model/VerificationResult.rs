@@ -1,9 +1,19 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Timing::Timing;
+use crate::core::model::Signature::Signature;
 
 
 
@@ -24,7 +34,7 @@ pub struct VerificationResult_PrimarySource {
   pub(crate) who: Option<Reference>,
   pub(crate) _type: Vector<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) validationDate: Option<Date>,
+  pub(crate) validationDate: Option<DateTime<FixedOffset>>,
   pub(crate) canPushUpdates: Option<CodeableConcept>,
   pub(crate) validationStatus: Option<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -54,8 +64,8 @@ pub struct VerificationResult {
   pub(crate) target: Vector<Reference>,
   pub(crate) status: String,
   pub(crate) frequency: Option<Timing>,
-  pub(crate) statusDate: Option<Date>,
-  pub(crate) lastPerformed: Option<Date>,
+  pub(crate) statusDate: Option<DateTime<FixedOffset>>,
+  pub(crate) lastPerformed: Option<DateTime<FixedOffset>>,
   pub(crate) nextScheduled: Option<FHIRDate>,
   pub(crate) failureAction: Option<CodeableConcept>,
   pub(crate) targetLocation: Vector<String>,

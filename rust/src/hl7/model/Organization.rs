@@ -1,9 +1,21 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Reference::Reference;
+use crate::core::model::ContactPoint::ContactPoint;
+use crate::core::model::Address::Address;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::HumanName::HumanName;
 
 
 
@@ -23,7 +35,7 @@ pub struct Organization {
   pub(crate) _type: Vector<CodeableConcept>,
   pub(crate) name: Option<String>,
   pub(crate) alias: Vector<String>,
-  pub(crate) active: Option<Boolean>,
+  pub(crate) active: Option<bool>,
   pub(crate) partOf: Option<Reference>,
   pub(crate) telecom: Vector<ContactPoint>,
   pub(crate) address: Vector<Address>,

@@ -1,9 +1,24 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::ValueSet_Expansion_Contains::ValueSet_Expansion_Contains;
+use crate::core::model::ValueSet_Compose_Include_Concept_Designation::ValueSet_Compose_Include_Concept_Designation;
+use crate::hl7::Union01475253842;
+use crate::core::model::ValueSet_Compose_Include::ValueSet_Compose_Include;
+use crate::core::model::Coding::Coding;
 
 
 
@@ -14,8 +29,8 @@ pub struct ValueSet_Expansion_Contains {
   pub(crate) system: Option<String>,
   pub(crate) version: Option<String>,
   pub(crate) display: Option<String>,
-  pub(crate) abstract: Option<Boolean>,
-  pub(crate) inactive: Option<Boolean>,
+  pub(crate) abstract: Option<bool>,
+  pub(crate) inactive: Option<bool>,
   pub(crate) contains: Vector<ValueSet_Expansion_Contains>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) designation: Vector<ValueSet_Compose_Include_Concept_Designation>,
@@ -28,7 +43,7 @@ pub struct ValueSet_Expansion_Contains {
 pub struct ValueSet_Expansion_Parameter {
   pub(crate) id: Option<String>,
   pub(crate) name: String,
-  pub(crate) value: Option<BigDecimal | Boolean | String | Date | i32 | String | String>,
+  pub(crate) value: Option<Union01475253842>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -39,7 +54,7 @@ pub struct ValueSet_Expansion {
   pub(crate) total: Option<i32>,
   pub(crate) offset: Option<i32>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) timestamp: Date,
+  pub(crate) timestamp: DateTime<FixedOffset>,
   pub(crate) identifier: Option<String>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) contains: Vector<ValueSet_Expansion_Contains>,
@@ -62,7 +77,7 @@ pub struct ValueSet_Compose_Include_Filter {
 #[derive(Clone, Debug)]
 pub struct ValueSet_Compose_Include_Concept_Designation {
   pub(crate) id: Option<String>,
-  pub(crate) use: Option<Coding>,
+  pub(crate) _use: Option<Coding>,
   pub(crate) value: String,
   pub(crate) language: Option<String>,
   pub(crate) extension: Vector<Extension>,
@@ -95,7 +110,7 @@ pub struct ValueSet_Compose_Include {
 pub struct ValueSet_Compose {
   pub(crate) id: Option<String>,
   pub(crate) exclude: Vector<ValueSet_Compose_Include>,
-  pub(crate) inactive: Option<Boolean>,
+  pub(crate) inactive: Option<bool>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) lockedDate: Option<FHIRDate>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -106,19 +121,19 @@ pub struct ValueSet_Compose {
 pub struct ValueSet {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) title: Option<String>,
   pub(crate) status: String,
   pub(crate) version: Option<String>,
   pub(crate) contact: Vector<ContactDetail>,
   pub(crate) purpose: Option<String>,
   pub(crate) publisher: Option<String>,
-  pub(crate) immutable: Option<Boolean>,
+  pub(crate) immutable: Option<bool>,
   pub(crate) copyright: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) useContext: Vector<UsageContext>,
   pub(crate) description: Option<String>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) expansion: Option<ValueSet_Expansion>,
   pub(crate) compose: Option<ValueSet_Compose>,

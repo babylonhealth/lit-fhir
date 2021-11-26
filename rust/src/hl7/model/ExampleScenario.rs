@@ -1,9 +1,22 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::ExampleScenario_Process::ExampleScenario_Process;
+use crate::core::model::ExampleScenario_Instance_ContainedInstance::ExampleScenario_Instance_ContainedInstance;
+use crate::core::model::ExampleScenario_Process_Step::ExampleScenario_Process_Step;
 
 
 
@@ -31,8 +44,8 @@ pub struct ExampleScenario_Process_Step_Operation {
   pub(crate) extension: Vector<Extension>,
   pub(crate) initiator: Option<String>,
   pub(crate) description: Option<String>,
-  pub(crate) receiverActive: Option<Boolean>,
-  pub(crate) initiatorActive: Option<Boolean>,
+  pub(crate) receiverActive: Option<bool>,
+  pub(crate) initiatorActive: Option<bool>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -51,7 +64,7 @@ pub struct ExampleScenario_Process_Step_Alternative {
 #[derive(Clone, Debug)]
 pub struct ExampleScenario_Process_Step {
   pub(crate) id: Option<String>,
-  pub(crate) pause: Option<Boolean>,
+  pub(crate) pause: Option<bool>,
   pub(crate) process: Vector<ExampleScenario_Process>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -109,7 +122,7 @@ pub struct ExampleScenario_Instance {
 pub struct ExampleScenario {
   pub(crate) url: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) date: Option<Date>,
+  pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) status: String,
   pub(crate) version: Option<String>,
   pub(crate) contact: Vector<ContactDetail>,
@@ -119,7 +132,7 @@ pub struct ExampleScenario {
   pub(crate) copyright: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) useContext: Vector<UsageContext>,
-  pub(crate) experimental: Option<Boolean>,
+  pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<CodeableConcept>,
   pub(crate) actor: Vector<ExampleScenario_Actor>,
   pub(crate) process: Vector<ExampleScenario_Process>,

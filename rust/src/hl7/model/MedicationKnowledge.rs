@@ -1,9 +1,25 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Money::Money;
+use crate::core::model::Duration::Duration;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::Ratio::Ratio;
+use crate::hl7::Union_0600299688;
+use crate::core::model::Dosage::Dosage;
+use crate::hl7::UnionCodeableConceptOrQuantity;
 
 
 
@@ -52,8 +68,8 @@ pub struct MedicationKnowledge_Packaging {
 #[derive(Clone, Debug)]
 pub struct MedicationKnowledge_Ingredient {
   pub(crate) id: Option<String>,
-  pub(crate) item: CodeableConcept | Reference,
-  pub(crate) isActive: Option<Boolean>,
+  pub(crate) item: UnionCodeableConceptOrReference,
+  pub(crate) isActive: Option<bool>,
   pub(crate) strength: Option<Ratio>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -74,7 +90,7 @@ pub struct MedicationKnowledge_MonitoringProgram {
 pub struct MedicationKnowledge_DrugCharacteristic {
   pub(crate) id: Option<String>,
   pub(crate) _type: Option<CodeableConcept>,
-  pub(crate) value: Option<String | CodeableConcept | Quantity | String>,
+  pub(crate) value: Option<Union_0600299688>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -115,7 +131,7 @@ pub struct MedicationKnowledge_Regulatory_MaxDispense {
 pub struct MedicationKnowledge_Regulatory_Substitution {
   pub(crate) id: Option<String>,
   pub(crate) _type: CodeableConcept,
-  pub(crate) allowed: Boolean,
+  pub(crate) allowed: bool,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -159,14 +175,14 @@ pub struct MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics {
   pub(crate) value: Vector<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) characteristic: CodeableConcept | Quantity,
+  pub(crate) characteristic: UnionCodeableConceptOrQuantity,
 }
 
 #[derive(Clone, Debug)]
 pub struct MedicationKnowledge_AdministrationGuidelines {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) indication: Option<CodeableConcept | Reference>,
+  pub(crate) indication: Option<UnionCodeableConceptOrReference>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) dosage: Vector<MedicationKnowledge_AdministrationGuidelines_Dosage>,
   pub(crate) patientCharacteristics: Vector<MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics>,

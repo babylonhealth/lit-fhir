@@ -1,9 +1,20 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::hl7::Union01474038381;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
 
 
 
@@ -11,7 +22,7 @@ use crate::hl7::*;
 pub struct AllergyIntolerance_Reaction {
   pub(crate) id: Option<String>,
   pub(crate) note: Vector<Annotation>,
-  pub(crate) onset: Option<Date>,
+  pub(crate) onset: Option<DateTime<FixedOffset>>,
   pub(crate) severity: Option<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) substance: Option<CodeableConcept>,
@@ -28,15 +39,15 @@ pub struct AllergyIntolerance {
   pub(crate) note: Vector<Annotation>,
   pub(crate) patient: Reference,
   pub(crate) category: Vector<String>,
-  pub(crate) onset: Option<Age | Date | Period | Range | String>,
+  pub(crate) onset: Option<Union01474038381>,
   pub(crate) recorder: Option<Reference>,
   pub(crate) asserter: Option<Reference>,
   pub(crate) encounter: Option<Reference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) criticality: Option<String>,
-  pub(crate) recordedDate: Option<Date>,
+  pub(crate) recordedDate: Option<DateTime<FixedOffset>>,
   pub(crate) clinicalStatus: Option<CodeableConcept>,
-  pub(crate) lastOccurrence: Option<Date>,
+  pub(crate) lastOccurrence: Option<DateTime<FixedOffset>>,
   pub(crate) verificationStatus: Option<CodeableConcept>,
   pub(crate) reaction: Vector<AllergyIntolerance_Reaction>,
 }

@@ -1,9 +1,26 @@
 use bigdecimal::BigDecimal;
+use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
 use crate::hl7::model::*;
 use crate::hl7::*;
 
+
+use crate::core::model::Meta::Meta;
+use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::Annotation::Annotation;
+use crate::core::model::Reference::Reference;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Resource::Resource;
+use crate::core::model::Extension::Extension;
+use crate::core::model::Identifier::Identifier;
+use crate::hl7::UnionBooleanOrReference;
+use crate::core::UnionCodeableConceptOrReference;
+use crate::core::model::Dosage::Dosage;
+use crate::core::UnionBooleanOrCodeableConcept;
+use crate::core::model::Quantity::Quantity;
+use crate::core::model::Period::Period;
+use crate::core::model::Duration::Duration;
 
 
 
@@ -12,7 +29,7 @@ pub struct MedicationRequest_Substitution {
   pub(crate) id: Option<String>,
   pub(crate) reason: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) allowed: Boolean | CodeableConcept,
+  pub(crate) allowed: UnionBooleanOrCodeableConcept,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -55,13 +72,13 @@ pub struct MedicationRequest {
   pub(crate) performer: Option<Reference>,
   pub(crate) insurance: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) authoredOn: Option<Date>,
+  pub(crate) authoredOn: Option<DateTime<FixedOffset>>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
-  pub(crate) reported: Option<Boolean | Reference>,
+  pub(crate) reported: Option<UnionBooleanOrReference>,
   pub(crate) statusReason: Option<CodeableConcept>,
-  pub(crate) doNotPerform: Option<Boolean>,
+  pub(crate) doNotPerform: Option<bool>,
   pub(crate) eventHistory: Vector<Reference>,
-  pub(crate) medication: CodeableConcept | Reference,
+  pub(crate) medication: UnionCodeableConceptOrReference,
   pub(crate) performerType: Option<CodeableConcept>,
   pub(crate) detectedIssue: Vector<Reference>,
   pub(crate) reasonReference: Vector<Reference>,
