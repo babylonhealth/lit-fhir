@@ -63,7 +63,11 @@ object Rust {
 
     if (f.types.size > 1) ElementTreee.getUnionAlias(pkg = f.pkg, s = f.types, field = f) else toRustType(f.types.head)
   }
-  def asParam(f: BaseField) = s"pub(crate) ${toRustName(f.noParensName)}: ${tpe(f)},"
+  def asParam(f: BaseField): String = tpe(f) match {
+    case "Reference" => s"pub(crate) ${toRustName(f.noParensName)}: Box<Reference>,"
+    case "Option<Reference>" => s"pub(crate) ${toRustName(f.noParensName)}: Option<Box<Reference>>,"
+    case rn          => s"pub(crate) ${toRustName(f.noParensName)}: $rn,"
+  }
   def genStructuralClass(field: BaseField, prefix: String): String =
     if (!field.isGenerated) ""
     else {
