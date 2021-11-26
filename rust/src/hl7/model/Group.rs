@@ -21,7 +21,7 @@ use crate::hl7::Union_1690912481;
 #[derive(Clone, Debug)]
 pub struct Group_Member {
   pub(crate) id: Option<String>,
-  pub(crate) entity: Reference,
+  pub(crate) entity: Box<Reference>,
   pub(crate) period: Option<Period>,
   pub(crate) inactive: Option<bool>,
   pub(crate) extension: Vector<Extension>,
@@ -49,7 +49,7 @@ pub struct Group {
   pub(crate) actual: bool,
   pub(crate) quantity: Option<u32>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) managingEntity: Option<Reference>,
+  pub(crate) managingEntity: Option<Box<Reference>>,
   pub(crate) member: Vector<Group_Member>,
   pub(crate) characteristic: Vector<Group_Characteristic>,
 }

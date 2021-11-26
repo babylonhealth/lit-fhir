@@ -20,10 +20,10 @@ use crate::core::model::CodeableConcept::CodeableConcept;
 pub struct AppointmentResponse {
   pub(crate) end: Option<DateTime<FixedOffset>>,
   pub(crate) start: Option<DateTime<FixedOffset>>,
-  pub(crate) actor: Option<Reference>,
+  pub(crate) actor: Option<Box<Reference>>,
   pub(crate) comment: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) appointment: Reference,
+  pub(crate) appointment: Box<Reference>,
   pub(crate) participantType: Vector<CodeableConcept>,
   pub(crate) participantStatus: String,
 }

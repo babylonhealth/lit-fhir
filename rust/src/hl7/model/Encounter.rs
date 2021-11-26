@@ -24,7 +24,7 @@ pub struct Encounter_Location {
   pub(crate) id: Option<String>,
   pub(crate) status: Option<String>,
   pub(crate) period: Option<Period>,
-  pub(crate) location: Reference,
+  pub(crate) location: Box<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) physicalType: Option<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -37,7 +37,7 @@ pub struct Encounter_Diagnosis {
   pub(crate) _use: Option<CodeableConcept>,
   pub(crate) rank: Option<u32>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) condition: Reference,
+  pub(crate) condition: Box<Reference>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -48,7 +48,7 @@ pub struct Encounter_Participant {
   pub(crate) _type: Vector<CodeableConcept>,
   pub(crate) period: Option<Period>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) individual: Option<Reference>,
+  pub(crate) individual: Option<Box<Reference>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -76,11 +76,11 @@ pub struct Encounter_StatusHistory {
 #[derive(Clone, Debug)]
 pub struct Encounter_Hospitalization {
   pub(crate) id: Option<String>,
-  pub(crate) origin: Option<Reference>,
+  pub(crate) origin: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) admitSource: Option<CodeableConcept>,
   pub(crate) reAdmission: Option<CodeableConcept>,
-  pub(crate) destination: Option<Reference>,
+  pub(crate) destination: Option<Box<Reference>>,
   pub(crate) dietPreference: Vector<CodeableConcept>,
   pub(crate) specialCourtesy: Vector<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -96,8 +96,8 @@ pub struct Encounter {
   pub(crate) status: String,
   pub(crate) period: Option<Period>,
   pub(crate) length: Option<Duration>,
-  pub(crate) partOf: Option<Reference>,
-  pub(crate) subject: Option<Reference>,
+  pub(crate) partOf: Option<Box<Reference>>,
+  pub(crate) subject: Option<Box<Reference>>,
   pub(crate) basedOn: Vector<Reference>,
   pub(crate) account: Vector<Reference>,
   pub(crate) priority: Option<CodeableConcept>,
@@ -107,7 +107,7 @@ pub struct Encounter {
   pub(crate) appointment: Vector<Reference>,
   pub(crate) episodeOfCare: Vector<Reference>,
   pub(crate) reasonReference: Vector<Reference>,
-  pub(crate) serviceProvider: Option<Reference>,
+  pub(crate) serviceProvider: Option<Box<Reference>>,
   pub(crate) location: Vector<Encounter_Location>,
   pub(crate) diagnosis: Vector<Encounter_Diagnosis>,
   pub(crate) participant: Vector<Encounter_Participant>,

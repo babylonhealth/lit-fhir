@@ -23,7 +23,7 @@ pub struct EpisodeOfCare_Diagnosis {
   pub(crate) role: Option<CodeableConcept>,
   pub(crate) rank: Option<u32>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) condition: Reference,
+  pub(crate) condition: Box<Reference>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -43,12 +43,12 @@ pub struct EpisodeOfCare {
   pub(crate) team: Vector<Reference>,
   pub(crate) status: String,
   pub(crate) period: Option<Period>,
-  pub(crate) patient: Reference,
+  pub(crate) patient: Box<Reference>,
   pub(crate) account: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) careManager: Option<Reference>,
+  pub(crate) careManager: Option<Box<Reference>>,
   pub(crate) referralRequest: Vector<Reference>,
-  pub(crate) managingOrganization: Option<Reference>,
+  pub(crate) managingOrganization: Option<Box<Reference>>,
   pub(crate) diagnosis: Vector<EpisodeOfCare_Diagnosis>,
   pub(crate) statusHistory: Vector<EpisodeOfCare_StatusHistory>,
 }

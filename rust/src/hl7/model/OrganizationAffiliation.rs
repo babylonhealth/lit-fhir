@@ -29,7 +29,7 @@ pub struct OrganizationAffiliation {
   pub(crate) endpoint: Vector<Reference>,
   pub(crate) specialty: Vector<CodeableConcept>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) organization: Option<Reference>,
+  pub(crate) organization: Option<Box<Reference>>,
   pub(crate) healthcareService: Vector<Reference>,
-  pub(crate) participatingOrganization: Option<Reference>,
+  pub(crate) participatingOrganization: Option<Box<Reference>>,
 }

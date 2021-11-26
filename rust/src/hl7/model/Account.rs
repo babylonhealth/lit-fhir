@@ -20,7 +20,7 @@ use crate::core::model::Period::Period;
 #[derive(Clone, Debug)]
 pub struct Account_Coverage {
   pub(crate) id: Option<String>,
-  pub(crate) coverage: Reference,
+  pub(crate) coverage: Box<Reference>,
   pub(crate) priority: Option<u32>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -30,7 +30,7 @@ pub struct Account_Coverage {
 #[derive(Clone, Debug)]
 pub struct Account_Guarantor {
   pub(crate) id: Option<String>,
-  pub(crate) party: Reference,
+  pub(crate) party: Box<Reference>,
   pub(crate) onHold: Option<bool>,
   pub(crate) period: Option<Period>,
   pub(crate) extension: Vector<Extension>,
@@ -41,9 +41,9 @@ pub struct Account_Guarantor {
 pub struct Account {
   pub(crate) _type: Option<CodeableConcept>,
   pub(crate) name: Option<String>,
-  pub(crate) owner: Option<Reference>,
+  pub(crate) owner: Option<Box<Reference>>,
   pub(crate) status: String,
-  pub(crate) partOf: Option<Reference>,
+  pub(crate) partOf: Option<Box<Reference>>,
   pub(crate) subject: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) description: Option<String>,

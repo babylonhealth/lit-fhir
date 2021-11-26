@@ -68,7 +68,7 @@ pub struct ActivityDefinition {
   pub(crate) reviewer: Vector<ContactDetail>,
   pub(crate) endorser: Vector<ContactDetail>,
   pub(crate) priority: Option<String>,
-  pub(crate) location: Option<Reference>,
+  pub(crate) location: Option<Box<Reference>>,
   pub(crate) quantity: Option<Quantity>,
   pub(crate) bodySite: Vector<CodeableConcept>,
   pub(crate) publisher: Option<String>,

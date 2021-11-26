@@ -47,7 +47,7 @@ pub struct CapabilityStatement_Implementation {
   pub(crate) id: Option<String>,
   pub(crate) url: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) custodian: Option<Reference>,
+  pub(crate) custodian: Option<Box<Reference>>,
   pub(crate) description: String,
   pub(crate) modifierExtension: Vector<Extension>,
 }

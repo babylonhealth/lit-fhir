@@ -18,12 +18,12 @@ use crate::core::model::Identifier::Identifier;
 
 #[derive(Clone, Debug)]
 pub struct ResearchSubject {
-  pub(crate) study: Reference,
+  pub(crate) study: Box<Reference>,
   pub(crate) status: String,
   pub(crate) period: Option<Period>,
-  pub(crate) consent: Option<Reference>,
+  pub(crate) consent: Option<Box<Reference>>,
   pub(crate) actualArm: Option<String>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) individual: Reference,
+  pub(crate) individual: Box<Reference>,
   pub(crate) assignedArm: Option<String>,
 }

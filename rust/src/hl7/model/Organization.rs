@@ -36,7 +36,7 @@ pub struct Organization {
   pub(crate) name: Option<String>,
   pub(crate) alias: Vector<String>,
   pub(crate) active: Option<bool>,
-  pub(crate) partOf: Option<Reference>,
+  pub(crate) partOf: Option<Box<Reference>>,
   pub(crate) telecom: Vector<ContactPoint>,
   pub(crate) address: Vector<Address>,
   pub(crate) endpoint: Vector<Reference>,

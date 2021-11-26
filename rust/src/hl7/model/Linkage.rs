@@ -18,7 +18,7 @@ use crate::core::model::Extension::Extension;
 pub struct Linkage_Item {
   pub(crate) id: Option<String>,
   pub(crate) _type: String,
-  pub(crate) resource: Reference,
+  pub(crate) resource: Box<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -26,6 +26,6 @@ pub struct Linkage_Item {
 #[derive(Clone, Debug)]
 pub struct Linkage {
   pub(crate) active: Option<bool>,
-  pub(crate) author: Option<Reference>,
+  pub(crate) author: Option<Box<Reference>>,
   pub(crate) item: Vector<Linkage_Item>,
 }

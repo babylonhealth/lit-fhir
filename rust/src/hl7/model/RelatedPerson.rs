@@ -37,7 +37,7 @@ pub struct RelatedPerson {
   pub(crate) active: Option<bool>,
   pub(crate) gender: Option<String>,
   pub(crate) period: Option<Period>,
-  pub(crate) patient: Reference,
+  pub(crate) patient: Box<Reference>,
   pub(crate) telecom: Vector<ContactPoint>,
   pub(crate) address: Vector<Address>,
   pub(crate) birthDate: Option<FHIRDate>,

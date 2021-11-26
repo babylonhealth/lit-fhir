@@ -33,7 +33,7 @@ pub struct Goal_Target {
 #[derive(Clone, Debug)]
 pub struct Goal {
   pub(crate) note: Vector<Annotation>,
-  pub(crate) subject: Reference,
+  pub(crate) subject: Box<Reference>,
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) priority: Option<CodeableConcept>,
   pub(crate) start: Option<UnionCodeableConceptOrDate>,
@@ -41,7 +41,7 @@ pub struct Goal {
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) statusDate: Option<FHIRDate>,
   pub(crate) description: CodeableConcept,
-  pub(crate) expressedBy: Option<Reference>,
+  pub(crate) expressedBy: Option<Box<Reference>>,
   pub(crate) outcomeCode: Vector<CodeableConcept>,
   pub(crate) statusReason: Option<String>,
   pub(crate) lifecycleStatus: String,

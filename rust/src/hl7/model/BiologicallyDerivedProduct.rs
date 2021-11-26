@@ -33,9 +33,9 @@ pub struct BiologicallyDerivedProduct_Storage {
 #[derive(Clone, Debug)]
 pub struct BiologicallyDerivedProduct_Collection {
   pub(crate) id: Option<String>,
-  pub(crate) source: Option<Reference>,
+  pub(crate) source: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) collector: Option<Reference>,
+  pub(crate) collector: Option<Box<Reference>>,
   pub(crate) collected: Option<UnionDateTimeOrPeriod>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -45,7 +45,7 @@ pub struct BiologicallyDerivedProduct_Collection {
 pub struct BiologicallyDerivedProduct_Processing {
   pub(crate) id: Option<String>,
   pub(crate) time: Option<UnionDateTimeOrPeriod>,
-  pub(crate) additive: Option<Reference>,
+  pub(crate) additive: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) procedure: Option<CodeableConcept>,
   pub(crate) description: Option<String>,

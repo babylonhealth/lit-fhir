@@ -19,7 +19,7 @@ use crate::core::model::Identifier::Identifier;
 #[derive(Clone, Debug)]
 pub struct AdverseEvent_SuspectEntity_Causality {
   pub(crate) id: Option<String>,
-  pub(crate) author: Option<Reference>,
+  pub(crate) author: Option<Box<Reference>>,
   pub(crate) method: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) assessment: Option<CodeableConcept>,
@@ -30,7 +30,7 @@ pub struct AdverseEvent_SuspectEntity_Causality {
 #[derive(Clone, Debug)]
 pub struct AdverseEvent_SuspectEntity {
   pub(crate) id: Option<String>,
-  pub(crate) instance: Reference,
+  pub(crate) instance: Box<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) causality: Vector<AdverseEvent_SuspectEntity_Causality>,
@@ -41,15 +41,15 @@ pub struct AdverseEvent {
   pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) event: Option<CodeableConcept>,
   pub(crate) study: Vector<Reference>,
-  pub(crate) subject: Reference,
+  pub(crate) subject: Box<Reference>,
   pub(crate) outcome: Option<CodeableConcept>,
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) detected: Option<DateTime<FixedOffset>>,
-  pub(crate) location: Option<Reference>,
+  pub(crate) location: Option<Box<Reference>>,
   pub(crate) severity: Option<CodeableConcept>,
-  pub(crate) recorder: Option<Reference>,
+  pub(crate) recorder: Option<Box<Reference>>,
   pub(crate) actuality: String,
-  pub(crate) encounter: Option<Reference>,
+  pub(crate) encounter: Option<Box<Reference>>,
   pub(crate) identifier: Option<Identifier>,
   pub(crate) seriousness: Option<CodeableConcept>,
   pub(crate) contributor: Vector<Reference>,

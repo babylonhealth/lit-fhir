@@ -21,7 +21,7 @@ use crate::core::model::Identifier::Identifier;
 pub struct BodyStructure {
   pub(crate) image: Vector<Attachment>,
   pub(crate) active: Option<bool>,
-  pub(crate) patient: Reference,
+  pub(crate) patient: Box<Reference>,
   pub(crate) location: Option<CodeableConcept>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) morphology: Option<CodeableConcept>,

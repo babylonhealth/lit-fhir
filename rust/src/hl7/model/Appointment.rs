@@ -21,7 +21,7 @@ use crate::core::model::Period::Period;
 pub struct Appointment_Participant {
   pub(crate) id: Option<String>,
   pub(crate) _type: Vector<CodeableConcept>,
-  pub(crate) actor: Option<Reference>,
+  pub(crate) actor: Option<Box<Reference>>,
   pub(crate) status: String,
   pub(crate) period: Option<Period>,
   pub(crate) required: Option<String>,

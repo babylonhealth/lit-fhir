@@ -35,7 +35,7 @@ pub struct Consent_Verification {
   pub(crate) id: Option<String>,
   pub(crate) verified: bool,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) verifiedWith: Option<Reference>,
+  pub(crate) verifiedWith: Option<Box<Reference>>,
   pub(crate) verificationDate: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -46,7 +46,7 @@ pub struct Consent_Provision_Data {
   pub(crate) id: Option<String>,
   pub(crate) meaning: String,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) reference: Reference,
+  pub(crate) reference: Box<Reference>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -57,7 +57,7 @@ pub struct Consent_Provision_Actor {
   pub(crate) id: Option<String>,
   pub(crate) role: CodeableConcept,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) reference: Reference,
+  pub(crate) reference: Box<Reference>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -83,7 +83,7 @@ pub struct Consent_Provision {
 pub struct Consent {
   pub(crate) scope: CodeableConcept,
   pub(crate) status: String,
-  pub(crate) patient: Option<Reference>,
+  pub(crate) patient: Option<Box<Reference>>,
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) dateTime: Option<DateTime<FixedOffset>>,
   pub(crate) performer: Vector<Reference>,

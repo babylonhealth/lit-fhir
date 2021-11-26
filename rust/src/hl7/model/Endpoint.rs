@@ -31,5 +31,5 @@ pub struct Endpoint {
   pub(crate) payloadType: Vector<CodeableConcept>,
   pub(crate) connectionType: Coding,
   pub(crate) payloadMimeType: Vector<String>,
-  pub(crate) managingOrganization: Option<Reference>,
+  pub(crate) managingOrganization: Option<Box<Reference>>,
 }

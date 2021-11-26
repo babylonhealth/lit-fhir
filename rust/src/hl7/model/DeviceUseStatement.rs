@@ -22,10 +22,10 @@ use crate::core::model::Identifier::Identifier;
 pub struct DeviceUseStatement {
   pub(crate) note: Vector<Annotation>,
   pub(crate) status: String,
-  pub(crate) source: Option<Reference>,
-  pub(crate) device: Reference,
+  pub(crate) source: Option<Box<Reference>>,
+  pub(crate) device: Box<Reference>,
   pub(crate) basedOn: Vector<Reference>,
-  pub(crate) subject: Reference,
+  pub(crate) subject: Box<Reference>,
   pub(crate) bodySite: Option<CodeableConcept>,
   pub(crate) timing: Option<UnionDateTimeOrPeriodOrTiming>,
   pub(crate) identifier: Vector<Identifier>,

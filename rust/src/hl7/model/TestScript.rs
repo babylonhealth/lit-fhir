@@ -34,7 +34,7 @@ pub struct TestScript_Origin {
 #[derive(Clone, Debug)]
 pub struct TestScript_Fixture {
   pub(crate) id: Option<String>,
-  pub(crate) resource: Option<Reference>,
+  pub(crate) resource: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) autocreate: bool,
   pub(crate) autodelete: bool,

@@ -26,7 +26,7 @@ pub struct Practitioner_Qualification {
   pub(crate) id: Option<String>,
   pub(crate) code: CodeableConcept,
   pub(crate) period: Option<Period>,
-  pub(crate) issuer: Option<Reference>,
+  pub(crate) issuer: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) modifierExtension: Vector<Extension>,

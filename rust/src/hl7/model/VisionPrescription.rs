@@ -52,10 +52,10 @@ pub struct VisionPrescription_LensSpecification {
 pub struct VisionPrescription {
   pub(crate) status: String,
   pub(crate) created: DateTime<FixedOffset>,
-  pub(crate) patient: Reference,
-  pub(crate) encounter: Option<Reference>,
+  pub(crate) patient: Box<Reference>,
+  pub(crate) encounter: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) prescriber: Reference,
+  pub(crate) prescriber: Box<Reference>,
   pub(crate) dateWritten: DateTime<FixedOffset>,
   pub(crate) lensSpecification: Vector<VisionPrescription_LensSpecification>,
 }

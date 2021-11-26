@@ -113,7 +113,7 @@ pub struct TestReport {
   pub(crate) tester: Option<String>,
   pub(crate) issued: Option<DateTime<FixedOffset>>,
   pub(crate) identifier: Option<Identifier>,
-  pub(crate) testScript: Reference,
+  pub(crate) testScript: Box<Reference>,
   pub(crate) participant: Vector<TestReport_Participant>,
   pub(crate) test: Vector<TestReport_Test>,
   pub(crate) teardown: Option<TestReport_Teardown>,

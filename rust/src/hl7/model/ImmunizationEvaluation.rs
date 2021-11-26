@@ -22,8 +22,8 @@ pub struct ImmunizationEvaluation {
   pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) status: String,
   pub(crate) series: Option<String>,
-  pub(crate) patient: Reference,
-  pub(crate) authority: Option<Reference>,
+  pub(crate) patient: Box<Reference>,
+  pub(crate) authority: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) doseStatus: CodeableConcept,
   pub(crate) description: Option<String>,
@@ -31,5 +31,5 @@ pub struct ImmunizationEvaluation {
   pub(crate) doseNumber: Option<UnionPositiveIntOrString>,
   pub(crate) seriesDoses: Option<UnionPositiveIntOrString>,
   pub(crate) doseStatusReason: Vector<CodeableConcept>,
-  pub(crate) immunizationEvent: Reference,
+  pub(crate) immunizationEvent: Box<Reference>,
 }

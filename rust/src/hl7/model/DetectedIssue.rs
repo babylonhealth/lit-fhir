@@ -32,7 +32,7 @@ pub struct DetectedIssue_Mitigation {
   pub(crate) id: Option<String>,
   pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) action: CodeableConcept,
-  pub(crate) author: Option<Reference>,
+  pub(crate) author: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -41,9 +41,9 @@ pub struct DetectedIssue_Mitigation {
 pub struct DetectedIssue {
   pub(crate) code: Option<CodeableConcept>,
   pub(crate) status: String,
-  pub(crate) author: Option<Reference>,
+  pub(crate) author: Option<Box<Reference>>,
   pub(crate) detail: Option<String>,
-  pub(crate) patient: Option<Reference>,
+  pub(crate) patient: Option<Box<Reference>>,
   pub(crate) severity: Option<String>,
   pub(crate) reference: Option<String>,
   pub(crate) identifier: Vector<Identifier>,

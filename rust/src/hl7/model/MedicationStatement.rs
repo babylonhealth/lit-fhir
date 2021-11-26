@@ -27,8 +27,8 @@ pub struct MedicationStatement {
   pub(crate) status: String,
   pub(crate) dosage: Vector<Dosage>,
   pub(crate) basedOn: Vector<Reference>,
-  pub(crate) subject: Reference,
-  pub(crate) context: Option<Reference>,
+  pub(crate) subject: Box<Reference>,
+  pub(crate) context: Option<Box<Reference>>,
   pub(crate) category: Option<CodeableConcept>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
@@ -38,5 +38,5 @@ pub struct MedicationStatement {
   pub(crate) dateAsserted: Option<DateTime<FixedOffset>>,
   pub(crate) medication: UnionCodeableConceptOrReference,
   pub(crate) reasonReference: Vector<Reference>,
-  pub(crate) informationSource: Option<Reference>,
+  pub(crate) informationSource: Option<Box<Reference>>,
 }

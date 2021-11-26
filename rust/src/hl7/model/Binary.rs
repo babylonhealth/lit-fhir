@@ -15,5 +15,5 @@ use crate::core::model::Reference::Reference;
 pub struct Binary {
   pub(crate) data: Option<String>,
   pub(crate) contentType: String,
-  pub(crate) securityContext: Option<Reference>,
+  pub(crate) securityContext: Option<Box<Reference>>,
 }

@@ -34,7 +34,7 @@ pub struct MessageHeader_Source {
 pub struct MessageHeader_Response {
   pub(crate) id: Option<String>,
   pub(crate) code: String,
-  pub(crate) details: Option<Reference>,
+  pub(crate) details: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) identifier: String,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -45,9 +45,9 @@ pub struct MessageHeader_Response {
 pub struct MessageHeader_Destination {
   pub(crate) id: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) target: Option<Reference>,
+  pub(crate) target: Option<Box<Reference>>,
   pub(crate) endpoint: String,
-  pub(crate) receiver: Option<Reference>,
+  pub(crate) receiver: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -55,13 +55,13 @@ pub struct MessageHeader_Destination {
 #[derive(Clone, Debug)]
 pub struct MessageHeader {
   pub(crate) focus: Vector<Reference>,
-  pub(crate) sender: Option<Reference>,
-  pub(crate) author: Option<Reference>,
+  pub(crate) sender: Option<Box<Reference>>,
+  pub(crate) author: Option<Box<Reference>>,
   pub(crate) reason: Option<CodeableConcept>,
-  pub(crate) enterer: Option<Reference>,
+  pub(crate) enterer: Option<Box<Reference>>,
   pub(crate) event: UnionCodingOrUri,
   pub(crate) definition: Option<String>,
-  pub(crate) responsible: Option<Reference>,
+  pub(crate) responsible: Option<Box<Reference>>,
   pub(crate) source: MessageHeader_Source,
   pub(crate) response: Option<MessageHeader_Response>,
   pub(crate) destination: Vector<MessageHeader_Destination>,

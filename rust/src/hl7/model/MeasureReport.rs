@@ -24,7 +24,7 @@ pub struct MeasureReport_Group_Population {
   pub(crate) code: Option<CodeableConcept>,
   pub(crate) count: Option<i32>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) subjectResults: Option<Reference>,
+  pub(crate) subjectResults: Option<Box<Reference>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -47,7 +47,7 @@ pub struct MeasureReport_Group_Stratifier_Stratum_Population {
   pub(crate) code: Option<CodeableConcept>,
   pub(crate) count: Option<i32>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) subjectResults: Option<Reference>,
+  pub(crate) subjectResults: Option<Box<Reference>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -89,8 +89,8 @@ pub struct MeasureReport {
   pub(crate) status: String,
   pub(crate) period: Period,
   pub(crate) measure: String,
-  pub(crate) subject: Option<Reference>,
-  pub(crate) reporter: Option<Reference>,
+  pub(crate) subject: Option<Box<Reference>>,
+  pub(crate) reporter: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) evaluatedResource: Vector<Reference>,
   pub(crate) improvementNotation: Option<CodeableConcept>,

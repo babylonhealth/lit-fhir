@@ -25,7 +25,7 @@ pub struct MolecularSequence_Variant {
   pub(crate) cigar: Option<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) observedAllele: Option<String>,
-  pub(crate) variantPointer: Option<Reference>,
+  pub(crate) variantPointer: Option<Box<Reference>>,
   pub(crate) referenceAllele: Option<String>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -95,7 +95,7 @@ pub struct MolecularSequence_ReferenceSeq {
   pub(crate) referenceSeqId: Option<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) referenceSeqString: Option<String>,
-  pub(crate) referenceSeqPointer: Option<Reference>,
+  pub(crate) referenceSeqPointer: Option<Box<Reference>>,
 }
 
 
@@ -134,12 +134,12 @@ pub struct MolecularSequence_StructureVariant {
 #[derive(Clone, Debug)]
 pub struct MolecularSequence {
   pub(crate) _type: Option<String>,
-  pub(crate) device: Option<Reference>,
-  pub(crate) patient: Option<Reference>,
+  pub(crate) device: Option<Box<Reference>>,
+  pub(crate) patient: Option<Box<Reference>>,
   pub(crate) pointer: Vector<Reference>,
-  pub(crate) specimen: Option<Reference>,
+  pub(crate) specimen: Option<Box<Reference>>,
   pub(crate) quantity: Option<Quantity>,
-  pub(crate) performer: Option<Reference>,
+  pub(crate) performer: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) observedSeq: Option<String>,
   pub(crate) readCoverage: Option<i32>,

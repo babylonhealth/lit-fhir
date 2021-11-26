@@ -14,11 +14,11 @@ use crate::core::model::Extension::Extension;
 
 #[derive(Clone, Debug)]
 pub struct Signature {
-  pub(crate) who: Reference,
+  pub(crate) who: Box<Reference>,
   pub(crate) _type: Vector<Coding>,
   pub(crate) when: DateTime<FixedOffset>,
   pub(crate) data: Option<String>,
   pub(crate) sigFormat: Option<String>,
-  pub(crate) onBehalfOf: Option<Reference>,
+  pub(crate) onBehalfOf: Option<Box<Reference>>,
   pub(crate) targetFormat: Option<String>,
 }

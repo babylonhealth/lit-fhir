@@ -46,10 +46,10 @@ pub struct MedicinalProductAuthorization_JurisdictionalAuthorization {
 #[derive(Clone, Debug)]
 pub struct MedicinalProductAuthorization {
   pub(crate) status: Option<CodeableConcept>,
-  pub(crate) holder: Option<Reference>,
-  pub(crate) subject: Option<Reference>,
+  pub(crate) holder: Option<Box<Reference>>,
+  pub(crate) subject: Option<Box<Reference>>,
   pub(crate) country: Vector<CodeableConcept>,
-  pub(crate) regulator: Option<Reference>,
+  pub(crate) regulator: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) statusDate: Option<DateTime<FixedOffset>>,
   pub(crate) legalBasis: Option<CodeableConcept>,

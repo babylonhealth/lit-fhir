@@ -22,9 +22,9 @@ pub struct Flag {
   pub(crate) code: CodeableConcept,
   pub(crate) status: String,
   pub(crate) period: Option<Period>,
-  pub(crate) author: Option<Reference>,
-  pub(crate) subject: Reference,
+  pub(crate) author: Option<Box<Reference>>,
+  pub(crate) subject: Box<Reference>,
   pub(crate) category: Vector<CodeableConcept>,
-  pub(crate) encounter: Option<Reference>,
+  pub(crate) encounter: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
 }

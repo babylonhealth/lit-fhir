@@ -57,7 +57,7 @@ pub struct ImplementationGuide_Manifest_Page {
 pub struct ImplementationGuide_Manifest_Resource {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) reference: Reference,
+  pub(crate) reference: Box<Reference>,
   pub(crate) example: Option<UnionBooleanOrCanonical>,
   pub(crate) relativePath: Option<String>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -105,7 +105,7 @@ pub struct ImplementationGuide_Definition_Resource {
   pub(crate) id: Option<String>,
   pub(crate) name: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) reference: Reference,
+  pub(crate) reference: Box<Reference>,
   pub(crate) example: Option<UnionBooleanOrCanonical>,
   pub(crate) groupingId: Option<String>,
   pub(crate) fhirVersion: Vector<String>,
