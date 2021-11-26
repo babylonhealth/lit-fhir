@@ -20,5 +20,5 @@ pub struct Identifier {
   pub(crate) value: Option<String>,
   pub(crate) system: Option<String>,
   pub(crate) period: Option<Period>,
-  pub(crate) assigner: Option<Reference>,
+  pub(crate) assigner: Option<Box<Reference>>,
 }

@@ -48,13 +48,14 @@ mod tests {
             limit: None,
             profile: Vector::new(),
             extension: Vector::new(),
-            subject: Some(UnionCodeableConceptOrReference::FHIRReference(Reference {
+            subject: Some(UnionCodeableConceptOrReference::FHIRReference(Box::new(Reference {
                 id: None,
                 _type: None,
                 display: None,
                 extension: Vector::new(),
                 reference: Some("123".to_string()),
-            })),
+                identifier: None,
+            }))),
             mustSupport: Vector::new(),
             sort: Vector::new(),
             codeFilter: Vector::new(),
@@ -66,13 +67,14 @@ mod tests {
             limit: None,
             profile: Vector::new(),
             extension: Vector::new(),
-            subject: Some(UnionAll::FHIRReference(Reference {
+            subject: Some(UnionAll::FHIRReference(Box::new(Reference {
                 id: None,
                 _type: None,
                 display: None,
                 extension: Vector::new(),
                 reference: Some("123".to_string()),
-            }).try_into().unwrap()),
+                identifier: None,
+            })).try_into().unwrap()),
             mustSupport: Vector::new(),
             sort: Vector::new(),
             codeFilter: Vector::new(),
@@ -90,6 +92,7 @@ mod tests {
                 sort: Vector::new(),
                 codeFilter: Vector::new(),
                 dateFilter: Vector::new(),
+                direction: "".to_string()
             }),
             ..(&data_requirement).clone()
         };
