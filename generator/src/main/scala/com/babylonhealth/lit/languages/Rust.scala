@@ -13,8 +13,6 @@ object Rust {
     s"""use bigdecimal::BigDecimal;
        |use chrono::{DateTime, FixedOffset};
        |use im::vector::Vector;
-       |
-       |${pkgs.map(s => s"use crate::$s::model::*;\nuse crate::$s::*;").mkString("\n")}
        |""".stripMargin
   def Q(f: BaseField) = f.cardinality match {
     case One | AtLeastOne => ""
@@ -116,7 +114,7 @@ object Rust {
     }
     val allFHIRTypesUsed =
       topLevelClass.fields.flatMap(getAllFHIRTypesUsed(getDeclaringPkgForType)).distinct.filterNot(definedHere)
-    val requiredImports = allFHIRTypesUsed.map(_.toImport).mkString("\n")
+    val requiredImports = allFHIRTypesUsed.map(_.toImport).sorted.mkString("\n")
     val className       = toRustClassName(topLevelClass.className)
 //    val implement     = topLevelClass.parentClass.map(c => " extends " + toRustClassName(c.className)) getOrElse ""
     val parentFields  = topLevelClass.parentClass.toSeq.flatMap(_.fields)
