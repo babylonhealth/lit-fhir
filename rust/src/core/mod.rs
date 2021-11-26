@@ -18,7 +18,7 @@ pub enum UnionAll {
     FHIRString(String),
     FHIRInteger(i32),
     FHIRQuantity(Quantity),
-    FHIRReference(Reference),
+    FHIRReference(Box<Reference>),
 }
 #[derive(Clone, Debug)]
 pub enum UnionDurationOrDateTimeOrPeriod {
@@ -59,7 +59,7 @@ macro_rules! sub_enum {
 
 sub_enum!(UnionCodeableConceptOrReference {
     FHIRCodeableConcept(CodeableConcept),
-    FHIRReference(Reference)
+    FHIRReference(Box<Reference>)
 });
 
 // impl Clone for Vector<T> {

@@ -12,6 +12,8 @@ use crate::core::UnionAll;
 
 #[derive(Clone, Debug)]
 pub struct Extension {
-  pub(crate) url: String,
-  pub(crate) value: Option<UnionAll>,
+    pub(crate) id: Option<String>,
+    pub(crate) url: String,
+    pub(crate) value: Option<UnionAll>,
+    pub(crate) extension: Vector<Extension>,
 }
