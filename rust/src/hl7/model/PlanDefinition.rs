@@ -2,30 +2,27 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
-use crate::hl7::model::*;
-use crate::hl7::*;
 
-
-use crate::core::model::Meta::Meta;
-use crate::hl7::model::Narrative::Narrative;
+use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactDetail::ContactDetail;
-use crate::core::model::Resource::Resource;
+use crate::core::model::DataRequirement::DataRequirement;
+use crate::core::model::Duration::Duration;
+use crate::core::model::Expression::Expression;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
-use crate::core::UnionCodeableConceptOrReference;
-use crate::core::model::UsageContext::UsageContext;
+use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
-use crate::core::model::RelatedArtifact::RelatedArtifact;
-use crate::core::model::Duration::Duration;
-use crate::hl7::UnionCodeableConceptOrQuantityOrRange;
-use crate::core::model::DataRequirement::DataRequirement;
 use crate::core::model::PlanDefinition_Action::PlanDefinition_Action;
+use crate::core::model::RelatedArtifact::RelatedArtifact;
+use crate::core::model::Resource::Resource;
 use crate::core::model::TriggerDefinition::TriggerDefinition;
+use crate::core::model::UsageContext::UsageContext;
 use crate::hl7::Union01405873694;
 use crate::hl7::UnionCanonicalOrUri;
-use crate::core::model::Expression::Expression;
+use crate::hl7::UnionCodeableConceptOrQuantityOrRange;
 use crate::hl7::UnionDurationOrRange;
+use crate::hl7::model::Narrative::Narrative;
 
 
 

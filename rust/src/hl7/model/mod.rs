@@ -3,3 +3,4 @@
 pub mod Account;
 pub mod Appointment;
 pub mod Narrative;
+// pub mod ExplanationOfBenefit;

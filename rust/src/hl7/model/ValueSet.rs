@@ -2,23 +2,20 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
-use crate::hl7::model::*;
-use crate::hl7::*;
 
-
-use crate::core::model::Meta::Meta;
-use crate::hl7::model::Narrative::Narrative;
+use crate::core::model::CodeableConcept::CodeableConcept;
+use crate::core::model::Coding::Coding;
 use crate::core::model::ContactDetail::ContactDetail;
-use crate::core::model::Resource::Resource;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
+use crate::core::model::Meta::Meta;
+use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::core::model::CodeableConcept::CodeableConcept;
-use crate::core::model::ValueSet_Expansion_Contains::ValueSet_Expansion_Contains;
-use crate::core::model::ValueSet_Compose_Include_Concept_Designation::ValueSet_Compose_Include_Concept_Designation;
-use crate::hl7::Union01475253842;
 use crate::core::model::ValueSet_Compose_Include::ValueSet_Compose_Include;
-use crate::core::model::Coding::Coding;
+use crate::core::model::ValueSet_Compose_Include_Concept_Designation::ValueSet_Compose_Include_Concept_Designation;
+use crate::core::model::ValueSet_Expansion_Contains::ValueSet_Expansion_Contains;
+use crate::hl7::Union01475253842;
+use crate::hl7::model::Narrative::Narrative;
 
 
 

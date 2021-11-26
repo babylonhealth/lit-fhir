@@ -2,19 +2,16 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
-use crate::hl7::model::*;
-use crate::hl7::*;
 
-
-use crate::core::model::Meta::Meta;
-use crate::hl7::model::Narrative::Narrative;
-use crate::core::model::Reference::Reference;
 use crate::core::model::CodeableConcept::CodeableConcept;
-use crate::core::model::Resource::Resource;
 use crate::core::model::Extension::Extension;
+use crate::core::model::Meta::Meta;
+use crate::core::model::Provenance_Agent::Provenance_Agent;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
 use crate::core::model::Signature::Signature;
 use crate::hl7::UnionDateTimeOrPeriod;
-use crate::core::model::Provenance_Agent::Provenance_Agent;
+use crate::hl7::model::Narrative::Narrative;
 
 
 

@@ -2,21 +2,18 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
-use crate::hl7::model::*;
-use crate::hl7::*;
 
-
-use crate::core::model::Meta::Meta;
-use crate::hl7::model::Narrative::Narrative;
-use crate::core::model::ContactDetail::ContactDetail;
-use crate::core::model::Resource::Resource;
-use crate::core::model::Extension::Extension;
-use crate::core::model::UsageContext::UsageContext;
 use crate::core::model::CodeableConcept::CodeableConcept;
-use crate::core::model::Reference::Reference;
-use crate::hl7::UnionBooleanOrCanonical;
+use crate::core::model::ContactDetail::ContactDetail;
+use crate::core::model::Extension::Extension;
 use crate::core::model::ImplementationGuide_Definition_Page::ImplementationGuide_Definition_Page;
+use crate::core::model::Meta::Meta;
+use crate::core::model::Reference::Reference;
+use crate::core::model::Resource::Resource;
+use crate::core::model::UsageContext::UsageContext;
+use crate::hl7::UnionBooleanOrCanonical;
 use crate::hl7::UnionReferenceOrUrl;
+use crate::hl7::model::Narrative::Narrative;
 
 
 
