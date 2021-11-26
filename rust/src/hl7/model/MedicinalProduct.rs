@@ -69,7 +69,7 @@ pub struct MedicinalProduct_Name {
 pub struct MedicinalProduct_ManufacturingBusinessOperation {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) regulator: Option<Reference>,
+  pub(crate) regulator: Option<Box<Reference>>,
   pub(crate) manufacturer: Vector<Reference>,
   pub(crate) operationType: Option<CodeableConcept>,
   pub(crate) effectiveDate: Option<DateTime<FixedOffset>>,

@@ -40,7 +40,7 @@ pub struct DocumentReference_Context {
   pub(crate) facilityType: Option<CodeableConcept>,
   pub(crate) practiceSetting: Option<CodeableConcept>,
   pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) sourcePatientInfo: Option<Reference>,
+  pub(crate) sourcePatientInfo: Option<Box<Reference>>,
 }
 
 
@@ -48,7 +48,7 @@ pub struct DocumentReference_Context {
 pub struct DocumentReference_RelatesTo {
   pub(crate) id: Option<String>,
   pub(crate) code: String,
-  pub(crate) target: Reference,
+  pub(crate) target: Box<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -59,13 +59,13 @@ pub struct DocumentReference {
   pub(crate) date: Option<DateTime<FixedOffset>>,
   pub(crate) status: String,
   pub(crate) author: Vector<Reference>,
-  pub(crate) subject: Option<Reference>,
+  pub(crate) subject: Option<Box<Reference>>,
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) docStatus: Option<String>,
-  pub(crate) custodian: Option<Reference>,
+  pub(crate) custodian: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) description: Option<String>,
-  pub(crate) authenticator: Option<Reference>,
+  pub(crate) authenticator: Option<Box<Reference>>,
   pub(crate) securityLabel: Vector<CodeableConcept>,
   pub(crate) masterIdentifier: Option<Identifier>,
   pub(crate) content: Vector<DocumentReference_Content>,

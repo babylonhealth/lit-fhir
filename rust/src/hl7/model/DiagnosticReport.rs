@@ -21,7 +21,7 @@ use crate::core::model::Attachment::Attachment;
 #[derive(Clone, Debug)]
 pub struct DiagnosticReport_Media {
   pub(crate) id: Option<String>,
-  pub(crate) link: Reference,
+  pub(crate) link: Box<Reference>,
   pub(crate) comment: Option<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -34,10 +34,10 @@ pub struct DiagnosticReport {
   pub(crate) issued: Option<DateTime<FixedOffset>>,
   pub(crate) result: Vector<Reference>,
   pub(crate) basedOn: Vector<Reference>,
-  pub(crate) subject: Option<Reference>,
+  pub(crate) subject: Option<Box<Reference>>,
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) specimen: Vector<Reference>,
-  pub(crate) encounter: Option<Reference>,
+  pub(crate) encounter: Option<Box<Reference>>,
   pub(crate) performer: Vector<Reference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) conclusion: Option<String>,

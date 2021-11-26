@@ -52,7 +52,7 @@ pub struct ResearchStudy {
   pub(crate) period: Option<Period>,
   pub(crate) contact: Vector<ContactDetail>,
   pub(crate) keyword: Vector<CodeableConcept>,
-  pub(crate) sponsor: Option<Reference>,
+  pub(crate) sponsor: Option<Box<Reference>>,
   pub(crate) protocol: Vector<Reference>,
   pub(crate) category: Vector<CodeableConcept>,
   pub(crate) location: Vector<CodeableConcept>,
@@ -63,7 +63,7 @@ pub struct ResearchStudy {
   pub(crate) reasonStopped: Option<CodeableConcept>,
   pub(crate) relatedArtifact: Vector<RelatedArtifact>,
   pub(crate) primaryPurposeType: Option<CodeableConcept>,
-  pub(crate) principalInvestigator: Option<Reference>,
+  pub(crate) principalInvestigator: Option<Box<Reference>>,
   pub(crate) arm: Vector<ResearchStudy_Arm>,
   pub(crate) objective: Vector<ResearchStudy_Objective>,
 }

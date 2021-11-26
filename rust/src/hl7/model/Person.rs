@@ -22,7 +22,7 @@ use crate::core::model::Reference::Reference;
 #[derive(Clone, Debug)]
 pub struct Person_Link {
   pub(crate) id: Option<String>,
-  pub(crate) target: Reference,
+  pub(crate) target: Box<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) assurance: Option<String>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -38,6 +38,6 @@ pub struct Person {
   pub(crate) address: Vector<Address>,
   pub(crate) birthDate: Option<FHIRDate>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) managingOrganization: Option<Reference>,
+  pub(crate) managingOrganization: Option<Box<Reference>>,
   pub(crate) link: Vector<Person_Link>,
 }

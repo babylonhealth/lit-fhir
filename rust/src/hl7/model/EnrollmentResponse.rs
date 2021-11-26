@@ -18,11 +18,11 @@ use crate::core::model::Identifier::Identifier;
 #[derive(Clone, Debug)]
 pub struct EnrollmentResponse {
   pub(crate) status: Option<String>,
-  pub(crate) request: Option<Reference>,
+  pub(crate) request: Option<Box<Reference>>,
   pub(crate) outcome: Option<String>,
   pub(crate) created: Option<DateTime<FixedOffset>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) disposition: Option<String>,
-  pub(crate) organization: Option<Reference>,
-  pub(crate) requestProvider: Option<Reference>,
+  pub(crate) organization: Option<Box<Reference>>,
+  pub(crate) requestProvider: Option<Box<Reference>>,
 }

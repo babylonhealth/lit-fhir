@@ -27,7 +27,7 @@ use crate::core::model::Period::Period;
 pub struct Patient_Link {
   pub(crate) id: Option<String>,
   pub(crate) _type: String,
-  pub(crate) other: Reference,
+  pub(crate) other: Box<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -43,7 +43,7 @@ pub struct Patient_Contact {
   pub(crate) address: Option<Address>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) relationship: Vector<CodeableConcept>,
-  pub(crate) organization: Option<Reference>,
+  pub(crate) organization: Option<Box<Reference>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -71,7 +71,7 @@ pub struct Patient {
   pub(crate) maritalStatus: Option<CodeableConcept>,
   pub(crate) multipleBirth: Option<UnionBooleanOrInteger>,
   pub(crate) generalPractitioner: Vector<Reference>,
-  pub(crate) managingOrganization: Option<Reference>,
+  pub(crate) managingOrganization: Option<Box<Reference>>,
   pub(crate) link: Vector<Patient_Link>,
   pub(crate) contact: Vector<Patient_Contact>,
   pub(crate) communication: Vector<Patient_Communication>,

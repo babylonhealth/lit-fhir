@@ -22,7 +22,7 @@ pub struct Slot {
   pub(crate) start: DateTime<FixedOffset>,
   pub(crate) status: String,
   pub(crate) comment: Option<String>,
-  pub(crate) schedule: Reference,
+  pub(crate) schedule: Box<Reference>,
   pub(crate) specialty: Vector<CodeableConcept>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) overbooked: Option<bool>,

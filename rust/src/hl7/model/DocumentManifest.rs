@@ -19,7 +19,7 @@ use crate::core::model::Identifier::Identifier;
 #[derive(Clone, Debug)]
 pub struct DocumentManifest_Related {
   pub(crate) id: Option<String>,
-  pub(crate) ref: Option<Reference>,
+  pub(crate) ref: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) identifier: Option<Identifier>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -31,7 +31,7 @@ pub struct DocumentManifest {
   pub(crate) status: String,
   pub(crate) author: Vector<Reference>,
   pub(crate) source: Option<String>,
-  pub(crate) subject: Option<Reference>,
+  pub(crate) subject: Option<Box<Reference>>,
   pub(crate) created: Option<DateTime<FixedOffset>>,
   pub(crate) content: Vector<Reference>,
   pub(crate) recipient: Vector<Reference>,

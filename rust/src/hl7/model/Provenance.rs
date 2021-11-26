@@ -21,11 +21,11 @@ use crate::core::model::Provenance_Agent::Provenance_Agent;
 #[derive(Clone, Debug)]
 pub struct Provenance_Agent {
   pub(crate) id: Option<String>,
-  pub(crate) who: Reference,
+  pub(crate) who: Box<Reference>,
   pub(crate) _type: Option<CodeableConcept>,
   pub(crate) role: Vector<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) onBehalfOf: Option<Reference>,
+  pub(crate) onBehalfOf: Option<Box<Reference>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -34,7 +34,7 @@ pub struct Provenance_Agent {
 pub struct Provenance_Entity {
   pub(crate) id: Option<String>,
   pub(crate) role: String,
-  pub(crate) what: Reference,
+  pub(crate) what: Box<Reference>,
   pub(crate) agent: Vector<Provenance_Agent>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -46,7 +46,7 @@ pub struct Provenance {
   pub(crate) policy: Vector<String>,
   pub(crate) reason: Vector<CodeableConcept>,
   pub(crate) recorded: DateTime<FixedOffset>,
-  pub(crate) location: Option<Reference>,
+  pub(crate) location: Option<Box<Reference>>,
   pub(crate) activity: Option<CodeableConcept>,
   pub(crate) signature: Vector<Signature>,
   pub(crate) occurred: Option<UnionDateTimeOrPeriod>,

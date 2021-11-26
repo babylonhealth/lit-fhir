@@ -34,7 +34,7 @@ pub struct ImagingStudy_Series_Instance {
 #[derive(Clone, Debug)]
 pub struct ImagingStudy_Series_Performer {
   pub(crate) id: Option<String>,
-  pub(crate) actor: Reference,
+  pub(crate) actor: Box<Reference>,
   pub(crate) function: Option<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
@@ -63,14 +63,14 @@ pub struct ImagingStudy_Series {
 pub struct ImagingStudy {
   pub(crate) note: Vector<Annotation>,
   pub(crate) status: String,
-  pub(crate) subject: Reference,
+  pub(crate) subject: Box<Reference>,
   pub(crate) started: Option<DateTime<FixedOffset>>,
   pub(crate) basedOn: Vector<Reference>,
   pub(crate) modality: Vector<Coding>,
-  pub(crate) referrer: Option<Reference>,
+  pub(crate) referrer: Option<Box<Reference>>,
   pub(crate) endpoint: Vector<Reference>,
-  pub(crate) location: Option<Reference>,
-  pub(crate) encounter: Option<Reference>,
+  pub(crate) location: Option<Box<Reference>>,
+  pub(crate) encounter: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) interpreter: Vector<Reference>,
@@ -79,6 +79,6 @@ pub struct ImagingStudy {
   pub(crate) numberOfSeries: Option<u32>,
   pub(crate) reasonReference: Vector<Reference>,
   pub(crate) numberOfInstances: Option<u32>,
-  pub(crate) procedureReference: Option<Reference>,
+  pub(crate) procedureReference: Option<Box<Reference>>,
   pub(crate) series: Vector<ImagingStudy_Series>,
 }

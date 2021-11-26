@@ -23,10 +23,10 @@ use crate::core::model::Identifier::Identifier;
 pub struct CareTeam_Participant {
   pub(crate) id: Option<String>,
   pub(crate) role: Vector<CodeableConcept>,
-  pub(crate) member: Option<Reference>,
+  pub(crate) member: Option<Box<Reference>>,
   pub(crate) period: Option<Period>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) onBehalfOf: Option<Reference>,
+  pub(crate) onBehalfOf: Option<Box<Reference>>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
 
@@ -36,10 +36,10 @@ pub struct CareTeam {
   pub(crate) note: Vector<Annotation>,
   pub(crate) status: Option<String>,
   pub(crate) period: Option<Period>,
-  pub(crate) subject: Option<Reference>,
+  pub(crate) subject: Option<Box<Reference>>,
   pub(crate) telecom: Vector<ContactPoint>,
   pub(crate) category: Vector<CodeableConcept>,
-  pub(crate) encounter: Option<Reference>,
+  pub(crate) encounter: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) reasonCode: Vector<CodeableConcept>,
   pub(crate) reasonReference: Vector<Reference>,

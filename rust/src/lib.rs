@@ -31,6 +31,7 @@ mod tests {
                     value: Some(BigDecimal::from(123)),
                     system: Some("http://fake.system".to_string()),
                     extension: Vector::new(),
+                    comparator: None
                 })),
                 extension: Vector::new(),
             }),
@@ -83,15 +84,8 @@ mod tests {
         let data_requirement_3 = DataRequirement {
             sort: Vector::unit(DataRequirement_Sort {
                 id: None,
-                _type: "some sort type".to_string(),
-                limit: None,
-                profile: Vector::new(),
+                path: "".to_string(),
                 extension: Vector::new(),
-                subject: None,
-                mustSupport: Vector::new(),
-                sort: Vector::new(),
-                codeFilter: Vector::new(),
-                dateFilter: Vector::new(),
                 direction: "".to_string()
             }),
             ..(&data_requirement).clone()

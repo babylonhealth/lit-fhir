@@ -50,5 +50,5 @@ pub struct Evidence {
   pub(crate) effectivePeriod: Option<Period>,
   pub(crate) relatedArtifact: Vector<RelatedArtifact>,
   pub(crate) exposureVariant: Vector<Reference>,
-  pub(crate) exposureBackground: Reference,
+  pub(crate) exposureBackground: Box<Reference>,
 }

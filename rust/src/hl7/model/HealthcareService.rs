@@ -64,7 +64,7 @@ pub struct HealthcareService {
   pub(crate) endpoint: Vector<Reference>,
   pub(crate) specialty: Vector<CodeableConcept>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) providedBy: Option<Reference>,
+  pub(crate) providedBy: Option<Box<Reference>>,
   pub(crate) extraDetails: Option<String>,
   pub(crate) coverageArea: Vector<Reference>,
   pub(crate) communication: Vector<CodeableConcept>,

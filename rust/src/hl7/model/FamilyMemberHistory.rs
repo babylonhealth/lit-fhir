@@ -41,7 +41,7 @@ pub struct FamilyMemberHistory {
   pub(crate) note: Vector<Annotation>,
   pub(crate) status: String,
   pub(crate) age: Option<UnionAgeOrRangeOrString>,
-  pub(crate) patient: Reference,
+  pub(crate) patient: Box<Reference>,
   pub(crate) born: Option<UnionDateOrPeriodOrString>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) reasonCode: Vector<CodeableConcept>,

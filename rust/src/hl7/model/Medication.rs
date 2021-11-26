@@ -45,7 +45,7 @@ pub struct Medication {
   pub(crate) status: Option<String>,
   pub(crate) amount: Option<Ratio>,
   pub(crate) identifier: Vector<Identifier>,
-  pub(crate) manufacturer: Option<Reference>,
+  pub(crate) manufacturer: Option<Box<Reference>>,
   pub(crate) batch: Option<Medication_Batch>,
   pub(crate) ingredient: Vector<Medication_Ingredient>,
 }

@@ -21,7 +21,7 @@ use crate::core::model::Signature::Signature;
 pub struct VerificationResult_Validator {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) organization: Reference,
+  pub(crate) organization: Box<Reference>,
   pub(crate) modifierExtension: Vector<Extension>,
   pub(crate) identityCertificate: Option<String>,
   pub(crate) attestationSignature: Option<Signature>,
@@ -31,7 +31,7 @@ pub struct VerificationResult_Validator {
 #[derive(Clone, Debug)]
 pub struct VerificationResult_PrimarySource {
   pub(crate) id: Option<String>,
-  pub(crate) who: Option<Reference>,
+  pub(crate) who: Option<Box<Reference>>,
   pub(crate) _type: Vector<CodeableConcept>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) validationDate: Option<DateTime<FixedOffset>>,
@@ -46,10 +46,10 @@ pub struct VerificationResult_PrimarySource {
 #[derive(Clone, Debug)]
 pub struct VerificationResult_Attestation {
   pub(crate) id: Option<String>,
-  pub(crate) who: Option<Reference>,
+  pub(crate) who: Option<Box<Reference>>,
   pub(crate) date: Option<FHIRDate>,
   pub(crate) extension: Vector<Extension>,
-  pub(crate) onBehalfOf: Option<Reference>,
+  pub(crate) onBehalfOf: Option<Box<Reference>>,
   pub(crate) proxySignature: Option<Signature>,
   pub(crate) sourceSignature: Option<Signature>,
   pub(crate) modifierExtension: Vector<Extension>,

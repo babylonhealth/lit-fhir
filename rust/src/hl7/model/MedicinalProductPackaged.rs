@@ -55,7 +55,7 @@ pub struct MedicinalProductPackaged {
   pub(crate) manufacturer: Vector<Reference>,
   pub(crate) marketingStatus: Vector<any>,
   pub(crate) legalStatusOfSupply: Option<CodeableConcept>,
-  pub(crate) marketingAuthorization: Option<Reference>,
+  pub(crate) marketingAuthorization: Option<Box<Reference>>,
   pub(crate) batchIdentifier: Vector<MedicinalProductPackaged_BatchIdentifier>,
   pub(crate) packageItem: Vector<MedicinalProductPackaged_PackageItem>,
 }

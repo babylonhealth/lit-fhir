@@ -19,9 +19,9 @@ use crate::core::model::Identifier::Identifier;
 pub struct EnrollmentRequest {
   pub(crate) status: Option<String>,
   pub(crate) created: Option<DateTime<FixedOffset>>,
-  pub(crate) insurer: Option<Reference>,
-  pub(crate) provider: Option<Reference>,
-  pub(crate) coverage: Option<Reference>,
-  pub(crate) candidate: Option<Reference>,
+  pub(crate) insurer: Option<Box<Reference>>,
+  pub(crate) provider: Option<Box<Reference>>,
+  pub(crate) coverage: Option<Box<Reference>>,
+  pub(crate) candidate: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
 }

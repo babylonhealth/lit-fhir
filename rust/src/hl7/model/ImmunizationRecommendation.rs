@@ -48,8 +48,8 @@ pub struct ImmunizationRecommendation_Recommendation {
 #[derive(Clone, Debug)]
 pub struct ImmunizationRecommendation {
   pub(crate) date: DateTime<FixedOffset>,
-  pub(crate) patient: Reference,
-  pub(crate) authority: Option<Reference>,
+  pub(crate) patient: Box<Reference>,
+  pub(crate) authority: Option<Box<Reference>>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) recommendation: Vector<ImmunizationRecommendation_Recommendation>,
 }

@@ -23,7 +23,7 @@ pub struct AuditEvent_Source {
   pub(crate) id: Option<String>,
   pub(crate) site: Option<String>,
   pub(crate) _type: Vector<Coding>,
-  pub(crate) observer: Reference,
+  pub(crate) observer: Box<Reference>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -41,14 +41,14 @@ pub struct AuditEvent_Agent_Network {
 #[derive(Clone, Debug)]
 pub struct AuditEvent_Agent {
   pub(crate) id: Option<String>,
-  pub(crate) who: Option<Reference>,
+  pub(crate) who: Option<Box<Reference>>,
   pub(crate) _type: Option<CodeableConcept>,
   pub(crate) role: Vector<CodeableConcept>,
   pub(crate) name: Option<String>,
   pub(crate) altId: Option<String>,
   pub(crate) media: Option<Coding>,
   pub(crate) policy: Vector<String>,
-  pub(crate) location: Option<Reference>,
+  pub(crate) location: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) requestor: bool,
   pub(crate) purposeOfUse: Vector<CodeableConcept>,
@@ -69,7 +69,7 @@ pub struct AuditEvent_Entity_Detail {
 #[derive(Clone, Debug)]
 pub struct AuditEvent_Entity {
   pub(crate) id: Option<String>,
-  pub(crate) what: Option<Reference>,
+  pub(crate) what: Option<Box<Reference>>,
   pub(crate) _type: Option<Coding>,
   pub(crate) role: Option<Coding>,
   pub(crate) name: Option<String>,

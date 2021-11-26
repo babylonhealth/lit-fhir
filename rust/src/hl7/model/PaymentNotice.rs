@@ -19,15 +19,15 @@ use crate::core::model::CodeableConcept::CodeableConcept;
 
 #[derive(Clone, Debug)]
 pub struct PaymentNotice {
-  pub(crate) payee: Option<Reference>,
+  pub(crate) payee: Option<Box<Reference>>,
   pub(crate) status: String,
   pub(crate) amount: Money,
-  pub(crate) request: Option<Reference>,
+  pub(crate) request: Option<Box<Reference>>,
   pub(crate) created: DateTime<FixedOffset>,
-  pub(crate) payment: Reference,
-  pub(crate) response: Option<Reference>,
-  pub(crate) provider: Option<Reference>,
-  pub(crate) recipient: Reference,
+  pub(crate) payment: Box<Reference>,
+  pub(crate) response: Option<Box<Reference>>,
+  pub(crate) provider: Option<Box<Reference>>,
+  pub(crate) recipient: Box<Reference>,
   pub(crate) identifier: Vector<Identifier>,
   pub(crate) paymentDate: Option<FHIRDate>,
   pub(crate) paymentStatus: Option<CodeableConcept>,

@@ -49,7 +49,7 @@ pub struct MedicationKnowledge_Kinetics {
 pub struct MedicationKnowledge_Monograph {
   pub(crate) id: Option<String>,
   pub(crate) _type: Option<CodeableConcept>,
-  pub(crate) source: Option<Reference>,
+  pub(crate) source: Option<Box<Reference>>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
 }
@@ -141,7 +141,7 @@ pub struct MedicationKnowledge_Regulatory {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Extension>,
   pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) regulatoryAuthority: Reference,
+  pub(crate) regulatoryAuthority: Box<Reference>,
   pub(crate) schedule: Vector<MedicationKnowledge_Regulatory_Schedule>,
   pub(crate) maxDispense: Option<MedicationKnowledge_Regulatory_MaxDispense>,
   pub(crate) substitution: Vector<MedicationKnowledge_Regulatory_Substitution>,
@@ -196,7 +196,7 @@ pub struct MedicationKnowledge {
   pub(crate) synonym: Vector<String>,
   pub(crate) doseForm: Option<CodeableConcept>,
   pub(crate) productType: Vector<CodeableConcept>,
-  pub(crate) manufacturer: Option<Reference>,
+  pub(crate) manufacturer: Option<Box<Reference>>,
   pub(crate) intendedRoute: Vector<CodeableConcept>,
   pub(crate) contraindication: Vector<Reference>,
   pub(crate) associatedMedication: Vector<Reference>,
