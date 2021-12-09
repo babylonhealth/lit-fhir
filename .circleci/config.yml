@@ -38,7 +38,7 @@ commands:
           command: find -name target -exec tar -zcf test-targets.tar.gz -H posix {} + && find -name target -exec rm -r {} +
       - save_cache:
           name: Saving test cache
-          key: test-cache-v3-{{ .Branch }}-{{ .Revision }}
+          key: test-cache-v1-{{ .Branch }}-{{ .Revision }}
           paths:
             - "~/project/test-targets.tar.gz"
   restore_test_cache:
@@ -47,9 +47,9 @@ commands:
       - restore_cache:
           name: Restoring test cache
           keys:
-            - test-cache-v3-{{ .Branch }}-{{ .Revision }}
-            - test-cache-v3-{{ .Branch }}-
-            - test-cache-v3-
+            - test-cache-v1-{{ .Branch }}-{{ .Revision }}
+            - test-cache-v1-{{ .Branch }}-
+            - test-cache-v1-
       - run:
           name: untar classfiles
           command: if [ -f test-targets.tar.gz ]; then tar --skip-old-files -xf test-targets.tar.gz; fi
