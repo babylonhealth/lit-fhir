@@ -192,11 +192,12 @@ lazy val bench = project
       "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots" // needed for jackson-module-scala:2.13.0-SNAPSHOT
     ),
     libraryDependencies ++= Seq(
-      "ca.uhn.hapi.fhir"   % "hapi-fhir-structures-r4" % "4.0.3"             % Test,
-      "org.jline"          % "jline"                   % "3.14.1"            % Test,
-      "com.storm-enroute" %% "scalameter"              % V.scalaMeterVersion % Test,
-      "org.scalatest"     %% "scalatest"               % V.scalaTest         % Test,
-      "org.skyscreamer"    % "jsonassert"              % V.jsonassert        % Test
+      "ca.uhn.hapi.fhir"              % "hapi-fhir-structures-r4" % "4.0.3"             % Test,
+      "org.jline"                     % "jline"                   % "3.14.1"            % Test,
+      "com.storm-enroute"            %% "scalameter"              % V.scalaMeterVersion % Test,
+      "com.fasterxml.jackson.module" %% "jackson-module-scala"    % "2.13.0"            % Test,
+      "org.scalatest"                %% "scalatest"               % V.scalaTest         % Test,
+      "org.skyscreamer"               % "jsonassert"              % V.jsonassert        % Test
     ),
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
     logBuffered               := false,
@@ -216,8 +217,8 @@ lazy val coreJava = project
       "dev.zio"          %% "izumi-reflect"     % V.izumiReflect, // Sad times that we need to include this here...
       "org.projectlombok" % "lombok"            % V.lombok,
       "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
-      "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
-      "org.junit.jupiter" % "junit-jupiter"     % "5.5.2"                          % Test
+      "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
+      "org.junit.jupiter" % "junit-jupiter"     % "5.5.2" % Test
     )
   )
   .dependsOn(core)
