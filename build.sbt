@@ -16,7 +16,7 @@ val V = new {
   val circe                  = "0.14.1"
   val logback                = "1.2.3"
   val enumeratum             = "1.5.15"
-  val scalaMeterVersion      = "0.22.BBL"
+  val scalaMeterVersion      = "0.22"
   val izumiReflect           = "1.1.2"
   val litVersionForGenerator = "0.14.3"
   val scalaTest              = "3.2.9"
@@ -30,11 +30,7 @@ def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
   organization       := "com.babylonhealth.lit",
   scalaVersion       := scala2Version,
   crossScalaVersions := versions,
-  resolvers ++= Seq(
-    Resolver.mavenLocal,
-    "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
-    "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases"
-  ),
+  resolvers += Resolver.mavenLocal,
   libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scala-lang" % "scala-reflect" % scala2Version)
                            else Nil),
   scalacOptions += "-language:postfixOps",
@@ -194,7 +190,7 @@ lazy val bench = project
     libraryDependencies ++= Seq(
       "ca.uhn.hapi.fhir"              % "hapi-fhir-structures-r4" % "4.0.3"             % Test,
       "org.jline"                     % "jline"                   % "3.14.1"            % Test,
-      "com.storm-enroute"            %% "scalameter"              % V.scalaMeterVersion % Test,
+      "io.github.hughsimpson"        %% "scalameter"              % V.scalaMeterVersion % Test,
       "com.fasterxml.jackson.module" %% "jackson-module-scala"    % "2.13.0"            % Test,
       "org.scalatest"                %% "scalatest"               % V.scalaTest         % Test,
       "org.skyscreamer"               % "jsonassert"              % V.jsonassert        % Test

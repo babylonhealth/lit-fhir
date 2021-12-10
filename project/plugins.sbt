@@ -9,14 +9,10 @@ else
     sys.props("ARTIFACTORY_USER"),
     sys.props("ARTIFACTORY_PWD"))
 
-resolvers ++= Seq(
-  "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
-  "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases",
-  Resolver.jcenterRepo
-)
+resolvers += Resolver.jcenterRepo
 
 addSbtPlugin("org.scalameta"     % "sbt-scalafmt"          % "2.3.0")
 addSbtPlugin("net.aichler"       % "sbt-jupiter-interface" % "0.8.3")
 addSbtPlugin("com.lightbend.sbt" % "sbt-java-formatter"    % "0.5.1")
 //addSbtPlugin("com.etsy" % "sbt-checkstyle-plugin" % "3.1.1")
-addSbtPlugin("net.virtual-void"  % "sbt-dependency-graph" % "0.10.0-RC1")
+addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
