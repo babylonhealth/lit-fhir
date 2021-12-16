@@ -6,7 +6,7 @@ val artifactory     = s"https://$artifactoryHost/"
 val thisVersion = sys.props.get("version") getOrElse "local"
 
 val scala2Version = "2.13.7"
-val scala3Version = "3.0.2"
+val scala3Version = "3.1.0"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
@@ -81,7 +81,11 @@ lazy val generator = project
     if (file(s"${System.getProperty("user.home")}/.ivy2/artifactory_credentials").exists())
       credentials += Credentials(file(s"${System.getProperty("user.home")}/.ivy2/artifactory_credentials"))
     else
-      credentials += Credentials("Artifactory Realm", "artifactory.ops.babylontech.co.uk", sys.props("ARTIFACTORY_USER"), sys.props("ARTIFACTORY_PWD")),
+      credentials += Credentials(
+        "Artifactory Realm",
+        "artifactory.ops.babylontech.co.uk",
+        sys.props("ARTIFACTORY_USER"),
+        sys.props("ARTIFACTORY_PWD")),
     resolvers ++= Seq(
       "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
       "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases"
