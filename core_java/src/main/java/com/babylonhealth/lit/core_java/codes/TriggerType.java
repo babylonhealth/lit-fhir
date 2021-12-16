@@ -1,0 +1,14 @@
+package com.babylonhealth.lit.core_java.codes;
+
+import com.babylonhealth.lit.core.TRIGGER_TYPE;
+
+public interface TriggerType {
+  public static final TRIGGER_TYPE DATA_ACCESSED = TRIGGER_TYPE.DATA_ACCESSED$.MODULE$;
+  public static final TRIGGER_TYPE DATA_ACCESS_ENDED = TRIGGER_TYPE.DATA_ACCESS_ENDED$.MODULE$;
+  public static final TRIGGER_TYPE DATA_ADDED = TRIGGER_TYPE.DATA_ADDED$.MODULE$;
+  public static final TRIGGER_TYPE DATA_CHANGED = TRIGGER_TYPE.DATA_CHANGED$.MODULE$;
+  public static final TRIGGER_TYPE DATA_REMOVED = TRIGGER_TYPE.DATA_REMOVED$.MODULE$;
+  public static final TRIGGER_TYPE DATA_UPDATED = TRIGGER_TYPE.DATA_UPDATED$.MODULE$;
+  public static final TRIGGER_TYPE NAMED_EVENT = TRIGGER_TYPE.NAMED_EVENT$.MODULE$;
+  public static final TRIGGER_TYPE PERIODIC = TRIGGER_TYPE.PERIODIC$.MODULE$;
+}

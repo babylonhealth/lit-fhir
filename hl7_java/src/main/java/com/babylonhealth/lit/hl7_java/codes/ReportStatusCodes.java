@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.REPORT_STATUS_CODES;
+
+public interface ReportStatusCodes {
+  public static final REPORT_STATUS_CODES COMPLETED = REPORT_STATUS_CODES.COMPLETED$.MODULE$;
+  public static final REPORT_STATUS_CODES ENTERED_IN_ERROR =
+      REPORT_STATUS_CODES.ENTERED_IN_ERROR$.MODULE$;
+  public static final REPORT_STATUS_CODES IN_PROGRESS = REPORT_STATUS_CODES.IN_PROGRESS$.MODULE$;
+  public static final REPORT_STATUS_CODES STOPPED = REPORT_STATUS_CODES.STOPPED$.MODULE$;
+  public static final REPORT_STATUS_CODES WAITING = REPORT_STATUS_CODES.WAITING$.MODULE$;
+}

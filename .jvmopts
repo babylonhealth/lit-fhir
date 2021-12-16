@@ -1,0 +1,3 @@
+ -Xss32m
+ -Xms4G
+ -Xmx10G

@@ -1,0 +1,15 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.BUNDLE_TYPE;
+
+public interface BundleType {
+  public static final BUNDLE_TYPE BATCH = BUNDLE_TYPE.BATCH$.MODULE$;
+  public static final BUNDLE_TYPE BATCH_RESPONSE = BUNDLE_TYPE.BATCH_RESPONSE$.MODULE$;
+  public static final BUNDLE_TYPE COLLECTION = BUNDLE_TYPE.COLLECTION$.MODULE$;
+  public static final BUNDLE_TYPE DOCUMENT = BUNDLE_TYPE.DOCUMENT$.MODULE$;
+  public static final BUNDLE_TYPE HISTORY = BUNDLE_TYPE.HISTORY$.MODULE$;
+  public static final BUNDLE_TYPE MESSAGE = BUNDLE_TYPE.MESSAGE$.MODULE$;
+  public static final BUNDLE_TYPE SEARCHSET = BUNDLE_TYPE.SEARCHSET$.MODULE$;
+  public static final BUNDLE_TYPE TRANSACTION = BUNDLE_TYPE.TRANSACTION$.MODULE$;
+  public static final BUNDLE_TYPE TRANSACTION_RESPONSE = BUNDLE_TYPE.TRANSACTION_RESPONSE$.MODULE$;
+}

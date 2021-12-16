@@ -1,0 +1,42 @@
+9a10
+> import org.slf4j.{ Logger, LoggerFactory }
+61a63
+>   private val log: Logger = LoggerFactory.getLogger(getClass)
+64,70c66,74
+<       Try(
+<         new Extension(
+<           cursor.decodeAs[Option[String]]("id", Some(None)),
+<           cursor.decodeAs[String]("url", None),
+<           cursor.decodeOptRef[UnionAll]("value"),
+<           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+<           decodeAttributes(cursor)
+---
+>       cursor.downField("url").as[String].toTry.flatMap { url =>
+>         def genericExtension = Try(
+>           new Extension(
+>             cursor.decodeAs[Option[String]]("id", Some(None)),
+>             cursor.decodeAs[String]("url", None),
+>             cursor.decodeOptRef[UnionAll]("value"),
+>             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+>             decodeAttributes(cursor)
+>           )
+72c76,92
+<       ))
+---
+>         if (!params.decodeSpecificExtensions) genericExtension
+>         else {
+>           val specificExtension = urlLookup.get(url)
+>           specificExtension match {
+>             case None =>
+>               if (params.logOnMissingExtension) log.warn(s"Missing extension $url")
+>               genericExtension
+>             case Some(ext) =>
+>               Try(ext.decodeThis(cursor).asInstanceOf[Try[Extension]]).flatten.recoverWith {
+>                 case t if params.tolerateExtensionErrors =>
+>                   log.warn(s"Failed to decode extension $url", t)
+>                   genericExtension
+>               }
+>           }
+>         }
+>       })
+> 

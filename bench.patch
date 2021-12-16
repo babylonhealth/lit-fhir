@@ -1,0 +1,17 @@
+diff --git a/.jvmopts b/.jvmopts
+index ac8f3b65..c7166859 100644
+--- a/.jvmopts
++++ b/.jvmopts
+@@ -1,3 +1,3 @@
+  -Xss32m
+- -Xms4G
+- -Xmx10G
++ -Xms1G
++ -Xmx2G
+diff --git a/.sbtopts b/.sbtopts
+index f5243ab4..1ca6d0b3 100644
+--- a/.sbtopts
++++ b/.sbtopts
+@@ -1 +1 @@
+--J-Xmx9G
++-J-Xmx1G

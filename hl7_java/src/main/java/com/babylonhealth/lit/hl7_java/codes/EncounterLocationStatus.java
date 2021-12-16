@@ -1,0 +1,13 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.ENCOUNTER_LOCATION_STATUS;
+
+public interface EncounterLocationStatus {
+  public static final ENCOUNTER_LOCATION_STATUS ACTIVE = ENCOUNTER_LOCATION_STATUS.ACTIVE$.MODULE$;
+  public static final ENCOUNTER_LOCATION_STATUS COMPLETED =
+      ENCOUNTER_LOCATION_STATUS.COMPLETED$.MODULE$;
+  public static final ENCOUNTER_LOCATION_STATUS PLANNED =
+      ENCOUNTER_LOCATION_STATUS.PLANNED$.MODULE$;
+  public static final ENCOUNTER_LOCATION_STATUS RESERVED =
+      ENCOUNTER_LOCATION_STATUS.RESERVED$.MODULE$;
+}

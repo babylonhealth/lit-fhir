@@ -1,0 +1,13 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.CONSENT_STATE_CODES;
+
+public interface ConsentStateCodes {
+  public static final CONSENT_STATE_CODES ACTIVE = CONSENT_STATE_CODES.ACTIVE$.MODULE$;
+  public static final CONSENT_STATE_CODES DRAFT = CONSENT_STATE_CODES.DRAFT$.MODULE$;
+  public static final CONSENT_STATE_CODES ENTERED_IN_ERROR =
+      CONSENT_STATE_CODES.ENTERED_IN_ERROR$.MODULE$;
+  public static final CONSENT_STATE_CODES INACTIVE = CONSENT_STATE_CODES.INACTIVE$.MODULE$;
+  public static final CONSENT_STATE_CODES PROPOSED = CONSENT_STATE_CODES.PROPOSED$.MODULE$;
+  public static final CONSENT_STATE_CODES REJECTED = CONSENT_STATE_CODES.REJECTED$.MODULE$;
+}

@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.MESSAGE_SIGNIFICANCE_CATEGORY;
+
+public interface MessageSignificanceCategory {
+  public static final MESSAGE_SIGNIFICANCE_CATEGORY CONSEQUENCE =
+      MESSAGE_SIGNIFICANCE_CATEGORY.CONSEQUENCE$.MODULE$;
+  public static final MESSAGE_SIGNIFICANCE_CATEGORY CURRENCY =
+      MESSAGE_SIGNIFICANCE_CATEGORY.CURRENCY$.MODULE$;
+  public static final MESSAGE_SIGNIFICANCE_CATEGORY NOTIFICATION =
+      MESSAGE_SIGNIFICANCE_CATEGORY.NOTIFICATION$.MODULE$;
+}

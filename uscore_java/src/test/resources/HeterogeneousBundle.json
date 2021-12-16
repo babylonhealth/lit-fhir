@@ -1,0 +1,121 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:organization",
+      "resource": {
+        "resourceType": "Organization",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
+          ]
+        },
+        "language": "en-GB",
+        "identifier": [
+          {
+            "system": "http://system-reference",
+            "value": "code-reference"
+          }
+        ],
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                "code": "prov"
+              }
+            ]
+          }
+        ],
+        "name": "Babylon"
+      },
+      "request": {
+        "method": "POST",
+        "url": "/Organization",
+        "ifNoneExist": "identifier=http://system-reference|code-reference"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:patient",
+      "resource": {
+        "resourceType": "Patient",
+        "language": "en-GB",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+          ]
+        },
+        "gender": "other",
+        "name": [
+          {
+            "given": [
+              "The"
+            ],
+            "family": "Doctor"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "tardis://",
+            "value": "213"
+          }
+        ],
+        "managingOrganization": {
+          "reference": "urn:uuid:organization"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "/Patient",
+        "ifNoneExist": "identifier=https://fhir.bbl.health/sid/babylon-patient-uuid|${patientUuid}"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation:bmi",
+      "resource": {
+        "resourceType": "Observation",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/StructureDefinition/bmi"
+          ]
+        },
+        "language": "en-GB",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.system",
+                "code": "Vital signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://terminology.system",
+              "code": "code-for-bmi",
+              "display": "BMI"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:patient"
+        },
+        "effectiveDateTime": "%s",
+        "valueQuantity": {
+          "value": 1.23,
+          "system": "http://unitsofmeasure.org",
+          "code": "${unit}"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "/Observation"
+      }
+    }
+  ]
+}

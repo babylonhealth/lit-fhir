@@ -1,0 +1,13 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.DOCUMENT_RELATIONSHIP_TYPE;
+
+public interface DocumentRelationshipType {
+  public static final DOCUMENT_RELATIONSHIP_TYPE APPENDS =
+      DOCUMENT_RELATIONSHIP_TYPE.APPENDS$.MODULE$;
+  public static final DOCUMENT_RELATIONSHIP_TYPE REPLACES =
+      DOCUMENT_RELATIONSHIP_TYPE.REPLACES$.MODULE$;
+  public static final DOCUMENT_RELATIONSHIP_TYPE SIGNS = DOCUMENT_RELATIONSHIP_TYPE.SIGNS$.MODULE$;
+  public static final DOCUMENT_RELATIONSHIP_TYPE TRANSFORMS =
+      DOCUMENT_RELATIONSHIP_TYPE.TRANSFORMS$.MODULE$;
+}

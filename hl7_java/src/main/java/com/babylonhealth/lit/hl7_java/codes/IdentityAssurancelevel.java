@@ -1,0 +1,10 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.IDENTITY_ASSURANCELEVEL;
+
+public interface IdentityAssurancelevel {
+  public static final IDENTITY_ASSURANCELEVEL LEVEL1 = IDENTITY_ASSURANCELEVEL.LEVEL1$.MODULE$;
+  public static final IDENTITY_ASSURANCELEVEL LEVEL2 = IDENTITY_ASSURANCELEVEL.LEVEL2$.MODULE$;
+  public static final IDENTITY_ASSURANCELEVEL LEVEL3 = IDENTITY_ASSURANCELEVEL.LEVEL3$.MODULE$;
+  public static final IDENTITY_ASSURANCELEVEL LEVEL4 = IDENTITY_ASSURANCELEVEL.LEVEL4$.MODULE$;
+}

@@ -1,0 +1,63 @@
+{
+  "entry": [
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "....IDK",
+              "system": "http://codingsystem.lo.wut"
+            }
+          ]
+        },
+        "effectiveDateTime": "2020-03-09T18:40:27.972Z",
+        "issued": "2020-03-09T18:40:27.971Z",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/StructureDefinition/bodyheight"
+          ]
+        },
+        "resourceType": "Observation",
+        "status": "final",
+        "subject": {
+          "reference": "patient-123"
+        },
+        "valueQuantity": {},
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "foo",
+                "system": "http://category.system"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "....Yes?",
+              "system": "http://codingsystem.lo.wut"
+            }
+          ]
+        },
+        "effectiveDateTime": "2020-03-09T10:40:27.972Z",
+        "issued": "2020-03-09T10:40:27.971Z",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/StructureDefinition/bodyheight"
+          ]
+        },
+        "resourceType": "Observation",
+        "status": "final",
+        "valueString": "String value"
+      }
+    }
+  ],
+  "resourceType": "Bundle",
+  "type": "collection"
+}

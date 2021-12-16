@@ -1,0 +1,14 @@
+<configuration>
+
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <!-- Classic PatternLayoutEncoder, for human-readable terminal output -->
+    <appender name="HUMAN" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder><pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %mdc%n</pattern></encoder>
+    </appender>
+
+    <root level="${LOG_LEVEL:-INFO}">
+        <appender-ref ref="${LOG_APPENDER:-HUMAN}"/>
+    </root>
+
+</configuration>

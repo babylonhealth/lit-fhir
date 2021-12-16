@@ -1,0 +1,14 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.CONDITIONAL_READ_STATUS;
+
+public interface ConditionalReadStatus {
+  public static final CONDITIONAL_READ_STATUS FULL_SUPPORT =
+      CONDITIONAL_READ_STATUS.FULL_SUPPORT$.MODULE$;
+  public static final CONDITIONAL_READ_STATUS IF_MODIFIED_SINCE =
+      CONDITIONAL_READ_STATUS.IF_MODIFIED_SINCE$.MODULE$;
+  public static final CONDITIONAL_READ_STATUS IF_NONE_MATCH =
+      CONDITIONAL_READ_STATUS.IF_NONE_MATCH$.MODULE$;
+  public static final CONDITIONAL_READ_STATUS NOT_SUPPORTED =
+      CONDITIONAL_READ_STATUS.NOT_SUPPORTED$.MODULE$;
+}
