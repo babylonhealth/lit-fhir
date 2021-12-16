@@ -1,7 +1,7 @@
 package com.babylonhealth.lit.hl7
 
 import com.babylonhealth.lit.core.model.Coding
-import com.babylonhealth.lit.core.{EnumeratumBase, FhirCirceEnum, FhirEnum}
+import com.babylonhealth.lit.core.{ EnumeratumBase, FhirCirceEnum, FhirEnum }
 
 sealed abstract class FHIR_VERSION(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
