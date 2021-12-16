@@ -47,7 +47,6 @@ val javaSettings = Seq(
 )
 val publishSettings = Seq(
   publishArtifact := true,
-  organization    := "com.babylonhealth",
   homepage        := Some(url("https://babylonhealth.com")),
   licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   developers := List(
