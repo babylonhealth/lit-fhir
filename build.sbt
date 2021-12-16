@@ -1,6 +1,6 @@
 import sbt.Keys.{ libraryDependencies, logBuffered }
 
-val scala2Version = "2.13.6"
+val scala2Version = "2.13.7"
 val scala3Version = "3.0.2"
 val crossVersions = Seq(scala2Version, scala3Version)
 
@@ -17,7 +17,7 @@ val V = new {
   val logback                = "1.2.3"
   val lombok                 = "1.18.20"
   val scalaMeterVersion      = "0.22"
-  val scalaTest              = "3.2.9"
+  val scalaTest              = "3.2.10"
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
@@ -82,7 +82,7 @@ lazy val generator = project
       // Runtime deps
       "com.babylonhealth.lit" %% "hl7"         % V.litVersionForGenerator,
       "com.babylonhealth.lit" %% "fhirpath"    % V.litVersionForGenerator,
-      "org.typelevel"         %% "cats-effect" % "3.1.1",
+      "org.typelevel"         %% "cats-effect" % "3.3.0",
       // Test deps
       "org.scalatest"  %% "scalatest"  % V.scalaTest  % Test,
       "org.skyscreamer" % "jsonassert" % V.jsonassert % Test
