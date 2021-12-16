@@ -78,6 +78,14 @@ lazy val generator = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
+    if (file(s"${System.getProperty("user.home")}/.ivy2/artifactory_credentials").exists())
+      credentials += Credentials(file(s"${System.getProperty("user.home")}/.ivy2/artifactory_credentials"))
+    else
+      credentials += Credentials("Artifactory Realm", "artifactory.ops.babylontech.co.uk", sys.props("ARTIFACTORY_USER"), sys.props("ARTIFACTORY_PWD")),
+    resolvers ++= Seq(
+      "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
+      "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases"
+    ),
     libraryDependencies ++= Seq(
       // Runtime deps
       "com.babylonhealth.lit" %% "hl7"         % V.litVersionForGenerator,
