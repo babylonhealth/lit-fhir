@@ -90,8 +90,7 @@ build-all-class-models:
 		--models="usbase=fhir/hl7.fhir.r4.examples/StructureDefinition-*;uscore=fhir/hl7.fhir.us.core/StructureDefinition-*" \
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore"'
-	sbt $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
-	sbt $(foreach i,$(ALL_MODULES),$iJava/javafmt)
+	sbt scalafmtAll
 	./apply_patches.sh
 
 clean-target:
