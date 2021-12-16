@@ -1,8 +1,5 @@
 import sbt.Keys.{ libraryDependencies, logBuffered }
 
-val artifactoryHost = "artifactory.ops.babylontech.co.uk"
-val artifactory     = s"https://$artifactoryHost/"
-
 val scala2Version = "2.13.6"
 val scala3Version = "3.0.2"
 val crossVersions = Seq(scala2Version, scala3Version)

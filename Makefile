@@ -1,7 +1,3 @@
-VERSION ?= local
-G_VERSION ?= local
-SBT=sbt -DARTIFACTORY_USER="${ARTIFACTORY_USER}" -DARTIFACTORY_PWD="${ARTIFACTORY_PWD}" -Dversion="${VERSION}"
-SBT_G=sbt -DARTIFACTORY_USER="${ARTIFACTORY_USER}" -DARTIFACTORY_PWD="${ARTIFACTORY_PWD}" -Dversion="${G_VERSION}"
 # Why sed and not grep, you ask? Because grep on mac takes the -E flag, but takes -P on *nix
 BENCH_NUMBER=$(shell echo ${CIRCLE_JOB} | sed 's/benchmark//')
 CORE_MODULES=core hl7
@@ -9,48 +5,48 @@ US_MODULES=usbase uscore
 ALL_MODULES=$(CORE_MODULES) $(US_MODULES)
 
 generated-compile:
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/compile)
+	sbt $(foreach i,$(ALL_MODULES),$i/compile)
 
 build: build-all-class-models test
 
 benchmark:
-	$(SBT) "+bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
+	sbt "+bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
 
 clean-scala-3-core:
-	$(SBT) ++3.0.0 core/clean
+	sbt ++3.0.0 core/clean
 
 clean-scala-3:
-	$(SBT) ++3.0.0 core/clean hl7/clean usbase/clean uscore/clean core/test:clean hl7/test:clean usbase/test:clean uscore/test:clean
+	sbt ++3.0.0 core/clean hl7/clean usbase/clean uscore/clean core/test:clean hl7/test:clean usbase/test:clean uscore/test:clean
 
 compile-core: clean-scala-3-core
-	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) +fhirpath/compile
+	sbt +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) +fhirpath/compile
 compile-java:
-	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile)
+	sbt $(foreach i,$(ALL_MODULES),$iJava/compile)
 compile-bench:
-	$(SBT) +bench/test:compile
+	sbt +bench/test:compile
 compile: compile-core compile-java compile-bench
 
 test-java:
-	$(SBT) macros/compile
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/compile)
-	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile $iJava/test)
+	sbt macros/compile
+	sbt $(foreach i,$(ALL_MODULES),$i/compile)
+	sbt $(foreach i,$(ALL_MODULES),$iJava/compile $iJava/test)
 
 test:
-	$(SBT) +common/test +macros/test # +generator/test
-	$(SBT) $(foreach i,$(CORE_MODULES),+$i/test)
-	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/test)
-	$(SBT) $(foreach i,$(US_MODULES),+$i/test)
-	$(SBT) $(foreach i,$(US_MODULES),$iJava/test)
-	$(SBT) +fhirpath/test
-	$(SBT) +protoshim/test
-	$(SBT) +'bench/testOnly *ExampleTest'
+	sbt +common/test +macros/test # +generator/test
+	sbt $(foreach i,$(CORE_MODULES),+$i/test)
+	sbt $(foreach i,$(CORE_MODULES),$iJava/test)
+	sbt $(foreach i,$(US_MODULES),+$i/test)
+	sbt $(foreach i,$(US_MODULES),$iJava/test)
+	sbt +fhirpath/test
+	sbt +protoshim/test
+	sbt +'bench/testOnly *ExampleTest'
 
 publish:
-	$(SBT) +common/publish +macros/publish
-	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publish)
-	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publish)
-	$(SBT) +fhirpath/publish
-	$(SBT) +protoshim/publish
+	sbt +common/publish +macros/publish
+	sbt $(foreach i,$(ALL_MODULES),+$i/publish)
+	sbt $(foreach i,$(ALL_MODULES),$iJava/publish)
+	sbt +fhirpath/publish
+	sbt +protoshim/publish
 
 publish-generator:
 	$(SBT_G) +common/publish || echo "cannot publish commmon. Continuing anyway"
@@ -59,50 +55,50 @@ publish-local-generator:
 	$(SBT_G) +common/publishLocal +generator/publishLocal
 
 publish-local-core:
-	$(SBT) +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) +fhirpath/publishLocal
+	sbt +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) +fhirpath/publishLocal
 publish-local-java:
-	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishLocal)
+	sbt $(foreach i,$(ALL_MODULES),$iJava/publishLocal)
 publish-local: publish-local-core publish-local-java
 
 publish-java-m2:
-	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishM2)
+	sbt $(foreach i,$(ALL_MODULES),$iJava/publishM2)
 publish-m2:
-	$(SBT) +common/publishM2 +macros/publishM2
-	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publishM2 $iJava/publishM2)
-	$(SBT) +fhirpath/publishM2
+	sbt +common/publishM2 +macros/publishM2
+	sbt $(foreach i,$(ALL_MODULES),+$i/publishM2 $iJava/publishM2)
+	sbt +fhirpath/publishM2
 
 publish-all-local:
-	$(SBT) +common/publishLocal +common/publishM2 +macros/publishLocal +macros/publishM2 $(foreach i,$(ALL_MODULES),+$i/publishLocal +$i/publishM2 $iJava/publishLocal $iJava/publishM2)
+	sbt +common/publishLocal +common/publishM2 +macros/publishLocal +macros/publishM2 $(foreach i,$(ALL_MODULES),+$i/publishLocal +$i/publishM2 $iJava/publishLocal $iJava/publishM2)
 
 build-hl7-class-models:
-	$(SBT) 'project generator' 'run "generate" \
+	sbt 'project generator' 'run "generate" \
 		--javaPackageSuffix=_java \
 		--typescriptDir="./generated_typescript"'
-	$(SBT) $(foreach i,$(CORE_MODULES),+$i/scalafmtAll)
-	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/javafmt)
+	sbt $(foreach i,$(CORE_MODULES),+$i/scalafmtAll)
+	sbt $(foreach i,$(CORE_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
 build-all-class-models-dry:
-	$(SBT) 'project generator' 'run "generate" \
+	sbt 'project generator' 'run "generate" \
 		--models="usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore" \
 		--dryRun'
 
 build-all-class-models:
-	$(SBT) 'project generator' 'run "generate" \
+	sbt 'project generator' 'run "generate" \
 		--models="usbase=fhir/hl7.fhir.r4.examples/StructureDefinition-*;uscore=fhir/hl7.fhir.us.core/StructureDefinition-*" \
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore"'
-	$(SBT) $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
-	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/javafmt)
+	sbt $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
+	sbt $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
 clean-target:
 	rm -rf target/ */target
 
 download-deps:
-	$(SBT) +macros/update +common/update $(foreach i,$(ALL_MODULES),+$i/update +$iJava/update) +fhirpath/update +protoshim/update +bench/update || true
+	sbt +macros/update +common/update $(foreach i,$(ALL_MODULES),+$i/update +$iJava/update) +fhirpath/update +protoshim/update +bench/update || true
 
 clean-generated-scala:
 	rm -rf $(foreach i,$(ALL_MODULES),$i/src/main/scala{-2,-3,}/com/babylonhealth/lit/$i/model)
