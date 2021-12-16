@@ -86,7 +86,6 @@ lazy val generator = project
     )
   )
   .dependsOn(common)
-  .aggregate(common)
 
 lazy val core = project
   .in(file("core"))

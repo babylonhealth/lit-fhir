@@ -16,21 +16,21 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Fetch dependencies
-        run: make download-deps
-      - name: Compile
-        run: make compile
-      - uses: olafurpg/setup-scala@v13
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
+      - name: Fetch dependencies
+        run: |
+          GITHUB_TAG="${{steps.tag.outputs.tag}}"
+          if [ "${GITHUB_TAG::1}" = g ]; then sbt +generator/update; else make download-deps; fi
+      - name: Compile
+        run: |
+          GITHUB_TAG="${{steps.tag.outputs.tag}}"
+          if [ "${GITHUB_TAG::1}" = g ]; then sbt +generator/compile; else make compile; fi
+      - uses: olafurpg/setup-scala@v13
       - run: |
           GITHUB_TAG="${{steps.tag.outputs.tag}}"
-          if [ "${GITHUB_TAG::1}" = g ];
-            then generator/ci-release;
-            else
-              sbt ci-release
-          fi;
+          if [ "${GITHUB_TAG::1}" = g ]; then generator/ci-release; else sbt ci-release; fi
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
