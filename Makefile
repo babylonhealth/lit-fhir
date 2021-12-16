@@ -102,7 +102,7 @@ clean-target:
 	rm -rf target/ */target
 
 download-deps:
-	$(SBT) $(foreach i,$(ALL_MODULES),+macros/update +common/update +$i/update +$iJava/update) +fhirpath/update +protoshim/update +bench/update || true
+	$(SBT) +macros/update +common/update $(foreach i,$(ALL_MODULES),+$i/update +$iJava/update) +fhirpath/update +protoshim/update +bench/update || true
 
 clean-generated-scala:
 	rm -rf $(foreach i,$(ALL_MODULES),$i/src/main/scala{-2,-3,}/com/babylonhealth/lit/$i/model)
