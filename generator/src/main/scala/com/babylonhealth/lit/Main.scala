@@ -53,7 +53,7 @@ trait DefaultPlugins extends FileUtils {
       i.concept.map(c => CodeEnum(c.code, c.display, i.system))
     }
     val allConcepts = (enums ++ concepts ++ enums2)
-      /// not all references will contain all the same information if, for example, one is from the codesystem and one from the valueset.
+      // / not all references will contain all the same information if, for example, one is from the codesystem and one from the valueset.
       // prefer ones with more information
       .sortBy { x => (if (x.system.isDefined) -2 else 0) + (if (x.name.isDefined) -1 else 0) }
       .map {
