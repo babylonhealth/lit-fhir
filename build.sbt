@@ -3,8 +3,6 @@ import sbt.Keys.{ libraryDependencies, logBuffered }
 val artifactoryHost = "artifactory.ops.babylontech.co.uk"
 val artifactory     = s"https://$artifactoryHost/"
 
-val thisVersion = sys.props.get("version") getOrElse "local"
-
 val scala2Version = "2.13.6"
 val scala3Version = "3.0.2"
 val crossVersions = Seq(scala2Version, scala3Version)
@@ -18,7 +16,7 @@ val V = new {
   val izumiReflect           = "1.1.2"
   val jsonassert             = "1.5.0"
   val jUnit                  = "5.6.0"
-  val litVersionForGenerator = "0.14.3"
+  val litVersionForGenerator = "0.14.5"
   val logback                = "1.2.3"
   val lombok                 = "1.18.20"
   val scalaMeterVersion      = "0.22"
@@ -26,7 +24,6 @@ val V = new {
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
-  version            := thisVersion,
   organization       := "com.babylonhealth.lit",
   scalaVersion       := scala2Version,
   crossScalaVersions := versions,
@@ -49,14 +46,15 @@ val javaSettings = Seq(
   )
 )
 val publishSettings = Seq(
-  publishTo := {
-    if (version.value.trim.endsWith("SNAPSHOT"))
-      Some("snapshots" at artifactory + "artifactory/babylon-maven-snapshots")
-    else
-      Some("releases" at artifactory + "artifactory/babylon-maven-releases")
-  },
-  publishMavenStyle := true,
-  publishArtifact   := true
+  publishArtifact := true,
+  organization    := "com.babylonhealth",
+  homepage        := Some(url("https://babylonhealth.com")),
+  licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+  developers := List(
+    Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
+  ),
+  sonatypeCredentialHost := "s01.oss.sonatype.org",
+  sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
 )
 
 lazy val common = project

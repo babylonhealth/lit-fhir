@@ -2,11 +2,12 @@ name: Release snapshot
 
 on:
   push:
+    branches: [master]
     tags:
       - '*'
 
 jobs:
-  snapshot:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,19 +16,14 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Restore build cache
-        run: echo dummy step for now
-      - name: Get tag
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-        with:
-          # Optionally strip `v` prefix
-          strip_v: true
-      - name: Publish release
-        run: |
-          GITHUB_TAG="${{steps.tag.outputs.tag}}"
-          if [ "${GITHUB_TAG::1}" = g ];
-            then G_VERSION="${GITHUB_TAG#?}" make publish-generator;
-          else
-            VERSION="${GITHUB_TAG}" make publish;
-          fi;
+      - name: Fetch dependencies
+        run: make download-deps
+      - name: Compile
+        run: make compile
+      - uses: olafurpg/setup-scala@v13
+      - run: sbt ci-release
+        env:
+          PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+          PGP_SECRET: ${{ secrets.PGP_SECRET }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
