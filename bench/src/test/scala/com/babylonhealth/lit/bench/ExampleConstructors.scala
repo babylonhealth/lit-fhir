@@ -179,9 +179,9 @@ class ExampleTest extends AnyFreeSpec with Matchers with ExampleConstructors {
 //  val bmiJ: Option[Bmi]        = mkBmiLitJ(ts, 20.5, "dummy-patient-123")
 
   "all equal" in {
-    val from: String              = bmi.asJson.spaces2SortKeys
-    val fromFHIRProto: String     = Translator.printer.print(protoBMI)
-    val fromHapi: String          = FhirContext.forR4.newJsonParser().encodeResourceToString(hapiBMI)
+    val from: String          = bmi.asJson.spaces2SortKeys
+    val fromFHIRProto: String = Translator.printer.print(protoBMI)
+    val fromHapi: String      = FhirContext.forR4.newJsonParser().encodeResourceToString(hapiBMI)
 //    val fromJava: Option[String]  = bmiJ.map(_.asJson.spaces2SortKeys)
 
     JSONAssert.assertEquals(from, fromFHIRProto, true)
