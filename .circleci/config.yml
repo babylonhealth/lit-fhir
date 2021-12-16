@@ -123,7 +123,7 @@ jobs:
       - restore_test_cache
       - run:
           name: Test service
-          command: make compile-core compile-java compile-proto test
+          command: make compile-core compile-java test
           no_output_timeout: 30m
       - save_test_cache
   benchmark_template: &benchmark_template
