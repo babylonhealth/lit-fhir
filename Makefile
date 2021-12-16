@@ -26,12 +26,9 @@ compile-core: clean-scala-3-core
 	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) +fhirpath/compile
 compile-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile)
-compile-proto:
-	$(SBT) gproto/compile
 compile-bench:
 	$(SBT) +bench/test:compile
-compile: compile-core compile-java compile-proto compile-bench
-	$(SBT) +bench/test:compile
+compile: compile-core compile-java compile-bench
 
 test-java:
 	$(SBT) macros/compile
@@ -53,7 +50,6 @@ publish:
 	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publish)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publish)
 	$(SBT) +fhirpath/publish
-	$(SBT) gproto/publish
 	$(SBT) +protoshim/publish
 
 publish-generator:
@@ -66,9 +62,7 @@ publish-local-core:
 	$(SBT) +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) +fhirpath/publishLocal
 publish-local-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishLocal)
-publish-local-gproto:
-	$(SBT) gproto/publishLocal +protoshim/publishLocal
-publish-local: publish-local-core publish-local-java publish-local-gproto
+publish-local: publish-local-core publish-local-java
 
 publish-java-m2:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishM2)
@@ -117,28 +111,6 @@ clean-generated-java:
 	rm -rf $(foreach i,$(ALL_MODULES),$i_java/src/main/java/com/babylonhealth/lit/$i_java/builders $i_java/src/main/java/com/babylonhealth/lit/$i_java/codes)
 
 cycle: clean-generated-java clean-generated-scala build-all-class-models test
-
-gen-java-proto: rm-bad-files
-	mkdir -p ./gproto/src/main/java
-	protoc --proto_path=./fhir -I=./fhir/proto --java_out=./gproto/src/main/java $(shell find ./fhir/proto -name '*.proto' | less)
-	# [error].../protogen/ProfileGenerator.java:513:1: cannot find symbol\n [error]   symbol:   variable UNKNOWN\n[error]   location: class com.google.fhir.proto.SizeRestriction
-	rm -f gproto/src/main/java/com/google/fhir/protogen/ProfileGenerator.java
-	rm -f gproto/src/main/java/com/google/fhir/protogen/ProfileGeneratorMain.java
-
-rm-bad-files:
-# These all fail with something like
-# [libprotobuf WARNING google/protobuf/compiler/java/java_file.cc:232] proto/google/fhir/proto/r4/core/profiles/ehrsfm_record_lifecycle_event_audit_event.proto: The file's outer class name, "EhrsfmRecordLifecycleEventAuditEvent", matches the name of one of the types declared inside it when case is ignored. This can cause compilation issues on Windows / MacOS. Please either rename the type or use the java_outer_classname option to specify a different outer class name for the .proto file to be safe.
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/ehrsfm_record_lifecycle_event_audit_event.proto
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cqf_questionnaire.proto
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/pico_element_profile.proto
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cds_hooks_request_group.proto
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/ehrsfm_record_lifecycle_event_provenance.proto
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cql_library.proto
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cds_hooks_service_plan_definition.proto
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/profile_for_hla_genotyping_results.proto
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cds_hooks_guidance_response.proto
-	# com/google/fhir/r4/core/Datatypes.java: Tried to write the same file twice.
-	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/datatypes.proto
 
 pull-stuff:
 	npm --registry https://packages.simplifier.net install hl7.fhir.r4.core@4.0.1

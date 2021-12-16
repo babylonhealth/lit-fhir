@@ -1,4 +1,3 @@
-import sbt.Def
 import sbt.Keys.{ libraryDependencies, logBuffered }
 
 val artifactoryHost = "artifactory.ops.babylontech.co.uk"
@@ -14,15 +13,16 @@ def isScala2(version: String) = version startsWith "2"
 
 val V = new {
   val circe                  = "0.14.1"
-  val logback                = "1.2.3"
   val enumeratum             = "1.5.15"
-  val scalaMeterVersion      = "0.22"
+  val googleFHIR             = "0.6.1"
   val izumiReflect           = "1.1.2"
-  val litVersionForGenerator = "0.14.3"
-  val scalaTest              = "3.2.9"
   val jsonassert             = "1.5.0"
-  val lombok                 = "1.18.20"
   val jUnit                  = "5.6.0"
+  val litVersionForGenerator = "0.14.3"
+  val logback                = "1.2.3"
+  val lombok                 = "1.18.20"
+  val scalaMeterVersion      = "0.22"
+  val scalaTest              = "3.2.9"
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
@@ -249,34 +249,19 @@ lazy val uscoreJava = project
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
   .enablePlugins(JupiterPlugin)
 
-lazy val gproto = project
-  .in(file("gproto"))
-  .settings(commonJSettings: _*)
-  .settings(publishSettings: _*)
-  .settings(
-    libraryDependencies ++= Seq(
-      "com.google.protobuf" % "protobuf-java"      % "3.11.4",
-      "com.google.protobuf" % "protobuf-java-util" % "3.11.4",
-      "com.beust"           % "jcommander"         % "1.78",
-      "org.reflections"     % "reflections"        % "0.9.12",
-      "com.google.guava"    % "guava"              % "29.0-jre",
-      "org.scalatest"      %% "scalatest"          % V.scalaTest % Test
-    ),
-    javafmtOnCompile := false,
-    crossPaths       := false
-  )
-
 lazy val protoshim = project
   .in(file("protoshim"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
+    resolvers += "google-maven".at("https://maven.google.com"),
     libraryDependencies ++= Seq(
       "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
+      "com.google.fhir" % "r4"            % V.googleFHIR,
       "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
       "org.skyscreamer" % "jsonassert"    % V.jsonassert % Test
     )
   )
-  .dependsOn(core, hl7, uscore, gproto)
+  .dependsOn(core, hl7, uscore)
 
 lazy val root = project.in(file(".")).aggregate(generator)

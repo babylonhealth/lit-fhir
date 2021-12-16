@@ -5,16 +5,17 @@ object ConstructorTypes extends Enumeration {
   type ConstructorTypes = Value
 }
 import java.time.temporal.ChronoUnit
-import java.time.{ ZoneId, ZonedDateTime }
+import java.time.{ZoneId, ZonedDateTime}
 
 import ca.uhn.fhir.context.FhirContext
 import com.google.protobuf.Message
 import io.circe.syntax._
-
-import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
+import com.babylonhealth.lit.core.serdes.{objectDecoder, objectEncoder}
 import com.babylonhealth.lit.protoshim.Translator
 import com.babylonhealth.lit.protoshim.Translator.parser
 import com.babylonhealth.lit.usbase.model.Bmi
+
+import com.google.fhir.r4.core.ContainedResource
 
 object RegressionBenchmarks0 extends RegressionBenchmark with ExampleConstructors {
   val loadCore          = com.babylonhealth.lit.core.Module
@@ -59,7 +60,7 @@ object RegressionBenchmarks_1 extends RegressionBenchmark with ExampleConstructo
     measure method "FHIRProto" in {
       using(singleTest) in { _ =>
         val encoded                  = Translator.printer.print(bmiFHIRProto)
-        val builder: Message.Builder = com.google.fhir.r4.core.ContainedResource.newBuilder
+        val builder: ContainedResource.Builder = com.google.fhir.r4.core.ContainedResource.newBuilder
         parser.merge(encoded, builder)
         builder.build()
       }
