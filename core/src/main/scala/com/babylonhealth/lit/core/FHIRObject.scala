@@ -103,7 +103,7 @@ abstract class FHIRObject(
       val comparisonObj = companion.baseType
       comparisonObj.fields(x.asInstanceOf).zip(comparisonObj.fields(this)).forall { case (l, r) =>
         l.value == r.value
-      } //&& this.primitiveAttributes == x.primitiveAttributes
+      } // && this.primitiveAttributes == x.primitiveAttributes
     case _ => false
   }
   override def hashCode(): Int =
@@ -214,7 +214,7 @@ abstract class FHIRObject(
   private final val FCF = FHIRComponentField
   private final def >>>=[T, F[_]](fn: T => F[T], suffix: Option[String], cond: (Any, LTag[_]) => Boolean)(implicit
       F: Monad[F]): F[(this.type, Boolean)] = {
-    var changed = false
+    var changed               = false
     def change[T](t: => T): T = { changed = true; t }
     val newFields: F[List[Any]] = fields.toList.traverse[F, Any] {
       case FCF(_, v @ (None | LitSeq.emptyInstance)) => F pure v
@@ -265,7 +265,7 @@ abstract class FHIRObject(
   }
 
   private final def suffCond[T](implicit tt: LTag[T]): (Option[String], (Any, LTag[_]) => Boolean) = {
-    val suff: Option[String]            = typeSuffixMap(tt.tag)
+    val suff: Option[String] = typeSuffixMap(tt.tag)
     val cond: (Any, LTag[_]) => Boolean =
       // The double checks here are to short-circuit when possible. `isInstanceOf` is much cheaper than `=:=`
       // TODO: Is this still worth doing with LightTypeTag?
@@ -289,7 +289,7 @@ abstract class FHIRObject(
   }
 
   private final def >>>[T](fn: T => T, suffix: Option[String], cond: (Any, LTag[_]) => Boolean): (this.type, Boolean) = {
-    var changed = false
+    var changed               = false
     def change[T](t: => T): T = { changed = true; t }
     val newFields = fields.map {
       case FHIRComponentField(_, v @ (None | LitSeq.emptyInstance)) => v
@@ -346,7 +346,7 @@ abstract class FHIRObject(
     */
   final def nodalMap[T](klass: Class[T], fn: T => T): this.type = nodalMapFlag(klass, fn)._1
   private final def nodalMapFlag[T](klass: Class[T], fn: T => T): (this.type, Boolean) = {
-    var changed = false
+    var changed               = false
     def change[T](t: => T): T = { changed = true; t }
     val newFields = fields.map {
       case FHIRComponentField(_, v @ (None | LitSeq.emptyInstance)) => v

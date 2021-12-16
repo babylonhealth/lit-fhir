@@ -62,7 +62,7 @@ final class ChoiceMap[T: LTag] private[core] (choice: Choice[T], partials: Map[S
   ): ChoiceMap[T] = new ChoiceMap(choice, partials + (fromWitness.suffix -> (toWitness.suffix, toWitness.tt, fn)))
   def run: Choice[T] =
     partials.get(choice.suffix).map { case (newSuffix, _, fn) =>
-      Choice(newSuffix, fn.asInstanceOf[Any => Any](choice.value))(choice.tt) //.asInstanceOf[Ref[T, _]]
+      Choice(newSuffix, fn.asInstanceOf[Any => Any](choice.value))(choice.tt) // .asInstanceOf[Ref[T, _]]
     } getOrElse choice
 }
 
@@ -96,7 +96,7 @@ case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
   def toSuperRef[Sup <: _ \/ _](implicit supT: LTag[Sup]): Choice[Sup] = Choice[Sup](suffix, value)
 
   @deprecated("You don't want to instantiate the choice to a 'union' type, it's inefficient")
-  def toUnion: T                = \/.builder[T, d.Type](value.asInstanceOf[d.Type])(tt, elTT.asInstanceOf[LTag[d.Type]])
+  def toUnion: T = \/.builder[T, d.Type](value.asInstanceOf[d.Type])(tt, elTT.asInstanceOf[LTag[d.Type]])
   override def toString: String = toUnion.asInstanceOf[_ \/ _].value.toString
 
   override def equals(obj: Any): Boolean =

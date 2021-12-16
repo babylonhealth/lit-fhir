@@ -32,12 +32,12 @@ trait Parser extends Lexer {
 
   import Lexer.{ RichParser, RichParser_2 }
 
-  /// Top vals
+  // / Top vals
   val expression: P[Expr] = impliesExpr
 
   val top: P[Expr] = expression
 
-  /// Mutually-recursive defs
+  // / Mutually-recursive defs
   // Handles precedence by descending from lowest to highest precedence operators
   def impliesExpr: P[Expr] = P(orExpr ~+ ("implies".as(Implies) ~+ orExpr).rep0 map foldBinOp)
   def orExpr: P[Expr]      = P(andExpr ~+ (("or".as(Or) | "xor".as(Xor)) ~+ andExpr).rep0 map foldBinOp)
@@ -64,7 +64,7 @@ trait Parser extends Lexer {
       functionCall.backtrack | rootPath | fieldAccess.backtrack | dollarKeyword | literal | envVar |
         (char('(') *> expression <* char(')')))
 
-  /// Bottom vals
+  // / Bottom vals
   private val indexTerm: P[Expr => Expr] = char('[') *> expression.map(e => model.Index(_, e)) <* char(']')
 
   val typeSpecifier: P[TypeSpecifier] =

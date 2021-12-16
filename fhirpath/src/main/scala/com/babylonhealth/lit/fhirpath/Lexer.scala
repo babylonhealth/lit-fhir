@@ -13,7 +13,7 @@ import com.babylonhealth.lit.fhirpath.Lexer.{ reservedWords, RichParser, fhirTyp
   */
 trait Lexer {
 
-  /// Date, Time and DateTime
+  // / Date, Time and DateTime
   val partialDate: P[FHIRDate] =
     nDigits(4) ~ ("-" *> nDigits(2)).rep0(0, 2) map { case (y, md) =>
       val (m, d) = md.length match {
@@ -55,7 +55,7 @@ trait Lexer {
   val dateTime: P[FHIRDateTime] = char('@') *> partialDateTime
   val time: P[LocalTime]        = string("@T") *> partialTime
 
-  /// Identifiers::
+  // / Identifiers::
   // Restrict to lower-case to avoid mixing up with type names - not matching the spec but ¯\_(ツ)_/¯
   val regularIdentifier: P[String] =
     (CatsParser.charIn(('a' to 'z') :+ '_') ~ CatsParser.ignoreCaseCharIn(('a' to 'z') ++ ('0' to '9') :+ '_').rep0) map {
@@ -67,7 +67,7 @@ trait Lexer {
   // http://hl7.org/fhirpath/#identifiers
   val identifier: P[String] = regularIdentifier | escapedIdentifier
 
-  /// Strings
+  // / Strings
   private val strChars: P[String] = CatsParser.charsWhile(c => c != '"' & c != '\'' && c != '\\')
   private val hex: P[Char]        = CatsParser.ignoreCaseCharIn(('a' to 'f') ++ ('0' to '9'))
   private val unicode: P[String]  = "u" *> hex.rep(4, 4) map { v => parseInt(v.toList.mkString, 16).toChar.toString }
@@ -79,16 +79,16 @@ trait Lexer {
   val sglQuoteStr: P[String] = char('\'') *> (char('"') | strChars | escape).rep0.map(_.mkString) <* char('\'')
   val str: P[String]         = dblQuoteStr | sglQuoteStr
 
-  /// Numeric
+  // / Numeric
   private val digits: P[String]   = CatsParser.charIn('0' to '9').rep map { _.toList.mkString }
   val int: P[Int]                 = digits map { _.toInt }
   val decimal: P[BigDecimal]      = (digits ~ char('.').void ~ digits) map { case ((a, _), c) => BigDecimal(s"$a.$c") }
   val decimalOrInt: P[BigDecimal] = decimal.backtrack | int.map(BigDecimal(_))
 
-  /// Bool
+  // / Bool
   val boolean: P[Boolean] = "true".as(true) | "false".as(false)
 
-  /// Quantity units
+  // / Quantity units
   private val builtinUnit: P[String] =
     (CatsParser.stringIn(Seq("year", "month", "week", "day", "hour", "minute", "second", "millisecond")) <* char('s').?)
       .map(u => f"{$u}")
