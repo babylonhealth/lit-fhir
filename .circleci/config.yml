@@ -165,6 +165,7 @@ jobs:
   benchmark12: *benchmark_template
   benchmark13: *benchmark_template
   benchmark14: *benchmark_template
+  benchmark15: *benchmark_template
   benchmark0: *benchmark_template
   benchmark_1: *benchmark_template
   benchmark_2: *benchmark_template
@@ -241,6 +242,7 @@ workflows:
       - benchmark12: *requires-build
       - benchmark13: *requires-build
       - benchmark14: *requires-build
+      - benchmark15: *requires-build
       - benchmark0: *requires-build
       - benchmark_1: *requires-build
       - benchmark_2: *requires-build
@@ -269,6 +271,7 @@ workflows:
             - benchmark12
             - benchmark13
             - benchmark14
+            - benchmark15
   publish-generator:
     jobs:
       - publish-generator:

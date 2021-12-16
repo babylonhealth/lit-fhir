@@ -15,4 +15,5 @@ object Config {
   val tolerateExtensionErrors          = config.getBoolean("tolerateExtensionErrors")
   val decodeSpecificExtensions         = config.getBoolean("decodeSpecificExtensions")
   val generatedNamespaces: Seq[String] = config.getString("generatedNamespaces").split(",")
+  val finegrainedTypeRetentionOnCopy   = config.getBoolean("finegrainedTypeRetentionOnCopy")
 }
