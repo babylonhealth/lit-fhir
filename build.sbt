@@ -5,7 +5,7 @@ val artifactory     = s"https://$artifactoryHost/"
 
 val thisVersion = sys.props.get("version") getOrElse "local"
 
-val scala2Version = "2.13.6"
+val scala2Version = "2.13.7"
 val scala3Version = "3.0.2"
 val crossVersions = Seq(scala2Version, scala3Version)
 
