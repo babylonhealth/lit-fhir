@@ -109,24 +109,24 @@ object ContactPoint extends CompanionFor[ContactPoint] {
   *   Introduces the fields use, rank, value, system, period.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *   spaces.
+  *     spaces.
   * @param use
   *   - Identifies the purpose for the contact point.
   * @param rank
   *   - Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred
-  *   than those with higher rank values.
+  *     than those with higher rank values.
   * @param value
   *   - The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number
-  *   or email address).
+  *     or email address).
   * @param system
   *   - Telecommunications form for contact point - what communications system is required to make use of the contact.
   * @param period
   *   - Time period when the contact point was/is in use.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
-  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *   of the extension.
+  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *     of the extension.
   */
 @POJOBoilerplate
 class ContactPoint(

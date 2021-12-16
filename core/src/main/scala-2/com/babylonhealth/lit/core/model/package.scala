@@ -127,7 +127,7 @@ package object model {
   // TODO: Is this true? Can we make this more efficient plz?
   @deprecated("REALLY SLOW")
   val typeSuffixMap: LightTypeTag => Option[String] = {
-    //new {
+    // new {
     //  private val log: Logger = LoggerFactory.getLogger(getClass)
     //  def doLog = {
     //    val suffixes         = suffixTypeMap.values.toSeq
@@ -139,7 +139,7 @@ package object model {
     //        s"-->>> BAD INIT -- values for suffixTypeMap must be unique. Some clashes are: [${dups.take(5).mkString(", ")}]")
     //    } else log.info("-->>> GOOD INIT -- values for suffixTypeMap are unique ")
     //  }
-    //}.doLog
+    // }.doLog
     // 'assert' does not work in package objects WTF
     //    assert(
     //      suffixTypeMap.values.toSeq.distinct.sizeCompare(suffixTypeMap.values) == 0,

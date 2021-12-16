@@ -9,7 +9,7 @@ class POJOBoilerplate extends StaticAnnotation {
   def macroTransform(annottees: Any*): Any = macro boilerplateMethodsMacro.impl
 }
 
-/**  override val thisTypeName: String               = "AppointmentResponse"
+/** override val thisTypeName: String = "AppointmentResponse"
   */
 
 trait EqMethods {

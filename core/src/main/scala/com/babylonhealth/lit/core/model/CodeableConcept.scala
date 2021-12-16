@@ -87,17 +87,17 @@ object CodeableConcept extends CompanionFor[CodeableConcept] {
   *   Introduces the fields text, coding.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *   spaces.
+  *     spaces.
   * @param text
   *   - A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which
-  *   represents the intended meaning of the user.
+  *     represents the intended meaning of the user.
   * @param coding
   *   - A reference to a code defined by a terminology system.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
-  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *   of the extension.
+  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *     of the extension.
   */
 @POJOBoilerplate
 class CodeableConcept(

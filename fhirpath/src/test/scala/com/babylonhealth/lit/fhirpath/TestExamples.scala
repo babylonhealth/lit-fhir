@@ -60,9 +60,9 @@ class TestExamples extends AnyFunSpec with Matchers {
     "Precedence" -> Set( // Spec says `is` is more tightly binding than `|` or `>`, so these are wrong
       "4: 1 | 1 is Integer",
       "3: 1 > 2 is Boolean"),
-    "Round"  -> Set("2: 3.14159.round(3) = 2"), // um wat
+    "Round"  -> Set("2: 3.14159.round(3) = 2"),              // um wat
     "Type"   -> Set("22: Patient.is(System.Patient).not()"), // We do better than spec and reject this at parse time
-    "Divide" -> Set("5: 1.2 / 1.8 = 0.66666667") // We use more precise decimals, which the spec allows
+    "Divide" -> Set("5: 1.2 / 1.8 = 0.66666667")             // We use more precise decimals, which the spec allows
   )
 
   for (group <- testSuite) {
