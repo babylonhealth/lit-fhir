@@ -97,6 +97,7 @@ build-all-class-models:
 	$(SBT) $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh
+	$(SBT) $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
 
 clean-target:
 	rm -rf target/ */target
