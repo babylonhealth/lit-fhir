@@ -22,7 +22,7 @@ val V = new {
   val logback                = "1.2.3"
   val lombok                 = "1.18.20"
   val scalaMeterVersion      = "0.22"
-  val scalaTest              = "3.2.9"
+  val scalaTest              = "3.2.10"
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
