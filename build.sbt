@@ -87,6 +87,7 @@ lazy val generator = project
     )
   )
   .dependsOn(common)
+  .aggregate(common)
 
 lazy val core = project
   .in(file("core"))
@@ -262,4 +263,7 @@ lazy val protoshim = project
   )
   .dependsOn(core, hl7, uscore)
 
-//lazy val root = project.in(file(".")).aggregate(generator)
+lazy val root =
+  project
+    .in(file("."))
+    .aggregate(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)

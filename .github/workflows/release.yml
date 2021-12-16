@@ -21,7 +21,16 @@ jobs:
       - name: Compile
         run: make compile
       - uses: olafurpg/setup-scala@v13
-      - run: sbt ci-release
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+      - run: |
+          GITHUB_TAG="${{steps.tag.outputs.tag}}"
+          if [ "${GITHUB_TAG::1}" = g ];
+            then generator/ci-release;
+            else
+              sbt ci-release
+          fi;
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
