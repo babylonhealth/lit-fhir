@@ -36,7 +36,7 @@ test-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile $iJava/test)
 
 test:
-	$(SBT) +common/test +generator/test +macros/test
+	$(SBT) +common/test +macros/test # +generator/test
 	$(SBT) $(foreach i,$(CORE_MODULES),+$i/test)
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/test)
 	$(SBT) $(foreach i,$(US_MODULES),+$i/test)
@@ -102,7 +102,7 @@ clean-target:
 	rm -rf target/ */target
 
 download-deps:
-	$(SBT) +update || true
+	$(SBT) $(foreach i,$(ALL_MODULES),+macros/update +common/update +$i/update +$iJava/update) +fhirpath/update +protoshim/update +bench/update || true
 
 clean-generated-scala:
 	rm -rf $(foreach i,$(ALL_MODULES),$i/src/main/scala{-2,-3,}/com/babylonhealth/lit/$i/model)

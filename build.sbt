@@ -264,4 +264,4 @@ lazy val protoshim = project
   )
   .dependsOn(core, hl7, uscore)
 
-lazy val root = project.in(file(".")).aggregate(generator)
+//lazy val root = project.in(file(".")).aggregate(generator)
