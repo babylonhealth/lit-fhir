@@ -102,8 +102,7 @@ object RegressionBenchmarks8 extends RegressionBenchmark {
 object RegressionBenchmarks9 extends RegressionBenchmark {
   performance of "lit_resource" in {
     measure method "nodalMap" in {
-      using(singleTest) in (_ =>
-        sampleResource nodalMap (classOf[BUNDLE_TYPE], (_: BUNDLE_TYPE) => BUNDLE_TYPE.SEARCHSET))
+      using(singleTest) in (_ => sampleResource nodalMap (classOf[BUNDLE_TYPE], (_: BUNDLE_TYPE) => BUNDLE_TYPE.SEARCHSET))
     }
   }
 
