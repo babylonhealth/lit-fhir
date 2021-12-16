@@ -8,7 +8,6 @@ import java.time.temporal.ChronoUnit
 import java.time.{ZoneId, ZonedDateTime}
 
 import ca.uhn.fhir.context.FhirContext
-import com.google.protobuf.Message
 import io.circe.syntax._
 import com.babylonhealth.lit.core.serdes.{objectDecoder, objectEncoder}
 import com.babylonhealth.lit.protoshim.Translator
