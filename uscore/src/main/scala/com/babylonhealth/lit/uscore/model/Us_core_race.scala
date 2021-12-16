@@ -72,11 +72,11 @@ object Us_core_race extends CompanionFor[Us_core_race] {
   * nationality. The race codes used to represent these concepts are based upon the [CDC Race and Ethnicity Code Set Version
   * 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and
   * ethnicity of which 921 reference race. The race concepts are grouped by and pre-mapped to the 5 OMB race categories:
-  *   - American Indian or Alaska Native
-  *   - Asian
-  *   - Black or African American
-  *   - Native Hawaiian or Other Pacific Islander
-  *   - White.
+  * - American Indian or Alaska Native
+  * - Asian
+  * - Black or African American
+  * - Native Hawaiian or Other Pacific Islander
+  * - White.
   *
   * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
   * resources.)
@@ -86,14 +86,14 @@ object Us_core_race extends CompanionFor[Us_core_race] {
   *   of the following fields which were optional in the parent: value. Hardcodes the value of the following fields: url.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *     spaces.
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
-  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *     of the extension.
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Us_core_race(

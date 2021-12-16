@@ -80,12 +80,12 @@ object Rendering_xhtml extends CompanionFor[Rendering_xhtml] {
   *   the following fields: url.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *     spaces.
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value
   *   - Value of extension - must be one of a constrained set of the data types (see
-  *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Rendering_xhtml(
