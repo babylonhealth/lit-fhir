@@ -70,11 +70,17 @@ lazy val macros = project
     libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.15") else Nil)
   )
 
+def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
+  case Some(v) if v.matches("""g\d+\.\d+\.\d+(-SNAPSHOT)?""") => v.tail
+  case _                                                      => "latest-SNAPSHOT"
+}
 lazy val generator = project
   .in(file("generator"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
+    // We override the version set by sbt-dynver for the generator module
+    version := getGeneratorVersion,
     libraryDependencies ++= Seq(
       // Runtime deps
       "com.babylonhealth.lit" %% "hl7"         % V.litVersionForGenerator,
