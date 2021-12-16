@@ -71,7 +71,7 @@ lazy val macros = project
   )
 
 def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
-  case Some(v) if v.matches("""g\d+\.\d+\.\d+(-SNAPSHOT)?""") => v.tail
+  case Some(v) if v.matches("""g\d+\.\d+\.\d+(-\d+)?(-SNAPSHOT)?""") => v.tail
   case _                                                      => "latest-SNAPSHOT"
 }
 lazy val generator = project
