@@ -12,7 +12,7 @@ else
 resolvers += Resolver.jcenterRepo
 
 addSbtPlugin("org.scalameta"     % "sbt-scalafmt"          % "2.3.0")
-addSbtPlugin("net.aichler"       % "sbt-jupiter-interface" % "0.8.3")
+addSbtPlugin("net.aichler"       % "sbt-jupiter-interface" % "0.8.4")
 addSbtPlugin("com.lightbend.sbt" % "sbt-java-formatter"    % "0.5.1")
 //addSbtPlugin("com.etsy" % "sbt-checkstyle-plugin" % "3.1.1")
 addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
