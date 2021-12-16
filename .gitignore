@@ -10,3 +10,9 @@ DUMPS
 targets.tar.gz
 *.iml
 .ignore/
+
+# Ignore fhir definitions fetched from npm
+fhir/
+node_modules/
+package-lock.json
+package.json

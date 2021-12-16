@@ -29,7 +29,7 @@ trait DefaultPlugins extends FileUtils {
       case None       => Nil
     })
   private lazy val defaultCodeSystems: Map[String, CodeSystem] =
-    expandGlob("./fhir/spec/hl7.fhir.core/4.0.1/package/CodeSystem-*")
+    expandGlob("./fhir/hl7.fhir.r4.core/CodeSystem-*")
       .handleErrorWith { _ =>
         println("Could not find code systems"); sys.exit(1)
       }
@@ -69,7 +69,7 @@ trait DefaultPlugins extends FileUtils {
     }
   }
   private lazy val defaultValueSets: Map[String, CodeValueSet] =
-    expandGlob("./fhir/spec/hl7.fhir.core/4.0.1/package/ValueSet-*")
+    expandGlob("./fhir/hl7.fhir.r4.core/ValueSet-*")
       .handleErrorWith { _ =>
         println("Could not find value sets"); sys.exit(1)
       }

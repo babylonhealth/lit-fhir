@@ -98,11 +98,12 @@ trait BaseFieldDecoders extends Utils {
         Try(FHIRDateTime(ZonedDateTime.of(y.toInt, m.toInt, 1, 0, 0, 0, 0, ZoneOffset.UTC), FHIRDateTimeSpecificity.Month))
       case yearsMonthsAndDays(y, m, d) =>
         Try(FHIRDateTime(ZonedDateTime.of(y.toInt, m.toInt, d.toInt, 0, 0, 0, 0, ZoneOffset.UTC), FHIRDateTimeSpecificity.Day))
-      case x => Try {
-        val time = ZonedDateTime.parse(x)
-        val specificity = if (time.getNano % 1000000 == 0) FHIRDateTimeSpecificity.Time else FHIRDateTimeSpecificity.Micros
-        FHIRDateTime(time, specificity)
-      }
+      case x =>
+        Try {
+          val time        = ZonedDateTime.parse(x)
+          val specificity = if (time.getNano % 1000000 == 0) FHIRDateTimeSpecificity.Time else FHIRDateTimeSpecificity.Micros
+          FHIRDateTime(time, specificity)
+        }
     }
   implicit val encoderFHIRDateTime: Encoder[FHIRDateTime] = Encoder.encodeString.contramap(_.fmt)
 

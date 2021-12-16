@@ -91,7 +91,7 @@ build-all-class-models-dry:
 
 build-all-class-models:
 	$(SBT) 'project generator' 'run "generate" \
-		--models="usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
+		--models="usbase=fhir/hl7.fhir.r4.examples/StructureDefinition-*;uscore=fhir/hl7.fhir.us.core/StructureDefinition-*" \
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore"'
 	$(SBT) $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
@@ -116,12 +116,21 @@ pull-stuff:
 	npm --registry https://packages.simplifier.net install hl7.fhir.r4.core@4.0.1
 	rm -rf generator/src/main/resources/searchParams && mkdir generator/src/main/resources/searchParams
 	mv node_modules/hl7.fhir.r4.core/SearchParameter-* generator/src/main/resources/searchParams
+	mv node_modules/hl7.fhir.r4.core fhir
 	rm -rf node_modules package-lock.json
 	cat generator/src/main/resources/searchParams/SearchParameter-* \
 		| jq '{name: .name, expression: .expression, base: .base}' \
 		| jq -s . \
 		> generator/src/main/resources/searchParams.json
 	rm -rf generator/src/main/resources/searchParams
+	# more
+	rm -rf fhir node_modules/hl7.fhir.r4.core node_modules/hl7.fhir.r4.examples node_modules/hl7.fhir.us.core && mkdir fhir
+	npm --registry https://packages.simplifier.net install hl7.fhir.us.core@3.1.0
+	npm --registry https://packages.simplifier.net install hl7.fhir.r4.examples@4.0.1
+#	npm --registry https://packages.simplifier.net install hl7.fhir.core@4.0.1
+	mv node_modules/hl7.fhir.r4.examples fhir
+	mv node_modules/hl7.fhir.us.core fhir
+	mv node_modules/hl7.fhir.r4.core fhir
 
 find-weird-ones:
 	echo NO BASE:
