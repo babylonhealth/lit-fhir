@@ -19,6 +19,7 @@ import com.babylonhealth.lit.core.TagSummoners.{ lTagOf, lTypeOf }
 import com.babylonhealth.lit.core.serdes.objectDecoder
 import com.babylonhealth.lit.core.model._
 
+
 case class DecoderAndTag[T](decoder: DecoderParams => Decoder[T], typeTag: LTag[T]) {
   type Type = T
 }
@@ -60,58 +61,61 @@ package object model {
     resourceTypeLookup ++ urlLookup
 
   val suffixDecoderTypeTagMap: Map[String, DecoderAndTag[_]] = Map(
-    "Dosage"              -> DecoderAndTag[Dosage](Dosage.decoder(_), lTagOf[Dosage]),
-    "Id"                  -> DecoderAndTag[Id](_ => idDecoder, lTagOf[Id]),
-    "Period"              -> DecoderAndTag[Period](Period.decoder(_), lTagOf[Period]),
-    "Time"                -> DecoderAndTag[LocalTime](_ => Decoder.decodeLocalTime, lTagOf[LocalTime]),
-    "Meta"                -> DecoderAndTag[Meta](Meta.decoder(_), lTagOf[Meta]),
-    "Markdown"            -> DecoderAndTag[Markdown](_ => markdownDecoder, lTagOf[Markdown]),
-    "Distance"            -> DecoderAndTag[Distance](Distance.decoder(_), lTagOf[Distance]),
-    "RelatedArtifact"     -> DecoderAndTag[RelatedArtifact](RelatedArtifact.decoder(_), lTagOf[RelatedArtifact]),
-    "Code"                -> DecoderAndTag[Code](_ => codeDecoder, lTagOf[Code]),
-    "SampledData"         -> DecoderAndTag[SampledData](SampledData.decoder(_), lTagOf[SampledData]),
-    "Timing"              -> DecoderAndTag[Timing](Timing.decoder(_), lTagOf[Timing]),
-    "Range"               -> DecoderAndTag[Range](Range.decoder(_), lTagOf[Range]),
-    "ParameterDefinition" -> DecoderAndTag[ParameterDefinition](ParameterDefinition.decoder(_), lTagOf[ParameterDefinition]),
-    "HumanName"           -> DecoderAndTag[HumanName](HumanName.decoder(_), lTagOf[HumanName]),
-    "Instant"             -> DecoderAndTag[ZonedDateTime](_ => decodeZonedDateTime, lTagOf[ZonedDateTime]),
-    "Age"                 -> DecoderAndTag[Age](Age.decoder(_), lTagOf[Age]),
-    "Base64Binary"        -> DecoderAndTag[Base64Binary](_ => base64BinaryDecoder, lTagOf[Base64Binary]),
-    "Oid"                 -> DecoderAndTag[OID](_ => oidDecoder, lTagOf[OID]),
-    "PositiveInt"         -> DecoderAndTag[PositiveInt](_ => positiveIntDecoder, lTagOf[PositiveInt]),
-    "Canonical"           -> DecoderAndTag[Canonical](_ => canonicalDecoder, lTagOf[Canonical]),
-    "Contributor"         -> DecoderAndTag[Contributor](Contributor.decoder(_), lTagOf[Contributor]),
-    "UnsignedInt"         -> DecoderAndTag[UnsignedInt](_ => unsignedIntDecoder, lTagOf[UnsignedInt]),
-    "Money"               -> DecoderAndTag[Money](Money.decoder(_), lTagOf[Money]),
-    "Boolean"             -> DecoderAndTag[Boolean](_ => Decoder.decodeBoolean, lTagOf[Boolean]),
-    "UsageContext"        -> DecoderAndTag[UsageContext](UsageContext.decoder(_), lTagOf[UsageContext]),
-    "Uuid"                -> DecoderAndTag[UUID](_ => Decoder.decodeUUID, lTagOf[UUID]),
-    "Expression"          -> DecoderAndTag[Expression](Expression.decoder(_), lTagOf[Expression]),
-    "ContactPoint"        -> DecoderAndTag[ContactPoint](ContactPoint.decoder(_), lTagOf[ContactPoint]),
-    "Attachment"          -> DecoderAndTag[Attachment](Attachment.decoder(_), lTagOf[Attachment]),
-    "Duration"            -> DecoderAndTag[Duration](Duration.decoder(_), lTagOf[Duration]),
-    "CodeableConcept"     -> DecoderAndTag[CodeableConcept](CodeableConcept.decoder(_), lTagOf[CodeableConcept]),
-    "Address"             -> DecoderAndTag[Address](Address.decoder(_), lTagOf[Address]),
-    "String"              -> DecoderAndTag[String](_ => Decoder.decodeString, lTagOf[String]),
-    "Count"               -> DecoderAndTag[Count](Count.decoder(_), lTagOf[Count]),
-    "Coding"              -> DecoderAndTag[Coding](Coding.decoder(_), lTagOf[Coding]),
-    "Ratio"               -> DecoderAndTag[Ratio](Ratio.decoder(_), lTagOf[Ratio]),
-    "Identifier"          -> DecoderAndTag[Identifier](Identifier.decoder(_), lTagOf[Identifier]),
-    "Url"                 -> DecoderAndTag[UrlStr](_ => urlDecoder, lTagOf[UrlStr]),
-    "DateTime"            -> DecoderAndTag[FHIRDateTime](_ => decodeFHIRDateTime, lTagOf[FHIRDateTime]),
-    "Uri"                 -> DecoderAndTag[UriStr](_ => uriDecoder, lTagOf[UriStr]),
-    "DataRequirement"     -> DecoderAndTag[DataRequirement](DataRequirement.decoder(_), lTagOf[DataRequirement]),
-    "Quantity"            -> DecoderAndTag[Quantity](Quantity.decoder(_), lTagOf[Quantity]),
-    "TriggerDefinition"   -> DecoderAndTag[TriggerDefinition](TriggerDefinition.decoder(_), lTagOf[TriggerDefinition]),
-    "Signature"           -> DecoderAndTag[Signature](Signature.decoder(_), lTagOf[Signature]),
-    "Annotation"          -> DecoderAndTag[Annotation](Annotation.decoder(_), lTagOf[Annotation]),
-    "Integer"             -> DecoderAndTag[Int](_ => Decoder.decodeInt, lTagOf[Int]),
-    "Reference"           -> DecoderAndTag[Reference](Reference.decoder(_), lTagOf[Reference]),
-    "ContactDetail"       -> DecoderAndTag[ContactDetail](ContactDetail.decoder(_), lTagOf[ContactDetail]),
-    "Date"                -> DecoderAndTag[FHIRDate](_ => decodeFHIRDate, lTagOf[FHIRDate]),
-    "Decimal"             -> DecoderAndTag[BigDecimal](_ => Decoder.decodeBigDecimal, lTagOf[BigDecimal]),
-    "Integer64"           -> DecoderAndTag[Long](_ => Decoder.decodeLong, lTagOf[Long])
+    "Dosage"          -> DecoderAndTag[Dosage](Dosage.decoder(_), lTagOf[Dosage]),
+    "Id"              -> DecoderAndTag[Id](_ => idDecoder, lTagOf[Id]),
+    "Period"          -> DecoderAndTag[Period](Period.decoder(_), lTagOf[Period]),
+    "Time"            -> DecoderAndTag[LocalTime](_ => Decoder.decodeLocalTime, lTagOf[LocalTime]),
+    "Meta"            -> DecoderAndTag[Meta](Meta.decoder(_), lTagOf[Meta]),
+    "Markdown"        -> DecoderAndTag[Markdown](_ => markdownDecoder, lTagOf[Markdown]),
+    "Distance"        -> DecoderAndTag[Distance](Distance.decoder(_), lTagOf[Distance]),
+    "RelatedArtifact" -> DecoderAndTag[RelatedArtifact](RelatedArtifact.decoder(_), lTagOf[RelatedArtifact]),
+    "Code"            -> DecoderAndTag[Code](_ => codeDecoder, lTagOf[Code]),
+    "SampledData"     -> DecoderAndTag[SampledData](SampledData.decoder(_), lTagOf[SampledData]),
+    "Timing"          -> DecoderAndTag[Timing](Timing.decoder(_), lTagOf[Timing]),
+    "Range"           -> DecoderAndTag[Range](Range.decoder(_), lTagOf[Range]),
+    "ParameterDefinition" -> DecoderAndTag[ParameterDefinition](
+      ParameterDefinition.decoder(_),
+      lTagOf[ParameterDefinition]),
+    "HumanName"         -> DecoderAndTag[HumanName](HumanName.decoder(_), lTagOf[HumanName]),
+    "Instant"           -> DecoderAndTag[ZonedDateTime](_ => decodeZonedDateTime, lTagOf[ZonedDateTime]),
+    "Age"               -> DecoderAndTag[Age](Age.decoder(_), lTagOf[Age]),
+    "Base64Binary"      -> DecoderAndTag[Base64Binary](_ => base64BinaryDecoder, lTagOf[Base64Binary]),
+    "Oid"               -> DecoderAndTag[OID](_ => oidDecoder, lTagOf[OID]),
+    "PositiveInt"       -> DecoderAndTag[PositiveInt](_ => positiveIntDecoder, lTagOf[PositiveInt]),
+    "Canonical"         -> DecoderAndTag[Canonical](_ => canonicalDecoder, lTagOf[Canonical]),
+    "Contributor"       -> DecoderAndTag[Contributor](Contributor.decoder(_), lTagOf[Contributor]),
+    "UnsignedInt"       -> DecoderAndTag[UnsignedInt](_ => unsignedIntDecoder, lTagOf[UnsignedInt]),
+    "Money"             -> DecoderAndTag[Money](Money.decoder(_), lTagOf[Money]),
+    "Boolean"           -> DecoderAndTag[Boolean](_ => Decoder.decodeBoolean, lTagOf[Boolean]),
+    "UsageContext"      -> DecoderAndTag[UsageContext](UsageContext.decoder(_), lTagOf[UsageContext]),
+    "Uuid"              -> DecoderAndTag[UUID](_ => Decoder.decodeUUID, lTagOf[UUID]),
+    "Expression"        -> DecoderAndTag[Expression](Expression.decoder(_), lTagOf[Expression]),
+    "ContactPoint"      -> DecoderAndTag[ContactPoint](ContactPoint.decoder(_), lTagOf[ContactPoint]),
+    "Attachment"        -> DecoderAndTag[Attachment](Attachment.decoder(_), lTagOf[Attachment]),
+    "Duration"          -> DecoderAndTag[Duration](Duration.decoder(_), lTagOf[Duration]),
+    "CodeableConcept"   -> DecoderAndTag[CodeableConcept](CodeableConcept.decoder(_), lTagOf[CodeableConcept]),
+    "Address"           -> DecoderAndTag[Address](Address.decoder(_), lTagOf[Address]),
+    "String"            -> DecoderAndTag[String](_ => Decoder.decodeString, lTagOf[String]),
+    "Count"             -> DecoderAndTag[Count](Count.decoder(_), lTagOf[Count]),
+    "Coding"            -> DecoderAndTag[Coding](Coding.decoder(_), lTagOf[Coding]),
+    "Ratio"             -> DecoderAndTag[Ratio](Ratio.decoder(_), lTagOf[Ratio]),
+    "Identifier"        -> DecoderAndTag[Identifier](Identifier.decoder(_), lTagOf[Identifier]),
+    "Url"               -> DecoderAndTag[UrlStr](_ => urlDecoder, lTagOf[UrlStr]),
+    "DateTime"          -> DecoderAndTag[FHIRDateTime](_ => decodeFHIRDateTime, lTagOf[FHIRDateTime]),
+    "Uri"               -> DecoderAndTag[UriStr](_ => uriDecoder, lTagOf[UriStr]),
+    "DataRequirement"   -> DecoderAndTag[DataRequirement](DataRequirement.decoder(_), lTagOf[DataRequirement]),
+    "Quantity"          -> DecoderAndTag[Quantity](Quantity.decoder(_), lTagOf[Quantity]),
+    "TriggerDefinition" -> DecoderAndTag[TriggerDefinition](TriggerDefinition.decoder(_), lTagOf[TriggerDefinition]),
+    "Signature"         -> DecoderAndTag[Signature](Signature.decoder(_), lTagOf[Signature]),
+    "Annotation"        -> DecoderAndTag[Annotation](Annotation.decoder(_), lTagOf[Annotation]),
+    "Integer"           -> DecoderAndTag[Int](_ => Decoder.decodeInt, lTagOf[Int]),
+    "Reference"         -> DecoderAndTag[Reference](Reference.decoder(_), lTagOf[Reference]),
+    "ContactDetail"     -> DecoderAndTag[ContactDetail](ContactDetail.decoder(_), lTagOf[ContactDetail]),
+    "Date"              -> DecoderAndTag[FHIRDate](_ => decodeFHIRDate, lTagOf[FHIRDate]),
+    "Decimal"           -> DecoderAndTag[BigDecimal](_ => Decoder.decodeBigDecimal, lTagOf[BigDecimal]),
+    "Integer64"         -> DecoderAndTag[Long](_ => Decoder.decodeLong, lTagOf[Long])
   )
+
 
   val suffixTypeMap: Map[String, LightTypeTag] =
     suffixDecoderTypeTagMap.map { case (k, v) =>
@@ -154,69 +158,28 @@ package object model {
 }
 
 object UnionAliases {
-  type Union01658422381 = FHIRDate | FHIRDateTime | Reference | Timing
-  type UnionAll = Address | Age | Annotation | Attachment | Base64Binary | BigDecimal | Boolean | Canonical | Code |
-    CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage |
-    Duration | Expression | FHIRDate | FHIRDateTime | HumanName | Id | Identifier | Int | LocalTime | Markdown | Meta | Money |
-    OID | ParameterDefinition | Period | PositiveInt | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData |
-    Signature | String | Timing | TriggerDefinition | UUID | UnsignedInt | UriStr | UrlStr | UsageContext | ZonedDateTime
-  type UnionBooleanOrCodeableConcept   = Boolean | CodeableConcept
-  type UnionCodeableConceptOrReference = CodeableConcept | Reference
-  type UnionDurationOrDateTimeOrPeriod = Duration | FHIRDateTime | Period
-  type UnionDurationOrPeriodOrRange    = Duration | Period | Range
-  type UnionQuantityOrRange            = Quantity | Range
-  type UnionQuantityOrRangeOrRatio     = Quantity | Range | Ratio
-  type UnionReferenceOrString          = Reference | String
-  type Union_1548929031                = CodeableConcept | Quantity | Range | Reference
+  type Union01658422381 = FHIRDate|FHIRDateTime|Reference|Timing
+  type UnionAll = Address|Age|Annotation|Attachment|Base64Binary|BigDecimal|Boolean|Canonical|Code|CodeableConcept|Coding|ContactDetail|ContactPoint|Contributor|Count|DataRequirement|Distance|Dosage|Duration|Expression|FHIRDate|FHIRDateTime|HumanName|Id|Identifier|Int|LocalTime|Markdown|Meta|Money|OID|ParameterDefinition|Period|PositiveInt|Quantity|Range|Ratio|Reference|RelatedArtifact|SampledData|Signature|String|Timing|TriggerDefinition|UUID|UnsignedInt|UriStr|UrlStr|UsageContext|ZonedDateTime
+  type UnionBooleanOrCodeableConcept = Boolean|CodeableConcept
+  type UnionCodeableConceptOrReference = CodeableConcept|Reference
+  type UnionDurationOrDateTimeOrPeriod = Duration|FHIRDateTime|Period
+  type UnionDurationOrPeriodOrRange = Duration|Period|Range
+  type UnionQuantityOrRange = Quantity|Range
+  type UnionQuantityOrRangeOrRatio = Quantity|Range|Ratio
+  type UnionReferenceOrString = Reference|String
+  type Union_1548929031 = CodeableConcept|Quantity|Range|Reference
 
-  val Union01658422381Tag: LTag[Union01658422381]                               = LTag[Union01658422381]
-  val UnionAllTag: LTag[UnionAll]                                               = LTag[UnionAll]
-  val UnionBooleanOrCodeableConceptTag: LTag[UnionBooleanOrCodeableConcept]     = LTag[UnionBooleanOrCodeableConcept]
+  val Union01658422381Tag: LTag[Union01658422381] = LTag[Union01658422381]
+  val UnionAllTag: LTag[UnionAll] = LTag[UnionAll]
+  val UnionBooleanOrCodeableConceptTag: LTag[UnionBooleanOrCodeableConcept] = LTag[UnionBooleanOrCodeableConcept]
   val UnionCodeableConceptOrReferenceTag: LTag[UnionCodeableConceptOrReference] = LTag[UnionCodeableConceptOrReference]
   val UnionDurationOrDateTimeOrPeriodTag: LTag[UnionDurationOrDateTimeOrPeriod] = LTag[UnionDurationOrDateTimeOrPeriod]
-  val UnionDurationOrPeriodOrRangeTag: LTag[UnionDurationOrPeriodOrRange]       = LTag[UnionDurationOrPeriodOrRange]
-  val UnionQuantityOrRangeOrRatioTag: LTag[UnionQuantityOrRangeOrRatio]         = LTag[UnionQuantityOrRangeOrRatio]
-  val UnionQuantityOrRangeTag: LTag[UnionQuantityOrRange]                       = LTag[UnionQuantityOrRange]
-  val UnionReferenceOrStringTag: LTag[UnionReferenceOrString]                   = LTag[UnionReferenceOrString]
-  val Union_1548929031Tag: LTag[Union_1548929031]                               = LTag[Union_1548929031]
+  val UnionDurationOrPeriodOrRangeTag: LTag[UnionDurationOrPeriodOrRange] = LTag[UnionDurationOrPeriodOrRange]
+  val UnionQuantityOrRangeOrRatioTag: LTag[UnionQuantityOrRangeOrRatio] = LTag[UnionQuantityOrRangeOrRatio]
+  val UnionQuantityOrRangeTag: LTag[UnionQuantityOrRange] = LTag[UnionQuantityOrRange]
+  val UnionReferenceOrStringTag: LTag[UnionReferenceOrString] = LTag[UnionReferenceOrString]
+  val Union_1548929031Tag: LTag[Union_1548929031] = LTag[Union_1548929031]
 }
 
-object Module
-    extends ModuleDict(
-      Map(
-        "http://hl7.org/fhir/StructureDefinition/Timing"              -> Timing,
-        "http://hl7.org/fhir/StructureDefinition/Duration"            -> Duration,
-        "http://hl7.org/fhir/StructureDefinition/Age"                 -> Age,
-        "http://hl7.org/fhir/StructureDefinition/HumanName"           -> HumanName,
-        "http://hl7.org/fhir/StructureDefinition/UsageContext"        -> UsageContext,
-        "http://hl7.org/fhir/StructureDefinition/CodeableConcept"     -> CodeableConcept,
-        "http://hl7.org/fhir/StructureDefinition/Annotation"          -> Annotation,
-        "http://hl7.org/fhir/StructureDefinition/Element"             -> Element,
-        "http://hl7.org/fhir/StructureDefinition/ContactDetail"       -> ContactDetail,
-        "http://hl7.org/fhir/StructureDefinition/Reference"           -> Reference,
-        "http://hl7.org/fhir/StructureDefinition/Attachment"          -> Attachment,
-        "http://hl7.org/fhir/StructureDefinition/Count"               -> Count,
-        "http://hl7.org/fhir/StructureDefinition/Expression"          -> Expression,
-        "http://hl7.org/fhir/StructureDefinition/Signature"           -> Signature,
-        "http://hl7.org/fhir/StructureDefinition/Contributor"         -> Contributor,
-        "http://hl7.org/fhir/StructureDefinition/Period"              -> Period,
-        "http://hl7.org/fhir/StructureDefinition/Meta"                -> Meta,
-        "http://hl7.org/fhir/StructureDefinition/Money"               -> Money,
-        "http://hl7.org/fhir/StructureDefinition/Address"             -> Address,
-        "http://hl7.org/fhir/StructureDefinition/ContactPoint"        -> ContactPoint,
-        "http://hl7.org/fhir/StructureDefinition/ParameterDefinition" -> ParameterDefinition,
-        "http://hl7.org/fhir/StructureDefinition/Identifier"          -> Identifier,
-        "http://hl7.org/fhir/StructureDefinition/BackboneElement"     -> BackboneElement,
-        "http://hl7.org/fhir/StructureDefinition/Dosage"              -> Dosage,
-        "http://hl7.org/fhir/StructureDefinition/Resource"            -> Resource,
-        "http://hl7.org/fhir/StructureDefinition/Extension"           -> Extension,
-        "http://hl7.org/fhir/StructureDefinition/Distance"            -> Distance,
-        "http://hl7.org/fhir/StructureDefinition/SampledData"         -> SampledData,
-        "http://hl7.org/fhir/StructureDefinition/Ratio"               -> Ratio,
-        "http://hl7.org/fhir/StructureDefinition/TriggerDefinition"   -> TriggerDefinition,
-        "http://hl7.org/fhir/StructureDefinition/Quantity"            -> Quantity,
-        "http://hl7.org/fhir/StructureDefinition/DataRequirement"     -> DataRequirement,
-        "http://hl7.org/fhir/StructureDefinition/Coding"              -> Coding,
-        "http://hl7.org/fhir/StructureDefinition/Range"               -> Range,
-        "http://hl7.org/fhir/StructureDefinition/RelatedArtifact"     -> RelatedArtifact
-      ))
+object Module extends ModuleDict(Map("http://hl7.org/fhir/StructureDefinition/Timing" -> Timing, "http://hl7.org/fhir/StructureDefinition/Duration" -> Duration, "http://hl7.org/fhir/StructureDefinition/Age" -> Age, "http://hl7.org/fhir/StructureDefinition/HumanName" -> HumanName, "http://hl7.org/fhir/StructureDefinition/UsageContext" -> UsageContext, "http://hl7.org/fhir/StructureDefinition/CodeableConcept" -> CodeableConcept, "http://hl7.org/fhir/StructureDefinition/Annotation" -> Annotation, "http://hl7.org/fhir/StructureDefinition/Element" -> Element, "http://hl7.org/fhir/StructureDefinition/ContactDetail" -> ContactDetail, "http://hl7.org/fhir/StructureDefinition/Reference" -> Reference, "http://hl7.org/fhir/StructureDefinition/Attachment" -> Attachment, "http://hl7.org/fhir/StructureDefinition/Count" -> Count, "http://hl7.org/fhir/StructureDefinition/Expression" -> Expression, "http://hl7.org/fhir/StructureDefinition/Signature" -> Signature, "http://hl7.org/fhir/StructureDefinition/Contributor" -> Contributor, "http://hl7.org/fhir/StructureDefinition/Period" -> Period, "http://hl7.org/fhir/StructureDefinition/Meta" -> Meta, "http://hl7.org/fhir/StructureDefinition/Money" -> Money, "http://hl7.org/fhir/StructureDefinition/Address" -> Address, "http://hl7.org/fhir/StructureDefinition/ContactPoint" -> ContactPoint, "http://hl7.org/fhir/StructureDefinition/ParameterDefinition" -> ParameterDefinition, "http://hl7.org/fhir/StructureDefinition/Identifier" -> Identifier, "http://hl7.org/fhir/StructureDefinition/BackboneElement" -> BackboneElement, "http://hl7.org/fhir/StructureDefinition/Dosage" -> Dosage, "http://hl7.org/fhir/StructureDefinition/Resource" -> Resource, "http://hl7.org/fhir/StructureDefinition/Extension" -> Extension, "http://hl7.org/fhir/StructureDefinition/Distance" -> Distance, "http://hl7.org/fhir/StructureDefinition/SampledData" -> SampledData, "http://hl7.org/fhir/StructureDefinition/Ratio" -> Ratio, "http://hl7.org/fhir/StructureDefinition/TriggerDefinition" -> TriggerDefinition, "http://hl7.org/fhir/StructureDefinition/Quantity" -> Quantity, "http://hl7.org/fhir/StructureDefinition/DataRequirement" -> DataRequirement, "http://hl7.org/fhir/StructureDefinition/Coding" -> Coding, "http://hl7.org/fhir/StructureDefinition/Range" -> Range, "http://hl7.org/fhir/StructureDefinition/RelatedArtifact" -> RelatedArtifact))
+

@@ -92,6 +92,7 @@ build-all-class-models:
 		--moduleDependencies="usbase<uscore"'
 	sbt scalafmtAll $(foreach i,$(ALL_MODULES),$iJava/javafmtAll)
 	./apply_patches.sh
+	sbt scalafmtAll
 
 clean-target:
 	rm -rf target/ */target
