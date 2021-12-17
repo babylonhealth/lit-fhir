@@ -111,7 +111,7 @@ lazy val core = project
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
       "org.junit.jupiter" % "junit-jupiter-api" % V.jUnit      % Test
     ) ++ (if (isScala2(scalaVersion.value))
-            Seq("com.beachape" %% "enumeratum" % V.enumeratum, "com.beachape" %% "enumeratum-circe" % "1.5.23")
+            Seq("com.beachape" %% "enumeratum" % V.enumeratum, "com.beachape" %% "enumeratum-circe" % "1.7.0")
           else Nil)
   )
   .dependsOn(macros, common)
