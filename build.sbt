@@ -15,7 +15,7 @@ val V = new {
   val jUnit                  = "5.6.0"
   val litVersionForGenerator = "0.14.5"
   val logback                = "1.2.3"
-  val lombok                 = "1.18.20"
+  val lombok                 = "1.18.22"
   val scalaMeterVersion      = "0.22"
   val scalaTest              = "3.2.10"
 }
