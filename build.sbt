@@ -2,6 +2,7 @@ import sbt.Keys.{ libraryDependencies, logBuffered }
 
 inThisBuild(
   Seq(
+    organization    := "com.babylonhealth.lit",
     publishArtifact := true,
     homepage        := Some(url("https://babylonhealth.com")),
     licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
@@ -33,7 +34,6 @@ val V = new {
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
-  organization       := "com.babylonhealth.lit",
   scalaVersion       := scala2Version,
   crossScalaVersions := versions,
   resolvers += Resolver.mavenLocal,
