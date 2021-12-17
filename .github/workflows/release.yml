@@ -8,7 +8,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -21,6 +21,7 @@ jobs:
         uses: dawidd6/action-get-tag@v1
       - name: Release
         run: |
+          brew install sbt
           GITHUB_TAG="${{steps.tag.outputs.tag}}"
           if [ "${GITHUB_TAG::1}" = g ]; then sbt generator/ci-release; else sbt ci-release; fi
         env:
