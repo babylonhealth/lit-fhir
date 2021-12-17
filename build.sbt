@@ -64,7 +64,7 @@ lazy val macros = project
   .settings(publishSettings: _*)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.15") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.24") else Nil)
   )
 
 def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
