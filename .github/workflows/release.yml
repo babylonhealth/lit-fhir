@@ -36,16 +36,4 @@ jobs:
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          CI_RELEASE: >
-            +common/publishSigned
-            +macros/publishSigned
-            +core/publishSigned
-            +hl7/publishSigned
-            +usbase/publishSigned
-            +uscore/publishSigned
-            coreJava/publishSigned
-            hl7Java/publishSigned
-            usbaseJava/publishSigned
-            uscoreJava/publishSigned
-            +fhirpath/publishSigned
-            +protoshim/publishSigned
+          CI_RELEASE: pushPackages
