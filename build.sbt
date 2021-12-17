@@ -23,12 +23,12 @@ val V = new {
   val circe                  = "0.14.1"
   val enumeratum             = "1.5.15"
   val googleFHIR             = "0.6.1"
-  val izumiReflect           = "1.1.2"
+  val izumiReflect           = "1.1.3"
   val jsonassert             = "1.5.0"
-  val jUnit                  = "5.6.0"
+  val jUnit                  = "5.6.3"
   val litVersionForGenerator = "0.14.5"
-  val logback                = "1.2.3"
-  val lombok                 = "1.18.20"
+  val logback                = "1.2.9"
+  val lombok                 = "1.18.22"
   val scalaMeterVersion      = "0.22"
   val scalaTest              = "3.2.10"
 }
@@ -64,7 +64,7 @@ lazy val macros = project
   .settings(commonSettings: _*)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.15") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.24") else Nil)
   )
 
 def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
@@ -100,7 +100,7 @@ lazy val core = project
       "io.circe"            %% "circe-core"      % V.circe,
       "io.circe"            %% "circe-generic"   % V.circe,
       "io.circe"            %% "circe-parser"    % V.circe,
-      "com.typesafe"         % "config"          % "1.4.0",
+      "com.typesafe"         % "config"          % "1.4.1",
       "ch.qos.logback"       % "logback-classic" % V.logback,
       "io.github.classgraph" % "classgraph"      % "4.8.78",
       "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
@@ -109,7 +109,7 @@ lazy val core = project
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
       "org.junit.jupiter" % "junit-jupiter-api" % V.jUnit      % Test
     ) ++ (if (isScala2(scalaVersion.value))
-            Seq("com.beachape" %% "enumeratum" % V.enumeratum, "com.beachape" %% "enumeratum-circe" % "1.5.23")
+            Seq("com.beachape" %% "enumeratum" % V.enumeratum, "com.beachape" %% "enumeratum-circe" % "1.7.0")
           else Nil)
   )
   .dependsOn(macros, common)
@@ -163,9 +163,9 @@ lazy val fhirpath = project
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations", "-deprecation")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-parse"    % "0.3.4",
+      "org.typelevel" %% "cats-parse"    % "0.3.6",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j"      % "slf4j-api"     % "1.7.30",
+      "org.slf4j"      % "slf4j-api"     % "1.7.32",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
@@ -207,7 +207,7 @@ lazy val coreJava = project
       "org.projectlombok" % "lombok"            % V.lombok,
       "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
-      "org.junit.jupiter" % "junit-jupiter"     % "5.5.2" % Test
+      "org.junit.jupiter" % "junit-jupiter"     % "5.8.2" % Test
     )
   )
   .dependsOn(core)
@@ -234,7 +234,7 @@ lazy val uscoreJava = project
   .settings(libraryDependencies ++= Seq(
     "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
     "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
-    "org.junit.jupiter" % "junit-jupiter"     % "5.5.2"                          % Test
+    "org.junit.jupiter" % "junit-jupiter"     % "5.8.2"                          % Test
   ))
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
   .enablePlugins(JupiterPlugin)
