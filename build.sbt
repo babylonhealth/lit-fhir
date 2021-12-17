@@ -1,10 +1,5 @@
 import sbt.Keys.{ libraryDependencies, logBuffered }
 
-val artifactoryHost = "artifactory.ops.babylontech.co.uk"
-val artifactory     = s"https://$artifactoryHost/"
-
-val thisVersion = sys.props.get("version") getOrElse "local"
-
 val scala2Version = "2.13.7"
 val scala3Version = "3.0.2"
 val crossVersions = Seq(scala2Version, scala3Version)
@@ -18,7 +13,7 @@ val V = new {
   val izumiReflect           = "1.1.2"
   val jsonassert             = "1.5.0"
   val jUnit                  = "5.6.0"
-  val litVersionForGenerator = "0.14.3"
+  val litVersionForGenerator = "0.14.5"
   val logback                = "1.2.3"
   val lombok                 = "1.18.20"
   val scalaMeterVersion      = "0.22"
@@ -26,7 +21,6 @@ val V = new {
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
-  version            := thisVersion,
   organization       := "com.babylonhealth.lit",
   scalaVersion       := scala2Version,
   crossScalaVersions := versions,
@@ -49,14 +43,14 @@ val javaSettings = Seq(
   )
 )
 val publishSettings = Seq(
-  publishTo := {
-    if (version.value.trim.endsWith("SNAPSHOT"))
-      Some("snapshots" at artifactory + "artifactory/babylon-maven-snapshots")
-    else
-      Some("releases" at artifactory + "artifactory/babylon-maven-releases")
-  },
-  publishMavenStyle := true,
-  publishArtifact   := true
+  publishArtifact := true,
+  homepage        := Some(url("https://babylonhealth.com")),
+  licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+  developers := List(
+    Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
+  ),
+  sonatypeCredentialHost := "s01.oss.sonatype.org",
+  sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
 )
 
 lazy val common = project
@@ -73,19 +67,17 @@ lazy val macros = project
     libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.15") else Nil)
   )
 
+def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
+  case Some(v) if v.matches("""g\d+\.\d+\.\d+(-\d+)?(-SNAPSHOT)?""") => v.tail
+  case _                                                             => "latest-SNAPSHOT"
+}
 lazy val generator = project
   .in(file("generator"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    if (file(s"${System.getProperty("user.home")}/.ivy2/artifactory_credentials").exists())
-      credentials += Credentials(file(s"${System.getProperty("user.home")}/.ivy2/artifactory_credentials"))
-    else
-      credentials += Credentials("Artifactory Realm", "artifactory.ops.babylontech.co.uk", sys.props("ARTIFACTORY_USER"), sys.props("ARTIFACTORY_PWD")),
-    resolvers ++= Seq(
-      "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
-      "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases"
-    ),
+    // We override the version set by sbt-dynver for the generator module
+    version := getGeneratorVersion,
     libraryDependencies ++= Seq(
       // Runtime deps
       "com.babylonhealth.lit" %% "hl7"         % V.litVersionForGenerator,
@@ -272,4 +264,7 @@ lazy val protoshim = project
   )
   .dependsOn(core, hl7, uscore)
 
-lazy val root = project.in(file(".")).aggregate(generator)
+lazy val root =
+  project
+    .in(file("."))
+    .aggregate(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
