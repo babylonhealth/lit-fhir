@@ -19,15 +19,8 @@ jobs:
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
-      - name: Fetch dependencies
+      - name: Release
         run: |
-          GITHUB_TAG="${{steps.tag.outputs.tag}}"
-          if [ "${GITHUB_TAG::1}" = g ]; then sbt +generator/update; else make download-deps; fi
-      - name: Compile
-        run: |
-          GITHUB_TAG="${{steps.tag.outputs.tag}}"
-          if [ "${GITHUB_TAG::1}" = g ]; then sbt +generator/compile; else make compile; fi
-      - run: |
           GITHUB_TAG="${{steps.tag.outputs.tag}}"
           if [ "${GITHUB_TAG::1}" = g ]; then sbt generator/ci-release; else sbt ci-release; fi
         env:
