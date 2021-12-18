@@ -2,10 +2,11 @@ import sbt.Keys.{ libraryDependencies, logBuffered }
 
 inThisBuild(
   Seq(
-    organization    := "com.babylonhealth.lit",
-    publishArtifact := true,
-    homepage        := Some(url("https://babylonhealth.com")),
-    licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+    sonatypeProfileName := "com.babylonhealth",
+    organization        := "com.babylonhealth.lit",
+    publishArtifact     := true,
+    homepage            := Some(url("https://babylonhealth.com")),
+    licenses            := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     developers := List(
       Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
     ),
