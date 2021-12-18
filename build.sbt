@@ -260,3 +260,10 @@ lazy val root =
     .settings(commonSettings, publish / skip := true)
     .dependsOn(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
     .aggregate(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
+
+addCommandAlias(
+  "pushPackages",
+  "; +common/publishSigned; +macros/publishSigned; +core/publishSigned; " +
+    "+hl7/publishSigned; +usbase/publishSigned; +uscore/publishSigned; coreJava/publishSigned; hl7Java/publishSigned; " +
+    "usbaseJava/publishSigned; uscoreJava/publishSigned; +fhirpath/publishSigned; +protoshim/publishSigned"
+)
