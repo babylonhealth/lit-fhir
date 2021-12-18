@@ -14,18 +14,18 @@ inThisBuild(
   ))
 
 val scala2Version = "2.13.7"
-val scala3Version = "3.0.2"
+val scala3Version = "3.1.0"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
 
 val V = new {
   val circe                  = "0.14.1"
-  val enumeratum             = "1.5.15"
+  val enumeratum             = "1.7.0"
   val googleFHIR             = "0.6.1"
-  val izumiReflect           = "1.1.3"
+  val izumiReflect           = "2.0.8"
   val jsonassert             = "1.5.0"
-  val jUnit                  = "5.6.3"
+  val jUnit                  = "5.8.2"
   val litVersionForGenerator = "0.14.5"
   val logback                = "1.2.9"
   val lombok                 = "1.18.22"
@@ -64,7 +64,7 @@ lazy val macros = project
   .settings(commonSettings: _*)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.24") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.31") else Nil)
   )
 
 def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
