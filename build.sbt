@@ -256,7 +256,7 @@ lazy val protoshim = project
 lazy val root =
   project
     .in(file("."))
-    .settings(commonSettings)
+    .settings(commonSettings, publish / skip := true)
     .dependsOn(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
     .aggregate(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
 
