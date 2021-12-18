@@ -2,13 +2,13 @@ name: Release snapshot
 
 on:
   push:
-    branches: [master]
+#    branches: [master]
     tags:
       - '*'
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -19,20 +19,14 @@ jobs:
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
-      - name: Fetch dependencies
+      - name: Release
         run: |
+          brew install sbt
           GITHUB_TAG="${{steps.tag.outputs.tag}}"
-          if [ "${GITHUB_TAG::1}" = g ]; then sbt +generator/update; else make download-deps; fi
-      - name: Compile
-        run: |
-          GITHUB_TAG="${{steps.tag.outputs.tag}}"
-          if [ "${GITHUB_TAG::1}" = g ]; then sbt +generator/compile; else make compile; fi
-      - uses: olafurpg/setup-scala@v13
-      - run: |
-          GITHUB_TAG="${{steps.tag.outputs.tag}}"
-          if [ "${GITHUB_TAG::1}" = g ]; then generator/ci-release; else sbt ci-release; fi
+          if [ "${GITHUB_TAG::1}" = g ]; then sbt generator/ci-release; else sbt ci-release; fi
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          CI_RELEASE: pushPackages
