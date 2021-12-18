@@ -2,10 +2,10 @@ import sbt.Keys.{ libraryDependencies, logBuffered }
 
 inThisBuild(
   Seq(
-    organization        := "com.babylonhealth",
-    publishArtifact     := true,
-    homepage            := Some(url("https://babylonhealth.com")),
-    licenses            := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+    organization    := "com.babylonhealth",
+    publishArtifact := true,
+    homepage        := Some(url("https://babylonhealth.com")),
+    licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     developers := List(
       Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
     ),
@@ -26,7 +26,7 @@ val V = new {
   val izumiReflect           = "2.0.8"
   val jsonassert             = "1.5.0"
   val jUnit                  = "5.8.2"
-  val litVersionForGenerator = "0.14.5"
+  val litVersionForGenerator = "0.14.5.1"
   val logback                = "1.2.9"
   val lombok                 = "1.18.22"
   val scalaMeterVersion      = "0.22"
@@ -79,9 +79,9 @@ lazy val generator = project
     version := getGeneratorVersion,
     libraryDependencies ++= Seq(
       // Runtime deps
-      "com.babylonhealth.lit" %% "hl7"         % V.litVersionForGenerator,
-      "com.babylonhealth.lit" %% "fhirpath"    % V.litVersionForGenerator,
-      "org.typelevel"         %% "cats-effect" % "3.3.0",
+      "com.babylonhealth" %% "lit-hl7"      % V.litVersionForGenerator,
+      "com.babylonhealth" %% "lit-fhirpath" % V.litVersionForGenerator,
+      "org.typelevel"     %% "cats-effect"  % "3.3.0",
       // Test deps
       "org.scalatest"  %% "scalatest"  % V.scalaTest  % Test,
       "org.skyscreamer" % "jsonassert" % V.jsonassert % Test
