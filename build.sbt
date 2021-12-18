@@ -21,7 +21,7 @@ def isScala2(version: String) = version startsWith "2"
 
 val V = new {
   val circe                  = "0.14.1"
-  val enumeratum             = "1.5.15"
+  val enumeratum             = "1.7.0"
   val googleFHIR             = "0.6.1"
   val izumiReflect           = "2.0.8"
   val jsonassert             = "1.5.0"
