@@ -3,8 +3,6 @@
 Opinionated experimental library for easily constructing v4.0.1 compatible FHIR resources.
 Supports generating Scala and Java from FHIR structureDefinition and valueSet jsons, with _extremely early days and very tentative_ support for transforming from the model at [Google's open-sourced FHIR stuff](https://github.com/google/fhir).
 
-[![Release](https://github.com/babylonhealth/lit-fhir/actions/workflows/release.yml/badge.svg)](https://github.com/babylonhealth/lit-fhir/actions/workflows/release.yml)
-
 [About Lit](https://github.com/babylonhealth/lit-fhir/blob/master/docs/documentation.md)
 
 [Examples](https://github.com/babylonhealth/lit-fhir/blob/master/docs/examples.md)
