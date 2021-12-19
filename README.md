@@ -1,7 +1,7 @@
 # lit
 
 Opinionated library for easily constructing v4.0.1 compatible FHIR resources.
-Supports generating Scala and Java from FHIR structureDefinition and valueSet jsons, with _extremely early days and very tentative_ support for transforming from the model at [Google's open-sourced FHIR stuff](https://github.com/google/fhir). (this support basically just goes via json and is nice if you have compatability concerns or a need for protobuf, but otherwise is best avoided)
+Supports generating Scala and Java from FHIR structureDefinition and valueSet jsons, with _extremely naïve_ support for transforming from the model at [Google's open-sourced FHIR stuff](https://github.com/google/fhir). (this support basically just goes via json and is nice if you have compatability concerns or a need for protobuf, but otherwise is best avoided)
 
 [About Lit](https://github.com/babylonhealth/lit-fhir/blob/master/docs/documentation.md)
 
