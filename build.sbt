@@ -2,10 +2,11 @@ import sbt.Keys.{ libraryDependencies, logBuffered }
 
 inThisBuild(
   Seq(
-    organization    := "com.babylonhealth",
-    publishArtifact := true,
-    homepage        := Some(url("https://babylonhealth.com")),
-    licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+    sonatypeProfileName := "com.babylonhealth",
+    organization        := "com.babylonhealth.lit",
+    publishArtifact     := true,
+    homepage            := Some(url("https://babylonhealth.com")),
+    licenses            := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     developers := List(
       Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
     ),
@@ -57,11 +58,11 @@ val javaSettings = Seq(
 
 lazy val common = project
   .in(file("common"))
-  .settings(name := "lit.common", commonSettings)
+  .settings(commonSettings)
 
 lazy val macros = project
   .in(file("macros"))
-  .settings(name := "lit.macros", commonSettings)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
     libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.31") else Nil)
@@ -73,7 +74,7 @@ def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
 }
 lazy val generator = project
   .in(file("generator"))
-  .settings(name := "lit.generator", commonSettings)
+  .settings(commonSettings)
   .settings(
     // We override the version set by sbt-dynver for the generator module
     version := getGeneratorVersion,
@@ -91,7 +92,7 @@ lazy val generator = project
 
 lazy val core = project
   .in(file("core"))
-  .settings(name := "lit.core", commonSettings)
+  .settings(commonSettings)
   .settings(
     // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n,
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
@@ -116,7 +117,7 @@ lazy val core = project
 
 lazy val hl7 = project
   .in(file("hl7"))
-  .settings(name := "lit.hl7", commonSettings)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
@@ -132,7 +133,7 @@ lazy val hl7 = project
 
 lazy val uscore = project
   .in(file("uscore"))
-  .settings(name := "lit.uscore", commonSettings)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
@@ -145,7 +146,7 @@ lazy val uscore = project
 
 lazy val usbase = project
   .in(file("usbase"))
-  .settings(name := "lit.usbase", commonSettings)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
@@ -158,7 +159,7 @@ lazy val usbase = project
 
 lazy val fhirpath = project
   .in(file("fhirpath"))
-  .settings(name := "lit.fhirpath", commonSettings)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations", "-deprecation")
                        else Seq("-language:implicitConversions")),
@@ -175,7 +176,7 @@ lazy val fhirpath = project
 // Scalameter Benchmark tests
 lazy val bench = project
   .in(file("bench"))
-  .settings(name := "lit.bench", commonSettings)
+  .settings(commonSettings)
   .settings(
     resolvers ++= Seq(
       "Sonatype OSS Releases" at "https://oss.sonatype.org/content/repositories/releases",
@@ -198,7 +199,7 @@ lazy val bench = project
 
 lazy val coreJava = project
   .in(file("core_java"))
-  .settings(name := "lit.coreJava", commonJSettings)
+  .settings(commonJSettings)
   .settings(
     crossPaths := false,
     resolvers += Resolver.jcenterRepo,
@@ -215,21 +216,21 @@ lazy val coreJava = project
 
 lazy val hl7Java = project
   .in(file("hl7_java"))
-  .settings(name := "lit.hl7Java", commonJSettings)
+  .settings(commonJSettings)
   .settings(javaSettings: _*)
   .dependsOn(core, hl7, coreJava)
   .enablePlugins(JupiterPlugin)
 
 lazy val usbaseJava = project
   .in(file("usbase_java"))
-  .settings(name := "lit.usbaseJava", commonJSettings)
+  .settings(commonJSettings)
   .settings(javaSettings: _*)
   .dependsOn(core, hl7, usbase, coreJava, hl7Java)
   .enablePlugins(JupiterPlugin)
 
 lazy val uscoreJava = project
   .in(file("uscore_java"))
-  .settings(name := "lit.uscoreJava", commonJSettings)
+  .settings(commonJSettings)
   .settings(javaSettings: _*)
   .settings(libraryDependencies ++= Seq(
     "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
@@ -241,7 +242,7 @@ lazy val uscoreJava = project
 
 lazy val protoshim = project
   .in(file("protoshim"))
-  .settings(name := "lit.protoshim", commonSettings)
+  .settings(commonSettings)
   .settings(
     resolvers += "google-maven".at("https://maven.google.com"),
     libraryDependencies ++= Seq(
