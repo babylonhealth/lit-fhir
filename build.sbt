@@ -1,29 +1,42 @@
 import sbt.Keys.{ libraryDependencies, logBuffered }
 
+inThisBuild(
+  Seq(
+    organization    := "com.babylonhealth.lit",
+    publishArtifact := true,
+    homepage        := Some(url("https://babylonhealth.com")),
+    licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+    developers := List(
+      Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
+    ),
+    sonatypeCredentialHost := "s01.oss.sonatype.org",
+    sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
+  ))
+
 val scala2Version = "2.13.7"
-val scala3Version = "3.0.2"
+val scala3Version = "3.1.0"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
 
 val V = new {
   val circe                  = "0.14.1"
-  val enumeratum             = "1.5.15"
+  val enumeratum             = "1.7.0"
   val googleFHIR             = "0.6.1"
-  val izumiReflect           = "1.1.2"
+  val izumiReflect           = "2.0.8"
   val jsonassert             = "1.5.0"
-  val jUnit                  = "5.6.0"
-  val litVersionForGenerator = "0.14.5"
-  val logback                = "1.2.3"
-  val lombok                 = "1.18.20"
+  val jUnit                  = "5.8.2"
+  val litVersionForGenerator = "0.14.6"
+  val logback                = "1.2.9"
+  val lombok                 = "1.18.22"
   val scalaMeterVersion      = "0.22"
   val scalaTest              = "3.2.10"
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
-  organization       := "com.babylonhealth.lit",
-  scalaVersion       := scala2Version,
-  crossScalaVersions := versions,
+  scalaVersion        := scala2Version,
+  crossScalaVersions  := versions,
+  sonatypeProfileName := "com.babylonhealth",
   resolvers += Resolver.mavenLocal,
   libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scala-lang" % "scala-reflect" % scala2Version)
                            else Nil),
@@ -42,29 +55,17 @@ val javaSettings = Seq(
     "org.projectlombok" % "lombok"        % V.lombok
   )
 )
-val publishSettings = Seq(
-  publishArtifact := true,
-  homepage        := Some(url("https://babylonhealth.com")),
-  licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-  developers := List(
-    Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
-  ),
-  sonatypeCredentialHost := "s01.oss.sonatype.org",
-  sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
-)
 
 lazy val common = project
   .in(file("common"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
 
 lazy val macros = project
   .in(file("macros"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.15") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.31") else Nil)
   )
 
 def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
@@ -73,8 +74,7 @@ def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
 }
 lazy val generator = project
   .in(file("generator"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
   .settings(
     // We override the version set by sbt-dynver for the generator module
     version := getGeneratorVersion,
@@ -92,8 +92,7 @@ lazy val generator = project
 
 lazy val core = project
   .in(file("core"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
   .settings(
     // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n,
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
@@ -102,7 +101,7 @@ lazy val core = project
       "io.circe"            %% "circe-core"      % V.circe,
       "io.circe"            %% "circe-generic"   % V.circe,
       "io.circe"            %% "circe-parser"    % V.circe,
-      "com.typesafe"         % "config"          % "1.4.0",
+      "com.typesafe"         % "config"          % "1.4.1",
       "ch.qos.logback"       % "logback-classic" % V.logback,
       "io.github.classgraph" % "classgraph"      % "4.8.138",
       "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
@@ -111,15 +110,14 @@ lazy val core = project
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
       "org.junit.jupiter" % "junit-jupiter-api" % V.jUnit      % Test
     ) ++ (if (isScala2(scalaVersion.value))
-            Seq("com.beachape" %% "enumeratum" % V.enumeratum, "com.beachape" %% "enumeratum-circe" % "1.5.23")
+            Seq("com.beachape" %% "enumeratum" % V.enumeratum, "com.beachape" %% "enumeratum-circe" % "1.7.0")
           else Nil)
   )
   .dependsOn(macros, common)
 
 lazy val hl7 = project
   .in(file("hl7"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
@@ -135,8 +133,7 @@ lazy val hl7 = project
 
 lazy val uscore = project
   .in(file("uscore"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
@@ -149,8 +146,7 @@ lazy val uscore = project
 
 lazy val usbase = project
   .in(file("usbase"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
@@ -163,15 +159,14 @@ lazy val usbase = project
 
 lazy val fhirpath = project
   .in(file("fhirpath"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations", "-deprecation")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-parse"    % "0.3.4",
+      "org.typelevel" %% "cats-parse"    % "0.3.6",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j"      % "slf4j-api"     % "1.7.30",
+      "org.slf4j"      % "slf4j-api"     % "1.7.32",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
@@ -181,7 +176,7 @@ lazy val fhirpath = project
 // Scalameter Benchmark tests
 lazy val bench = project
   .in(file("bench"))
-  .settings(commonSettings: _*)
+  .settings(commonSettings)
   .settings(
     resolvers ++= Seq(
       "Sonatype OSS Releases" at "https://oss.sonatype.org/content/repositories/releases",
@@ -204,8 +199,7 @@ lazy val bench = project
 
 lazy val coreJava = project
   .in(file("core_java"))
-  .settings(commonJSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonJSettings)
   .settings(
     crossPaths := false,
     resolvers += Resolver.jcenterRepo,
@@ -214,7 +208,7 @@ lazy val coreJava = project
       "org.projectlombok" % "lombok"            % V.lombok,
       "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
-      "org.junit.jupiter" % "junit-jupiter"     % "5.5.2" % Test
+      "org.junit.jupiter" % "junit-jupiter"     % "5.8.2" % Test
     )
   )
   .dependsOn(core)
@@ -222,37 +216,33 @@ lazy val coreJava = project
 
 lazy val hl7Java = project
   .in(file("hl7_java"))
-  .settings(commonJSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonJSettings)
   .settings(javaSettings: _*)
   .dependsOn(core, hl7, coreJava)
   .enablePlugins(JupiterPlugin)
 
 lazy val usbaseJava = project
   .in(file("usbase_java"))
-  .settings(commonJSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonJSettings)
   .settings(javaSettings: _*)
   .dependsOn(core, hl7, usbase, coreJava, hl7Java)
   .enablePlugins(JupiterPlugin)
 
 lazy val uscoreJava = project
   .in(file("uscore_java"))
-  .settings(commonJSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonJSettings)
   .settings(javaSettings: _*)
   .settings(libraryDependencies ++= Seq(
     "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
     "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
-    "org.junit.jupiter" % "junit-jupiter"     % "5.5.2"                          % Test
+    "org.junit.jupiter" % "junit-jupiter"     % "5.8.2"                          % Test
   ))
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
   .enablePlugins(JupiterPlugin)
 
 lazy val protoshim = project
   .in(file("protoshim"))
-  .settings(commonSettings: _*)
-  .settings(publishSettings: _*)
+  .settings(commonSettings)
   .settings(
     resolvers += "google-maven".at("https://maven.google.com"),
     libraryDependencies ++= Seq(
@@ -267,4 +257,13 @@ lazy val protoshim = project
 lazy val root =
   project
     .in(file("."))
+    .settings(commonSettings, publish / skip := true)
+    .dependsOn(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
     .aggregate(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
+
+addCommandAlias(
+  "pushPackages",
+  "; +common/publishSigned; +macros/publishSigned; +core/publishSigned; " +
+    "+hl7/publishSigned; +usbase/publishSigned; +uscore/publishSigned; coreJava/publishSigned; hl7Java/publishSigned; " +
+    "usbaseJava/publishSigned; uscoreJava/publishSigned; +fhirpath/publishSigned; +protoshim/publishSigned"
+)
