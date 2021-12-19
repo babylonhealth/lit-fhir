@@ -2,17 +2,16 @@ import sbt.Keys.{ libraryDependencies, logBuffered }
 
 inThisBuild(
   Seq(
-    sonatypeProfileName := "com.babylonhealth",
-    organization        := "com.babylonhealth.lit",
-    publishArtifact     := true,
-    homepage            := Some(url("https://babylonhealth.com")),
-    licenses            := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+    organization    := "com.babylonhealth.lit",
+    publishArtifact := true,
+    homepage        := Some(url("https://babylonhealth.com")),
+    licenses        := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     developers := List(
       Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
     ),
     sonatypeCredentialHost := "s01.oss.sonatype.org",
     sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
-  )) ++ Sonatype.sonatypeSettings :+ (sonatypeProfileName := "com.babylonhealth")
+  ))
 
 val scala2Version = "2.13.7"
 val scala3Version = "3.1.0"
@@ -35,8 +34,9 @@ val V = new {
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
-  scalaVersion       := scala2Version,
-  crossScalaVersions := versions,
+  scalaVersion        := scala2Version,
+  crossScalaVersions  := versions,
+  sonatypeProfileName := "com.babylonhealth",
   resolvers += Resolver.mavenLocal,
   libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scala-lang" % "scala-reflect" % scala2Version)
                            else Nil),
