@@ -12,7 +12,7 @@ inThisBuild(
     ),
     sonatypeCredentialHost := "s01.oss.sonatype.org",
     sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
-  ))
+  )) ++ Sonatype.sonatypeSettings :+ (sonatypeProfileName := "com.babylonhealth")
 
 val scala2Version = "2.13.7"
 val scala3Version = "3.1.0"
