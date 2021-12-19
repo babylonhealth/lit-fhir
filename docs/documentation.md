@@ -5,7 +5,7 @@ Lit provides a class model that as much as possible represents the relationships
 - if structure definition A is a baseDefinition for structure definition B, then the class B will inherit from class A
 - if a value set is bound to a particular field, its enum representation will be shared with any other field bound to the same value set
 - 'choice[x]' fields are represented (as a best effort) by a special kind of union type called ‘Choice’
-- Required fields are required by the class constructors. Nonempty fields are required to be non-empty (with some exceptions -- see slices)
+- Required fields are required by the class constructors. Nonempty fields are required to be non-empty
 - subtyped primitives are represented that way -- e.g. the definition of `PositiveInt` is `type PositiveInt <: Int`
 
 ### Choices
