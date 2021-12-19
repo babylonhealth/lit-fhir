@@ -68,11 +68,11 @@ A tag of the form `g\d+.\d+.\d+(-\d+)?` will publish the generator module with t
 ## Plans for the future
 
 - Better support for protobuf models (current approach just round-trips through json, which is dog-slow)
-- Support future versions of FHIR spec
+- Support future versions of FHIR spec (In progress)
 - Better support for slices
-- Better support for extensions
-- Scala 3 support
-- Support for typescript and python
+- Better support for extensions (Arguably complete)
+- ~Scala 3 support~ (Done)
+- Support for typescript and python (Rust now more interesting)
 
 ---
 
