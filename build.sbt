@@ -26,7 +26,7 @@ val V = new {
   val izumiReflect           = "2.0.8"
   val jsonassert             = "1.5.0"
   val jUnit                  = "5.8.2"
-  val litVersionForGenerator = "0.14.5.1"
+  val litVersionForGenerator = "0.14.6"
   val logback                = "1.2.9"
   val lombok                 = "1.18.22"
   val scalaMeterVersion      = "0.22"
@@ -80,9 +80,9 @@ lazy val generator = project
     version := getGeneratorVersion,
     libraryDependencies ++= Seq(
       // Runtime deps
-      "com.babylonhealth" %% "lit-hl7"      % V.litVersionForGenerator,
-      "com.babylonhealth" %% "lit-fhirpath" % V.litVersionForGenerator,
-      "org.typelevel"     %% "cats-effect"  % "3.3.0",
+      "com.babylonhealth.lit" %% "hl7"         % V.litVersionForGenerator,
+      "com.babylonhealth.lit" %% "fhirpath"    % V.litVersionForGenerator,
+      "org.typelevel"         %% "cats-effect" % "3.3.0",
       // Test deps
       "org.scalatest"  %% "scalatest"  % V.scalaTest  % Test,
       "org.skyscreamer" % "jsonassert" % V.jsonassert % Test
