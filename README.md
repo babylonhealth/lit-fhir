@@ -21,6 +21,8 @@ We're published on maven central. There are various libs availaible, and what yo
 #### Other
 Should be convertable if you know your dependency manager.
 
+#### I want to know what the modules do
+
 - `core`: The `hl7` module may be more or less that you need. If, for some reason, you love hl7's extension modelling, the minimal subset is available as "com.babylonhealth.lit" %% "core" % "0.14.6"
 - `hl7`: the expected dependency
 - `usbase`: Mostly extensions. Support for this appears nice, but has some performance implications. You may want it if you're dealing with 'meta' fhir
