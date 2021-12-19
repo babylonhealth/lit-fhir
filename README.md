@@ -31,7 +31,7 @@ Should be convertable if you know your dependency manager.
 - `fhirpath`: A reasonably complete FHIR path interpreter
 - `protoshim`: In case you want to convert between domain models and proto and trust us enough to make reat more efficient in the future. Very little attention has been paid to it so far...
 - `macros`/`common`: It's extremely unlikely you'll want either of these in isolation. The macros module enables the the `with${FOO}`/`update${FOO}`/`with${FOO}IfExists` syntax for scala 2 dependencies (and transitively Java, which for the time being depenends on this because the functionality isn't AFAIK replicable in scala 3). The common module is a very small number of utility functions shared between the generator and the generated code, and arguably shoudldn't exist.
-
+- `generator`: For when you have your own profile definitions, but want them in a class model. Literally the whole point of this library. Not yet published. Sorry. Should be available Jan 2022. 
 
 ---
 
@@ -59,10 +59,7 @@ make test
 
 ## Releasing
 
-A tag of the form `\d+.\d+.\d+` will publish the generated modules with that semver
-A tag of the form `g\d+.\d+.\d+(-\d+)?` will publish the generator module with that semver (and the common module, if not already released with that semver. For that reason, generator module should always be tagged with whatever version of the generated libs it currently depends on)
-
-
+We release via github actions, and all releases should be basically traceable. The first couple of versions are a bit wonky because we were figuring out the release process, but everything public was ultimately released via github actions. 
 ---
 
 ## Plans for the future
