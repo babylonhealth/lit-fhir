@@ -17,7 +17,7 @@ We're published on maven central. There are various libs availaible, and what yo
 #### SBT
 "com.babylonhealth.lit" %% "hl7" % "0.14.6"
 #### Gradle
-"com.babylonhealth.lit:hl7:0.14.6"
+"com.babylonhealth.lit:hl7_2.13:0.14.6"
 #### Other
 Should be convertable if you know your dependency manager.
 
