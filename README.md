@@ -59,7 +59,7 @@ make test
 
 ## Releasing
 
-We release via github actions, and all releases should be basically traceable. The first couple of versions are a bit wonky because we were figuring out the release process, but everything public was ultimately released via github actions. 
+- We release via github actions, and all releases should be basically traceable. The first couple of versions are a bit wonky because we were figuring out the release process, but everything public was ultimately released via github actions.
 ---
 
 ## Plans for the future
