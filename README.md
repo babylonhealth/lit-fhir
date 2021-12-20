@@ -29,7 +29,7 @@ Should be convertable if you know your dependency manager.
 - `uscore`: Adds some useful stuff to the base for FHIR. You may very well want this dependency. Consider using `hl7` alone first -- check your business requirements.
 - `coreJava`/`hl7Java`/`usbaseJava`/`uscoreJave`: Like their scala counterparts, but with some builder methods to make handling construction less painful, and some enum aliases to make construction of them have fewer `$` signs. There are some additional serde utils available in `LitUtils`
 - `fhirpath`: A reasonably complete FHIR path interpreter
-- `protoshim`: In case you want to convert between domain models and proto and trust us enough to make reat more efficient in the future. Very little attention has been paid to it so far...
+- `protoshim`: In case you want to convert between domain models and proto. Fairly experimental
 - `macros`/`common`: It's extremely unlikely you'll want either of these in isolation. The macros module enables the the `with${FOO}`/`update${FOO}`/`with${FOO}IfExists` syntax for scala 2 dependencies (and transitively Java, which for the time being depenends on this because the functionality isn't AFAIK replicable in scala 3). The common module is a very small number of utility functions shared between the generator and the generated code, and arguably shoudldn't exist.
 - `generator`: For when you have json representing your own profile definitions, and want to generate a class model along the same lines as the pre-rolled modules here. Not yet published, but should be available Jan 2022. 
 
