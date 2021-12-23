@@ -337,35 +337,35 @@ object DataRequirement extends CompanionFor[DataRequirement] {
   *   Introduces the fields `type`, limit, profile, subject, mustSupport, sort, codeFilter, dateFilter.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *   spaces.
+  *     spaces.
   * @param `type`
   *   - The type of the required data, specified as the type name of a resource. For profiles, this value is set to the type of
-  *   the base resource of the profile.
+  *     the base resource of the profile.
   * @param limit
   *   - Specifies a maximum number of results that are required (uses the _count search parameter).
   * @param profile
   *   - The profile of the required data, specified as the uri of the profile definition.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
-  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *   of the extension.
+  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *     of the extension.
   * @param subject
   *   - The intended subjects of the data requirement. If this element is not provided, a Patient subject is assumed.
   * @param mustSupport
   *   - Indicates that specific elements of the type are referenced by the knowledge module and must be supported by the consumer
-  *   in order to obtain an effective evaluation. This does not mean that a value is required for this element, only that the
-  *   consuming system must understand the element and be able to provide values for it if they are available. The value of
-  *   mustSupport SHALL be a FHIRPath resolveable on the type of the DataRequirement. The path SHALL consist only of identifiers,
-  *   constant indexers, and .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
+  *     in order to obtain an effective evaluation. This does not mean that a value is required for this element, only that the
+  *     consuming system must understand the element and be able to provide values for it if they are available. The value of
+  *     mustSupport SHALL be a FHIRPath resolveable on the type of the DataRequirement. The path SHALL consist only of
+  *     identifiers, constant indexers, and .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
   * @param sort
   *   - Specifies the order of the results to be returned.
   * @param codeFilter
   *   - Code filters specify additional constraints on the data, specifying the value set of interest for a particular element of
-  *   the data. Each code filter defines an additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
+  *     the data. Each code filter defines an additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
   * @param dateFilter
   *   - Date filters specify additional constraints on the data in terms of the applicable date range for specific elements. Each
-  *   date filter specifies an additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
+  *     date filter specifies an additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
   */
 @POJOBoilerplate
 class DataRequirement(

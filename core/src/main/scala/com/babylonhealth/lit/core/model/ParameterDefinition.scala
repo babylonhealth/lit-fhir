@@ -124,7 +124,7 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
   *   Introduces the fields use, min, max, name, `type`, profile, documentation.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *   spaces.
+  *     spaces.
   * @param use
   *   - Whether the parameter is input or output for the module.
   * @param min
@@ -139,9 +139,9 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
   *   - If specified, this indicates a profile that the input data must conform to, or that the output data will conform to.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
-  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *   of the extension.
+  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *     of the extension.
   * @param documentation
   *   - A brief discussion of what the parameter is for and how it is used by the module.
   */

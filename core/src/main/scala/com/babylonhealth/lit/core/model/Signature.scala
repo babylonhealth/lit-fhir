@@ -126,24 +126,24 @@ object Signature extends CompanionFor[Signature] {
   *   Introduces the fields who, `type`, when, data, sigFormat, onBehalfOf, targetFormat.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *   spaces.
+  *     spaces.
   * @param who
   *   - A reference to an application-usable description of the identity that signed (e.g. the signature used their private key).
   * @param `type`
   *   - An indication of the reason that the entity signed this document. This may be explicitly included as part of the signature
-  *   information and can be used when determining accountability for various actions concerning the document.
+  *     information and can be used when determining accountability for various actions concerning the document.
   * @param when
   *   - When the digital signature was signed.
   * @param data
   *   - The base64 encoding of the Signature content. When signature is not recorded electronically this element would be empty.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
-  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *   of the extension.
+  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *     of the extension.
   * @param sigFormat
   *   - A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X
-  *   ML DigSig, application/jose for JWS, and image/\* for a graphical image of a signature, etc.
+  *     ML DigSig, application/jose for JWS, and image/\* for a graphical image of a signature, etc.
   * @param onBehalfOf
   *   - A reference to an application-usable description of the identity that is represented by the signature.
   * @param targetFormat
