@@ -5,7 +5,7 @@ Lit provides a class model that as much as possible represents the relationships
 - if structure definition A is a baseDefinition for structure definition B, then the class B will inherit from class A
 - if a value set is bound to a particular field, its enum representation will be shared with any other field bound to the same value set
 - 'choice[x]' fields are represented (as a best effort) by a special kind of union type called ‘Choice’
-- Required fields are required by the class constructors. Nonempty fields are required to be non-empty (with some exceptions -- see slices)
+- Required fields are required by the class constructors. Nonempty fields are required to be non-empty
 - subtyped primitives are represented that way -- e.g. the definition of `PositiveInt` is `type PositiveInt <: Int`
 
 ### Choices
@@ -226,7 +226,7 @@ Observation rsc = LitUtils.decodeWithParams(Observation.class, json, decoderPara
 
 ### Choice construction
 Generally choices are not directly constructed in Java, and are instead the raw values are fed directly into the builders.
-Because Java doesn't have Scala's notion of witness implicits, we cannot infer typesafety of choice construction at compile time - a choice constructed with an invalid value with throw at runtime. Adding more typesafety to the Java builders via more codegen to create disambiguation targets is under consideration
+Because Java doesn't have Scala's notion of witness implicits, we cannot infer typesafety of choice construction at compile time - a choice constructed with an invalid value will throw at runtime. Adding more typesafety to the Java builders via more codegen to create disambiguation targets is under consideration
 Since we subtype primitives in our representation of certain FHIR types, we attempt to disambiguate based on the runtime type and there are occasional ambiguities. To pick the desired choice type in such instances you will have to use the `ParamDistinguisher` class to explicitly specify the desired type when passing the value to the builder. e.g `ParamDistinguisher.choose(42, "PositiveInt")`. This is fairly rare in practice, and manifests more often in optional fields. In that case, we generate two methods on the builder - one that takes a suffix for ambiguous runtime types, and one that does not.
 Examples: 
 ```
