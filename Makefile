@@ -32,7 +32,7 @@ test-java:
 	sbt $(foreach i,$(ALL_MODULES),$iJava/compile $iJava/test)
 
 test:
-	sbt +common/test +macros/test # +generator/test
+	sbt +common/test +macros/test +generator/test
 	sbt $(foreach i,$(CORE_MODULES),+$i/test)
 	sbt $(foreach i,$(CORE_MODULES),$iJava/test)
 	sbt $(foreach i,$(US_MODULES),+$i/test)
