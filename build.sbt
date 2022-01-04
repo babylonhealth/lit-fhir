@@ -68,7 +68,7 @@ lazy val macros = project
     libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.31") else Nil)
   )
 
-def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
+def getGeneratorVersion: String = sys.props.get("genver") match {
   case Some(v) if v.matches("""g\d+\.\d+\.\d+(-\d+)?(-SNAPSHOT)?""") => v.tail
   case _                                                             => "latest-SNAPSHOT"
 }
