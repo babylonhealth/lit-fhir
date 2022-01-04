@@ -10,8 +10,7 @@ inThisBuild(
       Developer("hughsimpson", "Hugh Simpson", "hugh.simpson@babylonhealth.com", url("https://github.com/hughsimpson"))
     ),
     sonatypeCredentialHost := "s01.oss.sonatype.org",
-    sonatypeRepository     := "https://s01.oss.sonatype.org/service/local",
-    version := "0.14.6-1"
+    sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
   ))
 
 val scala2Version = "2.13.7"
