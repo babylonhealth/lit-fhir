@@ -31,7 +31,7 @@ Should be convertable if you know your dependency manager.
 - `fhirpath`: A reasonably complete FHIR path interpreter
 - `protoshim`: In case you want to convert between domain models and proto. Fairly experimental
 - `macros`/`common`: It's extremely unlikely you'll want either of these in isolation. The macros module enables the the `with${FOO}`/`update${FOO}`/`with${FOO}IfExists` syntax for scala 2 dependencies (and transitively Java, which for the time being depenends on this because the functionality isn't AFAIK replicable in scala 3). The common module is a very small number of utility functions shared between the generator and the generated code, and arguably shoudldn't exist.
-- `generator`: For when you have json representing your own profile definitions, and want to generate a class model along the same lines as the pre-rolled modules here. Not yet published, but should be available Jan 2022. 
+- `generator`: For when you have json representing your own profile definitions, and want to generate a class model along the same lines as the pre-rolled modules here. Currently requires that you also specify an explicit dependency on the 'common' module because of some shenanigans around published versions.
 
 ---
 
