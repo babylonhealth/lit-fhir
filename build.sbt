@@ -13,7 +13,7 @@ inThisBuild(
     sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
   ))
 
-val scala2Version = "2.13.7"
+val scala2Version = "2.13.8"
 val scala3Version = "3.1.0"
 val crossVersions = Seq(scala2Version, scala3Version)
 
