@@ -1,6 +1,6 @@
 # lit
 
-Opinionated library for easily constructuring FHIR resources in Scala add Java.
+Opinionated library for easily constructuring FHIR resources in Scala and Java.
 
 Supports generating Scala and Java from FHIR v4.0.1 structureDefinition and valueSet jsons, with _extremely naïve_ support for transforming from the model at [Google's open-sourced FHIR stuff](https://github.com/google/fhir). (this support basically just goes via json and is nice if you have compatability concerns or a need for protobuf, but otherwise is best avoided)
 
