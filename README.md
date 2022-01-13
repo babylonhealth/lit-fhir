@@ -13,7 +13,7 @@ Supports generating Scala and Java from FHIR structureDefinition and valueSet js
 
 ## How do I get lit?
 
-We're published on maven central. There are various libs availaible, and what you want or need will depend on your use case. Generally, you'll wan't the 'basics', which is availaible as
+We're published on maven central. There are various libs availaible, and what you want or need will depend on your use case. Generally, you'll want the 'basics', which is available as
 #### SBT
 "com.babylonhealth.lit" %% "hl7" % "0.14.6"
 #### Gradle
@@ -23,7 +23,7 @@ Should be convertable if you know your dependency manager.
 
 #### I want to know what the modules do
 
-- `core`: The `hl7` module may be more or less that you need. If you want to use the spec's extension modelling, the minimal subset is available as "com.babylonhealth.lit" %% "core" % "0.14.6"
+- `core`: The minimal subset, if you want to use the spec's extension modelling. Most users should use `hl7`.
 - `hl7`: the expected dependency
 - `usbase`: Mostly extensions. Support for this appears nice, but has some performance implications. You may want it if you're dealing with 'meta' fhir
 - `uscore`: Adds some useful stuff to the base for FHIR. You may very well want this dependency. Consider using `hl7` alone first -- check your business requirements.
