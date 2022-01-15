@@ -13,7 +13,7 @@ inThisBuild(
     sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
   ))
 
-val scala2Version = "2.13.7"
+val scala2Version = "2.13.8"
 val scala3Version = "3.1.0"
 val crossVersions = Seq(scala2Version, scala3Version)
 
@@ -65,10 +65,10 @@ lazy val macros = project
   .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.31") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.32") else Nil)
   )
 
-def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
+def getGeneratorVersion: String = sys.props.get("genver") match {
   case Some(v) if v.matches("""g\d+\.\d+\.\d+(-\d+)?(-SNAPSHOT)?""") => v.tail
   case _                                                             => "latest-SNAPSHOT"
 }
@@ -103,7 +103,7 @@ lazy val core = project
       "io.circe"            %% "circe-parser"    % V.circe,
       "com.typesafe"         % "config"          % "1.4.1",
       "ch.qos.logback"       % "logback-classic" % V.logback,
-      "io.github.classgraph" % "classgraph"      % "4.8.78",
+      "io.github.classgraph" % "classgraph"      % "4.8.138",
       "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
       // Test
       "org.scalatest"    %% "scalatest"         % V.scalaTest  % Test,
@@ -166,7 +166,7 @@ lazy val fhirpath = project
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-parse"    % "0.3.6",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j"      % "slf4j-api"     % "1.7.32",
+      "org.slf4j"      % "slf4j-api"     % "1.7.33",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
