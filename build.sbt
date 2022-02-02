@@ -101,7 +101,7 @@ lazy val core = project
       "io.circe"            %% "circe-core"      % V.circe,
       "io.circe"            %% "circe-generic"   % V.circe,
       "io.circe"            %% "circe-parser"    % V.circe,
-      "com.typesafe"         % "config"          % "1.4.1",
+      "com.typesafe"         % "config"          % "1.4.2",
       "ch.qos.logback"       % "logback-classic" % V.logback,
       "io.github.classgraph" % "classgraph"      % "4.8.138",
       "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
