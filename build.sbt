@@ -65,7 +65,7 @@ lazy val macros = project
   .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.33") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.35") else Nil)
   )
 
 def getGeneratorVersion: String = sys.props.get("genver") match {
@@ -103,7 +103,7 @@ lazy val core = project
       "io.circe"            %% "circe-parser"    % V.circe,
       "com.typesafe"         % "config"          % "1.4.1",
       "ch.qos.logback"       % "logback-classic" % V.logback,
-      "io.github.classgraph" % "classgraph"      % "4.8.138",
+      "io.github.classgraph" % "classgraph"      % "4.8.139",
       "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
       // Test
       "org.scalatest"    %% "scalatest"         % V.scalaTest  % Test,
@@ -166,7 +166,7 @@ lazy val fhirpath = project
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-parse"    % "0.3.6",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j"      % "slf4j-api"     % "1.7.35",
+      "org.slf4j"      % "slf4j-api"     % "1.7.36",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
