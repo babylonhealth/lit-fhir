@@ -103,7 +103,7 @@ lazy val core = project
       "io.circe"            %% "circe-parser"    % V.circe,
       "com.typesafe"         % "config"          % "1.4.1",
       "ch.qos.logback"       % "logback-classic" % V.logback,
-      "io.github.classgraph" % "classgraph"      % "4.8.138",
+      "io.github.classgraph" % "classgraph"      % "4.8.139",
       "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
       // Test
       "org.scalatest"    %% "scalatest"         % V.scalaTest  % Test,
