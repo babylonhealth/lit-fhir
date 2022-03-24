@@ -1,7 +1,8 @@
 # lit
 
-Opinionated library for easily constructing v4.0.1 compatible FHIR resources.
-Supports generating Scala and Java from FHIR structureDefinition and valueSet jsons, with _extremely naïve_ support for transforming from the model at [Google's open-sourced FHIR stuff](https://github.com/google/fhir). (this support basically just goes via json and is nice if you have compatability concerns or a need for protobuf, but otherwise is best avoided)
+Opinionated library for easily constructuring FHIR resources in Scala and Java.
+
+Supports generating Scala and Java from FHIR v4.0.1 structureDefinition and valueSet jsons, with _extremely naïve_ support for transforming from the model at [Google's open-sourced FHIR stuff](https://github.com/google/fhir). (this support basically just goes via json and is nice if you have compatability concerns or a need for protobuf, but otherwise is best avoided)
 
 [About Lit](https://github.com/babylonhealth/lit-fhir/blob/master/docs/documentation.md)
 
@@ -13,7 +14,7 @@ Supports generating Scala and Java from FHIR structureDefinition and valueSet js
 
 ## How do I get lit?
 
-We're published on maven central. There are various libs availaible, and what you want or need will depend on your use case. Generally, you'll wan't the 'basics', which is availaible as
+We're published on maven central. There are various libs availaible, and what you want or need will depend on your use case. Generally, you'll want the 'basics', which is available as
 #### SBT
 "com.babylonhealth.lit" %% "hl7" % "0.14.6"
 #### Gradle
@@ -23,7 +24,7 @@ Should be convertable if you know your dependency manager.
 
 #### I want to know what the modules do
 
-- `core`: The `hl7` module may be more or less that you need. If you want to use the spec's extension modelling, the minimal subset is available as "com.babylonhealth.lit" %% "core" % "0.14.6"
+- `core`: The minimal subset, if you want to use the spec's extension modelling. Most users should use `hl7`.
 - `hl7`: the expected dependency
 - `usbase`: Mostly extensions. Support for this appears nice, but has some performance implications. You may want it if you're dealing with 'meta' fhir
 - `uscore`: Adds some useful stuff to the base for FHIR. You may very well want this dependency. Consider using `hl7` alone first -- check your business requirements.
@@ -31,7 +32,7 @@ Should be convertable if you know your dependency manager.
 - `fhirpath`: A reasonably complete FHIR path interpreter
 - `protoshim`: In case you want to convert between domain models and proto. Fairly experimental
 - `macros`/`common`: It's extremely unlikely you'll want either of these in isolation. The macros module enables the the `with${FOO}`/`update${FOO}`/`with${FOO}IfExists` syntax for scala 2 dependencies (and transitively Java, which for the time being depenends on this because the functionality isn't AFAIK replicable in scala 3). The common module is a very small number of utility functions shared between the generator and the generated code, and arguably shoudldn't exist.
-- `generator`: For when you have json representing your own profile definitions, and want to generate a class model along the same lines as the pre-rolled modules here. Not yet published, but should be available Jan 2022. 
+- `generator`: For when you have json representing your own profile definitions, and want to generate a class model along the same lines as the pre-rolled modules here. Currently requires that you also specify an explicit dependency on the 'common' module because of some shenanigans around published versions.
 
 ---
 

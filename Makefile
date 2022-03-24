@@ -49,10 +49,10 @@ publish:
 	sbt +protoshim/publish
 
 publish-generator:
-	$(SBT_G) +common/publish || echo "cannot publish commmon. Continuing anyway"
-	$(SBT_G) +generator/publish
+	sbt +common/publish || echo "cannot publish commmon. Continuing anyway"
+	sbt +generator/publish
 publish-local-generator:
-	$(SBT_G) +common/publishLocal +generator/publishLocal
+	sbt +common/publishLocal +generator/publishLocal
 
 publish-local-core:
 	sbt +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) +fhirpath/publishLocal
@@ -68,7 +68,7 @@ publish-m2:
 	sbt +fhirpath/publishM2
 
 publish-all-local:
-	sbt +common/publishLocal +common/publishM2 +macros/publishLocal +macros/publishM2 $(foreach i,$(ALL_MODULES),+$i/publishLocal +$i/publishM2 $iJava/publishLocal $iJava/publishM2)
+	sbt +common/publishLocal +common/publishM2 +macros/publishLocal +macros/publishM2 $(foreach i,$(ALL_MODULES),+$i/publishLocal +$i/publishM2 $iJava/publishLocal $iJava/publishM2) +fhirpath/publishLocal +fhirpath/publishM2
 
 build-hl7-class-models:
 	sbt 'project generator' 'run "generate" \
@@ -91,8 +91,9 @@ build-all-class-models:
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore"'
 	sbt scalafmtAll
+	sbt $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh
-	$(SBT) $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
+	sbt $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
 
 clean-target:
 	rm -rf target/ */target

@@ -772,7 +772,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    var scanResult: ScanResult                = null
       |    var lookups: Map[String, CompanionFor[_]] = null
       |    try {
-      |      scanResult = new ClassGraph().whitelistPackages(Config.generatedNamespaces: _*).scan()
+      |      scanResult = new ClassGraph().acceptPackages(Config.generatedNamespaces: _*).scan()
       |      val classPathResults = scanResult
       |        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
       |        .asScala

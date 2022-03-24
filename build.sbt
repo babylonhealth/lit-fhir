@@ -13,8 +13,8 @@ inThisBuild(
     sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
   ))
 
-val scala2Version = "2.13.7"
-val scala3Version = "3.1.0"
+val scala2Version = "2.13.8"
+val scala3Version = "3.1.1"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
@@ -27,10 +27,10 @@ val V = new {
   val jsonassert             = "1.5.0"
   val jUnit                  = "5.8.2"
   val litVersionForGenerator = "0.14.6"
-  val logback                = "1.2.9"
+  val logback                = "1.2.11"
   val lombok                 = "1.18.22"
   val scalaMeterVersion      = "0.22"
-  val scalaTest              = "3.2.10"
+  val scalaTest              = "3.2.11"
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
@@ -65,10 +65,10 @@ lazy val macros = project
   .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.4.31") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.5.1") else Nil)
   )
 
-def getGeneratorVersion: String = sys.env.get("GITHUB_TAG") match {
+def getGeneratorVersion: String = sys.props.get("genver") match {
   case Some(v) if v.matches("""g\d+\.\d+\.\d+(-\d+)?(-SNAPSHOT)?""") => v.tail
   case _                                                             => "latest-SNAPSHOT"
 }
@@ -101,9 +101,9 @@ lazy val core = project
       "io.circe"            %% "circe-core"      % V.circe,
       "io.circe"            %% "circe-generic"   % V.circe,
       "io.circe"            %% "circe-parser"    % V.circe,
-      "com.typesafe"         % "config"          % "1.4.1",
+      "com.typesafe"         % "config"          % "1.4.2",
       "ch.qos.logback"       % "logback-classic" % V.logback,
-      "io.github.classgraph" % "classgraph"      % "4.8.78",
+      "io.github.classgraph" % "classgraph"      % "4.8.141",
       "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
       // Test
       "org.scalatest"    %% "scalatest"         % V.scalaTest  % Test,
@@ -166,7 +166,7 @@ lazy val fhirpath = project
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-parse"    % "0.3.6",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j"      % "slf4j-api"     % "1.7.32",
+      "org.slf4j"      % "slf4j-api"     % "1.7.36",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
