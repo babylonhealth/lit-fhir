@@ -3,7 +3,9 @@ package com.babylonhealth.lit.core
 import com.typesafe.config.ConfigFactory
 
 object Config {
-  val config                           = ConfigFactory.load().getConfig("lit")
+  val config = ConfigFactory.load().getConfig("lit")
+  val buildTimeClassgraphLocation =
+    if (config.hasPath("buildTimeClassgraphLocation")) Some(config.getString("buildTimeClassgraphLocation")) else None
   val tolerantBundleDecoding           = config.getBoolean("tolerantBundleDecoding")
   val tolerateProfileErrors            = config.getBoolean("tolerateProfileErrors")
   val flexibleCardinality              = config.getBoolean("flexibleCardinality")
