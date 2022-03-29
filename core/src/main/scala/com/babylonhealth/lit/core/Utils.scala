@@ -8,11 +8,11 @@ import scala.reflect.{ ClassTag, classTag }
 import scala.util.Try
 
 import io.circe.HCursor
-import io.github.classgraph.{ ClassGraph, ScanResult }
+import io.github.classgraph.{ ClassGraph, ClassInfo, ScanResult }
 import izumi.reflect.macrortti.LTag
 
 import com.babylonhealth.lit.common.FileUtils
-import com.babylonhealth.lit.core.model.extractModuleFromPath
+import com.babylonhealth.lit.core.model.{ extractModuleFromNames, extractModuleFromPath }
 
 case class DecoderParams(
     tolerantBundleDecoding: Boolean = Config.tolerantBundleDecoding,
@@ -50,14 +50,27 @@ trait Utils {
 }
 
 object Reflection extends FileUtils {
-  private def runtimeScan: ScanResult            = new ClassGraph().acceptPackages(Config.generatedNamespaces: _*).scan()
-  private def loadScan(path: String): ScanResult = ScanResult.fromJSON(slurpRsc(path))
-  private def classgraphScan: ScanResult = Config.buildTimeClassgraphLocation match {
-    case Some(path) => Try(loadScan(path)) getOrElse {
-      println("Failed to load cached classgraph. Falling back to runtime reflection")
-      runtimeScan
+  private def runtimeInfo: Seq[ClassInfo] = {
+    var scanResult: ScanResult = null
+    try {
+      scanResult = new ClassGraph().acceptPackages(Config.generatedNamespaces: _*).scan()
+      scanResult
+        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
+        .asScala
+        .toSeq
+    } finally {
+      if (scanResult != null) scanResult.close()
     }
-    case None       => runtimeScan
+  }
+  private def runtimeScan: Seq[ModuleDict]            = extractModuleFromPath(runtimeInfo)
+  private def loadScan(path: String): Seq[ModuleDict] = extractModuleFromNames(slurpRsc(path).linesIterator.map(_.trim).toSeq)
+  private def classgraphScan: Seq[ModuleDict] = Config.buildTimeClassgraphLocation match {
+    case Some(path) =>
+      Try(loadScan(path)) getOrElse {
+        println("Failed to load cached classgraph. Falling back to runtime reflection")
+        runtimeScan
+      }
+    case None => runtimeScan
   }
   def persistBuildtimeGraph(resourcePrefix: String): Unit = Config.buildTimeClassgraphLocation match {
     case None => throw new IllegalStateException("Can't persist a buildtime graph without specifying location")
@@ -67,24 +80,15 @@ object Reflection extends FileUtils {
         try fw.write(contents)
         finally fw.close()
       }
-      write(s"$resourcePrefix/$path", runtimeScan.toJSON)
+      write(s"$resourcePrefix/$path", runtimeInfo.map(_.getName).mkString("\n"))
   }
 
   lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = blocking {
     println("Initialising lookups")
     val startTime                             = System.currentTimeMillis
-    var scanResult: ScanResult                = null
     var lookups: Map[String, CompanionFor[_]] = null
-    try {
-      scanResult = classgraphScan
-      val classPathResults = scanResult
-        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
-        .asScala
-
-      val modules = extractModuleFromPath(classPathResults.toSeq).toList
-
-      lookups = modules.flatMap(_.lookup).toMap
-    } finally if (scanResult != null) scanResult.close()
+    val modules                               = classgraphScan
+    lookups = modules.flatMap(_.lookup).toMap
     if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
       println("FATAL ERROR: Unable to instantiate companionLookup map")
       sys.exit(5)
