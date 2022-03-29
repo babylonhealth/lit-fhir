@@ -10,6 +10,7 @@ import scala.util.Try
 import io.circe.HCursor
 import io.github.classgraph.{ ClassGraph, ClassInfo, ScanResult }
 import izumi.reflect.macrortti.LTag
+import org.slf4j.{ Logger, LoggerFactory }
 
 import com.babylonhealth.lit.common.FileUtils
 import com.babylonhealth.lit.core.model.{ extractModuleFromNames, extractModuleFromPath }
@@ -50,6 +51,7 @@ trait Utils {
 }
 
 object Reflection extends FileUtils {
+  private val log: Logger = LoggerFactory.getLogger(getClass)
   private def runtimeInfo: Seq[ClassInfo] = {
     var scanResult: ScanResult = null
     try {
@@ -66,11 +68,12 @@ object Reflection extends FileUtils {
   private def loadScan(path: String): Seq[ModuleDict] = extractModuleFromNames(slurpRsc(path).linesIterator.map(_.trim).toSeq)
   private def classgraphScan: Seq[ModuleDict] = Config.buildTimeClassgraphLocation match {
     case Some(path) =>
-      Try(loadScan(path)).fold({ t =>
-        println("Failed to load cached classgraph. Falling back to runtime reflection: " + t.getMessage)
-        t.printStackTrace()
-        runtimeScan
-      }, identity)
+      Try(loadScan(path)).fold(
+        { t =>
+          log.error("Failed to load cached classgraph. Falling back to runtime reflection: ", t)
+          runtimeScan
+        },
+        identity)
     case None => runtimeScan
   }
   def persistBuildtimeGraph(resourcePrefix: String): Unit = Config.buildTimeClassgraphLocation match {
@@ -85,16 +88,16 @@ object Reflection extends FileUtils {
   }
 
   lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = blocking {
-    println("Initialising lookups")
+    log.info("Initialising lookups")
     val startTime                             = System.currentTimeMillis
     var lookups: Map[String, CompanionFor[_]] = null
     val modules                               = classgraphScan
     lookups = modules.flatMap(_.lookup).toMap
     if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
-      println("FATAL ERROR: Unable to instantiate companionLookup map")
+      log.error("FATAL ERROR: Unable to instantiate companionLookup map")
       sys.exit(5)
     }
-    println(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
+    log.info(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
     lookups
   }
 }
