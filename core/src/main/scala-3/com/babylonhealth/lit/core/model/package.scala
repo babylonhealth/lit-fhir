@@ -26,10 +26,12 @@ case class DecoderAndTag[T](decoder: DecoderParams => Decoder[T], typeTag: LTag[
 import BaseFieldDecoders._
 
 package object model {
-  def extractModuleFromPath(classPathResults: Seq[ClassInfo]): Seq[ModuleDict] = classPathResults.map { ci =>
-    val c = Class.forName(ci.getName)
+  def extractModuleFromNames(classNames: Seq[String]): Seq[ModuleDict] = classNames.map { cn =>
+    val c = Class.forName(cn)
     c.getField("MODULE$").get(c).asInstanceOf[ModuleDict]
   }
+  def extractModuleFromPath(classPathResults: Seq[ClassInfo]): Seq[ModuleDict] =
+    extractModuleFromNames(classPathResults.map(_.getName))
   lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = Reflection.urlLookup
   lazy val resourceTypeLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
     urlLookup.collect { case (_, obj) if obj eq obj.baseType => obj.thisName -> obj }
