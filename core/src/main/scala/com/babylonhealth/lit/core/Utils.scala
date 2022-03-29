@@ -1,10 +1,18 @@
 package com.babylonhealth.lit.core
 
+import java.io.FileWriter
+
+import scala.concurrent.blocking
+import scala.jdk.CollectionConverters._
 import scala.reflect.{ ClassTag, classTag }
 import scala.util.Try
 
 import io.circe.HCursor
+import io.github.classgraph.{ ClassGraph, ScanResult }
 import izumi.reflect.macrortti.LTag
+
+import com.babylonhealth.lit.common.FileUtils
+import com.babylonhealth.lit.core.model.extractModuleFromPath
 
 case class DecoderParams(
     tolerantBundleDecoding: Boolean = Config.tolerantBundleDecoding,
@@ -39,4 +47,49 @@ trait Utils {
 
   def decodeMethodFor[T <: FHIRObject: ClassTag](implicit tag: LTag[T], params: DecoderParams): HCursor => Try[T] =
     companionOf(classTag[T], tag).decoder(params)(_).toTry
+}
+
+object Reflection extends FileUtils {
+  private def runtimeScan: ScanResult            = new ClassGraph().acceptPackages(Config.generatedNamespaces: _*).scan()
+  private def loadScan(path: String): ScanResult = ScanResult.fromJSON(slurpRsc(path))
+  private def classgraphScan: ScanResult = Config.buildTimeClassgraphLocation match {
+    case Some(path) => Try(loadScan(path)) getOrElse {
+      println("Failed to load cached classgraph. Falling back to runtime reflection")
+      runtimeScan
+    }
+    case None       => runtimeScan
+  }
+  def persistBuildtimeGraph(resourcePrefix: String): Unit = Config.buildTimeClassgraphLocation match {
+    case None => throw new IllegalStateException("Can't persist a buildtime graph without specifying location")
+    case Some(path) =>
+      def write(location: String, contents: String): Unit = {
+        val fw = new FileWriter(location)
+        try fw.write(contents)
+        finally fw.close()
+      }
+      write(s"$resourcePrefix/$path", runtimeScan.toJSON)
+  }
+
+  lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = blocking {
+    println("Initialising lookups")
+    val startTime                             = System.currentTimeMillis
+    var scanResult: ScanResult                = null
+    var lookups: Map[String, CompanionFor[_]] = null
+    try {
+      scanResult = classgraphScan
+      val classPathResults = scanResult
+        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
+        .asScala
+
+      val modules = extractModuleFromPath(classPathResults.toSeq).toList
+
+      lookups = modules.flatMap(_.lookup).toMap
+    } finally if (scanResult != null) scanResult.close()
+    if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
+      println("FATAL ERROR: Unable to instantiate companionLookup map")
+      sys.exit(5)
+    }
+    println(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
+    lookups
+  }
 }
