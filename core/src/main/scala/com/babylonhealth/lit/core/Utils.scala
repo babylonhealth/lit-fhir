@@ -66,8 +66,9 @@ object Reflection extends FileUtils {
   private def loadScan(path: String): Seq[ModuleDict] = extractModuleFromNames(slurpRsc(path).linesIterator.map(_.trim).toSeq)
   private def classgraphScan: Seq[ModuleDict] = Config.buildTimeClassgraphLocation match {
     case Some(path) =>
-      Try(loadScan(path)) getOrElse {
-        println("Failed to load cached classgraph. Falling back to runtime reflection")
+      Try(loadScan(path)).fold { t =>
+        println("Failed to load cached classgraph. Falling back to runtime reflection: " + t.getMessage)
+        t.printStackTrace()
         runtimeScan
       }
     case None => runtimeScan
