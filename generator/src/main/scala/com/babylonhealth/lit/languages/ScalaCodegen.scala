@@ -762,32 +762,13 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |import BaseFieldDecoders._
       |
       |package object model {
-      |  def extractModuleFromPath(classPathResults: Seq[ClassInfo]): Seq[ModuleDict] = classPathResults.map { ci =>
-      |    val c = Class.forName(ci.getName)
+      |  def extractModuleFromNames(classNames: Seq[String]): Seq[ModuleDict] = classNames.map { cn =>
+      |    val c = Class.forName(cn)
       |    c.getField("MODULE$").get(c).asInstanceOf[ModuleDict]
       |  }
-      |  lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = blocking {
-      |    println("Initialising lookups")
-      |    val startTime                             = System.currentTimeMillis
-      |    var scanResult: ScanResult                = null
-      |    var lookups: Map[String, CompanionFor[_]] = null
-      |    try {
-      |      scanResult = new ClassGraph().acceptPackages(Config.generatedNamespaces: _*).scan()
-      |      val classPathResults = scanResult
-      |        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
-      |        .asScala
-      |
-      |      val modules = extractModuleFromPath(classPathResults.toSeq).toList
-      |
-      |      lookups = modules.flatMap(_.lookup).toMap
-      |    } finally if (scanResult != null) scanResult.close()
-      |    if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
-      |      println("FATAL ERROR: Unable to instantiate companionLookup map")
-      |      sys.exit(5)
-      |    }
-      |    println(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
-      |    lookups
-      |  }
+      |  def extractModuleFromPath(classPathResults: Seq[ClassInfo]): Seq[ModuleDict] =
+      |    extractModuleFromNames(classPathResults.map(_.getName))
+      |  lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = Reflection.urlLookup
       |  lazy val resourceTypeLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
       |    urlLookup.collect { case (_, obj) if obj eq obj.baseType => obj.thisName -> obj }
       |
