@@ -119,7 +119,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     val base64Tag = lTagOf[Base64Binary]
     (base64Tag.tag =:= lTypeOf[Array[Byte]]) shouldEqual true
     val w = companionClassName(base64Tag)
-    w shouldEqual "scala.Array[=Byte]" // should it tho'?
+    w shouldEqual "scala.Array[=scala.Byte]" // should it tho'?
   }
   "union methods" - {
     "can make a binary union" in {
