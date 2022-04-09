@@ -107,7 +107,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     """{"id":"a", "resourceType": "Account", "name":"ok", "status":"entered-in-error"}"""
 //  implicit val accEncoder
 
-  "other" in {
+  "companionClassName tests" in {
     val x = Try(companionOf(classTag[Bundle.Entry], lTagOf[Bundle.Entry]))
     val y = Try(companionOf(classTag[Bundle.Entry.Response], lTagOf[Bundle.Entry.Response]))
     x.isSuccess shouldEqual true
@@ -119,7 +119,13 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     val base64Tag = lTagOf[Base64Binary]
     (base64Tag.tag =:= lTypeOf[Array[Byte]]) shouldEqual true
     val w = companionClassName(base64Tag)
-    w shouldEqual "scala.Array[=Byte]" // should it tho'?
+    w shouldEqual "scala.Array[=scala.Byte]" // should it tho'?
+    val bundleEntryTag = lTagOf[Bundle.Entry]
+    val v = companionClassName(bundleEntryTag)
+    v shouldEqual "com.babylonhealth.lit.hl7.model.Bundle$Entry"
+    val bundleEntrySearchTag = lTagOf[Bundle.Entry.Search]
+    val u = companionClassName(bundleEntrySearchTag)
+    u shouldEqual "com.babylonhealth.lit.hl7.model.Bundle$Entry$Search"
   }
   "union methods" - {
     "can make a binary union" in {
