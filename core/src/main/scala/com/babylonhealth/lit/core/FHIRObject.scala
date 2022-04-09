@@ -290,23 +290,23 @@ abstract class FHIRObject(
 
   private final def >>>[T](fn: T => T, suffix: Option[String], cond: (Any, LTag[_]) => Boolean): (this.type, Boolean) = {
     var changed               = false
-    def change[T](t: => T): T = { changed = true; t }
+    def change[T1](t: => T1): T1 = { changed = true; t }
     val newFields = fields.map {
       case FHIRComponentField(_, v @ (None | LitSeq.emptyInstance)) => v
-      case FHIRComponentField(_, c: Choice[_]) =>
+      case FHIRComponentField(_, c: Choice[t]) =>
         c match {
-          case Choice(suf, v) if suffix contains suf => change(Choice(suf, fn(v.asInstanceOf[T]))(c.tt))
+          case Choice(suf, v: T @unchecked) if suffix contains suf => change(Choice[t](suf, fn(v))(c.tt))
           case Choice(suf, v: FHIRObject) =>
             val (obj, f) = v >>> (fn, suffix, cond)
-            if (f) change(Choice(suf, obj)(c.tt)) else c
+            if (f) change(Choice[t](suf, obj)(c.tt)) else c
           case _ => c
         }
-      case FHIRComponentField(_, opt @ Some(c: Choice[_])) =>
+      case FHIRComponentField(_, opt @ Some(c: Choice[t])) =>
         c match {
-          case Choice(suf, v) if suffix contains suf => change(Some(Choice(suf, fn(v.asInstanceOf[T]))(c.tt)))
+          case Choice(suf, v: T @unchecked) if suffix contains suf => change(Some(Choice[t](suf, fn(v))(c.tt)))
           case Choice(suf, v: FHIRObject) =>
             val (obj, f) = v >>> (fn, suffix, cond)
-            if (f) change(Some(Choice(suf, obj)(c.tt))) else opt
+            if (f) change(Some(Choice[t](suf, obj)(c.tt))) else opt
           case _ => opt
         }
       case FHIRComponentField(meta, vs: LitSeq[_]) =>
@@ -350,20 +350,20 @@ abstract class FHIRObject(
     def change[T](t: => T): T = { changed = true; t }
     val newFields = fields.map {
       case FHIRComponentField(_, v @ (None | LitSeq.emptyInstance)) => v
-      case FHIRComponentField(_, c: Choice[_]) =>
+      case FHIRComponentField(_, c: Choice[t]) =>
         c match {
-          case Choice(s, v: T @unchecked) if klass.isInstance(v) => change(Choice(s, fn(v))(c.tt))
+          case Choice(s, v: T @unchecked) if klass.isInstance(v) => change(Choice[t](s, fn(v))(c.tt))
           case Choice(s, v: FHIRObject) =>
             val (v1, c1) = v.nodalMapFlag(klass, fn)
-            if (c1) change(Choice(s, v1)(c.tt)) else c
+            if (c1) change(Choice[t](s, v1)(c.tt)) else c
           case _ => c
         }
-      case FHIRComponentField(_, opt @ Some(c: Choice[_])) =>
+      case FHIRComponentField(_, opt @ Some(c: Choice[t])) =>
         c match {
-          case Choice(s, v: T @unchecked) if klass.isInstance(v) => change(Choice(s, fn(v))(c.tt))
+          case Choice(s, v: T @unchecked) if klass.isInstance(v) => change(Choice[t](s, fn(v))(c.tt))
           case Choice(s, v: FHIRObject) =>
             val (v1, c1) = v.nodalMapFlag(klass, fn)
-            if (c1) change(Some(Choice(s, v1)(c.tt))) else opt
+            if (c1) change(Some(Choice[t](s, v1)(c.tt))) else opt
           case _ => opt
         }
       case FHIRComponentField(_, vs: LitSeq[_]) =>
