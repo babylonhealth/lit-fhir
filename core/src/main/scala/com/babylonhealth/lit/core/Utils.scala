@@ -34,11 +34,8 @@ trait Utils {
     val repr = tag.tag.repr
     if (repr.contains("|")) tag.tag.longName.replace("package$.", "") // tag is for a type alias defined in core
     else if (repr.contains("::")) {
-      // tag is for a nested class type (the .'s in the full path after the top level object need to be replaced with $)
-      val arr          = repr.split("::")
-      val (stub, full) = (arr.head, arr.last)
-      val end          = full.stripPrefix(stub)
-      stub + end.replace(".", "$")
+      // tag is for a nested class type (the ::'s in the full path after the top level object need to be replaced with $)
+      repr.replace("::", "$")
     } else repr
   }.replace("$$", "$")
   def companionOf[T <: FHIRObject: ClassTag](implicit tag: LTag[T]): CompanionFor[T] =
