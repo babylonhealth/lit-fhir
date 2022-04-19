@@ -301,73 +301,73 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   *   Inherits all params from parent. Forbids the use of the following fields which were optional in the parent: short, fixed,
   *   isSummary, pattern, isModifier, representation, contentReference, slicing.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   \- Unique id for the element within a resource (for internal references). This may be any string value that does not contain
   *   spaces.
   * @param min
-  *   - The minimum number of times this element SHALL appear in the instance.
+  *   \- The minimum number of times this element SHALL appear in the instance.
   * @param max
-  *   - The maximum number of times this element is permitted to appear in the instance.
+  *   \- The maximum number of times this element is permitted to appear in the instance.
   * @param path
-  *   - The path identifies the element and is expressed as a "."-separated list of ancestor elements, beginning with the name of
+  *   \- The path identifies the element and is expressed as a "."-separated list of ancestor elements, beginning with the name of
   *   the resource or extension.
   * @param code
-  *   - A code that has the same meaning as the element in a particular terminology.
+  *   \- A code that has the same meaning as the element in a particular terminology.
   * @param label
-  *   - A single preferred label which is the text to display beside the element indicating its meaning or to use to prompt for
+  *   \- A single preferred label which is the text to display beside the element indicating its meaning or to use to prompt for
   *   the element in a user display or form.
   * @param alias
-  *   - Identifies additional names by which this element might also be known.
+  *   \- Identifies additional names by which this element might also be known.
   * @param comment
-  *   - Explanatory notes and implementation guidance about the data element, including notes about how to use the data properly,
+  *   \- Explanatory notes and implementation guidance about the data element, including notes about how to use the data properly,
   *   exceptions to proper use, etc. (Note: The text you are reading is specified in ElementDefinition.comment).
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   \- May be used to represent additional information that is not part of the basic definition of the element. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param sliceName
-  *   - The name of this element definition slice, when slicing is working. The name must be a token with no dots or spaces. This
+  *   \- The name of this element definition slice, when slicing is working. The name must be a token with no dots or spaces. This
   *   is a unique name referring to a specific set of constraints applied to this element, used to provide a name to different
   *   slices of the same element.
   * @param maxLength
-  *   - Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected
+  *   \- Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected
   *   to be supported by conformant consumers that support the element.
   * @param condition
-  *   - A reference to an invariant that may make additional statements about the cardinality or value in the instance.
+  *   \- A reference to an invariant that may make additional statements about the cardinality or value in the instance.
   * @param definition
-  *   - Provides a complete explanation of the meaning of the data element for human readability. For the case of elements derived
-  *   from existing elements (e.g. constraints), the definition SHALL be consistent with the base definition, but convey the
-  *   meaning of the element in the particular context of use of the resource. (Note: The text you are reading is specified in
+  *   \- Provides a complete explanation of the meaning of the data element for human readability. For the case of elements
+  *   derived from existing elements (e.g. constraints), the definition SHALL be consistent with the base definition, but convey
+  *   the meaning of the element in the particular context of use of the resource. (Note: The text you are reading is specified in
   *   ElementDefinition.definition).
   * @param minValue
-  *   - The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant,
+  *   \- The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant,
   *   time, decimal, integer, and Quantity.
   * @param maxValue
-  *   - The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant,
+  *   \- The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant,
   *   time, decimal, integer, and Quantity.
   * @param mustSupport
-  *   - If true, implementations that produce or consume resources SHALL provide "support" for the element in some meaningful way.
-  *   If false, the element may be ignored and not supported. If false, whether to populate or use the data element in any way is
-  *   at the discretion of the implementation.
+  *   \- If true, implementations that produce or consume resources SHALL provide "support" for the element in some meaningful
+  *   way. If false, the element may be ignored and not supported. If false, whether to populate or use the data element in any
+  *   way is at the discretion of the implementation.
   * @param requirements
-  *   - This element is for traceability of why the element was created and why the constraints exist as they do. This may be used
-  *   to point to source materials or specifications that drove the structure of this element.
+  *   \- This element is for traceability of why the element was created and why the constraints exist as they do. This may be
+  *   used to point to source materials or specifications that drove the structure of this element.
   * @param orderMeaning
-  *   - If present, indicates that the order of the repeating element has meaning and describes what that meaning is. If absent,
+  *   \- If present, indicates that the order of the repeating element has meaning and describes what that meaning is. If absent,
   *   it means that the order of the element has no meaning.
   * @param base
-  *   - Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation of
+  *   \- Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation of
   *   the element through the derived and related profiles. When the element definition is not the original definition of an
   *   element - i.g. either in a constraint on another type, or for elements from a super type in a snap shot - then the
   *   information in provided in the element definition may be different to the base definition. On the original definition of the
   *   element, it will be same.
   * @param defaultValue
-  *   - The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract
+  *   \- The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract
   *   is false').
   * @param isModifierReason
-  *   - Explains how that element affects the interpretation of the resource or element that contains it.
+  *   \- Explains how that element affects the interpretation of the resource or element that contains it.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the element and that modifies
+  *   \- May be used to represent additional information that is not part of the basic definition of the element and that modifies
   *   the understanding of the element in which it is contained and/or the understanding of the containing element's descendants.
   *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
   *   strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension,
@@ -375,23 +375,23 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param example
-  *   - A sample value for this element demonstrating the type of information that would typically be found in the element.
+  *   \- A sample value for this element demonstrating the type of information that would typically be found in the element.
   * @param mapping
-  *   - Identifies a concept from an external specification that roughly corresponds to this element.
+  *   \- Identifies a concept from an external specification that roughly corresponds to this element.
   * @param `type`
-  *   - The data type or resource that the value of this element is permitted to be.
+  *   \- The data type or resource that the value of this element is permitted to be.
   * @param meaningWhenMissing
-  *   - The Implicit meaning that is to be understood when this element is missing (e.g. 'when this element is missing, the period
-  *   is ongoing').
+  *   \- The Implicit meaning that is to be understood when this element is missing (e.g. 'when this element is missing, the
+  *   period is ongoing').
   * @param sliceIsConstraining
-  *   - If true, indicates that this slice definition is constraining a slice definition with the same name in an inherited
+  *   \- If true, indicates that this slice definition is constraining a slice definition with the same name in an inherited
   *   profile. If false, the slice is not overriding any slice in an inherited profile. If missing, the slice might or might not
   *   be overriding a slice in an inherited profile, depending on the sliceName.
   * @param binding
-  *   - Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types (string, uri).
+  *   \- Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types (string, uri).
   * @param constraint
-  *   - Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the context of
-  *   the instance.
+  *   \- Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the context
+  *   of the instance.
   */
 @POJOBoilerplate
 class Elementdefinition_de(

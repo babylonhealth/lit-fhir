@@ -95,19 +95,19 @@ object Annotation extends CompanionFor[Annotation] {
   * @constructor
   *   Introduces the fields time, text, author.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   \- Unique id for the element within a resource (for internal references). This may be any string value that does not contain
   *   spaces.
   * @param time
-  *   - Indicates when this particular annotation was made.
+  *   \- Indicates when this particular annotation was made.
   * @param text
-  *   - The text of the annotation in markdown format.
+  *   \- The text of the annotation in markdown format.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   \- May be used to represent additional information that is not part of the basic definition of the element. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param author
-  *   - The individual responsible for making the annotation.
+  *   \- The individual responsible for making the annotation.
   */
 @POJOBoilerplate
 class Annotation(

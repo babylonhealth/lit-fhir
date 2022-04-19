@@ -1492,92 +1492,92 @@ object MedicationKnowledge extends CompanionFor[MedicationKnowledge] {
   *   associatedMedication, preparationInstruction, cost, kinetics, monograph, packaging, ingredient, monitoringProgram,
   *   drugCharacteristic, medicineClassification, regulatory, relatedMedicationKnowledge, administrationGuidelines.
   * @param id
-  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  *   \- The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   \- The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
   *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   \- A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
   *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
   *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
   *   represented in the narrative to ensure clinical safety.
   * @param code
-  *   - A code that specifies this medication, or a textual description if no code is available. Usage note: This could be a
+  *   \- A code that specifies this medication, or a textual description if no code is available. Usage note: This could be a
   *   standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary
   *   code, optionally with translations to other code systems.
   * @param status
-  *   - A code to indicate if the medication is in active use. The status refers to the validity about the information of the
+  *   \- A code to indicate if the medication is in active use. The status refers to the validity about the information of the
   *   medication and not to its medicinal properties.
   * @param amount
-  *   - Specific amount of the drug in the packaged product. For example, when specifying a product that has the same strength
+  *   \- Specific amount of the drug in the packaged product. For example, when specifying a product that has the same strength
   *   (For example, Insulin glargine 100 unit per mL solution for injection), this attribute provides additional clarification of
   *   the package amount (For example, 3 mL, 10mL, etc.).
   * @param synonym
-  *   - Additional names for a medication, for example, the name(s) given to a medication in different countries. For example,
+  *   \- Additional names for a medication, for example, the name(s) given to a medication in different countries. For example,
   *   acetaminophen and paracetamol or salbutamol and albuterol.
   * @param language
-  *   - The base language in which the resource is written.
+  *   \- The base language in which the resource is written.
   * @param doseForm
-  *   - Describes the form of the item. Powder; tablets; capsule.
+  *   \- Describes the form of the item. Powder; tablets; capsule.
   * @param contained
-  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   \- These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param productType
-  *   - Category of the medication or product (e.g. branded product, therapeutic moeity, generic product, innovator product,
+  *   \- Category of the medication or product (e.g. branded product, therapeutic moeity, generic product, innovator product,
   *   etc.).
   * @param manufacturer
-  *   - Describes the details of the manufacturer of the medication product. This is not intended to represent the distributor of
+  *   \- Describes the details of the manufacturer of the medication product. This is not intended to represent the distributor of
   *   a medication product.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   \- A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
   * @param intendedRoute
-  *   - The intended or approved route of administration.
+  *   \- The intended or approved route of administration.
   * @param contraindication
-  *   - Potential clinical issue with or between medication(s) (for example, drug-drug interaction, drug-disease contraindication,
-  *   drug-allergy interaction, etc.).
+  *   \- Potential clinical issue with or between medication(s) (for example, drug-drug interaction, drug-disease
+  *   contraindication, drug-allergy interaction, etc.).
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
-  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
-  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
-  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
-  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
-  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
-  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource and that
+  *   modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants.
+  *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
+  *   strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an
+  *   extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications
+  *   processing a resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any
+  *   elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param associatedMedication
-  *   - Associated or related medications. For example, if the medication is a branded product (e.g. Crestor), this is the
+  *   \- Associated or related medications. For example, if the medication is a branded product (e.g. Crestor), this is the
   *   Therapeutic Moeity (e.g. Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin), this would link to a branded
   *   product (e.g. Crestor).
   * @param preparationInstruction
-  *   - The instructions for preparing the medication.
+  *   \- The instructions for preparing the medication.
   * @param cost
-  *   - The price of the medication.
+  *   \- The price of the medication.
   * @param kinetics
-  *   - The time course of drug absorption, distribution, metabolism and excretion of a medication from the body.
+  *   \- The time course of drug absorption, distribution, metabolism and excretion of a medication from the body.
   * @param monograph
-  *   - Associated documentation about the medication.
+  *   \- Associated documentation about the medication.
   * @param packaging
-  *   - Information that only applies to packages (not products).
+  *   \- Information that only applies to packages (not products).
   * @param ingredient
-  *   - Identifies a particular constituent of interest in the product.
+  *   \- Identifies a particular constituent of interest in the product.
   * @param monitoringProgram
-  *   - The program under which the medication is reviewed.
+  *   \- The program under which the medication is reviewed.
   * @param drugCharacteristic
-  *   - Specifies descriptive properties of the medicine, such as color, shape, imprints, etc.
+  *   \- Specifies descriptive properties of the medicine, such as color, shape, imprints, etc.
   * @param medicineClassification
-  *   - Categorization of the medication within a formulary or classification system.
+  *   \- Categorization of the medication within a formulary or classification system.
   * @param regulatory
-  *   - Regulatory information about a medication.
+  *   \- Regulatory information about a medication.
   * @param relatedMedicationKnowledge
-  *   - Associated or related knowledge about a medication.
+  *   \- Associated or related knowledge about a medication.
   * @param administrationGuidelines
-  *   - Guidelines for the administration of the medication.
+  *   \- Guidelines for the administration of the medication.
   */
 @POJOBoilerplate
 class MedicationKnowledge(

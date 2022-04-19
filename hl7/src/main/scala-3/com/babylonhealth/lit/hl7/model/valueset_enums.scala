@@ -12,8 +12,8 @@ enum ACCOUNT_STATUS(val name: String, val display: Option[String], val system: O
   case ENTERED_IN_ERROR
       extends ACCOUNT_STATUS("entered-in-error", Some("Entered in error"), Some("http://hl7.org/fhir/account-status"))
   case INACTIVE extends ACCOUNT_STATUS("inactive", Some("Inactive"), Some("http://hl7.org/fhir/account-status"))
-  case ON_HOLD extends ACCOUNT_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/account-status"))
-  case UNKNOWN extends ACCOUNT_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/account-status"))
+  case ON_HOLD  extends ACCOUNT_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/account-status"))
+  case UNKNOWN  extends ACCOUNT_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/account-status"))
 }
 object ACCOUNT_STATUS extends EType[ACCOUNT_STATUS]("http://hl7.org/fhir/ValueSet/account-status")
 
@@ -30,7 +30,7 @@ enum ACTION_CONDITION_KIND(val name: String, val display: Option[String], val sy
   case APPLICABILITY
       extends ACTION_CONDITION_KIND("applicability", Some("Applicability"), Some("http://hl7.org/fhir/action-condition-kind"))
   case START extends ACTION_CONDITION_KIND("start", Some("Start"), Some("http://hl7.org/fhir/action-condition-kind"))
-  case STOP extends ACTION_CONDITION_KIND("stop", Some("Stop"), Some("http://hl7.org/fhir/action-condition-kind"))
+  case STOP  extends ACTION_CONDITION_KIND("stop", Some("Stop"), Some("http://hl7.org/fhir/action-condition-kind"))
 }
 object ACTION_CONDITION_KIND extends EType[ACTION_CONDITION_KIND]("http://hl7.org/fhir/ValueSet/action-condition-kind")
 
@@ -51,7 +51,7 @@ enum ACTION_GROUPING_BEHAVIOR(val name: String, val display: Option[String], val
 object ACTION_GROUPING_BEHAVIOR extends EType[ACTION_GROUPING_BEHAVIOR]("http://hl7.org/fhir/ValueSet/action-grouping-behavior")
 
 enum ACTION_PARTICIPANT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case DEVICE extends ACTION_PARTICIPANT_TYPE("device", Some("Device"), Some("http://hl7.org/fhir/action-participant-type"))
+  case DEVICE  extends ACTION_PARTICIPANT_TYPE("device", Some("Device"), Some("http://hl7.org/fhir/action-participant-type"))
   case PATIENT extends ACTION_PARTICIPANT_TYPE("patient", Some("Patient"), Some("http://hl7.org/fhir/action-participant-type"))
   case PRACTITIONER
       extends ACTION_PARTICIPANT_TYPE("practitioner", Some("Practitioner"), Some("http://hl7.org/fhir/action-participant-type"))
@@ -64,7 +64,7 @@ enum ACTION_PARTICIPANT_TYPE(val name: String, val display: Option[String], val 
 object ACTION_PARTICIPANT_TYPE extends EType[ACTION_PARTICIPANT_TYPE]("http://hl7.org/fhir/ValueSet/action-participant-type")
 
 enum ACTION_PRECHECK_BEHAVIOR(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case NO extends ACTION_PRECHECK_BEHAVIOR("no", Some("No"), Some("http://hl7.org/fhir/action-precheck-behavior"))
+  case NO  extends ACTION_PRECHECK_BEHAVIOR("no", Some("No"), Some("http://hl7.org/fhir/action-precheck-behavior"))
   case YES extends ACTION_PRECHECK_BEHAVIOR("yes", Some("Yes"), Some("http://hl7.org/fhir/action-precheck-behavior"))
 }
 object ACTION_PRECHECK_BEHAVIOR extends EType[ACTION_PRECHECK_BEHAVIOR]("http://hl7.org/fhir/ValueSet/action-precheck-behavior")
@@ -97,7 +97,7 @@ object ACTION_RELATIONSHIP_TYPE extends EType[ACTION_RELATIONSHIP_TYPE]("http://
 
 enum ACTION_REQUIRED_BEHAVIOR(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case COULD extends ACTION_REQUIRED_BEHAVIOR("could", Some("Could"), Some("http://hl7.org/fhir/action-required-behavior"))
-  case MUST extends ACTION_REQUIRED_BEHAVIOR("must", Some("Must"), Some("http://hl7.org/fhir/action-required-behavior"))
+  case MUST  extends ACTION_REQUIRED_BEHAVIOR("must", Some("Must"), Some("http://hl7.org/fhir/action-required-behavior"))
   case MUST_UNLESS_DOCUMENTED
       extends ACTION_REQUIRED_BEHAVIOR(
         "must-unless-documented",
@@ -122,9 +122,9 @@ object ACTION_SELECTION_BEHAVIOR
     extends EType[ACTION_SELECTION_BEHAVIOR]("http://hl7.org/fhir/ValueSet/action-selection-behavior")
 
 enum ADMINISTRATIVE_GENDER(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case FEMALE extends ADMINISTRATIVE_GENDER("female", Some("Female"), Some("http://hl7.org/fhir/administrative-gender"))
-  case MALE extends ADMINISTRATIVE_GENDER("male", Some("Male"), Some("http://hl7.org/fhir/administrative-gender"))
-  case OTHER extends ADMINISTRATIVE_GENDER("other", Some("Other"), Some("http://hl7.org/fhir/administrative-gender"))
+  case FEMALE  extends ADMINISTRATIVE_GENDER("female", Some("Female"), Some("http://hl7.org/fhir/administrative-gender"))
+  case MALE    extends ADMINISTRATIVE_GENDER("male", Some("Male"), Some("http://hl7.org/fhir/administrative-gender"))
+  case OTHER   extends ADMINISTRATIVE_GENDER("other", Some("Other"), Some("http://hl7.org/fhir/administrative-gender"))
   case UNKNOWN extends ADMINISTRATIVE_GENDER("unknown", Some("Unknown"), Some("http://hl7.org/fhir/administrative-gender"))
 }
 object ADMINISTRATIVE_GENDER extends EType[ADMINISTRATIVE_GENDER]("http://hl7.org/fhir/ValueSet/administrative-gender")
@@ -188,40 +188,40 @@ enum ALLERGY_INTOLERANCE_TYPE(val name: String, val display: Option[String], val
 object ALLERGY_INTOLERANCE_TYPE extends EType[ALLERGY_INTOLERANCE_TYPE]("http://hl7.org/fhir/ValueSet/allergy-intolerance-type")
 
 enum APPOINTMENTSTATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ARRIVED extends APPOINTMENTSTATUS("arrived", Some("Arrived"), Some("http://hl7.org/fhir/appointmentstatus"))
-  case BOOKED extends APPOINTMENTSTATUS("booked", Some("Booked"), Some("http://hl7.org/fhir/appointmentstatus"))
-  case CANCELLED extends APPOINTMENTSTATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/appointmentstatus"))
+  case ARRIVED    extends APPOINTMENTSTATUS("arrived", Some("Arrived"), Some("http://hl7.org/fhir/appointmentstatus"))
+  case BOOKED     extends APPOINTMENTSTATUS("booked", Some("Booked"), Some("http://hl7.org/fhir/appointmentstatus"))
+  case CANCELLED  extends APPOINTMENTSTATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/appointmentstatus"))
   case CHECKED_IN extends APPOINTMENTSTATUS("checked-in", Some("Checked In"), Some("http://hl7.org/fhir/appointmentstatus"))
   case ENTERED_IN_ERROR
       extends APPOINTMENTSTATUS("entered-in-error", Some("Entered in error"), Some("http://hl7.org/fhir/appointmentstatus"))
   case FULFILLED extends APPOINTMENTSTATUS("fulfilled", Some("Fulfilled"), Some("http://hl7.org/fhir/appointmentstatus"))
-  case NOSHOW extends APPOINTMENTSTATUS("noshow", Some("No Show"), Some("http://hl7.org/fhir/appointmentstatus"))
-  case PENDING extends APPOINTMENTSTATUS("pending", Some("Pending"), Some("http://hl7.org/fhir/appointmentstatus"))
-  case PROPOSED extends APPOINTMENTSTATUS("proposed", Some("Proposed"), Some("http://hl7.org/fhir/appointmentstatus"))
-  case WAITLIST extends APPOINTMENTSTATUS("waitlist", Some("Waitlisted"), Some("http://hl7.org/fhir/appointmentstatus"))
+  case NOSHOW    extends APPOINTMENTSTATUS("noshow", Some("No Show"), Some("http://hl7.org/fhir/appointmentstatus"))
+  case PENDING   extends APPOINTMENTSTATUS("pending", Some("Pending"), Some("http://hl7.org/fhir/appointmentstatus"))
+  case PROPOSED  extends APPOINTMENTSTATUS("proposed", Some("Proposed"), Some("http://hl7.org/fhir/appointmentstatus"))
+  case WAITLIST  extends APPOINTMENTSTATUS("waitlist", Some("Waitlisted"), Some("http://hl7.org/fhir/appointmentstatus"))
 }
 object APPOINTMENTSTATUS extends EType[APPOINTMENTSTATUS]("http://hl7.org/fhir/ValueSet/appointmentstatus")
 
 enum ASSERT_DIRECTION_CODES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case REQUEST extends ASSERT_DIRECTION_CODES("request", Some("request"), Some("http://hl7.org/fhir/assert-direction-codes"))
+  case REQUEST  extends ASSERT_DIRECTION_CODES("request", Some("request"), Some("http://hl7.org/fhir/assert-direction-codes"))
   case RESPONSE extends ASSERT_DIRECTION_CODES("response", Some("response"), Some("http://hl7.org/fhir/assert-direction-codes"))
 }
 object ASSERT_DIRECTION_CODES extends EType[ASSERT_DIRECTION_CODES]("http://hl7.org/fhir/ValueSet/assert-direction-codes")
 
 enum ASSERT_OPERATOR_CODES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case CONTAINS extends ASSERT_OPERATOR_CODES("contains", Some("contains"), Some("http://hl7.org/fhir/assert-operator-codes"))
-  case EMPTY extends ASSERT_OPERATOR_CODES("empty", Some("empty"), Some("http://hl7.org/fhir/assert-operator-codes"))
-  case EQUALS extends ASSERT_OPERATOR_CODES("equals", Some("equals"), Some("http://hl7.org/fhir/assert-operator-codes"))
-  case EVAL extends ASSERT_OPERATOR_CODES("eval", Some("evaluate"), Some("http://hl7.org/fhir/assert-operator-codes"))
+  case EMPTY    extends ASSERT_OPERATOR_CODES("empty", Some("empty"), Some("http://hl7.org/fhir/assert-operator-codes"))
+  case EQUALS   extends ASSERT_OPERATOR_CODES("equals", Some("equals"), Some("http://hl7.org/fhir/assert-operator-codes"))
+  case EVAL     extends ASSERT_OPERATOR_CODES("eval", Some("evaluate"), Some("http://hl7.org/fhir/assert-operator-codes"))
   case GREATERTHAN
       extends ASSERT_OPERATOR_CODES("greaterThan", Some("greaterThan"), Some("http://hl7.org/fhir/assert-operator-codes"))
-  case IN extends ASSERT_OPERATOR_CODES("in", Some("in"), Some("http://hl7.org/fhir/assert-operator-codes"))
+  case IN       extends ASSERT_OPERATOR_CODES("in", Some("in"), Some("http://hl7.org/fhir/assert-operator-codes"))
   case LESSTHAN extends ASSERT_OPERATOR_CODES("lessThan", Some("lessThan"), Some("http://hl7.org/fhir/assert-operator-codes"))
   case NOTCONTAINS
       extends ASSERT_OPERATOR_CODES("notContains", Some("notContains"), Some("http://hl7.org/fhir/assert-operator-codes"))
-  case NOTEMPTY extends ASSERT_OPERATOR_CODES("notEmpty", Some("notEmpty"), Some("http://hl7.org/fhir/assert-operator-codes"))
+  case NOTEMPTY  extends ASSERT_OPERATOR_CODES("notEmpty", Some("notEmpty"), Some("http://hl7.org/fhir/assert-operator-codes"))
   case NOTEQUALS extends ASSERT_OPERATOR_CODES("notEquals", Some("notEquals"), Some("http://hl7.org/fhir/assert-operator-codes"))
-  case NOTIN extends ASSERT_OPERATOR_CODES("notIn", Some("notIn"), Some("http://hl7.org/fhir/assert-operator-codes"))
+  case NOTIN     extends ASSERT_OPERATOR_CODES("notIn", Some("notIn"), Some("http://hl7.org/fhir/assert-operator-codes"))
 }
 object ASSERT_OPERATOR_CODES extends EType[ASSERT_OPERATOR_CODES]("http://hl7.org/fhir/ValueSet/assert-operator-codes")
 
@@ -273,30 +273,30 @@ enum AUDIT_EVENT_ACTION(val name: String, val display: Option[String], val syste
 object AUDIT_EVENT_ACTION extends EType[AUDIT_EVENT_ACTION]("http://hl7.org/fhir/ValueSet/audit-event-action")
 
 enum AUDIT_EVENT_OUTCOME(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case MAJOR_FAILURE extends AUDIT_EVENT_OUTCOME("12", Some("Major failure"), Some("http://hl7.org/fhir/audit-event-outcome"))
-  case MINOR_FAILURE extends AUDIT_EVENT_OUTCOME("4", Some("Minor failure"), Some("http://hl7.org/fhir/audit-event-outcome"))
+  case MAJOR_FAILURE   extends AUDIT_EVENT_OUTCOME("12", Some("Major failure"), Some("http://hl7.org/fhir/audit-event-outcome"))
+  case MINOR_FAILURE   extends AUDIT_EVENT_OUTCOME("4", Some("Minor failure"), Some("http://hl7.org/fhir/audit-event-outcome"))
   case SERIOUS_FAILURE extends AUDIT_EVENT_OUTCOME("8", Some("Serious failure"), Some("http://hl7.org/fhir/audit-event-outcome"))
-  case SUCCESS extends AUDIT_EVENT_OUTCOME("0", Some("Success"), Some("http://hl7.org/fhir/audit-event-outcome"))
+  case SUCCESS         extends AUDIT_EVENT_OUTCOME("0", Some("Success"), Some("http://hl7.org/fhir/audit-event-outcome"))
 }
 object AUDIT_EVENT_OUTCOME extends EType[AUDIT_EVENT_OUTCOME]("http://hl7.org/fhir/ValueSet/audit-event-outcome")
 
 enum BINDING_STRENGTH(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case EXAMPLE extends BINDING_STRENGTH("example", Some("Example"), Some("http://hl7.org/fhir/binding-strength"))
+  case EXAMPLE    extends BINDING_STRENGTH("example", Some("Example"), Some("http://hl7.org/fhir/binding-strength"))
   case EXTENSIBLE extends BINDING_STRENGTH("extensible", Some("Extensible"), Some("http://hl7.org/fhir/binding-strength"))
-  case PREFERRED extends BINDING_STRENGTH("preferred", Some("Preferred"), Some("http://hl7.org/fhir/binding-strength"))
-  case REQUIRED extends BINDING_STRENGTH("required", Some("Required"), Some("http://hl7.org/fhir/binding-strength"))
+  case PREFERRED  extends BINDING_STRENGTH("preferred", Some("Preferred"), Some("http://hl7.org/fhir/binding-strength"))
+  case REQUIRED   extends BINDING_STRENGTH("required", Some("Required"), Some("http://hl7.org/fhir/binding-strength"))
 }
 object BINDING_STRENGTH extends EType[BINDING_STRENGTH]("http://hl7.org/fhir/ValueSet/binding-strength")
 
 enum BUNDLE_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case BATCH extends BUNDLE_TYPE("batch", Some("Batch"), Some("http://hl7.org/fhir/bundle-type"))
+  case BATCH          extends BUNDLE_TYPE("batch", Some("Batch"), Some("http://hl7.org/fhir/bundle-type"))
   case BATCH_RESPONSE extends BUNDLE_TYPE("batch-response", Some("Batch Response"), Some("http://hl7.org/fhir/bundle-type"))
-  case COLLECTION extends BUNDLE_TYPE("collection", Some("Collection"), Some("http://hl7.org/fhir/bundle-type"))
-  case DOCUMENT extends BUNDLE_TYPE("document", Some("Document"), Some("http://hl7.org/fhir/bundle-type"))
-  case HISTORY extends BUNDLE_TYPE("history", Some("History List"), Some("http://hl7.org/fhir/bundle-type"))
-  case MESSAGE extends BUNDLE_TYPE("message", Some("Message"), Some("http://hl7.org/fhir/bundle-type"))
-  case SEARCHSET extends BUNDLE_TYPE("searchset", Some("Search Results"), Some("http://hl7.org/fhir/bundle-type"))
-  case TRANSACTION extends BUNDLE_TYPE("transaction", Some("Transaction"), Some("http://hl7.org/fhir/bundle-type"))
+  case COLLECTION     extends BUNDLE_TYPE("collection", Some("Collection"), Some("http://hl7.org/fhir/bundle-type"))
+  case DOCUMENT       extends BUNDLE_TYPE("document", Some("Document"), Some("http://hl7.org/fhir/bundle-type"))
+  case HISTORY        extends BUNDLE_TYPE("history", Some("History List"), Some("http://hl7.org/fhir/bundle-type"))
+  case MESSAGE        extends BUNDLE_TYPE("message", Some("Message"), Some("http://hl7.org/fhir/bundle-type"))
+  case SEARCHSET      extends BUNDLE_TYPE("searchset", Some("Search Results"), Some("http://hl7.org/fhir/bundle-type"))
+  case TRANSACTION    extends BUNDLE_TYPE("transaction", Some("Transaction"), Some("http://hl7.org/fhir/bundle-type"))
   case TRANSACTION_RESPONSE
       extends BUNDLE_TYPE("transaction-response", Some("Transaction Response"), Some("http://hl7.org/fhir/bundle-type"))
 }
@@ -367,9 +367,9 @@ object CARE_PLAN_ACTIVITY_STATUS
     extends EType[CARE_PLAN_ACTIVITY_STATUS]("http://hl7.org/fhir/ValueSet/care-plan-activity-status")
 
 enum CARE_PLAN_INTENT(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case OPTION extends CARE_PLAN_INTENT("option", Some("option"), Some("http://hl7.org/fhir/request-intent"))
-  case ORDER extends CARE_PLAN_INTENT("order", Some("order"), Some("http://hl7.org/fhir/request-intent"))
-  case PLAN extends CARE_PLAN_INTENT("plan", Some("plan"), Some("http://hl7.org/fhir/request-intent"))
+  case OPTION   extends CARE_PLAN_INTENT("option", Some("option"), Some("http://hl7.org/fhir/request-intent"))
+  case ORDER    extends CARE_PLAN_INTENT("order", Some("order"), Some("http://hl7.org/fhir/request-intent"))
+  case PLAN     extends CARE_PLAN_INTENT("plan", Some("plan"), Some("http://hl7.org/fhir/request-intent"))
   case PROPOSAL extends CARE_PLAN_INTENT("proposal", Some("proposal"), Some("http://hl7.org/fhir/request-intent"))
 }
 object CARE_PLAN_INTENT extends EType[CARE_PLAN_INTENT]("http://hl7.org/fhir/ValueSet/care-plan-intent")
@@ -378,26 +378,26 @@ enum CARE_TEAM_STATUS(val name: String, val display: Option[String], val system:
   case ACTIVE extends CARE_TEAM_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/care-team-status"))
   case ENTERED_IN_ERROR
       extends CARE_TEAM_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/care-team-status"))
-  case INACTIVE extends CARE_TEAM_STATUS("inactive", Some("Inactive"), Some("http://hl7.org/fhir/care-team-status"))
-  case PROPOSED extends CARE_TEAM_STATUS("proposed", Some("Proposed"), Some("http://hl7.org/fhir/care-team-status"))
+  case INACTIVE  extends CARE_TEAM_STATUS("inactive", Some("Inactive"), Some("http://hl7.org/fhir/care-team-status"))
+  case PROPOSED  extends CARE_TEAM_STATUS("proposed", Some("Proposed"), Some("http://hl7.org/fhir/care-team-status"))
   case SUSPENDED extends CARE_TEAM_STATUS("suspended", Some("Suspended"), Some("http://hl7.org/fhir/care-team-status"))
 }
 object CARE_TEAM_STATUS extends EType[CARE_TEAM_STATUS]("http://hl7.org/fhir/ValueSet/care-team-status")
 
 enum CHARGEITEM_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ABORTED extends CHARGEITEM_STATUS("aborted", Some("Aborted"), Some("http://hl7.org/fhir/chargeitem-status"))
+  case ABORTED  extends CHARGEITEM_STATUS("aborted", Some("Aborted"), Some("http://hl7.org/fhir/chargeitem-status"))
   case BILLABLE extends CHARGEITEM_STATUS("billable", Some("Billable"), Some("http://hl7.org/fhir/chargeitem-status"))
-  case BILLED extends CHARGEITEM_STATUS("billed", Some("Billed"), Some("http://hl7.org/fhir/chargeitem-status"))
+  case BILLED   extends CHARGEITEM_STATUS("billed", Some("Billed"), Some("http://hl7.org/fhir/chargeitem-status"))
   case ENTERED_IN_ERROR
       extends CHARGEITEM_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/chargeitem-status"))
   case NOT_BILLABLE extends CHARGEITEM_STATUS("not-billable", Some("Not billable"), Some("http://hl7.org/fhir/chargeitem-status"))
-  case PLANNED extends CHARGEITEM_STATUS("planned", Some("Planned"), Some("http://hl7.org/fhir/chargeitem-status"))
-  case UNKNOWN extends CHARGEITEM_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/chargeitem-status"))
+  case PLANNED      extends CHARGEITEM_STATUS("planned", Some("Planned"), Some("http://hl7.org/fhir/chargeitem-status"))
+  case UNKNOWN      extends CHARGEITEM_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/chargeitem-status"))
 }
 object CHARGEITEM_STATUS extends EType[CHARGEITEM_STATUS]("http://hl7.org/fhir/ValueSet/chargeitem-status")
 
 enum CLAIM_USE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case CLAIM extends CLAIM_USE("claim", Some("Claim"), Some("http://hl7.org/fhir/claim-use"))
+  case CLAIM            extends CLAIM_USE("claim", Some("Claim"), Some("http://hl7.org/fhir/claim-use"))
   case PREAUTHORIZATION extends CLAIM_USE("preauthorization", Some("Preauthorization"), Some("http://hl7.org/fhir/claim-use"))
   case PREDETERMINATION extends CLAIM_USE("predetermination", Some("Predetermination"), Some("http://hl7.org/fhir/claim-use"))
 }
@@ -414,7 +414,7 @@ object CLINICALIMPRESSION_STATUS
 
 enum CODESYSTEM_CONTENT_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case COMPLETE extends CODESYSTEM_CONTENT_MODE("complete", Some("Complete"), Some("http://hl7.org/fhir/codesystem-content-mode"))
-  case EXAMPLE extends CODESYSTEM_CONTENT_MODE("example", Some("Example"), Some("http://hl7.org/fhir/codesystem-content-mode"))
+  case EXAMPLE  extends CODESYSTEM_CONTENT_MODE("example", Some("Example"), Some("http://hl7.org/fhir/codesystem-content-mode"))
   case FRAGMENT extends CODESYSTEM_CONTENT_MODE("fragment", Some("Fragment"), Some("http://hl7.org/fhir/codesystem-content-mode"))
   case NOT_PRESENT
       extends CODESYSTEM_CONTENT_MODE("not-present", Some("Not Present"), Some("http://hl7.org/fhir/codesystem-content-mode"))
@@ -443,15 +443,15 @@ object CODESYSTEM_HIERARCHY_MEANING
     extends EType[CODESYSTEM_HIERARCHY_MEANING]("http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning")
 
 enum CODE_SEARCH_SUPPORT(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ALL extends CODE_SEARCH_SUPPORT("all", Some("Implicit Codes"), Some("http://hl7.org/fhir/code-search-support"))
+  case ALL      extends CODE_SEARCH_SUPPORT("all", Some("Implicit Codes"), Some("http://hl7.org/fhir/code-search-support"))
   case EXPLICIT extends CODE_SEARCH_SUPPORT("explicit", Some("Explicit Codes"), Some("http://hl7.org/fhir/code-search-support"))
 }
 object CODE_SEARCH_SUPPORT extends EType[CODE_SEARCH_SUPPORT]("http://hl7.org/fhir/ValueSet/code-search-support")
 
 enum COMPARTMENT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case DEVICE extends COMPARTMENT_TYPE("Device", Some("Device"), Some("http://hl7.org/fhir/compartment-type"))
-  case ENCOUNTER extends COMPARTMENT_TYPE("Encounter", Some("Encounter"), Some("http://hl7.org/fhir/compartment-type"))
-  case PATIENT extends COMPARTMENT_TYPE("Patient", Some("Patient"), Some("http://hl7.org/fhir/compartment-type"))
+  case DEVICE       extends COMPARTMENT_TYPE("Device", Some("Device"), Some("http://hl7.org/fhir/compartment-type"))
+  case ENCOUNTER    extends COMPARTMENT_TYPE("Encounter", Some("Encounter"), Some("http://hl7.org/fhir/compartment-type"))
+  case PATIENT      extends COMPARTMENT_TYPE("Patient", Some("Patient"), Some("http://hl7.org/fhir/compartment-type"))
   case PRACTITIONER extends COMPARTMENT_TYPE("Practitioner", Some("Practitioner"), Some("http://hl7.org/fhir/compartment-type"))
   case RELATEDPERSON
       extends COMPARTMENT_TYPE("RelatedPerson", Some("RelatedPerson"), Some("http://hl7.org/fhir/compartment-type"))
@@ -479,7 +479,7 @@ enum COMPOSITION_STATUS(val name: String, val display: Option[String], val syste
   case AMENDED extends COMPOSITION_STATUS("amended", Some("Amended"), Some("http://hl7.org/fhir/composition-status"))
   case ENTERED_IN_ERROR
       extends COMPOSITION_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/composition-status"))
-  case FINAL extends COMPOSITION_STATUS("final", Some("Final"), Some("http://hl7.org/fhir/composition-status"))
+  case FINAL       extends COMPOSITION_STATUS("final", Some("Final"), Some("http://hl7.org/fhir/composition-status"))
   case PRELIMINARY extends COMPOSITION_STATUS("preliminary", Some("Preliminary"), Some("http://hl7.org/fhir/composition-status"))
 }
 object COMPOSITION_STATUS extends EType[COMPOSITION_STATUS]("http://hl7.org/fhir/ValueSet/composition-status")
@@ -495,10 +495,10 @@ object CONCEPTMAP_UNMAPPED_MODE extends EType[CONCEPTMAP_UNMAPPED_MODE]("http://
 
 enum CONCEPT_MAP_EQUIVALENCE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case DISJOINT extends CONCEPT_MAP_EQUIVALENCE("disjoint", Some("Disjoint"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case EQUAL extends CONCEPT_MAP_EQUIVALENCE("equal", Some("Equal"), Some("http://hl7.org/fhir/concept-map-equivalence"))
+  case EQUAL    extends CONCEPT_MAP_EQUIVALENCE("equal", Some("Equal"), Some("http://hl7.org/fhir/concept-map-equivalence"))
   case EQUIVALENT
       extends CONCEPT_MAP_EQUIVALENCE("equivalent", Some("Equivalent"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case INEXACT extends CONCEPT_MAP_EQUIVALENCE("inexact", Some("Inexact"), Some("http://hl7.org/fhir/concept-map-equivalence"))
+  case INEXACT  extends CONCEPT_MAP_EQUIVALENCE("inexact", Some("Inexact"), Some("http://hl7.org/fhir/concept-map-equivalence"))
   case NARROWER extends CONCEPT_MAP_EQUIVALENCE("narrower", Some("Narrower"), Some("http://hl7.org/fhir/concept-map-equivalence"))
   case RELATEDTO
       extends CONCEPT_MAP_EQUIVALENCE("relatedto", Some("Related To"), Some("http://hl7.org/fhir/concept-map-equivalence"))
@@ -521,9 +521,9 @@ enum CONCEPT_PROPERTY_TYPE(val name: String, val display: Option[String], val sy
         Some("Coding (external reference)"),
         Some("http://hl7.org/fhir/concept-property-type"))
   case DATETIME extends CONCEPT_PROPERTY_TYPE("dateTime", Some("dateTime"), Some("http://hl7.org/fhir/concept-property-type"))
-  case DECIMAL extends CONCEPT_PROPERTY_TYPE("decimal", Some("decimal"), Some("http://hl7.org/fhir/concept-property-type"))
-  case INTEGER extends CONCEPT_PROPERTY_TYPE("integer", Some("integer"), Some("http://hl7.org/fhir/concept-property-type"))
-  case STRING extends CONCEPT_PROPERTY_TYPE("string", Some("string"), Some("http://hl7.org/fhir/concept-property-type"))
+  case DECIMAL  extends CONCEPT_PROPERTY_TYPE("decimal", Some("decimal"), Some("http://hl7.org/fhir/concept-property-type"))
+  case INTEGER  extends CONCEPT_PROPERTY_TYPE("integer", Some("integer"), Some("http://hl7.org/fhir/concept-property-type"))
+  case STRING   extends CONCEPT_PROPERTY_TYPE("string", Some("string"), Some("http://hl7.org/fhir/concept-property-type"))
 }
 object CONCEPT_PROPERTY_TYPE extends EType[CONCEPT_PROPERTY_TYPE]("http://hl7.org/fhir/ValueSet/concept-property-type")
 
@@ -565,20 +565,20 @@ object CONDITIONAL_READ_STATUS extends EType[CONDITIONAL_READ_STATUS]("http://hl
 enum CONSENT_DATA_MEANING(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case AUTHOREDBY extends CONSENT_DATA_MEANING("authoredby", Some("AuthoredBy"), Some("http://hl7.org/fhir/consent-data-meaning"))
   case DEPENDENTS extends CONSENT_DATA_MEANING("dependents", Some("Dependents"), Some("http://hl7.org/fhir/consent-data-meaning"))
-  case INSTANCE extends CONSENT_DATA_MEANING("instance", Some("Instance"), Some("http://hl7.org/fhir/consent-data-meaning"))
-  case RELATED extends CONSENT_DATA_MEANING("related", Some("Related"), Some("http://hl7.org/fhir/consent-data-meaning"))
+  case INSTANCE   extends CONSENT_DATA_MEANING("instance", Some("Instance"), Some("http://hl7.org/fhir/consent-data-meaning"))
+  case RELATED    extends CONSENT_DATA_MEANING("related", Some("Related"), Some("http://hl7.org/fhir/consent-data-meaning"))
 }
 object CONSENT_DATA_MEANING extends EType[CONSENT_DATA_MEANING]("http://hl7.org/fhir/ValueSet/consent-data-meaning")
 
 enum CONSENT_PROVISION_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case DENY extends CONSENT_PROVISION_TYPE("deny", Some("Opt Out"), Some("http://hl7.org/fhir/consent-provision-type"))
+  case DENY   extends CONSENT_PROVISION_TYPE("deny", Some("Opt Out"), Some("http://hl7.org/fhir/consent-provision-type"))
   case PERMIT extends CONSENT_PROVISION_TYPE("permit", Some("Opt In"), Some("http://hl7.org/fhir/consent-provision-type"))
 }
 object CONSENT_PROVISION_TYPE extends EType[CONSENT_PROVISION_TYPE]("http://hl7.org/fhir/ValueSet/consent-provision-type")
 
 enum CONSENT_STATE_CODES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ACTIVE extends CONSENT_STATE_CODES("active", Some("Active"), Some("http://hl7.org/fhir/consent-state-codes"))
-  case DRAFT extends CONSENT_STATE_CODES("draft", Some("Pending"), Some("http://hl7.org/fhir/consent-state-codes"))
+  case DRAFT  extends CONSENT_STATE_CODES("draft", Some("Pending"), Some("http://hl7.org/fhir/consent-state-codes"))
   case ENTERED_IN_ERROR
       extends CONSENT_STATE_CODES("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/consent-state-codes"))
   case INACTIVE extends CONSENT_STATE_CODES("inactive", Some("Inactive"), Some("http://hl7.org/fhir/consent-state-codes"))
@@ -588,7 +588,7 @@ enum CONSENT_STATE_CODES(val name: String, val display: Option[String], val syst
 object CONSENT_STATE_CODES extends EType[CONSENT_STATE_CODES]("http://hl7.org/fhir/ValueSet/consent-state-codes")
 
 enum CONSTRAINT_SEVERITY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ERROR extends CONSTRAINT_SEVERITY("error", Some("Error"), Some("http://hl7.org/fhir/constraint-severity"))
+  case ERROR   extends CONSTRAINT_SEVERITY("error", Some("Error"), Some("http://hl7.org/fhir/constraint-severity"))
   case WARNING extends CONSTRAINT_SEVERITY("warning", Some("Warning"), Some("http://hl7.org/fhir/constraint-severity"))
 }
 object CONSTRAINT_SEVERITY extends EType[CONSTRAINT_SEVERITY]("http://hl7.org/fhir/ValueSet/constraint-severity")
@@ -631,21 +631,21 @@ object CONTRACT_PUBLICATIONSTATUS
     extends EType[CONTRACT_PUBLICATIONSTATUS]("http://hl7.org/fhir/ValueSet/contract-publicationstatus")
 
 enum CONTRACT_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case AMENDED extends CONTRACT_STATUS("amended", Some("Amended"), Some("http://hl7.org/fhir/contract-status"))
-  case APPENDED extends CONTRACT_STATUS("appended", Some("Appended"), Some("http://hl7.org/fhir/contract-status"))
+  case AMENDED   extends CONTRACT_STATUS("amended", Some("Amended"), Some("http://hl7.org/fhir/contract-status"))
+  case APPENDED  extends CONTRACT_STATUS("appended", Some("Appended"), Some("http://hl7.org/fhir/contract-status"))
   case CANCELLED extends CONTRACT_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/contract-status"))
-  case DISPUTED extends CONTRACT_STATUS("disputed", Some("Disputed"), Some("http://hl7.org/fhir/contract-status"))
+  case DISPUTED  extends CONTRACT_STATUS("disputed", Some("Disputed"), Some("http://hl7.org/fhir/contract-status"))
   case ENTERED_IN_ERROR
       extends CONTRACT_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/contract-status"))
   case EXECUTABLE extends CONTRACT_STATUS("executable", Some("Executable"), Some("http://hl7.org/fhir/contract-status"))
-  case EXECUTED extends CONTRACT_STATUS("executed", Some("Executed"), Some("http://hl7.org/fhir/contract-status"))
+  case EXECUTED   extends CONTRACT_STATUS("executed", Some("Executed"), Some("http://hl7.org/fhir/contract-status"))
   case NEGOTIABLE extends CONTRACT_STATUS("negotiable", Some("Negotiable"), Some("http://hl7.org/fhir/contract-status"))
-  case OFFERED extends CONTRACT_STATUS("offered", Some("Offered"), Some("http://hl7.org/fhir/contract-status"))
-  case POLICY extends CONTRACT_STATUS("policy", Some("Policy"), Some("http://hl7.org/fhir/contract-status"))
-  case REJECTED extends CONTRACT_STATUS("rejected", Some("Rejected"), Some("http://hl7.org/fhir/contract-status"))
-  case RENEWED extends CONTRACT_STATUS("renewed", Some("Renewed"), Some("http://hl7.org/fhir/contract-status"))
-  case RESOLVED extends CONTRACT_STATUS("resolved", Some("Resolved"), Some("http://hl7.org/fhir/contract-status"))
-  case REVOKED extends CONTRACT_STATUS("revoked", Some("Revoked"), Some("http://hl7.org/fhir/contract-status"))
+  case OFFERED    extends CONTRACT_STATUS("offered", Some("Offered"), Some("http://hl7.org/fhir/contract-status"))
+  case POLICY     extends CONTRACT_STATUS("policy", Some("Policy"), Some("http://hl7.org/fhir/contract-status"))
+  case REJECTED   extends CONTRACT_STATUS("rejected", Some("Rejected"), Some("http://hl7.org/fhir/contract-status"))
+  case RENEWED    extends CONTRACT_STATUS("renewed", Some("Renewed"), Some("http://hl7.org/fhir/contract-status"))
+  case RESOLVED   extends CONTRACT_STATUS("resolved", Some("Resolved"), Some("http://hl7.org/fhir/contract-status"))
+  case REVOKED    extends CONTRACT_STATUS("revoked", Some("Revoked"), Some("http://hl7.org/fhir/contract-status"))
   case TERMINATED extends CONTRACT_STATUS("terminated", Some("Terminated"), Some("http://hl7.org/fhir/contract-status"))
 }
 object CONTRACT_STATUS extends EType[CONTRACT_STATUS]("http://hl7.org/fhir/ValueSet/contract-status")
@@ -654,61 +654,61 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
   case ACCOUNT extends DEFINED_TYPES("Account", Some("Account"), Some("http://hl7.org/fhir/resource-types"))
   case ACTIVITYDEFINITION
       extends DEFINED_TYPES("ActivityDefinition", Some("ActivityDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case ADDRESS extends DEFINED_TYPES("Address", Some("Address"), Some("http://hl7.org/fhir/data-types"))
+  case ADDRESS      extends DEFINED_TYPES("Address", Some("Address"), Some("http://hl7.org/fhir/data-types"))
   case ADVERSEEVENT extends DEFINED_TYPES("AdverseEvent", Some("AdverseEvent"), Some("http://hl7.org/fhir/resource-types"))
-  case AGE extends DEFINED_TYPES("Age", Some("Age"), Some("http://hl7.org/fhir/data-types"))
+  case AGE          extends DEFINED_TYPES("Age", Some("Age"), Some("http://hl7.org/fhir/data-types"))
   case ALLERGYINTOLERANCE
       extends DEFINED_TYPES("AllergyIntolerance", Some("AllergyIntolerance"), Some("http://hl7.org/fhir/resource-types"))
-  case ANNOTATION extends DEFINED_TYPES("Annotation", Some("Annotation"), Some("http://hl7.org/fhir/data-types"))
+  case ANNOTATION  extends DEFINED_TYPES("Annotation", Some("Annotation"), Some("http://hl7.org/fhir/data-types"))
   case APPOINTMENT extends DEFINED_TYPES("Appointment", Some("Appointment"), Some("http://hl7.org/fhir/resource-types"))
   case APPOINTMENTRESPONSE
       extends DEFINED_TYPES("AppointmentResponse", Some("AppointmentResponse"), Some("http://hl7.org/fhir/resource-types"))
-  case ATTACHMENT extends DEFINED_TYPES("Attachment", Some("Attachment"), Some("http://hl7.org/fhir/data-types"))
-  case AUDITEVENT extends DEFINED_TYPES("AuditEvent", Some("AuditEvent"), Some("http://hl7.org/fhir/resource-types"))
+  case ATTACHMENT      extends DEFINED_TYPES("Attachment", Some("Attachment"), Some("http://hl7.org/fhir/data-types"))
+  case AUDITEVENT      extends DEFINED_TYPES("AuditEvent", Some("AuditEvent"), Some("http://hl7.org/fhir/resource-types"))
   case BACKBONEELEMENT extends DEFINED_TYPES("BackboneElement", Some("BackboneElement"), Some("http://hl7.org/fhir/data-types"))
-  case BASE64BINARY extends DEFINED_TYPES("base64Binary", Some("base64Binary"), Some("http://hl7.org/fhir/data-types"))
-  case BASIC extends DEFINED_TYPES("Basic", Some("Basic"), Some("http://hl7.org/fhir/resource-types"))
-  case BINARY extends DEFINED_TYPES("Binary", Some("Binary"), Some("http://hl7.org/fhir/resource-types"))
+  case BASE64BINARY    extends DEFINED_TYPES("base64Binary", Some("base64Binary"), Some("http://hl7.org/fhir/data-types"))
+  case BASIC           extends DEFINED_TYPES("Basic", Some("Basic"), Some("http://hl7.org/fhir/resource-types"))
+  case BINARY          extends DEFINED_TYPES("Binary", Some("Binary"), Some("http://hl7.org/fhir/resource-types"))
   case BIOLOGICALLYDERIVEDPRODUCT
       extends DEFINED_TYPES(
         "BiologicallyDerivedProduct",
         Some("BiologicallyDerivedProduct"),
         Some("http://hl7.org/fhir/resource-types"))
   case BODYSTRUCTURE extends DEFINED_TYPES("BodyStructure", Some("BodyStructure"), Some("http://hl7.org/fhir/resource-types"))
-  case BOOLEAN extends DEFINED_TYPES("boolean", Some("boolean"), Some("http://hl7.org/fhir/data-types"))
-  case BUNDLE extends DEFINED_TYPES("Bundle", Some("Bundle"), Some("http://hl7.org/fhir/resource-types"))
-  case CANONICAL extends DEFINED_TYPES("canonical", Some("canonical"), Some("http://hl7.org/fhir/data-types"))
+  case BOOLEAN       extends DEFINED_TYPES("boolean", Some("boolean"), Some("http://hl7.org/fhir/data-types"))
+  case BUNDLE        extends DEFINED_TYPES("Bundle", Some("Bundle"), Some("http://hl7.org/fhir/resource-types"))
+  case CANONICAL     extends DEFINED_TYPES("canonical", Some("canonical"), Some("http://hl7.org/fhir/data-types"))
   case CAPABILITYSTATEMENT
       extends DEFINED_TYPES("CapabilityStatement", Some("CapabilityStatement"), Some("http://hl7.org/fhir/resource-types"))
-  case CAREPLAN extends DEFINED_TYPES("CarePlan", Some("CarePlan"), Some("http://hl7.org/fhir/resource-types"))
-  case CARETEAM extends DEFINED_TYPES("CareTeam", Some("CareTeam"), Some("http://hl7.org/fhir/resource-types"))
+  case CAREPLAN     extends DEFINED_TYPES("CarePlan", Some("CarePlan"), Some("http://hl7.org/fhir/resource-types"))
+  case CARETEAM     extends DEFINED_TYPES("CareTeam", Some("CareTeam"), Some("http://hl7.org/fhir/resource-types"))
   case CATALOGENTRY extends DEFINED_TYPES("CatalogEntry", Some("CatalogEntry"), Some("http://hl7.org/fhir/resource-types"))
-  case CHARGEITEM extends DEFINED_TYPES("ChargeItem", Some("ChargeItem"), Some("http://hl7.org/fhir/resource-types"))
+  case CHARGEITEM   extends DEFINED_TYPES("ChargeItem", Some("ChargeItem"), Some("http://hl7.org/fhir/resource-types"))
   case CHARGEITEMDEFINITION
       extends DEFINED_TYPES("ChargeItemDefinition", Some("ChargeItemDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case CLAIM extends DEFINED_TYPES("Claim", Some("Claim"), Some("http://hl7.org/fhir/resource-types"))
+  case CLAIM         extends DEFINED_TYPES("Claim", Some("Claim"), Some("http://hl7.org/fhir/resource-types"))
   case CLAIMRESPONSE extends DEFINED_TYPES("ClaimResponse", Some("ClaimResponse"), Some("http://hl7.org/fhir/resource-types"))
   case CLINICALIMPRESSION
       extends DEFINED_TYPES("ClinicalImpression", Some("ClinicalImpression"), Some("http://hl7.org/fhir/resource-types"))
-  case CODE extends DEFINED_TYPES("code", Some("code"), Some("http://hl7.org/fhir/data-types"))
+  case CODE            extends DEFINED_TYPES("code", Some("code"), Some("http://hl7.org/fhir/data-types"))
   case CODEABLECONCEPT extends DEFINED_TYPES("CodeableConcept", Some("CodeableConcept"), Some("http://hl7.org/fhir/data-types"))
-  case CODESYSTEM extends DEFINED_TYPES("CodeSystem", Some("CodeSystem"), Some("http://hl7.org/fhir/resource-types"))
-  case CODING extends DEFINED_TYPES("Coding", Some("Coding"), Some("http://hl7.org/fhir/data-types"))
-  case COMMUNICATION extends DEFINED_TYPES("Communication", Some("Communication"), Some("http://hl7.org/fhir/resource-types"))
+  case CODESYSTEM      extends DEFINED_TYPES("CodeSystem", Some("CodeSystem"), Some("http://hl7.org/fhir/resource-types"))
+  case CODING          extends DEFINED_TYPES("Coding", Some("Coding"), Some("http://hl7.org/fhir/data-types"))
+  case COMMUNICATION   extends DEFINED_TYPES("Communication", Some("Communication"), Some("http://hl7.org/fhir/resource-types"))
   case COMMUNICATIONREQUEST
       extends DEFINED_TYPES("CommunicationRequest", Some("CommunicationRequest"), Some("http://hl7.org/fhir/resource-types"))
   case COMPARTMENTDEFINITION
       extends DEFINED_TYPES("CompartmentDefinition", Some("CompartmentDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case COMPOSITION extends DEFINED_TYPES("Composition", Some("Composition"), Some("http://hl7.org/fhir/resource-types"))
-  case CONCEPTMAP extends DEFINED_TYPES("ConceptMap", Some("ConceptMap"), Some("http://hl7.org/fhir/resource-types"))
-  case CONDITION extends DEFINED_TYPES("Condition", Some("Condition"), Some("http://hl7.org/fhir/resource-types"))
-  case CONSENT extends DEFINED_TYPES("Consent", Some("Consent"), Some("http://hl7.org/fhir/resource-types"))
+  case COMPOSITION   extends DEFINED_TYPES("Composition", Some("Composition"), Some("http://hl7.org/fhir/resource-types"))
+  case CONCEPTMAP    extends DEFINED_TYPES("ConceptMap", Some("ConceptMap"), Some("http://hl7.org/fhir/resource-types"))
+  case CONDITION     extends DEFINED_TYPES("Condition", Some("Condition"), Some("http://hl7.org/fhir/resource-types"))
+  case CONSENT       extends DEFINED_TYPES("Consent", Some("Consent"), Some("http://hl7.org/fhir/resource-types"))
   case CONTACTDETAIL extends DEFINED_TYPES("ContactDetail", Some("ContactDetail"), Some("http://hl7.org/fhir/data-types"))
-  case CONTACTPOINT extends DEFINED_TYPES("ContactPoint", Some("ContactPoint"), Some("http://hl7.org/fhir/data-types"))
-  case CONTRACT extends DEFINED_TYPES("Contract", Some("Contract"), Some("http://hl7.org/fhir/resource-types"))
-  case CONTRIBUTOR extends DEFINED_TYPES("Contributor", Some("Contributor"), Some("http://hl7.org/fhir/data-types"))
-  case COUNT extends DEFINED_TYPES("Count", Some("Count"), Some("http://hl7.org/fhir/data-types"))
-  case COVERAGE extends DEFINED_TYPES("Coverage", Some("Coverage"), Some("http://hl7.org/fhir/resource-types"))
+  case CONTACTPOINT  extends DEFINED_TYPES("ContactPoint", Some("ContactPoint"), Some("http://hl7.org/fhir/data-types"))
+  case CONTRACT      extends DEFINED_TYPES("Contract", Some("Contract"), Some("http://hl7.org/fhir/resource-types"))
+  case CONTRIBUTOR   extends DEFINED_TYPES("Contributor", Some("Contributor"), Some("http://hl7.org/fhir/data-types"))
+  case COUNT         extends DEFINED_TYPES("Count", Some("Count"), Some("http://hl7.org/fhir/data-types"))
+  case COVERAGE      extends DEFINED_TYPES("Coverage", Some("Coverage"), Some("http://hl7.org/fhir/resource-types"))
   case COVERAGEELIGIBILITYREQUEST
       extends DEFINED_TYPES(
         "CoverageEligibilityRequest",
@@ -720,14 +720,14 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
         Some("CoverageEligibilityResponse"),
         Some("http://hl7.org/fhir/resource-types"))
   case DATAREQUIREMENT extends DEFINED_TYPES("DataRequirement", Some("DataRequirement"), Some("http://hl7.org/fhir/data-types"))
-  case DATE extends DEFINED_TYPES("date", Some("date"), Some("http://hl7.org/fhir/data-types"))
-  case DATETIME extends DEFINED_TYPES("dateTime", Some("dateTime"), Some("http://hl7.org/fhir/data-types"))
-  case DECIMAL extends DEFINED_TYPES("decimal", Some("decimal"), Some("http://hl7.org/fhir/data-types"))
-  case DETECTEDISSUE extends DEFINED_TYPES("DetectedIssue", Some("DetectedIssue"), Some("http://hl7.org/fhir/resource-types"))
-  case DEVICE extends DEFINED_TYPES("Device", Some("Device"), Some("http://hl7.org/fhir/resource-types"))
+  case DATE            extends DEFINED_TYPES("date", Some("date"), Some("http://hl7.org/fhir/data-types"))
+  case DATETIME        extends DEFINED_TYPES("dateTime", Some("dateTime"), Some("http://hl7.org/fhir/data-types"))
+  case DECIMAL         extends DEFINED_TYPES("decimal", Some("decimal"), Some("http://hl7.org/fhir/data-types"))
+  case DETECTEDISSUE   extends DEFINED_TYPES("DetectedIssue", Some("DetectedIssue"), Some("http://hl7.org/fhir/resource-types"))
+  case DEVICE          extends DEFINED_TYPES("Device", Some("Device"), Some("http://hl7.org/fhir/resource-types"))
   case DEVICEDEFINITION
       extends DEFINED_TYPES("DeviceDefinition", Some("DeviceDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case DEVICEMETRIC extends DEFINED_TYPES("DeviceMetric", Some("DeviceMetric"), Some("http://hl7.org/fhir/resource-types"))
+  case DEVICEMETRIC  extends DEFINED_TYPES("DeviceMetric", Some("DeviceMetric"), Some("http://hl7.org/fhir/resource-types"))
   case DEVICEREQUEST extends DEFINED_TYPES("DeviceRequest", Some("DeviceRequest"), Some("http://hl7.org/fhir/resource-types"))
   case DEVICEUSESTATEMENT
       extends DEFINED_TYPES("DeviceUseStatement", Some("DeviceUseStatement"), Some("http://hl7.org/fhir/resource-types"))
@@ -739,8 +739,8 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
   case DOCUMENTREFERENCE
       extends DEFINED_TYPES("DocumentReference", Some("DocumentReference"), Some("http://hl7.org/fhir/resource-types"))
   case DOMAINRESOURCE extends DEFINED_TYPES("DomainResource", Some("DomainResource"), Some("http://hl7.org/fhir/resource-types"))
-  case DOSAGE extends DEFINED_TYPES("Dosage", Some("Dosage"), Some("http://hl7.org/fhir/data-types"))
-  case DURATION extends DEFINED_TYPES("Duration", Some("Duration"), Some("http://hl7.org/fhir/data-types"))
+  case DOSAGE         extends DEFINED_TYPES("Dosage", Some("Dosage"), Some("http://hl7.org/fhir/data-types"))
+  case DURATION       extends DEFINED_TYPES("Duration", Some("Duration"), Some("http://hl7.org/fhir/data-types"))
   case EFFECTEVIDENCESYNTHESIS
       extends DEFINED_TYPES(
         "EffectEvidenceSynthesis",
@@ -750,7 +750,7 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
   case ELEMENTDEFINITION
       extends DEFINED_TYPES("ElementDefinition", Some("ElementDefinition"), Some("http://hl7.org/fhir/data-types"))
   case ENCOUNTER extends DEFINED_TYPES("Encounter", Some("Encounter"), Some("http://hl7.org/fhir/resource-types"))
-  case ENDPOINT extends DEFINED_TYPES("Endpoint", Some("Endpoint"), Some("http://hl7.org/fhir/resource-types"))
+  case ENDPOINT  extends DEFINED_TYPES("Endpoint", Some("Endpoint"), Some("http://hl7.org/fhir/resource-types"))
   case ENROLLMENTREQUEST
       extends DEFINED_TYPES("EnrollmentRequest", Some("EnrollmentRequest"), Some("http://hl7.org/fhir/resource-types"))
   case ENROLLMENTRESPONSE
@@ -766,7 +766,7 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
   case EXPLANATIONOFBENEFIT
       extends DEFINED_TYPES("ExplanationOfBenefit", Some("ExplanationOfBenefit"), Some("http://hl7.org/fhir/resource-types"))
   case EXPRESSION extends DEFINED_TYPES("Expression", Some("Expression"), Some("http://hl7.org/fhir/data-types"))
-  case EXTENSION extends DEFINED_TYPES("Extension", Some("Extension"), Some("http://hl7.org/fhir/data-types"))
+  case EXTENSION  extends DEFINED_TYPES("Extension", Some("Extension"), Some("http://hl7.org/fhir/data-types"))
   case FAMILYMEMBERHISTORY
       extends DEFINED_TYPES("FamilyMemberHistory", Some("FamilyMemberHistory"), Some("http://hl7.org/fhir/resource-types"))
   case FLAG extends DEFINED_TYPES("Flag", Some("Flag"), Some("http://hl7.org/fhir/resource-types"))
@@ -778,9 +778,9 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
       extends DEFINED_TYPES("GuidanceResponse", Some("GuidanceResponse"), Some("http://hl7.org/fhir/resource-types"))
   case HEALTHCARESERVICE
       extends DEFINED_TYPES("HealthcareService", Some("HealthcareService"), Some("http://hl7.org/fhir/resource-types"))
-  case HUMANNAME extends DEFINED_TYPES("HumanName", Some("HumanName"), Some("http://hl7.org/fhir/data-types"))
-  case ID extends DEFINED_TYPES("id", Some("id"), Some("http://hl7.org/fhir/data-types"))
-  case IDENTIFIER extends DEFINED_TYPES("Identifier", Some("Identifier"), Some("http://hl7.org/fhir/data-types"))
+  case HUMANNAME    extends DEFINED_TYPES("HumanName", Some("HumanName"), Some("http://hl7.org/fhir/data-types"))
+  case ID           extends DEFINED_TYPES("id", Some("id"), Some("http://hl7.org/fhir/data-types"))
+  case IDENTIFIER   extends DEFINED_TYPES("Identifier", Some("Identifier"), Some("http://hl7.org/fhir/data-types"))
   case IMAGINGSTUDY extends DEFINED_TYPES("ImagingStudy", Some("ImagingStudy"), Some("http://hl7.org/fhir/resource-types"))
   case IMMUNIZATION extends DEFINED_TYPES("Immunization", Some("Immunization"), Some("http://hl7.org/fhir/resource-types"))
   case IMMUNIZATIONEVALUATION
@@ -792,20 +792,20 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
         Some("http://hl7.org/fhir/resource-types"))
   case IMPLEMENTATIONGUIDE
       extends DEFINED_TYPES("ImplementationGuide", Some("ImplementationGuide"), Some("http://hl7.org/fhir/resource-types"))
-  case INSTANT extends DEFINED_TYPES("instant", Some("instant"), Some("http://hl7.org/fhir/data-types"))
-  case INSURANCEPLAN extends DEFINED_TYPES("InsurancePlan", Some("InsurancePlan"), Some("http://hl7.org/fhir/resource-types"))
-  case INTEGER extends DEFINED_TYPES("integer", Some("integer"), Some("http://hl7.org/fhir/data-types"))
-  case INVOICE extends DEFINED_TYPES("Invoice", Some("Invoice"), Some("http://hl7.org/fhir/resource-types"))
-  case LIBRARY extends DEFINED_TYPES("Library", Some("Library"), Some("http://hl7.org/fhir/resource-types"))
-  case LINKAGE extends DEFINED_TYPES("Linkage", Some("Linkage"), Some("http://hl7.org/fhir/resource-types"))
-  case LIST extends DEFINED_TYPES("List", Some("List"), Some("http://hl7.org/fhir/resource-types"))
-  case LOCATION extends DEFINED_TYPES("Location", Some("Location"), Some("http://hl7.org/fhir/resource-types"))
-  case MARKDOWN extends DEFINED_TYPES("markdown", Some("markdown"), Some("http://hl7.org/fhir/data-types"))
+  case INSTANT         extends DEFINED_TYPES("instant", Some("instant"), Some("http://hl7.org/fhir/data-types"))
+  case INSURANCEPLAN   extends DEFINED_TYPES("InsurancePlan", Some("InsurancePlan"), Some("http://hl7.org/fhir/resource-types"))
+  case INTEGER         extends DEFINED_TYPES("integer", Some("integer"), Some("http://hl7.org/fhir/data-types"))
+  case INVOICE         extends DEFINED_TYPES("Invoice", Some("Invoice"), Some("http://hl7.org/fhir/resource-types"))
+  case LIBRARY         extends DEFINED_TYPES("Library", Some("Library"), Some("http://hl7.org/fhir/resource-types"))
+  case LINKAGE         extends DEFINED_TYPES("Linkage", Some("Linkage"), Some("http://hl7.org/fhir/resource-types"))
+  case LIST            extends DEFINED_TYPES("List", Some("List"), Some("http://hl7.org/fhir/resource-types"))
+  case LOCATION        extends DEFINED_TYPES("Location", Some("Location"), Some("http://hl7.org/fhir/resource-types"))
+  case MARKDOWN        extends DEFINED_TYPES("markdown", Some("markdown"), Some("http://hl7.org/fhir/data-types"))
   case MARKETINGSTATUS extends DEFINED_TYPES("MarketingStatus", Some("MarketingStatus"), Some("http://hl7.org/fhir/data-types"))
-  case MEASURE extends DEFINED_TYPES("Measure", Some("Measure"), Some("http://hl7.org/fhir/resource-types"))
-  case MEASUREREPORT extends DEFINED_TYPES("MeasureReport", Some("MeasureReport"), Some("http://hl7.org/fhir/resource-types"))
-  case MEDIA extends DEFINED_TYPES("Media", Some("Media"), Some("http://hl7.org/fhir/resource-types"))
-  case MEDICATION extends DEFINED_TYPES("Medication", Some("Medication"), Some("http://hl7.org/fhir/resource-types"))
+  case MEASURE         extends DEFINED_TYPES("Measure", Some("Measure"), Some("http://hl7.org/fhir/resource-types"))
+  case MEASUREREPORT   extends DEFINED_TYPES("MeasureReport", Some("MeasureReport"), Some("http://hl7.org/fhir/resource-types"))
+  case MEDIA           extends DEFINED_TYPES("Media", Some("Media"), Some("http://hl7.org/fhir/resource-types"))
+  case MEDICATION      extends DEFINED_TYPES("Medication", Some("Medication"), Some("http://hl7.org/fhir/resource-types"))
   case MEDICATIONADMINISTRATION
       extends DEFINED_TYPES(
         "MedicationAdministration",
@@ -869,15 +869,15 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
   case MESSAGEDEFINITION
       extends DEFINED_TYPES("MessageDefinition", Some("MessageDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case MESSAGEHEADER extends DEFINED_TYPES("MessageHeader", Some("MessageHeader"), Some("http://hl7.org/fhir/resource-types"))
-  case META extends DEFINED_TYPES("Meta", Some("Meta"), Some("http://hl7.org/fhir/data-types"))
+  case META          extends DEFINED_TYPES("Meta", Some("Meta"), Some("http://hl7.org/fhir/data-types"))
   case MOLECULARSEQUENCE
       extends DEFINED_TYPES("MolecularSequence", Some("MolecularSequence"), Some("http://hl7.org/fhir/resource-types"))
-  case MONEY extends DEFINED_TYPES("Money", Some("Money"), Some("http://hl7.org/fhir/data-types"))
-  case MONEYQUANTITY extends DEFINED_TYPES("MoneyQuantity", Some("MoneyQuantity"), Some("http://hl7.org/fhir/data-types"))
-  case NAMINGSYSTEM extends DEFINED_TYPES("NamingSystem", Some("NamingSystem"), Some("http://hl7.org/fhir/resource-types"))
-  case NARRATIVE extends DEFINED_TYPES("Narrative", Some("Narrative"), Some("http://hl7.org/fhir/data-types"))
+  case MONEY          extends DEFINED_TYPES("Money", Some("Money"), Some("http://hl7.org/fhir/data-types"))
+  case MONEYQUANTITY  extends DEFINED_TYPES("MoneyQuantity", Some("MoneyQuantity"), Some("http://hl7.org/fhir/data-types"))
+  case NAMINGSYSTEM   extends DEFINED_TYPES("NamingSystem", Some("NamingSystem"), Some("http://hl7.org/fhir/resource-types"))
+  case NARRATIVE      extends DEFINED_TYPES("Narrative", Some("Narrative"), Some("http://hl7.org/fhir/data-types"))
   case NUTRITIONORDER extends DEFINED_TYPES("NutritionOrder", Some("NutritionOrder"), Some("http://hl7.org/fhir/resource-types"))
-  case OBSERVATION extends DEFINED_TYPES("Observation", Some("Observation"), Some("http://hl7.org/fhir/resource-types"))
+  case OBSERVATION    extends DEFINED_TYPES("Observation", Some("Observation"), Some("http://hl7.org/fhir/resource-types"))
   case OBSERVATIONDEFINITION
       extends DEFINED_TYPES("ObservationDefinition", Some("ObservationDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case OID extends DEFINED_TYPES("oid", Some("oid"), Some("http://hl7.org/fhir/data-types"))
@@ -893,17 +893,17 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
         Some("http://hl7.org/fhir/resource-types"))
   case PARAMETERDEFINITION
       extends DEFINED_TYPES("ParameterDefinition", Some("ParameterDefinition"), Some("http://hl7.org/fhir/data-types"))
-  case PARAMETERS extends DEFINED_TYPES("Parameters", Some("Parameters"), Some("http://hl7.org/fhir/resource-types"))
-  case PATIENT extends DEFINED_TYPES("Patient", Some("Patient"), Some("http://hl7.org/fhir/resource-types"))
+  case PARAMETERS    extends DEFINED_TYPES("Parameters", Some("Parameters"), Some("http://hl7.org/fhir/resource-types"))
+  case PATIENT       extends DEFINED_TYPES("Patient", Some("Patient"), Some("http://hl7.org/fhir/resource-types"))
   case PAYMENTNOTICE extends DEFINED_TYPES("PaymentNotice", Some("PaymentNotice"), Some("http://hl7.org/fhir/resource-types"))
   case PAYMENTRECONCILIATION
       extends DEFINED_TYPES("PaymentReconciliation", Some("PaymentReconciliation"), Some("http://hl7.org/fhir/resource-types"))
-  case PERIOD extends DEFINED_TYPES("Period", Some("Period"), Some("http://hl7.org/fhir/data-types"))
-  case PERSON extends DEFINED_TYPES("Person", Some("Person"), Some("http://hl7.org/fhir/resource-types"))
+  case PERIOD         extends DEFINED_TYPES("Period", Some("Period"), Some("http://hl7.org/fhir/data-types"))
+  case PERSON         extends DEFINED_TYPES("Person", Some("Person"), Some("http://hl7.org/fhir/resource-types"))
   case PLANDEFINITION extends DEFINED_TYPES("PlanDefinition", Some("PlanDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case POPULATION extends DEFINED_TYPES("Population", Some("Population"), Some("http://hl7.org/fhir/data-types"))
-  case POSITIVEINT extends DEFINED_TYPES("positiveInt", Some("positiveInt"), Some("http://hl7.org/fhir/data-types"))
-  case PRACTITIONER extends DEFINED_TYPES("Practitioner", Some("Practitioner"), Some("http://hl7.org/fhir/resource-types"))
+  case POPULATION     extends DEFINED_TYPES("Population", Some("Population"), Some("http://hl7.org/fhir/data-types"))
+  case POSITIVEINT    extends DEFINED_TYPES("positiveInt", Some("positiveInt"), Some("http://hl7.org/fhir/data-types"))
+  case PRACTITIONER   extends DEFINED_TYPES("Practitioner", Some("Practitioner"), Some("http://hl7.org/fhir/resource-types"))
   case PRACTITIONERROLE
       extends DEFINED_TYPES("PractitionerRole", Some("PractitionerRole"), Some("http://hl7.org/fhir/resource-types"))
   case PROCEDURE extends DEFINED_TYPES("Procedure", Some("Procedure"), Some("http://hl7.org/fhir/resource-types"))
@@ -911,17 +911,17 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
       extends DEFINED_TYPES("ProdCharacteristic", Some("ProdCharacteristic"), Some("http://hl7.org/fhir/data-types"))
   case PRODUCTSHELFLIFE
       extends DEFINED_TYPES("ProductShelfLife", Some("ProductShelfLife"), Some("http://hl7.org/fhir/data-types"))
-  case PROVENANCE extends DEFINED_TYPES("Provenance", Some("Provenance"), Some("http://hl7.org/fhir/resource-types"))
-  case QUANTITY extends DEFINED_TYPES("Quantity", Some("Quantity"), Some("http://hl7.org/fhir/data-types"))
+  case PROVENANCE    extends DEFINED_TYPES("Provenance", Some("Provenance"), Some("http://hl7.org/fhir/resource-types"))
+  case QUANTITY      extends DEFINED_TYPES("Quantity", Some("Quantity"), Some("http://hl7.org/fhir/data-types"))
   case QUESTIONNAIRE extends DEFINED_TYPES("Questionnaire", Some("Questionnaire"), Some("http://hl7.org/fhir/resource-types"))
   case QUESTIONNAIRERESPONSE
       extends DEFINED_TYPES("QuestionnaireResponse", Some("QuestionnaireResponse"), Some("http://hl7.org/fhir/resource-types"))
-  case RANGE extends DEFINED_TYPES("Range", Some("Range"), Some("http://hl7.org/fhir/data-types"))
-  case RATIO extends DEFINED_TYPES("Ratio", Some("Ratio"), Some("http://hl7.org/fhir/data-types"))
-  case REFERENCE extends DEFINED_TYPES("Reference", Some("Reference"), Some("http://hl7.org/fhir/data-types"))
+  case RANGE           extends DEFINED_TYPES("Range", Some("Range"), Some("http://hl7.org/fhir/data-types"))
+  case RATIO           extends DEFINED_TYPES("Ratio", Some("Ratio"), Some("http://hl7.org/fhir/data-types"))
+  case REFERENCE       extends DEFINED_TYPES("Reference", Some("Reference"), Some("http://hl7.org/fhir/data-types"))
   case RELATEDARTIFACT extends DEFINED_TYPES("RelatedArtifact", Some("RelatedArtifact"), Some("http://hl7.org/fhir/data-types"))
-  case RELATEDPERSON extends DEFINED_TYPES("RelatedPerson", Some("RelatedPerson"), Some("http://hl7.org/fhir/resource-types"))
-  case REQUESTGROUP extends DEFINED_TYPES("RequestGroup", Some("RequestGroup"), Some("http://hl7.org/fhir/resource-types"))
+  case RELATEDPERSON   extends DEFINED_TYPES("RelatedPerson", Some("RelatedPerson"), Some("http://hl7.org/fhir/resource-types"))
+  case REQUESTGROUP    extends DEFINED_TYPES("RequestGroup", Some("RequestGroup"), Some("http://hl7.org/fhir/resource-types"))
   case RESEARCHDEFINITION
       extends DEFINED_TYPES("ResearchDefinition", Some("ResearchDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case RESEARCHELEMENTDEFINITION
@@ -932,27 +932,27 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
   case RESEARCHSTUDY extends DEFINED_TYPES("ResearchStudy", Some("ResearchStudy"), Some("http://hl7.org/fhir/resource-types"))
   case RESEARCHSUBJECT
       extends DEFINED_TYPES("ResearchSubject", Some("ResearchSubject"), Some("http://hl7.org/fhir/resource-types"))
-  case RESOURCE extends DEFINED_TYPES("Resource", Some("Resource"), Some("http://hl7.org/fhir/resource-types"))
+  case RESOURCE       extends DEFINED_TYPES("Resource", Some("Resource"), Some("http://hl7.org/fhir/resource-types"))
   case RISKASSESSMENT extends DEFINED_TYPES("RiskAssessment", Some("RiskAssessment"), Some("http://hl7.org/fhir/resource-types"))
   case RISKEVIDENCESYNTHESIS
       extends DEFINED_TYPES("RiskEvidenceSynthesis", Some("RiskEvidenceSynthesis"), Some("http://hl7.org/fhir/resource-types"))
   case SAMPLEDDATA extends DEFINED_TYPES("SampledData", Some("SampledData"), Some("http://hl7.org/fhir/data-types"))
-  case SCHEDULE extends DEFINED_TYPES("Schedule", Some("Schedule"), Some("http://hl7.org/fhir/resource-types"))
+  case SCHEDULE    extends DEFINED_TYPES("Schedule", Some("Schedule"), Some("http://hl7.org/fhir/resource-types"))
   case SEARCHPARAMETER
       extends DEFINED_TYPES("SearchParameter", Some("SearchParameter"), Some("http://hl7.org/fhir/resource-types"))
   case SERVICEREQUEST extends DEFINED_TYPES("ServiceRequest", Some("ServiceRequest"), Some("http://hl7.org/fhir/resource-types"))
-  case SIGNATURE extends DEFINED_TYPES("Signature", Some("Signature"), Some("http://hl7.org/fhir/data-types"))
+  case SIGNATURE      extends DEFINED_TYPES("Signature", Some("Signature"), Some("http://hl7.org/fhir/data-types"))
   case SIMPLEQUANTITY extends DEFINED_TYPES("SimpleQuantity", Some("SimpleQuantity"), Some("http://hl7.org/fhir/data-types"))
-  case SLOT extends DEFINED_TYPES("Slot", Some("Slot"), Some("http://hl7.org/fhir/resource-types"))
-  case SPECIMEN extends DEFINED_TYPES("Specimen", Some("Specimen"), Some("http://hl7.org/fhir/resource-types"))
+  case SLOT           extends DEFINED_TYPES("Slot", Some("Slot"), Some("http://hl7.org/fhir/resource-types"))
+  case SPECIMEN       extends DEFINED_TYPES("Specimen", Some("Specimen"), Some("http://hl7.org/fhir/resource-types"))
   case SPECIMENDEFINITION
       extends DEFINED_TYPES("SpecimenDefinition", Some("SpecimenDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case STRING extends DEFINED_TYPES("string", Some("string"), Some("http://hl7.org/fhir/data-types"))
   case STRUCTUREDEFINITION
       extends DEFINED_TYPES("StructureDefinition", Some("StructureDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case STRUCTUREMAP extends DEFINED_TYPES("StructureMap", Some("StructureMap"), Some("http://hl7.org/fhir/resource-types"))
-  case SUBSCRIPTION extends DEFINED_TYPES("Subscription", Some("Subscription"), Some("http://hl7.org/fhir/resource-types"))
-  case SUBSTANCE extends DEFINED_TYPES("Substance", Some("Substance"), Some("http://hl7.org/fhir/resource-types"))
+  case STRUCTUREMAP    extends DEFINED_TYPES("StructureMap", Some("StructureMap"), Some("http://hl7.org/fhir/resource-types"))
+  case SUBSCRIPTION    extends DEFINED_TYPES("Subscription", Some("Subscription"), Some("http://hl7.org/fhir/resource-types"))
+  case SUBSTANCE       extends DEFINED_TYPES("Substance", Some("Substance"), Some("http://hl7.org/fhir/resource-types"))
   case SUBSTANCEAMOUNT extends DEFINED_TYPES("SubstanceAmount", Some("SubstanceAmount"), Some("http://hl7.org/fhir/data-types"))
   case SUBSTANCENUCLEICACID
       extends DEFINED_TYPES("SubstanceNucleicAcid", Some("SubstanceNucleicAcid"), Some("http://hl7.org/fhir/resource-types"))
@@ -973,8 +973,8 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
   case SUBSTANCESPECIFICATION
       extends DEFINED_TYPES("SubstanceSpecification", Some("SubstanceSpecification"), Some("http://hl7.org/fhir/resource-types"))
   case SUPPLYDELIVERY extends DEFINED_TYPES("SupplyDelivery", Some("SupplyDelivery"), Some("http://hl7.org/fhir/resource-types"))
-  case SUPPLYREQUEST extends DEFINED_TYPES("SupplyRequest", Some("SupplyRequest"), Some("http://hl7.org/fhir/resource-types"))
-  case TASK extends DEFINED_TYPES("Task", Some("Task"), Some("http://hl7.org/fhir/resource-types"))
+  case SUPPLYREQUEST  extends DEFINED_TYPES("SupplyRequest", Some("SupplyRequest"), Some("http://hl7.org/fhir/resource-types"))
+  case TASK           extends DEFINED_TYPES("Task", Some("Task"), Some("http://hl7.org/fhir/resource-types"))
   case TERMINOLOGYCAPABILITIES
       extends DEFINED_TYPES(
         "TerminologyCapabilities",
@@ -982,16 +982,16 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
         Some("http://hl7.org/fhir/resource-types"))
   case TESTREPORT extends DEFINED_TYPES("TestReport", Some("TestReport"), Some("http://hl7.org/fhir/resource-types"))
   case TESTSCRIPT extends DEFINED_TYPES("TestScript", Some("TestScript"), Some("http://hl7.org/fhir/resource-types"))
-  case TIME extends DEFINED_TYPES("time", Some("time"), Some("http://hl7.org/fhir/data-types"))
-  case TIMING extends DEFINED_TYPES("Timing", Some("Timing"), Some("http://hl7.org/fhir/data-types"))
+  case TIME       extends DEFINED_TYPES("time", Some("time"), Some("http://hl7.org/fhir/data-types"))
+  case TIMING     extends DEFINED_TYPES("Timing", Some("Timing"), Some("http://hl7.org/fhir/data-types"))
   case TRIGGERDEFINITION
       extends DEFINED_TYPES("TriggerDefinition", Some("TriggerDefinition"), Some("http://hl7.org/fhir/data-types"))
-  case UNSIGNEDINT extends DEFINED_TYPES("unsignedInt", Some("unsignedInt"), Some("http://hl7.org/fhir/data-types"))
-  case URI extends DEFINED_TYPES("uri", Some("uri"), Some("http://hl7.org/fhir/data-types"))
-  case URL extends DEFINED_TYPES("url", Some("url"), Some("http://hl7.org/fhir/data-types"))
+  case UNSIGNEDINT  extends DEFINED_TYPES("unsignedInt", Some("unsignedInt"), Some("http://hl7.org/fhir/data-types"))
+  case URI          extends DEFINED_TYPES("uri", Some("uri"), Some("http://hl7.org/fhir/data-types"))
+  case URL          extends DEFINED_TYPES("url", Some("url"), Some("http://hl7.org/fhir/data-types"))
   case USAGECONTEXT extends DEFINED_TYPES("UsageContext", Some("UsageContext"), Some("http://hl7.org/fhir/data-types"))
-  case UUID extends DEFINED_TYPES("uuid", Some("uuid"), Some("http://hl7.org/fhir/data-types"))
-  case VALUESET extends DEFINED_TYPES("ValueSet", Some("ValueSet"), Some("http://hl7.org/fhir/resource-types"))
+  case UUID         extends DEFINED_TYPES("uuid", Some("uuid"), Some("http://hl7.org/fhir/data-types"))
+  case VALUESET     extends DEFINED_TYPES("ValueSet", Some("ValueSet"), Some("http://hl7.org/fhir/resource-types"))
   case VERIFICATIONRESULT
       extends DEFINED_TYPES("VerificationResult", Some("VerificationResult"), Some("http://hl7.org/fhir/resource-types"))
   case VISIONPRESCRIPTION
@@ -1001,8 +1001,8 @@ enum DEFINED_TYPES(val name: String, val display: Option[String], val system: Op
 object DEFINED_TYPES extends EType[DEFINED_TYPES]("http://hl7.org/fhir/ValueSet/defined-types")
 
 enum DETECTEDISSUE_SEVERITY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case HIGH extends DETECTEDISSUE_SEVERITY("high", Some("High"), Some("http://hl7.org/fhir/detectedissue-severity"))
-  case LOW extends DETECTEDISSUE_SEVERITY("low", Some("Low"), Some("http://hl7.org/fhir/detectedissue-severity"))
+  case HIGH     extends DETECTEDISSUE_SEVERITY("high", Some("High"), Some("http://hl7.org/fhir/detectedissue-severity"))
+  case LOW      extends DETECTEDISSUE_SEVERITY("low", Some("Low"), Some("http://hl7.org/fhir/detectedissue-severity"))
   case MODERATE extends DETECTEDISSUE_SEVERITY("moderate", Some("Moderate"), Some("http://hl7.org/fhir/detectedissue-severity"))
 }
 object DETECTEDISSUE_SEVERITY extends EType[DETECTEDISSUE_SEVERITY]("http://hl7.org/fhir/ValueSet/detectedissue-severity")
@@ -1011,7 +1011,7 @@ enum DEVICE_NAMETYPE(val name: String, val display: Option[String], val system: 
   case MANUFACTURER_NAME
       extends DEVICE_NAMETYPE("manufacturer-name", Some("Manufacturer name"), Some("http://hl7.org/fhir/device-nametype"))
   case MODEL_NAME extends DEVICE_NAMETYPE("model-name", Some("Model name"), Some("http://hl7.org/fhir/device-nametype"))
-  case OTHER extends DEVICE_NAMETYPE("other", Some("other"), Some("http://hl7.org/fhir/device-nametype"))
+  case OTHER      extends DEVICE_NAMETYPE("other", Some("other"), Some("http://hl7.org/fhir/device-nametype"))
   case PATIENT_REPORTED_NAME
       extends DEVICE_NAMETYPE("patient-reported-name", Some("Patient Reported name"), Some("http://hl7.org/fhir/device-nametype"))
   case UDI_LABEL_NAME
@@ -1031,8 +1031,8 @@ enum DEVICE_STATEMENT_STATUS(val name: String, val display: Option[String], val 
         Some("Entered in Error"),
         Some("http://hl7.org/fhir/device-statement-status"))
   case INTENDED extends DEVICE_STATEMENT_STATUS("intended", Some("Intended"), Some("http://hl7.org/fhir/device-statement-status"))
-  case ON_HOLD extends DEVICE_STATEMENT_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/device-statement-status"))
-  case STOPPED extends DEVICE_STATEMENT_STATUS("stopped", Some("Stopped"), Some("http://hl7.org/fhir/device-statement-status"))
+  case ON_HOLD  extends DEVICE_STATEMENT_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/device-statement-status"))
+  case STOPPED  extends DEVICE_STATEMENT_STATUS("stopped", Some("Stopped"), Some("http://hl7.org/fhir/device-statement-status"))
 }
 object DEVICE_STATEMENT_STATUS extends EType[DEVICE_STATEMENT_STATUS]("http://hl7.org/fhir/ValueSet/device-statement-status")
 
@@ -1041,7 +1041,7 @@ enum DEVICE_STATUS(val name: String, val display: Option[String], val system: Op
   case ENTERED_IN_ERROR
       extends DEVICE_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/device-status"))
   case INACTIVE extends DEVICE_STATUS("inactive", Some("Inactive"), Some("http://hl7.org/fhir/device-status"))
-  case UNKNOWN extends DEVICE_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/device-status"))
+  case UNKNOWN  extends DEVICE_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/device-status"))
 }
 object DEVICE_STATUS extends EType[DEVICE_STATUS]("http://hl7.org/fhir/ValueSet/device-status")
 
@@ -1058,7 +1058,7 @@ enum DIAGNOSTIC_REPORT_STATUS(val name: String, val display: Option[String], val
         "entered-in-error",
         Some("Entered in Error"),
         Some("http://hl7.org/fhir/diagnostic-report-status"))
-  case FINAL extends DIAGNOSTIC_REPORT_STATUS("final", Some("Final"), Some("http://hl7.org/fhir/diagnostic-report-status"))
+  case FINAL   extends DIAGNOSTIC_REPORT_STATUS("final", Some("Final"), Some("http://hl7.org/fhir/diagnostic-report-status"))
   case PARTIAL extends DIAGNOSTIC_REPORT_STATUS("partial", Some("Partial"), Some("http://hl7.org/fhir/diagnostic-report-status"))
   case PRELIMINARY
       extends DIAGNOSTIC_REPORT_STATUS("preliminary", Some("Preliminary"), Some("http://hl7.org/fhir/diagnostic-report-status"))
@@ -1069,11 +1069,11 @@ enum DIAGNOSTIC_REPORT_STATUS(val name: String, val display: Option[String], val
 object DIAGNOSTIC_REPORT_STATUS extends EType[DIAGNOSTIC_REPORT_STATUS]("http://hl7.org/fhir/ValueSet/diagnostic-report-status")
 
 enum DISCRIMINATOR_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case EXISTS extends DISCRIMINATOR_TYPE("exists", Some("Exists"), Some("http://hl7.org/fhir/discriminator-type"))
+  case EXISTS  extends DISCRIMINATOR_TYPE("exists", Some("Exists"), Some("http://hl7.org/fhir/discriminator-type"))
   case PATTERN extends DISCRIMINATOR_TYPE("pattern", Some("Pattern"), Some("http://hl7.org/fhir/discriminator-type"))
   case PROFILE extends DISCRIMINATOR_TYPE("profile", Some("Profile"), Some("http://hl7.org/fhir/discriminator-type"))
-  case TYPE extends DISCRIMINATOR_TYPE("type", Some("Type"), Some("http://hl7.org/fhir/discriminator-type"))
-  case VALUE extends DISCRIMINATOR_TYPE("value", Some("Value"), Some("http://hl7.org/fhir/discriminator-type"))
+  case TYPE    extends DISCRIMINATOR_TYPE("type", Some("Type"), Some("http://hl7.org/fhir/discriminator-type"))
+  case VALUE   extends DISCRIMINATOR_TYPE("value", Some("Value"), Some("http://hl7.org/fhir/discriminator-type"))
 }
 object DISCRIMINATOR_TYPE extends EType[DISCRIMINATOR_TYPE]("http://hl7.org/fhir/ValueSet/discriminator-type")
 
@@ -1172,16 +1172,16 @@ object ENCOUNTER_LOCATION_STATUS
     extends EType[ENCOUNTER_LOCATION_STATUS]("http://hl7.org/fhir/ValueSet/encounter-location-status")
 
 enum ENCOUNTER_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ARRIVED extends ENCOUNTER_STATUS("arrived", Some("Arrived"), Some("http://hl7.org/fhir/encounter-status"))
+  case ARRIVED   extends ENCOUNTER_STATUS("arrived", Some("Arrived"), Some("http://hl7.org/fhir/encounter-status"))
   case CANCELLED extends ENCOUNTER_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/encounter-status"))
   case ENTERED_IN_ERROR
       extends ENCOUNTER_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/encounter-status"))
-  case FINISHED extends ENCOUNTER_STATUS("finished", Some("Finished"), Some("http://hl7.org/fhir/encounter-status"))
+  case FINISHED    extends ENCOUNTER_STATUS("finished", Some("Finished"), Some("http://hl7.org/fhir/encounter-status"))
   case IN_PROGRESS extends ENCOUNTER_STATUS("in-progress", Some("In Progress"), Some("http://hl7.org/fhir/encounter-status"))
-  case ONLEAVE extends ENCOUNTER_STATUS("onleave", Some("On Leave"), Some("http://hl7.org/fhir/encounter-status"))
-  case PLANNED extends ENCOUNTER_STATUS("planned", Some("Planned"), Some("http://hl7.org/fhir/encounter-status"))
-  case TRIAGED extends ENCOUNTER_STATUS("triaged", Some("Triaged"), Some("http://hl7.org/fhir/encounter-status"))
-  case UNKNOWN extends ENCOUNTER_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/encounter-status"))
+  case ONLEAVE     extends ENCOUNTER_STATUS("onleave", Some("On Leave"), Some("http://hl7.org/fhir/encounter-status"))
+  case PLANNED     extends ENCOUNTER_STATUS("planned", Some("Planned"), Some("http://hl7.org/fhir/encounter-status"))
+  case TRIAGED     extends ENCOUNTER_STATUS("triaged", Some("Triaged"), Some("http://hl7.org/fhir/encounter-status"))
+  case UNKNOWN     extends ENCOUNTER_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/encounter-status"))
 }
 object ENCOUNTER_STATUS extends EType[ENCOUNTER_STATUS]("http://hl7.org/fhir/ValueSet/encounter-status")
 
@@ -1189,10 +1189,10 @@ enum ENDPOINT_STATUS(val name: String, val display: Option[String], val system: 
   case ACTIVE extends ENDPOINT_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/endpoint-status"))
   case ENTERED_IN_ERROR
       extends ENDPOINT_STATUS("entered-in-error", Some("Entered in error"), Some("http://hl7.org/fhir/endpoint-status"))
-  case ERROR extends ENDPOINT_STATUS("error", Some("Error"), Some("http://hl7.org/fhir/endpoint-status"))
-  case OFF extends ENDPOINT_STATUS("off", Some("Off"), Some("http://hl7.org/fhir/endpoint-status"))
+  case ERROR     extends ENDPOINT_STATUS("error", Some("Error"), Some("http://hl7.org/fhir/endpoint-status"))
+  case OFF       extends ENDPOINT_STATUS("off", Some("Off"), Some("http://hl7.org/fhir/endpoint-status"))
   case SUSPENDED extends ENDPOINT_STATUS("suspended", Some("Suspended"), Some("http://hl7.org/fhir/endpoint-status"))
-  case TEST extends ENDPOINT_STATUS("test", Some("Test"), Some("http://hl7.org/fhir/endpoint-status"))
+  case TEST      extends ENDPOINT_STATUS("test", Some("Test"), Some("http://hl7.org/fhir/endpoint-status"))
 }
 object ENDPOINT_STATUS extends EType[ENDPOINT_STATUS]("http://hl7.org/fhir/ValueSet/endpoint-status")
 
@@ -1206,15 +1206,15 @@ enum EPISODE_OF_CARE_STATUS(val name: String, val display: Option[String], val s
         Some("Entered in Error"),
         Some("http://hl7.org/fhir/episode-of-care-status"))
   case FINISHED extends EPISODE_OF_CARE_STATUS("finished", Some("Finished"), Some("http://hl7.org/fhir/episode-of-care-status"))
-  case ONHOLD extends EPISODE_OF_CARE_STATUS("onhold", Some("On Hold"), Some("http://hl7.org/fhir/episode-of-care-status"))
-  case PLANNED extends EPISODE_OF_CARE_STATUS("planned", Some("Planned"), Some("http://hl7.org/fhir/episode-of-care-status"))
+  case ONHOLD   extends EPISODE_OF_CARE_STATUS("onhold", Some("On Hold"), Some("http://hl7.org/fhir/episode-of-care-status"))
+  case PLANNED  extends EPISODE_OF_CARE_STATUS("planned", Some("Planned"), Some("http://hl7.org/fhir/episode-of-care-status"))
   case WAITLIST extends EPISODE_OF_CARE_STATUS("waitlist", Some("Waitlist"), Some("http://hl7.org/fhir/episode-of-care-status"))
 }
 object EPISODE_OF_CARE_STATUS extends EType[EPISODE_OF_CARE_STATUS]("http://hl7.org/fhir/ValueSet/episode-of-care-status")
 
 enum EVENT_CAPABILITY_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case RECEIVER extends EVENT_CAPABILITY_MODE("receiver", Some("Receiver"), Some("http://hl7.org/fhir/event-capability-mode"))
-  case SENDER extends EVENT_CAPABILITY_MODE("sender", Some("Sender"), Some("http://hl7.org/fhir/event-capability-mode"))
+  case SENDER   extends EVENT_CAPABILITY_MODE("sender", Some("Sender"), Some("http://hl7.org/fhir/event-capability-mode"))
 }
 object EVENT_CAPABILITY_MODE extends EType[EVENT_CAPABILITY_MODE]("http://hl7.org/fhir/ValueSet/event-capability-mode")
 
@@ -1223,11 +1223,11 @@ enum EVENT_STATUS(val name: String, val display: Option[String], val system: Opt
   case ENTERED_IN_ERROR
       extends EVENT_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/event-status"))
   case IN_PROGRESS extends EVENT_STATUS("in-progress", Some("In Progress"), Some("http://hl7.org/fhir/event-status"))
-  case NOT_DONE extends EVENT_STATUS("not-done", Some("Not Done"), Some("http://hl7.org/fhir/event-status"))
-  case ON_HOLD extends EVENT_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/event-status"))
+  case NOT_DONE    extends EVENT_STATUS("not-done", Some("Not Done"), Some("http://hl7.org/fhir/event-status"))
+  case ON_HOLD     extends EVENT_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/event-status"))
   case PREPARATION extends EVENT_STATUS("preparation", Some("Preparation"), Some("http://hl7.org/fhir/event-status"))
-  case STOPPED extends EVENT_STATUS("stopped", Some("Stopped"), Some("http://hl7.org/fhir/event-status"))
-  case UNKNOWN extends EVENT_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/event-status"))
+  case STOPPED     extends EVENT_STATUS("stopped", Some("Stopped"), Some("http://hl7.org/fhir/event-status"))
+  case UNKNOWN     extends EVENT_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/event-status"))
 }
 object EVENT_STATUS extends EType[EVENT_STATUS]("http://hl7.org/fhir/ValueSet/event-status")
 
@@ -1272,25 +1272,25 @@ enum FHIR_VERSION(val name: String, val display: Option[String], val system: Opt
   case `0.0.80` extends FHIR_VERSION("0.0.80", Some("0.0.80"), Some("http://hl7.org/fhir/FHIR-version"))
   case `0.0.81` extends FHIR_VERSION("0.0.81", Some("0.0.81"), Some("http://hl7.org/fhir/FHIR-version"))
   case `0.0.82` extends FHIR_VERSION("0.0.82", Some("0.0.82"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `0.01` extends FHIR_VERSION("0.01", Some("0.01"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `0.05` extends FHIR_VERSION("0.05", Some("0.05"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `0.06` extends FHIR_VERSION("0.06", Some("0.06"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `0.11` extends FHIR_VERSION("0.11", Some("0.11"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `0.4.0` extends FHIR_VERSION("0.4.0", Some("0.4.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `0.5.0` extends FHIR_VERSION("0.5.0", Some("0.5.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `1.0.0` extends FHIR_VERSION("1.0.0", Some("1.0.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `1.0.1` extends FHIR_VERSION("1.0.1", Some("1.0.1"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `1.0.2` extends FHIR_VERSION("1.0.2", Some("1.0.2"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `1.1.0` extends FHIR_VERSION("1.1.0", Some("1.1.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `1.4.0` extends FHIR_VERSION("1.4.0", Some("1.4.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `1.6.0` extends FHIR_VERSION("1.6.0", Some("1.6.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `1.8.0` extends FHIR_VERSION("1.8.0", Some("1.8.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `3.0.0` extends FHIR_VERSION("3.0.0", Some("3.0.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `3.0.1` extends FHIR_VERSION("3.0.1", Some("3.0.1"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `3.3.0` extends FHIR_VERSION("3.3.0", Some("3.3.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `3.5.0` extends FHIR_VERSION("3.5.0", Some("3.5.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `4.0.0` extends FHIR_VERSION("4.0.0", Some("4.0.0"), Some("http://hl7.org/fhir/FHIR-version"))
-  case `4.0.1` extends FHIR_VERSION("4.0.1", Some("4.0.1"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `0.01`   extends FHIR_VERSION("0.01", Some("0.01"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `0.05`   extends FHIR_VERSION("0.05", Some("0.05"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `0.06`   extends FHIR_VERSION("0.06", Some("0.06"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `0.11`   extends FHIR_VERSION("0.11", Some("0.11"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `0.4.0`  extends FHIR_VERSION("0.4.0", Some("0.4.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `0.5.0`  extends FHIR_VERSION("0.5.0", Some("0.5.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `1.0.0`  extends FHIR_VERSION("1.0.0", Some("1.0.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `1.0.1`  extends FHIR_VERSION("1.0.1", Some("1.0.1"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `1.0.2`  extends FHIR_VERSION("1.0.2", Some("1.0.2"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `1.1.0`  extends FHIR_VERSION("1.1.0", Some("1.1.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `1.4.0`  extends FHIR_VERSION("1.4.0", Some("1.4.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `1.6.0`  extends FHIR_VERSION("1.6.0", Some("1.6.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `1.8.0`  extends FHIR_VERSION("1.8.0", Some("1.8.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `3.0.0`  extends FHIR_VERSION("3.0.0", Some("3.0.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `3.0.1`  extends FHIR_VERSION("3.0.1", Some("3.0.1"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `3.3.0`  extends FHIR_VERSION("3.3.0", Some("3.3.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `3.5.0`  extends FHIR_VERSION("3.5.0", Some("3.5.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `4.0.0`  extends FHIR_VERSION("4.0.0", Some("4.0.0"), Some("http://hl7.org/fhir/FHIR-version"))
+  case `4.0.1`  extends FHIR_VERSION("4.0.1", Some("4.0.1"), Some("http://hl7.org/fhir/FHIR-version"))
 }
 object FHIR_VERSION extends EType[FHIR_VERSION]("http://hl7.org/fhir/ValueSet/FHIR-version")
 
@@ -1304,40 +1304,40 @@ enum FILTER_OPERATOR(val name: String, val display: Option[String], val system: 
   case EXISTS extends FILTER_OPERATOR("exists", Some("Exists"), Some("http://hl7.org/fhir/filter-operator"))
   case GENERALIZES
       extends FILTER_OPERATOR("generalizes", Some("Generalizes (by Subsumption)"), Some("http://hl7.org/fhir/filter-operator"))
-  case IN extends FILTER_OPERATOR("in", Some("In Set"), Some("http://hl7.org/fhir/filter-operator"))
+  case IN   extends FILTER_OPERATOR("in", Some("In Set"), Some("http://hl7.org/fhir/filter-operator"))
   case IS_A extends FILTER_OPERATOR("is-a", Some("Is A (by subsumption)"), Some("http://hl7.org/fhir/filter-operator"))
   case IS_NOT_A
       extends FILTER_OPERATOR("is-not-a", Some("Not (Is A) (by subsumption)"), Some("http://hl7.org/fhir/filter-operator"))
   case NOT_IN_SET extends FILTER_OPERATOR("not-in", Some("Not in Set"), Some("http://hl7.org/fhir/filter-operator"))
-  case REGEX extends FILTER_OPERATOR("regex", Some("Regular Expression"), Some("http://hl7.org/fhir/filter-operator"))
+  case REGEX      extends FILTER_OPERATOR("regex", Some("Regular Expression"), Some("http://hl7.org/fhir/filter-operator"))
 }
 object FILTER_OPERATOR extends EType[FILTER_OPERATOR]("http://hl7.org/fhir/ValueSet/filter-operator")
 
 enum FLAG_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends FLAG_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/flag-status"))
+  case ACTIVE           extends FLAG_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/flag-status"))
   case ENTERED_IN_ERROR extends FLAG_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/flag-status"))
-  case INACTIVE extends FLAG_STATUS("inactive", Some("Inactive"), Some("http://hl7.org/fhir/flag-status"))
+  case INACTIVE         extends FLAG_STATUS("inactive", Some("Inactive"), Some("http://hl7.org/fhir/flag-status"))
 }
 object FLAG_STATUS extends EType[FLAG_STATUS]("http://hl7.org/fhir/ValueSet/flag-status")
 
 enum FM_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends FM_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/fm-status"))
-  case CANCELLED extends FM_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/fm-status"))
-  case DRAFT extends FM_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/fm-status"))
+  case ACTIVE           extends FM_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/fm-status"))
+  case CANCELLED        extends FM_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/fm-status"))
+  case DRAFT            extends FM_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/fm-status"))
   case ENTERED_IN_ERROR extends FM_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/fm-status"))
 }
 object FM_STATUS extends EType[FM_STATUS]("http://hl7.org/fhir/ValueSet/fm-status")
 
 enum GOAL_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACCEPTED extends GOAL_STATUS("accepted", Some("Accepted"), Some("http://hl7.org/fhir/goal-status"))
-  case ACTIVE extends GOAL_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/goal-status"))
-  case CANCELLED extends GOAL_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/goal-status"))
-  case COMPLETED extends GOAL_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/goal-status"))
+  case ACCEPTED         extends GOAL_STATUS("accepted", Some("Accepted"), Some("http://hl7.org/fhir/goal-status"))
+  case ACTIVE           extends GOAL_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/goal-status"))
+  case CANCELLED        extends GOAL_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/goal-status"))
+  case COMPLETED        extends GOAL_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/goal-status"))
   case ENTERED_IN_ERROR extends GOAL_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/goal-status"))
-  case ON_HOLD extends GOAL_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/goal-status"))
-  case PLANNED extends GOAL_STATUS("planned", Some("Planned"), Some("http://hl7.org/fhir/goal-status"))
-  case PROPOSED extends GOAL_STATUS("proposed", Some("Proposed"), Some("http://hl7.org/fhir/goal-status"))
-  case REJECTED extends GOAL_STATUS("rejected", Some("Rejected"), Some("http://hl7.org/fhir/goal-status"))
+  case ON_HOLD          extends GOAL_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/goal-status"))
+  case PLANNED          extends GOAL_STATUS("planned", Some("Planned"), Some("http://hl7.org/fhir/goal-status"))
+  case PROPOSED         extends GOAL_STATUS("proposed", Some("Proposed"), Some("http://hl7.org/fhir/goal-status"))
+  case REJECTED         extends GOAL_STATUS("rejected", Some("Rejected"), Some("http://hl7.org/fhir/goal-status"))
 }
 object GOAL_STATUS extends EType[GOAL_STATUS]("http://hl7.org/fhir/ValueSet/goal-status")
 
@@ -1373,12 +1373,12 @@ enum GROUP_MEASURE(val name: String, val display: Option[String], val system: Op
 object GROUP_MEASURE extends EType[GROUP_MEASURE]("http://hl7.org/fhir/ValueSet/group-measure")
 
 enum GROUP_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ANIMAL extends GROUP_TYPE("animal", Some("Animal"), Some("http://hl7.org/fhir/group-type"))
-  case DEVICE extends GROUP_TYPE("device", Some("Device"), Some("http://hl7.org/fhir/group-type"))
-  case MEDICATION extends GROUP_TYPE("medication", Some("Medication"), Some("http://hl7.org/fhir/group-type"))
-  case PERSON extends GROUP_TYPE("person", Some("Person"), Some("http://hl7.org/fhir/group-type"))
+  case ANIMAL       extends GROUP_TYPE("animal", Some("Animal"), Some("http://hl7.org/fhir/group-type"))
+  case DEVICE       extends GROUP_TYPE("device", Some("Device"), Some("http://hl7.org/fhir/group-type"))
+  case MEDICATION   extends GROUP_TYPE("medication", Some("Medication"), Some("http://hl7.org/fhir/group-type"))
+  case PERSON       extends GROUP_TYPE("person", Some("Person"), Some("http://hl7.org/fhir/group-type"))
   case PRACTITIONER extends GROUP_TYPE("practitioner", Some("Practitioner"), Some("http://hl7.org/fhir/group-type"))
-  case SUBSTANCE extends GROUP_TYPE("substance", Some("Substance"), Some("http://hl7.org/fhir/group-type"))
+  case SUBSTANCE    extends GROUP_TYPE("substance", Some("Substance"), Some("http://hl7.org/fhir/group-type"))
 }
 object GROUP_TYPE extends EType[GROUP_TYPE]("http://hl7.org/fhir/ValueSet/group-type")
 
@@ -1407,9 +1407,9 @@ object GUIDANCE_RESPONSE_STATUS extends EType[GUIDANCE_RESPONSE_STATUS]("http://
 
 enum GUIDE_PAGE_GENERATION(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case GENERATED extends GUIDE_PAGE_GENERATION("generated", Some("Generated"), Some("http://hl7.org/fhir/guide-page-generation"))
-  case HTML extends GUIDE_PAGE_GENERATION("html", Some("HTML"), Some("http://hl7.org/fhir/guide-page-generation"))
-  case MARKDOWN extends GUIDE_PAGE_GENERATION("markdown", Some("Markdown"), Some("http://hl7.org/fhir/guide-page-generation"))
-  case XML extends GUIDE_PAGE_GENERATION("xml", Some("XML"), Some("http://hl7.org/fhir/guide-page-generation"))
+  case HTML      extends GUIDE_PAGE_GENERATION("html", Some("HTML"), Some("http://hl7.org/fhir/guide-page-generation"))
+  case MARKDOWN  extends GUIDE_PAGE_GENERATION("markdown", Some("Markdown"), Some("http://hl7.org/fhir/guide-page-generation"))
+  case XML       extends GUIDE_PAGE_GENERATION("xml", Some("XML"), Some("http://hl7.org/fhir/guide-page-generation"))
 }
 object GUIDE_PAGE_GENERATION extends EType[GUIDE_PAGE_GENERATION]("http://hl7.org/fhir/ValueSet/guide-page-generation")
 
@@ -1449,28 +1449,28 @@ enum HISTORY_STATUS(val name: String, val display: Option[String], val system: O
   case ENTERED_IN_ERROR
       extends HISTORY_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/history-status"))
   case HEALTH_UNKNOWN extends HISTORY_STATUS("health-unknown", Some("Health Unknown"), Some("http://hl7.org/fhir/history-status"))
-  case PARTIAL extends HISTORY_STATUS("partial", Some("Partial"), Some("http://hl7.org/fhir/history-status"))
+  case PARTIAL        extends HISTORY_STATUS("partial", Some("Partial"), Some("http://hl7.org/fhir/history-status"))
 }
 object HISTORY_STATUS extends EType[HISTORY_STATUS]("http://hl7.org/fhir/ValueSet/history-status")
 
 enum HTTP_OPERATIONS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case DELETE extends HTTP_OPERATIONS("delete", Some("DELETE"), Some("http://hl7.org/fhir/http-operations"))
-  case GET extends HTTP_OPERATIONS("get", Some("GET"), Some("http://hl7.org/fhir/http-operations"))
-  case HEAD extends HTTP_OPERATIONS("head", Some("HEAD"), Some("http://hl7.org/fhir/http-operations"))
+  case DELETE  extends HTTP_OPERATIONS("delete", Some("DELETE"), Some("http://hl7.org/fhir/http-operations"))
+  case GET     extends HTTP_OPERATIONS("get", Some("GET"), Some("http://hl7.org/fhir/http-operations"))
+  case HEAD    extends HTTP_OPERATIONS("head", Some("HEAD"), Some("http://hl7.org/fhir/http-operations"))
   case OPTIONS extends HTTP_OPERATIONS("options", Some("OPTIONS"), Some("http://hl7.org/fhir/http-operations"))
-  case PATCH extends HTTP_OPERATIONS("patch", Some("PATCH"), Some("http://hl7.org/fhir/http-operations"))
-  case POST extends HTTP_OPERATIONS("post", Some("POST"), Some("http://hl7.org/fhir/http-operations"))
-  case PUT extends HTTP_OPERATIONS("put", Some("PUT"), Some("http://hl7.org/fhir/http-operations"))
+  case PATCH   extends HTTP_OPERATIONS("patch", Some("PATCH"), Some("http://hl7.org/fhir/http-operations"))
+  case POST    extends HTTP_OPERATIONS("post", Some("POST"), Some("http://hl7.org/fhir/http-operations"))
+  case PUT     extends HTTP_OPERATIONS("put", Some("PUT"), Some("http://hl7.org/fhir/http-operations"))
 }
 object HTTP_OPERATIONS extends EType[HTTP_OPERATIONS]("http://hl7.org/fhir/ValueSet/http-operations")
 
 enum HTTP_VERB(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case DELETE extends HTTP_VERB("DELETE", Some("DELETE"), Some("http://hl7.org/fhir/http-verb"))
-  case GET extends HTTP_VERB("GET", Some("GET"), Some("http://hl7.org/fhir/http-verb"))
-  case HEAD extends HTTP_VERB("HEAD", Some("HEAD"), Some("http://hl7.org/fhir/http-verb"))
-  case PATCH extends HTTP_VERB("PATCH", Some("PATCH"), Some("http://hl7.org/fhir/http-verb"))
-  case POST extends HTTP_VERB("POST", Some("POST"), Some("http://hl7.org/fhir/http-verb"))
-  case PUT extends HTTP_VERB("PUT", Some("PUT"), Some("http://hl7.org/fhir/http-verb"))
+  case GET    extends HTTP_VERB("GET", Some("GET"), Some("http://hl7.org/fhir/http-verb"))
+  case HEAD   extends HTTP_VERB("HEAD", Some("HEAD"), Some("http://hl7.org/fhir/http-verb"))
+  case PATCH  extends HTTP_VERB("PATCH", Some("PATCH"), Some("http://hl7.org/fhir/http-verb"))
+  case POST   extends HTTP_VERB("POST", Some("POST"), Some("http://hl7.org/fhir/http-verb"))
+  case PUT    extends HTTP_VERB("PUT", Some("PUT"), Some("http://hl7.org/fhir/http-verb"))
 }
 object HTTP_VERB extends EType[HTTP_VERB]("http://hl7.org/fhir/ValueSet/http-verb")
 
@@ -1488,7 +1488,7 @@ enum IMAGINGSTUDY_STATUS(val name: String, val display: Option[String], val syst
   case ENTERED_IN_ERROR
       extends IMAGINGSTUDY_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/imagingstudy-status"))
   case REGISTERED extends IMAGINGSTUDY_STATUS("registered", Some("Registered"), Some("http://hl7.org/fhir/imagingstudy-status"))
-  case UNKNOWN extends IMAGINGSTUDY_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/imagingstudy-status"))
+  case UNKNOWN    extends IMAGINGSTUDY_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/imagingstudy-status"))
 }
 object IMAGINGSTUDY_STATUS extends EType[IMAGINGSTUDY_STATUS]("http://hl7.org/fhir/ValueSet/imagingstudy-status")
 
@@ -1535,9 +1535,9 @@ object INVOICE_PRICECOMPONENTTYPE
     extends EType[INVOICE_PRICECOMPONENTTYPE]("http://hl7.org/fhir/ValueSet/invoice-priceComponentType")
 
 enum INVOICE_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case BALANCED extends INVOICE_STATUS("balanced", Some("balanced"), Some("http://hl7.org/fhir/invoice-status"))
+  case BALANCED  extends INVOICE_STATUS("balanced", Some("balanced"), Some("http://hl7.org/fhir/invoice-status"))
   case CANCELLED extends INVOICE_STATUS("cancelled", Some("cancelled"), Some("http://hl7.org/fhir/invoice-status"))
-  case DRAFT extends INVOICE_STATUS("draft", Some("draft"), Some("http://hl7.org/fhir/invoice-status"))
+  case DRAFT     extends INVOICE_STATUS("draft", Some("draft"), Some("http://hl7.org/fhir/invoice-status"))
   case ENTERED_IN_ERROR
       extends INVOICE_STATUS("entered-in-error", Some("entered in error"), Some("http://hl7.org/fhir/invoice-status"))
   case ISSUED extends INVOICE_STATUS("issued", Some("issued"), Some("http://hl7.org/fhir/invoice-status"))
@@ -1545,10 +1545,10 @@ enum INVOICE_STATUS(val name: String, val display: Option[String], val system: O
 object INVOICE_STATUS extends EType[INVOICE_STATUS]("http://hl7.org/fhir/ValueSet/invoice-status")
 
 enum ISSUE_SEVERITY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ERROR extends ISSUE_SEVERITY("error", Some("Error"), Some("http://hl7.org/fhir/issue-severity"))
-  case FATAL extends ISSUE_SEVERITY("fatal", Some("Fatal"), Some("http://hl7.org/fhir/issue-severity"))
+  case ERROR       extends ISSUE_SEVERITY("error", Some("Error"), Some("http://hl7.org/fhir/issue-severity"))
+  case FATAL       extends ISSUE_SEVERITY("fatal", Some("Fatal"), Some("http://hl7.org/fhir/issue-severity"))
   case INFORMATION extends ISSUE_SEVERITY("information", Some("Information"), Some("http://hl7.org/fhir/issue-severity"))
-  case WARNING extends ISSUE_SEVERITY("warning", Some("Warning"), Some("http://hl7.org/fhir/issue-severity"))
+  case WARNING     extends ISSUE_SEVERITY("warning", Some("Warning"), Some("http://hl7.org/fhir/issue-severity"))
 }
 object ISSUE_SEVERITY extends EType[ISSUE_SEVERITY]("http://hl7.org/fhir/ValueSet/issue-severity")
 
@@ -1558,102 +1558,102 @@ enum ISSUE_TYPE(val name: String, val display: Option[String], val system: Optio
   case CONFLICT extends ISSUE_TYPE("conflict", Some("Edit Version Conflict"), Some("http://hl7.org/fhir/issue-type"))
   case CONTENT_NOT_SUPPORTED
       extends ISSUE_TYPE("not-supported", Some("Content not supported"), Some("http://hl7.org/fhir/issue-type"))
-  case CONTENT_TOO_LONG extends ISSUE_TYPE("too-long", Some("Content Too Long"), Some("http://hl7.org/fhir/issue-type"))
-  case DELETED extends ISSUE_TYPE("deleted", Some("Deleted"), Some("http://hl7.org/fhir/issue-type"))
-  case DUPLICATE extends ISSUE_TYPE("duplicate", Some("Duplicate"), Some("http://hl7.org/fhir/issue-type"))
-  case EXCEPTION extends ISSUE_TYPE("exception", Some("Exception"), Some("http://hl7.org/fhir/issue-type"))
-  case EXPIRED extends ISSUE_TYPE("expired", Some("Session Expired"), Some("http://hl7.org/fhir/issue-type"))
-  case EXTENSION extends ISSUE_TYPE("extension", Some("Unacceptable Extension"), Some("http://hl7.org/fhir/issue-type"))
-  case FORBIDDEN extends ISSUE_TYPE("forbidden", Some("Forbidden"), Some("http://hl7.org/fhir/issue-type"))
-  case INCOMPLETE extends ISSUE_TYPE("incomplete", Some("Incomplete Results"), Some("http://hl7.org/fhir/issue-type"))
-  case INFORMATIONAL extends ISSUE_TYPE("informational", Some("Informational Note"), Some("http://hl7.org/fhir/issue-type"))
-  case INVALID extends ISSUE_TYPE("invalid", Some("Invalid Content"), Some("http://hl7.org/fhir/issue-type"))
-  case INVALID_CODE extends ISSUE_TYPE("code-invalid", Some("Invalid Code"), Some("http://hl7.org/fhir/issue-type"))
-  case INVARIANT extends ISSUE_TYPE("invariant", Some("Validation rule failed"), Some("http://hl7.org/fhir/issue-type"))
-  case LOCK_ERROR extends ISSUE_TYPE("lock-error", Some("Lock Error"), Some("http://hl7.org/fhir/issue-type"))
-  case LOGIN extends ISSUE_TYPE("login", Some("Login Required"), Some("http://hl7.org/fhir/issue-type"))
-  case MULTIPLE_MATCHES extends ISSUE_TYPE("multiple-matches", Some("Multiple Matches"), Some("http://hl7.org/fhir/issue-type"))
-  case NOT_FOUND extends ISSUE_TYPE("not-found", Some("Not Found"), Some("http://hl7.org/fhir/issue-type"))
+  case CONTENT_TOO_LONG   extends ISSUE_TYPE("too-long", Some("Content Too Long"), Some("http://hl7.org/fhir/issue-type"))
+  case DELETED            extends ISSUE_TYPE("deleted", Some("Deleted"), Some("http://hl7.org/fhir/issue-type"))
+  case DUPLICATE          extends ISSUE_TYPE("duplicate", Some("Duplicate"), Some("http://hl7.org/fhir/issue-type"))
+  case EXCEPTION          extends ISSUE_TYPE("exception", Some("Exception"), Some("http://hl7.org/fhir/issue-type"))
+  case EXPIRED            extends ISSUE_TYPE("expired", Some("Session Expired"), Some("http://hl7.org/fhir/issue-type"))
+  case EXTENSION          extends ISSUE_TYPE("extension", Some("Unacceptable Extension"), Some("http://hl7.org/fhir/issue-type"))
+  case FORBIDDEN          extends ISSUE_TYPE("forbidden", Some("Forbidden"), Some("http://hl7.org/fhir/issue-type"))
+  case INCOMPLETE         extends ISSUE_TYPE("incomplete", Some("Incomplete Results"), Some("http://hl7.org/fhir/issue-type"))
+  case INFORMATIONAL      extends ISSUE_TYPE("informational", Some("Informational Note"), Some("http://hl7.org/fhir/issue-type"))
+  case INVALID            extends ISSUE_TYPE("invalid", Some("Invalid Content"), Some("http://hl7.org/fhir/issue-type"))
+  case INVALID_CODE       extends ISSUE_TYPE("code-invalid", Some("Invalid Code"), Some("http://hl7.org/fhir/issue-type"))
+  case INVARIANT          extends ISSUE_TYPE("invariant", Some("Validation rule failed"), Some("http://hl7.org/fhir/issue-type"))
+  case LOCK_ERROR         extends ISSUE_TYPE("lock-error", Some("Lock Error"), Some("http://hl7.org/fhir/issue-type"))
+  case LOGIN              extends ISSUE_TYPE("login", Some("Login Required"), Some("http://hl7.org/fhir/issue-type"))
+  case MULTIPLE_MATCHES   extends ISSUE_TYPE("multiple-matches", Some("Multiple Matches"), Some("http://hl7.org/fhir/issue-type"))
+  case NOT_FOUND          extends ISSUE_TYPE("not-found", Some("Not Found"), Some("http://hl7.org/fhir/issue-type"))
   case NO_STORE_AVAILABLE extends ISSUE_TYPE("no-store", Some("No Store Available"), Some("http://hl7.org/fhir/issue-type"))
   case OPERATION_TOO_COSTLY extends ISSUE_TYPE("too-costly", Some("Operation Too Costly"), Some("http://hl7.org/fhir/issue-type"))
-  case PROCESSING extends ISSUE_TYPE("processing", Some("Processing Failure"), Some("http://hl7.org/fhir/issue-type"))
-  case REQUIRED extends ISSUE_TYPE("required", Some("Required element missing"), Some("http://hl7.org/fhir/issue-type"))
-  case SECURITY extends ISSUE_TYPE("security", Some("Security Problem"), Some("http://hl7.org/fhir/issue-type"))
-  case STRUCTURE extends ISSUE_TYPE("structure", Some("Structural Issue"), Some("http://hl7.org/fhir/issue-type"))
+  case PROCESSING           extends ISSUE_TYPE("processing", Some("Processing Failure"), Some("http://hl7.org/fhir/issue-type"))
+  case REQUIRED   extends ISSUE_TYPE("required", Some("Required element missing"), Some("http://hl7.org/fhir/issue-type"))
+  case SECURITY   extends ISSUE_TYPE("security", Some("Security Problem"), Some("http://hl7.org/fhir/issue-type"))
+  case STRUCTURE  extends ISSUE_TYPE("structure", Some("Structural Issue"), Some("http://hl7.org/fhir/issue-type"))
   case SUPPRESSED extends ISSUE_TYPE("suppressed", Some("Information  Suppressed"), Some("http://hl7.org/fhir/issue-type"))
-  case THROTTLED extends ISSUE_TYPE("throttled", Some("Throttled"), Some("http://hl7.org/fhir/issue-type"))
-  case TIMEOUT extends ISSUE_TYPE("timeout", Some("Timeout"), Some("http://hl7.org/fhir/issue-type"))
-  case TRANSIENT extends ISSUE_TYPE("transient", Some("Transient Issue"), Some("http://hl7.org/fhir/issue-type"))
-  case UNKNOWN extends ISSUE_TYPE("unknown", Some("Unknown User"), Some("http://hl7.org/fhir/issue-type"))
-  case VALUE extends ISSUE_TYPE("value", Some("Element value invalid"), Some("http://hl7.org/fhir/issue-type"))
+  case THROTTLED  extends ISSUE_TYPE("throttled", Some("Throttled"), Some("http://hl7.org/fhir/issue-type"))
+  case TIMEOUT    extends ISSUE_TYPE("timeout", Some("Timeout"), Some("http://hl7.org/fhir/issue-type"))
+  case TRANSIENT  extends ISSUE_TYPE("transient", Some("Transient Issue"), Some("http://hl7.org/fhir/issue-type"))
+  case UNKNOWN    extends ISSUE_TYPE("unknown", Some("Unknown User"), Some("http://hl7.org/fhir/issue-type"))
+  case VALUE      extends ISSUE_TYPE("value", Some("Element value invalid"), Some("http://hl7.org/fhir/issue-type"))
 }
 object ISSUE_TYPE extends EType[ISSUE_TYPE]("http://hl7.org/fhir/ValueSet/issue-type")
 
 enum ITEM_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ATTACHMENT extends ITEM_TYPE("attachment", Some("Attachment"), Some("http://hl7.org/fhir/item-type"))
-  case BOOLEAN extends ITEM_TYPE("boolean", Some("Boolean"), Some("http://hl7.org/fhir/item-type"))
-  case CHOICE extends ITEM_TYPE("choice", Some("Choice"), Some("http://hl7.org/fhir/item-type"))
-  case DATE extends ITEM_TYPE("date", Some("Date"), Some("http://hl7.org/fhir/item-type"))
-  case DATETIME extends ITEM_TYPE("dateTime", Some("Date Time"), Some("http://hl7.org/fhir/item-type"))
-  case DECIMAL extends ITEM_TYPE("decimal", Some("Decimal"), Some("http://hl7.org/fhir/item-type"))
-  case DISPLAY extends ITEM_TYPE("display", Some("Display"), Some("http://hl7.org/fhir/item-type"))
-  case GROUP extends ITEM_TYPE("group", Some("Group"), Some("http://hl7.org/fhir/item-type"))
-  case INTEGER extends ITEM_TYPE("integer", Some("Integer"), Some("http://hl7.org/fhir/item-type"))
+  case ATTACHMENT  extends ITEM_TYPE("attachment", Some("Attachment"), Some("http://hl7.org/fhir/item-type"))
+  case BOOLEAN     extends ITEM_TYPE("boolean", Some("Boolean"), Some("http://hl7.org/fhir/item-type"))
+  case CHOICE      extends ITEM_TYPE("choice", Some("Choice"), Some("http://hl7.org/fhir/item-type"))
+  case DATE        extends ITEM_TYPE("date", Some("Date"), Some("http://hl7.org/fhir/item-type"))
+  case DATETIME    extends ITEM_TYPE("dateTime", Some("Date Time"), Some("http://hl7.org/fhir/item-type"))
+  case DECIMAL     extends ITEM_TYPE("decimal", Some("Decimal"), Some("http://hl7.org/fhir/item-type"))
+  case DISPLAY     extends ITEM_TYPE("display", Some("Display"), Some("http://hl7.org/fhir/item-type"))
+  case GROUP       extends ITEM_TYPE("group", Some("Group"), Some("http://hl7.org/fhir/item-type"))
+  case INTEGER     extends ITEM_TYPE("integer", Some("Integer"), Some("http://hl7.org/fhir/item-type"))
   case OPEN_CHOICE extends ITEM_TYPE("open-choice", Some("Open Choice"), Some("http://hl7.org/fhir/item-type"))
-  case QUANTITY extends ITEM_TYPE("quantity", Some("Quantity"), Some("http://hl7.org/fhir/item-type"))
-  case QUESTION extends ITEM_TYPE("question", Some("Question"), Some("http://hl7.org/fhir/item-type"))
-  case REFERENCE extends ITEM_TYPE("reference", Some("Reference"), Some("http://hl7.org/fhir/item-type"))
-  case STRING extends ITEM_TYPE("string", Some("String"), Some("http://hl7.org/fhir/item-type"))
-  case TEXT extends ITEM_TYPE("text", Some("Text"), Some("http://hl7.org/fhir/item-type"))
-  case TIME extends ITEM_TYPE("time", Some("Time"), Some("http://hl7.org/fhir/item-type"))
-  case URL extends ITEM_TYPE("url", Some("Url"), Some("http://hl7.org/fhir/item-type"))
+  case QUANTITY    extends ITEM_TYPE("quantity", Some("Quantity"), Some("http://hl7.org/fhir/item-type"))
+  case QUESTION    extends ITEM_TYPE("question", Some("Question"), Some("http://hl7.org/fhir/item-type"))
+  case REFERENCE   extends ITEM_TYPE("reference", Some("Reference"), Some("http://hl7.org/fhir/item-type"))
+  case STRING      extends ITEM_TYPE("string", Some("String"), Some("http://hl7.org/fhir/item-type"))
+  case TEXT        extends ITEM_TYPE("text", Some("Text"), Some("http://hl7.org/fhir/item-type"))
+  case TIME        extends ITEM_TYPE("time", Some("Time"), Some("http://hl7.org/fhir/item-type"))
+  case URL         extends ITEM_TYPE("url", Some("Url"), Some("http://hl7.org/fhir/item-type"))
 }
 object ITEM_TYPE extends EType[ITEM_TYPE]("http://hl7.org/fhir/ValueSet/item-type")
 
 enum LINKAGE_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ALTERNATE extends LINKAGE_TYPE("alternate", Some("Alternate Record"), Some("http://hl7.org/fhir/linkage-type"))
+  case ALTERNATE  extends LINKAGE_TYPE("alternate", Some("Alternate Record"), Some("http://hl7.org/fhir/linkage-type"))
   case HISTORICAL extends LINKAGE_TYPE("historical", Some("Historical/Obsolete Record"), Some("http://hl7.org/fhir/linkage-type"))
-  case SOURCE extends LINKAGE_TYPE("source", Some("Source of Truth"), Some("http://hl7.org/fhir/linkage-type"))
+  case SOURCE     extends LINKAGE_TYPE("source", Some("Source of Truth"), Some("http://hl7.org/fhir/linkage-type"))
 }
 object LINKAGE_TYPE extends EType[LINKAGE_TYPE]("http://hl7.org/fhir/ValueSet/linkage-type")
 
 enum LINK_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case REFER extends LINK_TYPE("refer", Some("Refer"), Some("http://hl7.org/fhir/link-type"))
+  case REFER       extends LINK_TYPE("refer", Some("Refer"), Some("http://hl7.org/fhir/link-type"))
   case REPLACED_BY extends LINK_TYPE("replaced-by", Some("Replaced-by"), Some("http://hl7.org/fhir/link-type"))
-  case REPLACES extends LINK_TYPE("replaces", Some("Replaces"), Some("http://hl7.org/fhir/link-type"))
-  case SEEALSO extends LINK_TYPE("seealso", Some("See also"), Some("http://hl7.org/fhir/link-type"))
+  case REPLACES    extends LINK_TYPE("replaces", Some("Replaces"), Some("http://hl7.org/fhir/link-type"))
+  case SEEALSO     extends LINK_TYPE("seealso", Some("See also"), Some("http://hl7.org/fhir/link-type"))
 }
 object LINK_TYPE extends EType[LINK_TYPE]("http://hl7.org/fhir/ValueSet/link-type")
 
 enum LIST_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case CHANGES extends LIST_MODE("changes", Some("Change List"), Some("http://hl7.org/fhir/list-mode"))
+  case CHANGES  extends LIST_MODE("changes", Some("Change List"), Some("http://hl7.org/fhir/list-mode"))
   case SNAPSHOT extends LIST_MODE("snapshot", Some("Snapshot List"), Some("http://hl7.org/fhir/list-mode"))
-  case WORKING extends LIST_MODE("working", Some("Working List"), Some("http://hl7.org/fhir/list-mode"))
+  case WORKING  extends LIST_MODE("working", Some("Working List"), Some("http://hl7.org/fhir/list-mode"))
 }
 object LIST_MODE extends EType[LIST_MODE]("http://hl7.org/fhir/ValueSet/list-mode")
 
 enum LIST_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case CURRENT extends LIST_STATUS("current", Some("Current"), Some("http://hl7.org/fhir/list-status"))
+  case CURRENT          extends LIST_STATUS("current", Some("Current"), Some("http://hl7.org/fhir/list-status"))
   case ENTERED_IN_ERROR extends LIST_STATUS("entered-in-error", Some("Entered In Error"), Some("http://hl7.org/fhir/list-status"))
-  case RETIRED extends LIST_STATUS("retired", Some("Retired"), Some("http://hl7.org/fhir/list-status"))
+  case RETIRED          extends LIST_STATUS("retired", Some("Retired"), Some("http://hl7.org/fhir/list-status"))
 }
 object LIST_STATUS extends EType[LIST_STATUS]("http://hl7.org/fhir/ValueSet/list-status")
 
 enum LOCATION_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case INSTANCE extends LOCATION_MODE("instance", Some("Instance"), Some("http://hl7.org/fhir/location-mode"))
-  case KIND extends LOCATION_MODE("kind", Some("Kind"), Some("http://hl7.org/fhir/location-mode"))
+  case KIND     extends LOCATION_MODE("kind", Some("Kind"), Some("http://hl7.org/fhir/location-mode"))
 }
 object LOCATION_MODE extends EType[LOCATION_MODE]("http://hl7.org/fhir/ValueSet/location-mode")
 
 enum LOCATION_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends LOCATION_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/location-status"))
-  case INACTIVE extends LOCATION_STATUS("inactive", Some("Inactive"), Some("http://hl7.org/fhir/location-status"))
+  case ACTIVE    extends LOCATION_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/location-status"))
+  case INACTIVE  extends LOCATION_STATUS("inactive", Some("Inactive"), Some("http://hl7.org/fhir/location-status"))
   case SUSPENDED extends LOCATION_STATUS("suspended", Some("Suspended"), Some("http://hl7.org/fhir/location-status"))
 }
 object LOCATION_STATUS extends EType[LOCATION_STATUS]("http://hl7.org/fhir/ValueSet/location-status")
 
 enum MAP_CONTEXT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case TYPE extends MAP_CONTEXT_TYPE("type", Some("Type"), Some("http://hl7.org/fhir/map-context-type"))
+  case TYPE     extends MAP_CONTEXT_TYPE("type", Some("Type"), Some("http://hl7.org/fhir/map-context-type"))
   case VARIABLE extends MAP_CONTEXT_TYPE("variable", Some("Variable"), Some("http://hl7.org/fhir/map-context-type"))
 }
 object MAP_CONTEXT_TYPE extends EType[MAP_CONTEXT_TYPE]("http://hl7.org/fhir/ValueSet/map-context-type")
@@ -1680,14 +1680,14 @@ enum MAP_MODEL_MODE(val name: String, val display: Option[String], val system: O
   case PRODUCED
       extends MAP_MODEL_MODE("produced", Some("Produced Structure Definition"), Some("http://hl7.org/fhir/map-model-mode"))
   case QUERIED extends MAP_MODEL_MODE("queried", Some("Queried Structure Definition"), Some("http://hl7.org/fhir/map-model-mode"))
-  case SOURCE extends MAP_MODEL_MODE("source", Some("Source Structure Definition"), Some("http://hl7.org/fhir/map-model-mode"))
-  case TARGET extends MAP_MODEL_MODE("target", Some("Target Structure Definition"), Some("http://hl7.org/fhir/map-model-mode"))
+  case SOURCE  extends MAP_MODEL_MODE("source", Some("Source Structure Definition"), Some("http://hl7.org/fhir/map-model-mode"))
+  case TARGET  extends MAP_MODEL_MODE("target", Some("Target Structure Definition"), Some("http://hl7.org/fhir/map-model-mode"))
 }
 object MAP_MODEL_MODE extends EType[MAP_MODEL_MODE]("http://hl7.org/fhir/ValueSet/map-model-mode")
 
 enum MAP_SOURCE_LIST_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case FIRST extends MAP_SOURCE_LIST_MODE("first", Some("First"), Some("http://hl7.org/fhir/map-source-list-mode"))
-  case LAST extends MAP_SOURCE_LIST_MODE("last", Some("Last"), Some("http://hl7.org/fhir/map-source-list-mode"))
+  case LAST  extends MAP_SOURCE_LIST_MODE("last", Some("Last"), Some("http://hl7.org/fhir/map-source-list-mode"))
   case NOT_FIRST
       extends MAP_SOURCE_LIST_MODE("not_first", Some("All but the first"), Some("http://hl7.org/fhir/map-source-list-mode"))
   case NOT_LAST
@@ -1699,37 +1699,37 @@ object MAP_SOURCE_LIST_MODE extends EType[MAP_SOURCE_LIST_MODE]("http://hl7.org/
 
 enum MAP_TARGET_LIST_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case COLLATE extends MAP_TARGET_LIST_MODE("collate", Some("Collate"), Some("http://hl7.org/fhir/map-target-list-mode"))
-  case FIRST extends MAP_TARGET_LIST_MODE("first", Some("First"), Some("http://hl7.org/fhir/map-target-list-mode"))
-  case LAST extends MAP_TARGET_LIST_MODE("last", Some("Last"), Some("http://hl7.org/fhir/map-target-list-mode"))
-  case SHARE extends MAP_TARGET_LIST_MODE("share", Some("Share"), Some("http://hl7.org/fhir/map-target-list-mode"))
+  case FIRST   extends MAP_TARGET_LIST_MODE("first", Some("First"), Some("http://hl7.org/fhir/map-target-list-mode"))
+  case LAST    extends MAP_TARGET_LIST_MODE("last", Some("Last"), Some("http://hl7.org/fhir/map-target-list-mode"))
+  case SHARE   extends MAP_TARGET_LIST_MODE("share", Some("Share"), Some("http://hl7.org/fhir/map-target-list-mode"))
 }
 object MAP_TARGET_LIST_MODE extends EType[MAP_TARGET_LIST_MODE]("http://hl7.org/fhir/ValueSet/map-target-list-mode")
 
 enum MAP_TRANSFORM(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case APPEND extends MAP_TRANSFORM("append", Some("append"), Some("http://hl7.org/fhir/map-transform"))
-  case C extends MAP_TRANSFORM("c", Some("c"), Some("http://hl7.org/fhir/map-transform"))
-  case CAST extends MAP_TRANSFORM("cast", Some("cast"), Some("http://hl7.org/fhir/map-transform"))
-  case CC extends MAP_TRANSFORM("cc", Some("cc"), Some("http://hl7.org/fhir/map-transform"))
-  case COPY extends MAP_TRANSFORM("copy", Some("copy"), Some("http://hl7.org/fhir/map-transform"))
-  case CP extends MAP_TRANSFORM("cp", Some("cp"), Some("http://hl7.org/fhir/map-transform"))
-  case CREATE extends MAP_TRANSFORM("create", Some("create"), Some("http://hl7.org/fhir/map-transform"))
-  case DATEOP extends MAP_TRANSFORM("dateOp", Some("dateOp"), Some("http://hl7.org/fhir/map-transform"))
-  case ESCAPE extends MAP_TRANSFORM("escape", Some("escape"), Some("http://hl7.org/fhir/map-transform"))
-  case EVALUATE extends MAP_TRANSFORM("evaluate", Some("evaluate"), Some("http://hl7.org/fhir/map-transform"))
-  case ID extends MAP_TRANSFORM("id", Some("id"), Some("http://hl7.org/fhir/map-transform"))
-  case POINTER extends MAP_TRANSFORM("pointer", Some("pointer"), Some("http://hl7.org/fhir/map-transform"))
-  case QTY extends MAP_TRANSFORM("qty", Some("qty"), Some("http://hl7.org/fhir/map-transform"))
+  case APPEND    extends MAP_TRANSFORM("append", Some("append"), Some("http://hl7.org/fhir/map-transform"))
+  case C         extends MAP_TRANSFORM("c", Some("c"), Some("http://hl7.org/fhir/map-transform"))
+  case CAST      extends MAP_TRANSFORM("cast", Some("cast"), Some("http://hl7.org/fhir/map-transform"))
+  case CC        extends MAP_TRANSFORM("cc", Some("cc"), Some("http://hl7.org/fhir/map-transform"))
+  case COPY      extends MAP_TRANSFORM("copy", Some("copy"), Some("http://hl7.org/fhir/map-transform"))
+  case CP        extends MAP_TRANSFORM("cp", Some("cp"), Some("http://hl7.org/fhir/map-transform"))
+  case CREATE    extends MAP_TRANSFORM("create", Some("create"), Some("http://hl7.org/fhir/map-transform"))
+  case DATEOP    extends MAP_TRANSFORM("dateOp", Some("dateOp"), Some("http://hl7.org/fhir/map-transform"))
+  case ESCAPE    extends MAP_TRANSFORM("escape", Some("escape"), Some("http://hl7.org/fhir/map-transform"))
+  case EVALUATE  extends MAP_TRANSFORM("evaluate", Some("evaluate"), Some("http://hl7.org/fhir/map-transform"))
+  case ID        extends MAP_TRANSFORM("id", Some("id"), Some("http://hl7.org/fhir/map-transform"))
+  case POINTER   extends MAP_TRANSFORM("pointer", Some("pointer"), Some("http://hl7.org/fhir/map-transform"))
+  case QTY       extends MAP_TRANSFORM("qty", Some("qty"), Some("http://hl7.org/fhir/map-transform"))
   case REFERENCE extends MAP_TRANSFORM("reference", Some("reference"), Some("http://hl7.org/fhir/map-transform"))
   case TRANSLATE extends MAP_TRANSFORM("translate", Some("translate"), Some("http://hl7.org/fhir/map-transform"))
-  case TRUNCATE extends MAP_TRANSFORM("truncate", Some("truncate"), Some("http://hl7.org/fhir/map-transform"))
-  case UUID extends MAP_TRANSFORM("uuid", Some("uuid"), Some("http://hl7.org/fhir/map-transform"))
+  case TRUNCATE  extends MAP_TRANSFORM("truncate", Some("truncate"), Some("http://hl7.org/fhir/map-transform"))
+  case UUID      extends MAP_TRANSFORM("uuid", Some("uuid"), Some("http://hl7.org/fhir/map-transform"))
 }
 object MAP_TRANSFORM extends EType[MAP_TRANSFORM]("http://hl7.org/fhir/ValueSet/map-transform")
 
 enum MEASURE_REPORT_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case COMPLETE extends MEASURE_REPORT_STATUS("complete", Some("Complete"), Some("http://hl7.org/fhir/measure-report-status"))
-  case ERROR extends MEASURE_REPORT_STATUS("error", Some("Error"), Some("http://hl7.org/fhir/measure-report-status"))
-  case PENDING extends MEASURE_REPORT_STATUS("pending", Some("Pending"), Some("http://hl7.org/fhir/measure-report-status"))
+  case ERROR    extends MEASURE_REPORT_STATUS("error", Some("Error"), Some("http://hl7.org/fhir/measure-report-status"))
+  case PENDING  extends MEASURE_REPORT_STATUS("pending", Some("Pending"), Some("http://hl7.org/fhir/measure-report-status"))
 }
 object MEASURE_REPORT_STATUS extends EType[MEASURE_REPORT_STATUS]("http://hl7.org/fhir/ValueSet/measure-report-status")
 
@@ -2041,7 +2041,7 @@ enum METRIC_CALIBRATION_STATE(val name: String, val display: Option[String], val
 object METRIC_CALIBRATION_STATE extends EType[METRIC_CALIBRATION_STATE]("http://hl7.org/fhir/ValueSet/metric-calibration-state")
 
 enum METRIC_CALIBRATION_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case GAIN extends METRIC_CALIBRATION_TYPE("gain", Some("Gain"), Some("http://hl7.org/fhir/metric-calibration-type"))
+  case GAIN   extends METRIC_CALIBRATION_TYPE("gain", Some("Gain"), Some("http://hl7.org/fhir/metric-calibration-type"))
   case OFFSET extends METRIC_CALIBRATION_TYPE("offset", Some("Offset"), Some("http://hl7.org/fhir/metric-calibration-type"))
   case TWO_POINT
       extends METRIC_CALIBRATION_TYPE("two-point", Some("Two Point"), Some("http://hl7.org/fhir/metric-calibration-type"))
@@ -2053,20 +2053,20 @@ object METRIC_CALIBRATION_TYPE extends EType[METRIC_CALIBRATION_TYPE]("http://hl
 enum METRIC_CATEGORY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case CALCULATION extends METRIC_CATEGORY("calculation", Some("Calculation"), Some("http://hl7.org/fhir/metric-category"))
   case MEASUREMENT extends METRIC_CATEGORY("measurement", Some("Measurement"), Some("http://hl7.org/fhir/metric-category"))
-  case SETTING extends METRIC_CATEGORY("setting", Some("Setting"), Some("http://hl7.org/fhir/metric-category"))
+  case SETTING     extends METRIC_CATEGORY("setting", Some("Setting"), Some("http://hl7.org/fhir/metric-category"))
   case UNSPECIFIED extends METRIC_CATEGORY("unspecified", Some("Unspecified"), Some("http://hl7.org/fhir/metric-category"))
 }
 object METRIC_CATEGORY extends EType[METRIC_CATEGORY]("http://hl7.org/fhir/ValueSet/metric-category")
 
 enum METRIC_COLOR(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case BLACK extends METRIC_COLOR("black", Some("Color Black"), Some("http://hl7.org/fhir/metric-color"))
-  case BLUE extends METRIC_COLOR("blue", Some("Color Blue"), Some("http://hl7.org/fhir/metric-color"))
-  case CYAN extends METRIC_COLOR("cyan", Some("Color Cyan"), Some("http://hl7.org/fhir/metric-color"))
-  case GREEN extends METRIC_COLOR("green", Some("Color Green"), Some("http://hl7.org/fhir/metric-color"))
+  case BLACK   extends METRIC_COLOR("black", Some("Color Black"), Some("http://hl7.org/fhir/metric-color"))
+  case BLUE    extends METRIC_COLOR("blue", Some("Color Blue"), Some("http://hl7.org/fhir/metric-color"))
+  case CYAN    extends METRIC_COLOR("cyan", Some("Color Cyan"), Some("http://hl7.org/fhir/metric-color"))
+  case GREEN   extends METRIC_COLOR("green", Some("Color Green"), Some("http://hl7.org/fhir/metric-color"))
   case MAGENTA extends METRIC_COLOR("magenta", Some("Color Magenta"), Some("http://hl7.org/fhir/metric-color"))
-  case RED extends METRIC_COLOR("red", Some("Color Red"), Some("http://hl7.org/fhir/metric-color"))
-  case WHITE extends METRIC_COLOR("white", Some("Color White"), Some("http://hl7.org/fhir/metric-color"))
-  case YELLOW extends METRIC_COLOR("yellow", Some("Color Yellow"), Some("http://hl7.org/fhir/metric-color"))
+  case RED     extends METRIC_COLOR("red", Some("Color Red"), Some("http://hl7.org/fhir/metric-color"))
+  case WHITE   extends METRIC_COLOR("white", Some("Color White"), Some("http://hl7.org/fhir/metric-color"))
+  case YELLOW  extends METRIC_COLOR("yellow", Some("Color Yellow"), Some("http://hl7.org/fhir/metric-color"))
 }
 object METRIC_COLOR extends EType[METRIC_COLOR]("http://hl7.org/fhir/ValueSet/metric-color")
 
@@ -2077,7 +2077,7 @@ enum METRIC_OPERATIONAL_STATUS(val name: String, val display: Option[String], va
         Some("Entered In Error"),
         Some("http://hl7.org/fhir/metric-operational-status"))
   case OFF extends METRIC_OPERATIONAL_STATUS("off", Some("Off"), Some("http://hl7.org/fhir/metric-operational-status"))
-  case ON extends METRIC_OPERATIONAL_STATUS("on", Some("On"), Some("http://hl7.org/fhir/metric-operational-status"))
+  case ON  extends METRIC_OPERATIONAL_STATUS("on", Some("On"), Some("http://hl7.org/fhir/metric-operational-status"))
   case STANDBY
       extends METRIC_OPERATIONAL_STATUS("standby", Some("Standby"), Some("http://hl7.org/fhir/metric-operational-status"))
 }
@@ -2089,7 +2089,7 @@ enum NAMINGSYSTEM_IDENTIFIER_TYPE(val name: String, val display: Option[String],
   case OID extends NAMINGSYSTEM_IDENTIFIER_TYPE("oid", Some("OID"), Some("http://hl7.org/fhir/namingsystem-identifier-type"))
   case OTHER
       extends NAMINGSYSTEM_IDENTIFIER_TYPE("other", Some("Other"), Some("http://hl7.org/fhir/namingsystem-identifier-type"))
-  case URI extends NAMINGSYSTEM_IDENTIFIER_TYPE("uri", Some("URI"), Some("http://hl7.org/fhir/namingsystem-identifier-type"))
+  case URI  extends NAMINGSYSTEM_IDENTIFIER_TYPE("uri", Some("URI"), Some("http://hl7.org/fhir/namingsystem-identifier-type"))
   case UUID extends NAMINGSYSTEM_IDENTIFIER_TYPE("uuid", Some("UUID"), Some("http://hl7.org/fhir/namingsystem-identifier-type"))
 }
 object NAMINGSYSTEM_IDENTIFIER_TYPE
@@ -2098,30 +2098,30 @@ object NAMINGSYSTEM_IDENTIFIER_TYPE
 enum NAMINGSYSTEM_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case CODESYSTEM extends NAMINGSYSTEM_TYPE("codesystem", Some("Code System"), Some("http://hl7.org/fhir/namingsystem-type"))
   case IDENTIFIER extends NAMINGSYSTEM_TYPE("identifier", Some("Identifier"), Some("http://hl7.org/fhir/namingsystem-type"))
-  case ROOT extends NAMINGSYSTEM_TYPE("root", Some("Root"), Some("http://hl7.org/fhir/namingsystem-type"))
+  case ROOT       extends NAMINGSYSTEM_TYPE("root", Some("Root"), Some("http://hl7.org/fhir/namingsystem-type"))
 }
 object NAMINGSYSTEM_TYPE extends EType[NAMINGSYSTEM_TYPE]("http://hl7.org/fhir/ValueSet/namingsystem-type")
 
 enum NARRATIVE_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ADDITIONAL extends NARRATIVE_STATUS("additional", Some("Additional"), Some("http://hl7.org/fhir/narrative-status"))
-  case EMPTY extends NARRATIVE_STATUS("empty", Some("Empty"), Some("http://hl7.org/fhir/narrative-status"))
+  case EMPTY      extends NARRATIVE_STATUS("empty", Some("Empty"), Some("http://hl7.org/fhir/narrative-status"))
   case EXTENSIONS extends NARRATIVE_STATUS("extensions", Some("Extensions"), Some("http://hl7.org/fhir/narrative-status"))
-  case GENERATED extends NARRATIVE_STATUS("generated", Some("Generated"), Some("http://hl7.org/fhir/narrative-status"))
+  case GENERATED  extends NARRATIVE_STATUS("generated", Some("Generated"), Some("http://hl7.org/fhir/narrative-status"))
 }
 object NARRATIVE_STATUS extends EType[NARRATIVE_STATUS]("http://hl7.org/fhir/ValueSet/narrative-status")
 
 enum NETWORK_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case EMAIL_ADDRESS extends NETWORK_TYPE("4", Some("Email address"), Some("http://hl7.org/fhir/network-type"))
-  case IP_ADDRESS extends NETWORK_TYPE("2", Some("IP Address"), Some("http://hl7.org/fhir/network-type"))
-  case MACHINE_NAME extends NETWORK_TYPE("1", Some("Machine Name"), Some("http://hl7.org/fhir/network-type"))
+  case EMAIL_ADDRESS    extends NETWORK_TYPE("4", Some("Email address"), Some("http://hl7.org/fhir/network-type"))
+  case IP_ADDRESS       extends NETWORK_TYPE("2", Some("IP Address"), Some("http://hl7.org/fhir/network-type"))
+  case MACHINE_NAME     extends NETWORK_TYPE("1", Some("Machine Name"), Some("http://hl7.org/fhir/network-type"))
   case TELEPHONE_NUMBER extends NETWORK_TYPE("3", Some("Telephone Number"), Some("http://hl7.org/fhir/network-type"))
-  case URI extends NETWORK_TYPE("5", Some("URI"), Some("http://hl7.org/fhir/network-type"))
+  case URI              extends NETWORK_TYPE("5", Some("URI"), Some("http://hl7.org/fhir/network-type"))
 }
 object NETWORK_TYPE extends EType[NETWORK_TYPE]("http://hl7.org/fhir/ValueSet/network-type")
 
 enum NOTE_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case DISPLAY extends NOTE_TYPE("display", Some("Display"), Some("http://hl7.org/fhir/note-type"))
-  case PRINT extends NOTE_TYPE("print", Some("Print (Form)"), Some("http://hl7.org/fhir/note-type"))
+  case DISPLAY   extends NOTE_TYPE("display", Some("Display"), Some("http://hl7.org/fhir/note-type"))
+  case PRINT     extends NOTE_TYPE("print", Some("Print (Form)"), Some("http://hl7.org/fhir/note-type"))
   case PRINTOPER extends NOTE_TYPE("printoper", Some("Print (Operator)"), Some("http://hl7.org/fhir/note-type"))
 }
 object NOTE_TYPE extends EType[NOTE_TYPE]("http://hl7.org/fhir/ValueSet/note-type")
@@ -2147,21 +2147,21 @@ object OBSERVATION_RANGE_CATEGORY
     extends EType[OBSERVATION_RANGE_CATEGORY]("http://hl7.org/fhir/ValueSet/observation-range-category")
 
 enum OBSERVATION_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case AMENDED extends OBSERVATION_STATUS("amended", Some("Amended"), Some("http://hl7.org/fhir/observation-status"))
+  case AMENDED   extends OBSERVATION_STATUS("amended", Some("Amended"), Some("http://hl7.org/fhir/observation-status"))
   case CANCELLED extends OBSERVATION_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/observation-status"))
   case CORRECTED extends OBSERVATION_STATUS("corrected", Some("Corrected"), Some("http://hl7.org/fhir/observation-status"))
   case ENTERED_IN_ERROR
       extends OBSERVATION_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/observation-status"))
-  case FINAL extends OBSERVATION_STATUS("final", Some("Final"), Some("http://hl7.org/fhir/observation-status"))
+  case FINAL       extends OBSERVATION_STATUS("final", Some("Final"), Some("http://hl7.org/fhir/observation-status"))
   case PRELIMINARY extends OBSERVATION_STATUS("preliminary", Some("Preliminary"), Some("http://hl7.org/fhir/observation-status"))
-  case REGISTERED extends OBSERVATION_STATUS("registered", Some("Registered"), Some("http://hl7.org/fhir/observation-status"))
-  case UNKNOWN extends OBSERVATION_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/observation-status"))
+  case REGISTERED  extends OBSERVATION_STATUS("registered", Some("Registered"), Some("http://hl7.org/fhir/observation-status"))
+  case UNKNOWN     extends OBSERVATION_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/observation-status"))
 }
 object OBSERVATION_STATUS extends EType[OBSERVATION_STATUS]("http://hl7.org/fhir/ValueSet/observation-status")
 
 enum OPERATION_KIND(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case OPERATION extends OPERATION_KIND("operation", Some("Operation"), Some("http://hl7.org/fhir/operation-kind"))
-  case QUERY extends OPERATION_KIND("query", Some("Query"), Some("http://hl7.org/fhir/operation-kind"))
+  case QUERY     extends OPERATION_KIND("query", Some("Query"), Some("http://hl7.org/fhir/operation-kind"))
 }
 object OPERATION_KIND extends EType[OPERATION_KIND]("http://hl7.org/fhir/ValueSet/operation-kind")
 
@@ -2198,38 +2198,38 @@ enum PERMITTED_DATA_TYPE(val name: String, val display: Option[String], val syst
   case CODEABLECONCEPT
       extends PERMITTED_DATA_TYPE("CodeableConcept", Some("CodeableConcept"), Some("http://hl7.org/fhir/permitted-data-type"))
   case DATETIME extends PERMITTED_DATA_TYPE("dateTime", Some("dateTime"), Some("http://hl7.org/fhir/permitted-data-type"))
-  case INTEGER extends PERMITTED_DATA_TYPE("integer", Some("integer"), Some("http://hl7.org/fhir/permitted-data-type"))
-  case PERIOD extends PERMITTED_DATA_TYPE("Period", Some("Period"), Some("http://hl7.org/fhir/permitted-data-type"))
+  case INTEGER  extends PERMITTED_DATA_TYPE("integer", Some("integer"), Some("http://hl7.org/fhir/permitted-data-type"))
+  case PERIOD   extends PERMITTED_DATA_TYPE("Period", Some("Period"), Some("http://hl7.org/fhir/permitted-data-type"))
   case QUANTITY extends PERMITTED_DATA_TYPE("Quantity", Some("Quantity"), Some("http://hl7.org/fhir/permitted-data-type"))
-  case RANGE extends PERMITTED_DATA_TYPE("Range", Some("Range"), Some("http://hl7.org/fhir/permitted-data-type"))
-  case RATIO extends PERMITTED_DATA_TYPE("Ratio", Some("Ratio"), Some("http://hl7.org/fhir/permitted-data-type"))
+  case RANGE    extends PERMITTED_DATA_TYPE("Range", Some("Range"), Some("http://hl7.org/fhir/permitted-data-type"))
+  case RATIO    extends PERMITTED_DATA_TYPE("Ratio", Some("Ratio"), Some("http://hl7.org/fhir/permitted-data-type"))
   case SAMPLEDDATA
       extends PERMITTED_DATA_TYPE("SampledData", Some("SampledData"), Some("http://hl7.org/fhir/permitted-data-type"))
   case STRING extends PERMITTED_DATA_TYPE("string", Some("string"), Some("http://hl7.org/fhir/permitted-data-type"))
-  case TIME extends PERMITTED_DATA_TYPE("time", Some("time"), Some("http://hl7.org/fhir/permitted-data-type"))
+  case TIME   extends PERMITTED_DATA_TYPE("time", Some("time"), Some("http://hl7.org/fhir/permitted-data-type"))
 }
 object PERMITTED_DATA_TYPE extends EType[PERMITTED_DATA_TYPE]("http://hl7.org/fhir/ValueSet/permitted-data-type")
 
 enum PRODUCT_CATEGORY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case BIOLOGICALAGENT
       extends PRODUCT_CATEGORY("biologicalAgent", Some("BiologicalAgent"), Some("http://hl7.org/fhir/product-category"))
-  case CELLS extends PRODUCT_CATEGORY("cells", Some("Cells"), Some("http://hl7.org/fhir/product-category"))
-  case FLUID extends PRODUCT_CATEGORY("fluid", Some("Fluid"), Some("http://hl7.org/fhir/product-category"))
-  case ORGAN extends PRODUCT_CATEGORY("organ", Some("Organ"), Some("http://hl7.org/fhir/product-category"))
+  case CELLS  extends PRODUCT_CATEGORY("cells", Some("Cells"), Some("http://hl7.org/fhir/product-category"))
+  case FLUID  extends PRODUCT_CATEGORY("fluid", Some("Fluid"), Some("http://hl7.org/fhir/product-category"))
+  case ORGAN  extends PRODUCT_CATEGORY("organ", Some("Organ"), Some("http://hl7.org/fhir/product-category"))
   case TISSUE extends PRODUCT_CATEGORY("tissue", Some("Tissue"), Some("http://hl7.org/fhir/product-category"))
 }
 object PRODUCT_CATEGORY extends EType[PRODUCT_CATEGORY]("http://hl7.org/fhir/ValueSet/product-category")
 
 enum PRODUCT_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case AVAILABLE extends PRODUCT_STATUS("available", Some("Available"), Some("http://hl7.org/fhir/product-status"))
+  case AVAILABLE   extends PRODUCT_STATUS("available", Some("Available"), Some("http://hl7.org/fhir/product-status"))
   case UNAVAILABLE extends PRODUCT_STATUS("unavailable", Some("Unavailable"), Some("http://hl7.org/fhir/product-status"))
 }
 object PRODUCT_STATUS extends EType[PRODUCT_STATUS]("http://hl7.org/fhir/ValueSet/product-status")
 
 enum PRODUCT_STORAGE_SCALE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case CELSIUS extends PRODUCT_STORAGE_SCALE("celsius", Some("Celsius"), Some("http://hl7.org/fhir/product-storage-scale"))
+  case CELSIUS   extends PRODUCT_STORAGE_SCALE("celsius", Some("Celsius"), Some("http://hl7.org/fhir/product-storage-scale"))
   case FARENHEIT extends PRODUCT_STORAGE_SCALE("farenheit", Some("Fahrenheit"), Some("http://hl7.org/fhir/product-storage-scale"))
-  case KELVIN extends PRODUCT_STORAGE_SCALE("kelvin", Some("Kelvin"), Some("http://hl7.org/fhir/product-storage-scale"))
+  case KELVIN    extends PRODUCT_STORAGE_SCALE("kelvin", Some("Kelvin"), Some("http://hl7.org/fhir/product-storage-scale"))
 }
 object PRODUCT_STORAGE_SCALE extends EType[PRODUCT_STORAGE_SCALE]("http://hl7.org/fhir/ValueSet/product-storage-scale")
 
@@ -2250,23 +2250,23 @@ enum PROVENANCE_ENTITY_ROLE(val name: String, val display: Option[String], val s
       extends PROVENANCE_ENTITY_ROLE("derivation", Some("Derivation"), Some("http://hl7.org/fhir/provenance-entity-role"))
   case QUOTATION
       extends PROVENANCE_ENTITY_ROLE("quotation", Some("Quotation"), Some("http://hl7.org/fhir/provenance-entity-role"))
-  case REMOVAL extends PROVENANCE_ENTITY_ROLE("removal", Some("Removal"), Some("http://hl7.org/fhir/provenance-entity-role"))
+  case REMOVAL  extends PROVENANCE_ENTITY_ROLE("removal", Some("Removal"), Some("http://hl7.org/fhir/provenance-entity-role"))
   case REVISION extends PROVENANCE_ENTITY_ROLE("revision", Some("Revision"), Some("http://hl7.org/fhir/provenance-entity-role"))
-  case SOURCE extends PROVENANCE_ENTITY_ROLE("source", Some("Source"), Some("http://hl7.org/fhir/provenance-entity-role"))
+  case SOURCE   extends PROVENANCE_ENTITY_ROLE("source", Some("Source"), Some("http://hl7.org/fhir/provenance-entity-role"))
 }
 object PROVENANCE_ENTITY_ROLE extends EType[PROVENANCE_ENTITY_ROLE]("http://hl7.org/fhir/ValueSet/provenance-entity-role")
 
 enum PUBLICATION_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends PUBLICATION_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/publication-status"))
-  case DRAFT extends PUBLICATION_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/publication-status"))
+  case ACTIVE  extends PUBLICATION_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/publication-status"))
+  case DRAFT   extends PUBLICATION_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/publication-status"))
   case RETIRED extends PUBLICATION_STATUS("retired", Some("Retired"), Some("http://hl7.org/fhir/publication-status"))
   case UNKNOWN extends PUBLICATION_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/publication-status"))
 }
 object PUBLICATION_STATUS extends EType[PUBLICATION_STATUS]("http://hl7.org/fhir/ValueSet/publication-status")
 
 enum QUALITY_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case INDEL extends QUALITY_TYPE("indel", Some("INDEL Comparison"), Some("http://hl7.org/fhir/quality-type"))
-  case SNP extends QUALITY_TYPE("snp", Some("SNP Comparison"), Some("http://hl7.org/fhir/quality-type"))
+  case INDEL   extends QUALITY_TYPE("indel", Some("INDEL Comparison"), Some("http://hl7.org/fhir/quality-type"))
+  case SNP     extends QUALITY_TYPE("snp", Some("SNP Comparison"), Some("http://hl7.org/fhir/quality-type"))
   case UNKNOWN extends QUALITY_TYPE("unknown", Some("UNKNOWN Comparison"), Some("http://hl7.org/fhir/quality-type"))
 }
 object QUALITY_TYPE extends EType[QUALITY_TYPE]("http://hl7.org/fhir/ValueSet/quality-type")
@@ -2331,9 +2331,9 @@ object QUESTIONNAIRE_ENABLE_OPERATOR
     extends EType[QUESTIONNAIRE_ENABLE_OPERATOR]("http://hl7.org/fhir/ValueSet/questionnaire-enable-operator")
 
 enum REACTION_EVENT_SEVERITY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case MILD extends REACTION_EVENT_SEVERITY("mild", Some("Mild"), Some("http://hl7.org/fhir/reaction-event-severity"))
+  case MILD     extends REACTION_EVENT_SEVERITY("mild", Some("Mild"), Some("http://hl7.org/fhir/reaction-event-severity"))
   case MODERATE extends REACTION_EVENT_SEVERITY("moderate", Some("Moderate"), Some("http://hl7.org/fhir/reaction-event-severity"))
-  case SEVERE extends REACTION_EVENT_SEVERITY("severe", Some("Severe"), Some("http://hl7.org/fhir/reaction-event-severity"))
+  case SEVERE   extends REACTION_EVENT_SEVERITY("severe", Some("Severe"), Some("http://hl7.org/fhir/reaction-event-severity"))
 }
 object REACTION_EVENT_SEVERITY extends EType[REACTION_EVENT_SEVERITY]("http://hl7.org/fhir/ValueSet/reaction-event-severity")
 
@@ -2385,24 +2385,24 @@ object REFERENCE_VERSION_RULES extends EType[REFERENCE_VERSION_RULES]("http://hl
 
 enum RELATION_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case REPLACED_BY extends RELATION_TYPE("is-replaced-by", Some("Replaced By"), Some("http://hl7.org/fhir/relation-type"))
-  case TRIGGERS extends RELATION_TYPE("triggers", Some("Triggers"), Some("http://hl7.org/fhir/relation-type"))
+  case TRIGGERS    extends RELATION_TYPE("triggers", Some("Triggers"), Some("http://hl7.org/fhir/relation-type"))
 }
 object RELATION_TYPE extends EType[RELATION_TYPE]("http://hl7.org/fhir/ValueSet/relation-type")
 
 enum REMITTANCE_OUTCOME(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case COMPLETE
       extends REMITTANCE_OUTCOME("complete", Some("Processing Complete"), Some("http://hl7.org/fhir/remittance-outcome"))
-  case ERROR extends REMITTANCE_OUTCOME("error", Some("Error"), Some("http://hl7.org/fhir/remittance-outcome"))
+  case ERROR   extends REMITTANCE_OUTCOME("error", Some("Error"), Some("http://hl7.org/fhir/remittance-outcome"))
   case PARTIAL extends REMITTANCE_OUTCOME("partial", Some("Partial Processing"), Some("http://hl7.org/fhir/remittance-outcome"))
-  case QUEUED extends REMITTANCE_OUTCOME("queued", Some("Queued"), Some("http://hl7.org/fhir/remittance-outcome"))
+  case QUEUED  extends REMITTANCE_OUTCOME("queued", Some("Queued"), Some("http://hl7.org/fhir/remittance-outcome"))
 }
 object REMITTANCE_OUTCOME extends EType[REMITTANCE_OUTCOME]("http://hl7.org/fhir/ValueSet/remittance-outcome")
 
 enum REPORT_ACTION_RESULT_CODES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ERROR extends REPORT_ACTION_RESULT_CODES("error", Some("Error"), Some("http://hl7.org/fhir/report-action-result-codes"))
-  case FAIL extends REPORT_ACTION_RESULT_CODES("fail", Some("Fail"), Some("http://hl7.org/fhir/report-action-result-codes"))
-  case PASS extends REPORT_ACTION_RESULT_CODES("pass", Some("Pass"), Some("http://hl7.org/fhir/report-action-result-codes"))
-  case SKIP extends REPORT_ACTION_RESULT_CODES("skip", Some("Skip"), Some("http://hl7.org/fhir/report-action-result-codes"))
+  case FAIL  extends REPORT_ACTION_RESULT_CODES("fail", Some("Fail"), Some("http://hl7.org/fhir/report-action-result-codes"))
+  case PASS  extends REPORT_ACTION_RESULT_CODES("pass", Some("Pass"), Some("http://hl7.org/fhir/report-action-result-codes"))
+  case SKIP  extends REPORT_ACTION_RESULT_CODES("skip", Some("Skip"), Some("http://hl7.org/fhir/report-action-result-codes"))
   case WARNING
       extends REPORT_ACTION_RESULT_CODES("warning", Some("Warning"), Some("http://hl7.org/fhir/report-action-result-codes"))
 }
@@ -2418,8 +2418,8 @@ enum REPORT_PARTICIPANT_TYPE(val name: String, val display: Option[String], val 
 object REPORT_PARTICIPANT_TYPE extends EType[REPORT_PARTICIPANT_TYPE]("http://hl7.org/fhir/ValueSet/report-participant-type")
 
 enum REPORT_RESULT_CODES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case FAIL extends REPORT_RESULT_CODES("fail", Some("Fail"), Some("http://hl7.org/fhir/report-result-codes"))
-  case PASS extends REPORT_RESULT_CODES("pass", Some("Pass"), Some("http://hl7.org/fhir/report-result-codes"))
+  case FAIL    extends REPORT_RESULT_CODES("fail", Some("Fail"), Some("http://hl7.org/fhir/report-result-codes"))
+  case PASS    extends REPORT_RESULT_CODES("pass", Some("Pass"), Some("http://hl7.org/fhir/report-result-codes"))
   case PENDING extends REPORT_RESULT_CODES("pending", Some("Pending"), Some("http://hl7.org/fhir/report-result-codes"))
 }
 object REPORT_RESULT_CODES extends EType[REPORT_RESULT_CODES]("http://hl7.org/fhir/ValueSet/report-result-codes")
@@ -2461,23 +2461,23 @@ enum REPOSITORY_TYPE(val name: String, val display: Option[String], val system: 
 object REPOSITORY_TYPE extends EType[REPOSITORY_TYPE]("http://hl7.org/fhir/ValueSet/repository-type")
 
 enum REQUEST_INTENT(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case DIRECTIVE extends REQUEST_INTENT("directive", Some("Directive"), Some("http://hl7.org/fhir/request-intent"))
-  case FILLER_ORDER extends REQUEST_INTENT("filler-order", Some("Filler Order"), Some("http://hl7.org/fhir/request-intent"))
+  case DIRECTIVE      extends REQUEST_INTENT("directive", Some("Directive"), Some("http://hl7.org/fhir/request-intent"))
+  case FILLER_ORDER   extends REQUEST_INTENT("filler-order", Some("Filler Order"), Some("http://hl7.org/fhir/request-intent"))
   case INSTANCE_ORDER extends REQUEST_INTENT("instance-order", Some("Instance Order"), Some("http://hl7.org/fhir/request-intent"))
-  case OPTION extends REQUEST_INTENT("option", Some("Option"), Some("http://hl7.org/fhir/request-intent"))
-  case ORDER extends REQUEST_INTENT("order", Some("Order"), Some("http://hl7.org/fhir/request-intent"))
+  case OPTION         extends REQUEST_INTENT("option", Some("Option"), Some("http://hl7.org/fhir/request-intent"))
+  case ORDER          extends REQUEST_INTENT("order", Some("Order"), Some("http://hl7.org/fhir/request-intent"))
   case ORIGINAL_ORDER extends REQUEST_INTENT("original-order", Some("Original Order"), Some("http://hl7.org/fhir/request-intent"))
-  case PLAN extends REQUEST_INTENT("plan", Some("Plan"), Some("http://hl7.org/fhir/request-intent"))
-  case PROPOSAL extends REQUEST_INTENT("proposal", Some("Proposal"), Some("http://hl7.org/fhir/request-intent"))
-  case REFLEX_ORDER extends REQUEST_INTENT("reflex-order", Some("Reflex Order"), Some("http://hl7.org/fhir/request-intent"))
+  case PLAN           extends REQUEST_INTENT("plan", Some("Plan"), Some("http://hl7.org/fhir/request-intent"))
+  case PROPOSAL       extends REQUEST_INTENT("proposal", Some("Proposal"), Some("http://hl7.org/fhir/request-intent"))
+  case REFLEX_ORDER   extends REQUEST_INTENT("reflex-order", Some("Reflex Order"), Some("http://hl7.org/fhir/request-intent"))
 }
 object REQUEST_INTENT extends EType[REQUEST_INTENT]("http://hl7.org/fhir/ValueSet/request-intent")
 
 enum REQUEST_PRIORITY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ASAP extends REQUEST_PRIORITY("asap", Some("ASAP"), Some("http://hl7.org/fhir/request-priority"))
+  case ASAP    extends REQUEST_PRIORITY("asap", Some("ASAP"), Some("http://hl7.org/fhir/request-priority"))
   case ROUTINE extends REQUEST_PRIORITY("routine", Some("Routine"), Some("http://hl7.org/fhir/request-priority"))
-  case STAT extends REQUEST_PRIORITY("stat", Some("STAT"), Some("http://hl7.org/fhir/request-priority"))
-  case URGENT extends REQUEST_PRIORITY("urgent", Some("Urgent"), Some("http://hl7.org/fhir/request-priority"))
+  case STAT    extends REQUEST_PRIORITY("stat", Some("STAT"), Some("http://hl7.org/fhir/request-priority"))
+  case URGENT  extends REQUEST_PRIORITY("urgent", Some("Urgent"), Some("http://hl7.org/fhir/request-priority"))
 }
 object REQUEST_PRIORITY extends EType[REQUEST_PRIORITY]("http://hl7.org/fhir/ValueSet/request-priority")
 
@@ -2490,7 +2490,7 @@ enum REQUEST_RESOURCE_TYPES(val name: String, val display: Option[String], val s
         Some("AppointmentResponse"),
         Some("http://hl7.org/fhir/request-resource-types"))
   case CAREPLAN extends REQUEST_RESOURCE_TYPES("CarePlan", Some("CarePlan"), Some("http://hl7.org/fhir/request-resource-types"))
-  case CLAIM extends REQUEST_RESOURCE_TYPES("Claim", Some("Claim"), Some("http://hl7.org/fhir/request-resource-types"))
+  case CLAIM    extends REQUEST_RESOURCE_TYPES("Claim", Some("Claim"), Some("http://hl7.org/fhir/request-resource-types"))
   case COMMUNICATIONREQUEST
       extends REQUEST_RESOURCE_TYPES(
         "CommunicationRequest",
@@ -2530,9 +2530,9 @@ enum REQUEST_RESOURCE_TYPES(val name: String, val display: Option[String], val s
 object REQUEST_RESOURCE_TYPES extends EType[REQUEST_RESOURCE_TYPES]("http://hl7.org/fhir/ValueSet/request-resource-types")
 
 enum REQUEST_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends REQUEST_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/request-status"))
+  case ACTIVE    extends REQUEST_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/request-status"))
   case COMPLETED extends REQUEST_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/request-status"))
-  case DRAFT extends REQUEST_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/request-status"))
+  case DRAFT     extends REQUEST_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/request-status"))
   case ENTERED_IN_ERROR
       extends REQUEST_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/request-status"))
   case ON_HOLD extends REQUEST_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/request-status"))
@@ -2543,7 +2543,7 @@ object REQUEST_STATUS extends EType[REQUEST_STATUS]("http://hl7.org/fhir/ValueSe
 
 enum RESEARCH_ELEMENT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case EXPOSURE extends RESEARCH_ELEMENT_TYPE("exposure", Some("Exposure"), Some("http://hl7.org/fhir/research-element-type"))
-  case OUTCOME extends RESEARCH_ELEMENT_TYPE("outcome", Some("Outcome"), Some("http://hl7.org/fhir/research-element-type"))
+  case OUTCOME  extends RESEARCH_ELEMENT_TYPE("outcome", Some("Outcome"), Some("http://hl7.org/fhir/research-element-type"))
   case POPULATION
       extends RESEARCH_ELEMENT_TYPE("population", Some("Population"), Some("http://hl7.org/fhir/research-element-type"))
 }
@@ -2641,7 +2641,7 @@ object RESOURCE_AGGREGATION_MODE
 
 enum RESOURCE_SLICING_RULES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case CLOSED extends RESOURCE_SLICING_RULES("closed", Some("Closed"), Some("http://hl7.org/fhir/resource-slicing-rules"))
-  case OPEN extends RESOURCE_SLICING_RULES("open", Some("Open"), Some("http://hl7.org/fhir/resource-slicing-rules"))
+  case OPEN   extends RESOURCE_SLICING_RULES("open", Some("Open"), Some("http://hl7.org/fhir/resource-slicing-rules"))
   case OPENATEND
       extends RESOURCE_SLICING_RULES("openAtEnd", Some("Open at End"), Some("http://hl7.org/fhir/resource-slicing-rules"))
 }
@@ -2658,39 +2658,39 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
   case APPOINTMENTRESPONSE
       extends RESOURCE_TYPES("AppointmentResponse", Some("AppointmentResponse"), Some("http://hl7.org/fhir/resource-types"))
   case AUDITEVENT extends RESOURCE_TYPES("AuditEvent", Some("AuditEvent"), Some("http://hl7.org/fhir/resource-types"))
-  case BASIC extends RESOURCE_TYPES("Basic", Some("Basic"), Some("http://hl7.org/fhir/resource-types"))
-  case BINARY extends RESOURCE_TYPES("Binary", Some("Binary"), Some("http://hl7.org/fhir/resource-types"))
+  case BASIC      extends RESOURCE_TYPES("Basic", Some("Basic"), Some("http://hl7.org/fhir/resource-types"))
+  case BINARY     extends RESOURCE_TYPES("Binary", Some("Binary"), Some("http://hl7.org/fhir/resource-types"))
   case BIOLOGICALLYDERIVEDPRODUCT
       extends RESOURCE_TYPES(
         "BiologicallyDerivedProduct",
         Some("BiologicallyDerivedProduct"),
         Some("http://hl7.org/fhir/resource-types"))
   case BODYSTRUCTURE extends RESOURCE_TYPES("BodyStructure", Some("BodyStructure"), Some("http://hl7.org/fhir/resource-types"))
-  case BUNDLE extends RESOURCE_TYPES("Bundle", Some("Bundle"), Some("http://hl7.org/fhir/resource-types"))
+  case BUNDLE        extends RESOURCE_TYPES("Bundle", Some("Bundle"), Some("http://hl7.org/fhir/resource-types"))
   case CAPABILITYSTATEMENT
       extends RESOURCE_TYPES("CapabilityStatement", Some("CapabilityStatement"), Some("http://hl7.org/fhir/resource-types"))
-  case CAREPLAN extends RESOURCE_TYPES("CarePlan", Some("CarePlan"), Some("http://hl7.org/fhir/resource-types"))
-  case CARETEAM extends RESOURCE_TYPES("CareTeam", Some("CareTeam"), Some("http://hl7.org/fhir/resource-types"))
+  case CAREPLAN     extends RESOURCE_TYPES("CarePlan", Some("CarePlan"), Some("http://hl7.org/fhir/resource-types"))
+  case CARETEAM     extends RESOURCE_TYPES("CareTeam", Some("CareTeam"), Some("http://hl7.org/fhir/resource-types"))
   case CATALOGENTRY extends RESOURCE_TYPES("CatalogEntry", Some("CatalogEntry"), Some("http://hl7.org/fhir/resource-types"))
-  case CHARGEITEM extends RESOURCE_TYPES("ChargeItem", Some("ChargeItem"), Some("http://hl7.org/fhir/resource-types"))
+  case CHARGEITEM   extends RESOURCE_TYPES("ChargeItem", Some("ChargeItem"), Some("http://hl7.org/fhir/resource-types"))
   case CHARGEITEMDEFINITION
       extends RESOURCE_TYPES("ChargeItemDefinition", Some("ChargeItemDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case CLAIM extends RESOURCE_TYPES("Claim", Some("Claim"), Some("http://hl7.org/fhir/resource-types"))
+  case CLAIM         extends RESOURCE_TYPES("Claim", Some("Claim"), Some("http://hl7.org/fhir/resource-types"))
   case CLAIMRESPONSE extends RESOURCE_TYPES("ClaimResponse", Some("ClaimResponse"), Some("http://hl7.org/fhir/resource-types"))
   case CLINICALIMPRESSION
       extends RESOURCE_TYPES("ClinicalImpression", Some("ClinicalImpression"), Some("http://hl7.org/fhir/resource-types"))
-  case CODESYSTEM extends RESOURCE_TYPES("CodeSystem", Some("CodeSystem"), Some("http://hl7.org/fhir/resource-types"))
+  case CODESYSTEM    extends RESOURCE_TYPES("CodeSystem", Some("CodeSystem"), Some("http://hl7.org/fhir/resource-types"))
   case COMMUNICATION extends RESOURCE_TYPES("Communication", Some("Communication"), Some("http://hl7.org/fhir/resource-types"))
   case COMMUNICATIONREQUEST
       extends RESOURCE_TYPES("CommunicationRequest", Some("CommunicationRequest"), Some("http://hl7.org/fhir/resource-types"))
   case COMPARTMENTDEFINITION
       extends RESOURCE_TYPES("CompartmentDefinition", Some("CompartmentDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case COMPOSITION extends RESOURCE_TYPES("Composition", Some("Composition"), Some("http://hl7.org/fhir/resource-types"))
-  case CONCEPTMAP extends RESOURCE_TYPES("ConceptMap", Some("ConceptMap"), Some("http://hl7.org/fhir/resource-types"))
-  case CONDITION extends RESOURCE_TYPES("Condition", Some("Condition"), Some("http://hl7.org/fhir/resource-types"))
-  case CONSENT extends RESOURCE_TYPES("Consent", Some("Consent"), Some("http://hl7.org/fhir/resource-types"))
-  case CONTRACT extends RESOURCE_TYPES("Contract", Some("Contract"), Some("http://hl7.org/fhir/resource-types"))
-  case COVERAGE extends RESOURCE_TYPES("Coverage", Some("Coverage"), Some("http://hl7.org/fhir/resource-types"))
+  case CONCEPTMAP  extends RESOURCE_TYPES("ConceptMap", Some("ConceptMap"), Some("http://hl7.org/fhir/resource-types"))
+  case CONDITION   extends RESOURCE_TYPES("Condition", Some("Condition"), Some("http://hl7.org/fhir/resource-types"))
+  case CONSENT     extends RESOURCE_TYPES("Consent", Some("Consent"), Some("http://hl7.org/fhir/resource-types"))
+  case CONTRACT    extends RESOURCE_TYPES("Contract", Some("Contract"), Some("http://hl7.org/fhir/resource-types"))
+  case COVERAGE    extends RESOURCE_TYPES("Coverage", Some("Coverage"), Some("http://hl7.org/fhir/resource-types"))
   case COVERAGEELIGIBILITYREQUEST
       extends RESOURCE_TYPES(
         "CoverageEligibilityRequest",
@@ -2702,10 +2702,10 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
         Some("CoverageEligibilityResponse"),
         Some("http://hl7.org/fhir/resource-types"))
   case DETECTEDISSUE extends RESOURCE_TYPES("DetectedIssue", Some("DetectedIssue"), Some("http://hl7.org/fhir/resource-types"))
-  case DEVICE extends RESOURCE_TYPES("Device", Some("Device"), Some("http://hl7.org/fhir/resource-types"))
+  case DEVICE        extends RESOURCE_TYPES("Device", Some("Device"), Some("http://hl7.org/fhir/resource-types"))
   case DEVICEDEFINITION
       extends RESOURCE_TYPES("DeviceDefinition", Some("DeviceDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case DEVICEMETRIC extends RESOURCE_TYPES("DeviceMetric", Some("DeviceMetric"), Some("http://hl7.org/fhir/resource-types"))
+  case DEVICEMETRIC  extends RESOURCE_TYPES("DeviceMetric", Some("DeviceMetric"), Some("http://hl7.org/fhir/resource-types"))
   case DEVICEREQUEST extends RESOURCE_TYPES("DeviceRequest", Some("DeviceRequest"), Some("http://hl7.org/fhir/resource-types"))
   case DEVICEUSESTATEMENT
       extends RESOURCE_TYPES("DeviceUseStatement", Some("DeviceUseStatement"), Some("http://hl7.org/fhir/resource-types"))
@@ -2722,7 +2722,7 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
         Some("EffectEvidenceSynthesis"),
         Some("http://hl7.org/fhir/resource-types"))
   case ENCOUNTER extends RESOURCE_TYPES("Encounter", Some("Encounter"), Some("http://hl7.org/fhir/resource-types"))
-  case ENDPOINT extends RESOURCE_TYPES("Endpoint", Some("Endpoint"), Some("http://hl7.org/fhir/resource-types"))
+  case ENDPOINT  extends RESOURCE_TYPES("Endpoint", Some("Endpoint"), Some("http://hl7.org/fhir/resource-types"))
   case ENROLLMENTREQUEST
       extends RESOURCE_TYPES("EnrollmentRequest", Some("EnrollmentRequest"), Some("http://hl7.org/fhir/resource-types"))
   case ENROLLMENTRESPONSE
@@ -2760,15 +2760,15 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
   case IMPLEMENTATIONGUIDE
       extends RESOURCE_TYPES("ImplementationGuide", Some("ImplementationGuide"), Some("http://hl7.org/fhir/resource-types"))
   case INSURANCEPLAN extends RESOURCE_TYPES("InsurancePlan", Some("InsurancePlan"), Some("http://hl7.org/fhir/resource-types"))
-  case INVOICE extends RESOURCE_TYPES("Invoice", Some("Invoice"), Some("http://hl7.org/fhir/resource-types"))
-  case LIBRARY extends RESOURCE_TYPES("Library", Some("Library"), Some("http://hl7.org/fhir/resource-types"))
-  case LINKAGE extends RESOURCE_TYPES("Linkage", Some("Linkage"), Some("http://hl7.org/fhir/resource-types"))
-  case LIST extends RESOURCE_TYPES("List", Some("List"), Some("http://hl7.org/fhir/resource-types"))
-  case LOCATION extends RESOURCE_TYPES("Location", Some("Location"), Some("http://hl7.org/fhir/resource-types"))
-  case MEASURE extends RESOURCE_TYPES("Measure", Some("Measure"), Some("http://hl7.org/fhir/resource-types"))
+  case INVOICE       extends RESOURCE_TYPES("Invoice", Some("Invoice"), Some("http://hl7.org/fhir/resource-types"))
+  case LIBRARY       extends RESOURCE_TYPES("Library", Some("Library"), Some("http://hl7.org/fhir/resource-types"))
+  case LINKAGE       extends RESOURCE_TYPES("Linkage", Some("Linkage"), Some("http://hl7.org/fhir/resource-types"))
+  case LIST          extends RESOURCE_TYPES("List", Some("List"), Some("http://hl7.org/fhir/resource-types"))
+  case LOCATION      extends RESOURCE_TYPES("Location", Some("Location"), Some("http://hl7.org/fhir/resource-types"))
+  case MEASURE       extends RESOURCE_TYPES("Measure", Some("Measure"), Some("http://hl7.org/fhir/resource-types"))
   case MEASUREREPORT extends RESOURCE_TYPES("MeasureReport", Some("MeasureReport"), Some("http://hl7.org/fhir/resource-types"))
-  case MEDIA extends RESOURCE_TYPES("Media", Some("Media"), Some("http://hl7.org/fhir/resource-types"))
-  case MEDICATION extends RESOURCE_TYPES("Medication", Some("Medication"), Some("http://hl7.org/fhir/resource-types"))
+  case MEDIA         extends RESOURCE_TYPES("Media", Some("Media"), Some("http://hl7.org/fhir/resource-types"))
+  case MEDICATION    extends RESOURCE_TYPES("Medication", Some("Medication"), Some("http://hl7.org/fhir/resource-types"))
   case MEDICATIONADMINISTRATION
       extends RESOURCE_TYPES(
         "MedicationAdministration",
@@ -2834,9 +2834,9 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
   case MESSAGEHEADER extends RESOURCE_TYPES("MessageHeader", Some("MessageHeader"), Some("http://hl7.org/fhir/resource-types"))
   case MOLECULARSEQUENCE
       extends RESOURCE_TYPES("MolecularSequence", Some("MolecularSequence"), Some("http://hl7.org/fhir/resource-types"))
-  case NAMINGSYSTEM extends RESOURCE_TYPES("NamingSystem", Some("NamingSystem"), Some("http://hl7.org/fhir/resource-types"))
+  case NAMINGSYSTEM   extends RESOURCE_TYPES("NamingSystem", Some("NamingSystem"), Some("http://hl7.org/fhir/resource-types"))
   case NUTRITIONORDER extends RESOURCE_TYPES("NutritionOrder", Some("NutritionOrder"), Some("http://hl7.org/fhir/resource-types"))
-  case OBSERVATION extends RESOURCE_TYPES("Observation", Some("Observation"), Some("http://hl7.org/fhir/resource-types"))
+  case OBSERVATION    extends RESOURCE_TYPES("Observation", Some("Observation"), Some("http://hl7.org/fhir/resource-types"))
   case OBSERVATIONDEFINITION
       extends RESOURCE_TYPES("ObservationDefinition", Some("ObservationDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case OPERATIONDEFINITION
@@ -2849,23 +2849,23 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
         "OrganizationAffiliation",
         Some("OrganizationAffiliation"),
         Some("http://hl7.org/fhir/resource-types"))
-  case PARAMETERS extends RESOURCE_TYPES("Parameters", Some("Parameters"), Some("http://hl7.org/fhir/resource-types"))
-  case PATIENT extends RESOURCE_TYPES("Patient", Some("Patient"), Some("http://hl7.org/fhir/resource-types"))
+  case PARAMETERS    extends RESOURCE_TYPES("Parameters", Some("Parameters"), Some("http://hl7.org/fhir/resource-types"))
+  case PATIENT       extends RESOURCE_TYPES("Patient", Some("Patient"), Some("http://hl7.org/fhir/resource-types"))
   case PAYMENTNOTICE extends RESOURCE_TYPES("PaymentNotice", Some("PaymentNotice"), Some("http://hl7.org/fhir/resource-types"))
   case PAYMENTRECONCILIATION
       extends RESOURCE_TYPES("PaymentReconciliation", Some("PaymentReconciliation"), Some("http://hl7.org/fhir/resource-types"))
-  case PERSON extends RESOURCE_TYPES("Person", Some("Person"), Some("http://hl7.org/fhir/resource-types"))
+  case PERSON         extends RESOURCE_TYPES("Person", Some("Person"), Some("http://hl7.org/fhir/resource-types"))
   case PLANDEFINITION extends RESOURCE_TYPES("PlanDefinition", Some("PlanDefinition"), Some("http://hl7.org/fhir/resource-types"))
-  case PRACTITIONER extends RESOURCE_TYPES("Practitioner", Some("Practitioner"), Some("http://hl7.org/fhir/resource-types"))
+  case PRACTITIONER   extends RESOURCE_TYPES("Practitioner", Some("Practitioner"), Some("http://hl7.org/fhir/resource-types"))
   case PRACTITIONERROLE
       extends RESOURCE_TYPES("PractitionerRole", Some("PractitionerRole"), Some("http://hl7.org/fhir/resource-types"))
-  case PROCEDURE extends RESOURCE_TYPES("Procedure", Some("Procedure"), Some("http://hl7.org/fhir/resource-types"))
-  case PROVENANCE extends RESOURCE_TYPES("Provenance", Some("Provenance"), Some("http://hl7.org/fhir/resource-types"))
+  case PROCEDURE     extends RESOURCE_TYPES("Procedure", Some("Procedure"), Some("http://hl7.org/fhir/resource-types"))
+  case PROVENANCE    extends RESOURCE_TYPES("Provenance", Some("Provenance"), Some("http://hl7.org/fhir/resource-types"))
   case QUESTIONNAIRE extends RESOURCE_TYPES("Questionnaire", Some("Questionnaire"), Some("http://hl7.org/fhir/resource-types"))
   case QUESTIONNAIRERESPONSE
       extends RESOURCE_TYPES("QuestionnaireResponse", Some("QuestionnaireResponse"), Some("http://hl7.org/fhir/resource-types"))
   case RELATEDPERSON extends RESOURCE_TYPES("RelatedPerson", Some("RelatedPerson"), Some("http://hl7.org/fhir/resource-types"))
-  case REQUESTGROUP extends RESOURCE_TYPES("RequestGroup", Some("RequestGroup"), Some("http://hl7.org/fhir/resource-types"))
+  case REQUESTGROUP  extends RESOURCE_TYPES("RequestGroup", Some("RequestGroup"), Some("http://hl7.org/fhir/resource-types"))
   case RESEARCHDEFINITION
       extends RESOURCE_TYPES("ResearchDefinition", Some("ResearchDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case RESEARCHELEMENTDEFINITION
@@ -2876,7 +2876,7 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
   case RESEARCHSTUDY extends RESOURCE_TYPES("ResearchStudy", Some("ResearchStudy"), Some("http://hl7.org/fhir/resource-types"))
   case RESEARCHSUBJECT
       extends RESOURCE_TYPES("ResearchSubject", Some("ResearchSubject"), Some("http://hl7.org/fhir/resource-types"))
-  case RESOURCE extends RESOURCE_TYPES("Resource", Some("Resource"), Some("http://hl7.org/fhir/resource-types"))
+  case RESOURCE       extends RESOURCE_TYPES("Resource", Some("Resource"), Some("http://hl7.org/fhir/resource-types"))
   case RISKASSESSMENT extends RESOURCE_TYPES("RiskAssessment", Some("RiskAssessment"), Some("http://hl7.org/fhir/resource-types"))
   case RISKEVIDENCESYNTHESIS
       extends RESOURCE_TYPES("RiskEvidenceSynthesis", Some("RiskEvidenceSynthesis"), Some("http://hl7.org/fhir/resource-types"))
@@ -2884,15 +2884,15 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
   case SEARCHPARAMETER
       extends RESOURCE_TYPES("SearchParameter", Some("SearchParameter"), Some("http://hl7.org/fhir/resource-types"))
   case SERVICEREQUEST extends RESOURCE_TYPES("ServiceRequest", Some("ServiceRequest"), Some("http://hl7.org/fhir/resource-types"))
-  case SLOT extends RESOURCE_TYPES("Slot", Some("Slot"), Some("http://hl7.org/fhir/resource-types"))
-  case SPECIMEN extends RESOURCE_TYPES("Specimen", Some("Specimen"), Some("http://hl7.org/fhir/resource-types"))
+  case SLOT           extends RESOURCE_TYPES("Slot", Some("Slot"), Some("http://hl7.org/fhir/resource-types"))
+  case SPECIMEN       extends RESOURCE_TYPES("Specimen", Some("Specimen"), Some("http://hl7.org/fhir/resource-types"))
   case SPECIMENDEFINITION
       extends RESOURCE_TYPES("SpecimenDefinition", Some("SpecimenDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case STRUCTUREDEFINITION
       extends RESOURCE_TYPES("StructureDefinition", Some("StructureDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case STRUCTUREMAP extends RESOURCE_TYPES("StructureMap", Some("StructureMap"), Some("http://hl7.org/fhir/resource-types"))
   case SUBSCRIPTION extends RESOURCE_TYPES("Subscription", Some("Subscription"), Some("http://hl7.org/fhir/resource-types"))
-  case SUBSTANCE extends RESOURCE_TYPES("Substance", Some("Substance"), Some("http://hl7.org/fhir/resource-types"))
+  case SUBSTANCE    extends RESOURCE_TYPES("Substance", Some("Substance"), Some("http://hl7.org/fhir/resource-types"))
   case SUBSTANCENUCLEICACID
       extends RESOURCE_TYPES("SubstanceNucleicAcid", Some("SubstanceNucleicAcid"), Some("http://hl7.org/fhir/resource-types"))
   case SUBSTANCEPOLYMER
@@ -2912,8 +2912,8 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
   case SUBSTANCESPECIFICATION
       extends RESOURCE_TYPES("SubstanceSpecification", Some("SubstanceSpecification"), Some("http://hl7.org/fhir/resource-types"))
   case SUPPLYDELIVERY extends RESOURCE_TYPES("SupplyDelivery", Some("SupplyDelivery"), Some("http://hl7.org/fhir/resource-types"))
-  case SUPPLYREQUEST extends RESOURCE_TYPES("SupplyRequest", Some("SupplyRequest"), Some("http://hl7.org/fhir/resource-types"))
-  case TASK extends RESOURCE_TYPES("Task", Some("Task"), Some("http://hl7.org/fhir/resource-types"))
+  case SUPPLYREQUEST  extends RESOURCE_TYPES("SupplyRequest", Some("SupplyRequest"), Some("http://hl7.org/fhir/resource-types"))
+  case TASK           extends RESOURCE_TYPES("Task", Some("Task"), Some("http://hl7.org/fhir/resource-types"))
   case TERMINOLOGYCAPABILITIES
       extends RESOURCE_TYPES(
         "TerminologyCapabilities",
@@ -2921,7 +2921,7 @@ enum RESOURCE_TYPES(val name: String, val display: Option[String], val system: O
         Some("http://hl7.org/fhir/resource-types"))
   case TESTREPORT extends RESOURCE_TYPES("TestReport", Some("TestReport"), Some("http://hl7.org/fhir/resource-types"))
   case TESTSCRIPT extends RESOURCE_TYPES("TestScript", Some("TestScript"), Some("http://hl7.org/fhir/resource-types"))
-  case VALUESET extends RESOURCE_TYPES("ValueSet", Some("ValueSet"), Some("http://hl7.org/fhir/resource-types"))
+  case VALUESET   extends RESOURCE_TYPES("ValueSet", Some("ValueSet"), Some("http://hl7.org/fhir/resource-types"))
   case VERIFICATIONRESULT
       extends RESOURCE_TYPES("VerificationResult", Some("VerificationResult"), Some("http://hl7.org/fhir/resource-types"))
   case VISIONPRESCRIPTION
@@ -2931,7 +2931,7 @@ object RESOURCE_TYPES extends EType[RESOURCE_TYPES]("http://hl7.org/fhir/ValueSe
 
 enum RESPONSE_CODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case FATAL_ERROR extends RESPONSE_CODE("fatal-error", Some("Fatal Error"), Some("http://hl7.org/fhir/response-code"))
-  case OK extends RESPONSE_CODE("ok", Some("OK"), Some("http://hl7.org/fhir/response-code"))
+  case OK          extends RESPONSE_CODE("ok", Some("OK"), Some("http://hl7.org/fhir/response-code"))
   case TRANSIENT_ERROR
       extends RESPONSE_CODE("transient-error", Some("Transient Error"), Some("http://hl7.org/fhir/response-code"))
 }
@@ -2958,67 +2958,67 @@ object SEARCH_COMPARATOR extends EType[SEARCH_COMPARATOR]("http://hl7.org/fhir/V
 
 enum SEARCH_ENTRY_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case INCLUDE extends SEARCH_ENTRY_MODE("include", Some("Include"), Some("http://hl7.org/fhir/search-entry-mode"))
-  case MATCH extends SEARCH_ENTRY_MODE("match", Some("Match"), Some("http://hl7.org/fhir/search-entry-mode"))
+  case MATCH   extends SEARCH_ENTRY_MODE("match", Some("Match"), Some("http://hl7.org/fhir/search-entry-mode"))
   case OUTCOME extends SEARCH_ENTRY_MODE("outcome", Some("Outcome"), Some("http://hl7.org/fhir/search-entry-mode"))
 }
 object SEARCH_ENTRY_MODE extends EType[SEARCH_ENTRY_MODE]("http://hl7.org/fhir/ValueSet/search-entry-mode")
 
 enum SEARCH_MODIFIER_CODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ABOVE extends SEARCH_MODIFIER_CODE("above", Some("Above"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case BELOW extends SEARCH_MODIFIER_CODE("below", Some("Below"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case CONTAINS extends SEARCH_MODIFIER_CODE("contains", Some("Contains"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case EXACT extends SEARCH_MODIFIER_CODE("exact", Some("Exact"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case ABOVE      extends SEARCH_MODIFIER_CODE("above", Some("Above"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case BELOW      extends SEARCH_MODIFIER_CODE("below", Some("Below"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case CONTAINS   extends SEARCH_MODIFIER_CODE("contains", Some("Contains"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case EXACT      extends SEARCH_MODIFIER_CODE("exact", Some("Exact"), Some("http://hl7.org/fhir/search-modifier-code"))
   case IDENTIFIER extends SEARCH_MODIFIER_CODE("identifier", Some("Identifier"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case IN extends SEARCH_MODIFIER_CODE("in", Some("In"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case MISSING extends SEARCH_MODIFIER_CODE("missing", Some("Missing"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case NOT extends SEARCH_MODIFIER_CODE("not", Some("Not"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case NOT_IN extends SEARCH_MODIFIER_CODE("not-in", Some("Not In"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case OFTYPE extends SEARCH_MODIFIER_CODE("ofType", Some("Of Type"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case TEXT extends SEARCH_MODIFIER_CODE("text", Some("Text"), Some("http://hl7.org/fhir/search-modifier-code"))
-  case TYPE extends SEARCH_MODIFIER_CODE("type", Some("Type"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case IN         extends SEARCH_MODIFIER_CODE("in", Some("In"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case MISSING    extends SEARCH_MODIFIER_CODE("missing", Some("Missing"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case NOT        extends SEARCH_MODIFIER_CODE("not", Some("Not"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case NOT_IN     extends SEARCH_MODIFIER_CODE("not-in", Some("Not In"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case OFTYPE     extends SEARCH_MODIFIER_CODE("ofType", Some("Of Type"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case TEXT       extends SEARCH_MODIFIER_CODE("text", Some("Text"), Some("http://hl7.org/fhir/search-modifier-code"))
+  case TYPE       extends SEARCH_MODIFIER_CODE("type", Some("Type"), Some("http://hl7.org/fhir/search-modifier-code"))
 }
 object SEARCH_MODIFIER_CODE extends EType[SEARCH_MODIFIER_CODE]("http://hl7.org/fhir/ValueSet/search-modifier-code")
 
 enum SEARCH_PARAM_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case COMPOSITE extends SEARCH_PARAM_TYPE("composite", Some("Composite"), Some("http://hl7.org/fhir/search-param-type"))
-  case DATE extends SEARCH_PARAM_TYPE("date", Some("Date/DateTime"), Some("http://hl7.org/fhir/search-param-type"))
-  case NUMBER extends SEARCH_PARAM_TYPE("number", Some("Number"), Some("http://hl7.org/fhir/search-param-type"))
-  case QUANTITY extends SEARCH_PARAM_TYPE("quantity", Some("Quantity"), Some("http://hl7.org/fhir/search-param-type"))
+  case DATE      extends SEARCH_PARAM_TYPE("date", Some("Date/DateTime"), Some("http://hl7.org/fhir/search-param-type"))
+  case NUMBER    extends SEARCH_PARAM_TYPE("number", Some("Number"), Some("http://hl7.org/fhir/search-param-type"))
+  case QUANTITY  extends SEARCH_PARAM_TYPE("quantity", Some("Quantity"), Some("http://hl7.org/fhir/search-param-type"))
   case REFERENCE extends SEARCH_PARAM_TYPE("reference", Some("Reference"), Some("http://hl7.org/fhir/search-param-type"))
-  case SPECIAL extends SEARCH_PARAM_TYPE("special", Some("Special"), Some("http://hl7.org/fhir/search-param-type"))
-  case STRING extends SEARCH_PARAM_TYPE("string", Some("String"), Some("http://hl7.org/fhir/search-param-type"))
-  case TOKEN extends SEARCH_PARAM_TYPE("token", Some("Token"), Some("http://hl7.org/fhir/search-param-type"))
-  case URI extends SEARCH_PARAM_TYPE("uri", Some("URI"), Some("http://hl7.org/fhir/search-param-type"))
+  case SPECIAL   extends SEARCH_PARAM_TYPE("special", Some("Special"), Some("http://hl7.org/fhir/search-param-type"))
+  case STRING    extends SEARCH_PARAM_TYPE("string", Some("String"), Some("http://hl7.org/fhir/search-param-type"))
+  case TOKEN     extends SEARCH_PARAM_TYPE("token", Some("Token"), Some("http://hl7.org/fhir/search-param-type"))
+  case URI       extends SEARCH_PARAM_TYPE("uri", Some("URI"), Some("http://hl7.org/fhir/search-param-type"))
 }
 object SEARCH_PARAM_TYPE extends EType[SEARCH_PARAM_TYPE]("http://hl7.org/fhir/ValueSet/search-param-type")
 
 enum SEARCH_XPATH_USAGE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case DISTANCE extends SEARCH_XPATH_USAGE("distance", Some("Distance"), Some("http://hl7.org/fhir/search-xpath-usage"))
-  case NEARBY extends SEARCH_XPATH_USAGE("nearby", Some("Nearby"), Some("http://hl7.org/fhir/search-xpath-usage"))
-  case NORMAL extends SEARCH_XPATH_USAGE("normal", Some("Normal"), Some("http://hl7.org/fhir/search-xpath-usage"))
-  case OTHER extends SEARCH_XPATH_USAGE("other", Some("Other"), Some("http://hl7.org/fhir/search-xpath-usage"))
+  case NEARBY   extends SEARCH_XPATH_USAGE("nearby", Some("Nearby"), Some("http://hl7.org/fhir/search-xpath-usage"))
+  case NORMAL   extends SEARCH_XPATH_USAGE("normal", Some("Normal"), Some("http://hl7.org/fhir/search-xpath-usage"))
+  case OTHER    extends SEARCH_XPATH_USAGE("other", Some("Other"), Some("http://hl7.org/fhir/search-xpath-usage"))
   case PHONETIC extends SEARCH_XPATH_USAGE("phonetic", Some("Phonetic"), Some("http://hl7.org/fhir/search-xpath-usage"))
 }
 object SEARCH_XPATH_USAGE extends EType[SEARCH_XPATH_USAGE]("http://hl7.org/fhir/ValueSet/search-xpath-usage")
 
 enum SEQUENCE_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case AA extends SEQUENCE_TYPE("aa", Some("AA Sequence"), Some("http://hl7.org/fhir/sequence-type"))
+  case AA  extends SEQUENCE_TYPE("aa", Some("AA Sequence"), Some("http://hl7.org/fhir/sequence-type"))
   case DNA extends SEQUENCE_TYPE("dna", Some("DNA Sequence"), Some("http://hl7.org/fhir/sequence-type"))
   case RNA extends SEQUENCE_TYPE("rna", Some("RNA Sequence"), Some("http://hl7.org/fhir/sequence-type"))
 }
 object SEQUENCE_TYPE extends EType[SEQUENCE_TYPE]("http://hl7.org/fhir/ValueSet/sequence-type")
 
 enum SLOTSTATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case BUSY extends SLOTSTATUS("busy", Some("Busy"), Some("http://hl7.org/fhir/slotstatus"))
-  case BUSY_TENTATIVE extends SLOTSTATUS("busy-tentative", Some("Busy (Tentative)"), Some("http://hl7.org/fhir/slotstatus"))
+  case BUSY             extends SLOTSTATUS("busy", Some("Busy"), Some("http://hl7.org/fhir/slotstatus"))
+  case BUSY_TENTATIVE   extends SLOTSTATUS("busy-tentative", Some("Busy (Tentative)"), Some("http://hl7.org/fhir/slotstatus"))
   case BUSY_UNAVAILABLE extends SLOTSTATUS("busy-unavailable", Some("Busy (Unavailable)"), Some("http://hl7.org/fhir/slotstatus"))
   case ENTERED_IN_ERROR extends SLOTSTATUS("entered-in-error", Some("Entered in error"), Some("http://hl7.org/fhir/slotstatus"))
-  case FREE extends SLOTSTATUS("free", Some("Free"), Some("http://hl7.org/fhir/slotstatus"))
+  case FREE             extends SLOTSTATUS("free", Some("Free"), Some("http://hl7.org/fhir/slotstatus"))
 }
 object SLOTSTATUS extends EType[SLOTSTATUS]("http://hl7.org/fhir/ValueSet/slotstatus")
 
 enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case AAL extends SPDX_LICENSE("AAL", Some("Attribution Assurance License"), Some("http://hl7.org/fhir/spdx-license"))
+  case AAL      extends SPDX_LICENSE("AAL", Some("Attribution Assurance License"), Some("http://hl7.org/fhir/spdx-license"))
   case ABSTYLES extends SPDX_LICENSE("Abstyles", Some("Abstyles License"), Some("http://hl7.org/fhir/spdx-license"))
   case ACADEMIC_FREE_LICENSE_V1_1
       extends SPDX_LICENSE("AFL-1.1", Some("Academic Free License v1.1"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3051,9 +3051,9 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
         Some("Affero General Public License v1.0 or later"),
         Some("http://hl7.org/fhir/spdx-license"))
   case AFMPARSE extends SPDX_LICENSE("Afmparse", Some("Afmparse License"), Some("http://hl7.org/fhir/spdx-license"))
-  case ALADDIN extends SPDX_LICENSE("Aladdin", Some("Aladdin Free Public License"), Some("http://hl7.org/fhir/spdx-license"))
-  case AMDPLPA extends SPDX_LICENSE("AMDPLPA", Some("AMD's plpa_map.c License"), Some("http://hl7.org/fhir/spdx-license"))
-  case AML extends SPDX_LICENSE("AML", Some("Apple MIT License"), Some("http://hl7.org/fhir/spdx-license"))
+  case ALADDIN  extends SPDX_LICENSE("Aladdin", Some("Aladdin Free Public License"), Some("http://hl7.org/fhir/spdx-license"))
+  case AMDPLPA  extends SPDX_LICENSE("AMDPLPA", Some("AMD's plpa_map.c License"), Some("http://hl7.org/fhir/spdx-license"))
+  case AML      extends SPDX_LICENSE("AML", Some("Apple MIT License"), Some("http://hl7.org/fhir/spdx-license"))
   case AMPAS
       extends SPDX_LICENSE(
         "AMPAS",
@@ -3081,8 +3081,8 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
       extends SPDX_LICENSE("Artistic-1.0", Some("Artistic License 1.0"), Some("http://hl7.org/fhir/spdx-license"))
   case ARTISTIC_LICENSE_2_0
       extends SPDX_LICENSE("Artistic-2.0", Some("Artistic License 2.0"), Some("http://hl7.org/fhir/spdx-license"))
-  case BAHYPH extends SPDX_LICENSE("Bahyph", Some("Bahyph License"), Some("http://hl7.org/fhir/spdx-license"))
-  case BARR extends SPDX_LICENSE("Barr", Some("Barr License"), Some("http://hl7.org/fhir/spdx-license"))
+  case BAHYPH   extends SPDX_LICENSE("Bahyph", Some("Bahyph License"), Some("http://hl7.org/fhir/spdx-license"))
+  case BARR     extends SPDX_LICENSE("Barr", Some("Barr License"), Some("http://hl7.org/fhir/spdx-license"))
   case BEERWARE extends SPDX_LICENSE("Beerware", Some("Beerware License"), Some("http://hl7.org/fhir/spdx-license"))
   case BITTORRENT_OPEN_SOURCE_LICENSE_V1_0
       extends SPDX_LICENSE(
@@ -3385,10 +3385,10 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
   case DEUTSCHE_FREIE_SOFTWARE_LIZENZ
       extends SPDX_LICENSE("D-FSL-1.0", Some("Deutsche Freie Software Lizenz"), Some("http://hl7.org/fhir/spdx-license"))
   case DIFFMARK extends SPDX_LICENSE("diffmark", Some("diffmark license"), Some("http://hl7.org/fhir/spdx-license"))
-  case DOC extends SPDX_LICENSE("DOC", Some("DOC License"), Some("http://hl7.org/fhir/spdx-license"))
-  case DOTSEQN extends SPDX_LICENSE("Dotseqn", Some("Dotseqn License"), Some("http://hl7.org/fhir/spdx-license"))
-  case DSDP extends SPDX_LICENSE("DSDP", Some("DSDP License"), Some("http://hl7.org/fhir/spdx-license"))
-  case DVIPDFM extends SPDX_LICENSE("dvipdfm", Some("dvipdfm License"), Some("http://hl7.org/fhir/spdx-license"))
+  case DOC      extends SPDX_LICENSE("DOC", Some("DOC License"), Some("http://hl7.org/fhir/spdx-license"))
+  case DOTSEQN  extends SPDX_LICENSE("Dotseqn", Some("Dotseqn License"), Some("http://hl7.org/fhir/spdx-license"))
+  case DSDP     extends SPDX_LICENSE("DSDP", Some("DSDP License"), Some("http://hl7.org/fhir/spdx-license"))
+  case DVIPDFM  extends SPDX_LICENSE("dvipdfm", Some("dvipdfm License"), Some("http://hl7.org/fhir/spdx-license"))
   case ECLIPSE_PUBLIC_LICENSE_1_0
       extends SPDX_LICENSE("EPL-1.0", Some("Eclipse Public License 1.0"), Some("http://hl7.org/fhir/spdx-license"))
   case ECLIPSE_PUBLIC_LICENSE_2_0
@@ -3403,7 +3403,7 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
   case EIFFEL_FORUM_LICENSE_V2_0
       extends SPDX_LICENSE("EFL-2.0", Some("Eiffel Forum License v2.0"), Some("http://hl7.org/fhir/spdx-license"))
   case ENNA_LICENSE extends SPDX_LICENSE("MIT-enna", Some("enna License"), Some("http://hl7.org/fhir/spdx-license"))
-  case ENTESSA extends SPDX_LICENSE("Entessa", Some("Entessa Public License v1.0"), Some("http://hl7.org/fhir/spdx-license"))
+  case ENTESSA      extends SPDX_LICENSE("Entessa", Some("Entessa Public License v1.0"), Some("http://hl7.org/fhir/spdx-license"))
   case ERLANG_PUBLIC_LICENSE_V1_1
       extends SPDX_LICENSE("ErlPL-1.1", Some("Erlang Public License v1.1"), Some("http://hl7.org/fhir/spdx-license"))
   case EUDATAGRID
@@ -3414,8 +3414,8 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
       extends SPDX_LICENSE("EUPL-1.1", Some("European Union Public License 1.1"), Some("http://hl7.org/fhir/spdx-license"))
   case EUROPEAN_UNION_PUBLIC_LICENSE_1_2
       extends SPDX_LICENSE("EUPL-1.2", Some("European Union Public License 1.2"), Some("http://hl7.org/fhir/spdx-license"))
-  case EUROSYM extends SPDX_LICENSE("Eurosym", Some("Eurosym License"), Some("http://hl7.org/fhir/spdx-license"))
-  case FAIR extends SPDX_LICENSE("Fair", Some("Fair License"), Some("http://hl7.org/fhir/spdx-license"))
+  case EUROSYM     extends SPDX_LICENSE("Eurosym", Some("Eurosym License"), Some("http://hl7.org/fhir/spdx-license"))
+  case FAIR        extends SPDX_LICENSE("Fair", Some("Fair License"), Some("http://hl7.org/fhir/spdx-license"))
   case FEH_LICENSE extends SPDX_LICENSE("MIT-feh", Some("feh License"), Some("http://hl7.org/fhir/spdx-license"))
   case FRAMEWORX_OPEN_LICENSE_1_0
       extends SPDX_LICENSE("Frameworx-1.0", Some("Frameworx Open License 1.0"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3428,12 +3428,12 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
         "FSFULLR",
         Some("FSF Unlimited License (with License Retention)"),
         Some("http://hl7.org/fhir/spdx-license"))
-  case FTL extends SPDX_LICENSE("FTL", Some("Freetype Project License"), Some("http://hl7.org/fhir/spdx-license"))
+  case FTL      extends SPDX_LICENSE("FTL", Some("Freetype Project License"), Some("http://hl7.org/fhir/spdx-license"))
   case GIFTWARE extends SPDX_LICENSE("Giftware", Some("Giftware License"), Some("http://hl7.org/fhir/spdx-license"))
-  case GL2PS extends SPDX_LICENSE("GL2PS", Some("GL2PS License"), Some("http://hl7.org/fhir/spdx-license"))
-  case GLIDE extends SPDX_LICENSE("Glide", Some("3dfx Glide License"), Some("http://hl7.org/fhir/spdx-license"))
-  case GLULXE extends SPDX_LICENSE("Glulxe", Some("Glulxe License"), Some("http://hl7.org/fhir/spdx-license"))
-  case GNUPLOT extends SPDX_LICENSE("gnuplot", Some("gnuplot License"), Some("http://hl7.org/fhir/spdx-license"))
+  case GL2PS    extends SPDX_LICENSE("GL2PS", Some("GL2PS License"), Some("http://hl7.org/fhir/spdx-license"))
+  case GLIDE    extends SPDX_LICENSE("Glide", Some("3dfx Glide License"), Some("http://hl7.org/fhir/spdx-license"))
+  case GLULXE   extends SPDX_LICENSE("Glulxe", Some("Glulxe License"), Some("http://hl7.org/fhir/spdx-license"))
+  case GNUPLOT  extends SPDX_LICENSE("gnuplot", Some("gnuplot License"), Some("http://hl7.org/fhir/spdx-license"))
   case GNU_AFFERO_GENERAL_PUBLIC_LICENSE_V3_0_ONLY
       extends SPDX_LICENSE(
         "AGPL-3.0-only",
@@ -3538,23 +3538,23 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
         Some("http://hl7.org/fhir/spdx-license"))
   case IBM_PUBLIC_LICENSE_V1_0
       extends SPDX_LICENSE("IPL-1.0", Some("IBM Public License v1.0"), Some("http://hl7.org/fhir/spdx-license"))
-  case ICU extends SPDX_LICENSE("ICU", Some("ICU License"), Some("http://hl7.org/fhir/spdx-license"))
-  case IJG extends SPDX_LICENSE("IJG", Some("Independent JPEG Group License"), Some("http://hl7.org/fhir/spdx-license"))
+  case ICU         extends SPDX_LICENSE("ICU", Some("ICU License"), Some("http://hl7.org/fhir/spdx-license"))
+  case IJG         extends SPDX_LICENSE("IJG", Some("Independent JPEG Group License"), Some("http://hl7.org/fhir/spdx-license"))
   case IMAGEMAGICK extends SPDX_LICENSE("ImageMagick", Some("ImageMagick License"), Some("http://hl7.org/fhir/spdx-license"))
   case IMATIX
       extends SPDX_LICENSE("iMatix", Some("iMatix Standard Function Library Agreement"), Some("http://hl7.org/fhir/spdx-license"))
-  case IMLIB2 extends SPDX_LICENSE("Imlib2", Some("Imlib2 License"), Some("http://hl7.org/fhir/spdx-license"))
+  case IMLIB2           extends SPDX_LICENSE("Imlib2", Some("Imlib2 License"), Some("http://hl7.org/fhir/spdx-license"))
   case INFO_ZIP_LICENSE extends SPDX_LICENSE("Info-ZIP", Some("Info-ZIP License"), Some("http://hl7.org/fhir/spdx-license"))
-  case INTEL extends SPDX_LICENSE("Intel", Some("Intel Open Source License"), Some("http://hl7.org/fhir/spdx-license"))
+  case INTEL            extends SPDX_LICENSE("Intel", Some("Intel Open Source License"), Some("http://hl7.org/fhir/spdx-license"))
   case INTEL_ACPI_SOFTWARE_LICENSE_AGREEMENT
       extends SPDX_LICENSE("Intel-ACPI", Some("Intel ACPI Software License Agreement"), Some("http://hl7.org/fhir/spdx-license"))
   case INTERBASE_PUBLIC_LICENSE_V1_0
       extends SPDX_LICENSE("Interbase-1.0", Some("Interbase Public License v1.0"), Some("http://hl7.org/fhir/spdx-license"))
-  case IPA extends SPDX_LICENSE("IPA", Some("IPA Font License"), Some("http://hl7.org/fhir/spdx-license"))
-  case ISC extends SPDX_LICENSE("ISC", Some("ISC License"), Some("http://hl7.org/fhir/spdx-license"))
+  case IPA            extends SPDX_LICENSE("IPA", Some("IPA Font License"), Some("http://hl7.org/fhir/spdx-license"))
+  case ISC            extends SPDX_LICENSE("ISC", Some("ISC License"), Some("http://hl7.org/fhir/spdx-license"))
   case JASPER_LICENSE extends SPDX_LICENSE("JasPer-2.0", Some("JasPer License"), Some("http://hl7.org/fhir/spdx-license"))
-  case JSON extends SPDX_LICENSE("JSON", Some("JSON License"), Some("http://hl7.org/fhir/spdx-license"))
-  case LATEX2E extends SPDX_LICENSE("Latex2e", Some("Latex2e License"), Some("http://hl7.org/fhir/spdx-license"))
+  case JSON           extends SPDX_LICENSE("JSON", Some("JSON License"), Some("http://hl7.org/fhir/spdx-license"))
+  case LATEX2E        extends SPDX_LICENSE("Latex2e", Some("Latex2e License"), Some("http://hl7.org/fhir/spdx-license"))
   case LATEX_PROJECT_PUBLIC_LICENSE_V1_0
       extends SPDX_LICENSE("LPPL-1.0", Some("LaTeX Project Public License v1.0"), Some("http://hl7.org/fhir/spdx-license"))
   case LATEX_PROJECT_PUBLIC_LICENSE_V1_1
@@ -3576,7 +3576,7 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
         "LGPLLR",
         Some("Lesser General Public License For Linguistic Resources"),
         Some("http://hl7.org/fhir/spdx-license"))
-  case LIBPNG extends SPDX_LICENSE("Libpng", Some("libpng License"), Some("http://hl7.org/fhir/spdx-license"))
+  case LIBPNG  extends SPDX_LICENSE("Libpng", Some("libpng License"), Some("http://hl7.org/fhir/spdx-license"))
   case LIBTIFF extends SPDX_LICENSE("libtiff", Some("libtiff License"), Some("http://hl7.org/fhir/spdx-license"))
   case LICENCE_ART_LIBRE_1_2
       extends SPDX_LICENSE("LAL-1.2", Some("Licence Art Libre 1.2"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3611,13 +3611,13 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
       extends SPDX_LICENSE("MS-PL", Some("Microsoft Public License"), Some("http://hl7.org/fhir/spdx-license"))
   case MICROSOFT_RECIPROCAL_LICENSE
       extends SPDX_LICENSE("MS-RL", Some("Microsoft Reciprocal License"), Some("http://hl7.org/fhir/spdx-license"))
-  case MIROS extends SPDX_LICENSE("MirOS", Some("MirOS License"), Some("http://hl7.org/fhir/spdx-license"))
-  case MIT extends SPDX_LICENSE("MIT", Some("MIT License"), Some("http://hl7.org/fhir/spdx-license"))
+  case MIROS  extends SPDX_LICENSE("MirOS", Some("MirOS License"), Some("http://hl7.org/fhir/spdx-license"))
+  case MIT    extends SPDX_LICENSE("MIT", Some("MIT License"), Some("http://hl7.org/fhir/spdx-license"))
   case MITNFA extends SPDX_LICENSE("MITNFA", Some("MIT +no-false-attribs license"), Some("http://hl7.org/fhir/spdx-license"))
   case MIT_ADVERTISING
       extends SPDX_LICENSE("MIT-advertising", Some("Enlightenment License (e16)"), Some("http://hl7.org/fhir/spdx-license"))
   case MIT_NO_ATTRIBUTION extends SPDX_LICENSE("MIT-0", Some("MIT No Attribution"), Some("http://hl7.org/fhir/spdx-license"))
-  case MOTOSOTO extends SPDX_LICENSE("Motosoto", Some("Motosoto License"), Some("http://hl7.org/fhir/spdx-license"))
+  case MOTOSOTO           extends SPDX_LICENSE("Motosoto", Some("Motosoto License"), Some("http://hl7.org/fhir/spdx-license"))
   case MOZILLA_PUBLIC_LICENSE_1_0
       extends SPDX_LICENSE("MPL-1.0", Some("Mozilla Public License 1.0"), Some("http://hl7.org/fhir/spdx-license"))
   case MOZILLA_PUBLIC_LICENSE_1_1
@@ -3630,9 +3630,9 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
         "MPL-2.0-no-copyleft-exception",
         Some("Mozilla Public License 2.0 (no copyleft exception)"),
         Some("http://hl7.org/fhir/spdx-license"))
-  case MTLL extends SPDX_LICENSE("MTLL", Some("Matrix Template Library License"), Some("http://hl7.org/fhir/spdx-license"))
+  case MTLL    extends SPDX_LICENSE("MTLL", Some("Matrix Template Library License"), Some("http://hl7.org/fhir/spdx-license"))
   case MULTICS extends SPDX_LICENSE("Multics", Some("Multics License"), Some("http://hl7.org/fhir/spdx-license"))
-  case MUP extends SPDX_LICENSE("Mup", Some("Mup License"), Some("http://hl7.org/fhir/spdx-license"))
+  case MUP     extends SPDX_LICENSE("Mup", Some("Mup License"), Some("http://hl7.org/fhir/spdx-license"))
   case NASA_OPEN_SOURCE_AGREEMENT_1_3
       extends SPDX_LICENSE("NASA-1.3", Some("NASA Open Source Agreement 1.3"), Some("http://hl7.org/fhir/spdx-license"))
   case NAUMEN extends SPDX_LICENSE("Naumen", Some("Naumen Public License"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3649,9 +3649,9 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
   case NET_BOOLEAN_PUBLIC_LICENSE_V1
       extends SPDX_LICENSE("NBPL-1.0", Some("Net Boolean Public License v1"), Some("http://hl7.org/fhir/spdx-license"))
   case NET_SNMP_LICENSE extends SPDX_LICENSE("Net-SNMP", Some("Net-SNMP License"), Some("http://hl7.org/fhir/spdx-license"))
-  case NEWSLETR extends SPDX_LICENSE("Newsletr", Some("Newsletr License"), Some("http://hl7.org/fhir/spdx-license"))
-  case NGPL extends SPDX_LICENSE("NGPL", Some("Nethack General Public License"), Some("http://hl7.org/fhir/spdx-license"))
-  case NLPL extends SPDX_LICENSE("NLPL", Some("No Limit Public License"), Some("http://hl7.org/fhir/spdx-license"))
+  case NEWSLETR         extends SPDX_LICENSE("Newsletr", Some("Newsletr License"), Some("http://hl7.org/fhir/spdx-license"))
+  case NGPL  extends SPDX_LICENSE("NGPL", Some("Nethack General Public License"), Some("http://hl7.org/fhir/spdx-license"))
+  case NLPL  extends SPDX_LICENSE("NLPL", Some("No Limit Public License"), Some("http://hl7.org/fhir/spdx-license"))
   case NOKIA extends SPDX_LICENSE("Nokia", Some("Nokia Open Source License"), Some("http://hl7.org/fhir/spdx-license"))
   case NON_PROFIT_OPEN_SOFTWARE_LICENSE_3_0
       extends SPDX_LICENSE("NPOSL-3.0", Some("Non-Profit Open Software License 3.0"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3660,11 +3660,11 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
         "NLOD-1.0",
         Some("Norwegian Licence for Open Government Data"),
         Some("http://hl7.org/fhir/spdx-license"))
-  case NOSL extends SPDX_LICENSE("NOSL", Some("Netizen Open Source License"), Some("http://hl7.org/fhir/spdx-license"))
+  case NOSL            extends SPDX_LICENSE("NOSL", Some("Netizen Open Source License"), Some("http://hl7.org/fhir/spdx-license"))
   case NOT_OPEN_SOURCE extends SPDX_LICENSE("not-open-source", Some("Not open source"), Some("http://hl7.org/fhir/spdx-license"))
-  case NOWEB extends SPDX_LICENSE("Noweb", Some("Noweb License"), Some("http://hl7.org/fhir/spdx-license"))
-  case NRL extends SPDX_LICENSE("NRL", Some("NRL License"), Some("http://hl7.org/fhir/spdx-license"))
-  case NTP extends SPDX_LICENSE("NTP", Some("NTP License"), Some("http://hl7.org/fhir/spdx-license"))
+  case NOWEB           extends SPDX_LICENSE("Noweb", Some("Noweb License"), Some("http://hl7.org/fhir/spdx-license"))
+  case NRL             extends SPDX_LICENSE("NRL", Some("NRL License"), Some("http://hl7.org/fhir/spdx-license"))
+  case NTP             extends SPDX_LICENSE("NTP", Some("NTP License"), Some("http://hl7.org/fhir/spdx-license"))
   case OCLC_RESEARCH_PUBLIC_LICENSE_2_0
       extends SPDX_LICENSE("OCLC-2.0", Some("OCLC Research Public License 2.0"), Some("http://hl7.org/fhir/spdx-license"))
   case ODC_OPEN_DATABASE_LICENSE_V1_0
@@ -3675,7 +3675,7 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
         "OLDAP-2.0",
         Some("Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)"),
         Some("http://hl7.org/fhir/spdx-license"))
-  case OML extends SPDX_LICENSE("OML", Some("Open Market License"), Some("http://hl7.org/fhir/spdx-license"))
+  case OML     extends SPDX_LICENSE("OML", Some("Open Market License"), Some("http://hl7.org/fhir/spdx-license"))
   case OPENSSL extends SPDX_LICENSE("OpenSSL", Some("OpenSSL License"), Some("http://hl7.org/fhir/spdx-license"))
   case OPEN_CASCADE_TECHNOLOGY_PUBLIC_LICENSE
       extends SPDX_LICENSE("OCCT-PL", Some("Open CASCADE Technology Public License"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3728,14 +3728,14 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
         "PDDL-1.0",
         Some("ODC Public Domain Dedication & License 1.0"),
         Some("http://hl7.org/fhir/spdx-license"))
-  case PHP_LICENSE_V3_0 extends SPDX_LICENSE("PHP-3.0", Some("PHP License v3.0"), Some("http://hl7.org/fhir/spdx-license"))
+  case PHP_LICENSE_V3_0  extends SPDX_LICENSE("PHP-3.0", Some("PHP License v3.0"), Some("http://hl7.org/fhir/spdx-license"))
   case PHP_LICENSE_V3_01 extends SPDX_LICENSE("PHP-3.01", Some("PHP License v3.01"), Some("http://hl7.org/fhir/spdx-license"))
-  case PLEXUS extends SPDX_LICENSE("Plexus", Some("Plexus Classworlds License"), Some("http://hl7.org/fhir/spdx-license"))
+  case PLEXUS     extends SPDX_LICENSE("Plexus", Some("Plexus Classworlds License"), Some("http://hl7.org/fhir/spdx-license"))
   case POSTGRESQL extends SPDX_LICENSE("PostgreSQL", Some("PostgreSQL License"), Some("http://hl7.org/fhir/spdx-license"))
-  case PSFRAG extends SPDX_LICENSE("psfrag", Some("psfrag License"), Some("http://hl7.org/fhir/spdx-license"))
-  case PSUTILS extends SPDX_LICENSE("psutils", Some("psutils License"), Some("http://hl7.org/fhir/spdx-license"))
+  case PSFRAG     extends SPDX_LICENSE("psfrag", Some("psfrag License"), Some("http://hl7.org/fhir/spdx-license"))
+  case PSUTILS    extends SPDX_LICENSE("psutils", Some("psutils License"), Some("http://hl7.org/fhir/spdx-license"))
   case PYTHON_LICENSE_2_0 extends SPDX_LICENSE("Python-2.0", Some("Python License 2.0"), Some("http://hl7.org/fhir/spdx-license"))
-  case QHULL extends SPDX_LICENSE("Qhull", Some("Qhull License"), Some("http://hl7.org/fhir/spdx-license"))
+  case QHULL              extends SPDX_LICENSE("Qhull", Some("Qhull License"), Some("http://hl7.org/fhir/spdx-license"))
   case Q_PUBLIC_LICENSE_1_0
       extends SPDX_LICENSE("QPL-1.0", Some("Q Public License 1.0"), Some("http://hl7.org/fhir/spdx-license"))
   case RDISC extends SPDX_LICENSE("Rdisc", Some("Rdisc License"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3749,12 +3749,12 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
       extends SPDX_LICENSE("RHeCos-1.1", Some("Red Hat eCos Public License v1.1"), Some("http://hl7.org/fhir/spdx-license"))
   case RSA_MESSAGE_DIGEST_LICENSE
       extends SPDX_LICENSE("RSA-MD", Some("RSA Message-Digest License"), Some("http://hl7.org/fhir/spdx-license"))
-  case RSCPL extends SPDX_LICENSE("RSCPL", Some("Ricoh Source Code Public License"), Some("http://hl7.org/fhir/spdx-license"))
-  case RUBY extends SPDX_LICENSE("Ruby", Some("Ruby License"), Some("http://hl7.org/fhir/spdx-license"))
+  case RSCPL   extends SPDX_LICENSE("RSCPL", Some("Ricoh Source Code Public License"), Some("http://hl7.org/fhir/spdx-license"))
+  case RUBY    extends SPDX_LICENSE("Ruby", Some("Ruby License"), Some("http://hl7.org/fhir/spdx-license"))
   case SAXPATH extends SPDX_LICENSE("Saxpath", Some("Saxpath License"), Some("http://hl7.org/fhir/spdx-license"))
   case SAX_PUBLIC_DOMAIN_NOTICE
       extends SPDX_LICENSE("SAX-PD", Some("Sax Public Domain Notice"), Some("http://hl7.org/fhir/spdx-license"))
-  case SCEA extends SPDX_LICENSE("SCEA", Some("SCEA Shared Source License"), Some("http://hl7.org/fhir/spdx-license"))
+  case SCEA     extends SPDX_LICENSE("SCEA", Some("SCEA Shared Source License"), Some("http://hl7.org/fhir/spdx-license"))
   case SENDMAIL extends SPDX_LICENSE("Sendmail", Some("Sendmail License"), Some("http://hl7.org/fhir/spdx-license"))
   case SGI_FREE_SOFTWARE_LICENSE_B_V1_0
       extends SPDX_LICENSE("SGI-B-1.0", Some("SGI Free Software License B v1.0"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3774,7 +3774,7 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
   case SMLNJ extends SPDX_LICENSE("SMLNJ", Some("Standard ML of New Jersey License"), Some("http://hl7.org/fhir/spdx-license"))
   case SMPPL
       extends SPDX_LICENSE("SMPPL", Some("Secure Messaging Protocol Public License"), Some("http://hl7.org/fhir/spdx-license"))
-  case SNIA extends SPDX_LICENSE("SNIA", Some("SNIA Public License 1.1"), Some("http://hl7.org/fhir/spdx-license"))
+  case SNIA               extends SPDX_LICENSE("SNIA", Some("SNIA Public License 1.1"), Some("http://hl7.org/fhir/spdx-license"))
   case SPENCER_LICENSE_86 extends SPDX_LICENSE("Spencer-86", Some("Spencer License 86"), Some("http://hl7.org/fhir/spdx-license"))
   case SPENCER_LICENSE_94 extends SPDX_LICENSE("Spencer-94", Some("Spencer License 94"), Some("http://hl7.org/fhir/spdx-license"))
   case SPENCER_LICENSE_99 extends SPDX_LICENSE("Spencer-99", Some("Spencer License 99"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3816,7 +3816,7 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
   case UNIVERSAL_PERMISSIVE_LICENSE_V1_0
       extends SPDX_LICENSE("UPL-1.0", Some("Universal Permissive License v1.0"), Some("http://hl7.org/fhir/spdx-license"))
   case UNLICENSE extends SPDX_LICENSE("Unlicense", Some("The Unlicense"), Some("http://hl7.org/fhir/spdx-license"))
-  case VIM extends SPDX_LICENSE("Vim", Some("Vim License"), Some("http://hl7.org/fhir/spdx-license"))
+  case VIM       extends SPDX_LICENSE("Vim", Some("Vim License"), Some("http://hl7.org/fhir/spdx-license"))
   case VOSTROM
       extends SPDX_LICENSE("VOSTROM", Some("VOSTROM Public License for Open Source"), Some("http://hl7.org/fhir/spdx-license"))
   case VOVIDA_SOFTWARE_LICENSE_V1_0
@@ -3836,17 +3836,17 @@ enum SPDX_LICENSE(val name: String, val display: Option[String], val system: Opt
   case WSUIPA extends SPDX_LICENSE("Wsuipa", Some("Wsuipa License"), Some("http://hl7.org/fhir/spdx-license"))
   case WTFPL
       extends SPDX_LICENSE("WTFPL", Some("Do What The F*ck You Want To Public License"), Some("http://hl7.org/fhir/spdx-license"))
-  case X11 extends SPDX_LICENSE("X11", Some("X11 License"), Some("http://hl7.org/fhir/spdx-license"))
+  case X11   extends SPDX_LICENSE("X11", Some("X11 License"), Some("http://hl7.org/fhir/spdx-license"))
   case XEROX extends SPDX_LICENSE("Xerox", Some("Xerox License"), Some("http://hl7.org/fhir/spdx-license"))
   case XFREE86_LICENSE_1_1
       extends SPDX_LICENSE("XFree86-1.1", Some("XFree86 License 1.1"), Some("http://hl7.org/fhir/spdx-license"))
   case XINETD extends SPDX_LICENSE("xinetd", Some("xinetd License"), Some("http://hl7.org/fhir/spdx-license"))
-  case XNET extends SPDX_LICENSE("Xnet", Some("X.Net License"), Some("http://hl7.org/fhir/spdx-license"))
-  case XPP extends SPDX_LICENSE("xpp", Some("XPP License"), Some("http://hl7.org/fhir/spdx-license"))
-  case XSKAT extends SPDX_LICENSE("XSkat", Some("XSkat License"), Some("http://hl7.org/fhir/spdx-license"))
+  case XNET   extends SPDX_LICENSE("Xnet", Some("X.Net License"), Some("http://hl7.org/fhir/spdx-license"))
+  case XPP    extends SPDX_LICENSE("xpp", Some("XPP License"), Some("http://hl7.org/fhir/spdx-license"))
+  case XSKAT  extends SPDX_LICENSE("XSkat", Some("XSkat License"), Some("http://hl7.org/fhir/spdx-license"))
   case YPL_10 extends SPDX_LICENSE("YPL-1.0", Some("Yahoo! Public License v1.0"), Some("http://hl7.org/fhir/spdx-license"))
   case YPL_11 extends SPDX_LICENSE("YPL-1.1", Some("Yahoo! Public License v1.1"), Some("http://hl7.org/fhir/spdx-license"))
-  case ZED extends SPDX_LICENSE("Zed", Some("Zed License"), Some("http://hl7.org/fhir/spdx-license"))
+  case ZED    extends SPDX_LICENSE("Zed", Some("Zed License"), Some("http://hl7.org/fhir/spdx-license"))
   case ZEND_LICENSE_V2_0 extends SPDX_LICENSE("Zend-2.0", Some("Zend License v2.0"), Some("http://hl7.org/fhir/spdx-license"))
   case ZIMBRA_PUBLIC_LICENSE_V1_3
       extends SPDX_LICENSE("Zimbra-1.3", Some("Zimbra Public License v1.3"), Some("http://hl7.org/fhir/spdx-license"))
@@ -3894,7 +3894,7 @@ enum SPECIMEN_STATUS(val name: String, val display: Option[String], val system: 
 object SPECIMEN_STATUS extends EType[SPECIMEN_STATUS]("http://hl7.org/fhir/ValueSet/specimen-status")
 
 enum STRAND_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case CRICK extends STRAND_TYPE("crick", Some("Crick strand of referenceSeq"), Some("http://hl7.org/fhir/strand-type"))
+  case CRICK  extends STRAND_TYPE("crick", Some("Crick strand of referenceSeq"), Some("http://hl7.org/fhir/strand-type"))
   case WATSON extends STRAND_TYPE("watson", Some("Watson strand of referenceSeq"), Some("http://hl7.org/fhir/strand-type"))
 }
 object STRAND_TYPE extends EType[STRAND_TYPE]("http://hl7.org/fhir/ValueSet/strand-type")
@@ -3932,9 +3932,9 @@ object SUBSCRIPTION_CHANNEL_TYPE
     extends EType[SUBSCRIPTION_CHANNEL_TYPE]("http://hl7.org/fhir/ValueSet/subscription-channel-type")
 
 enum SUBSCRIPTION_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends SUBSCRIPTION_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/subscription-status"))
-  case ERROR extends SUBSCRIPTION_STATUS("error", Some("Error"), Some("http://hl7.org/fhir/subscription-status"))
-  case OFF extends SUBSCRIPTION_STATUS("off", Some("Off"), Some("http://hl7.org/fhir/subscription-status"))
+  case ACTIVE    extends SUBSCRIPTION_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/subscription-status"))
+  case ERROR     extends SUBSCRIPTION_STATUS("error", Some("Error"), Some("http://hl7.org/fhir/subscription-status"))
+  case OFF       extends SUBSCRIPTION_STATUS("off", Some("Off"), Some("http://hl7.org/fhir/subscription-status"))
   case REQUESTED extends SUBSCRIPTION_STATUS("requested", Some("Requested"), Some("http://hl7.org/fhir/subscription-status"))
 }
 object SUBSCRIPTION_STATUS extends EType[SUBSCRIPTION_STATUS]("http://hl7.org/fhir/ValueSet/subscription-status")
@@ -3961,14 +3961,14 @@ enum SUPPLYDELIVERY_STATUS(val name: String, val display: Option[String], val sy
 object SUPPLYDELIVERY_STATUS extends EType[SUPPLYDELIVERY_STATUS]("http://hl7.org/fhir/ValueSet/supplydelivery-status")
 
 enum SUPPLYREQUEST_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends SUPPLYREQUEST_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/supplyrequest-status"))
+  case ACTIVE    extends SUPPLYREQUEST_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/supplyrequest-status"))
   case CANCELLED extends SUPPLYREQUEST_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/supplyrequest-status"))
   case COMPLETED extends SUPPLYREQUEST_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/supplyrequest-status"))
-  case DRAFT extends SUPPLYREQUEST_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/supplyrequest-status"))
+  case DRAFT     extends SUPPLYREQUEST_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/supplyrequest-status"))
   case ENTERED_IN_ERROR
       extends SUPPLYREQUEST_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/supplyrequest-status"))
   case SUSPENDED extends SUPPLYREQUEST_STATUS("suspended", Some("Suspended"), Some("http://hl7.org/fhir/supplyrequest-status"))
-  case UNKNOWN extends SUPPLYREQUEST_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/supplyrequest-status"))
+  case UNKNOWN   extends SUPPLYREQUEST_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/supplyrequest-status"))
 }
 object SUPPLYREQUEST_STATUS extends EType[SUPPLYREQUEST_STATUS]("http://hl7.org/fhir/ValueSet/supplyrequest-status")
 
@@ -3988,31 +3988,31 @@ object SYSTEM_RESTFUL_INTERACTION
     extends EType[SYSTEM_RESTFUL_INTERACTION]("http://hl7.org/fhir/ValueSet/system-restful-interaction")
 
 enum TASK_INTENT(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case FILLER_ORDER extends TASK_INTENT("filler-order", Some("filler-order"), Some("http://hl7.org/fhir/request-intent"))
+  case FILLER_ORDER   extends TASK_INTENT("filler-order", Some("filler-order"), Some("http://hl7.org/fhir/request-intent"))
   case INSTANCE_ORDER extends TASK_INTENT("instance-order", Some("instance-order"), Some("http://hl7.org/fhir/request-intent"))
-  case OPTION extends TASK_INTENT("option", Some("option"), Some("http://hl7.org/fhir/request-intent"))
-  case ORDER extends TASK_INTENT("order", Some("order"), Some("http://hl7.org/fhir/request-intent"))
+  case OPTION         extends TASK_INTENT("option", Some("option"), Some("http://hl7.org/fhir/request-intent"))
+  case ORDER          extends TASK_INTENT("order", Some("order"), Some("http://hl7.org/fhir/request-intent"))
   case ORIGINAL_ORDER extends TASK_INTENT("original-order", Some("original-order"), Some("http://hl7.org/fhir/request-intent"))
-  case PLAN extends TASK_INTENT("plan", Some("plan"), Some("http://hl7.org/fhir/request-intent"))
-  case PROPOSAL extends TASK_INTENT("proposal", Some("proposal"), Some("http://hl7.org/fhir/request-intent"))
-  case REFLEX_ORDER extends TASK_INTENT("reflex-order", Some("reflex-order"), Some("http://hl7.org/fhir/request-intent"))
-  case UNKNOWN extends TASK_INTENT("unknown", Some("Unknown"), Some("http://hl7.org/fhir/task-intent"))
+  case PLAN           extends TASK_INTENT("plan", Some("plan"), Some("http://hl7.org/fhir/request-intent"))
+  case PROPOSAL       extends TASK_INTENT("proposal", Some("proposal"), Some("http://hl7.org/fhir/request-intent"))
+  case REFLEX_ORDER   extends TASK_INTENT("reflex-order", Some("reflex-order"), Some("http://hl7.org/fhir/request-intent"))
+  case UNKNOWN        extends TASK_INTENT("unknown", Some("Unknown"), Some("http://hl7.org/fhir/task-intent"))
 }
 object TASK_INTENT extends EType[TASK_INTENT]("http://hl7.org/fhir/ValueSet/task-intent")
 
 enum TASK_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACCEPTED extends TASK_STATUS("accepted", Some("Accepted"), Some("http://hl7.org/fhir/task-status"))
-  case CANCELLED extends TASK_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/task-status"))
-  case COMPLETED extends TASK_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/task-status"))
-  case DRAFT extends TASK_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/task-status"))
+  case ACCEPTED         extends TASK_STATUS("accepted", Some("Accepted"), Some("http://hl7.org/fhir/task-status"))
+  case CANCELLED        extends TASK_STATUS("cancelled", Some("Cancelled"), Some("http://hl7.org/fhir/task-status"))
+  case COMPLETED        extends TASK_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/task-status"))
+  case DRAFT            extends TASK_STATUS("draft", Some("Draft"), Some("http://hl7.org/fhir/task-status"))
   case ENTERED_IN_ERROR extends TASK_STATUS("entered-in-error", Some("Entered in Error"), Some("http://hl7.org/fhir/task-status"))
-  case FAILED extends TASK_STATUS("failed", Some("Failed"), Some("http://hl7.org/fhir/task-status"))
-  case IN_PROGRESS extends TASK_STATUS("in-progress", Some("In Progress"), Some("http://hl7.org/fhir/task-status"))
-  case ON_HOLD extends TASK_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/task-status"))
-  case READY extends TASK_STATUS("ready", Some("Ready"), Some("http://hl7.org/fhir/task-status"))
-  case RECEIVED extends TASK_STATUS("received", Some("Received"), Some("http://hl7.org/fhir/task-status"))
-  case REJECTED extends TASK_STATUS("rejected", Some("Rejected"), Some("http://hl7.org/fhir/task-status"))
-  case REQUESTED extends TASK_STATUS("requested", Some("Requested"), Some("http://hl7.org/fhir/task-status"))
+  case FAILED           extends TASK_STATUS("failed", Some("Failed"), Some("http://hl7.org/fhir/task-status"))
+  case IN_PROGRESS      extends TASK_STATUS("in-progress", Some("In Progress"), Some("http://hl7.org/fhir/task-status"))
+  case ON_HOLD          extends TASK_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/task-status"))
+  case READY            extends TASK_STATUS("ready", Some("Ready"), Some("http://hl7.org/fhir/task-status"))
+  case RECEIVED         extends TASK_STATUS("received", Some("Received"), Some("http://hl7.org/fhir/task-status"))
+  case REJECTED         extends TASK_STATUS("rejected", Some("Rejected"), Some("http://hl7.org/fhir/task-status"))
+  case REQUESTED        extends TASK_STATUS("requested", Some("Requested"), Some("http://hl7.org/fhir/task-status"))
 }
 object TASK_STATUS extends EType[TASK_STATUS]("http://hl7.org/fhir/ValueSet/task-status")
 
@@ -4034,21 +4034,21 @@ enum TYPE_RESTFUL_INTERACTION(val name: String, val display: Option[String], val
   case HISTORY_TYPE
       extends TYPE_RESTFUL_INTERACTION("history-type", Some("history-type"), Some("http://hl7.org/fhir/restful-interaction"))
   case PATCH extends TYPE_RESTFUL_INTERACTION("patch", Some("patch"), Some("http://hl7.org/fhir/restful-interaction"))
-  case READ extends TYPE_RESTFUL_INTERACTION("read", Some("read"), Some("http://hl7.org/fhir/restful-interaction"))
+  case READ  extends TYPE_RESTFUL_INTERACTION("read", Some("read"), Some("http://hl7.org/fhir/restful-interaction"))
   case SEARCH_TYPE
       extends TYPE_RESTFUL_INTERACTION("search-type", Some("search-type"), Some("http://hl7.org/fhir/restful-interaction"))
   case UPDATE extends TYPE_RESTFUL_INTERACTION("update", Some("update"), Some("http://hl7.org/fhir/restful-interaction"))
-  case VREAD extends TYPE_RESTFUL_INTERACTION("vread", Some("vread"), Some("http://hl7.org/fhir/restful-interaction"))
+  case VREAD  extends TYPE_RESTFUL_INTERACTION("vread", Some("vread"), Some("http://hl7.org/fhir/restful-interaction"))
 }
 object TYPE_RESTFUL_INTERACTION extends EType[TYPE_RESTFUL_INTERACTION]("http://hl7.org/fhir/ValueSet/type-restful-interaction")
 
 enum UDI_ENTRY_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case BARCODE extends UDI_ENTRY_TYPE("barcode", Some("Barcode"), Some("http://hl7.org/fhir/udi-entry-type"))
-  case CARD extends UDI_ENTRY_TYPE("card", Some("Card"), Some("http://hl7.org/fhir/udi-entry-type"))
-  case MANUAL extends UDI_ENTRY_TYPE("manual", Some("Manual"), Some("http://hl7.org/fhir/udi-entry-type"))
-  case RFID extends UDI_ENTRY_TYPE("rfid", Some("RFID"), Some("http://hl7.org/fhir/udi-entry-type"))
+  case BARCODE       extends UDI_ENTRY_TYPE("barcode", Some("Barcode"), Some("http://hl7.org/fhir/udi-entry-type"))
+  case CARD          extends UDI_ENTRY_TYPE("card", Some("Card"), Some("http://hl7.org/fhir/udi-entry-type"))
+  case MANUAL        extends UDI_ENTRY_TYPE("manual", Some("Manual"), Some("http://hl7.org/fhir/udi-entry-type"))
+  case RFID          extends UDI_ENTRY_TYPE("rfid", Some("RFID"), Some("http://hl7.org/fhir/udi-entry-type"))
   case SELF_REPORTED extends UDI_ENTRY_TYPE("self-reported", Some("Self Reported"), Some("http://hl7.org/fhir/udi-entry-type"))
-  case UNKNOWN extends UDI_ENTRY_TYPE("unknown", Some("Unknown"), Some("http://hl7.org/fhir/udi-entry-type"))
+  case UNKNOWN       extends UDI_ENTRY_TYPE("unknown", Some("Unknown"), Some("http://hl7.org/fhir/udi-entry-type"))
 }
 object UDI_ENTRY_TYPE extends EType[UDI_ENTRY_TYPE]("http://hl7.org/fhir/ValueSet/udi-entry-type")
 
@@ -4071,7 +4071,7 @@ object V3_CONFIDENTIALITYCLASSIFICATION
     extends EType[V3_CONFIDENTIALITYCLASSIFICATION]("http://terminology.hl7.org/ValueSet/v3-ConfidentialityClassification")
 
 enum VARIABLE_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case CONTINUOUS extends VARIABLE_TYPE("continuous", Some("Continuous"), Some("http://hl7.org/fhir/variable-type"))
+  case CONTINUOUS  extends VARIABLE_TYPE("continuous", Some("Continuous"), Some("http://hl7.org/fhir/variable-type"))
   case DESCRIPTIVE extends VARIABLE_TYPE("descriptive", Some("Descriptive"), Some("http://hl7.org/fhir/variable-type"))
   case DICHOTOMOUS extends VARIABLE_TYPE("dichotomous", Some("Dichotomous"), Some("http://hl7.org/fhir/variable-type"))
 }
@@ -4109,14 +4109,14 @@ object VERSIONING_POLICY extends EType[VERSIONING_POLICY]("http://hl7.org/fhir/V
 
 enum VISION_BASE_CODES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case DOWN extends VISION_BASE_CODES("down", Some("Down"), Some("http://hl7.org/fhir/vision-base-codes"))
-  case IN extends VISION_BASE_CODES("in", Some("In"), Some("http://hl7.org/fhir/vision-base-codes"))
-  case OUT extends VISION_BASE_CODES("out", Some("Out"), Some("http://hl7.org/fhir/vision-base-codes"))
-  case UP extends VISION_BASE_CODES("up", Some("Up"), Some("http://hl7.org/fhir/vision-base-codes"))
+  case IN   extends VISION_BASE_CODES("in", Some("In"), Some("http://hl7.org/fhir/vision-base-codes"))
+  case OUT  extends VISION_BASE_CODES("out", Some("Out"), Some("http://hl7.org/fhir/vision-base-codes"))
+  case UP   extends VISION_BASE_CODES("up", Some("Up"), Some("http://hl7.org/fhir/vision-base-codes"))
 }
 object VISION_BASE_CODES extends EType[VISION_BASE_CODES]("http://hl7.org/fhir/ValueSet/vision-base-codes")
 
 enum VISION_EYE_CODES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case LEFT extends VISION_EYE_CODES("left", Some("Left Eye"), Some("http://hl7.org/fhir/vision-eye-codes"))
+  case LEFT  extends VISION_EYE_CODES("left", Some("Left Eye"), Some("http://hl7.org/fhir/vision-eye-codes"))
   case RIGHT extends VISION_EYE_CODES("right", Some("Right Eye"), Some("http://hl7.org/fhir/vision-eye-codes"))
 }
 object VISION_EYE_CODES extends EType[VISION_EYE_CODES]("http://hl7.org/fhir/ValueSet/vision-eye-codes")

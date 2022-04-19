@@ -428,108 +428,108 @@ object SearchParameter extends CompanionFor[SearchParameter] {
   *   modifier, publisher, useContext, expression, xpathUsage, multipleOr, comparator, derivedFrom, description, multipleAnd,
   *   experimental, jurisdiction, component.
   * @param id
-  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  *   \- The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
-  *   - An absolute URI that is used to identify this search parameter when it is referenced in a specification, model, design or
+  *   \- An absolute URI that is used to identify this search parameter when it is referenced in a specification, model, design or
   *   an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which
   *   at which an authoritative instance of this search parameter is (or will be) published. This URL can be the target of a
   *   canonical reference. It SHALL remain the same when the search parameter is stored on different servers.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   \- The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
   *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   \- A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
   *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
   *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
   *   represented in the narrative to ensure clinical safety.
   * @param name
-  *   - A natural language name identifying the search parameter. This name should be usable as an identifier for the module by
+  *   \- A natural language name identifying the search parameter. This name should be usable as an identifier for the module by
   *   machine processing applications such as code generation.
   * @param date
-  *   - The date (and optionally time) when the search parameter was published. The date must change when the business version
+  *   \- The date (and optionally time) when the search parameter was published. The date must change when the business version
   *   changes and it must change if the status code changes. In addition, it should change when the substantive content of the
   *   search parameter changes.
   * @param code
-  *   - The code used in the URL or the parameter name in a parameters resource for this search parameter.
+  *   \- The code used in the URL or the parameter name in a parameters resource for this search parameter.
   * @param base
-  *   - The base resource type(s) that this search parameter can be used against.
+  *   \- The base resource type(s) that this search parameter can be used against.
   * @param `type`
-  *   - The type of value that a search parameter may contain, and how the content is interpreted.
+  *   \- The type of value that a search parameter may contain, and how the content is interpreted.
   * @param xpath
-  *   - An XPath expression that returns a set of elements for the search parameter.
+  *   \- An XPath expression that returns a set of elements for the search parameter.
   * @param chain
-  *   - Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters
+  *   \- Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters
   *   may be added to search parameters of type reference and specify that resources will only be returned if they contain a
   *   reference to a resource which matches the chained parameter value. Values for this field should be drawn from
   *   SearchParameter.code for a parameter on the target resource type.
   * @param status
-  *   - The status of this search parameter. Enables tracking the life-cycle of the content.
+  *   \- The status of this search parameter. Enables tracking the life-cycle of the content.
   * @param target
-  *   - Types of resource (if a resource is referenced).
+  *   \- Types of resource (if a resource is referenced).
   * @param version
-  *   - The identifier that is used to identify this version of the search parameter when it is referenced in a specification,
+  *   \- The identifier that is used to identify this version of the search parameter when it is referenced in a specification,
   *   model, design or instance. This is an arbitrary value managed by the search parameter author and is not expected to be
   *   globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also
   *   no expectation that versions can be placed in a lexicographical sequence.
   * @param contact
-  *   - Contact details to assist a user in finding and communicating with the publisher.
+  *   \- Contact details to assist a user in finding and communicating with the publisher.
   * @param purpose
-  *   - Explanation of why this search parameter is needed and why it has been designed as it has.
+  *   \- Explanation of why this search parameter is needed and why it has been designed as it has.
   * @param language
-  *   - The base language in which the resource is written.
+  *   \- The base language in which the resource is written.
   * @param modifier
-  *   - A modifier supported for the search parameter.
+  *   \- A modifier supported for the search parameter.
   * @param contained
-  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   \- These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param publisher
-  *   - The name of the organization or individual that published the search parameter.
+  *   \- The name of the organization or individual that published the search parameter.
   * @param useContext
-  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
+  *   \- The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
   *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
   *   used to assist with indexing and searching for appropriate search parameter instances.
   * @param expression
-  *   - A FHIRPath expression that returns a set of elements for the search parameter.
+  *   \- A FHIRPath expression that returns a set of elements for the search parameter.
   * @param xpathUsage
-  *   - How the search parameter relates to the set of elements returned by evaluating the xpath query.
+  *   \- How the search parameter relates to the set of elements returned by evaluating the xpath query.
   * @param multipleOr
-  *   - Whether multiple values are allowed for each time the parameter exists. Values are separated by commas, and the parameter
+  *   \- Whether multiple values are allowed for each time the parameter exists. Values are separated by commas, and the parameter
   *   matches if any of the values match.
   * @param comparator
-  *   - Comparators supported for the search parameter.
+  *   \- Comparators supported for the search parameter.
   * @param derivedFrom
-  *   - Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter
+  *   \- Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter
   *   must be consistent with the definition from which it is defined. i.e. the parameter should have the same meaning, and
   *   (usually) the functionality should be a proper subset of the underlying search parameter.
   * @param description
-  *   - And how it used.
+  *   \- And how it used.
   * @param multipleAnd
-  *   - Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the
+  *   \- Whether multiple parameters are allowed - e.g. more than one parameter with the same name. The search matches if all the
   *   parameters match.
   * @param experimental
-  *   - A Boolean value to indicate that this search parameter is authored for testing purposes (or
+  *   \- A Boolean value to indicate that this search parameter is authored for testing purposes (or
   *   education/evaluation/marketing) and is not intended to be used for genuine usage.
   * @param jurisdiction
-  *   - A legal or geographic region in which the search parameter is intended to be used.
+  *   \- A legal or geographic region in which the search parameter is intended to be used.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   \- A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
-  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
-  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
-  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
-  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
-  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
-  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource and that
+  *   modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants.
+  *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
+  *   strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an
+  *   extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications
+  *   processing a resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any
+  *   elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param component
-  *   - Used to define the parts of a composite search parameter.
+  *   \- Used to define the parts of a composite search parameter.
   */
 @POJOBoilerplate
 class SearchParameter(

@@ -459,70 +459,70 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
   *   jurisdiction, validityPeriod, dataExclusivityPeriod, internationalBirthDate, dateOfFirstAuthorization, procedure,
   *   jurisdictionalAuthorization.
   * @param id
-  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  *   \- The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   \- The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
   *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   \- A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
   *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
   *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
   *   represented in the narrative to ensure clinical safety.
   * @param status
-  *   - The status of the marketing authorization.
+  *   \- The status of the marketing authorization.
   * @param holder
-  *   - Marketing Authorization Holder.
+  *   \- Marketing Authorization Holder.
   * @param subject
-  *   - The medicinal product that is being authorized.
+  *   \- The medicinal product that is being authorized.
   * @param country
-  *   - The country in which the marketing authorization has been granted.
+  *   \- The country in which the marketing authorization has been granted.
   * @param language
-  *   - The base language in which the resource is written.
+  *   \- The base language in which the resource is written.
   * @param contained
-  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   \- These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param regulator
-  *   - Medicines Regulatory Agency.
+  *   \- Medicines Regulatory Agency.
   * @param identifier
-  *   - Business identifier for the marketing authorization, as assigned by a regulator.
+  *   \- Business identifier for the marketing authorization, as assigned by a regulator.
   * @param statusDate
-  *   - The date at which the given status has become applicable.
+  *   \- The date at which the given status has become applicable.
   * @param legalBasis
-  *   - The legal framework against which this authorization is granted.
+  *   \- The legal framework against which this authorization is granted.
   * @param restoreDate
-  *   - The date when a suspended the marketing or the marketing authorization of the product is anticipated to be restored.
+  *   \- The date when a suspended the marketing or the marketing authorization of the product is anticipated to be restored.
   * @param jurisdiction
-  *   - Jurisdiction within a country.
+  *   \- Jurisdiction within a country.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   \- A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
   * @param validityPeriod
-  *   - The beginning of the time period in which the marketing authorization is in the specific status shall be specified A
+  *   \- The beginning of the time period in which the marketing authorization is in the specific status shall be specified A
   *   complete date consisting of day, month and year shall be specified using the ISO 8601 date format.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
-  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
-  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
-  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
-  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
-  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
-  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource and that
+  *   modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants.
+  *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
+  *   strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an
+  *   extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications
+  *   processing a resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any
+  *   elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param dataExclusivityPeriod
-  *   - A period of time after authorization before generic product applicatiosn can be submitted.
+  *   \- A period of time after authorization before generic product applicatiosn can be submitted.
   * @param internationalBirthDate
-  *   - Date of first marketing authorization for a company's new medicinal product in any country in the World.
+  *   \- Date of first marketing authorization for a company's new medicinal product in any country in the World.
   * @param dateOfFirstAuthorization
-  *   - The date when the first authorization was granted by a Medicines Regulatory Agency.
+  *   \- The date when the first authorization was granted by a Medicines Regulatory Agency.
   * @param procedure
-  *   - The regulatory procedure for granting or amending a marketing authorization.
+  *   \- The regulatory procedure for granting or amending a marketing authorization.
   * @param jurisdictionalAuthorization
-  *   - Authorization in areas within a country.
+  *   \- Authorization in areas within a country.
   */
 @POJOBoilerplate
 class MedicinalProductAuthorization(

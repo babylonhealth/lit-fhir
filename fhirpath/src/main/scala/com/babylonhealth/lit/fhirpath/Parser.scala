@@ -69,7 +69,7 @@ trait Parser extends Lexer {
 
   val typeSpecifier: P[TypeSpecifier] =
     (
-      ((string("FHIR") ~+ char('.')).?.with1 *> fhirType map ("FHIR"         -> _)) |
+      ((string("FHIR") ~+ char('.')).?.with1 *> fhirType map ("FHIR" -> _)) |
         ((string("System") ~+ char('.')).?.with1 *> systemType map ("System" -> _))
     ).map((TypeSpecifier.apply _).tupled)
 

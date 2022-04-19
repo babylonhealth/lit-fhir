@@ -93,16 +93,16 @@ object Contributor extends CompanionFor[Contributor] {
   * @constructor
   *   Introduces the fields `type`, name, contact.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   \- Unique id for the element within a resource (for internal references). This may be any string value that does not contain
   *   spaces.
   * @param `type`
-  *   - The type of contributor.
+  *   \- The type of contributor.
   * @param name
-  *   - The name of the individual or organization responsible for the contribution.
+  *   \- The name of the individual or organization responsible for the contribution.
   * @param contact
-  *   - Contact details to assist a user in finding and communicating with the contributor.
+  *   \- Contact details to assist a user in finding and communicating with the contributor.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   \- May be used to represent additional information that is not part of the basic definition of the element. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.

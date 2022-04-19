@@ -747,84 +747,84 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
   *   parentDevice, manufacturer, shelfLifeStorage, onlineInformation, physicalCharacteristics, property, deviceName, capability,
   *   material, specialization, udiDeviceIdentifier.
   * @param id
-  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  *   \- The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
-  *   - A network address on which the device may be contacted directly.
+  *   \- A network address on which the device may be contacted directly.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   \- The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
   *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   \- A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
   *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
   *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
   *   represented in the narrative to ensure clinical safety.
   * @param `type`
-  *   - What kind of device or device system this is.
+  *   \- What kind of device or device system this is.
   * @param note
-  *   - Descriptive information, usage information or implantation information that is not captured in an existing element.
+  *   \- Descriptive information, usage information or implantation information that is not captured in an existing element.
   * @param owner
-  *   - An organization that is responsible for the provision and ongoing maintenance of the device.
+  *   \- An organization that is responsible for the provision and ongoing maintenance of the device.
   * @param safety
-  *   - Safety characteristics of the device.
+  *   \- Safety characteristics of the device.
   * @param version
-  *   - The available versions of the device, e.g., software versions.
+  *   \- The available versions of the device, e.g., software versions.
   * @param contact
-  *   - Contact details for an organization or a particular human that is responsible for the device.
+  *   \- Contact details for an organization or a particular human that is responsible for the device.
   * @param language
-  *   - The base language in which the resource is written.
+  *   \- The base language in which the resource is written.
   * @param quantity
-  *   - The quantity of the device present in the packaging (e.g. the number of devices present in a pack, or the number of
+  *   \- The quantity of the device present in the packaging (e.g. the number of devices present in a pack, or the number of
   *   devices in the same package of the medicinal product).
   * @param contained
-  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   \- These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param identifier
-  *   - Unique instance identifiers assigned to a device by the software, manufacturers, other organizations or owners. For
+  *   \- Unique instance identifiers assigned to a device by the software, manufacturers, other organizations or owners. For
   *   example: handle ID.
   * @param modelNumber
-  *   - The model number for the device.
+  *   \- The model number for the device.
   * @param languageCode
-  *   - Language code for the human-readable text strings produced by the device (all supported).
+  *   \- Language code for the human-readable text strings produced by the device (all supported).
   * @param parentDevice
-  *   - The parent device it can be part of.
+  *   \- The parent device it can be part of.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   \- A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
   * @param manufacturer
-  *   - A name of the manufacturer.
+  *   \- A name of the manufacturer.
   * @param shelfLifeStorage
-  *   - Shelf Life and storage information.
+  *   \- Shelf Life and storage information.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
-  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
-  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
-  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
-  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
-  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
-  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource and that
+  *   modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants.
+  *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
+  *   strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an
+  *   extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications
+  *   processing a resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any
+  *   elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param onlineInformation
-  *   - Access to on-line information about the device.
+  *   \- Access to on-line information about the device.
   * @param physicalCharacteristics
-  *   - Dimensions, color etc.
+  *   \- Dimensions, color etc.
   * @param property
-  *   - The actual configuration settings of a device as it actually operates, e.g., regulation status, time properties.
+  *   \- The actual configuration settings of a device as it actually operates, e.g., regulation status, time properties.
   * @param deviceName
-  *   - A name given to the device to identify it.
+  *   \- A name given to the device to identify it.
   * @param capability
-  *   - Device capabilities.
+  *   \- Device capabilities.
   * @param material
-  *   - A substance used to create the material(s) of which the device is made.
+  *   \- A substance used to create the material(s) of which the device is made.
   * @param specialization
-  *   - The capabilities supported on a device, the standards to which the device conforms for a particular purpose, and used for
+  *   \- The capabilities supported on a device, the standards to which the device conforms for a particular purpose, and used for
   *   the communication.
   * @param udiDeviceIdentifier
-  *   - Unique device identifier (UDI) assigned to device label or package. Note that the Device may include multiple udiCarriers
+  *   \- Unique device identifier (UDI) assigned to device label or package. Note that the Device may include multiple udiCarriers
   *   as it either may include just the udiCarrier for the jurisdiction it is sold, or for multiple jurisdictions it could have
   *   been sold.
   */

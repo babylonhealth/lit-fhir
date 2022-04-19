@@ -189,53 +189,53 @@ object ProdCharacteristic extends CompanionFor[ProdCharacteristic] {
   * @constructor
   *   Introduces the fields width, depth, shape, color, image, height, weight, imprint, scoring, nominalVolume, externalDiameter.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   \- Unique id for the element within a resource (for internal references). This may be any string value that does not contain
   *   spaces.
   * @param width
-  *   - Where applicable, the width can be specified using a numerical value and its unit of measurement The unit of measurement
+  *   \- Where applicable, the width can be specified using a numerical value and its unit of measurement The unit of measurement
   *   shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol identifier shall be
   *   used.
   * @param depth
-  *   - Where applicable, the depth can be specified using a numerical value and its unit of measurement The unit of measurement
+  *   \- Where applicable, the depth can be specified using a numerical value and its unit of measurement The unit of measurement
   *   shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol identifier shall be
   *   used.
   * @param shape
-  *   - Where applicable, the shape can be specified An appropriate controlled vocabulary shall be used The term and the term
+  *   \- Where applicable, the shape can be specified An appropriate controlled vocabulary shall be used The term and the term
   *   identifier shall be used.
   * @param color
-  *   - Where applicable, the color can be specified An appropriate controlled vocabulary shall be used The term and the term
+  *   \- Where applicable, the color can be specified An appropriate controlled vocabulary shall be used The term and the term
   *   identifier shall be used.
   * @param image
-  *   - Where applicable, the image can be provided The format of the image attachment shall be specified by regional
+  *   \- Where applicable, the image can be provided The format of the image attachment shall be specified by regional
   *   implementations.
   * @param height
-  *   - Where applicable, the height can be specified using a numerical value and its unit of measurement The unit of measurement
+  *   \- Where applicable, the height can be specified using a numerical value and its unit of measurement The unit of measurement
   *   shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol identifier shall be
   *   used.
   * @param weight
-  *   - Where applicable, the weight can be specified using a numerical value and its unit of measurement The unit of measurement
+  *   \- Where applicable, the weight can be specified using a numerical value and its unit of measurement The unit of measurement
   *   shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol identifier shall be
   *   used.
   * @param imprint
-  *   - Where applicable, the imprint can be specified as text.
+  *   \- Where applicable, the imprint can be specified as text.
   * @param scoring
-  *   - Where applicable, the scoring can be specified An appropriate controlled vocabulary shall be used The term and the term
+  *   \- Where applicable, the scoring can be specified An appropriate controlled vocabulary shall be used The term and the term
   *   identifier shall be used.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   \- May be used to represent additional information that is not part of the basic definition of the element. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param nominalVolume
-  *   - Where applicable, the nominal volume can be specified using a numerical value and its unit of measurement The unit of
+  *   \- Where applicable, the nominal volume can be specified using a numerical value and its unit of measurement The unit of
   *   measurement shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol
   *   identifier shall be used.
   * @param externalDiameter
-  *   - Where applicable, the external diameter can be specified using a numerical value and its unit of measurement The unit of
+  *   \- Where applicable, the external diameter can be specified using a numerical value and its unit of measurement The unit of
   *   measurement shall be specified in accordance with ISO 11240 and the resulting terminology The symbol and the symbol
   *   identifier shall be used.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the element and that modifies
+  *   \- May be used to represent additional information that is not part of the basic definition of the element and that modifies
   *   the understanding of the element in which it is contained and/or the understanding of the containing element's descendants.
   *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
   *   strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension,

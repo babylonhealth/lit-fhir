@@ -242,7 +242,7 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
       case d: FHIRDateTime => d.fmt
       case q: Quantity if q.value.isDefined =>
         s"""${q.value.get} '${(q.unit orElse when(q.system.contains("http://unitsofmeasure.org"))(q.code).flatten)
-          .getOrElse("")}'"""
+            .getOrElse("")}'"""
     }
   def toTime(input: Value): Option[LocalTime] =
     input tryCollect {
