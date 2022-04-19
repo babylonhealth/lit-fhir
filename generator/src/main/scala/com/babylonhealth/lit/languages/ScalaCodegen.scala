@@ -912,6 +912,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
        |""" else ""}
        |object Module extends ModuleDict(Map(${lookups
       .map { case (url, obj) => s""""$url" -> $obj""" }
+      .toSeq
+      .sorted
       .mkString(", ")}))
        |
        |""".stripMargin

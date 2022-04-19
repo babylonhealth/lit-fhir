@@ -289,7 +289,7 @@ abstract class FHIRObject(
   }
 
   private final def >>>[T](fn: T => T, suffix: Option[String], cond: (Any, LTag[_]) => Boolean): (this.type, Boolean) = {
-    var changed               = false
+    var changed                  = false
     def change[T1](t: => T1): T1 = { changed = true; t }
     val newFields = fields.map {
       case FHIRComponentField(_, v @ (None | LitSeq.emptyInstance)) => v

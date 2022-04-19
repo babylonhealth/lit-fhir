@@ -121,10 +121,10 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     val w = companionClassName(base64Tag)
     w shouldEqual "scala.Array[=scala.Byte]" // should it tho'?
     val bundleEntryTag = lTagOf[Bundle.Entry]
-    val v = companionClassName(bundleEntryTag)
+    val v              = companionClassName(bundleEntryTag)
     v shouldEqual "com.babylonhealth.lit.hl7.model.Bundle$Entry"
     val bundleEntrySearchTag = lTagOf[Bundle.Entry.Search]
-    val u = companionClassName(bundleEntrySearchTag)
+    val u                    = companionClassName(bundleEntrySearchTag)
     u shouldEqual "com.babylonhealth.lit.hl7.model.Bundle$Entry$Search"
   }
   "union methods" - {
