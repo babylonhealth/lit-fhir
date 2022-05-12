@@ -145,37 +145,37 @@ object Address extends CompanionFor[Address] {
   * @constructor
   *   Introduces the fields use, `type`, text, line, city, state, period, country, district, postalCode.
   * @param id
-  *   \- Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
   *   spaces.
   * @param use
-  *   \- The purpose of this address.
+  *   - The purpose of this address.
   * @param `type`
-  *   \- Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of
+  *   - Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of
   *   addresses). Most addresses are both.
   * @param text
-  *   \- Specifies the entire address as it should be displayed e.g. on a postal label. This may be provided instead of or as well
+  *   - Specifies the entire address as it should be displayed e.g. on a postal label. This may be provided instead of or as well
   *   as the specific parts.
   * @param line
-  *   \- This component contains the house number, apartment number, street name, street direction, P.O. Box number, delivery
+  *   - This component contains the house number, apartment number, street name, street direction, P.O. Box number, delivery
   *   hints, and similar address information.
   * @param city
-  *   \- The name of the city, town, suburb, village or other community or delivery center.
+  *   - The name of the city, town, suburb, village or other community or delivery center.
   * @param state
-  *   \- Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in
+  *   - Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in
   *   common use (e.g. US 2 letter state codes).
   * @param period
-  *   \- Time period when address was/is in use.
+  *   - Time period when address was/is in use.
   * @param country
-  *   \- Country - a nation as commonly understood or generally accepted.
+  *   - Country - a nation as commonly understood or generally accepted.
   * @param district
-  *   \- The name of the administrative area (county).
+  *   - The name of the administrative area (county).
   * @param extension
-  *   \- May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param postalCode
-  *   \- A postal code designating a region defined by the postal service.
+  *   - A postal code designating a region defined by the postal service.
   */
 @POJOBoilerplate
 class Address(

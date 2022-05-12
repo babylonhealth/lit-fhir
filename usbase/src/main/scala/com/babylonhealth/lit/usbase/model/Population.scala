@@ -112,21 +112,21 @@ object Population extends CompanionFor[Population] {
   * @constructor
   *   Introduces the fields race, age, gender, physiologicalCondition.
   * @param id
-  *   \- Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
   *   spaces.
   * @param race
-  *   \- Race of the specific population.
+  *   - Race of the specific population.
   * @param age
-  *   \- The age of the specific population.
+  *   - The age of the specific population.
   * @param gender
-  *   \- The gender of the specific population.
+  *   - The gender of the specific population.
   * @param extension
-  *   \- May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param modifierExtension
-  *   \- May be used to represent additional information that is not part of the basic definition of the element and that modifies
+  *   - May be used to represent additional information that is not part of the basic definition of the element and that modifies
   *   the understanding of the element in which it is contained and/or the understanding of the containing element's descendants.
   *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
   *   strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension,
@@ -134,7 +134,7 @@ object Population extends CompanionFor[Population] {
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param physiologicalCondition
-  *   \- The existing physiological conditions of the specific population to which this applies.
+  *   - The existing physiological conditions of the specific population to which this applies.
   */
 @POJOBoilerplate
 class Population(

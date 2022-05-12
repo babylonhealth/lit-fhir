@@ -12,4 +12,4 @@ patch core/src/main/scala/com/babylonhealth/lit/core/model/Extension.scala Exten
 rm -f hl7/src/main/scala/com/babylonhealth/lit/hl7/model/Bundle.scala.orig \
 core/src/main/scala/com/babylonhealth/lit/core/model/Resource.scala.orig \
 core/src/main/scala/com/babylonhealth/lit/core/model/Extension.scala.orig
-find . -name '*.scala' | xargs grep -l '\r' | xargs perl -pi.to_del -e 's/\r/ /g' && find . -name '*.to_del' -exec rm -rf {} \;
+find . -name '*.scala' | xargs grep -l '\r\|\\-' | xargs perl -pi.to_del -e '$_ =~ s/(\r)|(?:^(.*[*])(?:( +)|(.*) *)[\\]-)/$1 ? " " : $3 ? "$2$3-" : "$2$4\n$2 -" /eg' && find . -name '*.to_del' -exec rm -rf {} \;

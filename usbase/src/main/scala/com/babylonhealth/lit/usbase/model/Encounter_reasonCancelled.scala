@@ -79,12 +79,12 @@ object Encounter_reasonCancelled extends CompanionFor[Encounter_reasonCancelled]
   *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
   *   the following fields: url.
   * @param id
-  *   \- Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
   *   spaces.
   * @param url
-  *   \- Source of the definition for the extension code - a logical name or a URL.
+  *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value
-  *   \- Value of extension - must be one of a constrained set of the data types (see
+  *   - Value of extension - must be one of a constrained set of the data types (see
   *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
