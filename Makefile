@@ -93,6 +93,7 @@ build-all-class-models:
 	sbt scalafmtAll
 	sbt $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh
+	sbt $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
 
 clean-target:
 	rm -rf target/ */target

@@ -113,7 +113,7 @@ object MoneyQuantity extends CompanionFor[MoneyQuantity] {
   *   Inherits all params from parent.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *   spaces.
+  *     spaces.
   * @param unit
   *   - A human-readable form of the unit.
   * @param code
@@ -124,12 +124,12 @@ object MoneyQuantity extends CompanionFor[MoneyQuantity] {
   *   - The identification of the system that provides the coded form of the unit.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
-  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *   of the extension.
+  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *     of the extension.
   * @param comparator
-  *   - How the value should be understood and represented - whether the actual value is greater or less than the stated value
-  *   due to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
+  *   - How the value should be understood and represented - whether the actual value is greater or less than the stated value due
+  *     to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
   */
 @POJOBoilerplate
 class MoneyQuantity(

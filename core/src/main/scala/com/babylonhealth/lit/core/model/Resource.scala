@@ -93,13 +93,13 @@ object Resource extends CompanionFor[Resource] {
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
   *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
-  *   not always be associated with version changes to the resource.
+  *     not always be associated with version changes to the resource.
   * @param language
   *   - The base language in which the resource is written.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
-  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
-  *   other profiles etc.
+  *     processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *     other profiles etc.
   */
 @POJOBoilerplate
 class Resource(
