@@ -30,7 +30,7 @@ val V = new {
   val logback                = "1.2.11"
   val lombok                 = "1.18.24"
   val scalaMeterVersion      = "0.22"
-  val scalaTest              = "3.2.11"
+  val scalaTest              = "3.2.12"
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
@@ -65,7 +65,7 @@ lazy val macros = project
   .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.5.4") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.5.6") else Nil)
   )
 
 def getGeneratorVersion: String = sys.props.get("genver") match {
