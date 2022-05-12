@@ -106,7 +106,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
               Failure(
                 DecodingFailure(
                   s"Failed to decode: ignoreUnknownFields is false, and the following unexpected fields were seen: ${s
-                    .mkString("[", ", ", "]")}",
+                      .mkString("[", ", ", "]")}",
                   cursor.history))
             case s => Success(())
           }

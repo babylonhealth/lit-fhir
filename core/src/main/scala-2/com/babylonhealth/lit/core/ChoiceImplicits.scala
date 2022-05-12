@@ -73,9 +73,7 @@ object ChoiceImplicits {
     // like strictValueAs, but we can only call it when it's provable that Sub is a component of the union T
     def as[Sub](implicit
         tt: LTag[Sub],
-        @implicitNotFound("Cannot prove that ${Sub} is a viable type for union ${T}") witness: UnionWitness[
-          U,
-          Sub]): Option[Sub] = {
+        @implicitNotFound("Cannot prove that ${Sub} is a viable type for union ${T}") witness: UnionWitness[U, Sub]): Option[Sub] = {
       if (ref.elTT.tag =:= tt.tag) Some(ref.value.asInstanceOf[Sub])
       else None
     }

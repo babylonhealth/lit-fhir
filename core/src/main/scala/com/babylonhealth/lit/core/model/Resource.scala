@@ -110,7 +110,7 @@ class Resource(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends FHIRObject(primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Resource"
-  // / Patched-in methods:
+  /// Patched-in methods:
   def getIdentifier: Option[String] = id map (i => s"$thisTypeName/$i")
   def getVersionedIdentifier: Option[String] =
     getIdentifier.zip(meta.flatMap(_.versionId)).map { case (i, v) => s"$i/_history/$v" }

@@ -142,8 +142,9 @@ class OldFauxLensTest extends AnyFreeSpec with Matchers {
         r.fold((_: Int).toDouble).and((_: String).length.toDouble).and((d: Double) => d).run
     }
     "can do big" in {
-      def fold(r: Choice[
-        Boolean \/ CodeableConcept \/ Int \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/ String \/ ZonedDateTime]): Double =
+      def fold(
+          r: Choice[Boolean \/ CodeableConcept \/ Int \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/
+            String \/ ZonedDateTime]): Double =
         r.fold((_: Boolean) => 0.3)
           .and((_: CodeableConcept) => 0.4)
           .and((_: Int).toDouble)

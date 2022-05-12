@@ -130,9 +130,11 @@ pull-stuff:
 	mv node_modules/hl7.fhir.r4.core fhir
 
 find-weird-ones:
-	echo NO BASE:
-	cat generator/src/main/resources/searchParams/SearchParameter-* | jq 'select (.base == null) | .id'
-	echo MORE THAN ONE BASE:
-	cat generator/src/main/resources/searchParams.json | jq '.[] | select(.base[1] != null) | .name'
-	echo NO EXPRESSION:
-	cat generator/src/main/resources/searchParams/SearchParameter-* | jq 'select (.expression == null) | .id'
+	@echo NO BASE:
+	@cat generator/src/main/resources/searchParams.json | jq -r '.[] | select (.base == null) | .name' | sort | xargs | tr ' ' ,
+	@echo
+	@echo MORE THAN ONE BASE:
+	@cat generator/src/main/resources/searchParams.json | jq '.[] | select(.base[1] != null) | .name' | sort | xargs | tr ' ' ,
+	@echo
+	@echo NO EXPRESSION:
+	@cat generator/src/main/resources/searchParams.json | jq '.[] | select (.expression == null) | .name' | sort | xargs | tr ' ' ,
