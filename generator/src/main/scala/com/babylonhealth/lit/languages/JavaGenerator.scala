@@ -142,11 +142,13 @@ trait JavaGenerator extends Commonish {
       utStr ++ otStr
     }
     def paramStr(f: BaseField, isRequired: Boolean, builderName: String): String =
-      s"@param ${f.javaName}${getNearestDescription(f, topLevelClass) getOrElse ""}${if (f.types.size > 1) {
-        val value = f.types.map(t => t -> eraseSubtypes(t, f))
-        s"\n  * Field is a 'choice' field. Type should be one of ${value.map(_._2).distinct.mkString(", ")}. To pass the" +
-        s" value in, wrap with one of the $builderName.${f.javaName} static methods"
-      } else ""}"
+      s"@param ${f.javaName}${getNearestDescription(f, topLevelClass) getOrElse ""}${
+          if (f.types.size > 1) {
+            val value = f.types.map(t => t -> eraseSubtypes(t, f))
+            s"\n  * Field is a 'choice' field. Type should be one of ${value.map(_._2).distinct.mkString(", ")}. To pass the" +
+            s" value in, wrap with one of the $builderName.${f.javaName} static methods"
+          } else ""
+        }"
     val builderName                         = s"${topLevelClass.scalaClassName}Builder"
     val privateFields                       = genPrivateFields(fields)
     val (nonOptionalFields, optionalFields) = fields.partition(_.cardinality.required)
@@ -180,19 +182,19 @@ trait JavaGenerator extends Commonish {
                |  */
                |""".stripMargin
           s"""${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
-            f,
-            builder = false,
-            wrapInOptional = false)} ${f.javaName}) {
+              f,
+              builder = false,
+              wrapInOptional = false)} ${f.javaName}) {
              |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName)};
              |  return this;
              |}""".stripMargin +
           // For list types, include a second with method which takes a Collection
           (if (f.cardinality.max > 1) {
              s"""\n${javaDoc}public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
-               f,
-               builder = false,
-               wrapInOptional = false,
-               asCollection = true)} ${f.javaName}) {
+                 f,
+                 builder = false,
+                 wrapInOptional = false,
+                 asCollection = true)} ${f.javaName}) {
                 |  this.${f.javaName} = Collections.unmodifiableCollection(${f.javaName});
                 |  return this;
                 |}""".stripMargin
@@ -202,9 +204,9 @@ trait JavaGenerator extends Commonish {
           // For non-primitive types, include another method which takes a Builder (or builder varargs if applicable)
           (if (f.isBuildableFHIRType) {
              s"""public $builderName.Impl with${f.capitalName}(@NonNull ${toBuilderMutatorType(
-               f,
-               builder = true,
-               wrapInOptional = false)} ${f.javaName}) {
+                 f,
+                 builder = true,
+                 wrapInOptional = false)} ${f.javaName}) {
                 |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName, build = true)};
                 |  return this;
                 |}""".stripMargin
@@ -247,10 +249,10 @@ trait JavaGenerator extends Commonish {
          |${modules.map(m => s"import com.babylonhealth.lit.$m$javaSuffix.builders.*;").mkString("\n")}
          |${modules.map(m => s"import com.babylonhealth.lit.$m$javaSuffix.model.Unions.*;").mkString("\n")}
          |${valueSets
-        .map(EnumerationUtils.valueSetToEnumName)
-        .map(e => e -> lookupPkg(e))
-        .map { case (n, p) => s"import com.babylonhealth.lit.$p.$n;" }
-        .mkString("\n")}
+          .map(EnumerationUtils.valueSetToEnumName)
+          .map(e => e -> lookupPkg(e))
+          .map { case (n, p) => s"import com.babylonhealth.lit.$p.$n;" }
+          .mkString("\n")}
          |import com.babylonhealth.lit.core.$$bslash$$div;
          |import com.babylonhealth.lit.core_java.LitUtils;
          |
@@ -306,8 +308,8 @@ trait JavaGenerator extends Commonish {
            |
            |    public $targetClassName build() {
            |      return new $targetClassName(${f.childFields
-          .map(convertToScala)
-          .mkString(", ")}$comma LitUtils.emptyMetaElMap());
+            .map(convertToScala)
+            .mkString(", ")}$comma LitUtils.emptyMetaElMap());
            |    }
            |  }
            |}""".stripMargin
@@ -375,8 +377,8 @@ trait JavaGenerator extends Commonish {
          |
          |    public ${topLevelClass.scalaClassName} build() {
          |      return new ${topLevelClass.scalaClassName}(${fields
-        .map(convertToScala)
-        .mkString(", ")}$comma LitUtils.emptyMetaElMap());
+          .map(convertToScala)
+          .mkString(", ")}$comma LitUtils.emptyMetaElMap());
          |    }
          |  }
          |}""".stripMargin

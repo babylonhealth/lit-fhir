@@ -168,9 +168,9 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
        |import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
        |${parentPackages.map(p => s"import com.babylonhealth.lit.$p.model._").mkString("\n")}
        |${parentsAndSelf
-      .filter(packagesWithNewTypes)
-      .map(p => s"import com.babylonhealth.lit.$p.UnionAliases._")
-      .mkString("\n")}
+        .filter(packagesWithNewTypes)
+        .map(p => s"import com.babylonhealth.lit.$p.UnionAliases._")
+        .mkString("\n")}
        |${vs.mkString("\n")}
        |import com.babylonhealth.lit.{ ${parentsAndSelf.mkString(", ")} }
        |import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -189,10 +189,12 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       case _                         => true
     }
     def enumVal(v: CodeEnum) =
-      s"""  case object ${if (forceDisplayName) v.shoutyCamelName.getOrElse(v.getName) else v.getName} extends $enumName("${v.stringValue}") {
+      s"""  case object ${
+          if (forceDisplayName) v.shoutyCamelName.getOrElse(v.getName) else v.getName
+        } extends $enumName("${v.stringValue}") {
       |   def display: Option[String] = ${v.name
-        .map("Some(\"" + _.replaceAll("\\s*[\n\r]\\s*", " ").replaceAllLiterally("\"", "\\\"") + "\")")
-        .getOrElse("None")}
+          .map("Some(\"" + _.replaceAll("\\s*[\n\r]\\s*", " ").replaceAllLiterally("\"", "\\\"") + "\")")
+          .getOrElse("None")}
       |   def system: Option[String] = ${v.system.map(s => s"""Some("$s")""") getOrElse "None"}
       |}"""
     val extraCase =
@@ -336,16 +338,16 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       def unapplyField(f: BaseField): String = f.refineField(allClashingTypes, "o")
       val unapplyImpl =
         if (fields.size <= 22) s"""def unapply(o: $className): Option[(${fields
-          .map(f => f.typeForClass(allClashingTypes))
-          .mkString(", ")})] = Some((${fields.map(unapplyField).mkString(", ")}))"""
+            .map(f => f.typeForClass(allClashingTypes))
+            .mkString(", ")})] = Some((${fields.map(unapplyField).mkString(", ")}))"""
         else ""
 
       val companionDef =
         s"""object $className extends CompanionFor[$className] {
            |  implicit def summonObjectAndCompanion$className${(field.declaringClasses
-          .map(_.hashCode)
-          .sum + field.className.hashCode).toString
-          .replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
+            .map(_.hashCode)
+            .sum + field.className.hashCode).toString
+            .replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
            |  override type ResourceType = $className
            |  override type ParentType = $className
            |  override val parentType: CompanionFor[ResourceType] = $className
@@ -392,8 +394,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       }
       val extension =
         s"""extends $baseName(${parentFields.values
-          .map(f => f.wrapEquals(fields.find(_.scalaName == f.name).get))
-          .mkString(", ")})"""
+            .map(f => f.wrapEquals(fields.find(_.scalaName == f.name).get))
+            .mkString(", ")})"""
       val classDef =
         s"""$companionDef
            |
@@ -481,8 +483,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     val unapplyImpl = {
       if (fields.isEmpty) s"def unapply(o: $className): Option[Unit] = Some(())"
       else if (fields.size <= 22) s"""def unapply(o: $className): Option[(${fields
-        .map(f => f.typeForClass(allClashingTypes))
-        .mkString(", ")})] = Some((${fields.map(unapplyField).mkString(", ")}))"""
+          .map(f => f.typeForClass(allClashingTypes))
+          .mkString(", ")})] = Some((${fields.map(unapplyField).mkString(", ")}))"""
       else ""
     }
 
@@ -581,8 +583,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         .getOrElse(s"${className} has no description in its Structure Definition...")
     val subtypeOf = topLevelClass.parentClass.map(p =>
       s"\n  *  Subclass of [[${p.targetDir}.model.${p.scalaClassName}]]${p.rawStructureDefinition.description
-        .map(d => s" ($d)")
-        .getOrElse("")}\n  *  ") getOrElse ""
+          .map(d => s" ($d)")
+          .getOrElse("")}\n  *  ") getOrElse ""
     val constructorComments = {
       val (oldFields, newFields) =
         topLevelClass.fields.partition(f => topLevelClass.parentClass.exists(_.fields.exists(_.name == f.name)))
@@ -596,16 +598,26 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         if (topLevelClass.parentClass.exists(_.className == "Extension"))
           oldFieldsWithParent.find(_._1.name == "url").toSeq
         else Nil
-      s"@constructor ${if (newFields.isEmpty) s"Inherits all params from parent. "
-      else s"Introduces the fields ${newFields.map(_.scalaName).mkString(", ")}. "}${if (refinedTypes.nonEmpty)
-        s"\n  *              Refines the types of: ${refinedTypes.map(_._2.scalaName).mkString(", ")}. "
-      else ""}${if (newlyRequired.nonEmpty)
-        s"\n  *              Requires the following fields which were optional in the parent: ${newlyRequired.map(_._2.scalaName).mkString(", ")}. "
-      else ""}${if (forbidden.nonEmpty)
-        s"\n  *              Forbids the use of the following fields which were optional in the parent: ${forbidden.map(_._2.scalaName).mkString(", ")}. "
-      else ""}${if (hardCoded.nonEmpty)
-        s"\n  *              Hardcodes the value of the following fields: ${hardCoded.map(_._2.scalaName).mkString(", ")}. "
-      else ""}"
+      s"@constructor ${
+          if (newFields.isEmpty) s"Inherits all params from parent. "
+          else s"Introduces the fields ${newFields.map(_.scalaName).mkString(", ")}. "
+        }${
+          if (refinedTypes.nonEmpty)
+            s"\n  *              Refines the types of: ${refinedTypes.map(_._2.scalaName).mkString(", ")}. "
+          else ""
+        }${
+          if (newlyRequired.nonEmpty)
+            s"\n  *              Requires the following fields which were optional in the parent: ${newlyRequired.map(_._2.scalaName).mkString(", ")}. "
+          else ""
+        }${
+          if (forbidden.nonEmpty)
+            s"\n  *              Forbids the use of the following fields which were optional in the parent: ${forbidden.map(_._2.scalaName).mkString(", ")}. "
+          else ""
+        }${
+          if (hardCoded.nonEmpty)
+            s"\n  *              Hardcodes the value of the following fields: ${hardCoded.map(_._2.scalaName).mkString(", ")}. "
+          else ""
+        }"
     }
     def descFromTLC(f: BaseField, t: TopLevelClass): Option[String] =
       t.rawStructureDefinition.snapshot
@@ -637,7 +649,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     val fileStr =
       s"""object $className extends CompanionFor[$className] {
          |  implicit def summonObjectAndCompanion$className${topLevelClass.url.hashCode.toString
-        .replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
+          .replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
          |  override type ResourceType = ${topLevelClass.scalaBaseClassName}
          |  override type ParentType = $parentType
          |  override val baseType: CompanionFor[ResourceType] = ${topLevelClass.scalaBaseClassName}
@@ -911,10 +923,10 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
        |}
        |""" else ""}
        |object Module extends ModuleDict(Map(${lookups
-      .map { case (url, obj) => s""""$url" -> $obj""" }
-      .toSeq
-      .sorted
-      .mkString(", ")}))
+        .map { case (url, obj) => s""""$url" -> $obj""" }
+        .toSeq
+        .sorted
+        .mkString(", ")}))
        |
        |""".stripMargin
   }
