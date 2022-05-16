@@ -181,18 +181,19 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       }
       val allFHIRClasses: Seq[ClassGenInfo] = topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
         m.flatMap { case (pkg, k: TopLevelClass) =>
-          try Some(
-            ScalaCodegen
-              .genTheScalaForClass(
-                k,
-                k.targetDir,
-                element,
-                backboneElement,
-                topLevelClasses,
-                args.moduleDependencies,
-                pkgAndValueSet,
-                ElementTreee.getUnionTypes.values.map(args.moduleDependencies leastCommon _._1.toSet).toSet
-              ))
+          try
+            Some(
+              ScalaCodegen
+                .genTheScalaForClass(
+                  k,
+                  k.targetDir,
+                  element,
+                  backboneElement,
+                  topLevelClasses,
+                  args.moduleDependencies,
+                  pkgAndValueSet,
+                  ElementTreee.getUnionTypes.values.map(args.moduleDependencies leastCommon _._1.toSet).toSet
+                ))
           catch {
             case NonFatal(ex) =>
               println(s"Unable to gen Scala file for $pkg.$o $ex")
@@ -220,15 +221,16 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       val builders = topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
         m.flatMap { case (p, k) =>
           val javaPackageStr = (s"com.babylonhealth.lit.$p$j")
-          try genTheJavaForClass(
-            k,
-            javaPackageStr,
-            p,
-            valueSetEarliestDeclarations,
-            args.moduleDependencies,
-            j,
-            pkgUnionsLookup.values.flatten.map { case (k, v) => v -> k.replaceFirst("Union", "Choice") }.toMap
-          )
+          try
+            genTheJavaForClass(
+              k,
+              javaPackageStr,
+              p,
+              valueSetEarliestDeclarations,
+              args.moduleDependencies,
+              j,
+              pkgUnionsLookup.values.flatten.map { case (k, v) => v -> k.replaceFirst("Union", "Choice") }.toMap
+            )
           catch {
             case NonFatal(ex) =>
               log.error(s"Unable to gen Java file for $p.$o", ex)
