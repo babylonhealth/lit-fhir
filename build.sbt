@@ -20,7 +20,7 @@ val crossVersions = Seq(scala2Version, scala3Version)
 def isScala2(version: String) = version startsWith "2"
 
 val V = new {
-  val circe                  = "0.14.1"
+  val circe                  = "0.14.2"
   val enumeratum             = "1.7.0"
   val googleFHIR             = "0.6.1"
   val izumiReflect           = "2.1.0"
