@@ -155,6 +155,7 @@ class FromListAsTest extends AnyFreeSpec with Matchers {
     val err = decoded.left.get
     // This should be good enough to infer that the expected field should be an array
     err.getMessage should include("expecting array: DownField(category)")
-    showError.show(err) shouldEqual "DecodingFailure at .category: Got value '{\"text\":\"foo\"}' with wrong type, expecting array"
+    showError.show(err) shouldEqual
+    "DecodingFailure at .category: Got value '{\"text\":\"foo\"}' with wrong type, expecting array"
   }
 }
