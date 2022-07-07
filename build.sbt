@@ -14,7 +14,7 @@ inThisBuild(
   ))
 
 val scala2Version = "2.13.8"
-val scala3Version = "3.1.2"
+val scala3Version = "3.1.3"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
@@ -23,8 +23,8 @@ val V = new {
   val circe                  = "0.14.2"
   val enumeratum             = "1.7.0"
   val googleFHIR             = "0.6.1"
-  val izumiReflect           = "2.1.0"
-  val jsonassert             = "1.5.0"
+  val izumiReflect           = "2.1.3"
+  val jsonassert             = "1.5.1"
   val jUnit                  = "5.8.2"
   val litVersionForGenerator = "0.14.9"
   val logback                = "1.2.11"
@@ -164,7 +164,7 @@ lazy val fhirpath = project
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations", "-deprecation")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-parse"    % "0.3.7",
+      "org.typelevel" %% "cats-parse"    % "0.3.8",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
       "org.slf4j"      % "slf4j-api"     % "1.7.36",
       // Test
