@@ -13,10 +13,10 @@ benchmark:
 	sbt "+bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
 
 clean-scala-3-core:
-	sbt ++3.0.0 core/clean
+	sbt ++3.x.x core/clean
 
 clean-scala-3:
-	sbt ++3.0.0 core/clean hl7/clean usbase/clean uscore/clean core/test:clean hl7/test:clean usbase/test:clean uscore/test:clean
+	sbt ++3.x.x core/clean hl7/clean usbase/clean uscore/clean core/test:clean hl7/test:clean usbase/test:clean uscore/test:clean
 
 compile-core: clean-scala-3-core
 	sbt +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) +fhirpath/compile
