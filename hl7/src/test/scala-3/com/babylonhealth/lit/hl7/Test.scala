@@ -106,6 +106,9 @@ object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
     )
 }
 
+private object StaticTypes {
+  type SubOfString <: String
+}
 class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
   implicit def _fromSeq[T](seq: Seq[T]): LitSeq[T] = new LitSeq[T](seq)
   val expectedAccountJson =
@@ -307,7 +310,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     println(x.mkString("[", ";;", "]"))
   }
 
-  type SubOfString <: String
+  type SubOfString = StaticTypes.SubOfString
   // x2
   type StrBool = String | Boolean
   type StrInt  = String | Int
@@ -334,7 +337,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     "union subsets (1x3) - type params should be treated as invariant" ignore {
       lTypeOf[SubOfString] <:< lTypeOf[StrBoolInt] shouldEqual false
     }
-    "union subsets (2x3)" ignore {
+    "union subsets (2x3)" in {
       lTypeOf[StrBool] <:< lTypeOf[StrBoolInt] shouldEqual true
       lTypeOf[StrInt] <:< lTypeOf[StrBoolInt] shouldEqual true
       lTypeOf[IntBool] <:< lTypeOf[StrBoolInt] shouldEqual true
