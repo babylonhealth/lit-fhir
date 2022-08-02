@@ -30,7 +30,7 @@ val V = new {
   val logback                = "1.2.11"
   val lombok                 = "1.18.24"
   val scalaMeterVersion      = "0.22"
-  val scalaTest              = "3.2.12"
+  val scalaTest              = "3.2.13"
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
@@ -208,7 +208,7 @@ lazy val coreJava = project
       "org.projectlombok" % "lombok"            % V.lombok,
       "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
-      "org.junit.jupiter" % "junit-jupiter"     % "5.8.2" % Test
+      "org.junit.jupiter" % "junit-jupiter"     % "5.9.0" % Test
     )
   )
   .dependsOn(core)
@@ -235,7 +235,7 @@ lazy val uscoreJava = project
   .settings(libraryDependencies ++= Seq(
     "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
     "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
-    "org.junit.jupiter" % "junit-jupiter"     % "5.8.2"                          % Test
+    "org.junit.jupiter" % "junit-jupiter"     % "5.9.0"                          % Test
   ))
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
   .enablePlugins(JupiterPlugin)
