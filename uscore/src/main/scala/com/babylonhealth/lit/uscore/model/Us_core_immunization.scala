@@ -529,6 +529,7 @@ class Us_core_immunization(
       performer = performer,
       education = education,
       protocolApplied = protocolApplied,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Immunization"
 }

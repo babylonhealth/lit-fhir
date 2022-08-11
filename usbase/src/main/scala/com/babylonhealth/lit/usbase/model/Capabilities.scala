@@ -95,6 +95,7 @@ class Capabilities(
       id = id,
       value = Some(choiceFromEnum(value)),
       url = "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

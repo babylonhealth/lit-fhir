@@ -464,6 +464,7 @@ class Us_core_careplan(
       modifierExtension = modifierExtension,
       instantiatesCanonical = instantiatesCanonical,
       activity = activity,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "CarePlan"
 }

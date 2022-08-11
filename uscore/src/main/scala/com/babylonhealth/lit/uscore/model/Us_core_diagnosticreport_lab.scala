@@ -410,6 +410,7 @@ class Us_core_diagnosticreport_lab(
       modifierExtension = modifierExtension,
       resultsInterpreter = resultsInterpreter,
       media = media,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "DiagnosticReport"
 }

@@ -105,6 +105,7 @@ class Elementdefinition_inheritedExtensibleValueSet(
       id = id,
       value = Some(value.toSuperRef),
       url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-inheritedExtensibleValueSet",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

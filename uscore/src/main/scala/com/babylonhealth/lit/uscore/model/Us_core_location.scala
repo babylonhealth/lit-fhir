@@ -394,6 +394,7 @@ class Us_core_location(
       availabilityExceptions = availabilityExceptions,
       position = position,
       hoursOfOperation = hoursOfOperation,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Location"
 }

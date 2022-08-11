@@ -582,6 +582,7 @@ class Shareablelibrary(
       relatedArtifact = relatedArtifact,
       dataRequirement = dataRequirement,
       modifierExtension = modifierExtension,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Library"
 }

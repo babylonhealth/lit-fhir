@@ -610,6 +610,7 @@ class Us_core_medicationrequest(
       instantiatesCanonical = instantiatesCanonical,
       substitution = substitution,
       dispenseRequest = dispenseRequest,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "MedicationRequest"
 }

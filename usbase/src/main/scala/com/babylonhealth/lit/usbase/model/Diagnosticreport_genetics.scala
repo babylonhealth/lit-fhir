@@ -397,6 +397,7 @@ class Diagnosticreport_genetics(
       modifierExtension = modifierExtension,
       resultsInterpreter = resultsInterpreter,
       media = media,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "DiagnosticReport"
 }

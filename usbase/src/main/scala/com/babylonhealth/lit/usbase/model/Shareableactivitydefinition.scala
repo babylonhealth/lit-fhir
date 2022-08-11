@@ -782,6 +782,7 @@ class Shareableactivitydefinition(
       observationResultRequirement = observationResultRequirement,
       participant = participant,
       dynamicValue = dynamicValue,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "ActivityDefinition"
 }

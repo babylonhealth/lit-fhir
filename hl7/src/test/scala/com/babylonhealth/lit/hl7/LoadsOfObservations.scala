@@ -28,7 +28,8 @@ object LoadsOfObservationsPt1 {
             Coding(system = Some("SNOMED"), code = Some("313334002"))),
           text = Some("Blood sample taken")
         ),
-        effective = zdt1Ref),
+        effective = zdt1Ref
+      ),
       new Observation(
         meta = None,
         id = Some("0d13737d919177443588b9e03ac5782f"),
@@ -43,7 +44,8 @@ object LoadsOfObservationsPt1 {
             Coding(system = Some("SNOMED"), code = Some("28520004"))),
           text = Some("Venous blood sampling")
         ),
-        effective = zdt1Ref),
+        effective = zdt1Ref
+      ),
       new Observation(
         meta = None,
         id = Some("d5644877a93d67718934595d67f6eb98"),
@@ -57,7 +59,8 @@ object LoadsOfObservationsPt1 {
             )),
           text = Some("Consent obtained")
         ),
-        effective = zdt1Ref),
+        effective = zdt1Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("ng/L"), value = Some(584.0)))),
@@ -77,7 +80,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Serum vitamin B12 level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.2)))),
@@ -97,7 +101,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Eosinophil count - observation")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.0)))),
@@ -116,7 +121,8 @@ object LoadsOfObservationsPt1 {
             )),
           text = Some("Basophil count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(4.9)))),
@@ -135,7 +141,8 @@ object LoadsOfObservationsPt1 {
             )),
           text = Some("Neutrophil count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(2.2)))),
@@ -154,7 +161,8 @@ object LoadsOfObservationsPt1 {
             )),
           text = Some("Lymphocyte count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.6)))),
@@ -174,7 +182,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Monocyte count - observation")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.0)))),
@@ -194,7 +203,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Nucleated red blood cell count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^12/L"), value = Some(4.24)))),
@@ -214,7 +224,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Red blood cell count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("g/L"), value = Some(125.0)))),
@@ -234,7 +245,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Haemoglobin concentration")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         id = Some("1b9f1277acba247e12cb30d9017c6414"),
@@ -252,7 +264,8 @@ object LoadsOfObservationsPt1 {
             )),
           text = Some("Haematocrit")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         id = Some("0f58a36be6efa98fb21ddb20634d629a"),
@@ -270,7 +283,8 @@ object LoadsOfObservationsPt1 {
             )),
           text = Some("Full blood count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(7.9)))),
@@ -290,7 +304,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Total white blood count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("%"), value = Some(10.0)))),
@@ -310,7 +325,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Red blood cell distribution width")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(283.0)))),
@@ -330,7 +346,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Platelet count - observation")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("fL"), value = Some(7.2)))),
@@ -350,7 +367,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Mean platelet volume")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("fL"), value = Some(89.4)))),
@@ -369,7 +387,8 @@ object LoadsOfObservationsPt1 {
             )),
           text = Some("Mean cell volume")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("pg"), value = Some(29.5)))),
@@ -389,7 +408,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Mean cell haemoglobin level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("g/dL"), value = Some(33.0)))),
@@ -409,7 +429,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Mean cell haemoglobin concentration")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("mg/L"), value = Some(7.5)))),
@@ -429,7 +450,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Plasma C-reactive protein level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("mmol/L"), value = Some(4.2)))),
@@ -449,7 +471,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Serum potassium level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("umol/L"), value = Some(49.0)))),
@@ -469,7 +492,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("Serum creatinine level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("mL/min"), value = Some(90.0)))),
@@ -489,7 +513,8 @@ object LoadsOfObservationsPt1 {
           ),
           text = Some("eGFR using creatinine (CKD-EPI) per 1.73 square metres")
         ),
-        effective = zdt2Ref)
+        effective = zdt2Ref
+      )
     )
 }
 
@@ -514,7 +539,8 @@ object LoadsOfObservations {
             )),
           text = Some("Serum sodium level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         id = Some("ca42d14f02f262435cb7b95f5723f222"),
@@ -533,7 +559,8 @@ object LoadsOfObservations {
           ),
           text = Some("Renal function tests")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("pg"), value = Some(29.5)))),
@@ -553,7 +580,8 @@ object LoadsOfObservations {
           ),
           text = Some("Mean cell haemoglobin level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("fL"), value = Some(7.2)))),
@@ -573,7 +601,8 @@ object LoadsOfObservations {
           ),
           text = Some("Mean platelet volume")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.0)))),
@@ -593,7 +622,8 @@ object LoadsOfObservations {
           ),
           text = Some("Nucleated red blood cell count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(4.9)))),
@@ -612,7 +642,8 @@ object LoadsOfObservations {
             )),
           text = Some("Neutrophil count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("g/dL"), value = Some(33.0)))),
@@ -632,7 +663,8 @@ object LoadsOfObservations {
           ),
           text = Some("Mean cell haemoglobin concentration")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("%"), value = Some(10.0)))),
@@ -652,7 +684,8 @@ object LoadsOfObservations {
           ),
           text = Some("Red blood cell distribution width")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(283.0)))),
@@ -672,7 +705,8 @@ object LoadsOfObservations {
           ),
           text = Some("Platelet count - observation")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.0)))),
@@ -691,7 +725,8 @@ object LoadsOfObservations {
             )),
           text = Some("Basophil count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         id = Some("0f58a36be6efa98fb21ddb20634d629a"),
@@ -709,7 +744,8 @@ object LoadsOfObservations {
             )),
           text = Some("Full blood count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(7.9)))),
@@ -729,7 +765,8 @@ object LoadsOfObservations {
           ),
           text = Some("Total white blood count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(2.2)))),
@@ -748,7 +785,8 @@ object LoadsOfObservations {
             )),
           text = Some("Lymphocyte count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.6)))),
@@ -768,7 +806,8 @@ object LoadsOfObservations {
           ),
           text = Some("Monocyte count - observation")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^9/L"), value = Some(0.2)))),
@@ -788,7 +827,8 @@ object LoadsOfObservations {
           ),
           text = Some("Eosinophil count - observation")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("fL"), value = Some(89.4)))),
@@ -807,7 +847,8 @@ object LoadsOfObservations {
             )),
           text = Some("Mean cell volume")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("10^12/L"), value = Some(4.24)))),
@@ -827,7 +868,8 @@ object LoadsOfObservations {
           ),
           text = Some("Red blood cell count")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("g/L"), value = Some(125.0)))),
@@ -847,7 +889,8 @@ object LoadsOfObservations {
           ),
           text = Some("Haemoglobin concentration")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         id = Some("1b9f1277acba247e12cb30d9017c6414"),
@@ -865,7 +908,8 @@ object LoadsOfObservations {
             )),
           text = Some("Haematocrit")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("miu/L"), value = Some(1.99)))),
@@ -884,7 +928,8 @@ object LoadsOfObservations {
             )),
           text = Some("Serum TSH level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("iu/L"), value = Some(50.0)))),
@@ -904,7 +949,8 @@ object LoadsOfObservations {
           ),
           text = Some("Serum alkaline phosphatase level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("g/L"), value = Some(42.0)))),
@@ -924,7 +970,8 @@ object LoadsOfObservations {
           ),
           text = Some("Serum albumin level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         id = Some("f3c72d5f8df7f2d435abe19442735611"),
@@ -943,7 +990,8 @@ object LoadsOfObservations {
           ),
           text = Some("Liver function tests")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("iu/L"), value = Some(18.0)))),
@@ -963,7 +1011,8 @@ object LoadsOfObservations {
           ),
           text = Some("Serum alanine aminotransferase level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("umol/L"), value = Some(5.0)))),
@@ -983,7 +1032,8 @@ object LoadsOfObservations {
           ),
           text = Some("Serum bilirubin level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("ng/ml"), value = Some(47.0)))),
@@ -1003,7 +1053,8 @@ object LoadsOfObservations {
           ),
           text = Some("Serum ferritin level")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("mmol/mol"), value = Some(33.0)))),
@@ -1023,7 +1074,8 @@ object LoadsOfObservations {
           ),
           text = Some("Haemoglobin A1c level - IFCC standardised")
         ),
-        effective = zdt2Ref),
+        effective = zdt2Ref
+      ),
       new Observation(
         meta = None,
         value = Some(choice(Quantity(unit = Some("mmol/L"), value = Some(4.6)))),
@@ -1043,7 +1095,8 @@ object LoadsOfObservations {
           ),
           text = Some("Plasma glucose level")
         ),
-        effective = zdt2Ref)
+        effective = zdt2Ref
+      )
     )
 
   val observations: LitSeq[Observation] =

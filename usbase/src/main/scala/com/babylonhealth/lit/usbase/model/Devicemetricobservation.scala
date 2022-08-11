@@ -444,6 +444,7 @@ class Devicemetricobservation(
       modifierExtension = modifierExtension,
       component = component,
       referenceRange = referenceRange.to(LitSeq),
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Observation"
 }

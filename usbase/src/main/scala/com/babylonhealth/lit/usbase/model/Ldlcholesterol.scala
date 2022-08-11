@@ -459,6 +459,7 @@ class Ldlcholesterol(
       modifierExtension = modifierExtension,
       component = component,
       referenceRange = LitSeq(referenceRange),
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Observation"
 }

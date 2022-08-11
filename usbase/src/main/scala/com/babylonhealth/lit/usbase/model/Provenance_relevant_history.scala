@@ -331,6 +331,7 @@ class Provenance_relevant_history(
       modifierExtension = modifierExtension,
       agent = agent,
       entity = entity,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Provenance"
 }

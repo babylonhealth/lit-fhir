@@ -97,6 +97,7 @@ class Devicerequest_patientInstruction(
       id = id,
       extension = extension.refine,
       url = "http://hl7.org/fhir/StructureDefinition/devicerequest-patientInstruction",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

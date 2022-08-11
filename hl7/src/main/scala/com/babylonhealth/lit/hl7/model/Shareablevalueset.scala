@@ -415,6 +415,7 @@ class Shareablevalueset(
       modifierExtension = modifierExtension,
       expansion = expansion,
       compose = compose,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "ValueSet"
 }

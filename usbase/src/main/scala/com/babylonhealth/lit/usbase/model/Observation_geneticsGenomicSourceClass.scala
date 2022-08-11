@@ -97,6 +97,7 @@ class Observation_geneticsGenomicSourceClass(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/observation-geneticsGenomicSourceClass",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

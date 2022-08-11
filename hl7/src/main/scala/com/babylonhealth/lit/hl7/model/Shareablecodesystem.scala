@@ -516,6 +516,7 @@ class Shareablecodesystem(
       filter = filter,
       property = property,
       concept = concept.refine,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "CodeSystem"
 }
