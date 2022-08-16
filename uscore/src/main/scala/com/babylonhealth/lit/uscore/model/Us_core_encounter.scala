@@ -469,6 +469,7 @@ class Us_core_encounter(
       classHistory = classHistory,
       statusHistory = statusHistory,
       hospitalization = hospitalization,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Encounter"
 }

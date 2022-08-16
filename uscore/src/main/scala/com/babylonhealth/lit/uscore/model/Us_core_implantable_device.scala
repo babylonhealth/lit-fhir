@@ -501,6 +501,7 @@ class Us_core_implantable_device(
       udiCarrier = udiCarrier.to(LitSeq),
       deviceName = deviceName,
       specialization = specialization,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Device"
 }

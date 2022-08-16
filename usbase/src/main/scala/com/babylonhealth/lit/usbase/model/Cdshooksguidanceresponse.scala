@@ -371,6 +371,7 @@ class Cdshooksguidanceresponse(
       requestIdentifier = Some(requestIdentifier),
       evaluationMessage = evaluationMessage,
       occurrenceDateTime = occurrenceDateTime,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "GuidanceResponse"
 }

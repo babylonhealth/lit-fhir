@@ -97,6 +97,7 @@ class Iso21090_ADXP_deliveryModeIdentifier(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryModeIdentifier",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

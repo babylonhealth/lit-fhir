@@ -392,6 +392,7 @@ class Us_core_allergyintolerance(
       modifierExtension = modifierExtension,
       verificationStatus = verificationStatus,
       reaction = reaction,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "AllergyIntolerance"
 }

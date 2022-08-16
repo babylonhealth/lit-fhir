@@ -96,6 +96,7 @@ class Elementdefinition_isCommonBinding(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

@@ -97,6 +97,7 @@ class Operationdefinition_allowed_type(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

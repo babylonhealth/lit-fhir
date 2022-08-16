@@ -96,6 +96,7 @@ class Allergyintolerance_resolutionAge(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/allergyintolerance-resolutionAge",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

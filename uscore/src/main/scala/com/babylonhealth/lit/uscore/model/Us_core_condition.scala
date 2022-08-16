@@ -392,6 +392,7 @@ class Us_core_condition(
       verificationStatus = verificationStatus,
       stage = stage,
       evidence = evidence,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Condition"
 }

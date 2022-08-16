@@ -97,6 +97,7 @@ class Composition_clinicaldocument_versionNumber(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/composition-clinicaldocument-versionNumber",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

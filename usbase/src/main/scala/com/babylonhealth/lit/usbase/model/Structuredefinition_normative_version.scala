@@ -97,6 +97,7 @@ class Structuredefinition_normative_version(
       id = id,
       value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

@@ -494,6 +494,7 @@ class Us_core_smokingstatus(
       modifierExtension = modifierExtension,
       component = component,
       referenceRange = referenceRange,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Observation"
 }

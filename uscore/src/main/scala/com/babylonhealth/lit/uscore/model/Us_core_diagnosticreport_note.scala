@@ -414,6 +414,7 @@ class Us_core_diagnosticreport_note(
       modifierExtension = modifierExtension,
       resultsInterpreter = resultsInterpreter,
       media = media,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "DiagnosticReport"
 }

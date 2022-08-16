@@ -484,6 +484,7 @@ class Bmi(
       modifierExtension = modifierExtension,
       component = component,
       referenceRange = referenceRange,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Observation"
 }

@@ -110,6 +110,7 @@ class Us_core_birthsex(
       value = value.map(choice(_)),
       extension = extension,
       url = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

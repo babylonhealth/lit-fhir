@@ -98,6 +98,7 @@ class Elementdefinition_maxValueSet(
       id = id,
       value = Some(value.toSuperRef),
       url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

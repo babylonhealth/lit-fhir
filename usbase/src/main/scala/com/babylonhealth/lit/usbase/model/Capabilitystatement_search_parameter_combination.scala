@@ -101,6 +101,7 @@ class Capabilitystatement_search_parameter_combination(
       id = id,
       extension = extension.refine,
       url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

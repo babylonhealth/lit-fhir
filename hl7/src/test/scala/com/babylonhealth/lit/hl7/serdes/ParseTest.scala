@@ -85,7 +85,8 @@ class ParseTest extends AnyFreeSpec with Matchers with FileUtils {
               case (s1: String, s2: String) =>
                 (s1, s2) match { case (dateTimeRegex(d1), dateTimeRegex(d2)) => d1 == d2; case _ => false }
               case _ => false
-            })
+            }
+        )
       )
     }
     JSONAssert.assertEquals(x, encoded, comparator)

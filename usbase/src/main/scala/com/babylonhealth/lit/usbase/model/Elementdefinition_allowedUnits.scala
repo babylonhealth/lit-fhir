@@ -101,6 +101,7 @@ class Elementdefinition_allowedUnits(
       id = id,
       value = Some(value.toSuperRef),
       url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-allowedUnits",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

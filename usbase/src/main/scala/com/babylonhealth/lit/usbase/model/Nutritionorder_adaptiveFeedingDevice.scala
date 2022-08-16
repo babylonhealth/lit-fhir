@@ -96,6 +96,7 @@ class Nutritionorder_adaptiveFeedingDevice(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/nutritionorder-adaptiveFeedingDevice",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

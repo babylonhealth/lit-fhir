@@ -97,6 +97,7 @@ class Structuredefinition_standards_status(
       id = id,
       value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

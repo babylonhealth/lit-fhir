@@ -489,6 +489,7 @@ class Us_core_pulse_oximetry(
       modifierExtension = modifierExtension,
       component = component,
       referenceRange = referenceRange,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Observation"
 }

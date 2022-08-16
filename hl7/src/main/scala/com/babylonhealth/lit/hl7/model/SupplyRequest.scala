@@ -425,6 +425,7 @@ class SupplyRequest(
       extension = extension,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "SupplyRequest"
 }

@@ -99,6 +99,7 @@ class Structuredefinition_security_category(
       id = id,
       value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

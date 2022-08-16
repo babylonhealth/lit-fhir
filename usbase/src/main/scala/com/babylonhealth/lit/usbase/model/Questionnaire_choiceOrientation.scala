@@ -97,6 +97,7 @@ class Questionnaire_choiceOrientation(
       id = id,
       value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

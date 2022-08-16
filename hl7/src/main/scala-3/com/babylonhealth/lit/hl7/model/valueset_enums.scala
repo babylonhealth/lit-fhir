@@ -2446,7 +2446,8 @@ enum REPOSITORY_TYPE(val name: String, val display: Option[String], val system: 
       extends REPOSITORY_TYPE(
         "oauth",
         Some("Result need to be fetched with API and need LOGIN( or cookies are required when visiting the link of resource)"),
-        Some("http://hl7.org/fhir/repository-type"))
+        Some("http://hl7.org/fhir/repository-type")
+      )
   case OPENAPI
       extends REPOSITORY_TYPE(
         "openapi",
@@ -2580,7 +2581,8 @@ enum RESEARCH_STUDY_STATUS(val name: String, val display: Option[String], val sy
       extends RESEARCH_STUDY_STATUS(
         "temporarily-closed-to-accrual-and-intervention",
         Some("Temporarily Closed to Accrual and Intervention"),
-        Some("http://hl7.org/fhir/research-study-status"))
+        Some("http://hl7.org/fhir/research-study-status")
+      )
   case WITHDRAWN extends RESEARCH_STUDY_STATUS("withdrawn", Some("Withdrawn"), Some("http://hl7.org/fhir/research-study-status"))
 }
 object RESEARCH_STUDY_STATUS extends EType[RESEARCH_STUDY_STATUS]("http://hl7.org/fhir/ValueSet/research-study-status")

@@ -308,6 +308,7 @@ class Actualgroup(
       managingEntity = managingEntity,
       modifierExtension = modifierExtension,
       member = member,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Group"
 }

@@ -379,6 +379,7 @@ class Us_core_patient(
       link = link,
       contact = contact,
       communication = communication,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Patient"
 }

@@ -455,6 +455,7 @@ class Elementdefinition_de(
       sliceIsConstraining = sliceIsConstraining,
       binding = binding,
       constraint = constraint,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "ElementDefinition"
 }

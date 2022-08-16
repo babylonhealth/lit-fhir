@@ -581,6 +581,7 @@ class Computableplandefinition(
       modifierExtension = modifierExtension,
       goal = goal,
       action = action,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "PlanDefinition"
 }

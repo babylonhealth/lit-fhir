@@ -309,6 +309,7 @@ class Groupdefinition(
       managingEntity = managingEntity,
       modifierExtension = modifierExtension,
       characteristic = characteristic,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Group"
 }

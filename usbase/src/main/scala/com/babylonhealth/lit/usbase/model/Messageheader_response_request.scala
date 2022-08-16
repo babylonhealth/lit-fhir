@@ -100,6 +100,7 @@ class Messageheader_response_request(
       id = id,
       value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/messageheader-response-request",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

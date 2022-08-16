@@ -97,6 +97,7 @@ class Observation_geneticsCopyNumberEvent(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/observation-geneticsCopyNumberEvent",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

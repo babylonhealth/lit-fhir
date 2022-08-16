@@ -531,6 +531,7 @@ class Us_core_procedure(
       instantiatesCanonical = instantiatesCanonical,
       performer = performer,
       focalDevice = focalDevice,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Procedure"
 }

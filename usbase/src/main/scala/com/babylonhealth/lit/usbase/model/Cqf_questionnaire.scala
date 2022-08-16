@@ -457,6 +457,7 @@ class Cqf_questionnaire(
       effectivePeriod = effectivePeriod,
       modifierExtension = modifierExtension,
       item = item,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Questionnaire"
 }

@@ -97,6 +97,7 @@ class Elementdefinition_bestpractice_explanation(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice-explanation",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

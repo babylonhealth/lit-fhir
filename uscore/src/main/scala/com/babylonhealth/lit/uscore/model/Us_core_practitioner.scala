@@ -325,6 +325,7 @@ class Us_core_practitioner(
       communication = communication,
       modifierExtension = modifierExtension,
       qualification = qualification,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Practitioner"
 }

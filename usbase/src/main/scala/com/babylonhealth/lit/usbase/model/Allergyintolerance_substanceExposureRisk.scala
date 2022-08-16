@@ -99,6 +99,7 @@ class Allergyintolerance_substanceExposureRisk(
       id = id,
       extension = extension.refine,
       url = "http://hl7.org/fhir/StructureDefinition/allergyintolerance-substanceExposureRisk",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }
