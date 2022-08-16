@@ -8,7 +8,7 @@ import scala.util.{ Failure, Success, Try }
 import io.circe.syntax._
 import io.circe.{ Decoder, DecodingFailure, Encoder, HCursor, Json }
 
-import com.babylonhealth.lit.core.FHIRDateTimeSpecificity.Time
+import com.babylonhealth.lit.core.FHIRDateTimeSpecificity.Micros
 
 object BaseFieldDecoders extends BaseFieldDecoders
 trait BaseFieldDecoders extends Utils {
@@ -111,7 +111,7 @@ trait BaseFieldDecoders extends Utils {
   implicit val decodeZonedDateTime: Decoder[ZonedDateTime] = Decoder.decodeString.emapTry { x =>
     Try(ZonedDateTime.parse(x))
   }
-  implicit val encodeZonedDateTime: Encoder[ZonedDateTime] = Encoder.encodeString.contramap(Time.dtFormatter.format)
+  implicit val encodeZonedDateTime: Encoder[ZonedDateTime] = Encoder.encodeString.contramap(Micros.dtFormatter.format)
 
   implicit val base64BinaryDecoder: Decoder[Base64Binary] =
     Decoder.decodeString.emapTry(s => Try(Base64.getDecoder.decode(s)).map(_.asInstanceOf[Base64Binary]))
