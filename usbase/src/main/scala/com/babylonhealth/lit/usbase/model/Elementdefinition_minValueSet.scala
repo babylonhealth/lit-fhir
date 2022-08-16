@@ -98,6 +98,7 @@ class Elementdefinition_minValueSet(
       id = id,
       value = Some(value.toSuperRef),
       url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-minValueSet",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

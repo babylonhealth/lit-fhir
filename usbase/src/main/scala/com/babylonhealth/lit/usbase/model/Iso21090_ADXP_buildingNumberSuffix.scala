@@ -96,6 +96,7 @@ class Iso21090_ADXP_buildingNumberSuffix(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

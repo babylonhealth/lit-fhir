@@ -109,6 +109,7 @@ class Us_core_direct(
       value = value.map(choice(_)),
       extension = extension,
       url = "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

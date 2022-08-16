@@ -484,6 +484,7 @@ class Bp(
       modifierExtension = modifierExtension,
       component = component.refine,
       referenceRange = referenceRange,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Observation"
 }

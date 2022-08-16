@@ -400,6 +400,7 @@ class Cdshooksrequestgroup(
       modifierExtension = modifierExtension,
       instantiatesCanonical = instantiatesCanonical,
       action = action,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "RequestGroup"
 }

@@ -97,6 +97,7 @@ class DiagnosticReport_geneticsAnalysis(
       id = id,
       extension = extension.refine,
       url = "http://hl7.org/fhir/StructureDefinition/DiagnosticReport-geneticsAnalysis",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

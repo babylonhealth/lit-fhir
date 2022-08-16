@@ -383,6 +383,7 @@ class Us_core_documentreference(
       content = LitSeq(content),
       context = context,
       relatesTo = relatesTo,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "DocumentReference"
 }

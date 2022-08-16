@@ -375,6 +375,7 @@ class Us_core_goal(
       modifierExtension = modifierExtension,
       achievementStatus = achievementStatus,
       target = target,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Goal"
 }

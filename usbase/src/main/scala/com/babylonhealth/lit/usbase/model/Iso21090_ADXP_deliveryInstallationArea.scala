@@ -98,6 +98,7 @@ class Iso21090_ADXP_deliveryInstallationArea(
       id = id,
       value = Some(choice(value)),
       url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryInstallationArea",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

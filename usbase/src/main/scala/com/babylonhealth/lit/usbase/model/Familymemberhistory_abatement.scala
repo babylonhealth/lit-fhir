@@ -98,6 +98,7 @@ class Familymemberhistory_abatement(
       id = id,
       value = Some(value.toSuperRef),
       url = "http://hl7.org/fhir/StructureDefinition/familymemberhistory-abatement",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

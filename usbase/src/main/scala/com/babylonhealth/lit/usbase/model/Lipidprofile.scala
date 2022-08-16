@@ -395,6 +395,7 @@ class Lipidprofile(
       modifierExtension = modifierExtension,
       resultsInterpreter = resultsInterpreter,
       media = media,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "DiagnosticReport"
 }

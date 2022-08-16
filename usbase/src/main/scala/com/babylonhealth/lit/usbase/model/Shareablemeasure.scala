@@ -708,6 +708,7 @@ class Shareablemeasure(
       clinicalRecommendationStatement = clinicalRecommendationStatement,
       supplementalData = supplementalData,
       group = group,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Measure"
 }

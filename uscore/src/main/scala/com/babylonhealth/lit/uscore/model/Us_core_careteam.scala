@@ -364,6 +364,7 @@ class Us_core_careteam(
       modifierExtension = modifierExtension,
       managingOrganization = managingOrganization,
       participant = participant.refine,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "CareTeam"
 }

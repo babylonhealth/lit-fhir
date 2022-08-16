@@ -385,6 +385,7 @@ class Us_core_practitionerrole(
       availabilityExceptions = availabilityExceptions,
       notAvailable = notAvailable,
       availableTime = availableTime,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "PractitionerRole"
 }

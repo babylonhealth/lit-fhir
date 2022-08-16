@@ -374,6 +374,7 @@ class Clinicaldocument(
       section = section,
       attester = attester,
       relatesTo = relatesTo,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Composition"
 }

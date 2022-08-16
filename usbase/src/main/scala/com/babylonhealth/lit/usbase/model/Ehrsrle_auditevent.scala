@@ -336,6 +336,7 @@ class Ehrsrle_auditevent(
       source = source,
       agent = agent,
       entity = entity,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "AuditEvent"
 }

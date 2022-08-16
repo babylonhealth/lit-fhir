@@ -564,12 +564,14 @@ enum SMART_CAPABILITIES(val name: String, val display: Option[String], val syste
       extends SMART_CAPABILITIES(
         "context-standalone-encounter",
         Some("Allows \"Encounter Level Launch Context (STANDALONE)\""),
-        Some("http://terminology.hl7.org/CodeSystem/smart-capabilities"))
+        Some("http://terminology.hl7.org/CodeSystem/smart-capabilities")
+      )
   case CONTEXT_STANDALONE_PATIENT
       extends SMART_CAPABILITIES(
         "context-standalone-patient",
         Some("Allows \"Patient Level Launch Context (STANDALONE)\""),
-        Some("http://terminology.hl7.org/CodeSystem/smart-capabilities"))
+        Some("http://terminology.hl7.org/CodeSystem/smart-capabilities")
+      )
   case EHR_LAUNCH_MODE
       extends SMART_CAPABILITIES(
         "launch-ehr",

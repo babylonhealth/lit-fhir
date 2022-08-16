@@ -606,6 +606,7 @@ class Servicerequest_genetics(
       locationReference = locationReference,
       patientInstruction = patientInstruction,
       instantiatesCanonical = instantiatesCanonical,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "ServiceRequest"
 }

@@ -97,6 +97,7 @@ class Family_member_history_genetics_sibling(
       id = id,
       extension = extension.refine,
       url = "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling",
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Extension"
 }

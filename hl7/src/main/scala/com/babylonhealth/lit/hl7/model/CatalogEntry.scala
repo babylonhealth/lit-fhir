@@ -410,6 +410,7 @@ class CatalogEntry(
       extension = extension,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "CatalogEntry"
 }

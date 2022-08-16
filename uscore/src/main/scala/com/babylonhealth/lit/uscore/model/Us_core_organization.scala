@@ -322,6 +322,7 @@ class Us_core_organization(
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       contact = contact,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Organization"
 }

@@ -527,6 +527,7 @@ class Picoelement(
       relatedArtifact = relatedArtifact,
       modifierExtension = modifierExtension,
       characteristic = characteristic,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "EvidenceVariable"
 }

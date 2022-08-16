@@ -501,6 +501,7 @@ class Us_core_observation_lab(
       modifierExtension = modifierExtension,
       component = component,
       referenceRange = referenceRange,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Observation"
 }

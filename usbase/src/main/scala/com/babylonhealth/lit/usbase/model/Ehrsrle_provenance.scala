@@ -331,6 +331,7 @@ class Ehrsrle_provenance(
       modifierExtension = modifierExtension,
       agent = agent,
       entity = entity,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Provenance"
 }

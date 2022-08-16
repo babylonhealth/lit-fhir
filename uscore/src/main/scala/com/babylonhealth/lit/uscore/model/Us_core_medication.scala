@@ -302,6 +302,7 @@ class Us_core_medication(
       modifierExtension = modifierExtension,
       batch = batch,
       ingredient = ingredient,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Medication"
 }

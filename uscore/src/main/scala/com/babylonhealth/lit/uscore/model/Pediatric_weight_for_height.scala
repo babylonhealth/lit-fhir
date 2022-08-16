@@ -490,6 +490,7 @@ class Pediatric_weight_for_height(
       modifierExtension = modifierExtension,
       component = component,
       referenceRange = referenceRange,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Observation"
 }

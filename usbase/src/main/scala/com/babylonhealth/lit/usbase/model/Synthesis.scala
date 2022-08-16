@@ -531,6 +531,7 @@ class Synthesis(
       exposureVariant = exposureVariant.refine,
       modifierExtension = modifierExtension,
       exposureBackground = exposureBackground,
-      primitiveAttributes = primitiveAttributes) {
+      primitiveAttributes = primitiveAttributes
+    ) {
   override val thisTypeName: String = "Evidence"
 }
