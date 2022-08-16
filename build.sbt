@@ -26,7 +26,7 @@ val V = new {
   val izumiReflect           = "2.1.5"
   val jsonassert             = "1.5.1"
   val jUnit                  = "5.9.0"
-  val litVersionForGenerator = "0.14.9"
+  val litVersionForGenerator = "0.14.13"
   val logback                = "1.2.11"
   val lombok                 = "1.18.24"
   val scalaMeterVersion      = "0.22"
@@ -65,7 +65,7 @@ lazy val macros = project
   .settings(commonSettings)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
-    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.5.11") else Nil)
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.5.12") else Nil)
   )
 
 def getGeneratorVersion: String = sys.props.get("genver") match {
