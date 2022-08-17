@@ -77,9 +77,9 @@ class LitUtilsTest {
     }
 
     assertTrue(
-        message.toLowerCase().contains("expecting"), message + " should contain 'expecting array'");
+        message.toLowerCase().contains("expected"), message + " should contain 'expected array'");
     assertTrue(
-        message.toLowerCase().contains("array"), message + " should contain 'expecting array'");
+        message.toLowerCase().contains("array"), message + " should contain 'expected array'");
   }
 
   @Test
