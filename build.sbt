@@ -131,6 +131,20 @@ lazy val hl7 = project
   )
   .dependsOn(core, macros)
 
+lazy val ukcore = project
+  .in(file("ukcore"))
+  .settings(commonSettings)
+  .settings(
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
+    libraryDependencies ++= Seq(
+      "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
+      "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
+      "org.skyscreamer" % "jsonassert"    % V.jsonassert % Test)
+  )
+  .dependsOn(core, hl7, macros)
+
+
 lazy val uscore = project
   .in(file("uscore"))
   .settings(commonSettings)
@@ -240,6 +254,18 @@ lazy val uscoreJava = project
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
   .enablePlugins(JupiterPlugin)
 
+lazy val ukcoreJava = project
+  .in(file("ukcore_java"))
+  .settings(commonJSettings)
+  .settings(javaSettings: _*)
+  .settings(libraryDependencies ++= Seq(
+    "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
+    "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
+    "org.junit.jupiter" % "junit-jupiter"     % "5.9.0"                          % Test
+  ))
+  .dependsOn(core, hl7, ukcore, coreJava, hl7Java)
+  .enablePlugins(JupiterPlugin)
+
 lazy val protoshim = project
   .in(file("protoshim"))
   .settings(commonSettings)
@@ -258,12 +284,12 @@ lazy val root =
   project
     .in(file("."))
     .settings(commonSettings, publish / skip := true)
-    .dependsOn(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
-    .aggregate(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, fhirpath, protoshim)
+    .dependsOn(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, ukcore, ukcoreJava, fhirpath, protoshim)
+    .aggregate(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, ukcore, ukcoreJava, fhirpath, protoshim)
 
 addCommandAlias(
   "pushPackages",
   "; +common/publishSigned; +macros/publishSigned; +core/publishSigned; " +
-    "+hl7/publishSigned; +usbase/publishSigned; +uscore/publishSigned; coreJava/publishSigned; hl7Java/publishSigned; " +
-    "usbaseJava/publishSigned; uscoreJava/publishSigned; +fhirpath/publishSigned; +protoshim/publishSigned"
+    "+hl7/publishSigned; +usbase/publishSigned; +uscore/publishSigned; +ukcore/publishSigned; coreJava/publishSigned; hl7Java/publishSigned; " +
+    "usbaseJava/publishSigned; uscoreJava/publishSigned; ukcoreJava/publishSigned; +fhirpath/publishSigned; +protoshim/publishSigned"
 )

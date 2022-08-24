@@ -2,7 +2,9 @@
 BENCH_NUMBER=$(shell echo ${CIRCLE_JOB} | sed 's/benchmark//')
 CORE_MODULES=core hl7
 US_MODULES=usbase uscore
-ALL_MODULES=$(CORE_MODULES) $(US_MODULES)
+ALL_MODULES=$(CORE_MODULES) $(US_MODULES) ukcore
+HYDRANT_VERSION=0.10.5
+HYDRA_DOCKER=-e LIT_LOG_ON_BAD_PROFILE=false -e LIT_BUILDTIME_CLASSGRAPH=lit-graph -e LIT_CREATE_PHANTOM_VALUES=false $(HYDRANT_IMAGE):$(HYDRANT_VERSION)
 
 generated-compile:
 	sbt $(foreach i,$(ALL_MODULES),$i/compile)
@@ -35,8 +37,8 @@ test:
 	sbt +common/test +macros/test +generator/test
 	sbt $(foreach i,$(CORE_MODULES),+$i/test)
 	sbt $(foreach i,$(CORE_MODULES),$iJava/test)
-	sbt $(foreach i,$(US_MODULES),+$i/test)
-	sbt $(foreach i,$(US_MODULES),$iJava/test)
+	sbt $(foreach i,$(US_MODULES) ukcore,+$i/test)
+	sbt $(foreach i,$(US_MODULES) ukcore,$iJava/test)
 	sbt +fhirpath/test
 	sbt +protoshim/test
 	sbt +'bench/testOnly *ExampleTest'
@@ -87,13 +89,14 @@ build-all-class-models-dry:
 
 build-all-class-models:
 	sbt 'project generator' 'run "generate" \
-		--models="usbase=fhir/hl7.fhir.r4.examples/StructureDefinition-*;uscore=fhir/hl7.fhir.us.core/StructureDefinition-*" \
+		--models="usbase=fhir/hl7.fhir.r4.examples/StructureDefinition-*;uscore=fhir/hl7.fhir.us.core/StructureDefinition-*;ukcore=fhir/fhir.r4.ukcore.stu1/UKCore-*" \
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore"'
 	sbt scalafmtAll
 	sbt $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 	sbt $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
+	sbt scalafmtAll
 
 clean-target:
 	rm -rf target/ */target
@@ -110,6 +113,7 @@ clean-generated-java:
 cycle: clean-generated-java clean-generated-scala build-all-class-models test
 
 pull-stuff:
+	rm -rf fhir && mkdir fhir
 	npm --registry https://packages.simplifier.net install hl7.fhir.r4.core@4.0.1
 	rm -rf generator/src/main/resources/searchParams && mkdir generator/src/main/resources/searchParams
 	mv node_modules/hl7.fhir.r4.core/SearchParameter-* generator/src/main/resources/searchParams
@@ -124,10 +128,18 @@ pull-stuff:
 	rm -rf fhir node_modules/hl7.fhir.r4.core node_modules/hl7.fhir.r4.examples node_modules/hl7.fhir.us.core && mkdir fhir
 	npm --registry https://packages.simplifier.net install hl7.fhir.us.core@3.1.0
 	npm --registry https://packages.simplifier.net install hl7.fhir.r4.examples@4.0.1
+	npm --registry https://packages.simplifier.net install fhir.r4.ukcore.stu1@0.1.0
 #	npm --registry https://packages.simplifier.net install hl7.fhir.core@4.0.1
 	mv node_modules/hl7.fhir.r4.examples fhir
 	mv node_modules/hl7.fhir.us.core fhir
 	mv node_modules/hl7.fhir.r4.core fhir
+	mv node_modules/fhir.r4.ukcore.stu1 fhir
+	mkdir fhir/fhir.r4.ukcore.stu1/profiles
+	mkdir fhir/fhir.r4.ukcore.stu1/valueSets
+	for i in fhir/fhir.r4.ukcore.stu1/Extension-UKCore-*.json; do mv "$${i}" "$${i}.StructureDefinition.json"; done
+	for i in fhir/fhir.r4.ukcore.stu1/UKCore-*.json; do mv "$${i}" "$${i}.StructureDefinition.json"; done
+	for i in fhir/fhir.r4.ukcore.stu1/ValueSet-UKCore-*.json; do mv "$${i}" "$${i}.ValueSet.json"; done
+	sed -i.bak 's/UKCore-VitalSignsObservationType/UKCore-ObservationType/g' fhir/fhir.r4.ukcore.stu1/UKCore-VitalSigns-Observation.json.StructureDefinition.json
 
 find-weird-ones:
 	@echo NO BASE:
@@ -138,3 +150,6 @@ find-weird-ones:
 	@echo
 	@echo NO EXPRESSION:
 	@cat generator/src/main/resources/searchParams.json | jq '.[] | select (.expression == null) | .name' | sort | xargs | tr ' ' ,
+
+gen-uk-snapshots:
+	docker run --rm -v $${PWD}/fhir/fhir.r4.ukcore.stu1:/gen -v $${PWD}/fhir/hl7.fhir.r4.core/:/hl7 $(HYDRA_DOCKER) snapshot -s /gen -h hl7
