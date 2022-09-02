@@ -1,5 +1,5 @@
 pub mod core;
-mod hl7;
+pub mod hl7;
 
 
 #[cfg(test)]
@@ -8,6 +8,7 @@ mod tests {
     use im::Vector;
     use crate::core::model::Extension::Extension;
     use crate::core::model::Quantity::Quantity;
+    use crate::core::model::Quantity::QuantityRaw;
     use crate::core::UnionAll::*;
     use bigdecimal::BigDecimal;
     use crate::core::model::DataRequirement::{DataRequirement, DataRequirement_Sort};
@@ -24,7 +25,7 @@ mod tests {
             extension: Vector::unit(Extension {
                 id: None,
                 url: "dsa".to_string(),
-                value: Some(FHIRQuantity(Quantity {
+                value: Some(FHIRQuantity(Box::new(QuantityRaw {
                     id: None,
                     unit: Some("cn".to_string()),
                     code: Some("1234567890".to_string()),
@@ -32,7 +33,7 @@ mod tests {
                     system: Some("http://fake.system".to_string()),
                     extension: Vector::new(),
                     comparator: None
-                })),
+                }))),
                 extension: Vector::new(),
             }),
         };

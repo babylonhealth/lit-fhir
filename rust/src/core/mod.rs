@@ -6,6 +6,7 @@ use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 
 pub mod model;
+pub mod LitError;
 
 // #[derive(Clone)]
 // union UnionAll<'a> {
@@ -17,7 +18,7 @@ pub enum UnionAll {
     FHIRCodeableConcept(CodeableConcept),
     FHIRString(String),
     FHIRInteger(i32),
-    FHIRQuantity(Quantity),
+    FHIRQuantity(Box<dyn Quantity>),
     FHIRReference(Box<Reference>),
 }
 #[derive(Clone, Debug)]
