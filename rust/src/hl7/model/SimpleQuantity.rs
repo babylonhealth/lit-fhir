@@ -18,7 +18,7 @@ pub struct SimpleQuantityRaw {
     pub(crate) system: Option<String>,
 }
 
-pub trait SimpleQuantity {
+pub trait SimpleQuantity : Quantity {
     fn id(&self) -> &Option<String>;
     fn extension(&self) -> &Vector<Extension>;
     fn unit(&self) -> &Option<String>;
