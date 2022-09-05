@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -13,10 +15,11 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriod;
-use crate::hl7::UnionQuantityOrRatio;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
+use crate::hl7::model::UnionAliases::UnionQuantityOrRatio;
 
 
 
@@ -70,8 +73,8 @@ pub struct MedicationAdministrationRaw {
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) supportingInformation: Vector<Box<dyn Reference>>,
-  pub(crate) dosage: Option<MedicationAdministration_Dosage>,
-  pub(crate) performer: Vector<MedicationAdministration_Performer>,
+  pub(crate) dosage: Option<Box<MedicationAdministration_Dosage>>,
+  pub(crate) performer: Vector<Box<MedicationAdministration_Performer>>,
 }
 
 pub trait MedicationAdministration : DomainResource {
@@ -92,8 +95,8 @@ pub trait MedicationAdministration : DomainResource {
   fn medication(&self) -> &UnionCodeableConceptOrReference;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
-  fn dosage(&self) -> &Option<MedicationAdministration_Dosage>;
-  fn performer(&self) -> &Vector<MedicationAdministration_Performer>;
+  fn dosage(&self) -> &Option<Box<MedicationAdministration_Dosage>>;
+  fn performer(&self) -> &Vector<Box<MedicationAdministration_Performer>>;
 }
 
 dyn_clone::clone_trait_object!(MedicationAdministration);
@@ -135,7 +138,7 @@ impl MedicationAdministration for MedicationAdministrationRaw {
   fn medication(&self) -> &UnionCodeableConceptOrReference { &self.medication }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
-  fn dosage(&self) -> &Option<MedicationAdministration_Dosage> { &self.dosage }
-  fn performer(&self) -> &Vector<MedicationAdministration_Performer> { &self.performer }
+  fn dosage(&self) -> &Option<Box<MedicationAdministration_Dosage>> { &self.dosage }
+  fn performer(&self) -> &Vector<Box<MedicationAdministration_Performer>> { &self.performer }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -77,7 +80,7 @@ pub struct MolecularSequence_Quality {
   pub(crate) precision: Option<BigDecimal>,
   pub(crate) standardSequence: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) roc: Option<MolecularSequence_Quality_Roc>,
+  pub(crate) roc: Option<Box<MolecularSequence_Quality_Roc>>,
 }
 
 
@@ -126,8 +129,8 @@ pub struct MolecularSequence_StructureVariant {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) variantType: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) outer: Option<MolecularSequence_StructureVariant_Outer>,
-  pub(crate) inner: Option<MolecularSequence_StructureVariant_Inner>,
+  pub(crate) outer: Option<Box<MolecularSequence_StructureVariant_Outer>>,
+  pub(crate) inner: Option<Box<MolecularSequence_StructureVariant_Inner>>,
 }
 
 #[derive(Clone, Debug)]
@@ -151,11 +154,11 @@ pub struct MolecularSequenceRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) coordinateSystem: i32,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) variant: Vector<MolecularSequence_Variant>,
-  pub(crate) repository: Vector<MolecularSequence_Repository>,
-  pub(crate) quality: Vector<MolecularSequence_Quality>,
-  pub(crate) referenceSeq: Option<MolecularSequence_ReferenceSeq>,
-  pub(crate) structureVariant: Vector<MolecularSequence_StructureVariant>,
+  pub(crate) variant: Vector<Box<MolecularSequence_Variant>>,
+  pub(crate) repository: Vector<Box<MolecularSequence_Repository>>,
+  pub(crate) quality: Vector<Box<MolecularSequence_Quality>>,
+  pub(crate) referenceSeq: Option<Box<MolecularSequence_ReferenceSeq>>,
+  pub(crate) structureVariant: Vector<Box<MolecularSequence_StructureVariant>>,
 }
 
 pub trait MolecularSequence : DomainResource {
@@ -170,11 +173,11 @@ pub trait MolecularSequence : DomainResource {
   fn observedSeq(&self) -> &Option<String>;
   fn readCoverage(&self) -> &Option<i32>;
   fn coordinateSystem(&self) -> &i32;
-  fn variant(&self) -> &Vector<MolecularSequence_Variant>;
-  fn repository(&self) -> &Vector<MolecularSequence_Repository>;
-  fn quality(&self) -> &Vector<MolecularSequence_Quality>;
-  fn referenceSeq(&self) -> &Option<MolecularSequence_ReferenceSeq>;
-  fn structureVariant(&self) -> &Vector<MolecularSequence_StructureVariant>;
+  fn variant(&self) -> &Vector<Box<MolecularSequence_Variant>>;
+  fn repository(&self) -> &Vector<Box<MolecularSequence_Repository>>;
+  fn quality(&self) -> &Vector<Box<MolecularSequence_Quality>>;
+  fn referenceSeq(&self) -> &Option<Box<MolecularSequence_ReferenceSeq>>;
+  fn structureVariant(&self) -> &Vector<Box<MolecularSequence_StructureVariant>>;
 }
 
 dyn_clone::clone_trait_object!(MolecularSequence);
@@ -210,10 +213,10 @@ impl MolecularSequence for MolecularSequenceRaw {
   fn observedSeq(&self) -> &Option<String> { &self.observedSeq }
   fn readCoverage(&self) -> &Option<i32> { &self.readCoverage }
   fn coordinateSystem(&self) -> &i32 { &self.coordinateSystem }
-  fn variant(&self) -> &Vector<MolecularSequence_Variant> { &self.variant }
-  fn repository(&self) -> &Vector<MolecularSequence_Repository> { &self.repository }
-  fn quality(&self) -> &Vector<MolecularSequence_Quality> { &self.quality }
-  fn referenceSeq(&self) -> &Option<MolecularSequence_ReferenceSeq> { &self.referenceSeq }
-  fn structureVariant(&self) -> &Vector<MolecularSequence_StructureVariant> { &self.structureVariant }
+  fn variant(&self) -> &Vector<Box<MolecularSequence_Variant>> { &self.variant }
+  fn repository(&self) -> &Vector<Box<MolecularSequence_Repository>> { &self.repository }
+  fn quality(&self) -> &Vector<Box<MolecularSequence_Quality>> { &self.quality }
+  fn referenceSeq(&self) -> &Option<Box<MolecularSequence_ReferenceSeq>> { &self.referenceSeq }
+  fn structureVariant(&self) -> &Vector<Box<MolecularSequence_StructureVariant>> { &self.structureVariant }
 }
 

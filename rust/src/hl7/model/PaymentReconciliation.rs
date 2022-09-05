@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -21,7 +24,7 @@ use crate::hl7::model::Narrative::Narrative;
 pub struct PaymentReconciliation_Detail {
   pub(crate) id: Option<String>,
   pub(crate) _type: Box<dyn CodeableConcept>,
-  pub(crate) date: Option<FHIRDate>,
+  pub(crate) date: Option<LocalDate>,
   pub(crate) payee: Option<Box<dyn Reference>>,
   pub(crate) amount: Option<Box<dyn Money>>,
   pub(crate) request: Option<Box<dyn Reference>>,
@@ -61,14 +64,14 @@ pub struct PaymentReconciliationRaw {
   pub(crate) requestor: Option<Box<dyn Reference>>,
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) disposition: Option<String>,
-  pub(crate) paymentDate: FHIRDate,
+  pub(crate) paymentDate: LocalDate,
   pub(crate) implicitRules: Option<String>,
   pub(crate) paymentIssuer: Option<Box<dyn Reference>>,
   pub(crate) paymentAmount: Box<dyn Money>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) paymentIdentifier: Option<Box<dyn Identifier>>,
-  pub(crate) detail: Vector<PaymentReconciliation_Detail>,
-  pub(crate) processNote: Vector<PaymentReconciliation_ProcessNote>,
+  pub(crate) detail: Vector<Box<PaymentReconciliation_Detail>>,
+  pub(crate) processNote: Vector<Box<PaymentReconciliation_ProcessNote>>,
 }
 
 pub trait PaymentReconciliation : DomainResource {
@@ -81,12 +84,12 @@ pub trait PaymentReconciliation : DomainResource {
   fn requestor(&self) -> &Option<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn disposition(&self) -> &Option<String>;
-  fn paymentDate(&self) -> &FHIRDate;
+  fn paymentDate(&self) -> &LocalDate;
   fn paymentIssuer(&self) -> &Option<Box<dyn Reference>>;
   fn paymentAmount(&self) -> &Box<dyn Money>;
   fn paymentIdentifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn detail(&self) -> &Vector<PaymentReconciliation_Detail>;
-  fn processNote(&self) -> &Vector<PaymentReconciliation_ProcessNote>;
+  fn detail(&self) -> &Vector<Box<PaymentReconciliation_Detail>>;
+  fn processNote(&self) -> &Vector<Box<PaymentReconciliation_ProcessNote>>;
 }
 
 dyn_clone::clone_trait_object!(PaymentReconciliation);
@@ -120,11 +123,11 @@ impl PaymentReconciliation for PaymentReconciliationRaw {
   fn requestor(&self) -> &Option<Box<dyn Reference>> { &self.requestor }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn disposition(&self) -> &Option<String> { &self.disposition }
-  fn paymentDate(&self) -> &FHIRDate { &self.paymentDate }
+  fn paymentDate(&self) -> &LocalDate { &self.paymentDate }
   fn paymentIssuer(&self) -> &Option<Box<dyn Reference>> { &self.paymentIssuer }
   fn paymentAmount(&self) -> &Box<dyn Money> { &self.paymentAmount }
   fn paymentIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.paymentIdentifier }
-  fn detail(&self) -> &Vector<PaymentReconciliation_Detail> { &self.detail }
-  fn processNote(&self) -> &Vector<PaymentReconciliation_ProcessNote> { &self.processNote }
+  fn detail(&self) -> &Vector<Box<PaymentReconciliation_Detail>> { &self.detail }
+  fn processNote(&self) -> &Vector<Box<PaymentReconciliation_ProcessNote>> { &self.processNote }
 }
 

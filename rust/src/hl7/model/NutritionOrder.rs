@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -13,9 +16,9 @@ use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
 use crate::core::model::Timing::Timing;
-use crate::hl7::UnionQuantityOrRatio;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionQuantityOrRatio;
 
 
 
@@ -61,8 +64,8 @@ pub struct NutritionOrder_OralDiet {
   pub(crate) instruction: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) fluidConsistencyType: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) texture: Vector<NutritionOrder_OralDiet_Texture>,
-  pub(crate) nutrient: Vector<NutritionOrder_OralDiet_Nutrient>,
+  pub(crate) texture: Vector<Box<NutritionOrder_OralDiet_Texture>>,
+  pub(crate) nutrient: Vector<Box<NutritionOrder_OralDiet_Nutrient>>,
 }
 
 
@@ -89,7 +92,7 @@ pub struct NutritionOrder_EnteralFormula {
   pub(crate) routeofAdministration: Option<Box<dyn CodeableConcept>>,
   pub(crate) baseFormulaProductName: Option<String>,
   pub(crate) administrationInstruction: Option<String>,
-  pub(crate) administration: Vector<NutritionOrder_EnteralFormula_Administration>,
+  pub(crate) administration: Vector<Box<NutritionOrder_EnteralFormula_Administration>>,
 }
 
 #[derive(Clone, Debug)]
@@ -116,9 +119,9 @@ pub struct NutritionOrderRaw {
   pub(crate) excludeFoodModifier: Vector<Box<dyn CodeableConcept>>,
   pub(crate) instantiatesCanonical: Vector<String>,
   pub(crate) foodPreferenceModifier: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) supplement: Vector<NutritionOrder_Supplement>,
-  pub(crate) oralDiet: Option<NutritionOrder_OralDiet>,
-  pub(crate) enteralFormula: Option<NutritionOrder_EnteralFormula>,
+  pub(crate) supplement: Vector<Box<NutritionOrder_Supplement>>,
+  pub(crate) oralDiet: Option<Box<NutritionOrder_OralDiet>>,
+  pub(crate) enteralFormula: Option<Box<NutritionOrder_EnteralFormula>>,
 }
 
 pub trait NutritionOrder : DomainResource {
@@ -136,9 +139,9 @@ pub trait NutritionOrder : DomainResource {
   fn excludeFoodModifier(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
   fn foodPreferenceModifier(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn supplement(&self) -> &Vector<NutritionOrder_Supplement>;
-  fn oralDiet(&self) -> &Option<NutritionOrder_OralDiet>;
-  fn enteralFormula(&self) -> &Option<NutritionOrder_EnteralFormula>;
+  fn supplement(&self) -> &Vector<Box<NutritionOrder_Supplement>>;
+  fn oralDiet(&self) -> &Option<Box<NutritionOrder_OralDiet>>;
+  fn enteralFormula(&self) -> &Option<Box<NutritionOrder_EnteralFormula>>;
 }
 
 dyn_clone::clone_trait_object!(NutritionOrder);
@@ -177,8 +180,8 @@ impl NutritionOrder for NutritionOrderRaw {
   fn excludeFoodModifier(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.excludeFoodModifier }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
   fn foodPreferenceModifier(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.foodPreferenceModifier }
-  fn supplement(&self) -> &Vector<NutritionOrder_Supplement> { &self.supplement }
-  fn oralDiet(&self) -> &Option<NutritionOrder_OralDiet> { &self.oralDiet }
-  fn enteralFormula(&self) -> &Option<NutritionOrder_EnteralFormula> { &self.enteralFormula }
+  fn supplement(&self) -> &Vector<Box<NutritionOrder_Supplement>> { &self.supplement }
+  fn oralDiet(&self) -> &Option<Box<NutritionOrder_OralDiet>> { &self.oralDiet }
+  fn enteralFormula(&self) -> &Option<Box<NutritionOrder_EnteralFormula>> { &self.enteralFormula }
 }
 

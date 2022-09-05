@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Coding::Coding;
@@ -17,11 +19,12 @@ use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
 use crate::core::model::Signature::Signature;
-use crate::hl7::Union01113166363;
-use crate::hl7::UnionAttachmentOrReference;
-use crate::hl7::UnionDateTimeOrPeriodOrTiming;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01113166363;
+use crate::hl7::model::UnionAliases::UnionAttachmentOrReference;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriodOrTiming;
 
 
 
@@ -109,8 +112,8 @@ pub struct Contract_Term_Offer {
   pub(crate) decisionMode: Vector<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) securityLabelNumber: Vector<u32>,
-  pub(crate) party: Vector<Contract_Term_Offer_Party>,
-  pub(crate) answer: Vector<Contract_Term_Offer_Answer>,
+  pub(crate) party: Vector<Box<Contract_Term_Offer_Party>>,
+  pub(crate) answer: Vector<Box<Contract_Term_Offer_Answer>>,
 }
 
 
@@ -162,7 +165,7 @@ pub struct Contract_Term_Action {
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) securityLabelNumber: Vector<u32>,
-  pub(crate) subject: Vector<Contract_Term_Action_Subject>,
+  pub(crate) subject: Vector<Box<Contract_Term_Action_Subject>>,
 }
 
 
@@ -208,7 +211,7 @@ pub struct Contract_Term_Asset {
   pub(crate) scope: Option<Box<dyn CodeableConcept>>,
   pub(crate) period: Vector<Box<dyn Period>>,
   pub(crate) linkId: Vector<String>,
-  pub(crate) answer: Vector<Box<dyn Contract_Term_Offer_Answer>>,
+  pub(crate) answer: Vector<Box<Contract_Term_Offer_Answer>>,
   pub(crate) subtype: Vector<Box<dyn CodeableConcept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) condition: Option<String>,
@@ -218,8 +221,8 @@ pub struct Contract_Term_Asset {
   pub(crate) typeReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) securityLabelNumber: Vector<u32>,
-  pub(crate) context: Vector<Contract_Term_Asset_Context>,
-  pub(crate) valuedItem: Vector<Contract_Term_Asset_ValuedItem>,
+  pub(crate) context: Vector<Box<Contract_Term_Asset_Context>>,
+  pub(crate) valuedItem: Vector<Box<Contract_Term_Asset_ValuedItem>>,
 }
 
 #[derive(Clone, Debug)]
@@ -227,7 +230,7 @@ pub struct Contract_Term {
   pub(crate) id: Option<String>,
   pub(crate) _type: Option<Box<dyn CodeableConcept>>,
   pub(crate) text: Option<String>,
-  pub(crate) group: Vector<Box<dyn Contract_Term>>,
+  pub(crate) group: Vector<Box<Contract_Term>>,
   pub(crate) issued: Option<DateTime<FixedOffset>>,
   pub(crate) applies: Option<Box<dyn Period>>,
   pub(crate) subType: Option<Box<dyn CodeableConcept>>,
@@ -235,10 +238,10 @@ pub struct Contract_Term {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) identifier: Option<Box<dyn Identifier>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) offer: Contract_Term_Offer,
-  pub(crate) securityLabel: Vector<Contract_Term_SecurityLabel>,
-  pub(crate) action: Vector<Contract_Term_Action>,
-  pub(crate) asset: Vector<Contract_Term_Asset>,
+  pub(crate) offer: Box<Contract_Term_Offer>,
+  pub(crate) securityLabel: Vector<Box<Contract_Term_SecurityLabel>>,
+  pub(crate) action: Vector<Box<Contract_Term_Action>>,
+  pub(crate) asset: Vector<Box<Contract_Term_Asset>>,
 }
 
 #[derive(Clone, Debug)]
@@ -278,12 +281,12 @@ pub struct ContractRaw {
   pub(crate) contentDerivative: Option<Box<dyn CodeableConcept>>,
   pub(crate) legallyBinding: Option<UnionAttachmentOrReference>,
   pub(crate) instantiatesCanonical: Option<Box<dyn Reference>>,
-  pub(crate) rule: Vector<Contract_Rule>,
-  pub(crate) legal: Vector<Contract_Legal>,
-  pub(crate) signer: Vector<Contract_Signer>,
-  pub(crate) friendly: Vector<Contract_Friendly>,
-  pub(crate) contentDefinition: Option<Contract_ContentDefinition>,
-  pub(crate) term: Vector<Contract_Term>,
+  pub(crate) rule: Vector<Box<Contract_Rule>>,
+  pub(crate) legal: Vector<Box<Contract_Legal>>,
+  pub(crate) signer: Vector<Box<Contract_Signer>>,
+  pub(crate) friendly: Vector<Box<Contract_Friendly>>,
+  pub(crate) contentDefinition: Option<Box<Contract_ContentDefinition>>,
+  pub(crate) term: Vector<Box<Contract_Term>>,
 }
 
 pub trait Contract : DomainResource {
@@ -314,12 +317,12 @@ pub trait Contract : DomainResource {
   fn contentDerivative(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn legallyBinding(&self) -> &Option<UnionAttachmentOrReference>;
   fn instantiatesCanonical(&self) -> &Option<Box<dyn Reference>>;
-  fn rule(&self) -> &Vector<Contract_Rule>;
-  fn legal(&self) -> &Vector<Contract_Legal>;
-  fn signer(&self) -> &Vector<Contract_Signer>;
-  fn friendly(&self) -> &Vector<Contract_Friendly>;
-  fn contentDefinition(&self) -> &Option<Contract_ContentDefinition>;
-  fn term(&self) -> &Vector<Contract_Term>;
+  fn rule(&self) -> &Vector<Box<Contract_Rule>>;
+  fn legal(&self) -> &Vector<Box<Contract_Legal>>;
+  fn signer(&self) -> &Vector<Box<Contract_Signer>>;
+  fn friendly(&self) -> &Vector<Box<Contract_Friendly>>;
+  fn contentDefinition(&self) -> &Option<Box<Contract_ContentDefinition>>;
+  fn term(&self) -> &Vector<Box<Contract_Term>>;
 }
 
 dyn_clone::clone_trait_object!(Contract);
@@ -371,11 +374,11 @@ impl Contract for ContractRaw {
   fn contentDerivative(&self) -> &Option<Box<dyn CodeableConcept>> { &self.contentDerivative }
   fn legallyBinding(&self) -> &Option<UnionAttachmentOrReference> { &self.legallyBinding }
   fn instantiatesCanonical(&self) -> &Option<Box<dyn Reference>> { &self.instantiatesCanonical }
-  fn rule(&self) -> &Vector<Contract_Rule> { &self.rule }
-  fn legal(&self) -> &Vector<Contract_Legal> { &self.legal }
-  fn signer(&self) -> &Vector<Contract_Signer> { &self.signer }
-  fn friendly(&self) -> &Vector<Contract_Friendly> { &self.friendly }
-  fn contentDefinition(&self) -> &Option<Contract_ContentDefinition> { &self.contentDefinition }
-  fn term(&self) -> &Vector<Contract_Term> { &self.term }
+  fn rule(&self) -> &Vector<Box<Contract_Rule>> { &self.rule }
+  fn legal(&self) -> &Vector<Box<Contract_Legal>> { &self.legal }
+  fn signer(&self) -> &Vector<Box<Contract_Signer>> { &self.signer }
+  fn friendly(&self) -> &Vector<Box<Contract_Friendly>> { &self.friendly }
+  fn contentDefinition(&self) -> &Option<Box<Contract_ContentDefinition>> { &self.contentDefinition }
+  fn term(&self) -> &Vector<Box<Contract_Term>> { &self.term }
 }
 

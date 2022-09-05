@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,10 +14,10 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionAttachmentOrReferenceOrString;
-use crate::hl7::UnionDateTimeOrPeriod;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionAttachmentOrReferenceOrString;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
 
 
 
@@ -57,7 +60,7 @@ pub struct CommunicationRequestRaw {
   pub(crate) groupIdentifier: Option<Box<dyn Identifier>>,
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) payload: Vector<CommunicationRequest_Payload>,
+  pub(crate) payload: Vector<Box<CommunicationRequest_Payload>>,
 }
 
 pub trait CommunicationRequest : DomainResource {
@@ -82,7 +85,7 @@ pub trait CommunicationRequest : DomainResource {
   fn occurrence(&self) -> &Option<UnionDateTimeOrPeriod>;
   fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn payload(&self) -> &Vector<CommunicationRequest_Payload>;
+  fn payload(&self) -> &Vector<Box<CommunicationRequest_Payload>>;
 }
 
 dyn_clone::clone_trait_object!(CommunicationRequest);
@@ -128,6 +131,6 @@ impl CommunicationRequest for CommunicationRequestRaw {
   fn occurrence(&self) -> &Option<UnionDateTimeOrPeriod> { &self.occurrence }
   fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.groupIdentifier }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
-  fn payload(&self) -> &Vector<CommunicationRequest_Payload> { &self.payload }
+  fn payload(&self) -> &Vector<Box<CommunicationRequest_Payload>> { &self.payload }
 }
 

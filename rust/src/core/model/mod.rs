@@ -2,7 +2,7 @@
 
 pub mod Address;
 pub mod Age;
-// pub mod Annotation;
+pub mod Annotation;
 pub mod Attachment;
 pub mod BackboneElement;
 pub mod CodeableConcept;
@@ -13,7 +13,7 @@ pub mod Contributor;
 pub mod Count;
 pub mod DataRequirement;
 pub mod Distance;
-// pub mod Dosage;
+pub mod Dosage;
 pub mod Duration;
 pub mod Expression;
 pub mod Extension;
@@ -33,6 +33,7 @@ pub mod RelatedArtifact;
 pub mod Resource;
 pub mod SampledData;
 pub mod Signature;
-// pub mod Timing;
-// pub mod TriggerDefinition;
-// pub mod UsageContext;
+pub mod Timing;
+pub mod TriggerDefinition;
+pub mod UnionAliases;
+pub mod UsageContext;

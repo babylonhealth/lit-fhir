@@ -1,13 +1,18 @@
 use chrono::{DateTime, Duration, FixedOffset};
 use im::Vector;
 use crate::core::model::CodeableConcept::{CodeableConcept, CodeableConceptRaw};
+use crate::core::model::Duration::DurationRaw;
 use crate::core::model::Period::{Period, PeriodRaw};
 use crate::core::model::Quantity::{Quantity, QuantityRaw};
+use crate::core::model::Range::RangeRaw;
+use crate::core::model::Ratio::RatioRaw;
 use crate::core::model::Reference::{Reference, ReferenceRaw};
+use crate::core::model::Timing::{Timing, TimingRaw};
 
 pub mod model;
 pub mod LitError;
-pub mod FHIRObject;
+// pub mod FHIRObject;
+// pub mod UnionUtils;
 
 // #[derive(Clone)]
 // union UnionAll<'a> {
@@ -21,6 +26,45 @@ pub enum UnionAll {
     FHIRInteger(i32),
     FHIRQuantity(Box<dyn Quantity>),
     FHIRReference(Box<ReferenceRaw>),
+}
+
+#[derive(Clone, Debug)]
+pub enum UnionBooleanOrCodeableConcept {
+    FHIRBoolean(bool),
+    FHIRCodeableConcept(CodeableConceptRaw),
+}
+
+#[derive(Clone, Debug)]
+pub enum UnionReferenceOrString {
+    FHIRReference(Box<ReferenceRaw>),
+    FHIRString(String),
+}
+
+#[derive(Clone, Debug)]
+pub enum UnionDurationOrPeriodOrRange {
+    FHIRDuration(DurationRaw),
+    FHIRPeriod(PeriodRaw),
+    FHIRRange(RangeRaw),
+}
+
+#[derive(Clone, Debug)]
+pub enum UnionPeriodOrStringOrTiming {
+    FHIRPeriod(PeriodRaw),
+    FHIRString(String),
+    FHIRTiming(TimingRaw),
+}
+
+#[derive(Clone, Debug)]
+pub enum UnionQuantityOrRange {
+    FHIRQuantity(QuantityRaw),
+    FHIRRange(RangeRaw),
+}
+
+#[derive(Clone, Debug)]
+pub enum UnionQuantityOrRangeOrRatio {
+    FHIRQuantity(QuantityRaw),
+    FHIRRange(RangeRaw),
+    FHIRRatio(RatioRaw),
 }
 
 #[derive(Clone, Debug)]

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -12,9 +15,9 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionAttachmentOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionAttachmentOrReference;
 
 
 
@@ -69,12 +72,12 @@ pub struct Consent_Provision {
   pub(crate) action: Vector<Box<dyn CodeableConcept>>,
   pub(crate) purpose: Vector<Box<dyn Coding>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) provision: Vector<Box<dyn Consent_Provision>>,
+  pub(crate) provision: Vector<Box<Consent_Provision>>,
   pub(crate) dataPeriod: Option<Box<dyn Period>>,
   pub(crate) securityLabel: Vector<Box<dyn Coding>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) data: Vector<Consent_Provision_Data>,
-  pub(crate) actor: Vector<Consent_Provision_Actor>,
+  pub(crate) data: Vector<Box<Consent_Provision_Data>>,
+  pub(crate) actor: Vector<Box<Consent_Provision_Actor>>,
 }
 
 #[derive(Clone, Debug)]
@@ -97,9 +100,9 @@ pub struct ConsentRaw {
   pub(crate) organization: Vector<Box<dyn Reference>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) policy: Vector<Consent_Policy>,
-  pub(crate) verification: Vector<Consent_Verification>,
-  pub(crate) provision: Option<Consent_Provision>,
+  pub(crate) policy: Vector<Box<Consent_Policy>>,
+  pub(crate) verification: Vector<Box<Consent_Verification>>,
+  pub(crate) provision: Option<Box<Consent_Provision>>,
 }
 
 pub trait Consent : DomainResource {
@@ -113,9 +116,9 @@ pub trait Consent : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn policyRule(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn organization(&self) -> &Vector<Box<dyn Reference>>;
-  fn policy(&self) -> &Vector<Consent_Policy>;
-  fn verification(&self) -> &Vector<Consent_Verification>;
-  fn provision(&self) -> &Option<Consent_Provision>;
+  fn policy(&self) -> &Vector<Box<Consent_Policy>>;
+  fn verification(&self) -> &Vector<Box<Consent_Verification>>;
+  fn provision(&self) -> &Option<Box<Consent_Provision>>;
 }
 
 dyn_clone::clone_trait_object!(Consent);
@@ -150,8 +153,8 @@ impl Consent for ConsentRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn policyRule(&self) -> &Option<Box<dyn CodeableConcept>> { &self.policyRule }
   fn organization(&self) -> &Vector<Box<dyn Reference>> { &self.organization }
-  fn policy(&self) -> &Vector<Consent_Policy> { &self.policy }
-  fn verification(&self) -> &Vector<Consent_Verification> { &self.verification }
-  fn provision(&self) -> &Option<Consent_Provision> { &self.provision }
+  fn policy(&self) -> &Vector<Box<Consent_Policy>> { &self.policy }
+  fn verification(&self) -> &Vector<Box<Consent_Verification>> { &self.verification }
+  fn provision(&self) -> &Option<Box<Consent_Provision>> { &self.provision }
 }
 

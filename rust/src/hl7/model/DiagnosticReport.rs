@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriod;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
 
 
 
@@ -53,7 +56,7 @@ pub struct DiagnosticReportRaw {
   pub(crate) conclusionCode: Vector<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) resultsInterpreter: Vector<Box<dyn Reference>>,
-  pub(crate) media: Vector<DiagnosticReport_Media>,
+  pub(crate) media: Vector<Box<DiagnosticReport_Media>>,
 }
 
 pub trait DiagnosticReport : DomainResource {
@@ -74,7 +77,7 @@ pub trait DiagnosticReport : DomainResource {
   fn presentedForm(&self) -> &Vector<Box<dyn Attachment>>;
   fn conclusionCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn resultsInterpreter(&self) -> &Vector<Box<dyn Reference>>;
-  fn media(&self) -> &Vector<DiagnosticReport_Media>;
+  fn media(&self) -> &Vector<Box<DiagnosticReport_Media>>;
 }
 
 dyn_clone::clone_trait_object!(DiagnosticReport);
@@ -116,6 +119,6 @@ impl DiagnosticReport for DiagnosticReportRaw {
   fn presentedForm(&self) -> &Vector<Box<dyn Attachment>> { &self.presentedForm }
   fn conclusionCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.conclusionCode }
   fn resultsInterpreter(&self) -> &Vector<Box<dyn Reference>> { &self.resultsInterpreter }
-  fn media(&self) -> &Vector<DiagnosticReport_Media> { &self.media }
+  fn media(&self) -> &Vector<Box<DiagnosticReport_Media>> { &self.media }
 }
 

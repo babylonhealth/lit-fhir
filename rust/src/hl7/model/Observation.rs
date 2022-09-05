@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -13,10 +16,10 @@ use crate::core::model::Quantity::Quantity;
 use crate::core::model::Range::Range;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union00107722725;
-use crate::hl7::Union02118820890;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union00107722725;
+use crate::hl7::model::UnionAliases::Union02118820890;
 
 
 
@@ -27,7 +30,7 @@ pub struct Observation_Component {
   pub(crate) value: Option<Union02118820890>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) interpretation: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) referenceRange: Vector<Box<dyn Observation_ReferenceRange>>,
+  pub(crate) referenceRange: Vector<Box<Observation_ReferenceRange>>,
   pub(crate) dataAbsentReason: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
@@ -78,8 +81,8 @@ pub struct ObservationRaw {
   pub(crate) interpretation: Vector<Box<dyn CodeableConcept>>,
   pub(crate) dataAbsentReason: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) component: Vector<Observation_Component>,
-  pub(crate) referenceRange: Vector<Observation_ReferenceRange>,
+  pub(crate) component: Vector<Box<Observation_Component>>,
+  pub(crate) referenceRange: Vector<Box<Observation_ReferenceRange>>,
 }
 
 pub trait Observation : DomainResource {
@@ -105,8 +108,8 @@ pub trait Observation : DomainResource {
   fn effective(&self) -> &Option<Union00107722725>;
   fn interpretation(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn dataAbsentReason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn component(&self) -> &Vector<Observation_Component>;
-  fn referenceRange(&self) -> &Vector<Observation_ReferenceRange>;
+  fn component(&self) -> &Vector<Box<Observation_Component>>;
+  fn referenceRange(&self) -> &Vector<Box<Observation_ReferenceRange>>;
 }
 
 dyn_clone::clone_trait_object!(Observation);
@@ -153,7 +156,7 @@ impl Observation for ObservationRaw {
   fn effective(&self) -> &Option<Union00107722725> { &self.effective }
   fn interpretation(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.interpretation }
   fn dataAbsentReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.dataAbsentReason }
-  fn component(&self) -> &Vector<Observation_Component> { &self.component }
-  fn referenceRange(&self) -> &Vector<Observation_ReferenceRange> { &self.referenceRange }
+  fn component(&self) -> &Vector<Box<Observation_Component>> { &self.component }
+  fn referenceRange(&self) -> &Vector<Box<Observation_ReferenceRange>> { &self.referenceRange }
 }
 

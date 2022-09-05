@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriod;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
 
 
 
@@ -24,7 +27,7 @@ pub struct MedicinalProductAuthorization_Procedure {
   pub(crate) date: Option<UnionDateTimeOrPeriod>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) identifier: Option<Box<dyn Identifier>>,
-  pub(crate) application: Vector<Box<dyn MedicinalProductAuthorization_Procedure>>,
+  pub(crate) application: Vector<Box<MedicinalProductAuthorization_Procedure>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -65,8 +68,8 @@ pub struct MedicinalProductAuthorizationRaw {
   pub(crate) dataExclusivityPeriod: Option<Box<dyn Period>>,
   pub(crate) internationalBirthDate: Option<DateTime<FixedOffset>>,
   pub(crate) dateOfFirstAuthorization: Option<DateTime<FixedOffset>>,
-  pub(crate) procedure: Option<MedicinalProductAuthorization_Procedure>,
-  pub(crate) jurisdictionalAuthorization: Vector<MedicinalProductAuthorization_JurisdictionalAuthorization>,
+  pub(crate) procedure: Option<Box<MedicinalProductAuthorization_Procedure>>,
+  pub(crate) jurisdictionalAuthorization: Vector<Box<MedicinalProductAuthorization_JurisdictionalAuthorization>>,
 }
 
 pub trait MedicinalProductAuthorization : DomainResource {
@@ -84,8 +87,8 @@ pub trait MedicinalProductAuthorization : DomainResource {
   fn dataExclusivityPeriod(&self) -> &Option<Box<dyn Period>>;
   fn internationalBirthDate(&self) -> &Option<DateTime<FixedOffset>>;
   fn dateOfFirstAuthorization(&self) -> &Option<DateTime<FixedOffset>>;
-  fn procedure(&self) -> &Option<MedicinalProductAuthorization_Procedure>;
-  fn jurisdictionalAuthorization(&self) -> &Vector<MedicinalProductAuthorization_JurisdictionalAuthorization>;
+  fn procedure(&self) -> &Option<Box<MedicinalProductAuthorization_Procedure>>;
+  fn jurisdictionalAuthorization(&self) -> &Vector<Box<MedicinalProductAuthorization_JurisdictionalAuthorization>>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProductAuthorization);
@@ -124,7 +127,7 @@ impl MedicinalProductAuthorization for MedicinalProductAuthorizationRaw {
   fn dataExclusivityPeriod(&self) -> &Option<Box<dyn Period>> { &self.dataExclusivityPeriod }
   fn internationalBirthDate(&self) -> &Option<DateTime<FixedOffset>> { &self.internationalBirthDate }
   fn dateOfFirstAuthorization(&self) -> &Option<DateTime<FixedOffset>> { &self.dateOfFirstAuthorization }
-  fn procedure(&self) -> &Option<MedicinalProductAuthorization_Procedure> { &self.procedure }
-  fn jurisdictionalAuthorization(&self) -> &Vector<MedicinalProductAuthorization_JurisdictionalAuthorization> { &self.jurisdictionalAuthorization }
+  fn procedure(&self) -> &Option<Box<MedicinalProductAuthorization_Procedure>> { &self.procedure }
+  fn jurisdictionalAuthorization(&self) -> &Vector<Box<MedicinalProductAuthorization_JurisdictionalAuthorization>> { &self.jurisdictionalAuthorization }
 }
 

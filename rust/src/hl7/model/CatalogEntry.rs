@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -47,7 +50,7 @@ pub struct CatalogEntryRaw {
   pub(crate) additionalIdentifier: Vector<Box<dyn Identifier>>,
   pub(crate) additionalCharacteristic: Vector<Box<dyn CodeableConcept>>,
   pub(crate) additionalClassification: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) relatedEntry: Vector<CatalogEntry_RelatedEntry>,
+  pub(crate) relatedEntry: Vector<Box<CatalogEntry_RelatedEntry>>,
 }
 
 pub trait CatalogEntry : DomainResource {
@@ -63,7 +66,7 @@ pub trait CatalogEntry : DomainResource {
   fn additionalIdentifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn additionalCharacteristic(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn additionalClassification(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn relatedEntry(&self) -> &Vector<CatalogEntry_RelatedEntry>;
+  fn relatedEntry(&self) -> &Vector<Box<CatalogEntry_RelatedEntry>>;
 }
 
 dyn_clone::clone_trait_object!(CatalogEntry);
@@ -100,6 +103,6 @@ impl CatalogEntry for CatalogEntryRaw {
   fn additionalIdentifier(&self) -> &Vector<Box<dyn Identifier>> { &self.additionalIdentifier }
   fn additionalCharacteristic(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.additionalCharacteristic }
   fn additionalClassification(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.additionalClassification }
-  fn relatedEntry(&self) -> &Vector<CatalogEntry_RelatedEntry> { &self.relatedEntry }
+  fn relatedEntry(&self) -> &Vector<Box<CatalogEntry_RelatedEntry>> { &self.relatedEntry }
 }
 

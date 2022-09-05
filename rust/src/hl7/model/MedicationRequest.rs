@@ -1,11 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionBooleanOrCodeableConcept;
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Dosage::Dosage;
@@ -17,9 +18,11 @@ use crate::core::model::Period::Period;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionBooleanOrReference;
+use crate::core::model::UnionAliases::UnionBooleanOrCodeableConcept;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionBooleanOrReference;
 
 
 
@@ -53,7 +56,7 @@ pub struct MedicationRequest_DispenseRequest {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) numberOfRepeatsAllowed: Option<u32>,
   pub(crate) expectedSupplyDuration: Option<Box<dyn Duration>>,
-  pub(crate) initialFill: Option<MedicationRequest_DispenseRequest_InitialFill>,
+  pub(crate) initialFill: Option<Box<MedicationRequest_DispenseRequest_InitialFill>>,
 }
 
 #[derive(Clone, Debug)]
@@ -96,8 +99,8 @@ pub struct MedicationRequestRaw {
   pub(crate) courseOfTherapyType: Option<Box<dyn CodeableConcept>>,
   pub(crate) supportingInformation: Vector<Box<dyn Reference>>,
   pub(crate) instantiatesCanonical: Vector<String>,
-  pub(crate) substitution: Option<MedicationRequest_Substitution>,
-  pub(crate) dispenseRequest: Option<MedicationRequest_DispenseRequest>,
+  pub(crate) substitution: Option<Box<MedicationRequest_Substitution>>,
+  pub(crate) dispenseRequest: Option<Box<MedicationRequest_DispenseRequest>>,
 }
 
 pub trait MedicationRequest : DomainResource {
@@ -131,8 +134,8 @@ pub trait MedicationRequest : DomainResource {
   fn courseOfTherapyType(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
-  fn substitution(&self) -> &Option<MedicationRequest_Substitution>;
-  fn dispenseRequest(&self) -> &Option<MedicationRequest_DispenseRequest>;
+  fn substitution(&self) -> &Option<Box<MedicationRequest_Substitution>>;
+  fn dispenseRequest(&self) -> &Option<Box<MedicationRequest_DispenseRequest>>;
 }
 
 dyn_clone::clone_trait_object!(MedicationRequest);
@@ -187,7 +190,7 @@ impl MedicationRequest for MedicationRequestRaw {
   fn courseOfTherapyType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.courseOfTherapyType }
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
-  fn substitution(&self) -> &Option<MedicationRequest_Substitution> { &self.substitution }
-  fn dispenseRequest(&self) -> &Option<MedicationRequest_DispenseRequest> { &self.dispenseRequest }
+  fn substitution(&self) -> &Option<Box<MedicationRequest_Substitution>> { &self.substitution }
+  fn dispenseRequest(&self) -> &Option<Box<MedicationRequest_DispenseRequest>> { &self.dispenseRequest }
 }
 

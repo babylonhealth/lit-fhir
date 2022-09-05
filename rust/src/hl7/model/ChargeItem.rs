@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -14,9 +16,10 @@ use crate::core::model::Money::Money;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriodOrTiming;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriodOrTiming;
 
 
 
@@ -64,7 +67,7 @@ pub struct ChargeItemRaw {
   pub(crate) supportingInformation: Vector<Box<dyn Reference>>,
   pub(crate) performingOrganization: Option<Box<dyn Reference>>,
   pub(crate) requestingOrganization: Option<Box<dyn Reference>>,
-  pub(crate) performer: Vector<ChargeItem_Performer>,
+  pub(crate) performer: Vector<Box<ChargeItem_Performer>>,
 }
 
 pub trait ChargeItem : DomainResource {
@@ -93,7 +96,7 @@ pub trait ChargeItem : DomainResource {
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
   fn performingOrganization(&self) -> &Option<Box<dyn Reference>>;
   fn requestingOrganization(&self) -> &Option<Box<dyn Reference>>;
-  fn performer(&self) -> &Vector<ChargeItem_Performer>;
+  fn performer(&self) -> &Vector<Box<ChargeItem_Performer>>;
 }
 
 dyn_clone::clone_trait_object!(ChargeItem);
@@ -143,6 +146,6 @@ impl ChargeItem for ChargeItemRaw {
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
   fn performingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.performingOrganization }
   fn requestingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.requestingOrganization }
-  fn performer(&self) -> &Vector<ChargeItem_Performer> { &self.performer }
+  fn performer(&self) -> &Vector<Box<ChargeItem_Performer>> { &self.performer }
 }
 

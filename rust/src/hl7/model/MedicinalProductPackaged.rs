@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -35,14 +38,14 @@ pub struct MedicinalProductPackaged_PackageItem {
   pub(crate) material: Vector<Box<dyn CodeableConcept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
-  pub(crate) packageItem: Vector<Box<dyn MedicinalProductPackaged_PackageItem>>,
+  pub(crate) packageItem: Vector<Box<MedicinalProductPackaged_PackageItem>>,
   pub(crate) manufacturer: Vector<Box<dyn Reference>>,
   pub(crate) manufacturedItem: Vector<Box<dyn Reference>>,
-  pub(crate) shelfLifeStorage: Vector<any>,
+  pub(crate) shelfLifeStorage: Vector<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) alternateMaterial: Vector<Box<dyn CodeableConcept>>,
   pub(crate) otherCharacteristics: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) physicalCharacteristics: Option<any>,
+  pub(crate) physicalCharacteristics: Option<String>,
 }
 
 #[derive(Clone, Debug)]
@@ -58,12 +61,12 @@ pub struct MedicinalProductPackagedRaw {
   pub(crate) description: Option<String>,
   pub(crate) manufacturer: Vector<Box<dyn Reference>>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) marketingStatus: Vector<any>,
+  pub(crate) marketingStatus: Vector<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) legalStatusOfSupply: Option<Box<dyn CodeableConcept>>,
   pub(crate) marketingAuthorization: Option<Box<dyn Reference>>,
-  pub(crate) batchIdentifier: Vector<MedicinalProductPackaged_BatchIdentifier>,
-  pub(crate) packageItem: Vector<MedicinalProductPackaged_PackageItem>,
+  pub(crate) batchIdentifier: Vector<Box<MedicinalProductPackaged_BatchIdentifier>>,
+  pub(crate) packageItem: Vector<Box<MedicinalProductPackaged_PackageItem>>,
 }
 
 pub trait MedicinalProductPackaged : DomainResource {
@@ -71,11 +74,11 @@ pub trait MedicinalProductPackaged : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn description(&self) -> &Option<String>;
   fn manufacturer(&self) -> &Vector<Box<dyn Reference>>;
-  fn marketingStatus(&self) -> &Vector<any>;
+  fn marketingStatus(&self) -> &Vector<String>;
   fn legalStatusOfSupply(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn marketingAuthorization(&self) -> &Option<Box<dyn Reference>>;
-  fn batchIdentifier(&self) -> &Vector<MedicinalProductPackaged_BatchIdentifier>;
-  fn packageItem(&self) -> &Vector<MedicinalProductPackaged_PackageItem>;
+  fn batchIdentifier(&self) -> &Vector<Box<MedicinalProductPackaged_BatchIdentifier>>;
+  fn packageItem(&self) -> &Vector<Box<MedicinalProductPackaged_PackageItem>>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProductPackaged);
@@ -104,10 +107,10 @@ impl MedicinalProductPackaged for MedicinalProductPackagedRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn description(&self) -> &Option<String> { &self.description }
   fn manufacturer(&self) -> &Vector<Box<dyn Reference>> { &self.manufacturer }
-  fn marketingStatus(&self) -> &Vector<any> { &self.marketingStatus }
+  fn marketingStatus(&self) -> &Vector<String> { &self.marketingStatus }
   fn legalStatusOfSupply(&self) -> &Option<Box<dyn CodeableConcept>> { &self.legalStatusOfSupply }
   fn marketingAuthorization(&self) -> &Option<Box<dyn Reference>> { &self.marketingAuthorization }
-  fn batchIdentifier(&self) -> &Vector<MedicinalProductPackaged_BatchIdentifier> { &self.batchIdentifier }
-  fn packageItem(&self) -> &Vector<MedicinalProductPackaged_PackageItem> { &self.packageItem }
+  fn batchIdentifier(&self) -> &Vector<Box<MedicinalProductPackaged_BatchIdentifier>> { &self.batchIdentifier }
+  fn packageItem(&self) -> &Vector<Box<MedicinalProductPackaged_PackageItem>> { &self.packageItem }
 }
 

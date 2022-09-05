@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriod;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
 
 
 
@@ -65,8 +68,8 @@ pub struct ClinicalImpressionRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) prognosisReference: Vector<Box<dyn Reference>>,
   pub(crate) prognosisCodeableConcept: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) finding: Vector<ClinicalImpression_Finding>,
-  pub(crate) investigation: Vector<ClinicalImpression_Investigation>,
+  pub(crate) finding: Vector<Box<ClinicalImpression_Finding>>,
+  pub(crate) investigation: Vector<Box<ClinicalImpression_Investigation>>,
 }
 
 pub trait ClinicalImpression : DomainResource {
@@ -88,8 +91,8 @@ pub trait ClinicalImpression : DomainResource {
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>>;
   fn prognosisReference(&self) -> &Vector<Box<dyn Reference>>;
   fn prognosisCodeableConcept(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn finding(&self) -> &Vector<ClinicalImpression_Finding>;
-  fn investigation(&self) -> &Vector<ClinicalImpression_Investigation>;
+  fn finding(&self) -> &Vector<Box<ClinicalImpression_Finding>>;
+  fn investigation(&self) -> &Vector<Box<ClinicalImpression_Investigation>>;
 }
 
 dyn_clone::clone_trait_object!(ClinicalImpression);
@@ -132,7 +135,7 @@ impl ClinicalImpression for ClinicalImpressionRaw {
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInfo }
   fn prognosisReference(&self) -> &Vector<Box<dyn Reference>> { &self.prognosisReference }
   fn prognosisCodeableConcept(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.prognosisCodeableConcept }
-  fn finding(&self) -> &Vector<ClinicalImpression_Finding> { &self.finding }
-  fn investigation(&self) -> &Vector<ClinicalImpression_Investigation> { &self.investigation }
+  fn finding(&self) -> &Vector<Box<ClinicalImpression_Finding>> { &self.finding }
+  fn investigation(&self) -> &Vector<Box<ClinicalImpression_Investigation>> { &self.investigation }
 }
 

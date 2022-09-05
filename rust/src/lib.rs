@@ -15,11 +15,11 @@ mod tests {
     use im::Vector;
     use crate::core::model::Extension::{Extension, ExtensionRaw};
     use crate::core::model::Quantity::{Quantity,QuantityRaw};
-    use crate::core::UnionAll::*;
+    use crate::core::model::UnionAliases::UnionAll::*;
     use bigdecimal::BigDecimal;
     use crate::core::model::DataRequirement::{DataRequirement, DataRequirement_Sort, DataRequirementRaw};
     use crate::core::model::Reference::{Reference, ReferenceRaw};
-    use crate::core::{UnionAll, UnionCodeableConceptOrReference};
+    use crate::core::model::UnionAliases::{UnionAll, UnionCodeableConceptOrReference};
 
     #[test]
     fn make_an_extension() {
@@ -75,26 +75,26 @@ mod tests {
             limit: None,
             profile: Vector::new(),
             extension: Vector::new(),
-            subject: Some(UnionAll::FHIRReference(Box::new(ReferenceRaw {
+            subject: Some(UnionCodeableConceptOrReference::FHIRReference(Box::new(ReferenceRaw {
                 id: None,
                 _type: None,
                 display: None,
                 extension: Vector::new(),
                 reference: Some("123".to_string()),
                 identifier: None,
-            })).try_into().unwrap()),
+            }))),
             mustSupport: Vector::new(),
             sort: Vector::new(),
             codeFilter: Vector::new(),
             dateFilter: Vector::new(),
         };
         let data_requirement_3 = DataRequirementRaw {
-            sort: Vector::unit(DataRequirement_Sort {
+            sort: Vector::unit(Box::new(DataRequirement_Sort {
                 id: None,
                 path: "".to_string(),
                 extension: Vector::new(),
                 direction: "".to_string(),
-            }),
+            })),
             ..(&data_requirement).clone()
         };
         println!("{:?}", data_requirement);

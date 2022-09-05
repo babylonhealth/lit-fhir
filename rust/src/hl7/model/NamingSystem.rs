@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -50,7 +53,7 @@ pub struct NamingSystemRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) uniqueId: Vector<NamingSystem_UniqueId>,
+  pub(crate) uniqueId: Vector<Box<NamingSystem_UniqueId>>,
 }
 
 pub trait NamingSystem : DomainResource {
@@ -66,7 +69,7 @@ pub trait NamingSystem : DomainResource {
   fn responsible(&self) -> &Option<String>;
   fn description(&self) -> &Option<String>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn uniqueId(&self) -> &Vector<NamingSystem_UniqueId>;
+  fn uniqueId(&self) -> &Vector<Box<NamingSystem_UniqueId>>;
 }
 
 dyn_clone::clone_trait_object!(NamingSystem);
@@ -103,6 +106,6 @@ impl NamingSystem for NamingSystemRaw {
   fn responsible(&self) -> &Option<String> { &self.responsible }
   fn description(&self) -> &Option<String> { &self.description }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn uniqueId(&self) -> &Vector<NamingSystem_UniqueId> { &self.uniqueId }
+  fn uniqueId(&self) -> &Vector<Box<NamingSystem_UniqueId>> { &self.uniqueId }
 }
 

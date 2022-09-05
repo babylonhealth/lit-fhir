@@ -1,15 +1,18 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionAll;
 use crate::core::model::BackboneElement::BackboneElement;
 use crate::core::model::Coding::Coding;
 use crate::core::model::Extension::Extension;
 use crate::core::model::FHIRElement::FHIRElement;
-use crate::hl7::Union01480857620;
+use crate::core::model::UnionAliases::UnionAll;
+use crate::hl7::model::UnionAliases::Union01480857620;
 
 
 
@@ -94,7 +97,7 @@ pub struct ElementDefinition_Slicing {
   pub(crate) ordered: Option<bool>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
-  pub(crate) discriminator: Vector<ElementDefinition_Slicing_Discriminator>,
+  pub(crate) discriminator: Vector<Box<ElementDefinition_Slicing_Discriminator>>,
 }
 
 #[derive(Clone, Debug)]
@@ -123,19 +126,19 @@ pub struct ElementDefinitionRaw {
   pub(crate) requirements: Option<String>,
   pub(crate) orderMeaning: Option<String>,
   pub(crate) representation: Vector<String>,
-  pub(crate) base: Option<ElementDefinition_Base>,
+  pub(crate) base: Option<Box<ElementDefinition_Base>>,
   pub(crate) defaultValue: Option<UnionAll>,
   pub(crate) contentReference: Option<String>,
   pub(crate) isModifierReason: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) example: Vector<ElementDefinition_Example>,
-  pub(crate) mapping: Vector<ElementDefinition_Mapping>,
-  pub(crate) _type: Vector<ElementDefinition_Type>,
+  pub(crate) example: Vector<Box<ElementDefinition_Example>>,
+  pub(crate) mapping: Vector<Box<ElementDefinition_Mapping>>,
+  pub(crate) _type: Vector<Box<ElementDefinition_Type>>,
   pub(crate) meaningWhenMissing: Option<String>,
   pub(crate) sliceIsConstraining: Option<bool>,
-  pub(crate) binding: Option<ElementDefinition_Binding>,
-  pub(crate) constraint: Vector<ElementDefinition_Constraint>,
-  pub(crate) slicing: Option<ElementDefinition_Slicing>,
+  pub(crate) binding: Option<Box<ElementDefinition_Binding>>,
+  pub(crate) constraint: Vector<Box<ElementDefinition_Constraint>>,
+  pub(crate) slicing: Option<Box<ElementDefinition_Slicing>>,
 }
 
 pub trait ElementDefinition : BackboneElement {
@@ -161,18 +164,18 @@ pub trait ElementDefinition : BackboneElement {
   fn requirements(&self) -> &Option<String>;
   fn orderMeaning(&self) -> &Option<String>;
   fn representation(&self) -> &Vector<String>;
-  fn base(&self) -> &Option<ElementDefinition_Base>;
+  fn base(&self) -> &Option<Box<ElementDefinition_Base>>;
   fn defaultValue(&self) -> &Option<UnionAll>;
   fn contentReference(&self) -> &Option<String>;
   fn isModifierReason(&self) -> &Option<String>;
-  fn example(&self) -> &Vector<ElementDefinition_Example>;
-  fn mapping(&self) -> &Vector<ElementDefinition_Mapping>;
-  fn _type(&self) -> &Vector<ElementDefinition_Type>;
+  fn example(&self) -> &Vector<Box<ElementDefinition_Example>>;
+  fn mapping(&self) -> &Vector<Box<ElementDefinition_Mapping>>;
+  fn _type(&self) -> &Vector<Box<ElementDefinition_Type>>;
   fn meaningWhenMissing(&self) -> &Option<String>;
   fn sliceIsConstraining(&self) -> &Option<bool>;
-  fn binding(&self) -> &Option<ElementDefinition_Binding>;
-  fn constraint(&self) -> &Vector<ElementDefinition_Constraint>;
-  fn slicing(&self) -> &Option<ElementDefinition_Slicing>;
+  fn binding(&self) -> &Option<Box<ElementDefinition_Binding>>;
+  fn constraint(&self) -> &Vector<Box<ElementDefinition_Constraint>>;
+  fn slicing(&self) -> &Option<Box<ElementDefinition_Slicing>>;
 }
 
 dyn_clone::clone_trait_object!(ElementDefinition);
@@ -214,17 +217,17 @@ impl ElementDefinition for ElementDefinitionRaw {
   fn requirements(&self) -> &Option<String> { &self.requirements }
   fn orderMeaning(&self) -> &Option<String> { &self.orderMeaning }
   fn representation(&self) -> &Vector<String> { &self.representation }
-  fn base(&self) -> &Option<ElementDefinition_Base> { &self.base }
+  fn base(&self) -> &Option<Box<ElementDefinition_Base>> { &self.base }
   fn defaultValue(&self) -> &Option<UnionAll> { &self.defaultValue }
   fn contentReference(&self) -> &Option<String> { &self.contentReference }
   fn isModifierReason(&self) -> &Option<String> { &self.isModifierReason }
-  fn example(&self) -> &Vector<ElementDefinition_Example> { &self.example }
-  fn mapping(&self) -> &Vector<ElementDefinition_Mapping> { &self.mapping }
-  fn _type(&self) -> &Vector<ElementDefinition_Type> { &self._type }
+  fn example(&self) -> &Vector<Box<ElementDefinition_Example>> { &self.example }
+  fn mapping(&self) -> &Vector<Box<ElementDefinition_Mapping>> { &self.mapping }
+  fn _type(&self) -> &Vector<Box<ElementDefinition_Type>> { &self._type }
   fn meaningWhenMissing(&self) -> &Option<String> { &self.meaningWhenMissing }
   fn sliceIsConstraining(&self) -> &Option<bool> { &self.sliceIsConstraining }
-  fn binding(&self) -> &Option<ElementDefinition_Binding> { &self.binding }
-  fn constraint(&self) -> &Vector<ElementDefinition_Constraint> { &self.constraint }
-  fn slicing(&self) -> &Option<ElementDefinition_Slicing> { &self.slicing }
+  fn binding(&self) -> &Option<Box<ElementDefinition_Binding>> { &self.binding }
+  fn constraint(&self) -> &Vector<Box<ElementDefinition_Constraint>> { &self.constraint }
+  fn slicing(&self) -> &Option<Box<ElementDefinition_Slicing>> { &self.slicing }
 }
 

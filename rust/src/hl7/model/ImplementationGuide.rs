@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,10 +14,10 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::UnionBooleanOrCanonical;
-use crate::hl7::UnionReferenceOrUrl;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionBooleanOrCanonical;
+use crate::hl7::model::UnionAliases::UnionReferenceOrUrl;
 
 
 
@@ -69,15 +72,15 @@ pub struct ImplementationGuide_Manifest {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) rendering: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) page: Vector<ImplementationGuide_Manifest_Page>,
-  pub(crate) resource: Vector<ImplementationGuide_Manifest_Resource>,
+  pub(crate) page: Vector<Box<ImplementationGuide_Manifest_Page>>,
+  pub(crate) resource: Vector<Box<ImplementationGuide_Manifest_Resource>>,
 }
 
 
 #[derive(Clone, Debug)]
 pub struct ImplementationGuide_Definition_Page {
   pub(crate) id: Option<String>,
-  pub(crate) page: Vector<Box<dyn ImplementationGuide_Definition_Page>>,
+  pub(crate) page: Vector<Box<ImplementationGuide_Definition_Page>>,
   pub(crate) title: String,
   pub(crate) name: UnionReferenceOrUrl,
   pub(crate) extension: Vector<Box<dyn Extension>>,
@@ -139,11 +142,11 @@ pub struct ImplementationGuide_Definition {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) page: Option<ImplementationGuide_Definition_Page>,
-  pub(crate) grouping: Vector<ImplementationGuide_Definition_Grouping>,
-  pub(crate) resource: Vector<ImplementationGuide_Definition_Resource>,
-  pub(crate) template: Vector<ImplementationGuide_Definition_Template>,
-  pub(crate) parameter: Vector<ImplementationGuide_Definition_Parameter>,
+  pub(crate) page: Option<Box<ImplementationGuide_Definition_Page>>,
+  pub(crate) grouping: Vector<Box<ImplementationGuide_Definition_Grouping>>,
+  pub(crate) resource: Vector<Box<ImplementationGuide_Definition_Resource>>,
+  pub(crate) template: Vector<Box<ImplementationGuide_Definition_Template>>,
+  pub(crate) parameter: Vector<Box<ImplementationGuide_Definition_Parameter>>,
 }
 
 #[derive(Clone, Debug)]
@@ -172,10 +175,10 @@ pub struct ImplementationGuideRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) global: Vector<ImplementationGuide_Global>,
-  pub(crate) dependsOn: Vector<ImplementationGuide_DependsOn>,
-  pub(crate) manifest: Option<ImplementationGuide_Manifest>,
-  pub(crate) definition: Option<ImplementationGuide_Definition>,
+  pub(crate) global: Vector<Box<ImplementationGuide_Global>>,
+  pub(crate) dependsOn: Vector<Box<ImplementationGuide_DependsOn>>,
+  pub(crate) manifest: Option<Box<ImplementationGuide_Manifest>>,
+  pub(crate) definition: Option<Box<ImplementationGuide_Definition>>,
 }
 
 pub trait ImplementationGuide : DomainResource {
@@ -195,10 +198,10 @@ pub trait ImplementationGuide : DomainResource {
   fn fhirVersion(&self) -> &Vector<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn global(&self) -> &Vector<ImplementationGuide_Global>;
-  fn dependsOn(&self) -> &Vector<ImplementationGuide_DependsOn>;
-  fn manifest(&self) -> &Option<ImplementationGuide_Manifest>;
-  fn definition(&self) -> &Option<ImplementationGuide_Definition>;
+  fn global(&self) -> &Vector<Box<ImplementationGuide_Global>>;
+  fn dependsOn(&self) -> &Vector<Box<ImplementationGuide_DependsOn>>;
+  fn manifest(&self) -> &Option<Box<ImplementationGuide_Manifest>>;
+  fn definition(&self) -> &Option<Box<ImplementationGuide_Definition>>;
 }
 
 dyn_clone::clone_trait_object!(ImplementationGuide);
@@ -239,9 +242,9 @@ impl ImplementationGuide for ImplementationGuideRaw {
   fn fhirVersion(&self) -> &Vector<String> { &self.fhirVersion }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn global(&self) -> &Vector<ImplementationGuide_Global> { &self.global }
-  fn dependsOn(&self) -> &Vector<ImplementationGuide_DependsOn> { &self.dependsOn }
-  fn manifest(&self) -> &Option<ImplementationGuide_Manifest> { &self.manifest }
-  fn definition(&self) -> &Option<ImplementationGuide_Definition> { &self.definition }
+  fn global(&self) -> &Vector<Box<ImplementationGuide_Global>> { &self.global }
+  fn dependsOn(&self) -> &Vector<Box<ImplementationGuide_DependsOn>> { &self.dependsOn }
+  fn manifest(&self) -> &Option<Box<ImplementationGuide_Manifest>> { &self.manifest }
+  fn definition(&self) -> &Option<Box<ImplementationGuide_Definition>> { &self.definition }
 }
 

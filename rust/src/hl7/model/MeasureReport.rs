@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -57,8 +60,8 @@ pub struct MeasureReport_Group_Stratifier_Stratum {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) measureScore: Option<Box<dyn Quantity>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) component: Vector<MeasureReport_Group_Stratifier_Stratum_Component>,
-  pub(crate) population: Vector<MeasureReport_Group_Stratifier_Stratum_Population>,
+  pub(crate) component: Vector<Box<MeasureReport_Group_Stratifier_Stratum_Component>>,
+  pub(crate) population: Vector<Box<MeasureReport_Group_Stratifier_Stratum_Population>>,
 }
 
 #[derive(Clone, Debug)]
@@ -67,7 +70,7 @@ pub struct MeasureReport_Group_Stratifier {
   pub(crate) code: Vector<Box<dyn CodeableConcept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) stratum: Vector<MeasureReport_Group_Stratifier_Stratum>,
+  pub(crate) stratum: Vector<Box<MeasureReport_Group_Stratifier_Stratum>>,
 }
 
 #[derive(Clone, Debug)]
@@ -77,8 +80,8 @@ pub struct MeasureReport_Group {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) measureScore: Option<Box<dyn Quantity>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) population: Vector<MeasureReport_Group_Population>,
-  pub(crate) stratifier: Vector<MeasureReport_Group_Stratifier>,
+  pub(crate) population: Vector<Box<MeasureReport_Group_Population>>,
+  pub(crate) stratifier: Vector<Box<MeasureReport_Group_Stratifier>>,
 }
 
 #[derive(Clone, Debug)]
@@ -101,7 +104,7 @@ pub struct MeasureReportRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) evaluatedResource: Vector<Box<dyn Reference>>,
   pub(crate) improvementNotation: Option<Box<dyn CodeableConcept>>,
-  pub(crate) group: Vector<MeasureReport_Group>,
+  pub(crate) group: Vector<Box<MeasureReport_Group>>,
 }
 
 pub trait MeasureReport : DomainResource {
@@ -115,7 +118,7 @@ pub trait MeasureReport : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn evaluatedResource(&self) -> &Vector<Box<dyn Reference>>;
   fn improvementNotation(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn group(&self) -> &Vector<MeasureReport_Group>;
+  fn group(&self) -> &Vector<Box<MeasureReport_Group>>;
 }
 
 dyn_clone::clone_trait_object!(MeasureReport);
@@ -150,6 +153,6 @@ impl MeasureReport for MeasureReportRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn evaluatedResource(&self) -> &Vector<Box<dyn Reference>> { &self.evaluatedResource }
   fn improvementNotation(&self) -> &Option<Box<dyn CodeableConcept>> { &self.improvementNotation }
-  fn group(&self) -> &Vector<MeasureReport_Group> { &self.group }
+  fn group(&self) -> &Vector<Box<MeasureReport_Group>> { &self.group }
 }
 

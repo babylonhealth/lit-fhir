@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -53,7 +56,7 @@ pub struct RiskEvidenceSynthesis_RiskEstimate {
   pub(crate) numeratorCount: Option<i32>,
   pub(crate) denominatorCount: Option<i32>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) precisionEstimate: Vector<RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimate>,
+  pub(crate) precisionEstimate: Vector<Box<RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimate>>,
 }
 
 
@@ -74,7 +77,7 @@ pub struct RiskEvidenceSynthesis_Certainty {
   pub(crate) rating: Vector<Box<dyn CodeableConcept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) certaintySubcomponent: Vector<RiskEvidenceSynthesis_Certainty_CertaintySubcomponent>,
+  pub(crate) certaintySubcomponent: Vector<Box<RiskEvidenceSynthesis_Certainty_CertaintySubcomponent>>,
 }
 
 #[derive(Clone, Debug)]
@@ -108,16 +111,16 @@ pub struct RiskEvidenceSynthesisRaw {
   pub(crate) population: Box<dyn Reference>,
   pub(crate) description: Option<String>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) synthesisType: Option<Box<dyn CodeableConcept>>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) sampleSize: Option<RiskEvidenceSynthesis_SampleSize>,
-  pub(crate) riskEstimate: Option<RiskEvidenceSynthesis_RiskEstimate>,
-  pub(crate) certainty: Vector<RiskEvidenceSynthesis_Certainty>,
+  pub(crate) sampleSize: Option<Box<RiskEvidenceSynthesis_SampleSize>>,
+  pub(crate) riskEstimate: Option<Box<RiskEvidenceSynthesis_RiskEstimate>>,
+  pub(crate) certainty: Vector<Box<RiskEvidenceSynthesis_Certainty>>,
 }
 
 pub trait RiskEvidenceSynthesis : DomainResource {
@@ -144,14 +147,14 @@ pub trait RiskEvidenceSynthesis : DomainResource {
   fn population(&self) -> &Box<dyn Reference>;
   fn description(&self) -> &Option<String>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
   fn synthesisType(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
-  fn sampleSize(&self) -> &Option<RiskEvidenceSynthesis_SampleSize>;
-  fn riskEstimate(&self) -> &Option<RiskEvidenceSynthesis_RiskEstimate>;
-  fn certainty(&self) -> &Vector<RiskEvidenceSynthesis_Certainty>;
+  fn sampleSize(&self) -> &Option<Box<RiskEvidenceSynthesis_SampleSize>>;
+  fn riskEstimate(&self) -> &Option<Box<RiskEvidenceSynthesis_RiskEstimate>>;
+  fn certainty(&self) -> &Vector<Box<RiskEvidenceSynthesis_Certainty>>;
 }
 
 dyn_clone::clone_trait_object!(RiskEvidenceSynthesis);
@@ -199,13 +202,13 @@ impl RiskEvidenceSynthesis for RiskEvidenceSynthesisRaw {
   fn population(&self) -> &Box<dyn Reference> { &self.population }
   fn description(&self) -> &Option<String> { &self.description }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
   fn synthesisType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.synthesisType }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
-  fn sampleSize(&self) -> &Option<RiskEvidenceSynthesis_SampleSize> { &self.sampleSize }
-  fn riskEstimate(&self) -> &Option<RiskEvidenceSynthesis_RiskEstimate> { &self.riskEstimate }
-  fn certainty(&self) -> &Vector<RiskEvidenceSynthesis_Certainty> { &self.certainty }
+  fn sampleSize(&self) -> &Option<Box<RiskEvidenceSynthesis_SampleSize>> { &self.sampleSize }
+  fn riskEstimate(&self) -> &Option<Box<RiskEvidenceSynthesis_RiskEstimate>> { &self.riskEstimate }
+  fn certainty(&self) -> &Vector<Box<RiskEvidenceSynthesis_Certainty>> { &self.certainty }
 }
 

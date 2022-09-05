@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionBase64BinaryOrString;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionBase64BinaryOrString;
 
 
 
@@ -52,7 +55,7 @@ pub struct AuditEvent_Agent {
   pub(crate) requestor: bool,
   pub(crate) purposeOfUse: Vector<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) network: Option<AuditEvent_Agent_Network>,
+  pub(crate) network: Option<Box<AuditEvent_Agent_Network>>,
 }
 
 
@@ -78,7 +81,7 @@ pub struct AuditEvent_Entity {
   pub(crate) description: Option<String>,
   pub(crate) securityLabel: Vector<Box<dyn Coding>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) detail: Vector<AuditEvent_Entity_Detail>,
+  pub(crate) detail: Vector<Box<AuditEvent_Entity_Detail>>,
 }
 
 #[derive(Clone, Debug)]
@@ -99,9 +102,9 @@ pub struct AuditEventRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) purposeOfEvent: Vector<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) source: AuditEvent_Source,
-  pub(crate) agent: Vector<AuditEvent_Agent>,
-  pub(crate) entity: Vector<AuditEvent_Entity>,
+  pub(crate) source: Box<AuditEvent_Source>,
+  pub(crate) agent: Vector<Box<AuditEvent_Agent>>,
+  pub(crate) entity: Vector<Box<AuditEvent_Entity>>,
 }
 
 pub trait AuditEvent : DomainResource {
@@ -113,9 +116,9 @@ pub trait AuditEvent : DomainResource {
   fn recorded(&self) -> &DateTime<FixedOffset>;
   fn outcomeDesc(&self) -> &Option<String>;
   fn purposeOfEvent(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn source(&self) -> &AuditEvent_Source;
-  fn agent(&self) -> &Vector<AuditEvent_Agent>;
-  fn entity(&self) -> &Vector<AuditEvent_Entity>;
+  fn source(&self) -> &Box<AuditEvent_Source>;
+  fn agent(&self) -> &Vector<Box<AuditEvent_Agent>>;
+  fn entity(&self) -> &Vector<Box<AuditEvent_Entity>>;
 }
 
 dyn_clone::clone_trait_object!(AuditEvent);
@@ -148,8 +151,8 @@ impl AuditEvent for AuditEventRaw {
   fn recorded(&self) -> &DateTime<FixedOffset> { &self.recorded }
   fn outcomeDesc(&self) -> &Option<String> { &self.outcomeDesc }
   fn purposeOfEvent(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.purposeOfEvent }
-  fn source(&self) -> &AuditEvent_Source { &self.source }
-  fn agent(&self) -> &Vector<AuditEvent_Agent> { &self.agent }
-  fn entity(&self) -> &Vector<AuditEvent_Entity> { &self.entity }
+  fn source(&self) -> &Box<AuditEvent_Source> { &self.source }
+  fn agent(&self) -> &Vector<Box<AuditEvent_Agent>> { &self.agent }
+  fn entity(&self) -> &Vector<Box<AuditEvent_Entity>> { &self.entity }
 }
 

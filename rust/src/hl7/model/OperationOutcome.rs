@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -36,11 +39,11 @@ pub struct OperationOutcomeRaw {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) issue: Vector<OperationOutcome_Issue>,
+  pub(crate) issue: Vector<Box<OperationOutcome_Issue>>,
 }
 
 pub trait OperationOutcome : DomainResource {
-  fn issue(&self) -> &Vector<OperationOutcome_Issue>;
+  fn issue(&self) -> &Vector<Box<OperationOutcome_Issue>>;
 }
 
 dyn_clone::clone_trait_object!(OperationOutcome);
@@ -65,6 +68,6 @@ impl DomainResource for OperationOutcomeRaw {
 
 
 impl OperationOutcome for OperationOutcomeRaw {
-  fn issue(&self) -> &Vector<OperationOutcome_Issue> { &self.issue }
+  fn issue(&self) -> &Vector<Box<OperationOutcome_Issue>> { &self.issue }
 }
 

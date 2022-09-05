@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -34,9 +37,9 @@ pub struct ExampleScenario_Process_Step_Operation {
   pub(crate) _type: Option<String>,
   pub(crate) name: Option<String>,
   pub(crate) number: String,
-  pub(crate) request: Option<Box<dyn ExampleScenario_Instance_ContainedInstance>>,
+  pub(crate) request: Option<Box<ExampleScenario_Instance_ContainedInstance>>,
   pub(crate) receiver: Option<String>,
-  pub(crate) response: Option<Box<dyn ExampleScenario_Instance_ContainedInstance>>,
+  pub(crate) response: Option<Box<ExampleScenario_Instance_ContainedInstance>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) initiator: Option<String>,
   pub(crate) description: Option<String>,
@@ -50,7 +53,7 @@ pub struct ExampleScenario_Process_Step_Operation {
 #[derive(Clone, Debug)]
 pub struct ExampleScenario_Process_Step_Alternative {
   pub(crate) id: Option<String>,
-  pub(crate) step: Vector<Box<dyn ExampleScenario_Process_Step>>,
+  pub(crate) step: Vector<Box<ExampleScenario_Process_Step>>,
   pub(crate) title: String,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
@@ -61,11 +64,11 @@ pub struct ExampleScenario_Process_Step_Alternative {
 pub struct ExampleScenario_Process_Step {
   pub(crate) id: Option<String>,
   pub(crate) pause: Option<bool>,
-  pub(crate) process: Vector<Box<dyn ExampleScenario_Process>>,
+  pub(crate) process: Vector<Box<ExampleScenario_Process>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) operation: Option<ExampleScenario_Process_Step_Operation>,
-  pub(crate) alternative: Vector<ExampleScenario_Process_Step_Alternative>,
+  pub(crate) operation: Option<Box<ExampleScenario_Process_Step_Operation>>,
+  pub(crate) alternative: Vector<Box<ExampleScenario_Process_Step_Alternative>>,
 }
 
 #[derive(Clone, Debug)]
@@ -77,7 +80,7 @@ pub struct ExampleScenario_Process {
   pub(crate) preConditions: Option<String>,
   pub(crate) postConditions: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) step: Vector<ExampleScenario_Process_Step>,
+  pub(crate) step: Vector<Box<ExampleScenario_Process_Step>>,
 }
 
 
@@ -110,8 +113,8 @@ pub struct ExampleScenario_Instance {
   pub(crate) description: Option<String>,
   pub(crate) resourceType: String,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) version: Vector<ExampleScenario_Instance_Version>,
-  pub(crate) containedInstance: Vector<ExampleScenario_Instance_ContainedInstance>,
+  pub(crate) version: Vector<Box<ExampleScenario_Instance_Version>>,
+  pub(crate) containedInstance: Vector<Box<ExampleScenario_Instance_ContainedInstance>>,
 }
 
 #[derive(Clone, Debug)]
@@ -138,9 +141,9 @@ pub struct ExampleScenarioRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) actor: Vector<ExampleScenario_Actor>,
-  pub(crate) process: Vector<ExampleScenario_Process>,
-  pub(crate) instance: Vector<ExampleScenario_Instance>,
+  pub(crate) actor: Vector<Box<ExampleScenario_Actor>>,
+  pub(crate) process: Vector<Box<ExampleScenario_Process>>,
+  pub(crate) instance: Vector<Box<ExampleScenario_Instance>>,
 }
 
 pub trait ExampleScenario : DomainResource {
@@ -158,9 +161,9 @@ pub trait ExampleScenario : DomainResource {
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn actor(&self) -> &Vector<ExampleScenario_Actor>;
-  fn process(&self) -> &Vector<ExampleScenario_Process>;
-  fn instance(&self) -> &Vector<ExampleScenario_Instance>;
+  fn actor(&self) -> &Vector<Box<ExampleScenario_Actor>>;
+  fn process(&self) -> &Vector<Box<ExampleScenario_Process>>;
+  fn instance(&self) -> &Vector<Box<ExampleScenario_Instance>>;
 }
 
 dyn_clone::clone_trait_object!(ExampleScenario);
@@ -199,8 +202,8 @@ impl ExampleScenario for ExampleScenarioRaw {
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn actor(&self) -> &Vector<ExampleScenario_Actor> { &self.actor }
-  fn process(&self) -> &Vector<ExampleScenario_Process> { &self.process }
-  fn instance(&self) -> &Vector<ExampleScenario_Instance> { &self.instance }
+  fn actor(&self) -> &Vector<Box<ExampleScenario_Actor>> { &self.actor }
+  fn process(&self) -> &Vector<Box<ExampleScenario_Process>> { &self.process }
+  fn instance(&self) -> &Vector<Box<ExampleScenario_Instance>> { &self.instance }
 }
 

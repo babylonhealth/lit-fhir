@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -14,9 +16,10 @@ use crate::core::model::Period::Period;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionPeriodOrStringOrTiming;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionPeriodOrStringOrTiming;
 
 
 
@@ -53,7 +56,7 @@ pub struct CarePlan_Activity {
   pub(crate) outcomeReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) outcomeCodeableConcept: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) detail: Option<CarePlan_Activity_Detail>,
+  pub(crate) detail: Option<Box<CarePlan_Activity_Detail>>,
 }
 
 #[derive(Clone, Debug)]
@@ -88,7 +91,7 @@ pub struct CarePlanRaw {
   pub(crate) instantiatesUri: Vector<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) instantiatesCanonical: Vector<String>,
-  pub(crate) activity: Vector<CarePlan_Activity>,
+  pub(crate) activity: Vector<Box<CarePlan_Activity>>,
 }
 
 pub trait CarePlan : DomainResource {
@@ -114,7 +117,7 @@ pub trait CarePlan : DomainResource {
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesUri(&self) -> &Vector<String>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
-  fn activity(&self) -> &Vector<CarePlan_Activity>;
+  fn activity(&self) -> &Vector<Box<CarePlan_Activity>>;
 }
 
 dyn_clone::clone_trait_object!(CarePlan);
@@ -161,6 +164,6 @@ impl CarePlan for CarePlanRaw {
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInfo }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
-  fn activity(&self) -> &Vector<CarePlan_Activity> { &self.activity }
+  fn activity(&self) -> &Vector<Box<CarePlan_Activity>> { &self.activity }
 }
 

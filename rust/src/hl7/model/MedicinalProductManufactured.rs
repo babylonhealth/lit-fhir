@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -31,7 +34,7 @@ pub struct MedicinalProductManufacturedRaw {
   pub(crate) unitOfPresentation: Option<Box<dyn CodeableConcept>>,
   pub(crate) manufacturedDoseForm: Box<dyn CodeableConcept>,
   pub(crate) otherCharacteristics: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) physicalCharacteristics: Option<any>,
+  pub(crate) physicalCharacteristics: Option<String>,
 }
 
 pub trait MedicinalProductManufactured : DomainResource {
@@ -41,7 +44,7 @@ pub trait MedicinalProductManufactured : DomainResource {
   fn unitOfPresentation(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn manufacturedDoseForm(&self) -> &Box<dyn CodeableConcept>;
   fn otherCharacteristics(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn physicalCharacteristics(&self) -> &Option<any>;
+  fn physicalCharacteristics(&self) -> &Option<String>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProductManufactured);
@@ -72,6 +75,6 @@ impl MedicinalProductManufactured for MedicinalProductManufacturedRaw {
   fn unitOfPresentation(&self) -> &Option<Box<dyn CodeableConcept>> { &self.unitOfPresentation }
   fn manufacturedDoseForm(&self) -> &Box<dyn CodeableConcept> { &self.manufacturedDoseForm }
   fn otherCharacteristics(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.otherCharacteristics }
-  fn physicalCharacteristics(&self) -> &Option<any> { &self.physicalCharacteristics }
+  fn physicalCharacteristics(&self) -> &Option<String> { &self.physicalCharacteristics }
 }
 

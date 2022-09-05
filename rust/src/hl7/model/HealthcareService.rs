@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -44,9 +47,9 @@ pub struct HealthcareService_AvailableTime {
   pub(crate) allDay: Option<bool>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) daysOfWeek: Vector<String>,
-  pub(crate) availableEndTime: Option<Date>,
+  pub(crate) availableEndTime: Option<LocalTime>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) availableStartTime: Option<Date>,
+  pub(crate) availableStartTime: Option<LocalTime>,
 }
 
 #[derive(Clone, Debug)]
@@ -80,9 +83,9 @@ pub struct HealthcareServiceRaw {
   pub(crate) appointmentRequired: Option<bool>,
   pub(crate) serviceProvisionCode: Vector<Box<dyn CodeableConcept>>,
   pub(crate) availabilityExceptions: Option<String>,
-  pub(crate) eligibility: Vector<HealthcareService_Eligibility>,
-  pub(crate) notAvailable: Vector<HealthcareService_NotAvailable>,
-  pub(crate) availableTime: Vector<HealthcareService_AvailableTime>,
+  pub(crate) eligibility: Vector<Box<HealthcareService_Eligibility>>,
+  pub(crate) notAvailable: Vector<Box<HealthcareService_NotAvailable>>,
+  pub(crate) availableTime: Vector<Box<HealthcareService_AvailableTime>>,
 }
 
 pub trait HealthcareService : DomainResource {
@@ -107,9 +110,9 @@ pub trait HealthcareService : DomainResource {
   fn appointmentRequired(&self) -> &Option<bool>;
   fn serviceProvisionCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn availabilityExceptions(&self) -> &Option<String>;
-  fn eligibility(&self) -> &Vector<HealthcareService_Eligibility>;
-  fn notAvailable(&self) -> &Vector<HealthcareService_NotAvailable>;
-  fn availableTime(&self) -> &Vector<HealthcareService_AvailableTime>;
+  fn eligibility(&self) -> &Vector<Box<HealthcareService_Eligibility>>;
+  fn notAvailable(&self) -> &Vector<Box<HealthcareService_NotAvailable>>;
+  fn availableTime(&self) -> &Vector<Box<HealthcareService_AvailableTime>>;
 }
 
 dyn_clone::clone_trait_object!(HealthcareService);
@@ -155,8 +158,8 @@ impl HealthcareService for HealthcareServiceRaw {
   fn appointmentRequired(&self) -> &Option<bool> { &self.appointmentRequired }
   fn serviceProvisionCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.serviceProvisionCode }
   fn availabilityExceptions(&self) -> &Option<String> { &self.availabilityExceptions }
-  fn eligibility(&self) -> &Vector<HealthcareService_Eligibility> { &self.eligibility }
-  fn notAvailable(&self) -> &Vector<HealthcareService_NotAvailable> { &self.notAvailable }
-  fn availableTime(&self) -> &Vector<HealthcareService_AvailableTime> { &self.availableTime }
+  fn eligibility(&self) -> &Vector<Box<HealthcareService_Eligibility>> { &self.eligibility }
+  fn notAvailable(&self) -> &Vector<Box<HealthcareService_NotAvailable>> { &self.notAvailable }
+  fn availableTime(&self) -> &Vector<Box<HealthcareService_AvailableTime>> { &self.availableTime }
 }
 

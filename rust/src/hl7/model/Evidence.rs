@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -50,9 +53,9 @@ pub struct EvidenceRaw {
   pub(crate) useContext: Vector<Box<dyn UsageContext>>,
   pub(crate) description: Option<String>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
   pub(crate) exposureVariant: Vector<Box<dyn Reference>>,
@@ -83,8 +86,8 @@ pub trait Evidence : DomainResource {
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
   fn description(&self) -> &Option<String>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
   fn exposureVariant(&self) -> &Vector<Box<dyn Reference>>;
@@ -135,8 +138,8 @@ impl Evidence for EvidenceRaw {
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
   fn description(&self) -> &Option<String> { &self.description }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
   fn exposureVariant(&self) -> &Vector<Box<dyn Reference>> { &self.exposureVariant }

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -80,7 +83,7 @@ pub struct TerminologyCapabilities_Expansion {
   pub(crate) textFilter: Option<String>,
   pub(crate) hierarchical: Option<bool>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) parameter: Vector<TerminologyCapabilities_Expansion_Parameter>,
+  pub(crate) parameter: Vector<Box<TerminologyCapabilities_Expansion_Parameter>>,
 }
 
 
@@ -103,7 +106,7 @@ pub struct TerminologyCapabilities_CodeSystem_Version {
   pub(crate) isDefault: Option<bool>,
   pub(crate) compositional: Option<bool>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) filter: Vector<TerminologyCapabilities_CodeSystem_Version_Filter>,
+  pub(crate) filter: Vector<Box<TerminologyCapabilities_CodeSystem_Version_Filter>>,
 }
 
 #[derive(Clone, Debug)]
@@ -113,7 +116,7 @@ pub struct TerminologyCapabilities_CodeSystem {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) subsumption: Option<bool>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) version: Vector<TerminologyCapabilities_CodeSystem_Version>,
+  pub(crate) version: Vector<Box<TerminologyCapabilities_CodeSystem_Version>>,
 }
 
 #[derive(Clone, Debug)]
@@ -143,13 +146,13 @@ pub struct TerminologyCapabilitiesRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) closure: Option<TerminologyCapabilities_Closure>,
-  pub(crate) software: Option<TerminologyCapabilities_Software>,
-  pub(crate) translation: Option<TerminologyCapabilities_Translation>,
-  pub(crate) validateCode: Option<TerminologyCapabilities_ValidateCode>,
-  pub(crate) implementation: Option<TerminologyCapabilities_Implementation>,
-  pub(crate) expansion: Option<TerminologyCapabilities_Expansion>,
-  pub(crate) codeSystem: Vector<TerminologyCapabilities_CodeSystem>,
+  pub(crate) closure: Option<Box<TerminologyCapabilities_Closure>>,
+  pub(crate) software: Option<Box<TerminologyCapabilities_Software>>,
+  pub(crate) translation: Option<Box<TerminologyCapabilities_Translation>>,
+  pub(crate) validateCode: Option<Box<TerminologyCapabilities_ValidateCode>>,
+  pub(crate) implementation: Option<Box<TerminologyCapabilities_Implementation>>,
+  pub(crate) expansion: Option<Box<TerminologyCapabilities_Expansion>>,
+  pub(crate) codeSystem: Vector<Box<TerminologyCapabilities_CodeSystem>>,
 }
 
 pub trait TerminologyCapabilities : DomainResource {
@@ -170,13 +173,13 @@ pub trait TerminologyCapabilities : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn closure(&self) -> &Option<TerminologyCapabilities_Closure>;
-  fn software(&self) -> &Option<TerminologyCapabilities_Software>;
-  fn translation(&self) -> &Option<TerminologyCapabilities_Translation>;
-  fn validateCode(&self) -> &Option<TerminologyCapabilities_ValidateCode>;
-  fn implementation(&self) -> &Option<TerminologyCapabilities_Implementation>;
-  fn expansion(&self) -> &Option<TerminologyCapabilities_Expansion>;
-  fn codeSystem(&self) -> &Vector<TerminologyCapabilities_CodeSystem>;
+  fn closure(&self) -> &Option<Box<TerminologyCapabilities_Closure>>;
+  fn software(&self) -> &Option<Box<TerminologyCapabilities_Software>>;
+  fn translation(&self) -> &Option<Box<TerminologyCapabilities_Translation>>;
+  fn validateCode(&self) -> &Option<Box<TerminologyCapabilities_ValidateCode>>;
+  fn implementation(&self) -> &Option<Box<TerminologyCapabilities_Implementation>>;
+  fn expansion(&self) -> &Option<Box<TerminologyCapabilities_Expansion>>;
+  fn codeSystem(&self) -> &Vector<Box<TerminologyCapabilities_CodeSystem>>;
 }
 
 dyn_clone::clone_trait_object!(TerminologyCapabilities);
@@ -218,12 +221,12 @@ impl TerminologyCapabilities for TerminologyCapabilitiesRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn closure(&self) -> &Option<TerminologyCapabilities_Closure> { &self.closure }
-  fn software(&self) -> &Option<TerminologyCapabilities_Software> { &self.software }
-  fn translation(&self) -> &Option<TerminologyCapabilities_Translation> { &self.translation }
-  fn validateCode(&self) -> &Option<TerminologyCapabilities_ValidateCode> { &self.validateCode }
-  fn implementation(&self) -> &Option<TerminologyCapabilities_Implementation> { &self.implementation }
-  fn expansion(&self) -> &Option<TerminologyCapabilities_Expansion> { &self.expansion }
-  fn codeSystem(&self) -> &Vector<TerminologyCapabilities_CodeSystem> { &self.codeSystem }
+  fn closure(&self) -> &Option<Box<TerminologyCapabilities_Closure>> { &self.closure }
+  fn software(&self) -> &Option<Box<TerminologyCapabilities_Software>> { &self.software }
+  fn translation(&self) -> &Option<Box<TerminologyCapabilities_Translation>> { &self.translation }
+  fn validateCode(&self) -> &Option<Box<TerminologyCapabilities_ValidateCode>> { &self.validateCode }
+  fn implementation(&self) -> &Option<Box<TerminologyCapabilities_Implementation>> { &self.implementation }
+  fn expansion(&self) -> &Option<Box<TerminologyCapabilities_Expansion>> { &self.expansion }
+  fn codeSystem(&self) -> &Vector<Box<TerminologyCapabilities_CodeSystem>> { &self.codeSystem }
 }
 

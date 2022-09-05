@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
@@ -12,6 +14,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Ratio::Ratio;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
@@ -52,8 +55,8 @@ pub struct SubstanceRaw {
   pub(crate) description: Option<String>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) instance: Vector<Substance_Instance>,
-  pub(crate) ingredient: Vector<Substance_Ingredient>,
+  pub(crate) instance: Vector<Box<Substance_Instance>>,
+  pub(crate) ingredient: Vector<Box<Substance_Ingredient>>,
 }
 
 pub trait Substance : DomainResource {
@@ -62,8 +65,8 @@ pub trait Substance : DomainResource {
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn description(&self) -> &Option<String>;
-  fn instance(&self) -> &Vector<Substance_Instance>;
-  fn ingredient(&self) -> &Vector<Substance_Ingredient>;
+  fn instance(&self) -> &Vector<Box<Substance_Instance>>;
+  fn ingredient(&self) -> &Vector<Box<Substance_Ingredient>>;
 }
 
 dyn_clone::clone_trait_object!(Substance);
@@ -93,7 +96,7 @@ impl Substance for SubstanceRaw {
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn description(&self) -> &Option<String> { &self.description }
-  fn instance(&self) -> &Vector<Substance_Instance> { &self.instance }
-  fn ingredient(&self) -> &Vector<Substance_Ingredient> { &self.ingredient }
+  fn instance(&self) -> &Vector<Box<Substance_Instance>> { &self.instance }
+  fn ingredient(&self) -> &Vector<Box<Substance_Ingredient>> { &self.ingredient }
 }
 

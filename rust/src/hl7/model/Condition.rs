@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union01474038381;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01474038381;
 
 
 
@@ -62,8 +65,8 @@ pub struct ConditionRaw {
   pub(crate) clinicalStatus: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) verificationStatus: Option<Box<dyn CodeableConcept>>,
-  pub(crate) stage: Vector<Condition_Stage>,
-  pub(crate) evidence: Vector<Condition_Evidence>,
+  pub(crate) stage: Vector<Box<Condition_Stage>>,
+  pub(crate) evidence: Vector<Box<Condition_Evidence>>,
 }
 
 pub trait Condition : DomainResource {
@@ -82,8 +85,8 @@ pub trait Condition : DomainResource {
   fn recordedDate(&self) -> &Option<DateTime<FixedOffset>>;
   fn clinicalStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn verificationStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn stage(&self) -> &Vector<Condition_Stage>;
-  fn evidence(&self) -> &Vector<Condition_Evidence>;
+  fn stage(&self) -> &Vector<Box<Condition_Stage>>;
+  fn evidence(&self) -> &Vector<Box<Condition_Evidence>>;
 }
 
 dyn_clone::clone_trait_object!(Condition);
@@ -123,7 +126,7 @@ impl Condition for ConditionRaw {
   fn recordedDate(&self) -> &Option<DateTime<FixedOffset>> { &self.recordedDate }
   fn clinicalStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.clinicalStatus }
   fn verificationStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.verificationStatus }
-  fn stage(&self) -> &Vector<Condition_Stage> { &self.stage }
-  fn evidence(&self) -> &Vector<Condition_Evidence> { &self.evidence }
+  fn stage(&self) -> &Vector<Box<Condition_Stage>> { &self.stage }
+  fn evidence(&self) -> &Vector<Box<Condition_Evidence>> { &self.evidence }
 }
 

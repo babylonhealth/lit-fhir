@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -12,9 +15,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::Union_0059314669;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union_0059314669;
 
 
 
@@ -46,7 +49,7 @@ pub struct CodeSystem_Property {
 pub struct CodeSystem_Concept_Property {
   pub(crate) id: Option<String>,
   pub(crate) code: String,
-  pub(crate) value: Union_0059314669,
+  pub(crate) value: Box<Union_0059314669>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
@@ -68,12 +71,12 @@ pub struct CodeSystem_Concept {
   pub(crate) id: Option<String>,
   pub(crate) code: String,
   pub(crate) display: Option<String>,
-  pub(crate) concept: Vector<Box<dyn CodeSystem_Concept>>,
+  pub(crate) concept: Vector<Box<CodeSystem_Concept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) definition: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) property: Vector<CodeSystem_Concept_Property>,
-  pub(crate) designation: Vector<CodeSystem_Concept_Designation>,
+  pub(crate) property: Vector<Box<CodeSystem_Concept_Property>>,
+  pub(crate) designation: Vector<Box<CodeSystem_Concept_Designation>>,
 }
 
 #[derive(Clone, Debug)]
@@ -109,9 +112,9 @@ pub struct CodeSystemRaw {
   pub(crate) versionNeeded: Option<bool>,
   pub(crate) hierarchyMeaning: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) filter: Vector<CodeSystem_Filter>,
-  pub(crate) property: Vector<CodeSystem_Property>,
-  pub(crate) concept: Vector<CodeSystem_Concept>,
+  pub(crate) filter: Vector<Box<CodeSystem_Filter>>,
+  pub(crate) property: Vector<Box<CodeSystem_Property>>,
+  pub(crate) concept: Vector<Box<CodeSystem_Concept>>,
 }
 
 pub trait CodeSystem : DomainResource {
@@ -138,9 +141,9 @@ pub trait CodeSystem : DomainResource {
   fn compositional(&self) -> &Option<bool>;
   fn versionNeeded(&self) -> &Option<bool>;
   fn hierarchyMeaning(&self) -> &Option<String>;
-  fn filter(&self) -> &Vector<CodeSystem_Filter>;
-  fn property(&self) -> &Vector<CodeSystem_Property>;
-  fn concept(&self) -> &Vector<CodeSystem_Concept>;
+  fn filter(&self) -> &Vector<Box<CodeSystem_Filter>>;
+  fn property(&self) -> &Vector<Box<CodeSystem_Property>>;
+  fn concept(&self) -> &Vector<Box<CodeSystem_Concept>>;
 }
 
 dyn_clone::clone_trait_object!(CodeSystem);
@@ -188,8 +191,8 @@ impl CodeSystem for CodeSystemRaw {
   fn compositional(&self) -> &Option<bool> { &self.compositional }
   fn versionNeeded(&self) -> &Option<bool> { &self.versionNeeded }
   fn hierarchyMeaning(&self) -> &Option<String> { &self.hierarchyMeaning }
-  fn filter(&self) -> &Vector<CodeSystem_Filter> { &self.filter }
-  fn property(&self) -> &Vector<CodeSystem_Property> { &self.property }
-  fn concept(&self) -> &Vector<CodeSystem_Concept> { &self.concept }
+  fn filter(&self) -> &Vector<Box<CodeSystem_Filter>> { &self.filter }
+  fn property(&self) -> &Vector<Box<CodeSystem_Property>> { &self.property }
+  fn concept(&self) -> &Vector<Box<CodeSystem_Concept>> { &self.concept }
 }
 

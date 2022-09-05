@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -12,10 +15,10 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrString;
-use crate::hl7::UnionPositiveIntOrString;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrString;
+use crate::hl7::model::UnionAliases::UnionPositiveIntOrString;
 
 
 
@@ -93,15 +96,15 @@ pub struct ImmunizationRaw {
   pub(crate) occurrence: UnionDateTimeOrString,
   pub(crate) primarySource: Option<bool>,
   pub(crate) fundingSource: Option<Box<dyn CodeableConcept>>,
-  pub(crate) expirationDate: Option<FHIRDate>,
+  pub(crate) expirationDate: Option<LocalDate>,
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) subpotentReason: Vector<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) programEligibility: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) reaction: Vector<Immunization_Reaction>,
-  pub(crate) performer: Vector<Immunization_Performer>,
-  pub(crate) education: Vector<Immunization_Education>,
-  pub(crate) protocolApplied: Vector<Immunization_ProtocolApplied>,
+  pub(crate) reaction: Vector<Box<Immunization_Reaction>>,
+  pub(crate) performer: Vector<Box<Immunization_Performer>>,
+  pub(crate) education: Vector<Box<Immunization_Education>>,
+  pub(crate) protocolApplied: Vector<Box<Immunization_ProtocolApplied>>,
 }
 
 pub trait Immunization : DomainResource {
@@ -125,14 +128,14 @@ pub trait Immunization : DomainResource {
   fn occurrence(&self) -> &UnionDateTimeOrString;
   fn primarySource(&self) -> &Option<bool>;
   fn fundingSource(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn expirationDate(&self) -> &Option<FHIRDate>;
+  fn expirationDate(&self) -> &Option<LocalDate>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn subpotentReason(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn programEligibility(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn reaction(&self) -> &Vector<Immunization_Reaction>;
-  fn performer(&self) -> &Vector<Immunization_Performer>;
-  fn education(&self) -> &Vector<Immunization_Education>;
-  fn protocolApplied(&self) -> &Vector<Immunization_ProtocolApplied>;
+  fn reaction(&self) -> &Vector<Box<Immunization_Reaction>>;
+  fn performer(&self) -> &Vector<Box<Immunization_Performer>>;
+  fn education(&self) -> &Vector<Box<Immunization_Education>>;
+  fn protocolApplied(&self) -> &Vector<Box<Immunization_ProtocolApplied>>;
 }
 
 dyn_clone::clone_trait_object!(Immunization);
@@ -177,13 +180,13 @@ impl Immunization for ImmunizationRaw {
   fn occurrence(&self) -> &UnionDateTimeOrString { &self.occurrence }
   fn primarySource(&self) -> &Option<bool> { &self.primarySource }
   fn fundingSource(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundingSource }
-  fn expirationDate(&self) -> &Option<FHIRDate> { &self.expirationDate }
+  fn expirationDate(&self) -> &Option<LocalDate> { &self.expirationDate }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn subpotentReason(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.subpotentReason }
   fn programEligibility(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.programEligibility }
-  fn reaction(&self) -> &Vector<Immunization_Reaction> { &self.reaction }
-  fn performer(&self) -> &Vector<Immunization_Performer> { &self.performer }
-  fn education(&self) -> &Vector<Immunization_Education> { &self.education }
-  fn protocolApplied(&self) -> &Vector<Immunization_ProtocolApplied> { &self.protocolApplied }
+  fn reaction(&self) -> &Vector<Box<Immunization_Reaction>> { &self.reaction }
+  fn performer(&self) -> &Vector<Box<Immunization_Performer>> { &self.performer }
+  fn education(&self) -> &Vector<Box<Immunization_Education>> { &self.education }
+  fn protocolApplied(&self) -> &Vector<Box<Immunization_ProtocolApplied>> { &self.protocolApplied }
 }
 

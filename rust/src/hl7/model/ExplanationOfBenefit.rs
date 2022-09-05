@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Attachment::Attachment;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Coding::Coding;
@@ -16,14 +18,15 @@ use crate::core::model::Period::Period;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionAddressOrCodeableConceptOrReference;
-use crate::hl7::UnionAddressOrReference;
-use crate::hl7::UnionDateOrPeriod;
-use crate::hl7::UnionMoneyOrStringOrUnsignedInt;
-use crate::hl7::UnionMoneyOrUnsignedInt;
-use crate::hl7::Union_2028408917;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionAddressOrCodeableConceptOrReference;
+use crate::hl7::model::UnionAliases::UnionAddressOrReference;
+use crate::hl7::model::UnionAliases::UnionDateOrPeriod;
+use crate::hl7::model::UnionAliases::UnionMoneyOrStringOrUnsignedInt;
+use crate::hl7::model::UnionAliases::UnionMoneyOrUnsignedInt;
+use crate::hl7::model::UnionAliases::Union_2028408917;
 
 
 
@@ -62,7 +65,7 @@ pub struct ExplanationOfBenefit_Related {
 pub struct ExplanationOfBenefit_Payment {
   pub(crate) id: Option<String>,
   pub(crate) _type: Option<Box<dyn CodeableConcept>>,
-  pub(crate) date: Option<FHIRDate>,
+  pub(crate) date: Option<LocalDate>,
   pub(crate) amount: Option<Box<dyn Money>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) adjustment: Option<Box<dyn Money>>,
@@ -88,7 +91,7 @@ pub struct ExplanationOfBenefit_CareTeam {
 #[derive(Clone, Debug)]
 pub struct ExplanationOfBenefit_Accident {
   pub(crate) id: Option<String>,
-  pub(crate) date: Option<FHIRDate>,
+  pub(crate) date: Option<LocalDate>,
   pub(crate) _type: Option<Box<dyn CodeableConcept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) location: Option<UnionAddressOrReference>,
@@ -152,7 +155,7 @@ pub struct ExplanationOfBenefit_SupportingInfo {
   pub(crate) reason: Option<Box<dyn Coding>>,
   pub(crate) sequence: u32,
   pub(crate) category: Box<dyn CodeableConcept>,
-  pub(crate) value: Option<Union_2028408917>,
+  pub(crate) value: Option<Box<Union_2028408917>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) timing: Option<UnionDateOrPeriod>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
@@ -187,7 +190,7 @@ pub struct ExplanationOfBenefit_Item_Detail_SubDetail {
   pub(crate) unitPrice: Option<Box<dyn Money>>,
   pub(crate) noteNumber: Vector<u32>,
   pub(crate) programCode: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) adjudication: Vector<Box<dyn ExplanationOfBenefit_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ExplanationOfBenefit_Item_Adjudication>>,
   pub(crate) productOrService: Box<dyn CodeableConcept>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
@@ -207,10 +210,10 @@ pub struct ExplanationOfBenefit_Item_Detail {
   pub(crate) unitPrice: Option<Box<dyn Money>>,
   pub(crate) noteNumber: Vector<u32>,
   pub(crate) programCode: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) adjudication: Vector<Box<dyn ExplanationOfBenefit_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ExplanationOfBenefit_Item_Adjudication>>,
   pub(crate) productOrService: Box<dyn CodeableConcept>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) subDetail: Vector<ExplanationOfBenefit_Item_Detail_SubDetail>,
+  pub(crate) subDetail: Vector<Box<ExplanationOfBenefit_Item_Detail_SubDetail>>,
 }
 
 #[derive(Clone, Debug)]
@@ -239,8 +242,8 @@ pub struct ExplanationOfBenefit_Item {
   pub(crate) diagnosisSequence: Vector<u32>,
   pub(crate) procedureSequence: Vector<u32>,
   pub(crate) informationSequence: Vector<u32>,
-  pub(crate) adjudication: Vector<ExplanationOfBenefit_Item_Adjudication>,
-  pub(crate) detail: Vector<ExplanationOfBenefit_Item_Detail>,
+  pub(crate) adjudication: Vector<Box<ExplanationOfBenefit_Item_Adjudication>>,
+  pub(crate) detail: Vector<Box<ExplanationOfBenefit_Item_Detail>>,
 }
 
 
@@ -254,7 +257,7 @@ pub struct ExplanationOfBenefit_AddItem_Detail_SubDetail {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) unitPrice: Option<Box<dyn Money>>,
   pub(crate) noteNumber: Vector<u32>,
-  pub(crate) adjudication: Vector<Box<dyn ExplanationOfBenefit_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ExplanationOfBenefit_Item_Adjudication>>,
   pub(crate) productOrService: Box<dyn CodeableConcept>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
@@ -269,10 +272,10 @@ pub struct ExplanationOfBenefit_AddItem_Detail {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) unitPrice: Option<Box<dyn Money>>,
   pub(crate) noteNumber: Vector<u32>,
-  pub(crate) adjudication: Vector<Box<dyn ExplanationOfBenefit_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ExplanationOfBenefit_Item_Adjudication>>,
   pub(crate) productOrService: Box<dyn CodeableConcept>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) subDetail: Vector<ExplanationOfBenefit_AddItem_Detail_SubDetail>,
+  pub(crate) subDetail: Vector<Box<ExplanationOfBenefit_AddItem_Detail_SubDetail>>,
 }
 
 #[derive(Clone, Debug)]
@@ -292,12 +295,12 @@ pub struct ExplanationOfBenefit_AddItem {
   pub(crate) serviced: Option<UnionDateOrPeriod>,
   pub(crate) location: Option<UnionAddressOrCodeableConceptOrReference>,
   pub(crate) itemSequence: Vector<u32>,
-  pub(crate) adjudication: Vector<Box<dyn ExplanationOfBenefit_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ExplanationOfBenefit_Item_Adjudication>>,
   pub(crate) detailSequence: Vector<u32>,
   pub(crate) productOrService: Box<dyn CodeableConcept>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) subDetailSequence: Vector<u32>,
-  pub(crate) detail: Vector<ExplanationOfBenefit_AddItem_Detail>,
+  pub(crate) detail: Vector<Box<ExplanationOfBenefit_AddItem_Detail>>,
 }
 
 
@@ -323,7 +326,7 @@ pub struct ExplanationOfBenefit_BenefitBalance {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) financial: Vector<ExplanationOfBenefit_BenefitBalance_Financial>,
+  pub(crate) financial: Vector<Box<ExplanationOfBenefit_BenefitBalance_Financial>>,
 }
 
 #[derive(Clone, Debug)]
@@ -356,7 +359,7 @@ pub struct ExplanationOfBenefitRaw {
   pub(crate) disposition: Option<String>,
   pub(crate) fundsReserve: Option<Box<dyn CodeableConcept>>,
   pub(crate) prescription: Option<Box<dyn Reference>>,
-  pub(crate) adjudication: Vector<Box<dyn ExplanationOfBenefit_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ExplanationOfBenefit_Item_Adjudication>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) claimResponse: Option<Box<dyn Reference>>,
   pub(crate) benefitPeriod: Option<Box<dyn Period>>,
@@ -365,20 +368,20 @@ pub struct ExplanationOfBenefitRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) originalPrescription: Option<Box<dyn Reference>>,
   pub(crate) fundsReserveRequested: Option<Box<dyn CodeableConcept>>,
-  pub(crate) payee: Option<ExplanationOfBenefit_Payee>,
-  pub(crate) total: Vector<ExplanationOfBenefit_Total>,
-  pub(crate) related: Vector<ExplanationOfBenefit_Related>,
-  pub(crate) payment: Option<ExplanationOfBenefit_Payment>,
-  pub(crate) careTeam: Vector<ExplanationOfBenefit_CareTeam>,
-  pub(crate) accident: Option<ExplanationOfBenefit_Accident>,
-  pub(crate) diagnosis: Vector<ExplanationOfBenefit_Diagnosis>,
-  pub(crate) procedure: Vector<ExplanationOfBenefit_Procedure>,
-  pub(crate) insurance: Vector<ExplanationOfBenefit_Insurance>,
-  pub(crate) processNote: Vector<ExplanationOfBenefit_ProcessNote>,
-  pub(crate) supportingInfo: Vector<ExplanationOfBenefit_SupportingInfo>,
-  pub(crate) item: Vector<ExplanationOfBenefit_Item>,
-  pub(crate) addItem: Vector<ExplanationOfBenefit_AddItem>,
-  pub(crate) benefitBalance: Vector<ExplanationOfBenefit_BenefitBalance>,
+  pub(crate) payee: Option<Box<ExplanationOfBenefit_Payee>>,
+  pub(crate) total: Vector<Box<ExplanationOfBenefit_Total>>,
+  pub(crate) related: Vector<Box<ExplanationOfBenefit_Related>>,
+  pub(crate) payment: Option<Box<ExplanationOfBenefit_Payment>>,
+  pub(crate) careTeam: Vector<Box<ExplanationOfBenefit_CareTeam>>,
+  pub(crate) accident: Option<Box<ExplanationOfBenefit_Accident>>,
+  pub(crate) diagnosis: Vector<Box<ExplanationOfBenefit_Diagnosis>>,
+  pub(crate) procedure: Vector<Box<ExplanationOfBenefit_Procedure>>,
+  pub(crate) insurance: Vector<Box<ExplanationOfBenefit_Insurance>>,
+  pub(crate) processNote: Vector<Box<ExplanationOfBenefit_ProcessNote>>,
+  pub(crate) supportingInfo: Vector<Box<ExplanationOfBenefit_SupportingInfo>>,
+  pub(crate) item: Vector<Box<ExplanationOfBenefit_Item>>,
+  pub(crate) addItem: Vector<Box<ExplanationOfBenefit_AddItem>>,
+  pub(crate) benefitBalance: Vector<Box<ExplanationOfBenefit_BenefitBalance>>,
 }
 
 pub trait ExplanationOfBenefit : DomainResource {
@@ -404,27 +407,27 @@ pub trait ExplanationOfBenefit : DomainResource {
   fn disposition(&self) -> &Option<String>;
   fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn prescription(&self) -> &Option<Box<dyn Reference>>;
-  fn adjudication(&self) -> &Vector<Box<dyn ExplanationOfBenefit_Item_Adjudication>>;
+  fn adjudication(&self) -> &Vector<Box<ExplanationOfBenefit_Item_Adjudication>>;
   fn claimResponse(&self) -> &Option<Box<dyn Reference>>;
   fn benefitPeriod(&self) -> &Option<Box<dyn Period>>;
   fn billablePeriod(&self) -> &Option<Box<dyn Period>>;
   fn preAuthRefPeriod(&self) -> &Vector<Box<dyn Period>>;
   fn originalPrescription(&self) -> &Option<Box<dyn Reference>>;
   fn fundsReserveRequested(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn payee(&self) -> &Option<ExplanationOfBenefit_Payee>;
-  fn total(&self) -> &Vector<ExplanationOfBenefit_Total>;
-  fn related(&self) -> &Vector<ExplanationOfBenefit_Related>;
-  fn payment(&self) -> &Option<ExplanationOfBenefit_Payment>;
-  fn careTeam(&self) -> &Vector<ExplanationOfBenefit_CareTeam>;
-  fn accident(&self) -> &Option<ExplanationOfBenefit_Accident>;
-  fn diagnosis(&self) -> &Vector<ExplanationOfBenefit_Diagnosis>;
-  fn procedure(&self) -> &Vector<ExplanationOfBenefit_Procedure>;
-  fn insurance(&self) -> &Vector<ExplanationOfBenefit_Insurance>;
-  fn processNote(&self) -> &Vector<ExplanationOfBenefit_ProcessNote>;
-  fn supportingInfo(&self) -> &Vector<ExplanationOfBenefit_SupportingInfo>;
-  fn item(&self) -> &Vector<ExplanationOfBenefit_Item>;
-  fn addItem(&self) -> &Vector<ExplanationOfBenefit_AddItem>;
-  fn benefitBalance(&self) -> &Vector<ExplanationOfBenefit_BenefitBalance>;
+  fn payee(&self) -> &Option<Box<ExplanationOfBenefit_Payee>>;
+  fn total(&self) -> &Vector<Box<ExplanationOfBenefit_Total>>;
+  fn related(&self) -> &Vector<Box<ExplanationOfBenefit_Related>>;
+  fn payment(&self) -> &Option<Box<ExplanationOfBenefit_Payment>>;
+  fn careTeam(&self) -> &Vector<Box<ExplanationOfBenefit_CareTeam>>;
+  fn accident(&self) -> &Option<Box<ExplanationOfBenefit_Accident>>;
+  fn diagnosis(&self) -> &Vector<Box<ExplanationOfBenefit_Diagnosis>>;
+  fn procedure(&self) -> &Vector<Box<ExplanationOfBenefit_Procedure>>;
+  fn insurance(&self) -> &Vector<Box<ExplanationOfBenefit_Insurance>>;
+  fn processNote(&self) -> &Vector<Box<ExplanationOfBenefit_ProcessNote>>;
+  fn supportingInfo(&self) -> &Vector<Box<ExplanationOfBenefit_SupportingInfo>>;
+  fn item(&self) -> &Vector<Box<ExplanationOfBenefit_Item>>;
+  fn addItem(&self) -> &Vector<Box<ExplanationOfBenefit_AddItem>>;
+  fn benefitBalance(&self) -> &Vector<Box<ExplanationOfBenefit_BenefitBalance>>;
 }
 
 dyn_clone::clone_trait_object!(ExplanationOfBenefit);
@@ -471,26 +474,26 @@ impl ExplanationOfBenefit for ExplanationOfBenefitRaw {
   fn disposition(&self) -> &Option<String> { &self.disposition }
   fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundsReserve }
   fn prescription(&self) -> &Option<Box<dyn Reference>> { &self.prescription }
-  fn adjudication(&self) -> &Vector<Box<dyn ExplanationOfBenefit_Item_Adjudication>> { &self.adjudication }
+  fn adjudication(&self) -> &Vector<Box<ExplanationOfBenefit_Item_Adjudication>> { &self.adjudication }
   fn claimResponse(&self) -> &Option<Box<dyn Reference>> { &self.claimResponse }
   fn benefitPeriod(&self) -> &Option<Box<dyn Period>> { &self.benefitPeriod }
   fn billablePeriod(&self) -> &Option<Box<dyn Period>> { &self.billablePeriod }
   fn preAuthRefPeriod(&self) -> &Vector<Box<dyn Period>> { &self.preAuthRefPeriod }
   fn originalPrescription(&self) -> &Option<Box<dyn Reference>> { &self.originalPrescription }
   fn fundsReserveRequested(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundsReserveRequested }
-  fn payee(&self) -> &Option<ExplanationOfBenefit_Payee> { &self.payee }
-  fn total(&self) -> &Vector<ExplanationOfBenefit_Total> { &self.total }
-  fn related(&self) -> &Vector<ExplanationOfBenefit_Related> { &self.related }
-  fn payment(&self) -> &Option<ExplanationOfBenefit_Payment> { &self.payment }
-  fn careTeam(&self) -> &Vector<ExplanationOfBenefit_CareTeam> { &self.careTeam }
-  fn accident(&self) -> &Option<ExplanationOfBenefit_Accident> { &self.accident }
-  fn diagnosis(&self) -> &Vector<ExplanationOfBenefit_Diagnosis> { &self.diagnosis }
-  fn procedure(&self) -> &Vector<ExplanationOfBenefit_Procedure> { &self.procedure }
-  fn insurance(&self) -> &Vector<ExplanationOfBenefit_Insurance> { &self.insurance }
-  fn processNote(&self) -> &Vector<ExplanationOfBenefit_ProcessNote> { &self.processNote }
-  fn supportingInfo(&self) -> &Vector<ExplanationOfBenefit_SupportingInfo> { &self.supportingInfo }
-  fn item(&self) -> &Vector<ExplanationOfBenefit_Item> { &self.item }
-  fn addItem(&self) -> &Vector<ExplanationOfBenefit_AddItem> { &self.addItem }
-  fn benefitBalance(&self) -> &Vector<ExplanationOfBenefit_BenefitBalance> { &self.benefitBalance }
+  fn payee(&self) -> &Option<Box<ExplanationOfBenefit_Payee>> { &self.payee }
+  fn total(&self) -> &Vector<Box<ExplanationOfBenefit_Total>> { &self.total }
+  fn related(&self) -> &Vector<Box<ExplanationOfBenefit_Related>> { &self.related }
+  fn payment(&self) -> &Option<Box<ExplanationOfBenefit_Payment>> { &self.payment }
+  fn careTeam(&self) -> &Vector<Box<ExplanationOfBenefit_CareTeam>> { &self.careTeam }
+  fn accident(&self) -> &Option<Box<ExplanationOfBenefit_Accident>> { &self.accident }
+  fn diagnosis(&self) -> &Vector<Box<ExplanationOfBenefit_Diagnosis>> { &self.diagnosis }
+  fn procedure(&self) -> &Vector<Box<ExplanationOfBenefit_Procedure>> { &self.procedure }
+  fn insurance(&self) -> &Vector<Box<ExplanationOfBenefit_Insurance>> { &self.insurance }
+  fn processNote(&self) -> &Vector<Box<ExplanationOfBenefit_ProcessNote>> { &self.processNote }
+  fn supportingInfo(&self) -> &Vector<Box<ExplanationOfBenefit_SupportingInfo>> { &self.supportingInfo }
+  fn item(&self) -> &Vector<Box<ExplanationOfBenefit_Item>> { &self.item }
+  fn addItem(&self) -> &Vector<Box<ExplanationOfBenefit_AddItem>> { &self.addItem }
+  fn benefitBalance(&self) -> &Vector<Box<ExplanationOfBenefit_BenefitBalance>> { &self.benefitBalance }
 }
 

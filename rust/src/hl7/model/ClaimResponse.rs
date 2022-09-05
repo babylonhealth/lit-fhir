@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -14,10 +17,10 @@ use crate::core::model::Period::Period;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionAddressOrCodeableConceptOrReference;
-use crate::hl7::UnionDateOrPeriod;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionAddressOrCodeableConceptOrReference;
+use crate::hl7::model::UnionAliases::UnionDateOrPeriod;
 
 
 
@@ -47,7 +50,7 @@ pub struct ClaimResponse_Error {
 pub struct ClaimResponse_Payment {
   pub(crate) id: Option<String>,
   pub(crate) _type: Box<dyn CodeableConcept>,
-  pub(crate) date: Option<FHIRDate>,
+  pub(crate) date: Option<LocalDate>,
   pub(crate) amount: Box<dyn Money>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) adjustment: Option<Box<dyn Money>>,
@@ -100,7 +103,7 @@ pub struct ClaimResponse_Item_Detail_SubDetail {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) noteNumber: Vector<u32>,
-  pub(crate) adjudication: Vector<Box<dyn ClaimResponse_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ClaimResponse_Item_Adjudication>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) subDetailSequence: u32,
 }
@@ -110,10 +113,10 @@ pub struct ClaimResponse_Item_Detail {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) noteNumber: Vector<u32>,
-  pub(crate) adjudication: Vector<Box<dyn ClaimResponse_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ClaimResponse_Item_Adjudication>>,
   pub(crate) detailSequence: u32,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) subDetail: Vector<ClaimResponse_Item_Detail_SubDetail>,
+  pub(crate) subDetail: Vector<Box<ClaimResponse_Item_Detail_SubDetail>>,
 }
 
 #[derive(Clone, Debug)]
@@ -123,8 +126,8 @@ pub struct ClaimResponse_Item {
   pub(crate) noteNumber: Vector<u32>,
   pub(crate) itemSequence: u32,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) adjudication: Vector<ClaimResponse_Item_Adjudication>,
-  pub(crate) detail: Vector<ClaimResponse_Item_Detail>,
+  pub(crate) adjudication: Vector<Box<ClaimResponse_Item_Adjudication>>,
+  pub(crate) detail: Vector<Box<ClaimResponse_Item_Detail>>,
 }
 
 
@@ -138,7 +141,7 @@ pub struct ClaimResponse_AddItem_Detail_SubDetail {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) unitPrice: Option<Box<dyn Money>>,
   pub(crate) noteNumber: Vector<u32>,
-  pub(crate) adjudication: Vector<Box<dyn ClaimResponse_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ClaimResponse_Item_Adjudication>>,
   pub(crate) productOrService: Box<dyn CodeableConcept>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
@@ -153,10 +156,10 @@ pub struct ClaimResponse_AddItem_Detail {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) unitPrice: Option<Box<dyn Money>>,
   pub(crate) noteNumber: Vector<u32>,
-  pub(crate) adjudication: Vector<Box<dyn ClaimResponse_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ClaimResponse_Item_Adjudication>>,
   pub(crate) productOrService: Box<dyn CodeableConcept>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) subDetail: Vector<ClaimResponse_AddItem_Detail_SubDetail>,
+  pub(crate) subDetail: Vector<Box<ClaimResponse_AddItem_Detail_SubDetail>>,
 }
 
 #[derive(Clone, Debug)]
@@ -176,12 +179,12 @@ pub struct ClaimResponse_AddItem {
   pub(crate) serviced: Option<UnionDateOrPeriod>,
   pub(crate) location: Option<UnionAddressOrCodeableConceptOrReference>,
   pub(crate) itemSequence: Vector<u32>,
-  pub(crate) adjudication: Vector<Box<dyn ClaimResponse_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ClaimResponse_Item_Adjudication>>,
   pub(crate) detailSequence: Vector<u32>,
   pub(crate) productOrService: Box<dyn CodeableConcept>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) subdetailSequence: Vector<u32>,
-  pub(crate) detail: Vector<ClaimResponse_AddItem_Detail>,
+  pub(crate) detail: Vector<Box<ClaimResponse_AddItem_Detail>>,
 }
 
 #[derive(Clone, Debug)]
@@ -208,19 +211,19 @@ pub struct ClaimResponseRaw {
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) preAuthRef: Option<String>,
   pub(crate) disposition: Option<String>,
-  pub(crate) adjudication: Vector<Box<dyn ClaimResponse_Item_Adjudication>>,
+  pub(crate) adjudication: Vector<Box<ClaimResponse_Item_Adjudication>>,
   pub(crate) fundsReserve: Option<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) preAuthPeriod: Option<Box<dyn Period>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) communicationRequest: Vector<Box<dyn Reference>>,
-  pub(crate) total: Vector<ClaimResponse_Total>,
-  pub(crate) error: Vector<ClaimResponse_Error>,
-  pub(crate) payment: Option<ClaimResponse_Payment>,
-  pub(crate) processNote: Vector<ClaimResponse_ProcessNote>,
-  pub(crate) insurance: Vector<ClaimResponse_Insurance>,
-  pub(crate) item: Vector<ClaimResponse_Item>,
-  pub(crate) addItem: Vector<ClaimResponse_AddItem>,
+  pub(crate) total: Vector<Box<ClaimResponse_Total>>,
+  pub(crate) error: Vector<Box<ClaimResponse_Error>>,
+  pub(crate) payment: Option<Box<ClaimResponse_Payment>>,
+  pub(crate) processNote: Vector<Box<ClaimResponse_ProcessNote>>,
+  pub(crate) insurance: Vector<Box<ClaimResponse_Insurance>>,
+  pub(crate) item: Vector<Box<ClaimResponse_Item>>,
+  pub(crate) addItem: Vector<Box<ClaimResponse_AddItem>>,
 }
 
 pub trait ClaimResponse : DomainResource {
@@ -240,17 +243,17 @@ pub trait ClaimResponse : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn preAuthRef(&self) -> &Option<String>;
   fn disposition(&self) -> &Option<String>;
-  fn adjudication(&self) -> &Vector<Box<dyn ClaimResponse_Item_Adjudication>>;
+  fn adjudication(&self) -> &Vector<Box<ClaimResponse_Item_Adjudication>>;
   fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn preAuthPeriod(&self) -> &Option<Box<dyn Period>>;
   fn communicationRequest(&self) -> &Vector<Box<dyn Reference>>;
-  fn total(&self) -> &Vector<ClaimResponse_Total>;
-  fn error(&self) -> &Vector<ClaimResponse_Error>;
-  fn payment(&self) -> &Option<ClaimResponse_Payment>;
-  fn processNote(&self) -> &Vector<ClaimResponse_ProcessNote>;
-  fn insurance(&self) -> &Vector<ClaimResponse_Insurance>;
-  fn item(&self) -> &Vector<ClaimResponse_Item>;
-  fn addItem(&self) -> &Vector<ClaimResponse_AddItem>;
+  fn total(&self) -> &Vector<Box<ClaimResponse_Total>>;
+  fn error(&self) -> &Vector<Box<ClaimResponse_Error>>;
+  fn payment(&self) -> &Option<Box<ClaimResponse_Payment>>;
+  fn processNote(&self) -> &Vector<Box<ClaimResponse_ProcessNote>>;
+  fn insurance(&self) -> &Vector<Box<ClaimResponse_Insurance>>;
+  fn item(&self) -> &Vector<Box<ClaimResponse_Item>>;
+  fn addItem(&self) -> &Vector<Box<ClaimResponse_AddItem>>;
 }
 
 dyn_clone::clone_trait_object!(ClaimResponse);
@@ -291,16 +294,16 @@ impl ClaimResponse for ClaimResponseRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn preAuthRef(&self) -> &Option<String> { &self.preAuthRef }
   fn disposition(&self) -> &Option<String> { &self.disposition }
-  fn adjudication(&self) -> &Vector<Box<dyn ClaimResponse_Item_Adjudication>> { &self.adjudication }
+  fn adjudication(&self) -> &Vector<Box<ClaimResponse_Item_Adjudication>> { &self.adjudication }
   fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundsReserve }
   fn preAuthPeriod(&self) -> &Option<Box<dyn Period>> { &self.preAuthPeriod }
   fn communicationRequest(&self) -> &Vector<Box<dyn Reference>> { &self.communicationRequest }
-  fn total(&self) -> &Vector<ClaimResponse_Total> { &self.total }
-  fn error(&self) -> &Vector<ClaimResponse_Error> { &self.error }
-  fn payment(&self) -> &Option<ClaimResponse_Payment> { &self.payment }
-  fn processNote(&self) -> &Vector<ClaimResponse_ProcessNote> { &self.processNote }
-  fn insurance(&self) -> &Vector<ClaimResponse_Insurance> { &self.insurance }
-  fn item(&self) -> &Vector<ClaimResponse_Item> { &self.item }
-  fn addItem(&self) -> &Vector<ClaimResponse_AddItem> { &self.addItem }
+  fn total(&self) -> &Vector<Box<ClaimResponse_Total>> { &self.total }
+  fn error(&self) -> &Vector<Box<ClaimResponse_Error>> { &self.error }
+  fn payment(&self) -> &Option<Box<ClaimResponse_Payment>> { &self.payment }
+  fn processNote(&self) -> &Vector<Box<ClaimResponse_ProcessNote>> { &self.processNote }
+  fn insurance(&self) -> &Vector<Box<ClaimResponse_Insurance>> { &self.insurance }
+  fn item(&self) -> &Vector<Box<ClaimResponse_Item>> { &self.item }
+  fn addItem(&self) -> &Vector<Box<ClaimResponse_AddItem>> { &self.addItem }
 }
 

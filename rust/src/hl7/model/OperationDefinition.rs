@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -53,14 +56,14 @@ pub struct OperationDefinition_Parameter {
   pub(crate) max: String,
   pub(crate) name: String,
   pub(crate) _type: Option<String>,
-  pub(crate) part: Vector<Box<dyn OperationDefinition_Parameter>>,
+  pub(crate) part: Vector<Box<OperationDefinition_Parameter>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) searchType: Option<String>,
   pub(crate) documentation: Option<String>,
   pub(crate) targetProfile: Vector<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) binding: Option<OperationDefinition_Parameter_Binding>,
-  pub(crate) referencedFrom: Vector<OperationDefinition_Parameter_ReferencedFrom>,
+  pub(crate) binding: Option<Box<OperationDefinition_Parameter_Binding>>,
+  pub(crate) referencedFrom: Vector<Box<OperationDefinition_Parameter_ReferencedFrom>>,
 }
 
 #[derive(Clone, Debug)]
@@ -97,8 +100,8 @@ pub struct OperationDefinitionRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) outputProfile: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) overload: Vector<OperationDefinition_Overload>,
-  pub(crate) parameter: Vector<OperationDefinition_Parameter>,
+  pub(crate) overload: Vector<Box<OperationDefinition_Overload>>,
+  pub(crate) parameter: Vector<Box<OperationDefinition_Parameter>>,
 }
 
 pub trait OperationDefinition : DomainResource {
@@ -126,8 +129,8 @@ pub trait OperationDefinition : DomainResource {
   fn affectsState(&self) -> &Option<bool>;
   fn inputProfile(&self) -> &Option<String>;
   fn outputProfile(&self) -> &Option<String>;
-  fn overload(&self) -> &Vector<OperationDefinition_Overload>;
-  fn parameter(&self) -> &Vector<OperationDefinition_Parameter>;
+  fn overload(&self) -> &Vector<Box<OperationDefinition_Overload>>;
+  fn parameter(&self) -> &Vector<Box<OperationDefinition_Parameter>>;
 }
 
 dyn_clone::clone_trait_object!(OperationDefinition);
@@ -176,7 +179,7 @@ impl OperationDefinition for OperationDefinitionRaw {
   fn affectsState(&self) -> &Option<bool> { &self.affectsState }
   fn inputProfile(&self) -> &Option<String> { &self.inputProfile }
   fn outputProfile(&self) -> &Option<String> { &self.outputProfile }
-  fn overload(&self) -> &Vector<OperationDefinition_Overload> { &self.overload }
-  fn parameter(&self) -> &Vector<OperationDefinition_Parameter> { &self.parameter }
+  fn overload(&self) -> &Vector<Box<OperationDefinition_Overload>> { &self.overload }
+  fn parameter(&self) -> &Vector<Box<OperationDefinition_Parameter>> { &self.parameter }
 }
 

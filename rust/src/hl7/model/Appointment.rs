@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -59,7 +62,7 @@ pub struct AppointmentRaw {
   pub(crate) cancelationReason: Option<Box<dyn CodeableConcept>>,
   pub(crate) patientInstruction: Option<String>,
   pub(crate) supportingInformation: Vector<Box<dyn Reference>>,
-  pub(crate) participant: Vector<Appointment_Participant>,
+  pub(crate) participant: Vector<Box<Appointment_Participant>>,
 }
 
 pub trait Appointment : DomainResource {
@@ -84,7 +87,7 @@ pub trait Appointment : DomainResource {
   fn cancelationReason(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn patientInstruction(&self) -> &Option<String>;
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
-  fn participant(&self) -> &Vector<Appointment_Participant>;
+  fn participant(&self) -> &Vector<Box<Appointment_Participant>>;
 }
 
 dyn_clone::clone_trait_object!(Appointment);
@@ -130,6 +133,6 @@ impl Appointment for AppointmentRaw {
   fn cancelationReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.cancelationReason }
   fn patientInstruction(&self) -> &Option<String> { &self.patientInstruction }
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
-  fn participant(&self) -> &Vector<Appointment_Participant> { &self.participant }
+  fn participant(&self) -> &Vector<Box<Appointment_Participant>> { &self.participant }
 }
 

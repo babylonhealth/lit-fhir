@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::UnionCanonicalOrUri;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionCanonicalOrUri;
 
 
 
@@ -47,11 +50,11 @@ pub struct ConceptMap_Group_Element_Target {
   pub(crate) code: Option<String>,
   pub(crate) display: Option<String>,
   pub(crate) comment: Option<String>,
-  pub(crate) product: Vector<Box<dyn ConceptMap_Group_Element_Target_DependsOn>>,
+  pub(crate) product: Vector<Box<ConceptMap_Group_Element_Target_DependsOn>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) equivalence: String,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) dependsOn: Vector<ConceptMap_Group_Element_Target_DependsOn>,
+  pub(crate) dependsOn: Vector<Box<ConceptMap_Group_Element_Target_DependsOn>>,
 }
 
 #[derive(Clone, Debug)]
@@ -61,7 +64,7 @@ pub struct ConceptMap_Group_Element {
   pub(crate) display: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) target: Vector<ConceptMap_Group_Element_Target>,
+  pub(crate) target: Vector<Box<ConceptMap_Group_Element_Target>>,
 }
 
 #[derive(Clone, Debug)]
@@ -73,8 +76,8 @@ pub struct ConceptMap_Group {
   pub(crate) sourceVersion: Option<String>,
   pub(crate) targetVersion: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) unmapped: Option<ConceptMap_Group_Unmapped>,
-  pub(crate) element: Vector<ConceptMap_Group_FHIRElement>,
+  pub(crate) unmapped: Option<Box<ConceptMap_Group_Unmapped>>,
+  pub(crate) element: Vector<Box<ConceptMap_Group_Element>>,
 }
 
 #[derive(Clone, Debug)]
@@ -104,7 +107,7 @@ pub struct ConceptMapRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) group: Vector<ConceptMap_Group>,
+  pub(crate) group: Vector<Box<ConceptMap_Group>>,
 }
 
 pub trait ConceptMap : DomainResource {
@@ -125,7 +128,7 @@ pub trait ConceptMap : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn group(&self) -> &Vector<ConceptMap_Group>;
+  fn group(&self) -> &Vector<Box<ConceptMap_Group>>;
 }
 
 dyn_clone::clone_trait_object!(ConceptMap);
@@ -167,6 +170,6 @@ impl ConceptMap for ConceptMapRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn group(&self) -> &Vector<ConceptMap_Group> { &self.group }
+  fn group(&self) -> &Vector<Box<ConceptMap_Group>> { &self.group }
 }
 

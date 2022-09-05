@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -51,7 +54,7 @@ pub struct CareTeamRaw {
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) managingOrganization: Vector<Box<dyn Reference>>,
-  pub(crate) participant: Vector<CareTeam_Participant>,
+  pub(crate) participant: Vector<Box<CareTeam_Participant>>,
 }
 
 pub trait CareTeam : DomainResource {
@@ -67,7 +70,7 @@ pub trait CareTeam : DomainResource {
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn managingOrganization(&self) -> &Vector<Box<dyn Reference>>;
-  fn participant(&self) -> &Vector<CareTeam_Participant>;
+  fn participant(&self) -> &Vector<Box<CareTeam_Participant>>;
 }
 
 dyn_clone::clone_trait_object!(CareTeam);
@@ -104,6 +107,6 @@ impl CareTeam for CareTeamRaw {
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn managingOrganization(&self) -> &Vector<Box<dyn Reference>> { &self.managingOrganization }
-  fn participant(&self) -> &Vector<CareTeam_Participant> { &self.participant }
+  fn participant(&self) -> &Vector<Box<CareTeam_Participant>> { &self.participant }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -49,7 +52,7 @@ pub struct InsurancePlan_Coverage_Benefit {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) requirement: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) limit: Vector<InsurancePlan_Coverage_Benefit_Limit>,
+  pub(crate) limit: Vector<Box<InsurancePlan_Coverage_Benefit_Limit>>,
 }
 
 #[derive(Clone, Debug)]
@@ -59,7 +62,7 @@ pub struct InsurancePlan_Coverage {
   pub(crate) network: Vector<Box<dyn Reference>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) benefit: Vector<InsurancePlan_Coverage_Benefit>,
+  pub(crate) benefit: Vector<Box<InsurancePlan_Coverage_Benefit>>,
 }
 
 
@@ -93,7 +96,7 @@ pub struct InsurancePlan_Plan_SpecificCost_Benefit {
   pub(crate) _type: Box<dyn CodeableConcept>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) cost: Vector<InsurancePlan_Plan_SpecificCost_Benefit_Cost>,
+  pub(crate) cost: Vector<Box<InsurancePlan_Plan_SpecificCost_Benefit_Cost>>,
 }
 
 #[derive(Clone, Debug)]
@@ -102,7 +105,7 @@ pub struct InsurancePlan_Plan_SpecificCost {
   pub(crate) category: Box<dyn CodeableConcept>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) benefit: Vector<InsurancePlan_Plan_SpecificCost_Benefit>,
+  pub(crate) benefit: Vector<Box<InsurancePlan_Plan_SpecificCost_Benefit>>,
 }
 
 #[derive(Clone, Debug)]
@@ -114,8 +117,8 @@ pub struct InsurancePlan_Plan {
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) coverageArea: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) generalCost: Vector<InsurancePlan_Plan_GeneralCost>,
-  pub(crate) specificCost: Vector<InsurancePlan_Plan_SpecificCost>,
+  pub(crate) generalCost: Vector<Box<InsurancePlan_Plan_GeneralCost>>,
+  pub(crate) specificCost: Vector<Box<InsurancePlan_Plan_SpecificCost>>,
 }
 
 #[derive(Clone, Debug)]
@@ -139,9 +142,9 @@ pub struct InsurancePlanRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) administeredBy: Option<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) contact: Vector<InsurancePlan_Contact>,
-  pub(crate) coverage: Vector<InsurancePlan_Coverage>,
-  pub(crate) plan: Vector<InsurancePlan_Plan>,
+  pub(crate) contact: Vector<Box<InsurancePlan_Contact>>,
+  pub(crate) coverage: Vector<Box<InsurancePlan_Coverage>>,
+  pub(crate) plan: Vector<Box<InsurancePlan_Plan>>,
 }
 
 pub trait InsurancePlan : DomainResource {
@@ -156,9 +159,9 @@ pub trait InsurancePlan : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn coverageArea(&self) -> &Vector<Box<dyn Reference>>;
   fn administeredBy(&self) -> &Option<Box<dyn Reference>>;
-  fn contact(&self) -> &Vector<InsurancePlan_Contact>;
-  fn coverage(&self) -> &Vector<InsurancePlan_Coverage>;
-  fn plan(&self) -> &Vector<InsurancePlan_Plan>;
+  fn contact(&self) -> &Vector<Box<InsurancePlan_Contact>>;
+  fn coverage(&self) -> &Vector<Box<InsurancePlan_Coverage>>;
+  fn plan(&self) -> &Vector<Box<InsurancePlan_Plan>>;
 }
 
 dyn_clone::clone_trait_object!(InsurancePlan);
@@ -194,8 +197,8 @@ impl InsurancePlan for InsurancePlanRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn coverageArea(&self) -> &Vector<Box<dyn Reference>> { &self.coverageArea }
   fn administeredBy(&self) -> &Option<Box<dyn Reference>> { &self.administeredBy }
-  fn contact(&self) -> &Vector<InsurancePlan_Contact> { &self.contact }
-  fn coverage(&self) -> &Vector<InsurancePlan_Coverage> { &self.coverage }
-  fn plan(&self) -> &Vector<InsurancePlan_Plan> { &self.plan }
+  fn contact(&self) -> &Vector<Box<InsurancePlan_Contact>> { &self.contact }
+  fn coverage(&self) -> &Vector<Box<InsurancePlan_Coverage>> { &self.coverage }
+  fn plan(&self) -> &Vector<Box<InsurancePlan_Plan>> { &self.plan }
 }
 

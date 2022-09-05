@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -28,9 +31,9 @@ pub struct TestReport_Participant {
 #[derive(Clone, Debug)]
 pub struct TestReport_Test_Action {
   pub(crate) id: Option<String>,
-  pub(crate) assert: Option<Box<dyn TestReport_Setup_Action_Assert>>,
+  pub(crate) assert: Option<Box<TestReport_Setup_Action_Assert>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) operation: Option<Box<dyn TestReport_Setup_Action_Operation>>,
+  pub(crate) operation: Option<Box<TestReport_Setup_Action_Operation>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -41,7 +44,7 @@ pub struct TestReport_Test {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) action: Vector<TestReport_Test_Action>,
+  pub(crate) action: Vector<Box<TestReport_Test_Action>>,
 }
 
 
@@ -49,7 +52,7 @@ pub struct TestReport_Test {
 pub struct TestReport_Teardown_Action {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) operation: Box<dyn TestReport_Setup_Action_Operation>,
+  pub(crate) operation: Box<TestReport_Setup_Action_Operation>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -58,7 +61,7 @@ pub struct TestReport_Teardown {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) action: Vector<TestReport_Teardown_Action>,
+  pub(crate) action: Vector<Box<TestReport_Teardown_Action>>,
 }
 
 
@@ -89,8 +92,8 @@ pub struct TestReport_Setup_Action {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) assert: Option<TestReport_Setup_Action_Assert>,
-  pub(crate) operation: Option<TestReport_Setup_Action_Operation>,
+  pub(crate) assert: Option<Box<TestReport_Setup_Action_Assert>>,
+  pub(crate) operation: Option<Box<TestReport_Setup_Action_Operation>>,
 }
 
 #[derive(Clone, Debug)]
@@ -98,7 +101,7 @@ pub struct TestReport_Setup {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) action: Vector<TestReport_Setup_Action>,
+  pub(crate) action: Vector<Box<TestReport_Setup_Action>>,
 }
 
 #[derive(Clone, Debug)]
@@ -119,10 +122,10 @@ pub struct TestReportRaw {
   pub(crate) testScript: Box<dyn Reference>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) participant: Vector<TestReport_Participant>,
-  pub(crate) test: Vector<TestReport_Test>,
-  pub(crate) teardown: Option<TestReport_Teardown>,
-  pub(crate) setup: Option<TestReport_Setup>,
+  pub(crate) participant: Vector<Box<TestReport_Participant>>,
+  pub(crate) test: Vector<Box<TestReport_Test>>,
+  pub(crate) teardown: Option<Box<TestReport_Teardown>>,
+  pub(crate) setup: Option<Box<TestReport_Setup>>,
 }
 
 pub trait TestReport : DomainResource {
@@ -134,10 +137,10 @@ pub trait TestReport : DomainResource {
   fn issued(&self) -> &Option<DateTime<FixedOffset>>;
   fn identifier(&self) -> &Option<Box<dyn Identifier>>;
   fn testScript(&self) -> &Box<dyn Reference>;
-  fn participant(&self) -> &Vector<TestReport_Participant>;
-  fn test(&self) -> &Vector<TestReport_Test>;
-  fn teardown(&self) -> &Option<TestReport_Teardown>;
-  fn setup(&self) -> &Option<TestReport_Setup>;
+  fn participant(&self) -> &Vector<Box<TestReport_Participant>>;
+  fn test(&self) -> &Vector<Box<TestReport_Test>>;
+  fn teardown(&self) -> &Option<Box<TestReport_Teardown>>;
+  fn setup(&self) -> &Option<Box<TestReport_Setup>>;
 }
 
 dyn_clone::clone_trait_object!(TestReport);
@@ -170,9 +173,9 @@ impl TestReport for TestReportRaw {
   fn issued(&self) -> &Option<DateTime<FixedOffset>> { &self.issued }
   fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
   fn testScript(&self) -> &Box<dyn Reference> { &self.testScript }
-  fn participant(&self) -> &Vector<TestReport_Participant> { &self.participant }
-  fn test(&self) -> &Vector<TestReport_Test> { &self.test }
-  fn teardown(&self) -> &Option<TestReport_Teardown> { &self.teardown }
-  fn setup(&self) -> &Option<TestReport_Setup> { &self.setup }
+  fn participant(&self) -> &Vector<Box<TestReport_Participant>> { &self.participant }
+  fn test(&self) -> &Vector<Box<TestReport_Test>> { &self.test }
+  fn teardown(&self) -> &Option<Box<TestReport_Teardown>> { &self.teardown }
+  fn setup(&self) -> &Option<Box<TestReport_Setup>> { &self.setup }
 }
 

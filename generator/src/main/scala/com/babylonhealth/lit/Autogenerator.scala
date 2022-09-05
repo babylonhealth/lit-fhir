@@ -275,7 +275,9 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
               Nil
           }
         }.toSeq
-      } // ++ getDeclaringPkgForType.groupMap(_._2)(_._1).flatMap((Rust.genModRS _).tupled)
+      } ++
+      Rust.genUnionFiles(args.moduleDependencies, ElementTreee.getUnionTypes) ++
+      getDeclaringPkgForType.groupMap(_._2)(_._1).flatMap((Rust.genModRS _).tupled)
     }
 
     AllGeneratedFiles(scalaClassGenInfo, javaClassGenInfo, typescriptClassGenInfo, rustClassGenInfo)

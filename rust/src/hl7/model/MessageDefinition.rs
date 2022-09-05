@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::UnionCodingOrUri;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionCodingOrUri;
 
 
 
@@ -70,8 +73,8 @@ pub struct MessageDefinitionRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) responseRequired: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) focus: Vector<MessageDefinition_Focus>,
-  pub(crate) allowedResponse: Vector<MessageDefinition_AllowedResponse>,
+  pub(crate) focus: Vector<Box<MessageDefinition_Focus>>,
+  pub(crate) allowedResponse: Vector<Box<MessageDefinition_AllowedResponse>>,
 }
 
 pub trait MessageDefinition : DomainResource {
@@ -97,8 +100,8 @@ pub trait MessageDefinition : DomainResource {
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn responseRequired(&self) -> &Option<String>;
-  fn focus(&self) -> &Vector<MessageDefinition_Focus>;
-  fn allowedResponse(&self) -> &Vector<MessageDefinition_AllowedResponse>;
+  fn focus(&self) -> &Vector<Box<MessageDefinition_Focus>>;
+  fn allowedResponse(&self) -> &Vector<Box<MessageDefinition_AllowedResponse>>;
 }
 
 dyn_clone::clone_trait_object!(MessageDefinition);
@@ -145,7 +148,7 @@ impl MessageDefinition for MessageDefinitionRaw {
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn responseRequired(&self) -> &Option<String> { &self.responseRequired }
-  fn focus(&self) -> &Vector<MessageDefinition_Focus> { &self.focus }
-  fn allowedResponse(&self) -> &Vector<MessageDefinition_AllowedResponse> { &self.allowedResponse }
+  fn focus(&self) -> &Vector<Box<MessageDefinition_Focus>> { &self.focus }
+  fn allowedResponse(&self) -> &Vector<Box<MessageDefinition_AllowedResponse>> { &self.allowedResponse }
 }
 

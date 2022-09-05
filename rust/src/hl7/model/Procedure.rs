@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union01474038381;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01474038381;
 
 
 
@@ -73,8 +76,8 @@ pub struct ProcedureRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) complicationDetail: Vector<Box<dyn Reference>>,
   pub(crate) instantiatesCanonical: Vector<String>,
-  pub(crate) performer: Vector<Procedure_Performer>,
-  pub(crate) focalDevice: Vector<Procedure_FocalDevice>,
+  pub(crate) performer: Vector<Box<Procedure_Performer>>,
+  pub(crate) focalDevice: Vector<Box<Procedure_FocalDevice>>,
 }
 
 pub trait Procedure : DomainResource {
@@ -104,8 +107,8 @@ pub trait Procedure : DomainResource {
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn complicationDetail(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
-  fn performer(&self) -> &Vector<Procedure_Performer>;
-  fn focalDevice(&self) -> &Vector<Procedure_FocalDevice>;
+  fn performer(&self) -> &Vector<Box<Procedure_Performer>>;
+  fn focalDevice(&self) -> &Vector<Box<Procedure_FocalDevice>>;
 }
 
 dyn_clone::clone_trait_object!(Procedure);
@@ -156,7 +159,7 @@ impl Procedure for ProcedureRaw {
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn complicationDetail(&self) -> &Vector<Box<dyn Reference>> { &self.complicationDetail }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
-  fn performer(&self) -> &Vector<Procedure_Performer> { &self.performer }
-  fn focalDevice(&self) -> &Vector<Procedure_FocalDevice> { &self.focalDevice }
+  fn performer(&self) -> &Vector<Box<Procedure_Performer>> { &self.performer }
+  fn focalDevice(&self) -> &Vector<Box<Procedure_FocalDevice>> { &self.focalDevice }
 }
 

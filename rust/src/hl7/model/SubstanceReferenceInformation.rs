@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -10,9 +13,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionQuantityOrRangeOrString;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionQuantityOrRangeOrString;
 
 
 
@@ -76,18 +79,18 @@ pub struct SubstanceReferenceInformationRaw {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) gene: Vector<SubstanceReferenceInformation_Gene>,
-  pub(crate) target: Vector<SubstanceReferenceInformation_Target>,
-  pub(crate) geneElement: Vector<SubstanceReferenceInformation_GeneElement>,
-  pub(crate) classification: Vector<SubstanceReferenceInformation_Classification>,
+  pub(crate) gene: Vector<Box<SubstanceReferenceInformation_Gene>>,
+  pub(crate) target: Vector<Box<SubstanceReferenceInformation_Target>>,
+  pub(crate) geneElement: Vector<Box<SubstanceReferenceInformation_GeneElement>>,
+  pub(crate) classification: Vector<Box<SubstanceReferenceInformation_Classification>>,
 }
 
 pub trait SubstanceReferenceInformation : DomainResource {
   fn comment(&self) -> &Option<String>;
-  fn gene(&self) -> &Vector<SubstanceReferenceInformation_Gene>;
-  fn target(&self) -> &Vector<SubstanceReferenceInformation_Target>;
-  fn geneElement(&self) -> &Vector<SubstanceReferenceInformation_GeneElement>;
-  fn classification(&self) -> &Vector<SubstanceReferenceInformation_Classification>;
+  fn gene(&self) -> &Vector<Box<SubstanceReferenceInformation_Gene>>;
+  fn target(&self) -> &Vector<Box<SubstanceReferenceInformation_Target>>;
+  fn geneElement(&self) -> &Vector<Box<SubstanceReferenceInformation_GeneElement>>;
+  fn classification(&self) -> &Vector<Box<SubstanceReferenceInformation_Classification>>;
 }
 
 dyn_clone::clone_trait_object!(SubstanceReferenceInformation);
@@ -113,9 +116,9 @@ impl DomainResource for SubstanceReferenceInformationRaw {
 
 impl SubstanceReferenceInformation for SubstanceReferenceInformationRaw {
   fn comment(&self) -> &Option<String> { &self.comment }
-  fn gene(&self) -> &Vector<SubstanceReferenceInformation_Gene> { &self.gene }
-  fn target(&self) -> &Vector<SubstanceReferenceInformation_Target> { &self.target }
-  fn geneElement(&self) -> &Vector<SubstanceReferenceInformation_GeneElement> { &self.geneElement }
-  fn classification(&self) -> &Vector<SubstanceReferenceInformation_Classification> { &self.classification }
+  fn gene(&self) -> &Vector<Box<SubstanceReferenceInformation_Gene>> { &self.gene }
+  fn target(&self) -> &Vector<Box<SubstanceReferenceInformation_Target>> { &self.target }
+  fn geneElement(&self) -> &Vector<Box<SubstanceReferenceInformation_GeneElement>> { &self.geneElement }
+  fn classification(&self) -> &Vector<Box<SubstanceReferenceInformation_Classification>> { &self.classification }
 }
 

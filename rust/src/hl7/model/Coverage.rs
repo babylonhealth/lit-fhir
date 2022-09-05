@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionMoneyOrQuantity;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionMoneyOrQuantity;
 
 
 
@@ -44,7 +47,7 @@ pub struct Coverage_CostToBeneficiary {
   pub(crate) value: UnionMoneyOrQuantity,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) exception: Vector<Coverage_CostToBeneficiary_Exception>,
+  pub(crate) exception: Vector<Box<Coverage_CostToBeneficiary_Exception>>,
 }
 
 #[derive(Clone, Debug)]
@@ -72,8 +75,8 @@ pub struct CoverageRaw {
   pub(crate) relationship: Option<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) class: Vector<Coverage_Class>,
-  pub(crate) costToBeneficiary: Vector<Coverage_CostToBeneficiary>,
+  pub(crate) class: Vector<Box<Coverage_Class>>,
+  pub(crate) costToBeneficiary: Vector<Box<Coverage_CostToBeneficiary>>,
 }
 
 pub trait Coverage : DomainResource {
@@ -92,8 +95,8 @@ pub trait Coverage : DomainResource {
   fn policyHolder(&self) -> &Option<Box<dyn Reference>>;
   fn subscriberId(&self) -> &Option<String>;
   fn relationship(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn class(&self) -> &Vector<Coverage_Class>;
-  fn costToBeneficiary(&self) -> &Vector<Coverage_CostToBeneficiary>;
+  fn class(&self) -> &Vector<Box<Coverage_Class>>;
+  fn costToBeneficiary(&self) -> &Vector<Box<Coverage_CostToBeneficiary>>;
 }
 
 dyn_clone::clone_trait_object!(Coverage);
@@ -133,7 +136,7 @@ impl Coverage for CoverageRaw {
   fn policyHolder(&self) -> &Option<Box<dyn Reference>> { &self.policyHolder }
   fn subscriberId(&self) -> &Option<String> { &self.subscriberId }
   fn relationship(&self) -> &Option<Box<dyn CodeableConcept>> { &self.relationship }
-  fn class(&self) -> &Vector<Coverage_Class> { &self.class }
-  fn costToBeneficiary(&self) -> &Vector<Coverage_CostToBeneficiary> { &self.costToBeneficiary }
+  fn class(&self) -> &Vector<Box<Coverage_Class>> { &self.class }
+  fn costToBeneficiary(&self) -> &Vector<Box<Coverage_CostToBeneficiary>> { &self.costToBeneficiary }
 }
 

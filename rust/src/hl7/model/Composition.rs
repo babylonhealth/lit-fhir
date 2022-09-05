@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionIdentifierOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionIdentifierOrReference;
 
 
 
@@ -38,7 +41,7 @@ pub struct Composition_Section {
   pub(crate) focus: Option<Box<dyn Reference>>,
   pub(crate) entry: Vector<Box<dyn Reference>>,
   pub(crate) author: Vector<Box<dyn Reference>>,
-  pub(crate) section: Vector<Box<dyn Composition_Section>>,
+  pub(crate) section: Vector<Box<Composition_Section>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) orderedBy: Option<Box<dyn CodeableConcept>>,
   pub(crate) emptyReason: Option<Box<dyn CodeableConcept>>,
@@ -87,10 +90,10 @@ pub struct CompositionRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) confidentiality: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) event: Vector<Composition_Event>,
-  pub(crate) section: Vector<Composition_Section>,
-  pub(crate) attester: Vector<Composition_Attester>,
-  pub(crate) relatesTo: Vector<Composition_RelatesTo>,
+  pub(crate) event: Vector<Box<Composition_Event>>,
+  pub(crate) section: Vector<Box<Composition_Section>>,
+  pub(crate) attester: Vector<Box<Composition_Attester>>,
+  pub(crate) relatesTo: Vector<Box<Composition_RelatesTo>>,
 }
 
 pub trait Composition : DomainResource {
@@ -105,10 +108,10 @@ pub trait Composition : DomainResource {
   fn custodian(&self) -> &Option<Box<dyn Reference>>;
   fn identifier(&self) -> &Option<Box<dyn Identifier>>;
   fn confidentiality(&self) -> &Option<String>;
-  fn event(&self) -> &Vector<Composition_Event>;
-  fn section(&self) -> &Vector<Composition_Section>;
-  fn attester(&self) -> &Vector<Composition_Attester>;
-  fn relatesTo(&self) -> &Vector<Composition_RelatesTo>;
+  fn event(&self) -> &Vector<Box<Composition_Event>>;
+  fn section(&self) -> &Vector<Box<Composition_Section>>;
+  fn attester(&self) -> &Vector<Box<Composition_Attester>>;
+  fn relatesTo(&self) -> &Vector<Box<Composition_RelatesTo>>;
 }
 
 dyn_clone::clone_trait_object!(Composition);
@@ -144,9 +147,9 @@ impl Composition for CompositionRaw {
   fn custodian(&self) -> &Option<Box<dyn Reference>> { &self.custodian }
   fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
   fn confidentiality(&self) -> &Option<String> { &self.confidentiality }
-  fn event(&self) -> &Vector<Composition_Event> { &self.event }
-  fn section(&self) -> &Vector<Composition_Section> { &self.section }
-  fn attester(&self) -> &Vector<Composition_Attester> { &self.attester }
-  fn relatesTo(&self) -> &Vector<Composition_RelatesTo> { &self.relatesTo }
+  fn event(&self) -> &Vector<Box<Composition_Event>> { &self.event }
+  fn section(&self) -> &Vector<Box<Composition_Section>> { &self.section }
+  fn attester(&self) -> &Vector<Box<Composition_Attester>> { &self.attester }
+  fn relatesTo(&self) -> &Vector<Box<Composition_RelatesTo>> { &self.relatesTo }
 }
 

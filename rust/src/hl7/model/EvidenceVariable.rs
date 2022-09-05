@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -15,10 +18,10 @@ use crate::core::model::Period::Period;
 use crate::core::model::RelatedArtifact::RelatedArtifact;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::Union00193937709;
-use crate::hl7::Union01763000476;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union00193937709;
+use crate::hl7::model::UnionAliases::Union01763000476;
 
 
 
@@ -66,13 +69,13 @@ pub struct EvidenceVariableRaw {
   pub(crate) useContext: Vector<Box<dyn UsageContext>>,
   pub(crate) description: Option<String>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) characteristic: Vector<EvidenceVariable_Characteristic>,
+  pub(crate) characteristic: Vector<Box<EvidenceVariable_Characteristic>>,
 }
 
 pub trait EvidenceVariable : DomainResource {
@@ -98,11 +101,11 @@ pub trait EvidenceVariable : DomainResource {
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
   fn description(&self) -> &Option<String>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
-  fn characteristic(&self) -> &Vector<EvidenceVariable_Characteristic>;
+  fn characteristic(&self) -> &Vector<Box<EvidenceVariable_Characteristic>>;
 }
 
 dyn_clone::clone_trait_object!(EvidenceVariable);
@@ -149,10 +152,10 @@ impl EvidenceVariable for EvidenceVariableRaw {
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
   fn description(&self) -> &Option<String> { &self.description }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
-  fn characteristic(&self) -> &Vector<EvidenceVariable_Characteristic> { &self.characteristic }
+  fn characteristic(&self) -> &Vector<Box<EvidenceVariable_Characteristic>> { &self.characteristic }
 }
 

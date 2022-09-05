@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionAttachmentOrReferenceOrString;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionAttachmentOrReferenceOrString;
 
 
 
@@ -57,7 +60,7 @@ pub struct CommunicationRaw {
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) instantiatesCanonical: Vector<String>,
-  pub(crate) payload: Vector<Communication_Payload>,
+  pub(crate) payload: Vector<Box<Communication_Payload>>,
 }
 
 pub trait Communication : DomainResource {
@@ -83,7 +86,7 @@ pub trait Communication : DomainResource {
   fn instantiatesUri(&self) -> &Vector<String>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
-  fn payload(&self) -> &Vector<Communication_Payload>;
+  fn payload(&self) -> &Vector<Box<Communication_Payload>>;
 }
 
 dyn_clone::clone_trait_object!(Communication);
@@ -130,6 +133,6 @@ impl Communication for CommunicationRaw {
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
-  fn payload(&self) -> &Vector<Communication_Payload> { &self.payload }
+  fn payload(&self) -> &Vector<Box<Communication_Payload>> { &self.payload }
 }
 

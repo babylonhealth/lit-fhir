@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -13,10 +16,10 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::RelatedArtifact::RelatedArtifact;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union01405873694;
-use crate::hl7::UnionDurationOrRange;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01405873694;
+use crate::hl7::model::UnionAliases::UnionDurationOrRange;
 
 
 
@@ -48,7 +51,7 @@ pub struct RequestGroup_Action {
   pub(crate) _type: Option<Box<dyn CodeableConcept>>,
   pub(crate) title: Option<String>,
   pub(crate) prefix: Option<String>,
-  pub(crate) action: Vector<Box<dyn RequestGroup_Action>>,
+  pub(crate) action: Vector<Box<RequestGroup_Action>>,
   pub(crate) priority: Option<String>,
   pub(crate) resource: Option<Box<dyn Reference>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
@@ -63,8 +66,8 @@ pub struct RequestGroup_Action {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) selectionBehavior: Option<String>,
   pub(crate) cardinalityBehavior: Option<String>,
-  pub(crate) condition: Vector<RequestGroup_Action_Condition>,
-  pub(crate) relatedAction: Vector<RequestGroup_Action_RelatedAction>,
+  pub(crate) condition: Vector<Box<RequestGroup_Action_Condition>>,
+  pub(crate) relatedAction: Vector<Box<RequestGroup_Action_RelatedAction>>,
 }
 
 #[derive(Clone, Debug)]
@@ -94,7 +97,7 @@ pub struct RequestGroupRaw {
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) instantiatesCanonical: Vector<String>,
-  pub(crate) action: Vector<RequestGroup_Action>,
+  pub(crate) action: Vector<Box<RequestGroup_Action>>,
 }
 
 pub trait RequestGroup : DomainResource {
@@ -115,7 +118,7 @@ pub trait RequestGroup : DomainResource {
   fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
-  fn action(&self) -> &Vector<RequestGroup_Action>;
+  fn action(&self) -> &Vector<Box<RequestGroup_Action>>;
 }
 
 dyn_clone::clone_trait_object!(RequestGroup);
@@ -157,6 +160,6 @@ impl RequestGroup for RequestGroupRaw {
   fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.groupIdentifier }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
-  fn action(&self) -> &Vector<RequestGroup_Action> { &self.action }
+  fn action(&self) -> &Vector<Box<RequestGroup_Action>> { &self.action }
 }
 

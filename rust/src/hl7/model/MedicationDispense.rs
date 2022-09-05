@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Dosage::Dosage;
@@ -14,6 +16,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
@@ -72,8 +75,8 @@ pub struct MedicationDispenseRaw {
   pub(crate) dosageInstruction: Vector<Box<dyn Dosage>>,
   pub(crate) supportingInformation: Vector<Box<dyn Reference>>,
   pub(crate) authorizingPrescription: Vector<Box<dyn Reference>>,
-  pub(crate) performer: Vector<MedicationDispense_Performer>,
-  pub(crate) substitution: Option<MedicationDispense_Substitution>,
+  pub(crate) performer: Vector<Box<MedicationDispense_Performer>>,
+  pub(crate) substitution: Option<Box<MedicationDispense_Substitution>>,
 }
 
 pub trait MedicationDispense : DomainResource {
@@ -99,8 +102,8 @@ pub trait MedicationDispense : DomainResource {
   fn dosageInstruction(&self) -> &Vector<Box<dyn Dosage>>;
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
   fn authorizingPrescription(&self) -> &Vector<Box<dyn Reference>>;
-  fn performer(&self) -> &Vector<MedicationDispense_Performer>;
-  fn substitution(&self) -> &Option<MedicationDispense_Substitution>;
+  fn performer(&self) -> &Vector<Box<MedicationDispense_Performer>>;
+  fn substitution(&self) -> &Option<Box<MedicationDispense_Substitution>>;
 }
 
 dyn_clone::clone_trait_object!(MedicationDispense);
@@ -147,7 +150,7 @@ impl MedicationDispense for MedicationDispenseRaw {
   fn dosageInstruction(&self) -> &Vector<Box<dyn Dosage>> { &self.dosageInstruction }
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
   fn authorizingPrescription(&self) -> &Vector<Box<dyn Reference>> { &self.authorizingPrescription }
-  fn performer(&self) -> &Vector<MedicationDispense_Performer> { &self.performer }
-  fn substitution(&self) -> &Option<MedicationDispense_Substitution> { &self.substitution }
+  fn performer(&self) -> &Vector<Box<MedicationDispense_Performer>> { &self.performer }
+  fn substitution(&self) -> &Option<Box<MedicationDispense_Substitution>> { &self.substitution }
 }
 

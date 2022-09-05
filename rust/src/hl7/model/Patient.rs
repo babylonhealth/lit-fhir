@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -15,10 +18,10 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionBooleanOrDateTime;
-use crate::hl7::UnionBooleanOrInteger;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionBooleanOrDateTime;
+use crate::hl7::model::UnionAliases::UnionBooleanOrInteger;
 
 
 
@@ -70,7 +73,7 @@ pub struct PatientRaw {
   pub(crate) language: Option<String>,
   pub(crate) contained: Vector<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) birthDate: Option<FHIRDate>,
+  pub(crate) birthDate: Option<LocalDate>,
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) deceased: Option<UnionBooleanOrDateTime>,
   pub(crate) implicitRules: Option<String>,
@@ -79,9 +82,9 @@ pub struct PatientRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) generalPractitioner: Vector<Box<dyn Reference>>,
   pub(crate) managingOrganization: Option<Box<dyn Reference>>,
-  pub(crate) link: Vector<Patient_Link>,
-  pub(crate) contact: Vector<Patient_Contact>,
-  pub(crate) communication: Vector<Patient_Communication>,
+  pub(crate) link: Vector<Box<Patient_Link>>,
+  pub(crate) contact: Vector<Box<Patient_Contact>>,
+  pub(crate) communication: Vector<Box<Patient_Communication>>,
 }
 
 pub trait Patient : DomainResource {
@@ -91,16 +94,16 @@ pub trait Patient : DomainResource {
   fn gender(&self) -> &Option<String>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &Vector<Box<dyn Address>>;
-  fn birthDate(&self) -> &Option<FHIRDate>;
+  fn birthDate(&self) -> &Option<LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn deceased(&self) -> &Option<UnionBooleanOrDateTime>;
   fn maritalStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn multipleBirth(&self) -> &Option<UnionBooleanOrInteger>;
   fn generalPractitioner(&self) -> &Vector<Box<dyn Reference>>;
   fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
-  fn link(&self) -> &Vector<Patient_Link>;
-  fn contact(&self) -> &Vector<Patient_Contact>;
-  fn communication(&self) -> &Vector<Patient_Communication>;
+  fn link(&self) -> &Vector<Box<Patient_Link>>;
+  fn contact(&self) -> &Vector<Box<Patient_Contact>>;
+  fn communication(&self) -> &Vector<Box<Patient_Communication>>;
 }
 
 dyn_clone::clone_trait_object!(Patient);
@@ -131,15 +134,15 @@ impl Patient for PatientRaw {
   fn gender(&self) -> &Option<String> { &self.gender }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
-  fn birthDate(&self) -> &Option<FHIRDate> { &self.birthDate }
+  fn birthDate(&self) -> &Option<LocalDate> { &self.birthDate }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn deceased(&self) -> &Option<UnionBooleanOrDateTime> { &self.deceased }
   fn maritalStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.maritalStatus }
   fn multipleBirth(&self) -> &Option<UnionBooleanOrInteger> { &self.multipleBirth }
   fn generalPractitioner(&self) -> &Vector<Box<dyn Reference>> { &self.generalPractitioner }
   fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
-  fn link(&self) -> &Vector<Patient_Link> { &self.link }
-  fn contact(&self) -> &Vector<Patient_Contact> { &self.contact }
-  fn communication(&self) -> &Vector<Patient_Communication> { &self.communication }
+  fn link(&self) -> &Vector<Box<Patient_Link>> { &self.link }
+  fn contact(&self) -> &Vector<Box<Patient_Contact>> { &self.contact }
+  fn communication(&self) -> &Vector<Box<Patient_Communication>> { &self.communication }
 }
 

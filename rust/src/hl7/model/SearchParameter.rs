@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -59,7 +62,7 @@ pub struct SearchParameterRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) component: Vector<SearchParameter_Component>,
+  pub(crate) component: Vector<Box<SearchParameter_Component>>,
 }
 
 pub trait SearchParameter : DomainResource {
@@ -88,7 +91,7 @@ pub trait SearchParameter : DomainResource {
   fn multipleAnd(&self) -> &Option<bool>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn component(&self) -> &Vector<SearchParameter_Component>;
+  fn component(&self) -> &Vector<Box<SearchParameter_Component>>;
 }
 
 dyn_clone::clone_trait_object!(SearchParameter);
@@ -138,6 +141,6 @@ impl SearchParameter for SearchParameterRaw {
   fn multipleAnd(&self) -> &Option<bool> { &self.multipleAnd }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn component(&self) -> &Vector<SearchParameter_Component> { &self.component }
+  fn component(&self) -> &Vector<Box<SearchParameter_Component>> { &self.component }
 }
 

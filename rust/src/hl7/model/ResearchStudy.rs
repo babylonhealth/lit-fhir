@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -71,8 +74,8 @@ pub struct ResearchStudyRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) primaryPurposeType: Option<Box<dyn CodeableConcept>>,
   pub(crate) principalInvestigator: Option<Box<dyn Reference>>,
-  pub(crate) arm: Vector<ResearchStudy_Arm>,
-  pub(crate) objective: Vector<ResearchStudy_Objective>,
+  pub(crate) arm: Vector<Box<ResearchStudy_Arm>>,
+  pub(crate) objective: Vector<Box<ResearchStudy_Objective>>,
 }
 
 pub trait ResearchStudy : DomainResource {
@@ -98,8 +101,8 @@ pub trait ResearchStudy : DomainResource {
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
   fn primaryPurposeType(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn principalInvestigator(&self) -> &Option<Box<dyn Reference>>;
-  fn arm(&self) -> &Vector<ResearchStudy_Arm>;
-  fn objective(&self) -> &Vector<ResearchStudy_Objective>;
+  fn arm(&self) -> &Vector<Box<ResearchStudy_Arm>>;
+  fn objective(&self) -> &Vector<Box<ResearchStudy_Objective>>;
 }
 
 dyn_clone::clone_trait_object!(ResearchStudy);
@@ -146,7 +149,7 @@ impl ResearchStudy for ResearchStudyRaw {
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
   fn primaryPurposeType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.primaryPurposeType }
   fn principalInvestigator(&self) -> &Option<Box<dyn Reference>> { &self.principalInvestigator }
-  fn arm(&self) -> &Vector<ResearchStudy_Arm> { &self.arm }
-  fn objective(&self) -> &Vector<ResearchStudy_Objective> { &self.objective }
+  fn arm(&self) -> &Vector<Box<ResearchStudy_Arm>> { &self.arm }
+  fn objective(&self) -> &Vector<Box<ResearchStudy_Objective>> { &self.objective }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -56,8 +59,8 @@ pub struct EpisodeOfCareRaw {
   pub(crate) referralRequest: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) managingOrganization: Option<Box<dyn Reference>>,
-  pub(crate) diagnosis: Vector<EpisodeOfCare_Diagnosis>,
-  pub(crate) statusHistory: Vector<EpisodeOfCare_StatusHistory>,
+  pub(crate) diagnosis: Vector<Box<EpisodeOfCare_Diagnosis>>,
+  pub(crate) statusHistory: Vector<Box<EpisodeOfCare_StatusHistory>>,
 }
 
 pub trait EpisodeOfCare : DomainResource {
@@ -71,8 +74,8 @@ pub trait EpisodeOfCare : DomainResource {
   fn careManager(&self) -> &Option<Box<dyn Reference>>;
   fn referralRequest(&self) -> &Vector<Box<dyn Reference>>;
   fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
-  fn diagnosis(&self) -> &Vector<EpisodeOfCare_Diagnosis>;
-  fn statusHistory(&self) -> &Vector<EpisodeOfCare_StatusHistory>;
+  fn diagnosis(&self) -> &Vector<Box<EpisodeOfCare_Diagnosis>>;
+  fn statusHistory(&self) -> &Vector<Box<EpisodeOfCare_StatusHistory>>;
 }
 
 dyn_clone::clone_trait_object!(EpisodeOfCare);
@@ -107,7 +110,7 @@ impl EpisodeOfCare for EpisodeOfCareRaw {
   fn careManager(&self) -> &Option<Box<dyn Reference>> { &self.careManager }
   fn referralRequest(&self) -> &Vector<Box<dyn Reference>> { &self.referralRequest }
   fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
-  fn diagnosis(&self) -> &Vector<EpisodeOfCare_Diagnosis> { &self.diagnosis }
-  fn statusHistory(&self) -> &Vector<EpisodeOfCare_StatusHistory> { &self.statusHistory }
+  fn diagnosis(&self) -> &Vector<Box<EpisodeOfCare_Diagnosis>> { &self.diagnosis }
+  fn statusHistory(&self) -> &Vector<Box<EpisodeOfCare_StatusHistory>> { &self.statusHistory }
 }
 

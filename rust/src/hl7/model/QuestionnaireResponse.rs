@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -9,16 +12,16 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union01113166363;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01113166363;
 
 
 
 #[derive(Clone, Debug)]
 pub struct QuestionnaireResponse_Item_Answer {
   pub(crate) id: Option<String>,
-  pub(crate) item: Vector<Box<dyn QuestionnaireResponse_Item>>,
+  pub(crate) item: Vector<Box<QuestionnaireResponse_Item>>,
   pub(crate) value: Option<Union01113166363>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
@@ -28,12 +31,12 @@ pub struct QuestionnaireResponse_Item_Answer {
 pub struct QuestionnaireResponse_Item {
   pub(crate) id: Option<String>,
   pub(crate) text: Option<String>,
-  pub(crate) item: Vector<Box<dyn QuestionnaireResponse_Item>>,
+  pub(crate) item: Vector<Box<QuestionnaireResponse_Item>>,
   pub(crate) linkId: String,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) definition: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) answer: Vector<QuestionnaireResponse_Item_Answer>,
+  pub(crate) answer: Vector<Box<QuestionnaireResponse_Item_Answer>>,
 }
 
 #[derive(Clone, Debug)]
@@ -56,7 +59,7 @@ pub struct QuestionnaireResponseRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) questionnaire: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) item: Vector<QuestionnaireResponse_Item>,
+  pub(crate) item: Vector<Box<QuestionnaireResponse_Item>>,
 }
 
 pub trait QuestionnaireResponse : DomainResource {
@@ -70,7 +73,7 @@ pub trait QuestionnaireResponse : DomainResource {
   fn encounter(&self) -> &Option<Box<dyn Reference>>;
   fn identifier(&self) -> &Option<Box<dyn Identifier>>;
   fn questionnaire(&self) -> &Option<String>;
-  fn item(&self) -> &Vector<QuestionnaireResponse_Item>;
+  fn item(&self) -> &Vector<Box<QuestionnaireResponse_Item>>;
 }
 
 dyn_clone::clone_trait_object!(QuestionnaireResponse);
@@ -105,6 +108,6 @@ impl QuestionnaireResponse for QuestionnaireResponseRaw {
   fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
   fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
   fn questionnaire(&self) -> &Option<String> { &self.questionnaire }
-  fn item(&self) -> &Vector<QuestionnaireResponse_Item> { &self.item }
+  fn item(&self) -> &Vector<Box<QuestionnaireResponse_Item>> { &self.item }
 }
 

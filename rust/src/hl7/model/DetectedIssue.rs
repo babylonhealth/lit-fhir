@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -10,9 +13,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriod;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
 
 
 
@@ -56,8 +59,8 @@ pub struct DetectedIssueRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) identified: Option<UnionDateTimeOrPeriod>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) evidence: Vector<DetectedIssue_Evidence>,
-  pub(crate) mitigation: Vector<DetectedIssue_Mitigation>,
+  pub(crate) evidence: Vector<Box<DetectedIssue_Evidence>>,
+  pub(crate) mitigation: Vector<Box<DetectedIssue_Mitigation>>,
 }
 
 pub trait DetectedIssue : DomainResource {
@@ -71,8 +74,8 @@ pub trait DetectedIssue : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn implicated(&self) -> &Vector<Box<dyn Reference>>;
   fn identified(&self) -> &Option<UnionDateTimeOrPeriod>;
-  fn evidence(&self) -> &Vector<DetectedIssue_Evidence>;
-  fn mitigation(&self) -> &Vector<DetectedIssue_Mitigation>;
+  fn evidence(&self) -> &Vector<Box<DetectedIssue_Evidence>>;
+  fn mitigation(&self) -> &Vector<Box<DetectedIssue_Mitigation>>;
 }
 
 dyn_clone::clone_trait_object!(DetectedIssue);
@@ -107,7 +110,7 @@ impl DetectedIssue for DetectedIssueRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn implicated(&self) -> &Vector<Box<dyn Reference>> { &self.implicated }
   fn identified(&self) -> &Option<UnionDateTimeOrPeriod> { &self.identified }
-  fn evidence(&self) -> &Vector<DetectedIssue_Evidence> { &self.evidence }
-  fn mitigation(&self) -> &Vector<DetectedIssue_Mitigation> { &self.mitigation }
+  fn evidence(&self) -> &Vector<Box<DetectedIssue_Evidence>> { &self.evidence }
+  fn mitigation(&self) -> &Vector<Box<DetectedIssue_Mitigation>> { &self.mitigation }
 }
 

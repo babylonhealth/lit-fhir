@@ -1,14 +1,17 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionDurationOrPeriodOrRange;
 use crate::core::model::BackboneElement::BackboneElement;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::FHIRElement::FHIRElement;
+use crate::core::model::UnionAliases::UnionDurationOrPeriodOrRange;
 
 
 
@@ -26,7 +29,7 @@ pub struct Timing_Repeat {
   pub(crate) frequency: Option<u32>,
   pub(crate) periodMax: Option<BigDecimal>,
   pub(crate) dayOfWeek: Vector<String>,
-  pub(crate) timeOfDay: Vector<Date>,
+  pub(crate) timeOfDay: Vector<LocalTime>,
   pub(crate) periodUnit: Option<String>,
   pub(crate) durationMax: Option<BigDecimal>,
   pub(crate) durationUnit: Option<String>,
@@ -40,13 +43,13 @@ pub struct TimingRaw {
   pub(crate) event: Vector<DateTime<FixedOffset>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) repeat: Option<Timing_Repeat>,
+  pub(crate) repeat: Option<Box<Timing_Repeat>>,
 }
 
 pub trait Timing : BackboneElement {
   fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn event(&self) -> &Vector<DateTime<FixedOffset>>;
-  fn repeat(&self) -> &Option<Timing_Repeat>;
+  fn repeat(&self) -> &Option<Box<Timing_Repeat>>;
 }
 
 dyn_clone::clone_trait_object!(Timing);
@@ -68,6 +71,6 @@ impl BackboneElement for TimingRaw {
 impl Timing for TimingRaw {
   fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
   fn event(&self) -> &Vector<DateTime<FixedOffset>> { &self.event }
-  fn repeat(&self) -> &Option<Timing_Repeat> { &self.repeat }
+  fn repeat(&self) -> &Option<Box<Timing_Repeat>> { &self.repeat }
 }
 

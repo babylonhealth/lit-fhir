@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -45,12 +48,12 @@ pub struct RelatedPersonRaw {
   pub(crate) language: Option<String>,
   pub(crate) contained: Vector<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) birthDate: Option<FHIRDate>,
+  pub(crate) birthDate: Option<LocalDate>,
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) relationship: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) communication: Vector<RelatedPerson_Communication>,
+  pub(crate) communication: Vector<Box<RelatedPerson_Communication>>,
 }
 
 pub trait RelatedPerson : DomainResource {
@@ -62,10 +65,10 @@ pub trait RelatedPerson : DomainResource {
   fn patient(&self) -> &Box<dyn Reference>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &Vector<Box<dyn Address>>;
-  fn birthDate(&self) -> &Option<FHIRDate>;
+  fn birthDate(&self) -> &Option<LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn relationship(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn communication(&self) -> &Vector<RelatedPerson_Communication>;
+  fn communication(&self) -> &Vector<Box<RelatedPerson_Communication>>;
 }
 
 dyn_clone::clone_trait_object!(RelatedPerson);
@@ -98,9 +101,9 @@ impl RelatedPerson for RelatedPersonRaw {
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
-  fn birthDate(&self) -> &Option<FHIRDate> { &self.birthDate }
+  fn birthDate(&self) -> &Option<LocalDate> { &self.birthDate }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn relationship(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.relationship }
-  fn communication(&self) -> &Vector<RelatedPerson_Communication> { &self.communication }
+  fn communication(&self) -> &Vector<Box<RelatedPerson_Communication>> { &self.communication }
 }
 

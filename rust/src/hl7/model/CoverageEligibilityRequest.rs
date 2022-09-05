@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
@@ -13,9 +15,10 @@ use crate::core::model::Money::Money;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateOrPeriod;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateOrPeriod;
 
 
 
@@ -63,7 +66,7 @@ pub struct CoverageEligibilityRequest_Item {
   pub(crate) productOrService: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) supportingInfoSequence: Vector<u32>,
-  pub(crate) diagnosis: Vector<CoverageEligibilityRequest_Item_Diagnosis>,
+  pub(crate) diagnosis: Vector<Box<CoverageEligibilityRequest_Item_Diagnosis>>,
 }
 
 #[derive(Clone, Debug)]
@@ -87,9 +90,9 @@ pub struct CoverageEligibilityRequestRaw {
   pub(crate) serviced: Option<UnionDateOrPeriod>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) insurance: Vector<CoverageEligibilityRequest_Insurance>,
-  pub(crate) supportingInfo: Vector<CoverageEligibilityRequest_SupportingInfo>,
-  pub(crate) item: Vector<CoverageEligibilityRequest_Item>,
+  pub(crate) insurance: Vector<Box<CoverageEligibilityRequest_Insurance>>,
+  pub(crate) supportingInfo: Vector<Box<CoverageEligibilityRequest_SupportingInfo>>,
+  pub(crate) item: Vector<Box<CoverageEligibilityRequest_Item>>,
 }
 
 pub trait CoverageEligibilityRequest : DomainResource {
@@ -104,9 +107,9 @@ pub trait CoverageEligibilityRequest : DomainResource {
   fn facility(&self) -> &Option<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn serviced(&self) -> &Option<UnionDateOrPeriod>;
-  fn insurance(&self) -> &Vector<CoverageEligibilityRequest_Insurance>;
-  fn supportingInfo(&self) -> &Vector<CoverageEligibilityRequest_SupportingInfo>;
-  fn item(&self) -> &Vector<CoverageEligibilityRequest_Item>;
+  fn insurance(&self) -> &Vector<Box<CoverageEligibilityRequest_Insurance>>;
+  fn supportingInfo(&self) -> &Vector<Box<CoverageEligibilityRequest_SupportingInfo>>;
+  fn item(&self) -> &Vector<Box<CoverageEligibilityRequest_Item>>;
 }
 
 dyn_clone::clone_trait_object!(CoverageEligibilityRequest);
@@ -142,8 +145,8 @@ impl CoverageEligibilityRequest for CoverageEligibilityRequestRaw {
   fn facility(&self) -> &Option<Box<dyn Reference>> { &self.facility }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn serviced(&self) -> &Option<UnionDateOrPeriod> { &self.serviced }
-  fn insurance(&self) -> &Vector<CoverageEligibilityRequest_Insurance> { &self.insurance }
-  fn supportingInfo(&self) -> &Vector<CoverageEligibilityRequest_SupportingInfo> { &self.supportingInfo }
-  fn item(&self) -> &Vector<CoverageEligibilityRequest_Item> { &self.item }
+  fn insurance(&self) -> &Vector<Box<CoverageEligibilityRequest_Insurance>> { &self.insurance }
+  fn supportingInfo(&self) -> &Vector<Box<CoverageEligibilityRequest_SupportingInfo>> { &self.supportingInfo }
+  fn item(&self) -> &Vector<Box<CoverageEligibilityRequest_Item>> { &self.item }
 }
 

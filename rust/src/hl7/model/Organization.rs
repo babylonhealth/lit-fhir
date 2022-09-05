@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -48,7 +51,7 @@ pub struct OrganizationRaw {
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) contact: Vector<Organization_Contact>,
+  pub(crate) contact: Vector<Box<Organization_Contact>>,
 }
 
 pub trait Organization : DomainResource {
@@ -61,7 +64,7 @@ pub trait Organization : DomainResource {
   fn address(&self) -> &Vector<Box<dyn Address>>;
   fn endpoint(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn contact(&self) -> &Vector<Organization_Contact>;
+  fn contact(&self) -> &Vector<Box<Organization_Contact>>;
 }
 
 dyn_clone::clone_trait_object!(Organization);
@@ -95,6 +98,6 @@ impl Organization for OrganizationRaw {
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
   fn endpoint(&self) -> &Vector<Box<dyn Reference>> { &self.endpoint }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn contact(&self) -> &Vector<Organization_Contact> { &self.contact }
+  fn contact(&self) -> &Vector<Box<Organization_Contact>> { &self.contact }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -45,7 +48,7 @@ pub struct DocumentManifestRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) masterIdentifier: Option<Box<dyn Identifier>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) related: Vector<DocumentManifest_Related>,
+  pub(crate) related: Vector<Box<DocumentManifest_Related>>,
 }
 
 pub trait DocumentManifest : DomainResource {
@@ -60,7 +63,7 @@ pub trait DocumentManifest : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn description(&self) -> &Option<String>;
   fn masterIdentifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn related(&self) -> &Vector<DocumentManifest_Related>;
+  fn related(&self) -> &Vector<Box<DocumentManifest_Related>>;
 }
 
 dyn_clone::clone_trait_object!(DocumentManifest);
@@ -96,6 +99,6 @@ impl DocumentManifest for DocumentManifestRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn description(&self) -> &Option<String> { &self.description }
   fn masterIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.masterIdentifier }
-  fn related(&self) -> &Vector<DocumentManifest_Related> { &self.related }
+  fn related(&self) -> &Vector<Box<DocumentManifest_Related>> { &self.related }
 }
 

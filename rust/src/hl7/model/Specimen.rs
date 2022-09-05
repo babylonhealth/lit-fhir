@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Duration::Duration;
@@ -14,10 +16,11 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionCodeableConceptOrDuration;
-use crate::hl7::UnionDateTimeOrPeriod;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionCodeableConceptOrDuration;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
 
 
 
@@ -81,9 +84,9 @@ pub struct SpecimenRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) accessionIdentifier: Option<Box<dyn Identifier>>,
-  pub(crate) container: Vector<Specimen_Container>,
-  pub(crate) collection: Option<Specimen_Collection>,
-  pub(crate) processing: Vector<Specimen_Processing>,
+  pub(crate) container: Vector<Box<Specimen_Container>>,
+  pub(crate) collection: Option<Box<Specimen_Collection>>,
+  pub(crate) processing: Vector<Box<Specimen_Processing>>,
 }
 
 pub trait Specimen : DomainResource {
@@ -97,9 +100,9 @@ pub trait Specimen : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn receivedTime(&self) -> &Option<DateTime<FixedOffset>>;
   fn accessionIdentifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn container(&self) -> &Vector<Specimen_Container>;
-  fn collection(&self) -> &Option<Specimen_Collection>;
-  fn processing(&self) -> &Vector<Specimen_Processing>;
+  fn container(&self) -> &Vector<Box<Specimen_Container>>;
+  fn collection(&self) -> &Option<Box<Specimen_Collection>>;
+  fn processing(&self) -> &Vector<Box<Specimen_Processing>>;
 }
 
 dyn_clone::clone_trait_object!(Specimen);
@@ -134,8 +137,8 @@ impl Specimen for SpecimenRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn receivedTime(&self) -> &Option<DateTime<FixedOffset>> { &self.receivedTime }
   fn accessionIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.accessionIdentifier }
-  fn container(&self) -> &Vector<Specimen_Container> { &self.container }
-  fn collection(&self) -> &Option<Specimen_Collection> { &self.collection }
-  fn processing(&self) -> &Vector<Specimen_Processing> { &self.processing }
+  fn container(&self) -> &Vector<Box<Specimen_Container>> { &self.container }
+  fn collection(&self) -> &Option<Box<Specimen_Collection>> { &self.collection }
+  fn processing(&self) -> &Vector<Box<Specimen_Processing>> { &self.processing }
 }
 

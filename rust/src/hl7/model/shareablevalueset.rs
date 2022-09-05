@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -43,8 +46,8 @@ pub struct shareablevaluesetRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) expansion: Option<shareablevalueset_Expansion>,
-  pub(crate) compose: Option<shareablevalueset_Compose>,
+  pub(crate) expansion: Option<Box<shareablevalueset_Expansion>>,
+  pub(crate) compose: Option<Box<shareablevalueset_Compose>>,
 }
 
 pub trait shareablevalueset : ValueSet {
@@ -89,8 +92,8 @@ impl ValueSet for shareablevaluesetRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn expansion(&self) -> &Option<ValueSet_Expansion> { &self.expansion }
-  fn compose(&self) -> &Option<ValueSet_Compose> { &self.compose }
+  fn expansion(&self) -> &Option<Box<ValueSet_Expansion>> { &self.expansion }
+  fn compose(&self) -> &Option<Box<ValueSet_Compose>> { &self.compose }
 }
 
 

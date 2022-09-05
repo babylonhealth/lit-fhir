@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union_1690912481;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union_1690912481;
 
 
 
@@ -34,7 +37,7 @@ pub struct Group_Characteristic {
   pub(crate) code: Box<dyn CodeableConcept>,
   pub(crate) period: Option<Box<dyn Period>>,
   pub(crate) exclude: bool,
-  pub(crate) value: Union_1690912481,
+  pub(crate) value: Box<Union_1690912481>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
@@ -57,8 +60,8 @@ pub struct GroupRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) managingEntity: Option<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) member: Vector<Group_Member>,
-  pub(crate) characteristic: Vector<Group_Characteristic>,
+  pub(crate) member: Vector<Box<Group_Member>>,
+  pub(crate) characteristic: Vector<Box<Group_Characteristic>>,
 }
 
 pub trait Group : DomainResource {
@@ -70,8 +73,8 @@ pub trait Group : DomainResource {
   fn quantity(&self) -> &Option<u32>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn managingEntity(&self) -> &Option<Box<dyn Reference>>;
-  fn member(&self) -> &Vector<Group_Member>;
-  fn characteristic(&self) -> &Vector<Group_Characteristic>;
+  fn member(&self) -> &Vector<Box<Group_Member>>;
+  fn characteristic(&self) -> &Vector<Box<Group_Characteristic>>;
 }
 
 dyn_clone::clone_trait_object!(Group);
@@ -104,7 +107,7 @@ impl Group for GroupRaw {
   fn quantity(&self) -> &Option<u32> { &self.quantity }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn managingEntity(&self) -> &Option<Box<dyn Reference>> { &self.managingEntity }
-  fn member(&self) -> &Vector<Group_Member> { &self.member }
-  fn characteristic(&self) -> &Vector<Group_Characteristic> { &self.characteristic }
+  fn member(&self) -> &Vector<Box<Group_Member>> { &self.member }
+  fn characteristic(&self) -> &Vector<Box<Group_Characteristic>> { &self.characteristic }
 }
 

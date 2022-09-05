@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -45,12 +48,12 @@ pub struct PractitionerRaw {
   pub(crate) language: Option<String>,
   pub(crate) contained: Vector<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) birthDate: Option<FHIRDate>,
+  pub(crate) birthDate: Option<LocalDate>,
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) communication: Vector<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) qualification: Vector<Practitioner_Qualification>,
+  pub(crate) qualification: Vector<Box<Practitioner_Qualification>>,
 }
 
 pub trait Practitioner : DomainResource {
@@ -60,10 +63,10 @@ pub trait Practitioner : DomainResource {
   fn gender(&self) -> &Option<String>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &Vector<Box<dyn Address>>;
-  fn birthDate(&self) -> &Option<FHIRDate>;
+  fn birthDate(&self) -> &Option<LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn communication(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn qualification(&self) -> &Vector<Practitioner_Qualification>;
+  fn qualification(&self) -> &Vector<Box<Practitioner_Qualification>>;
 }
 
 dyn_clone::clone_trait_object!(Practitioner);
@@ -94,9 +97,9 @@ impl Practitioner for PractitionerRaw {
   fn gender(&self) -> &Option<String> { &self.gender }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
-  fn birthDate(&self) -> &Option<FHIRDate> { &self.birthDate }
+  fn birthDate(&self) -> &Option<LocalDate> { &self.birthDate }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn communication(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.communication }
-  fn qualification(&self) -> &Vector<Practitioner_Qualification> { &self.qualification }
+  fn qualification(&self) -> &Vector<Box<Practitioner_Qualification>> { &self.qualification }
 }
 

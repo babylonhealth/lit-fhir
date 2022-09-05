@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -33,9 +36,9 @@ pub struct PractitionerRole_AvailableTime {
   pub(crate) allDay: Option<bool>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) daysOfWeek: Vector<String>,
-  pub(crate) availableEndTime: Option<Date>,
+  pub(crate) availableEndTime: Option<LocalTime>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) availableStartTime: Option<Date>,
+  pub(crate) availableStartTime: Option<LocalTime>,
 }
 
 #[derive(Clone, Debug)]
@@ -60,8 +63,8 @@ pub struct PractitionerRoleRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) healthcareService: Vector<Box<dyn Reference>>,
   pub(crate) availabilityExceptions: Option<String>,
-  pub(crate) notAvailable: Vector<PractitionerRole_NotAvailable>,
-  pub(crate) availableTime: Vector<PractitionerRole_AvailableTime>,
+  pub(crate) notAvailable: Vector<Box<PractitionerRole_NotAvailable>>,
+  pub(crate) availableTime: Vector<Box<PractitionerRole_AvailableTime>>,
 }
 
 pub trait PractitionerRole : DomainResource {
@@ -77,8 +80,8 @@ pub trait PractitionerRole : DomainResource {
   fn organization(&self) -> &Option<Box<dyn Reference>>;
   fn healthcareService(&self) -> &Vector<Box<dyn Reference>>;
   fn availabilityExceptions(&self) -> &Option<String>;
-  fn notAvailable(&self) -> &Vector<PractitionerRole_NotAvailable>;
-  fn availableTime(&self) -> &Vector<PractitionerRole_AvailableTime>;
+  fn notAvailable(&self) -> &Vector<Box<PractitionerRole_NotAvailable>>;
+  fn availableTime(&self) -> &Vector<Box<PractitionerRole_AvailableTime>>;
 }
 
 dyn_clone::clone_trait_object!(PractitionerRole);
@@ -115,7 +118,7 @@ impl PractitionerRole for PractitionerRoleRaw {
   fn organization(&self) -> &Option<Box<dyn Reference>> { &self.organization }
   fn healthcareService(&self) -> &Vector<Box<dyn Reference>> { &self.healthcareService }
   fn availabilityExceptions(&self) -> &Option<String> { &self.availabilityExceptions }
-  fn notAvailable(&self) -> &Vector<PractitionerRole_NotAvailable> { &self.notAvailable }
-  fn availableTime(&self) -> &Vector<PractitionerRole_AvailableTime> { &self.availableTime }
+  fn notAvailable(&self) -> &Vector<Box<PractitionerRole_NotAvailable>> { &self.notAvailable }
+  fn availableTime(&self) -> &Vector<Box<PractitionerRole_AvailableTime>> { &self.availableTime }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -23,7 +26,7 @@ pub struct BasicRaw {
   pub(crate) code: Box<dyn CodeableConcept>,
   pub(crate) author: Option<Box<dyn Reference>>,
   pub(crate) subject: Option<Box<dyn Reference>>,
-  pub(crate) created: Option<FHIRDate>,
+  pub(crate) created: Option<LocalDate>,
   pub(crate) language: Option<String>,
   pub(crate) contained: Vector<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
@@ -36,7 +39,7 @@ pub trait Basic : DomainResource {
   fn code(&self) -> &Box<dyn CodeableConcept>;
   fn author(&self) -> &Option<Box<dyn Reference>>;
   fn subject(&self) -> &Option<Box<dyn Reference>>;
-  fn created(&self) -> &Option<FHIRDate>;
+  fn created(&self) -> &Option<LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
 }
 
@@ -65,7 +68,7 @@ impl Basic for BasicRaw {
   fn code(&self) -> &Box<dyn CodeableConcept> { &self.code }
   fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
   fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
-  fn created(&self) -> &Option<FHIRDate> { &self.created }
+  fn created(&self) -> &Option<LocalDate> { &self.created }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
 }
 

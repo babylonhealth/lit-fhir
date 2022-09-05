@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -13,11 +16,11 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::Union00857130015;
-use crate::hl7::Union01113166363;
-use crate::hl7::Union_1280102327;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union00857130015;
+use crate::hl7::model::UnionAliases::Union01113166363;
+use crate::hl7::model::UnionAliases::Union_1280102327;
 
 
 
@@ -37,7 +40,7 @@ pub struct Questionnaire_Item_EnableWhen {
   pub(crate) question: String,
   pub(crate) operator: String,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) answer: Union_1280102327,
+  pub(crate) answer: Box<Union_1280102327>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -58,7 +61,7 @@ pub struct Questionnaire_Item {
   pub(crate) code: Vector<Box<dyn Coding>>,
   pub(crate) text: Option<String>,
   pub(crate) _type: String,
-  pub(crate) item: Vector<Box<dyn Questionnaire_Item>>,
+  pub(crate) item: Vector<Box<Questionnaire_Item>>,
   pub(crate) linkId: String,
   pub(crate) prefix: Option<String>,
   pub(crate) repeats: Option<bool>,
@@ -70,9 +73,9 @@ pub struct Questionnaire_Item {
   pub(crate) enableBehavior: Option<String>,
   pub(crate) answerValueSet: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) initial: Vector<Questionnaire_Item_Initial>,
-  pub(crate) enableWhen: Vector<Questionnaire_Item_EnableWhen>,
-  pub(crate) answerOption: Vector<Questionnaire_Item_AnswerOption>,
+  pub(crate) initial: Vector<Box<Questionnaire_Item_Initial>>,
+  pub(crate) enableWhen: Vector<Box<Questionnaire_Item_EnableWhen>>,
+  pub(crate) answerOption: Vector<Box<Questionnaire_Item_AnswerOption>>,
 }
 
 #[derive(Clone, Debug)]
@@ -101,12 +104,12 @@ pub struct QuestionnaireRaw {
   pub(crate) description: Option<String>,
   pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) item: Vector<Questionnaire_Item>,
+  pub(crate) item: Vector<Box<Questionnaire_Item>>,
 }
 
 pub trait Questionnaire : DomainResource {
@@ -128,10 +131,10 @@ pub trait Questionnaire : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
-  fn item(&self) -> &Vector<Questionnaire_Item>;
+  fn item(&self) -> &Vector<Box<Questionnaire_Item>>;
 }
 
 dyn_clone::clone_trait_object!(Questionnaire);
@@ -174,9 +177,9 @@ impl Questionnaire for QuestionnaireRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
-  fn item(&self) -> &Vector<Questionnaire_Item> { &self.item }
+  fn item(&self) -> &Vector<Box<Questionnaire_Item>> { &self.item }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -68,9 +71,9 @@ pub struct TestScript_Destination {
 #[derive(Clone, Debug)]
 pub struct TestScript_Test_Action {
   pub(crate) id: Option<String>,
-  pub(crate) assert: Option<Box<dyn TestScript_Setup_Action_Assert>>,
+  pub(crate) assert: Option<Box<TestScript_Setup_Action_Assert>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) operation: Option<Box<dyn TestScript_Setup_Action_Operation>>,
+  pub(crate) operation: Option<Box<TestScript_Setup_Action_Operation>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -81,7 +84,7 @@ pub struct TestScript_Test {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) action: Vector<TestScript_Test_Action>,
+  pub(crate) action: Vector<Box<TestScript_Test_Action>>,
 }
 
 
@@ -89,7 +92,7 @@ pub struct TestScript_Test {
 pub struct TestScript_Teardown_Action {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) operation: Box<dyn TestScript_Setup_Action_Operation>,
+  pub(crate) operation: Box<TestScript_Setup_Action_Operation>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -98,7 +101,7 @@ pub struct TestScript_Teardown {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) action: Vector<TestScript_Teardown_Action>,
+  pub(crate) action: Vector<Box<TestScript_Teardown_Action>>,
 }
 
 
@@ -132,8 +135,8 @@ pub struct TestScript_Metadata {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) link: Vector<TestScript_Metadata_Link>,
-  pub(crate) capability: Vector<TestScript_Metadata_Capability>,
+  pub(crate) link: Vector<Box<TestScript_Metadata_Link>>,
+  pub(crate) capability: Vector<Box<TestScript_Metadata_Capability>>,
 }
 
 
@@ -198,7 +201,7 @@ pub struct TestScript_Setup_Action_Operation {
   pub(crate) destination: Option<i32>,
   pub(crate) encodeRequestUrl: bool,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) requestHeader: Vector<TestScript_Setup_Action_Operation_RequestHeader>,
+  pub(crate) requestHeader: Vector<Box<TestScript_Setup_Action_Operation_RequestHeader>>,
 }
 
 #[derive(Clone, Debug)]
@@ -206,8 +209,8 @@ pub struct TestScript_Setup_Action {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) assert: Option<TestScript_Setup_Action_Assert>,
-  pub(crate) operation: Option<TestScript_Setup_Action_Operation>,
+  pub(crate) assert: Option<Box<TestScript_Setup_Action_Assert>>,
+  pub(crate) operation: Option<Box<TestScript_Setup_Action_Operation>>,
 }
 
 #[derive(Clone, Debug)]
@@ -215,7 +218,7 @@ pub struct TestScript_Setup {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) action: Vector<TestScript_Setup_Action>,
+  pub(crate) action: Vector<Box<TestScript_Setup_Action>>,
 }
 
 #[derive(Clone, Debug)]
@@ -244,14 +247,14 @@ pub struct TestScriptRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) origin: Vector<TestScript_Origin>,
-  pub(crate) fixture: Vector<TestScript_Fixture>,
-  pub(crate) variable: Vector<TestScript_Variable>,
-  pub(crate) destination: Vector<TestScript_Destination>,
-  pub(crate) test: Vector<TestScript_Test>,
-  pub(crate) teardown: Option<TestScript_Teardown>,
-  pub(crate) metadata: Option<TestScript_Metadata>,
-  pub(crate) setup: Option<TestScript_Setup>,
+  pub(crate) origin: Vector<Box<TestScript_Origin>>,
+  pub(crate) fixture: Vector<Box<TestScript_Fixture>>,
+  pub(crate) variable: Vector<Box<TestScript_Variable>>,
+  pub(crate) destination: Vector<Box<TestScript_Destination>>,
+  pub(crate) test: Vector<Box<TestScript_Test>>,
+  pub(crate) teardown: Option<Box<TestScript_Teardown>>,
+  pub(crate) metadata: Option<Box<TestScript_Metadata>>,
+  pub(crate) setup: Option<Box<TestScript_Setup>>,
 }
 
 pub trait TestScript : DomainResource {
@@ -271,14 +274,14 @@ pub trait TestScript : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn origin(&self) -> &Vector<TestScript_Origin>;
-  fn fixture(&self) -> &Vector<TestScript_Fixture>;
-  fn variable(&self) -> &Vector<TestScript_Variable>;
-  fn destination(&self) -> &Vector<TestScript_Destination>;
-  fn test(&self) -> &Vector<TestScript_Test>;
-  fn teardown(&self) -> &Option<TestScript_Teardown>;
-  fn metadata(&self) -> &Option<TestScript_Metadata>;
-  fn setup(&self) -> &Option<TestScript_Setup>;
+  fn origin(&self) -> &Vector<Box<TestScript_Origin>>;
+  fn fixture(&self) -> &Vector<Box<TestScript_Fixture>>;
+  fn variable(&self) -> &Vector<Box<TestScript_Variable>>;
+  fn destination(&self) -> &Vector<Box<TestScript_Destination>>;
+  fn test(&self) -> &Vector<Box<TestScript_Test>>;
+  fn teardown(&self) -> &Option<Box<TestScript_Teardown>>;
+  fn metadata(&self) -> &Option<Box<TestScript_Metadata>>;
+  fn setup(&self) -> &Option<Box<TestScript_Setup>>;
 }
 
 dyn_clone::clone_trait_object!(TestScript);
@@ -319,13 +322,13 @@ impl TestScript for TestScriptRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn origin(&self) -> &Vector<TestScript_Origin> { &self.origin }
-  fn fixture(&self) -> &Vector<TestScript_Fixture> { &self.fixture }
-  fn variable(&self) -> &Vector<TestScript_Variable> { &self.variable }
-  fn destination(&self) -> &Vector<TestScript_Destination> { &self.destination }
-  fn test(&self) -> &Vector<TestScript_Test> { &self.test }
-  fn teardown(&self) -> &Option<TestScript_Teardown> { &self.teardown }
-  fn metadata(&self) -> &Option<TestScript_Metadata> { &self.metadata }
-  fn setup(&self) -> &Option<TestScript_Setup> { &self.setup }
+  fn origin(&self) -> &Vector<Box<TestScript_Origin>> { &self.origin }
+  fn fixture(&self) -> &Vector<Box<TestScript_Fixture>> { &self.fixture }
+  fn variable(&self) -> &Vector<Box<TestScript_Variable>> { &self.variable }
+  fn destination(&self) -> &Vector<Box<TestScript_Destination>> { &self.destination }
+  fn test(&self) -> &Vector<Box<TestScript_Test>> { &self.test }
+  fn teardown(&self) -> &Option<Box<TestScript_Teardown>> { &self.teardown }
+  fn metadata(&self) -> &Option<Box<TestScript_Metadata>> { &self.metadata }
+  fn setup(&self) -> &Option<Box<TestScript_Setup>> { &self.setup }
 }
 

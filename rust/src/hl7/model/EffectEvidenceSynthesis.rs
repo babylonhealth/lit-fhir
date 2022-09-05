@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -60,7 +63,7 @@ pub struct EffectEvidenceSynthesis_Certainty {
   pub(crate) rating: Vector<Box<dyn CodeableConcept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) certaintySubcomponent: Vector<EffectEvidenceSynthesis_Certainty_CertaintySubcomponent>,
+  pub(crate) certaintySubcomponent: Vector<Box<EffectEvidenceSynthesis_Certainty_CertaintySubcomponent>>,
 }
 
 
@@ -85,7 +88,7 @@ pub struct EffectEvidenceSynthesis_EffectEstimate {
   pub(crate) variantState: Option<Box<dyn CodeableConcept>>,
   pub(crate) unitOfMeasure: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) precisionEstimate: Vector<EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimate>,
+  pub(crate) precisionEstimate: Vector<Box<EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimate>>,
 }
 
 #[derive(Clone, Debug)]
@@ -119,18 +122,18 @@ pub struct EffectEvidenceSynthesisRaw {
   pub(crate) population: Box<dyn Reference>,
   pub(crate) description: Option<String>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) synthesisType: Option<Box<dyn CodeableConcept>>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) exposureAlternative: Box<dyn Reference>,
-  pub(crate) sampleSize: Option<EffectEvidenceSynthesis_SampleSize>,
-  pub(crate) resultsByExposure: Vector<EffectEvidenceSynthesis_ResultsByExposure>,
-  pub(crate) certainty: Vector<EffectEvidenceSynthesis_Certainty>,
-  pub(crate) effectEstimate: Vector<EffectEvidenceSynthesis_EffectEstimate>,
+  pub(crate) sampleSize: Option<Box<EffectEvidenceSynthesis_SampleSize>>,
+  pub(crate) resultsByExposure: Vector<Box<EffectEvidenceSynthesis_ResultsByExposure>>,
+  pub(crate) certainty: Vector<Box<EffectEvidenceSynthesis_Certainty>>,
+  pub(crate) effectEstimate: Vector<Box<EffectEvidenceSynthesis_EffectEstimate>>,
 }
 
 pub trait EffectEvidenceSynthesis : DomainResource {
@@ -157,16 +160,16 @@ pub trait EffectEvidenceSynthesis : DomainResource {
   fn population(&self) -> &Box<dyn Reference>;
   fn description(&self) -> &Option<String>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
   fn synthesisType(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
   fn exposureAlternative(&self) -> &Box<dyn Reference>;
-  fn sampleSize(&self) -> &Option<EffectEvidenceSynthesis_SampleSize>;
-  fn resultsByExposure(&self) -> &Vector<EffectEvidenceSynthesis_ResultsByExposure>;
-  fn certainty(&self) -> &Vector<EffectEvidenceSynthesis_Certainty>;
-  fn effectEstimate(&self) -> &Vector<EffectEvidenceSynthesis_EffectEstimate>;
+  fn sampleSize(&self) -> &Option<Box<EffectEvidenceSynthesis_SampleSize>>;
+  fn resultsByExposure(&self) -> &Vector<Box<EffectEvidenceSynthesis_ResultsByExposure>>;
+  fn certainty(&self) -> &Vector<Box<EffectEvidenceSynthesis_Certainty>>;
+  fn effectEstimate(&self) -> &Vector<Box<EffectEvidenceSynthesis_EffectEstimate>>;
 }
 
 dyn_clone::clone_trait_object!(EffectEvidenceSynthesis);
@@ -214,15 +217,15 @@ impl EffectEvidenceSynthesis for EffectEvidenceSynthesisRaw {
   fn population(&self) -> &Box<dyn Reference> { &self.population }
   fn description(&self) -> &Option<String> { &self.description }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
   fn synthesisType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.synthesisType }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
   fn exposureAlternative(&self) -> &Box<dyn Reference> { &self.exposureAlternative }
-  fn sampleSize(&self) -> &Option<EffectEvidenceSynthesis_SampleSize> { &self.sampleSize }
-  fn resultsByExposure(&self) -> &Vector<EffectEvidenceSynthesis_ResultsByExposure> { &self.resultsByExposure }
-  fn certainty(&self) -> &Vector<EffectEvidenceSynthesis_Certainty> { &self.certainty }
-  fn effectEstimate(&self) -> &Vector<EffectEvidenceSynthesis_EffectEstimate> { &self.effectEstimate }
+  fn sampleSize(&self) -> &Option<Box<EffectEvidenceSynthesis_SampleSize>> { &self.sampleSize }
+  fn resultsByExposure(&self) -> &Vector<Box<EffectEvidenceSynthesis_ResultsByExposure>> { &self.resultsByExposure }
+  fn certainty(&self) -> &Vector<Box<EffectEvidenceSynthesis_Certainty>> { &self.certainty }
+  fn effectEstimate(&self) -> &Vector<Box<EffectEvidenceSynthesis_EffectEstimate>> { &self.effectEstimate }
 }
 

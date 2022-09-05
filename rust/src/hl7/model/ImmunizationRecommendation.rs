@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -10,9 +13,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionPositiveIntOrString;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionPositiveIntOrString;
 
 
 
@@ -41,7 +44,7 @@ pub struct ImmunizationRecommendation_Recommendation {
   pub(crate) supportingImmunization: Vector<Box<dyn Reference>>,
   pub(crate) contraindicatedVaccineCode: Vector<Box<dyn CodeableConcept>>,
   pub(crate) supportingPatientInformation: Vector<Box<dyn Reference>>,
-  pub(crate) dateCriterion: Vector<ImmunizationRecommendation_Recommendation_DateCriterion>,
+  pub(crate) dateCriterion: Vector<Box<ImmunizationRecommendation_Recommendation_DateCriterion>>,
 }
 
 #[derive(Clone, Debug)]
@@ -58,7 +61,7 @@ pub struct ImmunizationRecommendationRaw {
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) recommendation: Vector<ImmunizationRecommendation_Recommendation>,
+  pub(crate) recommendation: Vector<Box<ImmunizationRecommendation_Recommendation>>,
 }
 
 pub trait ImmunizationRecommendation : DomainResource {
@@ -66,7 +69,7 @@ pub trait ImmunizationRecommendation : DomainResource {
   fn patient(&self) -> &Box<dyn Reference>;
   fn authority(&self) -> &Option<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn recommendation(&self) -> &Vector<ImmunizationRecommendation_Recommendation>;
+  fn recommendation(&self) -> &Vector<Box<ImmunizationRecommendation_Recommendation>>;
 }
 
 dyn_clone::clone_trait_object!(ImmunizationRecommendation);
@@ -95,6 +98,6 @@ impl ImmunizationRecommendation for ImmunizationRecommendationRaw {
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn authority(&self) -> &Option<Box<dyn Reference>> { &self.authority }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn recommendation(&self) -> &Vector<ImmunizationRecommendation_Recommendation> { &self.recommendation }
+  fn recommendation(&self) -> &Vector<Box<ImmunizationRecommendation_Recommendation>> { &self.recommendation }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -34,7 +37,7 @@ pub struct PaymentNoticeRaw {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) recipient: Box<dyn Reference>,
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
-  pub(crate) paymentDate: Option<FHIRDate>,
+  pub(crate) paymentDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) paymentStatus: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
@@ -51,7 +54,7 @@ pub trait PaymentNotice : DomainResource {
   fn provider(&self) -> &Option<Box<dyn Reference>>;
   fn recipient(&self) -> &Box<dyn Reference>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn paymentDate(&self) -> &Option<FHIRDate>;
+  fn paymentDate(&self) -> &Option<LocalDate>;
   fn paymentStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
 }
 
@@ -87,7 +90,7 @@ impl PaymentNotice for PaymentNoticeRaw {
   fn provider(&self) -> &Option<Box<dyn Reference>> { &self.provider }
   fn recipient(&self) -> &Box<dyn Reference> { &self.recipient }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn paymentDate(&self) -> &Option<FHIRDate> { &self.paymentDate }
+  fn paymentDate(&self) -> &Option<LocalDate> { &self.paymentDate }
   fn paymentStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.paymentStatus }
 }
 

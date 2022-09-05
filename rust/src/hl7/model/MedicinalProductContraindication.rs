@@ -1,15 +1,18 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
@@ -34,23 +37,23 @@ pub struct MedicinalProductContraindicationRaw {
   pub(crate) language: Option<String>,
   pub(crate) contained: Vector<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) population: Vector<any>,
+  pub(crate) population: Vector<String>,
   pub(crate) comorbidity: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) diseaseStatus: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) therapeuticIndication: Vector<Box<dyn Reference>>,
-  pub(crate) otherTherapy: Vector<MedicinalProductContraindication_OtherTherapy>,
+  pub(crate) otherTherapy: Vector<Box<MedicinalProductContraindication_OtherTherapy>>,
 }
 
 pub trait MedicinalProductContraindication : DomainResource {
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
   fn disease(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn population(&self) -> &Vector<any>;
+  fn population(&self) -> &Vector<String>;
   fn comorbidity(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn diseaseStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn therapeuticIndication(&self) -> &Vector<Box<dyn Reference>>;
-  fn otherTherapy(&self) -> &Vector<MedicinalProductContraindication_OtherTherapy>;
+  fn otherTherapy(&self) -> &Vector<Box<MedicinalProductContraindication_OtherTherapy>>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProductContraindication);
@@ -77,10 +80,10 @@ impl DomainResource for MedicinalProductContraindicationRaw {
 impl MedicinalProductContraindication for MedicinalProductContraindicationRaw {
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
   fn disease(&self) -> &Option<Box<dyn CodeableConcept>> { &self.disease }
-  fn population(&self) -> &Vector<any> { &self.population }
+  fn population(&self) -> &Vector<String> { &self.population }
   fn comorbidity(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.comorbidity }
   fn diseaseStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.diseaseStatus }
   fn therapeuticIndication(&self) -> &Vector<Box<dyn Reference>> { &self.therapeuticIndication }
-  fn otherTherapy(&self) -> &Vector<MedicinalProductContraindication_OtherTherapy> { &self.otherTherapy }
+  fn otherTherapy(&self) -> &Vector<Box<MedicinalProductContraindication_OtherTherapy>> { &self.otherTherapy }
 }
 

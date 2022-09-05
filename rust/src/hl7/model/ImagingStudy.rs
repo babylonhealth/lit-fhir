@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -54,8 +57,8 @@ pub struct ImagingStudy_Series {
   pub(crate) description: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) numberOfInstances: Option<u32>,
-  pub(crate) instance: Vector<ImagingStudy_Series_Instance>,
-  pub(crate) performer: Vector<ImagingStudy_Series_Performer>,
+  pub(crate) instance: Vector<Box<ImagingStudy_Series_Instance>>,
+  pub(crate) performer: Vector<Box<ImagingStudy_Series_Performer>>,
 }
 
 #[derive(Clone, Debug)]
@@ -87,7 +90,7 @@ pub struct ImagingStudyRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) numberOfInstances: Option<u32>,
   pub(crate) procedureReference: Option<Box<dyn Reference>>,
-  pub(crate) series: Vector<ImagingStudy_Series>,
+  pub(crate) series: Vector<Box<ImagingStudy_Series>>,
 }
 
 pub trait ImagingStudy : DomainResource {
@@ -110,7 +113,7 @@ pub trait ImagingStudy : DomainResource {
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn numberOfInstances(&self) -> &Option<u32>;
   fn procedureReference(&self) -> &Option<Box<dyn Reference>>;
-  fn series(&self) -> &Vector<ImagingStudy_Series>;
+  fn series(&self) -> &Vector<Box<ImagingStudy_Series>>;
 }
 
 dyn_clone::clone_trait_object!(ImagingStudy);
@@ -154,6 +157,6 @@ impl ImagingStudy for ImagingStudyRaw {
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn numberOfInstances(&self) -> &Option<u32> { &self.numberOfInstances }
   fn procedureReference(&self) -> &Option<Box<dyn Reference>> { &self.procedureReference }
-  fn series(&self) -> &Vector<ImagingStudy_Series> { &self.series }
+  fn series(&self) -> &Vector<Box<ImagingStudy_Series>> { &self.series }
 }
 

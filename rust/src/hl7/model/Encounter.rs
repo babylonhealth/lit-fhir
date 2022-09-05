@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -115,12 +118,12 @@ pub struct EncounterRaw {
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) serviceProvider: Option<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) location: Vector<Encounter_Location>,
-  pub(crate) diagnosis: Vector<Encounter_Diagnosis>,
-  pub(crate) participant: Vector<Encounter_Participant>,
-  pub(crate) classHistory: Vector<Encounter_ClassHistory>,
-  pub(crate) statusHistory: Vector<Encounter_StatusHistory>,
-  pub(crate) hospitalization: Option<Encounter_Hospitalization>,
+  pub(crate) location: Vector<Box<Encounter_Location>>,
+  pub(crate) diagnosis: Vector<Box<Encounter_Diagnosis>>,
+  pub(crate) participant: Vector<Box<Encounter_Participant>>,
+  pub(crate) classHistory: Vector<Box<Encounter_ClassHistory>>,
+  pub(crate) statusHistory: Vector<Box<Encounter_StatusHistory>>,
+  pub(crate) hospitalization: Option<Box<Encounter_Hospitalization>>,
 }
 
 pub trait Encounter : DomainResource {
@@ -141,12 +144,12 @@ pub trait Encounter : DomainResource {
   fn episodeOfCare(&self) -> &Vector<Box<dyn Reference>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn serviceProvider(&self) -> &Option<Box<dyn Reference>>;
-  fn location(&self) -> &Vector<Encounter_Location>;
-  fn diagnosis(&self) -> &Vector<Encounter_Diagnosis>;
-  fn participant(&self) -> &Vector<Encounter_Participant>;
-  fn classHistory(&self) -> &Vector<Encounter_ClassHistory>;
-  fn statusHistory(&self) -> &Vector<Encounter_StatusHistory>;
-  fn hospitalization(&self) -> &Option<Encounter_Hospitalization>;
+  fn location(&self) -> &Vector<Box<Encounter_Location>>;
+  fn diagnosis(&self) -> &Vector<Box<Encounter_Diagnosis>>;
+  fn participant(&self) -> &Vector<Box<Encounter_Participant>>;
+  fn classHistory(&self) -> &Vector<Box<Encounter_ClassHistory>>;
+  fn statusHistory(&self) -> &Vector<Box<Encounter_StatusHistory>>;
+  fn hospitalization(&self) -> &Option<Box<Encounter_Hospitalization>>;
 }
 
 dyn_clone::clone_trait_object!(Encounter);
@@ -188,11 +191,11 @@ impl Encounter for EncounterRaw {
   fn episodeOfCare(&self) -> &Vector<Box<dyn Reference>> { &self.episodeOfCare }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn serviceProvider(&self) -> &Option<Box<dyn Reference>> { &self.serviceProvider }
-  fn location(&self) -> &Vector<Encounter_Location> { &self.location }
-  fn diagnosis(&self) -> &Vector<Encounter_Diagnosis> { &self.diagnosis }
-  fn participant(&self) -> &Vector<Encounter_Participant> { &self.participant }
-  fn classHistory(&self) -> &Vector<Encounter_ClassHistory> { &self.classHistory }
-  fn statusHistory(&self) -> &Vector<Encounter_StatusHistory> { &self.statusHistory }
-  fn hospitalization(&self) -> &Option<Encounter_Hospitalization> { &self.hospitalization }
+  fn location(&self) -> &Vector<Box<Encounter_Location>> { &self.location }
+  fn diagnosis(&self) -> &Vector<Box<Encounter_Diagnosis>> { &self.diagnosis }
+  fn participant(&self) -> &Vector<Box<Encounter_Participant>> { &self.participant }
+  fn classHistory(&self) -> &Vector<Box<Encounter_ClassHistory>> { &self.classHistory }
+  fn statusHistory(&self) -> &Vector<Box<Encounter_StatusHistory>> { &self.statusHistory }
+  fn hospitalization(&self) -> &Option<Box<Encounter_Hospitalization>> { &self.hospitalization }
 }
 

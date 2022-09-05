@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -46,7 +49,7 @@ pub struct VerificationResult_PrimarySource {
 pub struct VerificationResult_Attestation {
   pub(crate) id: Option<String>,
   pub(crate) who: Option<Box<dyn Reference>>,
-  pub(crate) date: Option<FHIRDate>,
+  pub(crate) date: Option<LocalDate>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) onBehalfOf: Option<Box<dyn Reference>>,
   pub(crate) proxySignature: Option<Box<dyn Signature>>,
@@ -72,15 +75,15 @@ pub struct VerificationResultRaw {
   pub(crate) statusDate: Option<DateTime<FixedOffset>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) lastPerformed: Option<DateTime<FixedOffset>>,
-  pub(crate) nextScheduled: Option<FHIRDate>,
+  pub(crate) nextScheduled: Option<LocalDate>,
   pub(crate) failureAction: Option<Box<dyn CodeableConcept>>,
   pub(crate) targetLocation: Vector<String>,
   pub(crate) validationType: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) validationProcess: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) validator: Vector<VerificationResult_Validator>,
-  pub(crate) primarySource: Vector<VerificationResult_PrimarySource>,
-  pub(crate) attestation: Option<VerificationResult_Attestation>,
+  pub(crate) validator: Vector<Box<VerificationResult_Validator>>,
+  pub(crate) primarySource: Vector<Box<VerificationResult_PrimarySource>>,
+  pub(crate) attestation: Option<Box<VerificationResult_Attestation>>,
 }
 
 pub trait VerificationResult : DomainResource {
@@ -90,14 +93,14 @@ pub trait VerificationResult : DomainResource {
   fn frequency(&self) -> &Option<Box<dyn Timing>>;
   fn statusDate(&self) -> &Option<DateTime<FixedOffset>>;
   fn lastPerformed(&self) -> &Option<DateTime<FixedOffset>>;
-  fn nextScheduled(&self) -> &Option<FHIRDate>;
+  fn nextScheduled(&self) -> &Option<LocalDate>;
   fn failureAction(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn targetLocation(&self) -> &Vector<String>;
   fn validationType(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn validationProcess(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn validator(&self) -> &Vector<VerificationResult_Validator>;
-  fn primarySource(&self) -> &Vector<VerificationResult_PrimarySource>;
-  fn attestation(&self) -> &Option<VerificationResult_Attestation>;
+  fn validator(&self) -> &Vector<Box<VerificationResult_Validator>>;
+  fn primarySource(&self) -> &Vector<Box<VerificationResult_PrimarySource>>;
+  fn attestation(&self) -> &Option<Box<VerificationResult_Attestation>>;
 }
 
 dyn_clone::clone_trait_object!(VerificationResult);
@@ -128,13 +131,13 @@ impl VerificationResult for VerificationResultRaw {
   fn frequency(&self) -> &Option<Box<dyn Timing>> { &self.frequency }
   fn statusDate(&self) -> &Option<DateTime<FixedOffset>> { &self.statusDate }
   fn lastPerformed(&self) -> &Option<DateTime<FixedOffset>> { &self.lastPerformed }
-  fn nextScheduled(&self) -> &Option<FHIRDate> { &self.nextScheduled }
+  fn nextScheduled(&self) -> &Option<LocalDate> { &self.nextScheduled }
   fn failureAction(&self) -> &Option<Box<dyn CodeableConcept>> { &self.failureAction }
   fn targetLocation(&self) -> &Vector<String> { &self.targetLocation }
   fn validationType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.validationType }
   fn validationProcess(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.validationProcess }
-  fn validator(&self) -> &Vector<VerificationResult_Validator> { &self.validator }
-  fn primarySource(&self) -> &Vector<VerificationResult_PrimarySource> { &self.primarySource }
-  fn attestation(&self) -> &Option<VerificationResult_Attestation> { &self.attestation }
+  fn validator(&self) -> &Vector<Box<VerificationResult_Validator>> { &self.validator }
+  fn primarySource(&self) -> &Vector<Box<VerificationResult_PrimarySource>> { &self.primarySource }
+  fn attestation(&self) -> &Option<Box<VerificationResult_Attestation>> { &self.attestation }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -44,7 +47,7 @@ pub struct VisionPrescription_LensSpecification {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) backCurve: Option<BigDecimal>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) prism: Vector<VisionPrescription_LensSpecification_Prism>,
+  pub(crate) prism: Vector<Box<VisionPrescription_LensSpecification_Prism>>,
 }
 
 #[derive(Clone, Debug)]
@@ -64,7 +67,7 @@ pub struct VisionPrescriptionRaw {
   pub(crate) dateWritten: DateTime<FixedOffset>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) lensSpecification: Vector<VisionPrescription_LensSpecification>,
+  pub(crate) lensSpecification: Vector<Box<VisionPrescription_LensSpecification>>,
 }
 
 pub trait VisionPrescription : DomainResource {
@@ -75,7 +78,7 @@ pub trait VisionPrescription : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn prescriber(&self) -> &Box<dyn Reference>;
   fn dateWritten(&self) -> &DateTime<FixedOffset>;
-  fn lensSpecification(&self) -> &Vector<VisionPrescription_LensSpecification>;
+  fn lensSpecification(&self) -> &Vector<Box<VisionPrescription_LensSpecification>>;
 }
 
 dyn_clone::clone_trait_object!(VisionPrescription);
@@ -107,6 +110,6 @@ impl VisionPrescription for VisionPrescriptionRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn prescriber(&self) -> &Box<dyn Reference> { &self.prescriber }
   fn dateWritten(&self) -> &DateTime<FixedOffset> { &self.dateWritten }
-  fn lensSpecification(&self) -> &Vector<VisionPrescription_LensSpecification> { &self.lensSpecification }
+  fn lensSpecification(&self) -> &Vector<Box<VisionPrescription_LensSpecification>> { &self.lensSpecification }
 }
 

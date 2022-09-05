@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactDetail::ContactDetail;
 use crate::core::model::Extension::Extension;
@@ -14,6 +16,7 @@ use crate::core::model::Period::Period;
 use crate::core::model::RelatedArtifact::RelatedArtifact;
 use crate::core::model::Resource::Resource;
 use crate::core::model::TriggerDefinition::TriggerDefinition;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::core::model::UsageContext::UsageContext;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
@@ -52,9 +55,9 @@ pub struct EventDefinitionRaw {
   pub(crate) description: Option<String>,
   pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
@@ -85,8 +88,8 @@ pub trait EventDefinition : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
 }
@@ -137,8 +140,8 @@ impl EventDefinition for EventDefinitionRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
 }

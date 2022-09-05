@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Coding::Coding;
 use crate::core::model::Extension::Extension;
@@ -12,6 +14,7 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
@@ -59,8 +62,8 @@ pub struct MedicinalProduct_Name {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) productName: String,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) namePart: Vector<MedicinalProduct_Name_NamePart>,
-  pub(crate) countryLanguage: Vector<MedicinalProduct_Name_CountryLanguage>,
+  pub(crate) namePart: Vector<Box<MedicinalProduct_Name_NamePart>>,
+  pub(crate) countryLanguage: Vector<Box<MedicinalProduct_Name_CountryLanguage>>,
 }
 
 
@@ -94,7 +97,7 @@ pub struct MedicinalProductRaw {
   pub(crate) clinicalTrial: Vector<Box<dyn Reference>>,
   pub(crate) crossReference: Vector<Box<dyn Identifier>>,
   pub(crate) specialMeasures: Vector<String>,
-  pub(crate) marketingStatus: Vector<any>,
+  pub(crate) marketingStatus: Vector<String>,
   pub(crate) attachedDocument: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) legalStatusOfSupply: Option<Box<dyn CodeableConcept>>,
@@ -104,9 +107,9 @@ pub struct MedicinalProductRaw {
   pub(crate) packagedMedicinalProduct: Vector<Box<dyn Reference>>,
   pub(crate) additionalMonitoringIndicator: Option<Box<dyn CodeableConcept>>,
   pub(crate) combinedPharmaceuticalDoseForm: Option<Box<dyn CodeableConcept>>,
-  pub(crate) specialDesignation: Vector<MedicinalProduct_SpecialDesignation>,
-  pub(crate) name: Vector<MedicinalProduct_Name>,
-  pub(crate) manufacturingBusinessOperation: Vector<MedicinalProduct_ManufacturingBusinessOperation>,
+  pub(crate) specialDesignation: Vector<Box<MedicinalProduct_SpecialDesignation>>,
+  pub(crate) name: Vector<Box<MedicinalProduct_Name>>,
+  pub(crate) manufacturingBusinessOperation: Vector<Box<MedicinalProduct_ManufacturingBusinessOperation>>,
 }
 
 pub trait MedicinalProduct : DomainResource {
@@ -118,7 +121,7 @@ pub trait MedicinalProduct : DomainResource {
   fn clinicalTrial(&self) -> &Vector<Box<dyn Reference>>;
   fn crossReference(&self) -> &Vector<Box<dyn Identifier>>;
   fn specialMeasures(&self) -> &Vector<String>;
-  fn marketingStatus(&self) -> &Vector<any>;
+  fn marketingStatus(&self) -> &Vector<String>;
   fn attachedDocument(&self) -> &Vector<Box<dyn Reference>>;
   fn legalStatusOfSupply(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn productClassification(&self) -> &Vector<Box<dyn CodeableConcept>>;
@@ -127,9 +130,9 @@ pub trait MedicinalProduct : DomainResource {
   fn packagedMedicinalProduct(&self) -> &Vector<Box<dyn Reference>>;
   fn additionalMonitoringIndicator(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn combinedPharmaceuticalDoseForm(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn specialDesignation(&self) -> &Vector<MedicinalProduct_SpecialDesignation>;
-  fn name(&self) -> &Vector<MedicinalProduct_Name>;
-  fn manufacturingBusinessOperation(&self) -> &Vector<MedicinalProduct_ManufacturingBusinessOperation>;
+  fn specialDesignation(&self) -> &Vector<Box<MedicinalProduct_SpecialDesignation>>;
+  fn name(&self) -> &Vector<Box<MedicinalProduct_Name>>;
+  fn manufacturingBusinessOperation(&self) -> &Vector<Box<MedicinalProduct_ManufacturingBusinessOperation>>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProduct);
@@ -162,7 +165,7 @@ impl MedicinalProduct for MedicinalProductRaw {
   fn clinicalTrial(&self) -> &Vector<Box<dyn Reference>> { &self.clinicalTrial }
   fn crossReference(&self) -> &Vector<Box<dyn Identifier>> { &self.crossReference }
   fn specialMeasures(&self) -> &Vector<String> { &self.specialMeasures }
-  fn marketingStatus(&self) -> &Vector<any> { &self.marketingStatus }
+  fn marketingStatus(&self) -> &Vector<String> { &self.marketingStatus }
   fn attachedDocument(&self) -> &Vector<Box<dyn Reference>> { &self.attachedDocument }
   fn legalStatusOfSupply(&self) -> &Option<Box<dyn CodeableConcept>> { &self.legalStatusOfSupply }
   fn productClassification(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.productClassification }
@@ -171,8 +174,8 @@ impl MedicinalProduct for MedicinalProductRaw {
   fn packagedMedicinalProduct(&self) -> &Vector<Box<dyn Reference>> { &self.packagedMedicinalProduct }
   fn additionalMonitoringIndicator(&self) -> &Option<Box<dyn CodeableConcept>> { &self.additionalMonitoringIndicator }
   fn combinedPharmaceuticalDoseForm(&self) -> &Option<Box<dyn CodeableConcept>> { &self.combinedPharmaceuticalDoseForm }
-  fn specialDesignation(&self) -> &Vector<MedicinalProduct_SpecialDesignation> { &self.specialDesignation }
-  fn name(&self) -> &Vector<MedicinalProduct_Name> { &self.name }
-  fn manufacturingBusinessOperation(&self) -> &Vector<MedicinalProduct_ManufacturingBusinessOperation> { &self.manufacturingBusinessOperation }
+  fn specialDesignation(&self) -> &Vector<Box<MedicinalProduct_SpecialDesignation>> { &self.specialDesignation }
+  fn name(&self) -> &Vector<Box<MedicinalProduct_Name>> { &self.name }
+  fn manufacturingBusinessOperation(&self) -> &Vector<Box<MedicinalProduct_ManufacturingBusinessOperation>> { &self.manufacturingBusinessOperation }
 }
 

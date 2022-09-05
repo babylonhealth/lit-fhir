@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -12,10 +14,11 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union01850316684;
-use crate::hl7::UnionDateTimeOrPeriodOrTiming;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01850316684;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriodOrTiming;
 
 
 
@@ -61,7 +64,7 @@ pub struct DeviceRequestRaw {
   pub(crate) relevantHistory: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) instantiatesCanonical: Vector<String>,
-  pub(crate) parameter: Vector<DeviceRequest_Parameter>,
+  pub(crate) parameter: Vector<Box<DeviceRequest_Parameter>>,
 }
 
 pub trait DeviceRequest : DomainResource {
@@ -88,7 +91,7 @@ pub trait DeviceRequest : DomainResource {
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
-  fn parameter(&self) -> &Vector<DeviceRequest_Parameter>;
+  fn parameter(&self) -> &Vector<Box<DeviceRequest_Parameter>>;
 }
 
 dyn_clone::clone_trait_object!(DeviceRequest);
@@ -136,6 +139,6 @@ impl DeviceRequest for DeviceRequestRaw {
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>> { &self.relevantHistory }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
-  fn parameter(&self) -> &Vector<DeviceRequest_Parameter> { &self.parameter }
+  fn parameter(&self) -> &Vector<Box<DeviceRequest_Parameter>> { &self.parameter }
 }
 

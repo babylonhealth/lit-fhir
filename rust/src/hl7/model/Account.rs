@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -55,8 +58,8 @@ pub struct AccountRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) servicePeriod: Option<Box<dyn Period>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) coverage: Vector<Account_Coverage>,
-  pub(crate) guarantor: Vector<Account_Guarantor>,
+  pub(crate) coverage: Vector<Box<Account_Coverage>>,
+  pub(crate) guarantor: Vector<Box<Account_Guarantor>>,
 }
 
 pub trait Account : DomainResource {
@@ -69,8 +72,8 @@ pub trait Account : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn description(&self) -> &Option<String>;
   fn servicePeriod(&self) -> &Option<Box<dyn Period>>;
-  fn coverage(&self) -> &Vector<Account_Coverage>;
-  fn guarantor(&self) -> &Vector<Account_Guarantor>;
+  fn coverage(&self) -> &Vector<Box<Account_Coverage>>;
+  fn guarantor(&self) -> &Vector<Box<Account_Guarantor>>;
 }
 
 dyn_clone::clone_trait_object!(Account);
@@ -104,7 +107,7 @@ impl Account for AccountRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn description(&self) -> &Option<String> { &self.description }
   fn servicePeriod(&self) -> &Option<Box<dyn Period>> { &self.servicePeriod }
-  fn coverage(&self) -> &Vector<Account_Coverage> { &self.coverage }
-  fn guarantor(&self) -> &Vector<Account_Guarantor> { &self.guarantor }
+  fn coverage(&self) -> &Vector<Box<Account_Coverage>> { &self.coverage }
+  fn guarantor(&self) -> &Vector<Box<Account_Guarantor>> { &self.guarantor }
 }
 

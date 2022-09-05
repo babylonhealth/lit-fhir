@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactDetail::ContactDetail;
 use crate::core::model::Dosage::Dosage;
@@ -17,10 +19,11 @@ use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::RelatedArtifact::RelatedArtifact;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::Union01405873694;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01405873694;
 
 
 
@@ -87,18 +90,18 @@ pub struct ActivityDefinitionRaw {
   pub(crate) description: Option<String>,
   pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) doNotPerform: Option<bool>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) specimenRequirement: Vector<Box<dyn Reference>>,
   pub(crate) observationRequirement: Vector<Box<dyn Reference>>,
   pub(crate) observationResultRequirement: Vector<Box<dyn Reference>>,
-  pub(crate) participant: Vector<ActivityDefinition_Participant>,
-  pub(crate) dynamicValue: Vector<ActivityDefinition_DynamicValue>,
+  pub(crate) participant: Vector<Box<ActivityDefinition_Participant>>,
+  pub(crate) dynamicValue: Vector<Box<ActivityDefinition_DynamicValue>>,
 }
 
 pub trait ActivityDefinition : DomainResource {
@@ -138,16 +141,16 @@ pub trait ActivityDefinition : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
   fn doNotPerform(&self) -> &Option<bool>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
   fn specimenRequirement(&self) -> &Vector<Box<dyn Reference>>;
   fn observationRequirement(&self) -> &Vector<Box<dyn Reference>>;
   fn observationResultRequirement(&self) -> &Vector<Box<dyn Reference>>;
-  fn participant(&self) -> &Vector<ActivityDefinition_Participant>;
-  fn dynamicValue(&self) -> &Vector<ActivityDefinition_DynamicValue>;
+  fn participant(&self) -> &Vector<Box<ActivityDefinition_Participant>>;
+  fn dynamicValue(&self) -> &Vector<Box<ActivityDefinition_DynamicValue>>;
 }
 
 dyn_clone::clone_trait_object!(ActivityDefinition);
@@ -208,15 +211,15 @@ impl ActivityDefinition for ActivityDefinitionRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
   fn doNotPerform(&self) -> &Option<bool> { &self.doNotPerform }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
   fn specimenRequirement(&self) -> &Vector<Box<dyn Reference>> { &self.specimenRequirement }
   fn observationRequirement(&self) -> &Vector<Box<dyn Reference>> { &self.observationRequirement }
   fn observationResultRequirement(&self) -> &Vector<Box<dyn Reference>> { &self.observationResultRequirement }
-  fn participant(&self) -> &Vector<ActivityDefinition_Participant> { &self.participant }
-  fn dynamicValue(&self) -> &Vector<ActivityDefinition_DynamicValue> { &self.dynamicValue }
+  fn participant(&self) -> &Vector<Box<ActivityDefinition_Participant>> { &self.participant }
+  fn dynamicValue(&self) -> &Vector<Box<ActivityDefinition_DynamicValue>> { &self.dynamicValue }
 }
 

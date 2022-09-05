@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,10 +14,10 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateOrPeriod;
-use crate::hl7::UnionMoneyOrStringOrUnsignedInt;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateOrPeriod;
+use crate::hl7::model::UnionAliases::UnionMoneyOrStringOrUnsignedInt;
 
 
 
@@ -55,7 +58,7 @@ pub struct CoverageEligibilityResponse_Insurance_Item {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) authorizationRequired: Option<bool>,
   pub(crate) authorizationSupporting: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) benefit: Vector<CoverageEligibilityResponse_Insurance_Item_Benefit>,
+  pub(crate) benefit: Vector<Box<CoverageEligibilityResponse_Insurance_Item_Benefit>>,
 }
 
 #[derive(Clone, Debug)]
@@ -66,7 +69,7 @@ pub struct CoverageEligibilityResponse_Insurance {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) benefitPeriod: Option<Box<dyn Period>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) item: Vector<CoverageEligibilityResponse_Insurance_Item>,
+  pub(crate) item: Vector<Box<CoverageEligibilityResponse_Insurance_Item>>,
 }
 
 #[derive(Clone, Debug)]
@@ -92,8 +95,8 @@ pub struct CoverageEligibilityResponseRaw {
   pub(crate) disposition: Option<String>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) error: Vector<CoverageEligibilityResponse_Error>,
-  pub(crate) insurance: Vector<CoverageEligibilityResponse_Insurance>,
+  pub(crate) error: Vector<Box<CoverageEligibilityResponse_Error>>,
+  pub(crate) insurance: Vector<Box<CoverageEligibilityResponse_Insurance>>,
 }
 
 pub trait CoverageEligibilityResponse : DomainResource {
@@ -110,8 +113,8 @@ pub trait CoverageEligibilityResponse : DomainResource {
   fn preAuthRef(&self) -> &Option<String>;
   fn serviced(&self) -> &Option<UnionDateOrPeriod>;
   fn disposition(&self) -> &Option<String>;
-  fn error(&self) -> &Vector<CoverageEligibilityResponse_Error>;
-  fn insurance(&self) -> &Vector<CoverageEligibilityResponse_Insurance>;
+  fn error(&self) -> &Vector<Box<CoverageEligibilityResponse_Error>>;
+  fn insurance(&self) -> &Vector<Box<CoverageEligibilityResponse_Insurance>>;
 }
 
 dyn_clone::clone_trait_object!(CoverageEligibilityResponse);
@@ -149,7 +152,7 @@ impl CoverageEligibilityResponse for CoverageEligibilityResponseRaw {
   fn preAuthRef(&self) -> &Option<String> { &self.preAuthRef }
   fn serviced(&self) -> &Option<UnionDateOrPeriod> { &self.serviced }
   fn disposition(&self) -> &Option<String> { &self.disposition }
-  fn error(&self) -> &Vector<CoverageEligibilityResponse_Error> { &self.error }
-  fn insurance(&self) -> &Vector<CoverageEligibilityResponse_Insurance> { &self.insurance }
+  fn error(&self) -> &Vector<Box<CoverageEligibilityResponse_Error>> { &self.error }
+  fn insurance(&self) -> &Vector<Box<CoverageEligibilityResponse_Insurance>> { &self.insurance }
 }
 

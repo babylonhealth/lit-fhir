@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriod;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
 
 
 
@@ -78,10 +81,10 @@ pub struct BiologicallyDerivedProductRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) productCategory: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) storage: Vector<BiologicallyDerivedProduct_Storage>,
-  pub(crate) collection: Option<BiologicallyDerivedProduct_Collection>,
-  pub(crate) processing: Vector<BiologicallyDerivedProduct_Processing>,
-  pub(crate) manipulation: Option<BiologicallyDerivedProduct_Manipulation>,
+  pub(crate) storage: Vector<Box<BiologicallyDerivedProduct_Storage>>,
+  pub(crate) collection: Option<Box<BiologicallyDerivedProduct_Collection>>,
+  pub(crate) processing: Vector<Box<BiologicallyDerivedProduct_Processing>>,
+  pub(crate) manipulation: Option<Box<BiologicallyDerivedProduct_Manipulation>>,
 }
 
 pub trait BiologicallyDerivedProduct : DomainResource {
@@ -92,10 +95,10 @@ pub trait BiologicallyDerivedProduct : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn productCode(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn productCategory(&self) -> &Option<String>;
-  fn storage(&self) -> &Vector<BiologicallyDerivedProduct_Storage>;
-  fn collection(&self) -> &Option<BiologicallyDerivedProduct_Collection>;
-  fn processing(&self) -> &Vector<BiologicallyDerivedProduct_Processing>;
-  fn manipulation(&self) -> &Option<BiologicallyDerivedProduct_Manipulation>;
+  fn storage(&self) -> &Vector<Box<BiologicallyDerivedProduct_Storage>>;
+  fn collection(&self) -> &Option<Box<BiologicallyDerivedProduct_Collection>>;
+  fn processing(&self) -> &Vector<Box<BiologicallyDerivedProduct_Processing>>;
+  fn manipulation(&self) -> &Option<Box<BiologicallyDerivedProduct_Manipulation>>;
 }
 
 dyn_clone::clone_trait_object!(BiologicallyDerivedProduct);
@@ -127,9 +130,9 @@ impl BiologicallyDerivedProduct for BiologicallyDerivedProductRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn productCode(&self) -> &Option<Box<dyn CodeableConcept>> { &self.productCode }
   fn productCategory(&self) -> &Option<String> { &self.productCategory }
-  fn storage(&self) -> &Vector<BiologicallyDerivedProduct_Storage> { &self.storage }
-  fn collection(&self) -> &Option<BiologicallyDerivedProduct_Collection> { &self.collection }
-  fn processing(&self) -> &Vector<BiologicallyDerivedProduct_Processing> { &self.processing }
-  fn manipulation(&self) -> &Option<BiologicallyDerivedProduct_Manipulation> { &self.manipulation }
+  fn storage(&self) -> &Vector<Box<BiologicallyDerivedProduct_Storage>> { &self.storage }
+  fn collection(&self) -> &Option<Box<BiologicallyDerivedProduct_Collection>> { &self.collection }
+  fn processing(&self) -> &Vector<Box<BiologicallyDerivedProduct_Processing>> { &self.processing }
+  fn manipulation(&self) -> &Option<Box<BiologicallyDerivedProduct_Manipulation>> { &self.manipulation }
 }
 

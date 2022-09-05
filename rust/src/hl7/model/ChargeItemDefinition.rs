@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -45,9 +48,9 @@ pub struct ChargeItemDefinition_PropertyGroup_PriceComponent {
 pub struct ChargeItemDefinition_PropertyGroup {
   pub(crate) id: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) applicability: Vector<Box<dyn ChargeItemDefinition_Applicability>>,
+  pub(crate) applicability: Vector<Box<ChargeItemDefinition_Applicability>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) priceComponent: Vector<ChargeItemDefinition_PropertyGroup_PriceComponent>,
+  pub(crate) priceComponent: Vector<Box<ChargeItemDefinition_PropertyGroup_PriceComponent>>,
 }
 
 #[derive(Clone, Debug)]
@@ -75,14 +78,14 @@ pub struct ChargeItemDefinitionRaw {
   pub(crate) description: Option<String>,
   pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) derivedFromUri: Vector<String>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) applicability: Vector<ChargeItemDefinition_Applicability>,
-  pub(crate) propertyGroup: Vector<ChargeItemDefinition_PropertyGroup>,
+  pub(crate) applicability: Vector<Box<ChargeItemDefinition_Applicability>>,
+  pub(crate) propertyGroup: Vector<Box<ChargeItemDefinition_PropertyGroup>>,
 }
 
 pub trait ChargeItemDefinition : DomainResource {
@@ -103,12 +106,12 @@ pub trait ChargeItemDefinition : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
   fn derivedFromUri(&self) -> &Vector<String>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
-  fn applicability(&self) -> &Vector<ChargeItemDefinition_Applicability>;
-  fn propertyGroup(&self) -> &Vector<ChargeItemDefinition_PropertyGroup>;
+  fn applicability(&self) -> &Vector<Box<ChargeItemDefinition_Applicability>>;
+  fn propertyGroup(&self) -> &Vector<Box<ChargeItemDefinition_PropertyGroup>>;
 }
 
 dyn_clone::clone_trait_object!(ChargeItemDefinition);
@@ -150,11 +153,11 @@ impl ChargeItemDefinition for ChargeItemDefinitionRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
   fn derivedFromUri(&self) -> &Vector<String> { &self.derivedFromUri }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
-  fn applicability(&self) -> &Vector<ChargeItemDefinition_Applicability> { &self.applicability }
-  fn propertyGroup(&self) -> &Vector<ChargeItemDefinition_PropertyGroup> { &self.propertyGroup }
+  fn applicability(&self) -> &Vector<Box<ChargeItemDefinition_Applicability>> { &self.applicability }
+  fn propertyGroup(&self) -> &Vector<Box<ChargeItemDefinition_PropertyGroup>> { &self.propertyGroup }
 }
 

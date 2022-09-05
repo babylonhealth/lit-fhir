@@ -1,20 +1,23 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionAll;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactDetail::ContactDetail;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionAll;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::Union00551919141;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union00551919141;
 
 
 
@@ -94,20 +97,20 @@ pub struct StructureMap_Group_Rule_Target {
   pub(crate) listRuleId: Option<String>,
   pub(crate) contextType: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) parameter: Vector<StructureMap_Group_Rule_Target_Parameter>,
+  pub(crate) parameter: Vector<Box<StructureMap_Group_Rule_Target_Parameter>>,
 }
 
 #[derive(Clone, Debug)]
 pub struct StructureMap_Group_Rule {
   pub(crate) id: Option<String>,
   pub(crate) name: String,
-  pub(crate) rule: Vector<Box<dyn StructureMap_Group_Rule>>,
+  pub(crate) rule: Vector<Box<StructureMap_Group_Rule>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) documentation: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) source: Vector<StructureMap_Group_Rule_Source>,
-  pub(crate) dependent: Vector<StructureMap_Group_Rule_Dependent>,
-  pub(crate) target: Vector<StructureMap_Group_Rule_Target>,
+  pub(crate) source: Vector<Box<StructureMap_Group_Rule_Source>>,
+  pub(crate) dependent: Vector<Box<StructureMap_Group_Rule_Dependent>>,
+  pub(crate) target: Vector<Box<StructureMap_Group_Rule_Target>>,
 }
 
 #[derive(Clone, Debug)]
@@ -119,8 +122,8 @@ pub struct StructureMap_Group {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) documentation: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) input: Vector<StructureMap_Group_Input>,
-  pub(crate) rule: Vector<StructureMap_Group_Rule>,
+  pub(crate) input: Vector<Box<StructureMap_Group_Input>>,
+  pub(crate) rule: Vector<Box<StructureMap_Group_Rule>>,
 }
 
 #[derive(Clone, Debug)]
@@ -149,8 +152,8 @@ pub struct StructureMapRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) structure: Vector<StructureMap_Structure>,
-  pub(crate) group: Vector<StructureMap_Group>,
+  pub(crate) structure: Vector<Box<StructureMap_Structure>>,
+  pub(crate) group: Vector<Box<StructureMap_Group>>,
 }
 
 pub trait StructureMap : DomainResource {
@@ -170,8 +173,8 @@ pub trait StructureMap : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn structure(&self) -> &Vector<StructureMap_Structure>;
-  fn group(&self) -> &Vector<StructureMap_Group>;
+  fn structure(&self) -> &Vector<Box<StructureMap_Structure>>;
+  fn group(&self) -> &Vector<Box<StructureMap_Group>>;
 }
 
 dyn_clone::clone_trait_object!(StructureMap);
@@ -212,7 +215,7 @@ impl StructureMap for StructureMapRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn structure(&self) -> &Vector<StructureMap_Structure> { &self.structure }
-  fn group(&self) -> &Vector<StructureMap_Group> { &self.group }
+  fn structure(&self) -> &Vector<Box<StructureMap_Structure>> { &self.structure }
+  fn group(&self) -> &Vector<Box<StructureMap_Group>> { &self.group }
 }
 

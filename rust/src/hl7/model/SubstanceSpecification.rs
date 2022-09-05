@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Attachment::Attachment;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -14,10 +16,11 @@ use crate::core::model::Quantity::Quantity;
 use crate::core::model::Ratio::Ratio;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union00133982841;
-use crate::hl7::UnionQuantityOrString;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union00133982841;
+use crate::hl7::model::UnionAliases::UnionQuantityOrString;
 
 
 
@@ -80,14 +83,14 @@ pub struct SubstanceSpecification_Name {
   pub(crate) status: Option<Box<dyn CodeableConcept>>,
   pub(crate) domain: Vector<Box<dyn CodeableConcept>>,
   pub(crate) source: Vector<Box<dyn Reference>>,
-  pub(crate) synonym: Vector<Box<dyn SubstanceSpecification_Name>>,
+  pub(crate) synonym: Vector<Box<SubstanceSpecification_Name>>,
   pub(crate) language: Vector<Box<dyn CodeableConcept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) preferred: Option<bool>,
-  pub(crate) translation: Vector<Box<dyn SubstanceSpecification_Name>>,
+  pub(crate) translation: Vector<Box<SubstanceSpecification_Name>>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) official: Vector<SubstanceSpecification_Name_Official>,
+  pub(crate) official: Vector<Box<SubstanceSpecification_Name_Official>>,
 }
 
 
@@ -137,7 +140,7 @@ pub struct SubstanceSpecification_Structure_Isotope {
   pub(crate) identifier: Option<Box<dyn Identifier>>,
   pub(crate) substitution: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) molecularWeight: Option<SubstanceSpecification_Structure_Isotope_MolecularWeight>,
+  pub(crate) molecularWeight: Option<Box<SubstanceSpecification_Structure_Isotope_MolecularWeight>>,
 }
 
 #[derive(Clone, Debug)]
@@ -147,12 +150,12 @@ pub struct SubstanceSpecification_Structure {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) stereochemistry: Option<Box<dyn CodeableConcept>>,
   pub(crate) opticalActivity: Option<Box<dyn CodeableConcept>>,
-  pub(crate) molecularWeight: Option<Box<dyn SubstanceSpecification_Structure_Isotope_MolecularWeight>>,
+  pub(crate) molecularWeight: Option<Box<SubstanceSpecification_Structure_Isotope_MolecularWeight>>,
   pub(crate) molecularFormula: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) molecularFormulaByMoiety: Option<String>,
-  pub(crate) representation: Vector<SubstanceSpecification_Structure_Representation>,
-  pub(crate) isotope: Vector<SubstanceSpecification_Structure_Isotope>,
+  pub(crate) representation: Vector<Box<SubstanceSpecification_Structure_Representation>>,
+  pub(crate) isotope: Vector<Box<SubstanceSpecification_Structure_Isotope>>,
 }
 
 #[derive(Clone, Debug)]
@@ -175,15 +178,15 @@ pub struct SubstanceSpecificationRaw {
   pub(crate) nucleicAcid: Option<Box<dyn Reference>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) sourceMaterial: Option<Box<dyn Reference>>,
-  pub(crate) molecularWeight: Vector<Box<dyn SubstanceSpecification_Structure_Isotope_MolecularWeight>>,
+  pub(crate) molecularWeight: Vector<Box<SubstanceSpecification_Structure_Isotope_MolecularWeight>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) referenceInformation: Option<Box<dyn Reference>>,
   pub(crate) code: Vector<String>,
-  pub(crate) moiety: Vector<SubstanceSpecification_Moiety>,
-  pub(crate) property: Vector<SubstanceSpecification_Property>,
-  pub(crate) name: Vector<SubstanceSpecification_Name>,
-  pub(crate) relationship: Vector<SubstanceSpecification_Relationship>,
-  pub(crate) structure: Option<SubstanceSpecification_Structure>,
+  pub(crate) moiety: Vector<Box<SubstanceSpecification_Moiety>>,
+  pub(crate) property: Vector<Box<SubstanceSpecification_Property>>,
+  pub(crate) name: Vector<Box<SubstanceSpecification_Name>>,
+  pub(crate) relationship: Vector<Box<SubstanceSpecification_Relationship>>,
+  pub(crate) structure: Option<Box<SubstanceSpecification_Structure>>,
 }
 
 pub trait SubstanceSpecification : DomainResource {
@@ -198,14 +201,14 @@ pub trait SubstanceSpecification : DomainResource {
   fn description(&self) -> &Option<String>;
   fn nucleicAcid(&self) -> &Option<Box<dyn Reference>>;
   fn sourceMaterial(&self) -> &Option<Box<dyn Reference>>;
-  fn molecularWeight(&self) -> &Vector<Box<dyn SubstanceSpecification_Structure_Isotope_MolecularWeight>>;
+  fn molecularWeight(&self) -> &Vector<Box<SubstanceSpecification_Structure_Isotope_MolecularWeight>>;
   fn referenceInformation(&self) -> &Option<Box<dyn Reference>>;
   fn code(&self) -> &Vector<String>;
-  fn moiety(&self) -> &Vector<SubstanceSpecification_Moiety>;
-  fn property(&self) -> &Vector<SubstanceSpecification_Property>;
-  fn name(&self) -> &Vector<SubstanceSpecification_Name>;
-  fn relationship(&self) -> &Vector<SubstanceSpecification_Relationship>;
-  fn structure(&self) -> &Option<SubstanceSpecification_Structure>;
+  fn moiety(&self) -> &Vector<Box<SubstanceSpecification_Moiety>>;
+  fn property(&self) -> &Vector<Box<SubstanceSpecification_Property>>;
+  fn name(&self) -> &Vector<Box<SubstanceSpecification_Name>>;
+  fn relationship(&self) -> &Vector<Box<SubstanceSpecification_Relationship>>;
+  fn structure(&self) -> &Option<Box<SubstanceSpecification_Structure>>;
 }
 
 dyn_clone::clone_trait_object!(SubstanceSpecification);
@@ -241,13 +244,13 @@ impl SubstanceSpecification for SubstanceSpecificationRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn nucleicAcid(&self) -> &Option<Box<dyn Reference>> { &self.nucleicAcid }
   fn sourceMaterial(&self) -> &Option<Box<dyn Reference>> { &self.sourceMaterial }
-  fn molecularWeight(&self) -> &Vector<Box<dyn SubstanceSpecification_Structure_Isotope_MolecularWeight>> { &self.molecularWeight }
+  fn molecularWeight(&self) -> &Vector<Box<SubstanceSpecification_Structure_Isotope_MolecularWeight>> { &self.molecularWeight }
   fn referenceInformation(&self) -> &Option<Box<dyn Reference>> { &self.referenceInformation }
   fn code(&self) -> &Vector<String> { &self.code }
-  fn moiety(&self) -> &Vector<SubstanceSpecification_Moiety> { &self.moiety }
-  fn property(&self) -> &Vector<SubstanceSpecification_Property> { &self.property }
-  fn name(&self) -> &Vector<SubstanceSpecification_Name> { &self.name }
-  fn relationship(&self) -> &Vector<SubstanceSpecification_Relationship> { &self.relationship }
-  fn structure(&self) -> &Option<SubstanceSpecification_Structure> { &self.structure }
+  fn moiety(&self) -> &Vector<Box<SubstanceSpecification_Moiety>> { &self.moiety }
+  fn property(&self) -> &Vector<Box<SubstanceSpecification_Property>> { &self.property }
+  fn name(&self) -> &Vector<Box<SubstanceSpecification_Name>> { &self.name }
+  fn relationship(&self) -> &Vector<Box<SubstanceSpecification_Relationship>> { &self.relationship }
+  fn structure(&self) -> &Option<Box<SubstanceSpecification_Structure>> { &self.structure }
 }
 

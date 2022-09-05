@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionReferenceOrString;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactPoint::ContactPoint;
@@ -14,6 +16,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionReferenceOrString;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
@@ -103,16 +106,16 @@ pub struct DeviceDefinitionRaw {
   pub(crate) parentDevice: Option<Box<dyn Reference>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) manufacturer: Option<UnionReferenceOrString>,
-  pub(crate) shelfLifeStorage: Vector<any>,
+  pub(crate) shelfLifeStorage: Vector<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) onlineInformation: Option<String>,
-  pub(crate) physicalCharacteristics: Option<any>,
-  pub(crate) property: Vector<DeviceDefinition_Property>,
-  pub(crate) deviceName: Vector<DeviceDefinition_DeviceName>,
-  pub(crate) capability: Vector<DeviceDefinition_Capability>,
-  pub(crate) material: Vector<DeviceDefinition_Material>,
-  pub(crate) specialization: Vector<DeviceDefinition_Specialization>,
-  pub(crate) udiDeviceIdentifier: Vector<DeviceDefinition_UdiDeviceIdentifier>,
+  pub(crate) physicalCharacteristics: Option<String>,
+  pub(crate) property: Vector<Box<DeviceDefinition_Property>>,
+  pub(crate) deviceName: Vector<Box<DeviceDefinition_DeviceName>>,
+  pub(crate) capability: Vector<Box<DeviceDefinition_Capability>>,
+  pub(crate) material: Vector<Box<DeviceDefinition_Material>>,
+  pub(crate) specialization: Vector<Box<DeviceDefinition_Specialization>>,
+  pub(crate) udiDeviceIdentifier: Vector<Box<DeviceDefinition_UdiDeviceIdentifier>>,
 }
 
 pub trait DeviceDefinition : DomainResource {
@@ -129,15 +132,15 @@ pub trait DeviceDefinition : DomainResource {
   fn languageCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn parentDevice(&self) -> &Option<Box<dyn Reference>>;
   fn manufacturer(&self) -> &Option<UnionReferenceOrString>;
-  fn shelfLifeStorage(&self) -> &Vector<any>;
+  fn shelfLifeStorage(&self) -> &Vector<String>;
   fn onlineInformation(&self) -> &Option<String>;
-  fn physicalCharacteristics(&self) -> &Option<any>;
-  fn property(&self) -> &Vector<DeviceDefinition_Property>;
-  fn deviceName(&self) -> &Vector<DeviceDefinition_DeviceName>;
-  fn capability(&self) -> &Vector<DeviceDefinition_Capability>;
-  fn material(&self) -> &Vector<DeviceDefinition_Material>;
-  fn specialization(&self) -> &Vector<DeviceDefinition_Specialization>;
-  fn udiDeviceIdentifier(&self) -> &Vector<DeviceDefinition_UdiDeviceIdentifier>;
+  fn physicalCharacteristics(&self) -> &Option<String>;
+  fn property(&self) -> &Vector<Box<DeviceDefinition_Property>>;
+  fn deviceName(&self) -> &Vector<Box<DeviceDefinition_DeviceName>>;
+  fn capability(&self) -> &Vector<Box<DeviceDefinition_Capability>>;
+  fn material(&self) -> &Vector<Box<DeviceDefinition_Material>>;
+  fn specialization(&self) -> &Vector<Box<DeviceDefinition_Specialization>>;
+  fn udiDeviceIdentifier(&self) -> &Vector<Box<DeviceDefinition_UdiDeviceIdentifier>>;
 }
 
 dyn_clone::clone_trait_object!(DeviceDefinition);
@@ -175,14 +178,14 @@ impl DeviceDefinition for DeviceDefinitionRaw {
   fn languageCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.languageCode }
   fn parentDevice(&self) -> &Option<Box<dyn Reference>> { &self.parentDevice }
   fn manufacturer(&self) -> &Option<UnionReferenceOrString> { &self.manufacturer }
-  fn shelfLifeStorage(&self) -> &Vector<any> { &self.shelfLifeStorage }
+  fn shelfLifeStorage(&self) -> &Vector<String> { &self.shelfLifeStorage }
   fn onlineInformation(&self) -> &Option<String> { &self.onlineInformation }
-  fn physicalCharacteristics(&self) -> &Option<any> { &self.physicalCharacteristics }
-  fn property(&self) -> &Vector<DeviceDefinition_Property> { &self.property }
-  fn deviceName(&self) -> &Vector<DeviceDefinition_DeviceName> { &self.deviceName }
-  fn capability(&self) -> &Vector<DeviceDefinition_Capability> { &self.capability }
-  fn material(&self) -> &Vector<DeviceDefinition_Material> { &self.material }
-  fn specialization(&self) -> &Vector<DeviceDefinition_Specialization> { &self.specialization }
-  fn udiDeviceIdentifier(&self) -> &Vector<DeviceDefinition_UdiDeviceIdentifier> { &self.udiDeviceIdentifier }
+  fn physicalCharacteristics(&self) -> &Option<String> { &self.physicalCharacteristics }
+  fn property(&self) -> &Vector<Box<DeviceDefinition_Property>> { &self.property }
+  fn deviceName(&self) -> &Vector<Box<DeviceDefinition_DeviceName>> { &self.deviceName }
+  fn capability(&self) -> &Vector<Box<DeviceDefinition_Capability>> { &self.capability }
+  fn material(&self) -> &Vector<Box<DeviceDefinition_Material>> { &self.material }
+  fn specialization(&self) -> &Vector<Box<DeviceDefinition_Specialization>> { &self.specialization }
+  fn udiDeviceIdentifier(&self) -> &Vector<Box<DeviceDefinition_UdiDeviceIdentifier>> { &self.udiDeviceIdentifier }
 }
 

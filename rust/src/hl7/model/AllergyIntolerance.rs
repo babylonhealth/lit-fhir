@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,9 +14,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union01474038381;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01474038381;
 
 
 
@@ -56,7 +59,7 @@ pub struct AllergyIntoleranceRaw {
   pub(crate) lastOccurrence: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) verificationStatus: Option<Box<dyn CodeableConcept>>,
-  pub(crate) reaction: Vector<AllergyIntolerance_Reaction>,
+  pub(crate) reaction: Vector<Box<AllergyIntolerance_Reaction>>,
 }
 
 pub trait AllergyIntolerance : DomainResource {
@@ -75,7 +78,7 @@ pub trait AllergyIntolerance : DomainResource {
   fn clinicalStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn lastOccurrence(&self) -> &Option<DateTime<FixedOffset>>;
   fn verificationStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn reaction(&self) -> &Vector<AllergyIntolerance_Reaction>;
+  fn reaction(&self) -> &Vector<Box<AllergyIntolerance_Reaction>>;
 }
 
 dyn_clone::clone_trait_object!(AllergyIntolerance);
@@ -115,6 +118,6 @@ impl AllergyIntolerance for AllergyIntoleranceRaw {
   fn clinicalStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.clinicalStatus }
   fn lastOccurrence(&self) -> &Option<DateTime<FixedOffset>> { &self.lastOccurrence }
   fn verificationStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.verificationStatus }
-  fn reaction(&self) -> &Vector<AllergyIntolerance_Reaction> { &self.reaction }
+  fn reaction(&self) -> &Vector<Box<AllergyIntolerance_Reaction>> { &self.reaction }
 }
 

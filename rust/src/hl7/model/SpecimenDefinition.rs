@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Duration::Duration;
 use crate::core::model::Extension::Extension;
@@ -13,9 +15,10 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Range::Range;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionQuantityOrString;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionQuantityOrString;
 
 
 
@@ -52,7 +55,7 @@ pub struct SpecimenDefinition_TypeTested_Container {
   pub(crate) preparation: Option<String>,
   pub(crate) minimumVolume: Option<UnionQuantityOrString>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) additive: Vector<SpecimenDefinition_TypeTested_Container_Additive>,
+  pub(crate) additive: Vector<Box<SpecimenDefinition_TypeTested_Container_Additive>>,
 }
 
 #[derive(Clone, Debug)]
@@ -66,8 +69,8 @@ pub struct SpecimenDefinition_TypeTested {
   pub(crate) retentionTime: Option<Box<dyn Duration>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) rejectionCriterion: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) handling: Vector<SpecimenDefinition_TypeTested_Handling>,
-  pub(crate) container: Option<SpecimenDefinition_TypeTested_Container>,
+  pub(crate) handling: Vector<Box<SpecimenDefinition_TypeTested_Handling>>,
+  pub(crate) container: Option<Box<SpecimenDefinition_TypeTested_Container>>,
 }
 
 #[derive(Clone, Debug)]
@@ -85,7 +88,7 @@ pub struct SpecimenDefinitionRaw {
   pub(crate) typeCollected: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) patientPreparation: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) typeTested: Vector<SpecimenDefinition_TypeTested>,
+  pub(crate) typeTested: Vector<Box<SpecimenDefinition_TypeTested>>,
 }
 
 pub trait SpecimenDefinition : DomainResource {
@@ -94,7 +97,7 @@ pub trait SpecimenDefinition : DomainResource {
   fn collection(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn typeCollected(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn patientPreparation(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn typeTested(&self) -> &Vector<SpecimenDefinition_TypeTested>;
+  fn typeTested(&self) -> &Vector<Box<SpecimenDefinition_TypeTested>>;
 }
 
 dyn_clone::clone_trait_object!(SpecimenDefinition);
@@ -124,6 +127,6 @@ impl SpecimenDefinition for SpecimenDefinitionRaw {
   fn collection(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.collection }
   fn typeCollected(&self) -> &Option<Box<dyn CodeableConcept>> { &self.typeCollected }
   fn patientPreparation(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.patientPreparation }
-  fn typeTested(&self) -> &Vector<SpecimenDefinition_TypeTested> { &self.typeTested }
+  fn typeTested(&self) -> &Vector<Box<SpecimenDefinition_TypeTested>> { &self.typeTested }
 }
 

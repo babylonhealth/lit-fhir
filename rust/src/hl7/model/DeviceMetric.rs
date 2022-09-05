@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -45,7 +48,7 @@ pub struct DeviceMetricRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) operationalStatus: Option<String>,
   pub(crate) measurementPeriod: Option<Box<dyn Timing>>,
-  pub(crate) calibration: Vector<DeviceMetric_Calibration>,
+  pub(crate) calibration: Vector<Box<DeviceMetric_Calibration>>,
 }
 
 pub trait DeviceMetric : DomainResource {
@@ -58,7 +61,7 @@ pub trait DeviceMetric : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn operationalStatus(&self) -> &Option<String>;
   fn measurementPeriod(&self) -> &Option<Box<dyn Timing>>;
-  fn calibration(&self) -> &Vector<DeviceMetric_Calibration>;
+  fn calibration(&self) -> &Vector<Box<DeviceMetric_Calibration>>;
 }
 
 dyn_clone::clone_trait_object!(DeviceMetric);
@@ -92,6 +95,6 @@ impl DeviceMetric for DeviceMetricRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn operationalStatus(&self) -> &Option<String> { &self.operationalStatus }
   fn measurementPeriod(&self) -> &Option<Box<dyn Timing>> { &self.measurementPeriod }
-  fn calibration(&self) -> &Vector<DeviceMetric_Calibration> { &self.calibration }
+  fn calibration(&self) -> &Vector<Box<DeviceMetric_Calibration>> { &self.calibration }
 }
 

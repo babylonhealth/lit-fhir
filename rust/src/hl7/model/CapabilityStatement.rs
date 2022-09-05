@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -126,9 +129,9 @@ pub struct CapabilityStatement_Rest_Resource {
   pub(crate) conditionalCreate: Option<bool>,
   pub(crate) conditionalUpdate: Option<bool>,
   pub(crate) conditionalDelete: Option<String>,
-  pub(crate) operation: Vector<CapabilityStatement_Rest_Resource_Operation>,
-  pub(crate) interaction: Vector<CapabilityStatement_Rest_Resource_Interaction>,
-  pub(crate) searchParam: Vector<CapabilityStatement_Rest_Resource_SearchParam>,
+  pub(crate) operation: Vector<Box<CapabilityStatement_Rest_Resource_Operation>>,
+  pub(crate) interaction: Vector<Box<CapabilityStatement_Rest_Resource_Interaction>>,
+  pub(crate) searchParam: Vector<Box<CapabilityStatement_Rest_Resource_SearchParam>>,
 }
 
 #[derive(Clone, Debug)]
@@ -136,14 +139,14 @@ pub struct CapabilityStatement_Rest {
   pub(crate) id: Option<String>,
   pub(crate) mode: String,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) operation: Vector<Box<dyn CapabilityStatement_Rest_Resource_Operation>>,
-  pub(crate) searchParam: Vector<Box<dyn CapabilityStatement_Rest_Resource_SearchParam>>,
+  pub(crate) operation: Vector<Box<CapabilityStatement_Rest_Resource_Operation>>,
+  pub(crate) searchParam: Vector<Box<CapabilityStatement_Rest_Resource_SearchParam>>,
   pub(crate) compartment: Vector<String>,
   pub(crate) documentation: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) security: Option<CapabilityStatement_Rest_Security>,
-  pub(crate) interaction: Vector<CapabilityStatement_Rest_Interaction>,
-  pub(crate) resource: Vector<CapabilityStatement_Rest_Resource>,
+  pub(crate) security: Option<Box<CapabilityStatement_Rest_Security>>,
+  pub(crate) interaction: Vector<Box<CapabilityStatement_Rest_Interaction>>,
+  pub(crate) resource: Vector<Box<CapabilityStatement_Rest_Resource>>,
 }
 
 
@@ -174,8 +177,8 @@ pub struct CapabilityStatement_Messaging {
   pub(crate) reliableCache: Option<u32>,
   pub(crate) documentation: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) endpoint: Vector<CapabilityStatement_Messaging_Endpoint>,
-  pub(crate) supportedMessage: Vector<CapabilityStatement_Messaging_SupportedMessage>,
+  pub(crate) endpoint: Vector<Box<CapabilityStatement_Messaging_Endpoint>>,
+  pub(crate) supportedMessage: Vector<Box<CapabilityStatement_Messaging_SupportedMessage>>,
 }
 
 #[derive(Clone, Debug)]
@@ -209,11 +212,11 @@ pub struct CapabilityStatementRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) implementationGuide: Vector<String>,
-  pub(crate) software: Option<CapabilityStatement_Software>,
-  pub(crate) document: Vector<CapabilityStatement_Document>,
-  pub(crate) implementation: Option<CapabilityStatement_Implementation>,
-  pub(crate) rest: Vector<CapabilityStatement_Rest>,
-  pub(crate) messaging: Vector<CapabilityStatement_Messaging>,
+  pub(crate) software: Option<Box<CapabilityStatement_Software>>,
+  pub(crate) document: Vector<Box<CapabilityStatement_Document>>,
+  pub(crate) implementation: Option<Box<CapabilityStatement_Implementation>>,
+  pub(crate) rest: Vector<Box<CapabilityStatement_Rest>>,
+  pub(crate) messaging: Vector<Box<CapabilityStatement_Messaging>>,
 }
 
 pub trait CapabilityStatement : DomainResource {
@@ -238,11 +241,11 @@ pub trait CapabilityStatement : DomainResource {
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn instantiates(&self) -> &Vector<String>;
   fn implementationGuide(&self) -> &Vector<String>;
-  fn software(&self) -> &Option<CapabilityStatement_Software>;
-  fn document(&self) -> &Vector<CapabilityStatement_Document>;
-  fn implementation(&self) -> &Option<CapabilityStatement_Implementation>;
-  fn rest(&self) -> &Vector<CapabilityStatement_Rest>;
-  fn messaging(&self) -> &Vector<CapabilityStatement_Messaging>;
+  fn software(&self) -> &Option<Box<CapabilityStatement_Software>>;
+  fn document(&self) -> &Vector<Box<CapabilityStatement_Document>>;
+  fn implementation(&self) -> &Option<Box<CapabilityStatement_Implementation>>;
+  fn rest(&self) -> &Vector<Box<CapabilityStatement_Rest>>;
+  fn messaging(&self) -> &Vector<Box<CapabilityStatement_Messaging>>;
 }
 
 dyn_clone::clone_trait_object!(CapabilityStatement);
@@ -288,10 +291,10 @@ impl CapabilityStatement for CapabilityStatementRaw {
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn instantiates(&self) -> &Vector<String> { &self.instantiates }
   fn implementationGuide(&self) -> &Vector<String> { &self.implementationGuide }
-  fn software(&self) -> &Option<CapabilityStatement_Software> { &self.software }
-  fn document(&self) -> &Vector<CapabilityStatement_Document> { &self.document }
-  fn implementation(&self) -> &Option<CapabilityStatement_Implementation> { &self.implementation }
-  fn rest(&self) -> &Vector<CapabilityStatement_Rest> { &self.rest }
-  fn messaging(&self) -> &Vector<CapabilityStatement_Messaging> { &self.messaging }
+  fn software(&self) -> &Option<Box<CapabilityStatement_Software>> { &self.software }
+  fn document(&self) -> &Vector<Box<CapabilityStatement_Document>> { &self.document }
+  fn implementation(&self) -> &Option<Box<CapabilityStatement_Implementation>> { &self.implementation }
+  fn rest(&self) -> &Vector<Box<CapabilityStatement_Rest>> { &self.rest }
+  fn messaging(&self) -> &Vector<Box<CapabilityStatement_Messaging>> { &self.messaging }
 }
 

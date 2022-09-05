@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
@@ -12,9 +14,10 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriodOrTiming;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriodOrTiming;
 
 
 
@@ -47,7 +50,7 @@ pub struct SupplyDeliveryRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) occurrence: Option<UnionDateTimeOrPeriodOrTiming>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) suppliedItem: Option<SupplyDelivery_SuppliedItem>,
+  pub(crate) suppliedItem: Option<Box<SupplyDelivery_SuppliedItem>>,
 }
 
 pub trait SupplyDelivery : DomainResource {
@@ -61,7 +64,7 @@ pub trait SupplyDelivery : DomainResource {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn destination(&self) -> &Option<Box<dyn Reference>>;
   fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming>;
-  fn suppliedItem(&self) -> &Option<SupplyDelivery_SuppliedItem>;
+  fn suppliedItem(&self) -> &Option<Box<SupplyDelivery_SuppliedItem>>;
 }
 
 dyn_clone::clone_trait_object!(SupplyDelivery);
@@ -96,6 +99,6 @@ impl SupplyDelivery for SupplyDeliveryRaw {
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn destination(&self) -> &Option<Box<dyn Reference>> { &self.destination }
   fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming> { &self.occurrence }
-  fn suppliedItem(&self) -> &Option<SupplyDelivery_SuppliedItem> { &self.suppliedItem }
+  fn suppliedItem(&self) -> &Option<Box<SupplyDelivery_SuppliedItem>> { &self.suppliedItem }
 }
 

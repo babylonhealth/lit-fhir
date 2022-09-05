@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionAll;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -13,6 +15,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionAll;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
@@ -86,9 +89,9 @@ pub struct TaskRaw {
   pub(crate) relevantHistory: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) instantiatesCanonical: Option<String>,
-  pub(crate) input: Vector<Task_Input>,
-  pub(crate) output: Vector<Task_Output>,
-  pub(crate) restriction: Option<Task_Restriction>,
+  pub(crate) input: Vector<Box<Task_Input>>,
+  pub(crate) output: Vector<Box<Task_Output>>,
+  pub(crate) restriction: Option<Box<Task_Restriction>>,
 }
 
 pub trait Task : DomainResource {
@@ -120,9 +123,9 @@ pub trait Task : DomainResource {
   fn reasonReference(&self) -> &Option<Box<dyn Reference>>;
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Option<String>;
-  fn input(&self) -> &Vector<Task_Input>;
-  fn output(&self) -> &Vector<Task_Output>;
-  fn restriction(&self) -> &Option<Task_Restriction>;
+  fn input(&self) -> &Vector<Box<Task_Input>>;
+  fn output(&self) -> &Vector<Box<Task_Output>>;
+  fn restriction(&self) -> &Option<Box<Task_Restriction>>;
 }
 
 dyn_clone::clone_trait_object!(Task);
@@ -175,8 +178,8 @@ impl Task for TaskRaw {
   fn reasonReference(&self) -> &Option<Box<dyn Reference>> { &self.reasonReference }
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>> { &self.relevantHistory }
   fn instantiatesCanonical(&self) -> &Option<String> { &self.instantiatesCanonical }
-  fn input(&self) -> &Vector<Task_Input> { &self.input }
-  fn output(&self) -> &Vector<Task_Output> { &self.output }
-  fn restriction(&self) -> &Option<Task_Restriction> { &self.restriction }
+  fn input(&self) -> &Vector<Box<Task_Input>> { &self.input }
+  fn output(&self) -> &Vector<Box<Task_Output>> { &self.output }
+  fn restriction(&self) -> &Option<Box<Task_Restriction>> { &self.restriction }
 }
 

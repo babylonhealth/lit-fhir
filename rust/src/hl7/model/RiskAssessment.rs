@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,11 +14,11 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionDateTimeOrPeriod;
-use crate::hl7::UnionDecimalOrRange;
-use crate::hl7::UnionPeriodOrRange;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
+use crate::hl7::model::UnionAliases::UnionDecimalOrRange;
+use crate::hl7::model::UnionAliases::UnionPeriodOrRange;
 
 
 
@@ -58,7 +61,7 @@ pub struct RiskAssessmentRaw {
   pub(crate) occurrence: Option<UnionDateTimeOrPeriod>,
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) prediction: Vector<RiskAssessment_Prediction>,
+  pub(crate) prediction: Vector<Box<RiskAssessment_Prediction>>,
 }
 
 pub trait RiskAssessment : DomainResource {
@@ -78,7 +81,7 @@ pub trait RiskAssessment : DomainResource {
   fn mitigation(&self) -> &Option<String>;
   fn occurrence(&self) -> &Option<UnionDateTimeOrPeriod>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn prediction(&self) -> &Vector<RiskAssessment_Prediction>;
+  fn prediction(&self) -> &Vector<Box<RiskAssessment_Prediction>>;
 }
 
 dyn_clone::clone_trait_object!(RiskAssessment);
@@ -119,6 +122,6 @@ impl RiskAssessment for RiskAssessmentRaw {
   fn mitigation(&self) -> &Option<String> { &self.mitigation }
   fn occurrence(&self) -> &Option<UnionDateTimeOrPeriod> { &self.occurrence }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
-  fn prediction(&self) -> &Vector<RiskAssessment_Prediction> { &self.prediction }
+  fn prediction(&self) -> &Vector<Box<RiskAssessment_Prediction>> { &self.prediction }
 }
 

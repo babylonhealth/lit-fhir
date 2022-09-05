@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -12,9 +15,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::Union01475253842;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01475253842;
 
 
 
@@ -27,9 +30,9 @@ pub struct ValueSet_Expansion_Contains {
   pub(crate) display: Option<String>,
   pub(crate) _abstract: Option<bool>,
   pub(crate) inactive: Option<bool>,
-  pub(crate) contains: Vector<Box<dyn ValueSet_Expansion_Contains>>,
+  pub(crate) contains: Vector<Box<ValueSet_Expansion_Contains>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) designation: Vector<Box<dyn ValueSet_Compose_Include_Concept_Designation>>,
+  pub(crate) designation: Vector<Box<ValueSet_Compose_Include_Concept_Designation>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -53,8 +56,8 @@ pub struct ValueSet_Expansion {
   pub(crate) timestamp: DateTime<FixedOffset>,
   pub(crate) identifier: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) contains: Vector<ValueSet_Expansion_Contains>,
-  pub(crate) parameter: Vector<ValueSet_Expansion_Parameter>,
+  pub(crate) contains: Vector<Box<ValueSet_Expansion_Contains>>,
+  pub(crate) parameter: Vector<Box<ValueSet_Expansion_Parameter>>,
 }
 
 
@@ -87,7 +90,7 @@ pub struct ValueSet_Compose_Include_Concept {
   pub(crate) display: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) designation: Vector<ValueSet_Compose_Include_Concept_Designation>,
+  pub(crate) designation: Vector<Box<ValueSet_Compose_Include_Concept_Designation>>,
 }
 
 #[derive(Clone, Debug)]
@@ -98,19 +101,19 @@ pub struct ValueSet_Compose_Include {
   pub(crate) valueSet: Vector<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) filter: Vector<ValueSet_Compose_Include_Filter>,
-  pub(crate) concept: Vector<ValueSet_Compose_Include_Concept>,
+  pub(crate) filter: Vector<Box<ValueSet_Compose_Include_Filter>>,
+  pub(crate) concept: Vector<Box<ValueSet_Compose_Include_Concept>>,
 }
 
 #[derive(Clone, Debug)]
 pub struct ValueSet_Compose {
   pub(crate) id: Option<String>,
-  pub(crate) exclude: Vector<Box<dyn ValueSet_Compose_Include>>,
+  pub(crate) exclude: Vector<Box<ValueSet_Compose_Include>>,
   pub(crate) inactive: Option<bool>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) lockedDate: Option<FHIRDate>,
+  pub(crate) lockedDate: Option<LocalDate>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) include: Vector<ValueSet_Compose_Include>,
+  pub(crate) include: Vector<Box<ValueSet_Compose_Include>>,
 }
 
 #[derive(Clone, Debug)]
@@ -139,8 +142,8 @@ pub struct ValueSetRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) expansion: Option<ValueSet_Expansion>,
-  pub(crate) compose: Option<ValueSet_Compose>,
+  pub(crate) expansion: Option<Box<ValueSet_Expansion>>,
+  pub(crate) compose: Option<Box<ValueSet_Compose>>,
 }
 
 pub trait ValueSet : DomainResource {
@@ -160,8 +163,8 @@ pub trait ValueSet : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn expansion(&self) -> &Option<ValueSet_Expansion>;
-  fn compose(&self) -> &Option<ValueSet_Compose>;
+  fn expansion(&self) -> &Option<Box<ValueSet_Expansion>>;
+  fn compose(&self) -> &Option<Box<ValueSet_Compose>>;
 }
 
 dyn_clone::clone_trait_object!(ValueSet);
@@ -202,7 +205,7 @@ impl ValueSet for ValueSetRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn expansion(&self) -> &Option<ValueSet_Expansion> { &self.expansion }
-  fn compose(&self) -> &Option<ValueSet_Compose> { &self.compose }
+  fn expansion(&self) -> &Option<Box<ValueSet_Expansion>> { &self.expansion }
+  fn compose(&self) -> &Option<Box<ValueSet_Compose>> { &self.compose }
 }
 

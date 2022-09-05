@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -63,14 +66,14 @@ pub struct Bundle_Entry_Response {
 #[derive(Clone, Debug)]
 pub struct Bundle_Entry {
   pub(crate) id: Option<String>,
-  pub(crate) link: Vector<Box<dyn Bundle_Link>>,
+  pub(crate) link: Vector<Box<Bundle_Link>>,
   pub(crate) fullUrl: Option<String>,
   pub(crate) resource: Option<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) search: Option<Bundle_Entry_Search>,
-  pub(crate) request: Option<Bundle_Entry_Request>,
-  pub(crate) response: Option<Bundle_Entry_Response>,
+  pub(crate) search: Option<Box<Bundle_Entry_Search>>,
+  pub(crate) request: Option<Box<Bundle_Entry_Request>>,
+  pub(crate) response: Option<Box<Bundle_Entry_Response>>,
 }
 
 #[derive(Clone, Debug)]
@@ -84,8 +87,8 @@ pub struct BundleRaw {
   pub(crate) signature: Option<Box<dyn Signature>>,
   pub(crate) identifier: Option<Box<dyn Identifier>>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) link: Vector<Bundle_Link>,
-  pub(crate) entry: Vector<Bundle_Entry>,
+  pub(crate) link: Vector<Box<Bundle_Link>>,
+  pub(crate) entry: Vector<Box<Bundle_Entry>>,
 }
 
 pub trait Bundle : Resource {
@@ -94,8 +97,8 @@ pub trait Bundle : Resource {
   fn timestamp(&self) -> &Option<DateTime<FixedOffset>>;
   fn signature(&self) -> &Option<Box<dyn Signature>>;
   fn identifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn link(&self) -> &Vector<Bundle_Link>;
-  fn entry(&self) -> &Vector<Bundle_Entry>;
+  fn link(&self) -> &Vector<Box<Bundle_Link>>;
+  fn entry(&self) -> &Vector<Box<Bundle_Entry>>;
 }
 
 dyn_clone::clone_trait_object!(Bundle);
@@ -117,7 +120,7 @@ impl Bundle for BundleRaw {
   fn timestamp(&self) -> &Option<DateTime<FixedOffset>> { &self.timestamp }
   fn signature(&self) -> &Option<Box<dyn Signature>> { &self.signature }
   fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
-  fn link(&self) -> &Vector<Bundle_Link> { &self.link }
-  fn entry(&self) -> &Vector<Bundle_Entry> { &self.entry }
+  fn link(&self) -> &Vector<Box<Bundle_Link>> { &self.link }
+  fn entry(&self) -> &Vector<Box<Bundle_Entry>> { &self.entry }
 }
 

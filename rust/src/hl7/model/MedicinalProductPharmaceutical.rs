@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -44,7 +47,7 @@ pub struct MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies {
   pub(crate) code: Box<dyn CodeableConcept>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) withdrawalPeriod: Vector<MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_WithdrawalPeriod>,
+  pub(crate) withdrawalPeriod: Vector<Box<MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_WithdrawalPeriod>>,
 }
 
 #[derive(Clone, Debug)]
@@ -58,7 +61,7 @@ pub struct MedicinalProductPharmaceutical_RouteOfAdministration {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) maxTreatmentPeriod: Option<Box<dyn Duration>>,
   pub(crate) maxDosePerTreatmentPeriod: Option<Box<dyn Ratio>>,
-  pub(crate) targetSpecies: Vector<MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies>,
+  pub(crate) targetSpecies: Vector<Box<MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies>>,
 }
 
 #[derive(Clone, Debug)]
@@ -76,8 +79,8 @@ pub struct MedicinalProductPharmaceuticalRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) unitOfPresentation: Option<Box<dyn CodeableConcept>>,
   pub(crate) administrableDoseForm: Box<dyn CodeableConcept>,
-  pub(crate) characteristics: Vector<MedicinalProductPharmaceutical_Characteristics>,
-  pub(crate) routeOfAdministration: Vector<MedicinalProductPharmaceutical_RouteOfAdministration>,
+  pub(crate) characteristics: Vector<Box<MedicinalProductPharmaceutical_Characteristics>>,
+  pub(crate) routeOfAdministration: Vector<Box<MedicinalProductPharmaceutical_RouteOfAdministration>>,
 }
 
 pub trait MedicinalProductPharmaceutical : DomainResource {
@@ -86,8 +89,8 @@ pub trait MedicinalProductPharmaceutical : DomainResource {
   fn ingredient(&self) -> &Vector<Box<dyn Reference>>;
   fn unitOfPresentation(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn administrableDoseForm(&self) -> &Box<dyn CodeableConcept>;
-  fn characteristics(&self) -> &Vector<MedicinalProductPharmaceutical_Characteristics>;
-  fn routeOfAdministration(&self) -> &Vector<MedicinalProductPharmaceutical_RouteOfAdministration>;
+  fn characteristics(&self) -> &Vector<Box<MedicinalProductPharmaceutical_Characteristics>>;
+  fn routeOfAdministration(&self) -> &Vector<Box<MedicinalProductPharmaceutical_RouteOfAdministration>>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProductPharmaceutical);
@@ -117,7 +120,7 @@ impl MedicinalProductPharmaceutical for MedicinalProductPharmaceuticalRaw {
   fn ingredient(&self) -> &Vector<Box<dyn Reference>> { &self.ingredient }
   fn unitOfPresentation(&self) -> &Option<Box<dyn CodeableConcept>> { &self.unitOfPresentation }
   fn administrableDoseForm(&self) -> &Box<dyn CodeableConcept> { &self.administrableDoseForm }
-  fn characteristics(&self) -> &Vector<MedicinalProductPharmaceutical_Characteristics> { &self.characteristics }
-  fn routeOfAdministration(&self) -> &Vector<MedicinalProductPharmaceutical_RouteOfAdministration> { &self.routeOfAdministration }
+  fn characteristics(&self) -> &Vector<Box<MedicinalProductPharmaceutical_Characteristics>> { &self.characteristics }
+  fn routeOfAdministration(&self) -> &Vector<Box<MedicinalProductPharmaceutical_RouteOfAdministration>> { &self.routeOfAdministration }
 }
 

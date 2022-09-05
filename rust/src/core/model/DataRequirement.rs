@@ -1,14 +1,17 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
-use crate::core::UnionDurationOrDateTimeOrPeriod;
 use crate::core::model::Coding::Coding;
 use crate::core::model::Extension::Extension;
 use crate::core::model::FHIRElement::FHIRElement;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
+use crate::core::model::UnionAliases::UnionDurationOrDateTimeOrPeriod;
 
 
 
@@ -50,9 +53,9 @@ pub struct DataRequirementRaw {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) subject: Option<UnionCodeableConceptOrReference>,
   pub(crate) mustSupport: Vector<String>,
-  pub(crate) sort: Vector<DataRequirement_Sort>,
-  pub(crate) codeFilter: Vector<DataRequirement_CodeFilter>,
-  pub(crate) dateFilter: Vector<DataRequirement_DateFilter>,
+  pub(crate) sort: Vector<Box<DataRequirement_Sort>>,
+  pub(crate) codeFilter: Vector<Box<DataRequirement_CodeFilter>>,
+  pub(crate) dateFilter: Vector<Box<DataRequirement_DateFilter>>,
 }
 
 pub trait DataRequirement : FHIRElement {
@@ -61,9 +64,9 @@ pub trait DataRequirement : FHIRElement {
   fn profile(&self) -> &Vector<String>;
   fn subject(&self) -> &Option<UnionCodeableConceptOrReference>;
   fn mustSupport(&self) -> &Vector<String>;
-  fn sort(&self) -> &Vector<DataRequirement_Sort>;
-  fn codeFilter(&self) -> &Vector<DataRequirement_CodeFilter>;
-  fn dateFilter(&self) -> &Vector<DataRequirement_DateFilter>;
+  fn sort(&self) -> &Vector<Box<DataRequirement_Sort>>;
+  fn codeFilter(&self) -> &Vector<Box<DataRequirement_CodeFilter>>;
+  fn dateFilter(&self) -> &Vector<Box<DataRequirement_DateFilter>>;
 }
 
 dyn_clone::clone_trait_object!(DataRequirement);
@@ -83,8 +86,8 @@ impl DataRequirement for DataRequirementRaw {
   fn profile(&self) -> &Vector<String> { &self.profile }
   fn subject(&self) -> &Option<UnionCodeableConceptOrReference> { &self.subject }
   fn mustSupport(&self) -> &Vector<String> { &self.mustSupport }
-  fn sort(&self) -> &Vector<DataRequirement_Sort> { &self.sort }
-  fn codeFilter(&self) -> &Vector<DataRequirement_CodeFilter> { &self.codeFilter }
-  fn dateFilter(&self) -> &Vector<DataRequirement_DateFilter> { &self.dateFilter }
+  fn sort(&self) -> &Vector<Box<DataRequirement_Sort>> { &self.sort }
+  fn codeFilter(&self) -> &Vector<Box<DataRequirement_CodeFilter>> { &self.codeFilter }
+  fn dateFilter(&self) -> &Vector<Box<DataRequirement_DateFilter>> { &self.dateFilter }
 }
 

@@ -1,15 +1,18 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
@@ -39,7 +42,7 @@ pub struct MedicinalProductInteractionRaw {
   pub(crate) description: Option<String>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) interactant: Vector<MedicinalProductInteraction_Interactant>,
+  pub(crate) interactant: Vector<Box<MedicinalProductInteraction_Interactant>>,
 }
 
 pub trait MedicinalProductInteraction : DomainResource {
@@ -49,7 +52,7 @@ pub trait MedicinalProductInteraction : DomainResource {
   fn incidence(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn management(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn description(&self) -> &Option<String>;
-  fn interactant(&self) -> &Vector<MedicinalProductInteraction_Interactant>;
+  fn interactant(&self) -> &Vector<Box<MedicinalProductInteraction_Interactant>>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProductInteraction);
@@ -80,6 +83,6 @@ impl MedicinalProductInteraction for MedicinalProductInteractionRaw {
   fn incidence(&self) -> &Option<Box<dyn CodeableConcept>> { &self.incidence }
   fn management(&self) -> &Option<Box<dyn CodeableConcept>> { &self.management }
   fn description(&self) -> &Option<String> { &self.description }
-  fn interactant(&self) -> &Vector<MedicinalProductInteraction_Interactant> { &self.interactant }
+  fn interactant(&self) -> &Vector<Box<MedicinalProductInteraction_Interactant>> { &self.interactant }
 }
 

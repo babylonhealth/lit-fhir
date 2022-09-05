@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -20,7 +23,7 @@ use crate::hl7::model::Narrative::Narrative;
 pub struct MedicinalProductIngredient_Substance {
   pub(crate) id: Option<String>,
   pub(crate) code: Box<dyn CodeableConcept>,
-  pub(crate) strength: Vector<Box<dyn MedicinalProductIngredient_SpecifiedSubstance_Strength>>,
+  pub(crate) strength: Vector<Box<MedicinalProductIngredient_SpecifiedSubstance_Strength>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
@@ -49,7 +52,7 @@ pub struct MedicinalProductIngredient_SpecifiedSubstance_Strength {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) presentationLowLimit: Option<Box<dyn Ratio>>,
   pub(crate) concentrationLowLimit: Option<Box<dyn Ratio>>,
-  pub(crate) referenceStrength: Vector<MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrength>,
+  pub(crate) referenceStrength: Vector<Box<MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrength>>,
 }
 
 #[derive(Clone, Debug)]
@@ -60,7 +63,7 @@ pub struct MedicinalProductIngredient_SpecifiedSubstance {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) confidentiality: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) strength: Vector<MedicinalProductIngredient_SpecifiedSubstance_Strength>,
+  pub(crate) strength: Vector<Box<MedicinalProductIngredient_SpecifiedSubstance_Strength>>,
 }
 
 #[derive(Clone, Debug)]
@@ -77,8 +80,8 @@ pub struct MedicinalProductIngredientRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) allergenicIndicator: Option<bool>,
-  pub(crate) substance: Option<MedicinalProductIngredient_Substance>,
-  pub(crate) specifiedSubstance: Vector<MedicinalProductIngredient_SpecifiedSubstance>,
+  pub(crate) substance: Option<Box<MedicinalProductIngredient_Substance>>,
+  pub(crate) specifiedSubstance: Vector<Box<MedicinalProductIngredient_SpecifiedSubstance>>,
 }
 
 pub trait MedicinalProductIngredient : DomainResource {
@@ -86,8 +89,8 @@ pub trait MedicinalProductIngredient : DomainResource {
   fn identifier(&self) -> &Option<Box<dyn Identifier>>;
   fn manufacturer(&self) -> &Vector<Box<dyn Reference>>;
   fn allergenicIndicator(&self) -> &Option<bool>;
-  fn substance(&self) -> &Option<MedicinalProductIngredient_Substance>;
-  fn specifiedSubstance(&self) -> &Vector<MedicinalProductIngredient_SpecifiedSubstance>;
+  fn substance(&self) -> &Option<Box<MedicinalProductIngredient_Substance>>;
+  fn specifiedSubstance(&self) -> &Vector<Box<MedicinalProductIngredient_SpecifiedSubstance>>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProductIngredient);
@@ -116,7 +119,7 @@ impl MedicinalProductIngredient for MedicinalProductIngredientRaw {
   fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
   fn manufacturer(&self) -> &Vector<Box<dyn Reference>> { &self.manufacturer }
   fn allergenicIndicator(&self) -> &Option<bool> { &self.allergenicIndicator }
-  fn substance(&self) -> &Option<MedicinalProductIngredient_Substance> { &self.substance }
-  fn specifiedSubstance(&self) -> &Vector<MedicinalProductIngredient_SpecifiedSubstance> { &self.specifiedSubstance }
+  fn substance(&self) -> &Option<Box<MedicinalProductIngredient_Substance>> { &self.substance }
+  fn specifiedSubstance(&self) -> &Vector<Box<MedicinalProductIngredient_SpecifiedSubstance>> { &self.specifiedSubstance }
 }
 

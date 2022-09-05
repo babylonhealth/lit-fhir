@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactDetail::ContactDetail;
 use crate::core::model::Expression::Expression;
@@ -14,6 +16,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::RelatedArtifact::RelatedArtifact;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::core::model::UsageContext::UsageContext;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
@@ -62,7 +65,7 @@ pub struct Measure_Group_Stratifier {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) component: Vector<Measure_Group_Stratifier_Component>,
+  pub(crate) component: Vector<Box<Measure_Group_Stratifier_Component>>,
 }
 
 #[derive(Clone, Debug)]
@@ -72,8 +75,8 @@ pub struct Measure_Group {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) population: Vector<Measure_Group_Population>,
-  pub(crate) stratifier: Vector<Measure_Group_Stratifier>,
+  pub(crate) population: Vector<Box<Measure_Group_Population>>,
+  pub(crate) stratifier: Vector<Box<Measure_Group_Stratifier>>,
 }
 
 #[derive(Clone, Debug)]
@@ -114,9 +117,9 @@ pub struct MeasureRaw {
   pub(crate) description: Option<String>,
   pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) riskAdjustment: Option<String>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
@@ -125,8 +128,8 @@ pub struct MeasureRaw {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) improvementNotation: Option<Box<dyn CodeableConcept>>,
   pub(crate) clinicalRecommendationStatement: Option<String>,
-  pub(crate) supplementalData: Vector<Measure_SupplementalData>,
-  pub(crate) group: Vector<Measure_Group>,
+  pub(crate) supplementalData: Vector<Box<Measure_SupplementalData>>,
+  pub(crate) group: Vector<Box<Measure_Group>>,
 }
 
 pub trait Measure : DomainResource {
@@ -160,8 +163,8 @@ pub trait Measure : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn riskAdjustment(&self) -> &Option<String>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
@@ -169,8 +172,8 @@ pub trait Measure : DomainResource {
   fn compositeScoring(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn improvementNotation(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn clinicalRecommendationStatement(&self) -> &Option<String>;
-  fn supplementalData(&self) -> &Vector<Measure_SupplementalData>;
-  fn group(&self) -> &Vector<Measure_Group>;
+  fn supplementalData(&self) -> &Vector<Box<Measure_SupplementalData>>;
+  fn group(&self) -> &Vector<Box<Measure_Group>>;
 }
 
 dyn_clone::clone_trait_object!(Measure);
@@ -225,8 +228,8 @@ impl Measure for MeasureRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn riskAdjustment(&self) -> &Option<String> { &self.riskAdjustment }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
@@ -234,7 +237,7 @@ impl Measure for MeasureRaw {
   fn compositeScoring(&self) -> &Option<Box<dyn CodeableConcept>> { &self.compositeScoring }
   fn improvementNotation(&self) -> &Option<Box<dyn CodeableConcept>> { &self.improvementNotation }
   fn clinicalRecommendationStatement(&self) -> &Option<String> { &self.clinicalRecommendationStatement }
-  fn supplementalData(&self) -> &Vector<Measure_SupplementalData> { &self.supplementalData }
-  fn group(&self) -> &Vector<Measure_Group> { &self.group }
+  fn supplementalData(&self) -> &Vector<Box<Measure_SupplementalData>> { &self.supplementalData }
+  fn group(&self) -> &Vector<Box<Measure_Group>> { &self.group }
 }
 

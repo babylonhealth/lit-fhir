@@ -1,12 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionBooleanOrCodeableConcept;
-use crate::core::UnionQuantityOrRange;
-use crate::core::UnionQuantityOrRangeOrRatio;
 use crate::core::model::BackboneElement::BackboneElement;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -14,6 +14,9 @@ use crate::core::model::FHIRElement::FHIRElement;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Ratio::Ratio;
 use crate::core::model::Timing::Timing;
+use crate::core::model::UnionAliases::UnionBooleanOrCodeableConcept;
+use crate::core::model::UnionAliases::UnionQuantityOrRange;
+use crate::core::model::UnionAliases::UnionQuantityOrRangeOrRatio;
 
 
 
@@ -42,7 +45,7 @@ pub struct DosageRaw {
   pub(crate) patientInstruction: Option<String>,
   pub(crate) maxDosePerLifetime: Option<Box<dyn Quantity>>,
   pub(crate) additionalInstruction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) doseAndRate: Vector<Dosage_DoseAndRate>,
+  pub(crate) doseAndRate: Vector<Box<Dosage_DoseAndRate>>,
   pub(crate) maxDosePerAdministration: Option<Box<dyn Quantity>>,
 }
 
@@ -58,7 +61,7 @@ pub trait Dosage : BackboneElement {
   fn patientInstruction(&self) -> &Option<String>;
   fn maxDosePerLifetime(&self) -> &Option<Box<dyn Quantity>>;
   fn additionalInstruction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn doseAndRate(&self) -> &Vector<Dosage_DoseAndRate>;
+  fn doseAndRate(&self) -> &Vector<Box<Dosage_DoseAndRate>>;
   fn maxDosePerAdministration(&self) -> &Option<Box<dyn Quantity>>;
 }
 
@@ -90,7 +93,7 @@ impl Dosage for DosageRaw {
   fn patientInstruction(&self) -> &Option<String> { &self.patientInstruction }
   fn maxDosePerLifetime(&self) -> &Option<Box<dyn Quantity>> { &self.maxDosePerLifetime }
   fn additionalInstruction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.additionalInstruction }
-  fn doseAndRate(&self) -> &Vector<Dosage_DoseAndRate> { &self.doseAndRate }
+  fn doseAndRate(&self) -> &Vector<Box<Dosage_DoseAndRate>> { &self.doseAndRate }
   fn maxDosePerAdministration(&self) -> &Option<Box<dyn Quantity>> { &self.maxDosePerAdministration }
 }
 

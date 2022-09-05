@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,11 +14,11 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionCodeableConceptOrDate;
-use crate::hl7::UnionDurationOrDate;
-use crate::hl7::Union_1061953715;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionCodeableConceptOrDate;
+use crate::hl7::model::UnionAliases::UnionDurationOrDate;
+use crate::hl7::model::UnionAliases::Union_1061953715;
 
 
 
@@ -25,7 +28,7 @@ pub struct Goal_Target {
   pub(crate) due: Option<UnionDurationOrDate>,
   pub(crate) measure: Option<Box<dyn CodeableConcept>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) detail: Option<Union_1061953715>,
+  pub(crate) detail: Option<Box<Union_1061953715>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -44,7 +47,7 @@ pub struct GoalRaw {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) addresses: Vector<Box<dyn Reference>>,
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
-  pub(crate) statusDate: Option<FHIRDate>,
+  pub(crate) statusDate: Option<LocalDate>,
   pub(crate) description: Box<dyn CodeableConcept>,
   pub(crate) expressedBy: Option<Box<dyn Reference>>,
   pub(crate) outcomeCode: Vector<Box<dyn CodeableConcept>>,
@@ -54,7 +57,7 @@ pub struct GoalRaw {
   pub(crate) outcomeReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) achievementStatus: Option<Box<dyn CodeableConcept>>,
-  pub(crate) target: Vector<Goal_Target>,
+  pub(crate) target: Vector<Box<Goal_Target>>,
 }
 
 pub trait Goal : DomainResource {
@@ -65,7 +68,7 @@ pub trait Goal : DomainResource {
   fn start(&self) -> &Option<UnionCodeableConceptOrDate>;
   fn addresses(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn statusDate(&self) -> &Option<FHIRDate>;
+  fn statusDate(&self) -> &Option<LocalDate>;
   fn description(&self) -> &Box<dyn CodeableConcept>;
   fn expressedBy(&self) -> &Option<Box<dyn Reference>>;
   fn outcomeCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
@@ -73,7 +76,7 @@ pub trait Goal : DomainResource {
   fn lifecycleStatus(&self) -> &String;
   fn outcomeReference(&self) -> &Vector<Box<dyn Reference>>;
   fn achievementStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn target(&self) -> &Vector<Goal_Target>;
+  fn target(&self) -> &Vector<Box<Goal_Target>>;
 }
 
 dyn_clone::clone_trait_object!(Goal);
@@ -105,7 +108,7 @@ impl Goal for GoalRaw {
   fn start(&self) -> &Option<UnionCodeableConceptOrDate> { &self.start }
   fn addresses(&self) -> &Vector<Box<dyn Reference>> { &self.addresses }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn statusDate(&self) -> &Option<FHIRDate> { &self.statusDate }
+  fn statusDate(&self) -> &Option<LocalDate> { &self.statusDate }
   fn description(&self) -> &Box<dyn CodeableConcept> { &self.description }
   fn expressedBy(&self) -> &Option<Box<dyn Reference>> { &self.expressedBy }
   fn outcomeCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.outcomeCode }
@@ -113,6 +116,6 @@ impl Goal for GoalRaw {
   fn lifecycleStatus(&self) -> &String { &self.lifecycleStatus }
   fn outcomeReference(&self) -> &Vector<Box<dyn Reference>> { &self.outcomeReference }
   fn achievementStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.achievementStatus }
-  fn target(&self) -> &Vector<Goal_Target> { &self.target }
+  fn target(&self) -> &Vector<Box<Goal_Target>> { &self.target }
 }
 

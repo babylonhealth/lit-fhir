@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -50,9 +53,9 @@ pub struct shareablecodesystemRaw {
   pub(crate) versionNeeded: Option<bool>,
   pub(crate) hierarchyMeaning: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) filter: Vector<shareablecodesystem_Filter>,
-  pub(crate) property: Vector<shareablecodesystem_Property>,
-  pub(crate) concept: Vector<shareablecodesystem_Concept>,
+  pub(crate) filter: Vector<Box<shareablecodesystem_Filter>>,
+  pub(crate) property: Vector<Box<shareablecodesystem_Property>>,
+  pub(crate) concept: Vector<Box<shareablecodesystem_Concept>>,
 }
 
 pub trait shareablecodesystem : CodeSystem {
@@ -104,9 +107,9 @@ impl CodeSystem for shareablecodesystemRaw {
   fn compositional(&self) -> &Option<bool> { &self.compositional }
   fn versionNeeded(&self) -> &Option<bool> { &self.versionNeeded }
   fn hierarchyMeaning(&self) -> &Option<String> { &self.hierarchyMeaning }
-  fn filter(&self) -> &Vector<CodeSystem_Filter> { &self.filter }
-  fn property(&self) -> &Vector<CodeSystem_Property> { &self.property }
-  fn concept(&self) -> &Vector<CodeSystem_Concept> { &self.concept }
+  fn filter(&self) -> &Vector<Box<CodeSystem_Filter>> { &self.filter }
+  fn property(&self) -> &Vector<Box<CodeSystem_Property>> { &self.property }
+  fn concept(&self) -> &Vector<Box<CodeSystem_Concept>> { &self.concept }
 }
 
 

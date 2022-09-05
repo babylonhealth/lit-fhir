@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -11,12 +14,12 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union00659500323;
-use crate::hl7::UnionAgeOrRangeOrString;
-use crate::hl7::UnionDateOrPeriodOrString;
-use crate::hl7::Union_1204024681;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union00659500323;
+use crate::hl7::model::UnionAliases::UnionAgeOrRangeOrString;
+use crate::hl7::model::UnionAliases::UnionDateOrPeriodOrString;
+use crate::hl7::model::UnionAliases::Union_1204024681;
 
 
 
@@ -26,7 +29,7 @@ pub struct FamilyMemberHistory_Condition {
   pub(crate) code: Box<dyn CodeableConcept>,
   pub(crate) note: Vector<Box<dyn Annotation>>,
   pub(crate) outcome: Option<Box<dyn CodeableConcept>>,
-  pub(crate) onset: Option<Union_1204024681>,
+  pub(crate) onset: Option<Box<Union_1204024681>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) contributedToDeath: Option<bool>,
@@ -59,7 +62,7 @@ pub struct FamilyMemberHistoryRaw {
   pub(crate) dataAbsentReason: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) instantiatesCanonical: Vector<String>,
-  pub(crate) condition: Vector<FamilyMemberHistory_Condition>,
+  pub(crate) condition: Vector<Box<FamilyMemberHistory_Condition>>,
 }
 
 pub trait FamilyMemberHistory : DomainResource {
@@ -80,7 +83,7 @@ pub trait FamilyMemberHistory : DomainResource {
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn dataAbsentReason(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
-  fn condition(&self) -> &Vector<FamilyMemberHistory_Condition>;
+  fn condition(&self) -> &Vector<Box<FamilyMemberHistory_Condition>>;
 }
 
 dyn_clone::clone_trait_object!(FamilyMemberHistory);
@@ -122,6 +125,6 @@ impl FamilyMemberHistory for FamilyMemberHistoryRaw {
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn dataAbsentReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.dataAbsentReason }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
-  fn condition(&self) -> &Vector<FamilyMemberHistory_Condition> { &self.condition }
+  fn condition(&self) -> &Vector<Box<FamilyMemberHistory_Condition>> { &self.condition }
 }
 

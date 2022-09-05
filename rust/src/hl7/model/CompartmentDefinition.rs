@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -47,7 +50,7 @@ pub struct CompartmentDefinitionRaw {
   pub(crate) experimental: Option<bool>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) resource: Vector<CompartmentDefinition_Resource>,
+  pub(crate) resource: Vector<Box<CompartmentDefinition_Resource>>,
 }
 
 pub trait CompartmentDefinition : DomainResource {
@@ -64,7 +67,7 @@ pub trait CompartmentDefinition : DomainResource {
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
-  fn resource(&self) -> &Vector<CompartmentDefinition_Resource>;
+  fn resource(&self) -> &Vector<Box<CompartmentDefinition_Resource>>;
 }
 
 dyn_clone::clone_trait_object!(CompartmentDefinition);
@@ -102,6 +105,6 @@ impl CompartmentDefinition for CompartmentDefinitionRaw {
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
-  fn resource(&self) -> &Vector<CompartmentDefinition_Resource> { &self.resource }
+  fn resource(&self) -> &Vector<Box<CompartmentDefinition_Resource>> { &self.resource }
 }
 

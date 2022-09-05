@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -23,7 +26,7 @@ pub struct MedicinalProductUndesirableEffectRaw {
   pub(crate) language: Option<String>,
   pub(crate) contained: Vector<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) population: Vector<any>,
+  pub(crate) population: Vector<String>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) classification: Option<Box<dyn CodeableConcept>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
@@ -33,7 +36,7 @@ pub struct MedicinalProductUndesirableEffectRaw {
 
 pub trait MedicinalProductUndesirableEffect : DomainResource {
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
-  fn population(&self) -> &Vector<any>;
+  fn population(&self) -> &Vector<String>;
   fn classification(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn frequencyOfOccurrence(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn symptomConditionEffect(&self) -> &Option<Box<dyn CodeableConcept>>;
@@ -62,7 +65,7 @@ impl DomainResource for MedicinalProductUndesirableEffectRaw {
 
 impl MedicinalProductUndesirableEffect for MedicinalProductUndesirableEffectRaw {
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
-  fn population(&self) -> &Vector<any> { &self.population }
+  fn population(&self) -> &Vector<String> { &self.population }
   fn classification(&self) -> &Option<Box<dyn CodeableConcept>> { &self.classification }
   fn frequencyOfOccurrence(&self) -> &Option<Box<dyn CodeableConcept>> { &self.frequencyOfOccurrence }
   fn symptomConditionEffect(&self) -> &Option<Box<dyn CodeableConcept>> { &self.symptomConditionEffect }

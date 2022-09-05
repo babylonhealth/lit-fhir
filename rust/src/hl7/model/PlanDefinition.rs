@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::ContactDetail::ContactDetail;
 use crate::core::model::DataRequirement::DataRequirement;
@@ -17,13 +19,14 @@ use crate::core::model::Period::Period;
 use crate::core::model::RelatedArtifact::RelatedArtifact;
 use crate::core::model::Resource::Resource;
 use crate::core::model::TriggerDefinition::TriggerDefinition;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::Union01405873694;
-use crate::hl7::UnionCanonicalOrUri;
-use crate::hl7::UnionCodeableConceptOrQuantityOrRange;
-use crate::hl7::UnionDurationOrRange;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01405873694;
+use crate::hl7::model::UnionAliases::UnionCanonicalOrUri;
+use crate::hl7::model::UnionAliases::UnionCodeableConceptOrQuantityOrRange;
+use crate::hl7::model::UnionAliases::UnionDurationOrRange;
 
 
 
@@ -48,7 +51,7 @@ pub struct PlanDefinition_Goal {
   pub(crate) description: Box<dyn CodeableConcept>,
   pub(crate) documentation: Vector<Box<dyn RelatedArtifact>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) target: Vector<PlanDefinition_Goal_Target>,
+  pub(crate) target: Vector<Box<PlanDefinition_Goal_Target>>,
 }
 
 
@@ -106,7 +109,7 @@ pub struct PlanDefinition_Action {
   pub(crate) reason: Vector<Box<dyn CodeableConcept>>,
   pub(crate) goalId: Vector<String>,
   pub(crate) output: Vector<Box<dyn DataRequirement>>,
-  pub(crate) action: Vector<Box<dyn PlanDefinition_Action>>,
+  pub(crate) action: Vector<Box<PlanDefinition_Action>>,
   pub(crate) trigger: Vector<Box<dyn TriggerDefinition>>,
   pub(crate) priority: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
@@ -123,10 +126,10 @@ pub struct PlanDefinition_Action {
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) selectionBehavior: Option<String>,
   pub(crate) cardinalityBehavior: Option<String>,
-  pub(crate) condition: Vector<PlanDefinition_Action_Condition>,
-  pub(crate) participant: Vector<PlanDefinition_Action_Participant>,
-  pub(crate) dynamicValue: Vector<PlanDefinition_Action_DynamicValue>,
-  pub(crate) relatedAction: Vector<PlanDefinition_Action_RelatedAction>,
+  pub(crate) condition: Vector<Box<PlanDefinition_Action_Condition>>,
+  pub(crate) participant: Vector<Box<PlanDefinition_Action_Participant>>,
+  pub(crate) dynamicValue: Vector<Box<PlanDefinition_Action_DynamicValue>>,
+  pub(crate) relatedAction: Vector<Box<PlanDefinition_Action_RelatedAction>>,
 }
 
 #[derive(Clone, Debug)]
@@ -162,14 +165,14 @@ pub struct PlanDefinitionRaw {
   pub(crate) description: Option<String>,
   pub(crate) experimental: Option<bool>,
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
-  pub(crate) approvalDate: Option<FHIRDate>,
+  pub(crate) approvalDate: Option<LocalDate>,
   pub(crate) implicitRules: Option<String>,
-  pub(crate) lastReviewDate: Option<FHIRDate>,
+  pub(crate) lastReviewDate: Option<LocalDate>,
   pub(crate) effectivePeriod: Option<Box<dyn Period>>,
   pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) goal: Vector<PlanDefinition_Goal>,
-  pub(crate) action: Vector<PlanDefinition_Action>,
+  pub(crate) goal: Vector<Box<PlanDefinition_Goal>>,
+  pub(crate) action: Vector<Box<PlanDefinition_Action>>,
 }
 
 pub trait PlanDefinition : DomainResource {
@@ -198,12 +201,12 @@ pub trait PlanDefinition : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<FHIRDate>;
-  fn lastReviewDate(&self) -> &Option<FHIRDate>;
+  fn approvalDate(&self) -> &Option<LocalDate>;
+  fn lastReviewDate(&self) -> &Option<LocalDate>;
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
-  fn goal(&self) -> &Vector<PlanDefinition_Goal>;
-  fn action(&self) -> &Vector<PlanDefinition_Action>;
+  fn goal(&self) -> &Vector<Box<PlanDefinition_Goal>>;
+  fn action(&self) -> &Vector<Box<PlanDefinition_Action>>;
 }
 
 dyn_clone::clone_trait_object!(PlanDefinition);
@@ -253,11 +256,11 @@ impl PlanDefinition for PlanDefinitionRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<FHIRDate> { &self.approvalDate }
-  fn lastReviewDate(&self) -> &Option<FHIRDate> { &self.lastReviewDate }
+  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
+  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
   fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
-  fn goal(&self) -> &Vector<PlanDefinition_Goal> { &self.goal }
-  fn action(&self) -> &Vector<PlanDefinition_Action> { &self.action }
+  fn goal(&self) -> &Vector<Box<PlanDefinition_Goal>> { &self.goal }
+  fn action(&self) -> &Vector<Box<PlanDefinition_Action>> { &self.action }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -40,7 +43,7 @@ pub struct SubscriptionRaw {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) channel: Subscription_Channel,
+  pub(crate) channel: Box<Subscription_Channel>,
 }
 
 pub trait Subscription : DomainResource {
@@ -50,7 +53,7 @@ pub trait Subscription : DomainResource {
   fn reason(&self) -> &String;
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn criteria(&self) -> &String;
-  fn channel(&self) -> &Subscription_Channel;
+  fn channel(&self) -> &Box<Subscription_Channel>;
 }
 
 dyn_clone::clone_trait_object!(Subscription);
@@ -81,6 +84,6 @@ impl Subscription for SubscriptionRaw {
   fn reason(&self) -> &String { &self.reason }
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>> { &self.contact }
   fn criteria(&self) -> &String { &self.criteria }
-  fn channel(&self) -> &Subscription_Channel { &self.channel }
+  fn channel(&self) -> &Box<Subscription_Channel> { &self.channel }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -31,12 +34,12 @@ pub struct GraphDefinition_Link_Target_Compartment {
 pub struct GraphDefinition_Link_Target {
   pub(crate) id: Option<String>,
   pub(crate) _type: String,
-  pub(crate) link: Vector<Box<dyn GraphDefinition_Link>>,
+  pub(crate) link: Vector<Box<GraphDefinition_Link>>,
   pub(crate) params: Option<String>,
   pub(crate) profile: Option<String>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) compartment: Vector<GraphDefinition_Link_Target_Compartment>,
+  pub(crate) compartment: Vector<Box<GraphDefinition_Link_Target_Compartment>>,
 }
 
 #[derive(Clone, Debug)]
@@ -49,7 +52,7 @@ pub struct GraphDefinition_Link {
   pub(crate) sliceName: Option<String>,
   pub(crate) description: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) target: Vector<GraphDefinition_Link_Target>,
+  pub(crate) target: Vector<Box<GraphDefinition_Link_Target>>,
 }
 
 #[derive(Clone, Debug)]
@@ -76,7 +79,7 @@ pub struct GraphDefinitionRaw {
   pub(crate) jurisdiction: Vector<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) link: Vector<GraphDefinition_Link>,
+  pub(crate) link: Vector<Box<GraphDefinition_Link>>,
 }
 
 pub trait GraphDefinition : DomainResource {
@@ -94,7 +97,7 @@ pub trait GraphDefinition : DomainResource {
   fn description(&self) -> &Option<String>;
   fn experimental(&self) -> &Option<bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn link(&self) -> &Vector<GraphDefinition_Link>;
+  fn link(&self) -> &Vector<Box<GraphDefinition_Link>>;
 }
 
 dyn_clone::clone_trait_object!(GraphDefinition);
@@ -133,6 +136,6 @@ impl GraphDefinition for GraphDefinitionRaw {
   fn description(&self) -> &Option<String> { &self.description }
   fn experimental(&self) -> &Option<bool> { &self.experimental }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn link(&self) -> &Vector<GraphDefinition_Link> { &self.link }
+  fn link(&self) -> &Vector<Box<GraphDefinition_Link>> { &self.link }
 }
 

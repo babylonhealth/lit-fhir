@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -34,13 +37,13 @@ pub struct LinkageRaw {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) item: Vector<Linkage_Item>,
+  pub(crate) item: Vector<Box<Linkage_Item>>,
 }
 
 pub trait Linkage : DomainResource {
   fn active(&self) -> &Option<bool>;
   fn author(&self) -> &Option<Box<dyn Reference>>;
-  fn item(&self) -> &Vector<Linkage_Item>;
+  fn item(&self) -> &Vector<Box<Linkage_Item>>;
 }
 
 dyn_clone::clone_trait_object!(Linkage);
@@ -67,6 +70,6 @@ impl DomainResource for LinkageRaw {
 impl Linkage for LinkageRaw {
   fn active(&self) -> &Option<bool> { &self.active }
   fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
-  fn item(&self) -> &Vector<Linkage_Item> { &self.item }
+  fn item(&self) -> &Vector<Box<Linkage_Item>> { &self.item }
 }
 

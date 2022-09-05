@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
 use crate::core::model::Identifier::Identifier;
@@ -12,10 +14,11 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Quantity::Quantity;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::Union01850316684;
-use crate::hl7::UnionDateTimeOrPeriodOrTiming;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::Union01850316684;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriodOrTiming;
 
 
 
@@ -52,7 +55,7 @@ pub struct SupplyRequestRaw {
   pub(crate) occurrence: Option<UnionDateTimeOrPeriodOrTiming>,
   pub(crate) reasonReference: Vector<Box<dyn Reference>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) parameter: Vector<SupplyRequest_Parameter>,
+  pub(crate) parameter: Vector<Box<SupplyRequest_Parameter>>,
 }
 
 pub trait SupplyRequest : DomainResource {
@@ -70,7 +73,7 @@ pub trait SupplyRequest : DomainResource {
   fn deliverFrom(&self) -> &Option<Box<dyn Reference>>;
   fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn parameter(&self) -> &Vector<SupplyRequest_Parameter>;
+  fn parameter(&self) -> &Vector<Box<SupplyRequest_Parameter>>;
 }
 
 dyn_clone::clone_trait_object!(SupplyRequest);
@@ -109,6 +112,6 @@ impl SupplyRequest for SupplyRequestRaw {
   fn deliverFrom(&self) -> &Option<Box<dyn Reference>> { &self.deliverFrom }
   fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming> { &self.occurrence }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
-  fn parameter(&self) -> &Vector<SupplyRequest_Parameter> { &self.parameter }
+  fn parameter(&self) -> &Vector<Box<SupplyRequest_Parameter>> { &self.parameter }
 }
 

@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -10,9 +13,9 @@ use crate::core::model::Extension::Extension;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
-use crate::hl7::UnionCodingOrUri;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionCodingOrUri;
 
 
 
@@ -69,9 +72,9 @@ pub struct MessageHeaderRaw {
   pub(crate) responsible: Option<Box<dyn Reference>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) source: MessageHeader_Source,
-  pub(crate) response: Option<MessageHeader_Response>,
-  pub(crate) destination: Vector<MessageHeader_Destination>,
+  pub(crate) source: Box<MessageHeader_Source>,
+  pub(crate) response: Option<Box<MessageHeader_Response>>,
+  pub(crate) destination: Vector<Box<MessageHeader_Destination>>,
 }
 
 pub trait MessageHeader : DomainResource {
@@ -83,9 +86,9 @@ pub trait MessageHeader : DomainResource {
   fn event(&self) -> &UnionCodingOrUri;
   fn definition(&self) -> &Option<String>;
   fn responsible(&self) -> &Option<Box<dyn Reference>>;
-  fn source(&self) -> &MessageHeader_Source;
-  fn response(&self) -> &Option<MessageHeader_Response>;
-  fn destination(&self) -> &Vector<MessageHeader_Destination>;
+  fn source(&self) -> &Box<MessageHeader_Source>;
+  fn response(&self) -> &Option<Box<MessageHeader_Response>>;
+  fn destination(&self) -> &Vector<Box<MessageHeader_Destination>>;
 }
 
 dyn_clone::clone_trait_object!(MessageHeader);
@@ -118,8 +121,8 @@ impl MessageHeader for MessageHeaderRaw {
   fn event(&self) -> &UnionCodingOrUri { &self.event }
   fn definition(&self) -> &Option<String> { &self.definition }
   fn responsible(&self) -> &Option<Box<dyn Reference>> { &self.responsible }
-  fn source(&self) -> &MessageHeader_Source { &self.source }
-  fn response(&self) -> &Option<MessageHeader_Response> { &self.response }
-  fn destination(&self) -> &Vector<MessageHeader_Destination> { &self.destination }
+  fn source(&self) -> &Box<MessageHeader_Source> { &self.source }
+  fn response(&self) -> &Option<Box<MessageHeader_Response>> { &self.response }
+  fn destination(&self) -> &Vector<Box<MessageHeader_Destination>> { &self.destination }
 }
 

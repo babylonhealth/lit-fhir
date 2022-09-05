@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -90,10 +93,10 @@ pub struct StructureDefinitionRaw {
   pub(crate) baseDefinition: Option<String>,
   pub(crate) contextInvariant: Vector<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) mapping: Vector<StructureDefinition_Mapping>,
-  pub(crate) context: Vector<StructureDefinition_Context>,
-  pub(crate) snapshot: Option<StructureDefinition_Snapshot>,
-  pub(crate) differential: Option<StructureDefinition_Differential>,
+  pub(crate) mapping: Vector<Box<StructureDefinition_Mapping>>,
+  pub(crate) context: Vector<Box<StructureDefinition_Context>>,
+  pub(crate) snapshot: Option<Box<StructureDefinition_Snapshot>>,
+  pub(crate) differential: Option<Box<StructureDefinition_Differential>>,
 }
 
 pub trait StructureDefinition : DomainResource {
@@ -120,10 +123,10 @@ pub trait StructureDefinition : DomainResource {
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn baseDefinition(&self) -> &Option<String>;
   fn contextInvariant(&self) -> &Vector<String>;
-  fn mapping(&self) -> &Vector<StructureDefinition_Mapping>;
-  fn context(&self) -> &Vector<StructureDefinition_Context>;
-  fn snapshot(&self) -> &Option<StructureDefinition_Snapshot>;
-  fn differential(&self) -> &Option<StructureDefinition_Differential>;
+  fn mapping(&self) -> &Vector<Box<StructureDefinition_Mapping>>;
+  fn context(&self) -> &Vector<Box<StructureDefinition_Context>>;
+  fn snapshot(&self) -> &Option<Box<StructureDefinition_Snapshot>>;
+  fn differential(&self) -> &Option<Box<StructureDefinition_Differential>>;
 }
 
 dyn_clone::clone_trait_object!(StructureDefinition);
@@ -171,9 +174,9 @@ impl StructureDefinition for StructureDefinitionRaw {
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn baseDefinition(&self) -> &Option<String> { &self.baseDefinition }
   fn contextInvariant(&self) -> &Vector<String> { &self.contextInvariant }
-  fn mapping(&self) -> &Vector<StructureDefinition_Mapping> { &self.mapping }
-  fn context(&self) -> &Vector<StructureDefinition_Context> { &self.context }
-  fn snapshot(&self) -> &Option<StructureDefinition_Snapshot> { &self.snapshot }
-  fn differential(&self) -> &Option<StructureDefinition_Differential> { &self.differential }
+  fn mapping(&self) -> &Vector<Box<StructureDefinition_Mapping>> { &self.mapping }
+  fn context(&self) -> &Vector<Box<StructureDefinition_Context>> { &self.context }
+  fn snapshot(&self) -> &Option<Box<StructureDefinition_Snapshot>> { &self.snapshot }
+  fn differential(&self) -> &Option<Box<StructureDefinition_Differential>> { &self.differential }
 }
 

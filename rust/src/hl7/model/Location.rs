@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -35,8 +38,8 @@ pub struct Location_HoursOfOperation {
   pub(crate) allDay: Option<bool>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) daysOfWeek: Vector<String>,
-  pub(crate) openingTime: Option<Date>,
-  pub(crate) closingTime: Option<Date>,
+  pub(crate) openingTime: Option<LocalTime>,
+  pub(crate) closingTime: Option<LocalTime>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
@@ -65,8 +68,8 @@ pub struct LocationRaw {
   pub(crate) operationalStatus: Option<Box<dyn Coding>>,
   pub(crate) managingOrganization: Option<Box<dyn Reference>>,
   pub(crate) availabilityExceptions: Option<String>,
-  pub(crate) position: Option<Location_Position>,
-  pub(crate) hoursOfOperation: Vector<Location_HoursOfOperation>,
+  pub(crate) position: Option<Box<Location_Position>>,
+  pub(crate) hoursOfOperation: Vector<Box<Location_HoursOfOperation>>,
 }
 
 pub trait Location : DomainResource {
@@ -85,8 +88,8 @@ pub trait Location : DomainResource {
   fn operationalStatus(&self) -> &Option<Box<dyn Coding>>;
   fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
   fn availabilityExceptions(&self) -> &Option<String>;
-  fn position(&self) -> &Option<Location_Position>;
-  fn hoursOfOperation(&self) -> &Vector<Location_HoursOfOperation>;
+  fn position(&self) -> &Option<Box<Location_Position>>;
+  fn hoursOfOperation(&self) -> &Vector<Box<Location_HoursOfOperation>>;
 }
 
 dyn_clone::clone_trait_object!(Location);
@@ -126,7 +129,7 @@ impl Location for LocationRaw {
   fn operationalStatus(&self) -> &Option<Box<dyn Coding>> { &self.operationalStatus }
   fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
   fn availabilityExceptions(&self) -> &Option<String> { &self.availabilityExceptions }
-  fn position(&self) -> &Option<Location_Position> { &self.position }
-  fn hoursOfOperation(&self) -> &Vector<Location_HoursOfOperation> { &self.hoursOfOperation }
+  fn position(&self) -> &Option<Box<Location_Position>> { &self.position }
+  fn hoursOfOperation(&self) -> &Vector<Box<Location_HoursOfOperation>> { &self.hoursOfOperation }
 }
 

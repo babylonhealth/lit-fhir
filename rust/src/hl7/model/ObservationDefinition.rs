@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -64,8 +67,8 @@ pub struct ObservationDefinitionRaw {
   pub(crate) abnormalCodedValueSet: Option<Box<dyn Reference>>,
   pub(crate) criticalCodedValueSet: Option<Box<dyn Reference>>,
   pub(crate) multipleResultsAllowed: Option<bool>,
-  pub(crate) qualifiedInterval: Vector<ObservationDefinition_QualifiedInterval>,
-  pub(crate) quantitativeDetails: Option<ObservationDefinition_QuantitativeDetails>,
+  pub(crate) qualifiedInterval: Vector<Box<ObservationDefinition_QualifiedInterval>>,
+  pub(crate) quantitativeDetails: Option<Box<ObservationDefinition_QuantitativeDetails>>,
 }
 
 pub trait ObservationDefinition : DomainResource {
@@ -80,8 +83,8 @@ pub trait ObservationDefinition : DomainResource {
   fn abnormalCodedValueSet(&self) -> &Option<Box<dyn Reference>>;
   fn criticalCodedValueSet(&self) -> &Option<Box<dyn Reference>>;
   fn multipleResultsAllowed(&self) -> &Option<bool>;
-  fn qualifiedInterval(&self) -> &Vector<ObservationDefinition_QualifiedInterval>;
-  fn quantitativeDetails(&self) -> &Option<ObservationDefinition_QuantitativeDetails>;
+  fn qualifiedInterval(&self) -> &Vector<Box<ObservationDefinition_QualifiedInterval>>;
+  fn quantitativeDetails(&self) -> &Option<Box<ObservationDefinition_QuantitativeDetails>>;
 }
 
 dyn_clone::clone_trait_object!(ObservationDefinition);
@@ -117,7 +120,7 @@ impl ObservationDefinition for ObservationDefinitionRaw {
   fn abnormalCodedValueSet(&self) -> &Option<Box<dyn Reference>> { &self.abnormalCodedValueSet }
   fn criticalCodedValueSet(&self) -> &Option<Box<dyn Reference>> { &self.criticalCodedValueSet }
   fn multipleResultsAllowed(&self) -> &Option<bool> { &self.multipleResultsAllowed }
-  fn qualifiedInterval(&self) -> &Vector<ObservationDefinition_QualifiedInterval> { &self.qualifiedInterval }
-  fn quantitativeDetails(&self) -> &Option<ObservationDefinition_QuantitativeDetails> { &self.quantitativeDetails }
+  fn qualifiedInterval(&self) -> &Vector<Box<ObservationDefinition_QualifiedInterval>> { &self.qualifiedInterval }
+  fn quantitativeDetails(&self) -> &Option<Box<ObservationDefinition_QuantitativeDetails>> { &self.quantitativeDetails }
 }
 

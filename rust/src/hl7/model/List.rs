@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -49,7 +52,7 @@ pub struct ListRaw {
   pub(crate) emptyReason: Option<Box<dyn CodeableConcept>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) entry: Vector<List_Entry>,
+  pub(crate) entry: Vector<Box<List_Entry>>,
 }
 
 pub trait List : DomainResource {
@@ -65,7 +68,7 @@ pub trait List : DomainResource {
   fn orderedBy(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn emptyReason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn entry(&self) -> &Vector<List_Entry>;
+  fn entry(&self) -> &Vector<Box<List_Entry>>;
 }
 
 dyn_clone::clone_trait_object!(List);
@@ -102,6 +105,6 @@ impl List for ListRaw {
   fn orderedBy(&self) -> &Option<Box<dyn CodeableConcept>> { &self.orderedBy }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn emptyReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.emptyReason }
-  fn entry(&self) -> &Vector<List_Entry> { &self.entry }
+  fn entry(&self) -> &Vector<Box<List_Entry>> { &self.entry }
 }
 

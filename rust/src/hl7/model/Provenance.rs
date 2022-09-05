@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -10,9 +13,9 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
 use crate::core::model::Signature::Signature;
-use crate::hl7::UnionDateTimeOrPeriod;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
+use crate::hl7::model::UnionAliases::UnionDateTimeOrPeriod;
 
 
 
@@ -33,7 +36,7 @@ pub struct Provenance_Entity {
   pub(crate) id: Option<String>,
   pub(crate) role: String,
   pub(crate) what: Box<dyn Reference>,
-  pub(crate) agent: Vector<Box<dyn Provenance_Agent>>,
+  pub(crate) agent: Vector<Box<Provenance_Agent>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
@@ -56,8 +59,8 @@ pub struct ProvenanceRaw {
   pub(crate) occurred: Option<UnionDateTimeOrPeriod>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) agent: Vector<Provenance_Agent>,
-  pub(crate) entity: Vector<Provenance_Entity>,
+  pub(crate) agent: Vector<Box<Provenance_Agent>>,
+  pub(crate) entity: Vector<Box<Provenance_Entity>>,
 }
 
 pub trait Provenance : DomainResource {
@@ -69,8 +72,8 @@ pub trait Provenance : DomainResource {
   fn activity(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn signature(&self) -> &Vector<Box<dyn Signature>>;
   fn occurred(&self) -> &Option<UnionDateTimeOrPeriod>;
-  fn agent(&self) -> &Vector<Provenance_Agent>;
-  fn entity(&self) -> &Vector<Provenance_Entity>;
+  fn agent(&self) -> &Vector<Box<Provenance_Agent>>;
+  fn entity(&self) -> &Vector<Box<Provenance_Entity>>;
 }
 
 dyn_clone::clone_trait_object!(Provenance);
@@ -103,7 +106,7 @@ impl Provenance for ProvenanceRaw {
   fn activity(&self) -> &Option<Box<dyn CodeableConcept>> { &self.activity }
   fn signature(&self) -> &Vector<Box<dyn Signature>> { &self.signature }
   fn occurred(&self) -> &Option<UnionDateTimeOrPeriod> { &self.occurred }
-  fn agent(&self) -> &Vector<Provenance_Agent> { &self.agent }
-  fn entity(&self) -> &Vector<Provenance_Entity> { &self.entity }
+  fn agent(&self) -> &Vector<Box<Provenance_Agent>> { &self.agent }
+  fn entity(&self) -> &Vector<Box<Provenance_Entity>> { &self.entity }
 }
 

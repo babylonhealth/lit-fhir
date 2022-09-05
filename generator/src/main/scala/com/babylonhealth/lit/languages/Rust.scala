@@ -2,18 +2,22 @@ package com.babylonhealth.lit.languages
 
 import com.babylonhealth.lit.Cardinality.{ AtLeastOne, Many, One, Optional, Zero }
 import com.babylonhealth.lit.ElementTreee.{ isPrimitiveSuffix, unionDeclaringPackages }
-import com.babylonhealth.lit.{ BaseField, Cardinality, ClassGenInfo, ElementTreee, TopLevelClass }
+import com.babylonhealth.lit.{ BaseField, Cardinality, ClassGenInfo, ElementTreee, ModuleDependencies, TopLevelClass }
 
 case class Import(pkg: String, name: String, `enum`: Boolean) {
   val parentName: String = name.split('_').head
-  def toImport: String   = if (`enum`) s"use crate::$pkg::$name;" else s"use crate::$pkg::model::$parentName::$name;"
+  def toImport: String =
+    if (`enum`) s"use crate::$pkg::model::UnionAliases::$name;" else s"use crate::$pkg::model::$parentName::$name;"
 }
 
 object Rust {
   def commonImports(pkgs: Seq[String]): String =
     s"""use bigdecimal::BigDecimal;
+       |use bytes::Bytes;
        |use chrono::{DateTime, FixedOffset};
+       |use datetime::{LocalDate, LocalTime};
        |use im::vector::Vector;
+       |use uuid::Uuid;
        |
        |use crate::core::model::FHIRObject::FHIRObject;""".stripMargin
   def Q(f: BaseField) = f.cardinality match {
@@ -31,7 +35,8 @@ object Rust {
   }
   def tpe(f: BaseField): String = {
     val isDyn  = !f.isGenerated && f.isBuildableFHIRType
-    def rawTpe = if (isDyn) s"Box<dyn ${rawType(f)}>" else rawType(f)
+    val str    = rawType(f)
+    def rawTpe = if (str.contains('_')) s"Box<$str>" else if (isDyn) s"Box<dyn $str>" else str
     f.cardinality match {
       case One               => rawTpe
       case AtLeastOne | Many => s"Vector<$rawTpe>"
@@ -46,20 +51,20 @@ object Rust {
         case "Integer64"                   => "i64"
         case "BigDecimal"                  => "BigDecimal"
         case "Boolean"                     => "bool"
-        case "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" | "String" |
-            "UUID" =>
+        case "UUID"                        => "Uuid"
+        case "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" | "String" =>
           "String"
         case "ZonedDateTime" | "FHIRDateTime" => "DateTime<FixedOffset>" // TODO: specificity-aware wrapper for FHIRDateTime
-        // TODO: these two
-        case "LocalDate" => "Date"
-        case "LocalTime" => "Date"
+        // TODO: this one
+        case "FHIRDate"  => "LocalDate"
+        case "LocalTime" => "LocalTime"
 //        case "Element"                        => "FHIRElement"
 //        case "Parameters"                     => "FHIRParameters"
         // TODO: Use a json type
-        case x if x.startsWith("Choice[\"") => "any"
+        case x if x.startsWith("Choice[\"") => "String"
         case x if f.isGenerated && f.declaringClasses.nonEmpty =>
           val h +: t = f.declaringClasses
-          s"${(toRustClassName(h) +: t).mkString("_")}_${toRustClassName(x)}"
+          s"${(toRustClassName(h) +: t).mkString("_")}_$x"
         case x =>
           val h +: t = x.split("\\.").toSeq
           (toRustClassName(h) +: t).mkString("_")
@@ -211,11 +216,89 @@ object Rust {
   }
 
   def genModRS(pkg: String, classes: Iterable[String]): Seq[ClassGenInfo] = {
-    val allClasses = (classes.map(toRustClassName) ++ (if (pkg == "core") Seq("FHIRObject") else Nil)).toSeq.sorted
+    val allClasses =
+      (classes.map(toRustClassName) ++ (if (pkg == "core") Seq("FHIRObject") else Nil) ++ Seq("UnionAliases")).toSeq.sorted
     val body =
       s"""#![allow(non_snake_case)]
          |
          |${allClasses.map(c => s"pub mod $c;").mkString("\n")}""".stripMargin
     Seq(ClassGenInfo(body, "mod", pkg))
+  }
+
+  private def enumTypeLookup(s: String): String = s match {
+    case "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "String" | "UriStr" | "UrlStr" => "String"
+    case "Base64Binary"                                                                    => "Bytes"
+    case "BigDecimal"                                                                      => "BigDecimal"
+    case "Boolean"                                                                         => "bool"
+    case "Int"                                                                             => "i32"
+    case "FHIRDate"                                                                        => "LocalDate"
+    case "FHIRDateTime"                                                                    => "DateTime<FixedOffset>"
+    case "LocalTime"                                                                       => "LocalTime"
+    case "ZonedDateTime"                                                                   => "DateTime<FixedOffset>"
+    case "PositiveInt" | "UnsignedInt"                                                     => "u32"
+    case "UUID"                                                                            => "Uuid"
+    case _                                                                                 => s"Box<dyn $s>"
+  }
+  private def getUnion(name: String, types: Seq[String]): String = {
+    val variants = types.map(t => s"   FHIR${t.stripPrefix("FHIR")}(${enumTypeLookup(t)}),").mkString("\n")
+    s"""
+       |#[derive(Clone, Debug)]
+       |pub enum $name {
+       |$variants
+       |}""".stripMargin
+  }
+
+  val primitiveTypes = Set(
+    "Canonical",
+    "Code",
+    "Id",
+    "Markdown",
+    "OID",
+    "String",
+    "UriStr",
+    "UrlStr",
+    "Base64Binary",
+    "BigDecimal",
+    "Boolean",
+    "Int",
+    "FHIRDate",
+    "FHIRDateTime",
+    "LocalTime",
+    "ZonedDateTime",
+    "PositiveInt",
+    "UnsignedInt",
+    "UUID"
+  )
+  def getUnions(pkg: String, _unionAliases: Map[String, Seq[String]]): String = {
+    val allCoreClasses = _unionAliases.flatMap(_._2).toSeq.distinct.sorted.filterNot(primitiveTypes)
+    s"""use bigdecimal::BigDecimal;
+       |use bytes::Bytes;
+       |use chrono::{DateTime, FixedOffset};
+       |use datetime::{LocalDate, LocalTime};
+       |use uuid::Uuid;
+       |
+       |${allCoreClasses.map(c => s"use crate::core::model::$c::$c;").mkString("\n")}
+       |""".stripMargin +
+    _unionAliases.toSeq
+      .map((getUnion _).tupled)
+      .sorted
+      .mkString("\n")
+  }
+
+  def genUnionFiles(
+      moduleDependencies: ModuleDependencies,
+      _unionAliases: Map[String, (Seq[String], Seq[String])]
+//      classes: Seq[(String, TopLevelClass)]
+  ): Seq[ClassGenInfo] = {
+//    val lookups = classes.groupMap(_._1) { case (_, c) => c.url -> c.scalaClassName }
+    val unions: Map[String, Map[String, Seq[String]]] =
+      _unionAliases
+        .map { case (unionName, (pkgs, unionTypes)) =>
+          (moduleDependencies.leastCommon(pkgs.toSet), unionName, unionTypes)
+        }
+        .groupBy(_._1)
+        .map { case (pkg, unions) => pkg -> unions.map { case (_, b, c) => b -> c }.toMap }
+
+    unions.map { case (pkg, unions) => ClassGenInfo(getUnions(pkg, unions), "UnionAliases", pkg) }.toSeq
   }
 }

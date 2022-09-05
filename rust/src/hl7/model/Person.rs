@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -41,12 +44,12 @@ pub struct PersonRaw {
   pub(crate) language: Option<String>,
   pub(crate) contained: Vector<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
-  pub(crate) birthDate: Option<FHIRDate>,
+  pub(crate) birthDate: Option<LocalDate>,
   pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) implicitRules: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) managingOrganization: Option<Box<dyn Reference>>,
-  pub(crate) link: Vector<Person_Link>,
+  pub(crate) link: Vector<Box<Person_Link>>,
 }
 
 pub trait Person : DomainResource {
@@ -56,10 +59,10 @@ pub trait Person : DomainResource {
   fn active(&self) -> &Option<bool>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &Vector<Box<dyn Address>>;
-  fn birthDate(&self) -> &Option<FHIRDate>;
+  fn birthDate(&self) -> &Option<LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
-  fn link(&self) -> &Vector<Person_Link>;
+  fn link(&self) -> &Vector<Box<Person_Link>>;
 }
 
 dyn_clone::clone_trait_object!(Person);
@@ -90,9 +93,9 @@ impl Person for PersonRaw {
   fn active(&self) -> &Option<bool> { &self.active }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
-  fn birthDate(&self) -> &Option<FHIRDate> { &self.birthDate }
+  fn birthDate(&self) -> &Option<LocalDate> { &self.birthDate }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
-  fn link(&self) -> &Vector<Person_Link> { &self.link }
+  fn link(&self) -> &Vector<Box<Person_Link>> { &self.link }
 }
 

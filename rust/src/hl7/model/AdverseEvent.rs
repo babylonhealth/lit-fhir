@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -32,7 +35,7 @@ pub struct AdverseEvent_SuspectEntity {
   pub(crate) instance: Box<dyn Reference>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) causality: Vector<AdverseEvent_SuspectEntity_Causality>,
+  pub(crate) causality: Vector<Box<AdverseEvent_SuspectEntity_Causality>>,
 }
 
 #[derive(Clone, Debug)]
@@ -64,7 +67,7 @@ pub struct AdverseEventRaw {
   pub(crate) referenceDocument: Vector<Box<dyn Reference>>,
   pub(crate) resultingCondition: Vector<Box<dyn Reference>>,
   pub(crate) subjectMedicalHistory: Vector<Box<dyn Reference>>,
-  pub(crate) suspectEntity: Vector<AdverseEvent_SuspectEntity>,
+  pub(crate) suspectEntity: Vector<Box<AdverseEvent_SuspectEntity>>,
 }
 
 pub trait AdverseEvent : DomainResource {
@@ -87,7 +90,7 @@ pub trait AdverseEvent : DomainResource {
   fn referenceDocument(&self) -> &Vector<Box<dyn Reference>>;
   fn resultingCondition(&self) -> &Vector<Box<dyn Reference>>;
   fn subjectMedicalHistory(&self) -> &Vector<Box<dyn Reference>>;
-  fn suspectEntity(&self) -> &Vector<AdverseEvent_SuspectEntity>;
+  fn suspectEntity(&self) -> &Vector<Box<AdverseEvent_SuspectEntity>>;
 }
 
 dyn_clone::clone_trait_object!(AdverseEvent);
@@ -131,6 +134,6 @@ impl AdverseEvent for AdverseEventRaw {
   fn referenceDocument(&self) -> &Vector<Box<dyn Reference>> { &self.referenceDocument }
   fn resultingCondition(&self) -> &Vector<Box<dyn Reference>> { &self.resultingCondition }
   fn subjectMedicalHistory(&self) -> &Vector<Box<dyn Reference>> { &self.subjectMedicalHistory }
-  fn suspectEntity(&self) -> &Vector<AdverseEvent_SuspectEntity> { &self.suspectEntity }
+  fn suspectEntity(&self) -> &Vector<Box<AdverseEvent_SuspectEntity>> { &self.suspectEntity }
 }
 

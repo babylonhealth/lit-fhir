@@ -1,10 +1,12 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
-use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -13,6 +15,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Money::Money;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::core::model::UnionAliases::UnionCodeableConceptOrReference;
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
@@ -46,7 +49,7 @@ pub struct Invoice_LineItem {
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) chargeItem: UnionCodeableConceptOrReference,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) priceComponent: Vector<Invoice_LineItem_PriceComponent>,
+  pub(crate) priceComponent: Vector<Box<Invoice_LineItem_PriceComponent>>,
 }
 
 #[derive(Clone, Debug)]
@@ -72,9 +75,9 @@ pub struct InvoiceRaw {
   pub(crate) implicitRules: Option<String>,
   pub(crate) cancelledReason: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) totalPriceComponent: Vector<Box<dyn Invoice_LineItem_PriceComponent>>,
-  pub(crate) participant: Vector<Invoice_Participant>,
-  pub(crate) lineItem: Vector<Invoice_LineItem>,
+  pub(crate) totalPriceComponent: Vector<Box<Invoice_LineItem_PriceComponent>>,
+  pub(crate) participant: Vector<Box<Invoice_Participant>>,
+  pub(crate) lineItem: Vector<Box<Invoice_LineItem>>,
 }
 
 pub trait Invoice : DomainResource {
@@ -91,9 +94,9 @@ pub trait Invoice : DomainResource {
   fn totalGross(&self) -> &Option<Box<dyn Money>>;
   fn paymentTerms(&self) -> &Option<String>;
   fn cancelledReason(&self) -> &Option<String>;
-  fn totalPriceComponent(&self) -> &Vector<Box<dyn Invoice_LineItem_PriceComponent>>;
-  fn participant(&self) -> &Vector<Invoice_Participant>;
-  fn lineItem(&self) -> &Vector<Invoice_LineItem>;
+  fn totalPriceComponent(&self) -> &Vector<Box<Invoice_LineItem_PriceComponent>>;
+  fn participant(&self) -> &Vector<Box<Invoice_Participant>>;
+  fn lineItem(&self) -> &Vector<Box<Invoice_LineItem>>;
 }
 
 dyn_clone::clone_trait_object!(Invoice);
@@ -131,8 +134,8 @@ impl Invoice for InvoiceRaw {
   fn totalGross(&self) -> &Option<Box<dyn Money>> { &self.totalGross }
   fn paymentTerms(&self) -> &Option<String> { &self.paymentTerms }
   fn cancelledReason(&self) -> &Option<String> { &self.cancelledReason }
-  fn totalPriceComponent(&self) -> &Vector<Box<dyn Invoice_LineItem_PriceComponent>> { &self.totalPriceComponent }
-  fn participant(&self) -> &Vector<Invoice_Participant> { &self.participant }
-  fn lineItem(&self) -> &Vector<Invoice_LineItem> { &self.lineItem }
+  fn totalPriceComponent(&self) -> &Vector<Box<Invoice_LineItem_PriceComponent>> { &self.totalPriceComponent }
+  fn participant(&self) -> &Vector<Box<Invoice_Participant>> { &self.participant }
+  fn lineItem(&self) -> &Vector<Box<Invoice_LineItem>> { &self.lineItem }
 }
 

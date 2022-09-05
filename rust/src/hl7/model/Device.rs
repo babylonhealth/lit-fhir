@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -104,11 +107,11 @@ pub struct DeviceRaw {
   pub(crate) manufactureDate: Option<DateTime<FixedOffset>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) distinctIdentifier: Option<String>,
-  pub(crate) version: Vector<Device_Version>,
-  pub(crate) property: Vector<Device_Property>,
-  pub(crate) udiCarrier: Vector<Device_UdiCarrier>,
-  pub(crate) deviceName: Vector<Device_DeviceName>,
-  pub(crate) specialization: Vector<Device_Specialization>,
+  pub(crate) version: Vector<Box<Device_Version>>,
+  pub(crate) property: Vector<Box<Device_Property>>,
+  pub(crate) udiCarrier: Vector<Box<Device_UdiCarrier>>,
+  pub(crate) deviceName: Vector<Box<Device_DeviceName>>,
+  pub(crate) specialization: Vector<Box<Device_Specialization>>,
 }
 
 pub trait Device : DomainResource {
@@ -133,11 +136,11 @@ pub trait Device : DomainResource {
   fn expirationDate(&self) -> &Option<DateTime<FixedOffset>>;
   fn manufactureDate(&self) -> &Option<DateTime<FixedOffset>>;
   fn distinctIdentifier(&self) -> &Option<String>;
-  fn version(&self) -> &Vector<Device_Version>;
-  fn property(&self) -> &Vector<Device_Property>;
-  fn udiCarrier(&self) -> &Vector<Device_UdiCarrier>;
-  fn deviceName(&self) -> &Vector<Device_DeviceName>;
-  fn specialization(&self) -> &Vector<Device_Specialization>;
+  fn version(&self) -> &Vector<Box<Device_Version>>;
+  fn property(&self) -> &Vector<Box<Device_Property>>;
+  fn udiCarrier(&self) -> &Vector<Box<Device_UdiCarrier>>;
+  fn deviceName(&self) -> &Vector<Box<Device_DeviceName>>;
+  fn specialization(&self) -> &Vector<Box<Device_Specialization>>;
 }
 
 dyn_clone::clone_trait_object!(Device);
@@ -183,10 +186,10 @@ impl Device for DeviceRaw {
   fn expirationDate(&self) -> &Option<DateTime<FixedOffset>> { &self.expirationDate }
   fn manufactureDate(&self) -> &Option<DateTime<FixedOffset>> { &self.manufactureDate }
   fn distinctIdentifier(&self) -> &Option<String> { &self.distinctIdentifier }
-  fn version(&self) -> &Vector<Device_Version> { &self.version }
-  fn property(&self) -> &Vector<Device_Property> { &self.property }
-  fn udiCarrier(&self) -> &Vector<Device_UdiCarrier> { &self.udiCarrier }
-  fn deviceName(&self) -> &Vector<Device_DeviceName> { &self.deviceName }
-  fn specialization(&self) -> &Vector<Device_Specialization> { &self.specialization }
+  fn version(&self) -> &Vector<Box<Device_Version>> { &self.version }
+  fn property(&self) -> &Vector<Box<Device_Property>> { &self.property }
+  fn udiCarrier(&self) -> &Vector<Box<Device_UdiCarrier>> { &self.udiCarrier }
+  fn deviceName(&self) -> &Vector<Box<Device_DeviceName>> { &self.deviceName }
+  fn specialization(&self) -> &Vector<Box<Device_Specialization>> { &self.specialization }
 }
 

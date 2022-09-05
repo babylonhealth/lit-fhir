@@ -1,6 +1,9 @@
 use bigdecimal::BigDecimal;
+use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
+use datetime::{LocalDate, LocalTime};
 use im::vector::Vector;
+use uuid::Uuid;
 
 use crate::core::model::FHIRObject::FHIRObject;
 
@@ -75,9 +78,9 @@ pub struct DocumentReferenceRaw {
   pub(crate) securityLabel: Vector<Box<dyn CodeableConcept>>,
   pub(crate) masterIdentifier: Option<Box<dyn Identifier>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) content: Vector<DocumentReference_Content>,
-  pub(crate) context: Option<DocumentReference_Context>,
-  pub(crate) relatesTo: Vector<DocumentReference_RelatesTo>,
+  pub(crate) content: Vector<Box<DocumentReference_Content>>,
+  pub(crate) context: Option<Box<DocumentReference_Context>>,
+  pub(crate) relatesTo: Vector<Box<DocumentReference_RelatesTo>>,
 }
 
 pub trait DocumentReference : DomainResource {
@@ -94,9 +97,9 @@ pub trait DocumentReference : DomainResource {
   fn authenticator(&self) -> &Option<Box<dyn Reference>>;
   fn securityLabel(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn masterIdentifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn content(&self) -> &Vector<DocumentReference_Content>;
-  fn context(&self) -> &Option<DocumentReference_Context>;
-  fn relatesTo(&self) -> &Vector<DocumentReference_RelatesTo>;
+  fn content(&self) -> &Vector<Box<DocumentReference_Content>>;
+  fn context(&self) -> &Option<Box<DocumentReference_Context>>;
+  fn relatesTo(&self) -> &Vector<Box<DocumentReference_RelatesTo>>;
 }
 
 dyn_clone::clone_trait_object!(DocumentReference);
@@ -134,8 +137,8 @@ impl DocumentReference for DocumentReferenceRaw {
   fn authenticator(&self) -> &Option<Box<dyn Reference>> { &self.authenticator }
   fn securityLabel(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.securityLabel }
   fn masterIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.masterIdentifier }
-  fn content(&self) -> &Vector<DocumentReference_Content> { &self.content }
-  fn context(&self) -> &Option<DocumentReference_Context> { &self.context }
-  fn relatesTo(&self) -> &Vector<DocumentReference_RelatesTo> { &self.relatesTo }
+  fn content(&self) -> &Vector<Box<DocumentReference_Content>> { &self.content }
+  fn context(&self) -> &Option<Box<DocumentReference_Context>> { &self.context }
+  fn relatesTo(&self) -> &Vector<Box<DocumentReference_RelatesTo>> { &self.relatesTo }
 }
 
