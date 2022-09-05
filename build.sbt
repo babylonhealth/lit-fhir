@@ -23,11 +23,11 @@ val V = new {
   val circe                  = "0.14.1"
   val enumeratum             = "1.7.0"
   val googleFHIR             = "0.6.1"
-  val izumiReflect           = "2.1.6"
+  val izumiReflect           = "2.2.0"
   val jsonassert             = "1.5.1"
   val jUnit                  = "5.9.0"
   val litVersionForGenerator = "0.14.13"
-  val logback                = "1.2.11"
+  val logback                = "1.4.0"
   val lombok                 = "1.18.24"
   val scalaMeterVersion      = "0.22"
   val scalaTest              = "3.2.13"
@@ -143,7 +143,6 @@ lazy val ukcore = project
       "org.skyscreamer" % "jsonassert"    % V.jsonassert % Test)
   )
   .dependsOn(core, hl7, macros)
-
 
 lazy val uscore = project
   .in(file("uscore"))
@@ -284,8 +283,36 @@ lazy val root =
   project
     .in(file("."))
     .settings(commonSettings, publish / skip := true)
-    .dependsOn(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, ukcore, ukcoreJava, fhirpath, protoshim)
-    .aggregate(common, macros, core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava, uscoreJava, ukcore, ukcoreJava, fhirpath, protoshim)
+    .dependsOn(
+      common,
+      macros,
+      core,
+      hl7,
+      usbase,
+      uscore,
+      coreJava,
+      hl7Java,
+      usbaseJava,
+      uscoreJava,
+      ukcore,
+      ukcoreJava,
+      fhirpath,
+      protoshim)
+    .aggregate(
+      common,
+      macros,
+      core,
+      hl7,
+      usbase,
+      uscore,
+      coreJava,
+      hl7Java,
+      usbaseJava,
+      uscoreJava,
+      ukcore,
+      ukcoreJava,
+      fhirpath,
+      protoshim)
 
 addCommandAlias(
   "pushPackages",
