@@ -2,6 +2,7 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
+use crate::core::model::FHIRObject::FHIRObject;
 
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -10,6 +11,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
 
@@ -17,34 +19,92 @@ use crate::hl7::model::Narrative::Narrative;
 #[derive(Clone, Debug)]
 pub struct Account_Coverage {
   pub(crate) id: Option<String>,
-  pub(crate) coverage: Box<Reference>,
+  pub(crate) coverage: Box<dyn Reference>,
   pub(crate) priority: Option<u32>,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 
 #[derive(Clone, Debug)]
 pub struct Account_Guarantor {
   pub(crate) id: Option<String>,
-  pub(crate) party: Box<Reference>,
+  pub(crate) party: Box<dyn Reference>,
   pub(crate) onHold: Option<bool>,
-  pub(crate) period: Option<Period>,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) period: Option<Box<dyn Period>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 #[derive(Clone, Debug)]
-pub struct Account {
-  pub(crate) _type: Option<CodeableConcept>,
+pub struct AccountRaw {
+  pub(crate) id: Option<String>,
+  pub(crate) meta: Option<Box<dyn Meta>>,
+  pub(crate) text: Option<Box<dyn Narrative>>,
+  pub(crate) _type: Option<Box<dyn CodeableConcept>>,
   pub(crate) name: Option<String>,
-  pub(crate) owner: Option<Box<Reference>>,
+  pub(crate) owner: Option<Box<dyn Reference>>,
   pub(crate) status: String,
-  pub(crate) partOf: Option<Box<Reference>>,
-  pub(crate) subject: Vector<Reference>,
-  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) partOf: Option<Box<dyn Reference>>,
+  pub(crate) subject: Vector<Box<dyn Reference>>,
+  pub(crate) language: Option<String>,
+  pub(crate) contained: Vector<Box<dyn Resource>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) description: Option<String>,
-  pub(crate) servicePeriod: Option<Period>,
+  pub(crate) implicitRules: Option<String>,
+  pub(crate) servicePeriod: Option<Box<dyn Period>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) coverage: Vector<Account_Coverage>,
   pub(crate) guarantor: Vector<Account_Guarantor>,
 }
+
+pub trait Account : DomainResource {
+  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn name(&self) -> &Option<String>;
+  fn owner(&self) -> &Option<Box<dyn Reference>>;
+  fn status(&self) -> &String;
+  fn partOf(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> &Vector<Box<dyn Reference>>;
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
+  fn description(&self) -> &Option<String>;
+  fn servicePeriod(&self) -> &Option<Box<dyn Period>>;
+  fn coverage(&self) -> &Vector<Account_Coverage>;
+  fn guarantor(&self) -> &Vector<Account_Guarantor>;
+}
+
+dyn_clone::clone_trait_object!(Account);
+
+impl FHIRObject for AccountRaw {
+}
+
+impl Resource for AccountRaw {
+  fn id(&self) -> &Option<String> { &self.id }
+  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
+  fn language(&self) -> &Option<String> { &self.language }
+  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+}
+
+
+impl DomainResource for AccountRaw {
+  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
+  fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
+  fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
+}
+
+
+impl Account for AccountRaw {
+  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
+  fn name(&self) -> &Option<String> { &self.name }
+  fn owner(&self) -> &Option<Box<dyn Reference>> { &self.owner }
+  fn status(&self) -> &String { &self.status }
+  fn partOf(&self) -> &Option<Box<dyn Reference>> { &self.partOf }
+  fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
+  fn description(&self) -> &Option<String> { &self.description }
+  fn servicePeriod(&self) -> &Option<Box<dyn Period>> { &self.servicePeriod }
+  fn coverage(&self) -> &Vector<Account_Coverage> { &self.coverage }
+  fn guarantor(&self) -> &Vector<Account_Guarantor> { &self.guarantor }
+}
+

@@ -1,12 +1,13 @@
 use chrono::{DateTime, Duration, FixedOffset};
 use im::Vector;
-use crate::core::model::CodeableConcept::CodeableConcept;
-use crate::core::model::Period::Period;
-use crate::core::model::Quantity::Quantity;
-use crate::core::model::Reference::Reference;
+use crate::core::model::CodeableConcept::{CodeableConcept, CodeableConceptRaw};
+use crate::core::model::Period::{Period, PeriodRaw};
+use crate::core::model::Quantity::{Quantity, QuantityRaw};
+use crate::core::model::Reference::{Reference, ReferenceRaw};
 
 pub mod model;
 pub mod LitError;
+pub mod FHIRObject;
 
 // #[derive(Clone)]
 // union UnionAll<'a> {
@@ -15,17 +16,18 @@ pub mod LitError;
 // }
 #[derive(Clone, Debug)]
 pub enum UnionAll {
-    FHIRCodeableConcept(CodeableConcept),
+    FHIRCodeableConcept(CodeableConceptRaw),
     FHIRString(String),
     FHIRInteger(i32),
     FHIRQuantity(Box<dyn Quantity>),
-    FHIRReference(Box<Reference>),
+    FHIRReference(Box<ReferenceRaw>),
 }
+
 #[derive(Clone, Debug)]
 pub enum UnionDurationOrDateTimeOrPeriod {
     FHIRDuration(Duration),
     FHIRDateTime(DateTime<FixedOffset>),
-    FHIRPeriod(Period),
+    FHIRPeriod(PeriodRaw),
 }
 
 #[macro_export]
@@ -59,8 +61,8 @@ macro_rules! sub_enum {
 }
 
 sub_enum!(UnionCodeableConceptOrReference {
-    FHIRCodeableConcept(CodeableConcept),
-    FHIRReference(Box<Reference>)
+    FHIRCodeableConcept(CodeableConceptRaw),
+    FHIRReference(Box<ReferenceRaw>)
 });
 
 // impl Clone for Vector<T> {

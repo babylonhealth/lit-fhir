@@ -2,6 +2,7 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
+use crate::core::model::FHIRObject::FHIRObject;
 
 use crate::core::model::CodeableConcept::CodeableConcept;
 use crate::core::model::Extension::Extension;
@@ -10,6 +11,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Ratio::Ratio;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
 
@@ -17,56 +19,104 @@ use crate::hl7::model::Narrative::Narrative;
 #[derive(Clone, Debug)]
 pub struct MedicinalProductIngredient_Substance {
   pub(crate) id: Option<String>,
-  pub(crate) code: CodeableConcept,
-  pub(crate) strength: Vector<MedicinalProductIngredient_SpecifiedSubstance_Strength>,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) code: Box<dyn CodeableConcept>,
+  pub(crate) strength: Vector<Box<dyn MedicinalProductIngredient_SpecifiedSubstance_Strength>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 
 #[derive(Clone, Debug)]
 pub struct MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrength {
   pub(crate) id: Option<String>,
-  pub(crate) country: Vector<CodeableConcept>,
-  pub(crate) strength: Ratio,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) substance: Option<CodeableConcept>,
-  pub(crate) strengthLowLimit: Option<Ratio>,
+  pub(crate) country: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) strength: Box<dyn Ratio>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) substance: Option<Box<dyn CodeableConcept>>,
+  pub(crate) strengthLowLimit: Option<Box<dyn Ratio>>,
   pub(crate) measurementPoint: Option<String>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 #[derive(Clone, Debug)]
 pub struct MedicinalProductIngredient_SpecifiedSubstance_Strength {
   pub(crate) id: Option<String>,
-  pub(crate) country: Vector<CodeableConcept>,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) presentation: Ratio,
-  pub(crate) concentration: Option<Ratio>,
+  pub(crate) country: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) presentation: Box<dyn Ratio>,
+  pub(crate) concentration: Option<Box<dyn Ratio>>,
   pub(crate) measurementPoint: Option<String>,
-  pub(crate) modifierExtension: Vector<Extension>,
-  pub(crate) presentationLowLimit: Option<Ratio>,
-  pub(crate) concentrationLowLimit: Option<Ratio>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
+  pub(crate) presentationLowLimit: Option<Box<dyn Ratio>>,
+  pub(crate) concentrationLowLimit: Option<Box<dyn Ratio>>,
   pub(crate) referenceStrength: Vector<MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStrength>,
 }
 
 #[derive(Clone, Debug)]
 pub struct MedicinalProductIngredient_SpecifiedSubstance {
   pub(crate) id: Option<String>,
-  pub(crate) code: CodeableConcept,
-  pub(crate) group: CodeableConcept,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) confidentiality: Option<CodeableConcept>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) code: Box<dyn CodeableConcept>,
+  pub(crate) group: Box<dyn CodeableConcept>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) confidentiality: Option<Box<dyn CodeableConcept>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) strength: Vector<MedicinalProductIngredient_SpecifiedSubstance_Strength>,
 }
 
 #[derive(Clone, Debug)]
-pub struct MedicinalProductIngredient {
-  pub(crate) role: CodeableConcept,
-  pub(crate) identifier: Option<Identifier>,
-  pub(crate) manufacturer: Vector<Reference>,
+pub struct MedicinalProductIngredientRaw {
+  pub(crate) id: Option<String>,
+  pub(crate) meta: Option<Box<dyn Meta>>,
+  pub(crate) text: Option<Box<dyn Narrative>>,
+  pub(crate) role: Box<dyn CodeableConcept>,
+  pub(crate) language: Option<String>,
+  pub(crate) contained: Vector<Box<dyn Resource>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) identifier: Option<Box<dyn Identifier>>,
+  pub(crate) manufacturer: Vector<Box<dyn Reference>>,
+  pub(crate) implicitRules: Option<String>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) allergenicIndicator: Option<bool>,
   pub(crate) substance: Option<MedicinalProductIngredient_Substance>,
   pub(crate) specifiedSubstance: Vector<MedicinalProductIngredient_SpecifiedSubstance>,
 }
+
+pub trait MedicinalProductIngredient : DomainResource {
+  fn role(&self) -> &Box<dyn CodeableConcept>;
+  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn manufacturer(&self) -> &Vector<Box<dyn Reference>>;
+  fn allergenicIndicator(&self) -> &Option<bool>;
+  fn substance(&self) -> &Option<MedicinalProductIngredient_Substance>;
+  fn specifiedSubstance(&self) -> &Vector<MedicinalProductIngredient_SpecifiedSubstance>;
+}
+
+dyn_clone::clone_trait_object!(MedicinalProductIngredient);
+
+impl FHIRObject for MedicinalProductIngredientRaw {
+}
+
+impl Resource for MedicinalProductIngredientRaw {
+  fn id(&self) -> &Option<String> { &self.id }
+  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
+  fn language(&self) -> &Option<String> { &self.language }
+  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+}
+
+
+impl DomainResource for MedicinalProductIngredientRaw {
+  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
+  fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
+  fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
+}
+
+
+impl MedicinalProductIngredient for MedicinalProductIngredientRaw {
+  fn role(&self) -> &Box<dyn CodeableConcept> { &self.role }
+  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
+  fn manufacturer(&self) -> &Vector<Box<dyn Reference>> { &self.manufacturer }
+  fn allergenicIndicator(&self) -> &Option<bool> { &self.allergenicIndicator }
+  fn substance(&self) -> &Option<MedicinalProductIngredient_Substance> { &self.substance }
+  fn specifiedSubstance(&self) -> &Vector<MedicinalProductIngredient_SpecifiedSubstance> { &self.specifiedSubstance }
+}
+

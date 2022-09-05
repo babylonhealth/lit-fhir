@@ -2,6 +2,7 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
+use crate::core::model::FHIRObject::FHIRObject;
 
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
@@ -13,6 +14,7 @@ use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::RelatedArtifact::RelatedArtifact;
 use crate::core::model::Resource::Resource;
+use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
 
@@ -21,10 +23,10 @@ use crate::hl7::model::Narrative::Narrative;
 pub struct ResearchStudy_Arm {
   pub(crate) id: Option<String>,
   pub(crate) name: String,
-  pub(crate) _type: Option<CodeableConcept>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) _type: Option<Box<dyn CodeableConcept>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 
@@ -32,35 +34,119 @@ pub struct ResearchStudy_Arm {
 pub struct ResearchStudy_Objective {
   pub(crate) id: Option<String>,
   pub(crate) name: Option<String>,
-  pub(crate) _type: Option<CodeableConcept>,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) _type: Option<Box<dyn CodeableConcept>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 #[derive(Clone, Debug)]
-pub struct ResearchStudy {
-  pub(crate) site: Vector<Reference>,
-  pub(crate) note: Vector<Annotation>,
+pub struct ResearchStudyRaw {
+  pub(crate) id: Option<String>,
+  pub(crate) meta: Option<Box<dyn Meta>>,
+  pub(crate) text: Option<Box<dyn Narrative>>,
+  pub(crate) site: Vector<Box<dyn Reference>>,
+  pub(crate) note: Vector<Box<dyn Annotation>>,
   pub(crate) title: Option<String>,
-  pub(crate) phase: Option<CodeableConcept>,
-  pub(crate) focus: Vector<CodeableConcept>,
-  pub(crate) partOf: Vector<Reference>,
+  pub(crate) phase: Option<Box<dyn CodeableConcept>>,
+  pub(crate) focus: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) partOf: Vector<Box<dyn Reference>>,
   pub(crate) status: String,
-  pub(crate) period: Option<Period>,
-  pub(crate) contact: Vector<ContactDetail>,
-  pub(crate) keyword: Vector<CodeableConcept>,
-  pub(crate) sponsor: Option<Box<Reference>>,
-  pub(crate) protocol: Vector<Reference>,
-  pub(crate) category: Vector<CodeableConcept>,
-  pub(crate) location: Vector<CodeableConcept>,
-  pub(crate) condition: Vector<CodeableConcept>,
-  pub(crate) identifier: Vector<Identifier>,
-  pub(crate) enrollment: Vector<Reference>,
+  pub(crate) period: Option<Box<dyn Period>>,
+  pub(crate) contact: Vector<Box<dyn ContactDetail>>,
+  pub(crate) keyword: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) sponsor: Option<Box<dyn Reference>>,
+  pub(crate) language: Option<String>,
+  pub(crate) protocol: Vector<Box<dyn Reference>>,
+  pub(crate) category: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) location: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) contained: Vector<Box<dyn Resource>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) condition: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) identifier: Vector<Box<dyn Identifier>>,
+  pub(crate) enrollment: Vector<Box<dyn Reference>>,
   pub(crate) description: Option<String>,
-  pub(crate) reasonStopped: Option<CodeableConcept>,
-  pub(crate) relatedArtifact: Vector<RelatedArtifact>,
-  pub(crate) primaryPurposeType: Option<CodeableConcept>,
-  pub(crate) principalInvestigator: Option<Box<Reference>>,
+  pub(crate) implicitRules: Option<String>,
+  pub(crate) reasonStopped: Option<Box<dyn CodeableConcept>>,
+  pub(crate) relatedArtifact: Vector<Box<dyn RelatedArtifact>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
+  pub(crate) primaryPurposeType: Option<Box<dyn CodeableConcept>>,
+  pub(crate) principalInvestigator: Option<Box<dyn Reference>>,
   pub(crate) arm: Vector<ResearchStudy_Arm>,
   pub(crate) objective: Vector<ResearchStudy_Objective>,
 }
+
+pub trait ResearchStudy : DomainResource {
+  fn site(&self) -> &Vector<Box<dyn Reference>>;
+  fn note(&self) -> &Vector<Box<dyn Annotation>>;
+  fn title(&self) -> &Option<String>;
+  fn phase(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn focus(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn partOf(&self) -> &Vector<Box<dyn Reference>>;
+  fn status(&self) -> &String;
+  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
+  fn keyword(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn sponsor(&self) -> &Option<Box<dyn Reference>>;
+  fn protocol(&self) -> &Vector<Box<dyn Reference>>;
+  fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn location(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn condition(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
+  fn enrollment(&self) -> &Vector<Box<dyn Reference>>;
+  fn description(&self) -> &Option<String>;
+  fn reasonStopped(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
+  fn primaryPurposeType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn principalInvestigator(&self) -> &Option<Box<dyn Reference>>;
+  fn arm(&self) -> &Vector<ResearchStudy_Arm>;
+  fn objective(&self) -> &Vector<ResearchStudy_Objective>;
+}
+
+dyn_clone::clone_trait_object!(ResearchStudy);
+
+impl FHIRObject for ResearchStudyRaw {
+}
+
+impl Resource for ResearchStudyRaw {
+  fn id(&self) -> &Option<String> { &self.id }
+  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
+  fn language(&self) -> &Option<String> { &self.language }
+  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+}
+
+
+impl DomainResource for ResearchStudyRaw {
+  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
+  fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
+  fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
+}
+
+
+impl ResearchStudy for ResearchStudyRaw {
+  fn site(&self) -> &Vector<Box<dyn Reference>> { &self.site }
+  fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
+  fn title(&self) -> &Option<String> { &self.title }
+  fn phase(&self) -> &Option<Box<dyn CodeableConcept>> { &self.phase }
+  fn focus(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.focus }
+  fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
+  fn status(&self) -> &String { &self.status }
+  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
+  fn keyword(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.keyword }
+  fn sponsor(&self) -> &Option<Box<dyn Reference>> { &self.sponsor }
+  fn protocol(&self) -> &Vector<Box<dyn Reference>> { &self.protocol }
+  fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
+  fn location(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.location }
+  fn condition(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.condition }
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
+  fn enrollment(&self) -> &Vector<Box<dyn Reference>> { &self.enrollment }
+  fn description(&self) -> &Option<String> { &self.description }
+  fn reasonStopped(&self) -> &Option<Box<dyn CodeableConcept>> { &self.reasonStopped }
+  fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
+  fn primaryPurposeType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.primaryPurposeType }
+  fn principalInvestigator(&self) -> &Option<Box<dyn Reference>> { &self.principalInvestigator }
+  fn arm(&self) -> &Vector<ResearchStudy_Arm> { &self.arm }
+  fn objective(&self) -> &Vector<ResearchStudy_Objective> { &self.objective }
+}
+

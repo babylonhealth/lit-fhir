@@ -1,6 +1,6 @@
 package com.babylonhealth.lit.languages
 
-import com.babylonhealth.lit.Cardinality.{ AtLeastOne, Many, One, Optional }
+import com.babylonhealth.lit.Cardinality.{ AtLeastOne, Many, One, Optional, Zero }
 import com.babylonhealth.lit.ElementTreee.{ isPrimitiveSuffix, unionDeclaringPackages }
 import com.babylonhealth.lit.{ BaseField, ClassGenInfo, ElementTreee, TopLevelClass }
 
@@ -14,7 +14,8 @@ object Rust {
     s"""use bigdecimal::BigDecimal;
        |use chrono::{DateTime, FixedOffset};
        |use im::vector::Vector;
-       |""".stripMargin
+       |
+       |use crate::core::model::FHIRObject::FHIRObject;""".stripMargin
   def Q(f: BaseField) = f.cardinality match {
     case One | AtLeastOne => ""
     case _                => "?"
@@ -28,10 +29,14 @@ object Rust {
     case "Parameters" => "FHIRParameters"
     case x            => x
   }
-  def tpe(f: BaseField): String = f.cardinality match {
-    case One               => rawType(f)
-    case AtLeastOne | Many => s"Vector<${rawType(f)}>"
-    case Optional          => s"Option<${rawType(f)}>"
+  def tpe(f: BaseField): String = {
+    val isDyn  = !f.isGenerated && f.isBuildableFHIRType
+    def rawTpe = if (isDyn) s"Box<dyn ${rawType(f)}>" else rawType(f)
+    f.cardinality match {
+      case One               => rawTpe
+      case AtLeastOne | Many => s"Vector<$rawTpe>"
+      case Optional          => s"Option<$rawTpe>"
+    }
   }
   def rawType(f: BaseField): String = {
     def toRustType(s: String): String =
@@ -62,10 +67,23 @@ object Rust {
 
     if (f.types.size > 1) ElementTreee.getUnionAlias(pkg = f.pkg, s = f.types, field = f) else toRustType(f.types.head)
   }
-  def asParam(f: BaseField): String = tpe(f) match {
+  def asStructParam(f: BaseField): String = tpe(f) match {
     case "Reference"         => s"pub(crate) ${toRustName(f.noParensName)}: Box<Reference>,"
     case "Option<Reference>" => s"pub(crate) ${toRustName(f.noParensName)}: Option<Box<Reference>>,"
     case rn                  => s"pub(crate) ${toRustName(f.noParensName)}: $rn,"
+  }
+  def asTraitFn(f: BaseField): String = tpe(f) match {
+    case "Reference"         => s"fn ${toRustName(f.noParensName)}(&self) -> &Box<Reference>;"
+    case "Option<Reference>" => s"fn ${toRustName(f.noParensName)}(&self) -> &Option<Box<Reference>>;"
+    case rn                  => s"fn ${toRustName(f.noParensName)}(&self) -> &$rn;"
+  }
+  def asImpl(f: BaseField, constValue: Option[String] = None): String = {
+    val value = constValue getOrElse s"self.${toRustName(f.noParensName)}"
+    tpe(f) match {
+      case "Reference"         => s"fn ${toRustName(f.noParensName)}(&self) -> &Box<Reference> { &$value }"
+      case "Option<Reference>" => s"fn ${toRustName(f.noParensName)}(&self) -> &Option<Box<Reference>> { &$value }"
+      case rn                  => s"fn ${toRustName(f.noParensName)}(&self) -> &$rn { &$value }"
+    }
   }
   def genStructuralClass(field: BaseField, prefix: String): String =
     if (!field.isGenerated) ""
@@ -77,8 +95,8 @@ object Rust {
 //        case _                 => None
 //      }.headOption getOrElse ""
 //      val parentFields  = field.parent.toSeq.flatMap(_.childFields)
-      val refinedFields = field.childFields //.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
-      val fieldDecls    = refinedFields.map(asParam).mkString("\n  ")
+      val refinedFields = field.childFields // .filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
+      val fieldDecls    = refinedFields.map(asStructParam).mkString("\n  ")
       val recursive =
         field.childFields.filter(_.isGenerated).map(genStructuralClass(_, className + "_")).mkString("\n\n")
       s"""$recursive
@@ -113,27 +131,72 @@ object Rust {
 
     val allFHIRTypesUsed =
       topLevelClass.fields.flatMap(getAllFHIRTypesUsed(getDeclaringPkgForType)).distinct.filterNot(definedHere)
-    val requiredImports = allFHIRTypesUsed.map(_.toImport).sorted.mkString("\n")
-    val className       = toRustClassName(topLevelClass.className)
-//    val implement     = topLevelClass.parentClass.map(c => " extends " + toRustClassName(c.className)) getOrElse ""
-    val parentFields  = topLevelClass.parentClass.toSeq.flatMap(_.fields)
-    val refinedFields = topLevelClass.fields.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
-    val fieldDecls    = refinedFields.map(asParam).mkString("\n  ")
+    def getAllParentTypes(tlc: TopLevelClass): Seq[(String, String)] = {
+      val pkg  = tlc.targetDir
+      val name = toRustClassName(tlc.className)
+      tlc.parentClass match {
+        case None       => Seq(pkg -> name)
+        case Some(next) => getAllParentTypes(next) :+ (pkg -> name)
+      }
+    }
+    val allParentTypes: Seq[String] =
+      topLevelClass.parentClass.toSeq
+        .flatMap(getAllParentTypes)
+        .map { case (pkg, name) => s"use crate::$pkg::model::$name::$name;" }
+    val requiredImports = allFHIRTypesUsed.map(_.toImport).sorted
+    val allFHIRImports  = (allParentTypes ++ requiredImports).distinct.sorted.mkString("\n")
+    val traitName       = toRustClassName(topLevelClass.className)
+    val parentFields    = topLevelClass.parentClass.toSeq.flatMap(_.fields)
+    val refinedFields   = topLevelClass.fields.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
+    val structFields    = topLevelClass.fields.filter(_.cardinality != Zero).map(asStructParam).mkString("\n  ")
+    val traitFns        = refinedFields.map(asTraitFn).mkString("\n  ")
     val structuralClasses =
       if (topLevelClass.isProfile) ""
-      else topLevelClass.fields.map(genStructuralClass(_, s"${className}_")).filter(_.nonEmpty).mkString("\n")
+      else topLevelClass.fields.map(genStructuralClass(_, s"${traitName}_")).filter(_.nonEmpty).mkString("\n")
+    def impls(implFor: TopLevelClass): Seq[String] = {
+      val implTraitName = toRustClassName(implFor.className)
+      val (refinedFields, rest) = implFor.parentClass match {
+        case None => implFor.fields -> Nil
+        case Some(nextParent: TopLevelClass) =>
+          val parentFields = nextParent.fields
+          val newFields    = implFor.fields.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
+          newFields -> impls(nextParent)
+      }
+      val fnImpls = refinedFields.map(asImpl(_)).mkString("\n  ")
+      rest :+
+      s"""impl $implTraitName for ${traitName}Raw {
+         |  $fnImpls
+         |}
+         |""".stripMargin
+    }
+    val parentTrait = topLevelClass.parentClass match {
+      case Some(parent) => toRustClassName(parent.className)
+      case None         => "FHIRObject"
+    }
     val classBody =
       s"""${commonImports(Seq(topLevelClass.targetDir))}
          |
-         |$requiredImports
+         |$allFHIRImports
          |
          |$structuralClasses
          |
          |#[derive(Clone, Debug)]
-         |pub struct $className {
-         |  $fieldDecls
-         |}""".stripMargin
-    Seq(ClassGenInfo(classBody, className, topLevelClass.targetDir))
+         |pub struct ${traitName}Raw {
+         |  $structFields
+         |}
+         |
+         |pub trait $traitName : $parentTrait {
+         |  $traitFns
+         |}
+         |
+         |dyn_clone::clone_trait_object!($traitName);
+         |
+         |impl FHIRObject for ${traitName}Raw {
+         |}
+         |
+         |${impls(topLevelClass).mkString("\n\n")}
+         |""".stripMargin
+    Seq(ClassGenInfo(classBody, traitName, topLevelClass.targetDir))
   }
 
 }

@@ -6,6 +6,8 @@ pub mod CodeableConcept;
 pub mod Coding;
 pub mod DataRequirement;
 pub mod Extension;
+pub mod FHIRElement;
+pub mod FHIRObject;
 pub mod Identifier;
 pub mod Meta;
 pub mod Money;

@@ -2,6 +2,7 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
+use crate::core::model::FHIRObject::FHIRObject;
 
 use crate::core::model::Attachment::Attachment;
 use crate::core::model::CodeableConcept::CodeableConcept;
@@ -12,6 +13,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Period::Period;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
 
@@ -19,20 +21,20 @@ use crate::hl7::model::Narrative::Narrative;
 #[derive(Clone, Debug)]
 pub struct HealthcareService_Eligibility {
   pub(crate) id: Option<String>,
-  pub(crate) code: Option<CodeableConcept>,
+  pub(crate) code: Option<Box<dyn CodeableConcept>>,
   pub(crate) comment: Option<String>,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 
 #[derive(Clone, Debug)]
 pub struct HealthcareService_NotAvailable {
   pub(crate) id: Option<String>,
-  pub(crate) during: Option<Period>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) during: Option<Box<dyn Period>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: String,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 
@@ -40,37 +42,121 @@ pub struct HealthcareService_NotAvailable {
 pub struct HealthcareService_AvailableTime {
   pub(crate) id: Option<String>,
   pub(crate) allDay: Option<bool>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) daysOfWeek: Vector<String>,
   pub(crate) availableEndTime: Option<Date>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) availableStartTime: Option<Date>,
 }
 
 #[derive(Clone, Debug)]
-pub struct HealthcareService {
-  pub(crate) _type: Vector<CodeableConcept>,
+pub struct HealthcareServiceRaw {
+  pub(crate) id: Option<String>,
+  pub(crate) meta: Option<Box<dyn Meta>>,
+  pub(crate) text: Option<Box<dyn Narrative>>,
+  pub(crate) _type: Vector<Box<dyn CodeableConcept>>,
   pub(crate) name: Option<String>,
-  pub(crate) photo: Option<Attachment>,
+  pub(crate) photo: Option<Box<dyn Attachment>>,
   pub(crate) active: Option<bool>,
   pub(crate) comment: Option<String>,
-  pub(crate) telecom: Vector<ContactPoint>,
-  pub(crate) program: Vector<CodeableConcept>,
-  pub(crate) category: Vector<CodeableConcept>,
-  pub(crate) location: Vector<Reference>,
-  pub(crate) endpoint: Vector<Reference>,
-  pub(crate) specialty: Vector<CodeableConcept>,
-  pub(crate) identifier: Vector<Identifier>,
-  pub(crate) providedBy: Option<Box<Reference>>,
+  pub(crate) telecom: Vector<Box<dyn ContactPoint>>,
+  pub(crate) program: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) language: Option<String>,
+  pub(crate) category: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) location: Vector<Box<dyn Reference>>,
+  pub(crate) endpoint: Vector<Box<dyn Reference>>,
+  pub(crate) contained: Vector<Box<dyn Resource>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) specialty: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) identifier: Vector<Box<dyn Identifier>>,
+  pub(crate) providedBy: Option<Box<dyn Reference>>,
   pub(crate) extraDetails: Option<String>,
-  pub(crate) coverageArea: Vector<Reference>,
-  pub(crate) communication: Vector<CodeableConcept>,
-  pub(crate) characteristic: Vector<CodeableConcept>,
-  pub(crate) referralMethod: Vector<CodeableConcept>,
+  pub(crate) coverageArea: Vector<Box<dyn Reference>>,
+  pub(crate) implicitRules: Option<String>,
+  pub(crate) communication: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) characteristic: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) referralMethod: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) appointmentRequired: Option<bool>,
-  pub(crate) serviceProvisionCode: Vector<CodeableConcept>,
+  pub(crate) serviceProvisionCode: Vector<Box<dyn CodeableConcept>>,
   pub(crate) availabilityExceptions: Option<String>,
   pub(crate) eligibility: Vector<HealthcareService_Eligibility>,
   pub(crate) notAvailable: Vector<HealthcareService_NotAvailable>,
   pub(crate) availableTime: Vector<HealthcareService_AvailableTime>,
 }
+
+pub trait HealthcareService : DomainResource {
+  fn _type(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn name(&self) -> &Option<String>;
+  fn photo(&self) -> &Option<Box<dyn Attachment>>;
+  fn active(&self) -> &Option<bool>;
+  fn comment(&self) -> &Option<String>;
+  fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
+  fn program(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn location(&self) -> &Vector<Box<dyn Reference>>;
+  fn endpoint(&self) -> &Vector<Box<dyn Reference>>;
+  fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
+  fn providedBy(&self) -> &Option<Box<dyn Reference>>;
+  fn extraDetails(&self) -> &Option<String>;
+  fn coverageArea(&self) -> &Vector<Box<dyn Reference>>;
+  fn communication(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn characteristic(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn referralMethod(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn appointmentRequired(&self) -> &Option<bool>;
+  fn serviceProvisionCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn availabilityExceptions(&self) -> &Option<String>;
+  fn eligibility(&self) -> &Vector<HealthcareService_Eligibility>;
+  fn notAvailable(&self) -> &Vector<HealthcareService_NotAvailable>;
+  fn availableTime(&self) -> &Vector<HealthcareService_AvailableTime>;
+}
+
+dyn_clone::clone_trait_object!(HealthcareService);
+
+impl FHIRObject for HealthcareServiceRaw {
+}
+
+impl Resource for HealthcareServiceRaw {
+  fn id(&self) -> &Option<String> { &self.id }
+  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
+  fn language(&self) -> &Option<String> { &self.language }
+  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+}
+
+
+impl DomainResource for HealthcareServiceRaw {
+  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
+  fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
+  fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
+}
+
+
+impl HealthcareService for HealthcareServiceRaw {
+  fn _type(&self) -> &Vector<Box<dyn CodeableConcept>> { &self._type }
+  fn name(&self) -> &Option<String> { &self.name }
+  fn photo(&self) -> &Option<Box<dyn Attachment>> { &self.photo }
+  fn active(&self) -> &Option<bool> { &self.active }
+  fn comment(&self) -> &Option<String> { &self.comment }
+  fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
+  fn program(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.program }
+  fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
+  fn location(&self) -> &Vector<Box<dyn Reference>> { &self.location }
+  fn endpoint(&self) -> &Vector<Box<dyn Reference>> { &self.endpoint }
+  fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.specialty }
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
+  fn providedBy(&self) -> &Option<Box<dyn Reference>> { &self.providedBy }
+  fn extraDetails(&self) -> &Option<String> { &self.extraDetails }
+  fn coverageArea(&self) -> &Vector<Box<dyn Reference>> { &self.coverageArea }
+  fn communication(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.communication }
+  fn characteristic(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.characteristic }
+  fn referralMethod(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.referralMethod }
+  fn appointmentRequired(&self) -> &Option<bool> { &self.appointmentRequired }
+  fn serviceProvisionCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.serviceProvisionCode }
+  fn availabilityExceptions(&self) -> &Option<String> { &self.availabilityExceptions }
+  fn eligibility(&self) -> &Vector<HealthcareService_Eligibility> { &self.eligibility }
+  fn notAvailable(&self) -> &Vector<HealthcareService_NotAvailable> { &self.notAvailable }
+  fn availableTime(&self) -> &Vector<HealthcareService_AvailableTime> { &self.availableTime }
+}
+

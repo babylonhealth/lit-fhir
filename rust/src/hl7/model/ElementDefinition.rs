@@ -2,10 +2,13 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
+use crate::core::model::FHIRObject::FHIRObject;
 
 use crate::core::UnionAll;
+use crate::core::model::BackboneElement::BackboneElement;
 use crate::core::model::Coding::Coding;
 use crate::core::model::Extension::Extension;
+use crate::core::model::FHIRElement::FHIRElement;
 use crate::hl7::Union01480857620;
 
 
@@ -16,7 +19,7 @@ pub struct ElementDefinition_Base {
   pub(crate) min: u32,
   pub(crate) max: String,
   pub(crate) path: String,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
 }
 
 
@@ -25,7 +28,7 @@ pub struct ElementDefinition_Example {
   pub(crate) id: Option<String>,
   pub(crate) label: String,
   pub(crate) value: UnionAll,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
 }
 
 
@@ -36,7 +39,7 @@ pub struct ElementDefinition_Mapping {
   pub(crate) comment: Option<String>,
   pub(crate) identity: String,
   pub(crate) language: Option<String>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
 }
 
 
@@ -45,7 +48,7 @@ pub struct ElementDefinition_Type {
   pub(crate) id: Option<String>,
   pub(crate) code: String,
   pub(crate) profile: Vector<String>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) versioning: Option<String>,
   pub(crate) aggregation: Vector<String>,
   pub(crate) targetProfile: Vector<String>,
@@ -57,7 +60,7 @@ pub struct ElementDefinition_Binding {
   pub(crate) id: Option<String>,
   pub(crate) strength: String,
   pub(crate) valueSet: Option<String>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
 }
 
@@ -70,7 +73,7 @@ pub struct ElementDefinition_Constraint {
   pub(crate) xpath: Option<String>,
   pub(crate) source: Option<String>,
   pub(crate) severity: String,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) expression: Option<String>,
   pub(crate) requirements: Option<String>,
 }
@@ -81,7 +84,7 @@ pub struct ElementDefinition_Slicing_Discriminator {
   pub(crate) id: Option<String>,
   pub(crate) _type: String,
   pub(crate) path: String,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
 }
 
 #[derive(Clone, Debug)]
@@ -89,22 +92,24 @@ pub struct ElementDefinition_Slicing {
   pub(crate) id: Option<String>,
   pub(crate) rules: String,
   pub(crate) ordered: Option<bool>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) description: Option<String>,
   pub(crate) discriminator: Vector<ElementDefinition_Slicing_Discriminator>,
 }
 
 #[derive(Clone, Debug)]
-pub struct ElementDefinition {
+pub struct ElementDefinitionRaw {
+  pub(crate) id: Option<String>,
   pub(crate) min: Option<u32>,
   pub(crate) max: Option<String>,
   pub(crate) path: String,
-  pub(crate) code: Vector<Coding>,
+  pub(crate) code: Vector<Box<dyn Coding>>,
   pub(crate) label: Option<String>,
   pub(crate) short: Option<String>,
   pub(crate) alias: Vector<String>,
   pub(crate) comment: Option<String>,
   pub(crate) fixed: Option<UnionAll>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) sliceName: Option<String>,
   pub(crate) maxLength: Option<i32>,
   pub(crate) condition: Vector<String>,
@@ -122,6 +127,7 @@ pub struct ElementDefinition {
   pub(crate) defaultValue: Option<UnionAll>,
   pub(crate) contentReference: Option<String>,
   pub(crate) isModifierReason: Option<String>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) example: Vector<ElementDefinition_Example>,
   pub(crate) mapping: Vector<ElementDefinition_Mapping>,
   pub(crate) _type: Vector<ElementDefinition_Type>,
@@ -131,3 +137,94 @@ pub struct ElementDefinition {
   pub(crate) constraint: Vector<ElementDefinition_Constraint>,
   pub(crate) slicing: Option<ElementDefinition_Slicing>,
 }
+
+pub trait ElementDefinition : BackboneElement {
+  fn min(&self) -> &Option<u32>;
+  fn max(&self) -> &Option<String>;
+  fn path(&self) -> &String;
+  fn code(&self) -> &Vector<Box<dyn Coding>>;
+  fn label(&self) -> &Option<String>;
+  fn short(&self) -> &Option<String>;
+  fn alias(&self) -> &Vector<String>;
+  fn comment(&self) -> &Option<String>;
+  fn fixed(&self) -> &Option<UnionAll>;
+  fn sliceName(&self) -> &Option<String>;
+  fn maxLength(&self) -> &Option<i32>;
+  fn condition(&self) -> &Vector<String>;
+  fn isSummary(&self) -> &Option<bool>;
+  fn definition(&self) -> &Option<String>;
+  fn pattern(&self) -> &Option<UnionAll>;
+  fn isModifier(&self) -> &Option<bool>;
+  fn minValue(&self) -> &Option<Union01480857620>;
+  fn maxValue(&self) -> &Option<Union01480857620>;
+  fn mustSupport(&self) -> &Option<bool>;
+  fn requirements(&self) -> &Option<String>;
+  fn orderMeaning(&self) -> &Option<String>;
+  fn representation(&self) -> &Vector<String>;
+  fn base(&self) -> &Option<ElementDefinition_Base>;
+  fn defaultValue(&self) -> &Option<UnionAll>;
+  fn contentReference(&self) -> &Option<String>;
+  fn isModifierReason(&self) -> &Option<String>;
+  fn example(&self) -> &Vector<ElementDefinition_Example>;
+  fn mapping(&self) -> &Vector<ElementDefinition_Mapping>;
+  fn _type(&self) -> &Vector<ElementDefinition_Type>;
+  fn meaningWhenMissing(&self) -> &Option<String>;
+  fn sliceIsConstraining(&self) -> &Option<bool>;
+  fn binding(&self) -> &Option<ElementDefinition_Binding>;
+  fn constraint(&self) -> &Vector<ElementDefinition_Constraint>;
+  fn slicing(&self) -> &Option<ElementDefinition_Slicing>;
+}
+
+dyn_clone::clone_trait_object!(ElementDefinition);
+
+impl FHIRObject for ElementDefinitionRaw {
+}
+
+impl FHIRElement for ElementDefinitionRaw {
+  fn id(&self) -> &Option<String> { &self.id }
+  fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
+}
+
+
+impl BackboneElement for ElementDefinitionRaw {
+  fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
+}
+
+
+impl ElementDefinition for ElementDefinitionRaw {
+  fn min(&self) -> &Option<u32> { &self.min }
+  fn max(&self) -> &Option<String> { &self.max }
+  fn path(&self) -> &String { &self.path }
+  fn code(&self) -> &Vector<Box<dyn Coding>> { &self.code }
+  fn label(&self) -> &Option<String> { &self.label }
+  fn short(&self) -> &Option<String> { &self.short }
+  fn alias(&self) -> &Vector<String> { &self.alias }
+  fn comment(&self) -> &Option<String> { &self.comment }
+  fn fixed(&self) -> &Option<UnionAll> { &self.fixed }
+  fn sliceName(&self) -> &Option<String> { &self.sliceName }
+  fn maxLength(&self) -> &Option<i32> { &self.maxLength }
+  fn condition(&self) -> &Vector<String> { &self.condition }
+  fn isSummary(&self) -> &Option<bool> { &self.isSummary }
+  fn definition(&self) -> &Option<String> { &self.definition }
+  fn pattern(&self) -> &Option<UnionAll> { &self.pattern }
+  fn isModifier(&self) -> &Option<bool> { &self.isModifier }
+  fn minValue(&self) -> &Option<Union01480857620> { &self.minValue }
+  fn maxValue(&self) -> &Option<Union01480857620> { &self.maxValue }
+  fn mustSupport(&self) -> &Option<bool> { &self.mustSupport }
+  fn requirements(&self) -> &Option<String> { &self.requirements }
+  fn orderMeaning(&self) -> &Option<String> { &self.orderMeaning }
+  fn representation(&self) -> &Vector<String> { &self.representation }
+  fn base(&self) -> &Option<ElementDefinition_Base> { &self.base }
+  fn defaultValue(&self) -> &Option<UnionAll> { &self.defaultValue }
+  fn contentReference(&self) -> &Option<String> { &self.contentReference }
+  fn isModifierReason(&self) -> &Option<String> { &self.isModifierReason }
+  fn example(&self) -> &Vector<ElementDefinition_Example> { &self.example }
+  fn mapping(&self) -> &Vector<ElementDefinition_Mapping> { &self.mapping }
+  fn _type(&self) -> &Vector<ElementDefinition_Type> { &self._type }
+  fn meaningWhenMissing(&self) -> &Option<String> { &self.meaningWhenMissing }
+  fn sliceIsConstraining(&self) -> &Option<bool> { &self.sliceIsConstraining }
+  fn binding(&self) -> &Option<ElementDefinition_Binding> { &self.binding }
+  fn constraint(&self) -> &Vector<ElementDefinition_Constraint> { &self.constraint }
+  fn slicing(&self) -> &Option<ElementDefinition_Slicing> { &self.slicing }
+}
+

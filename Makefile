@@ -99,13 +99,13 @@ build-all-class-models:
 	sbt scalafmtAll
 
 build-hl7-typescript-models:
-	$(SBT) 'project generator' 'run "generate" \
+	sbt 'project generator' 'run "generate" \
 		--javaPackageSuffix=_java \
 		--excludeJVM \
 		--typescriptDir="./generated_typescript"'
 
 build-hl7-rust-models:
-	$(SBT) 'project generator' 'run "generate" \
+	sbt 'project generator' 'run "generate" \
 		--javaPackageSuffix=_java \
 		--excludeJVM \
 		--rustDir="./rust"'

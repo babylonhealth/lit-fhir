@@ -2,6 +2,7 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
+use crate::core::model::FHIRObject::FHIRObject;
 
 use crate::core::model::Annotation::Annotation;
 use crate::core::model::CodeableConcept::CodeableConcept;
@@ -12,6 +13,7 @@ use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
 use crate::hl7::UnionAttachmentOrReferenceOrString;
 use crate::hl7::UnionDateTimeOrPeriod;
+use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
 
@@ -19,33 +21,113 @@ use crate::hl7::model::Narrative::Narrative;
 #[derive(Clone, Debug)]
 pub struct CommunicationRequest_Payload {
   pub(crate) id: Option<String>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) content: UnionAttachmentOrReferenceOrString,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 #[derive(Clone, Debug)]
-pub struct CommunicationRequest {
-  pub(crate) note: Vector<Annotation>,
-  pub(crate) about: Vector<Reference>,
+pub struct CommunicationRequestRaw {
+  pub(crate) id: Option<String>,
+  pub(crate) meta: Option<Box<dyn Meta>>,
+  pub(crate) text: Option<Box<dyn Narrative>>,
+  pub(crate) note: Vector<Box<dyn Annotation>>,
+  pub(crate) about: Vector<Box<dyn Reference>>,
   pub(crate) status: String,
-  pub(crate) medium: Vector<CodeableConcept>,
-  pub(crate) sender: Option<Box<Reference>>,
-  pub(crate) basedOn: Vector<Reference>,
-  pub(crate) subject: Option<Box<Reference>>,
-  pub(crate) replaces: Vector<Reference>,
-  pub(crate) category: Vector<CodeableConcept>,
+  pub(crate) medium: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) sender: Option<Box<dyn Reference>>,
+  pub(crate) basedOn: Vector<Box<dyn Reference>>,
+  pub(crate) subject: Option<Box<dyn Reference>>,
+  pub(crate) language: Option<String>,
+  pub(crate) replaces: Vector<Box<dyn Reference>>,
+  pub(crate) category: Vector<Box<dyn CodeableConcept>>,
   pub(crate) priority: Option<String>,
-  pub(crate) encounter: Option<Box<Reference>>,
-  pub(crate) requester: Option<Box<Reference>>,
-  pub(crate) recipient: Vector<Reference>,
-  pub(crate) identifier: Vector<Identifier>,
+  pub(crate) contained: Vector<Box<dyn Resource>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) encounter: Option<Box<dyn Reference>>,
+  pub(crate) requester: Option<Box<dyn Reference>>,
+  pub(crate) recipient: Vector<Box<dyn Reference>>,
+  pub(crate) identifier: Vector<Box<dyn Identifier>>,
   pub(crate) authoredOn: Option<DateTime<FixedOffset>>,
-  pub(crate) reasonCode: Vector<CodeableConcept>,
-  pub(crate) statusReason: Option<CodeableConcept>,
+  pub(crate) reasonCode: Vector<Box<dyn CodeableConcept>>,
+  pub(crate) statusReason: Option<Box<dyn CodeableConcept>>,
   pub(crate) doNotPerform: Option<bool>,
+  pub(crate) implicitRules: Option<String>,
   pub(crate) occurrence: Option<UnionDateTimeOrPeriod>,
-  pub(crate) groupIdentifier: Option<Identifier>,
-  pub(crate) reasonReference: Vector<Reference>,
+  pub(crate) groupIdentifier: Option<Box<dyn Identifier>>,
+  pub(crate) reasonReference: Vector<Box<dyn Reference>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) payload: Vector<CommunicationRequest_Payload>,
 }
+
+pub trait CommunicationRequest : DomainResource {
+  fn note(&self) -> &Vector<Box<dyn Annotation>>;
+  fn about(&self) -> &Vector<Box<dyn Reference>>;
+  fn status(&self) -> &String;
+  fn medium(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn sender(&self) -> &Option<Box<dyn Reference>>;
+  fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
+  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn replaces(&self) -> &Vector<Box<dyn Reference>>;
+  fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn priority(&self) -> &Option<String>;
+  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn requester(&self) -> &Option<Box<dyn Reference>>;
+  fn recipient(&self) -> &Vector<Box<dyn Reference>>;
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
+  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>>;
+  fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
+  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn doNotPerform(&self) -> &Option<bool>;
+  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriod>;
+  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
+  fn payload(&self) -> &Vector<CommunicationRequest_Payload>;
+}
+
+dyn_clone::clone_trait_object!(CommunicationRequest);
+
+impl FHIRObject for CommunicationRequestRaw {
+}
+
+impl Resource for CommunicationRequestRaw {
+  fn id(&self) -> &Option<String> { &self.id }
+  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
+  fn language(&self) -> &Option<String> { &self.language }
+  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+}
+
+
+impl DomainResource for CommunicationRequestRaw {
+  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
+  fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
+  fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
+}
+
+
+impl CommunicationRequest for CommunicationRequestRaw {
+  fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
+  fn about(&self) -> &Vector<Box<dyn Reference>> { &self.about }
+  fn status(&self) -> &String { &self.status }
+  fn medium(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.medium }
+  fn sender(&self) -> &Option<Box<dyn Reference>> { &self.sender }
+  fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
+  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn replaces(&self) -> &Vector<Box<dyn Reference>> { &self.replaces }
+  fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
+  fn priority(&self) -> &Option<String> { &self.priority }
+  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn requester(&self) -> &Option<Box<dyn Reference>> { &self.requester }
+  fn recipient(&self) -> &Vector<Box<dyn Reference>> { &self.recipient }
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
+  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>> { &self.authoredOn }
+  fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
+  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.statusReason }
+  fn doNotPerform(&self) -> &Option<bool> { &self.doNotPerform }
+  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriod> { &self.occurrence }
+  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.groupIdentifier }
+  fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
+  fn payload(&self) -> &Vector<CommunicationRequest_Payload> { &self.payload }
+}
+

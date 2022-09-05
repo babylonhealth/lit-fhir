@@ -2,6 +2,7 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, FixedOffset};
 use im::vector::Vector;
 
+use crate::core::model::FHIRObject::FHIRObject;
 
 use crate::core::UnionCodeableConceptOrReference;
 use crate::core::model::CodeableConcept::CodeableConcept;
@@ -11,6 +12,7 @@ use crate::core::model::Meta::Meta;
 use crate::core::model::Ratio::Ratio;
 use crate::core::model::Reference::Reference;
 use crate::core::model::Resource::Resource;
+use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
 
 
@@ -18,10 +20,10 @@ use crate::hl7::model::Narrative::Narrative;
 #[derive(Clone, Debug)]
 pub struct Medication_Batch {
   pub(crate) id: Option<String>,
-  pub(crate) extension: Vector<Extension>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) lotNumber: Option<String>,
   pub(crate) expirationDate: Option<DateTime<FixedOffset>>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 
@@ -30,19 +32,71 @@ pub struct Medication_Ingredient {
   pub(crate) id: Option<String>,
   pub(crate) item: UnionCodeableConceptOrReference,
   pub(crate) isActive: Option<bool>,
-  pub(crate) strength: Option<Ratio>,
-  pub(crate) extension: Vector<Extension>,
-  pub(crate) modifierExtension: Vector<Extension>,
+  pub(crate) strength: Option<Box<dyn Ratio>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
 }
 
 #[derive(Clone, Debug)]
-pub struct Medication {
-  pub(crate) code: Option<CodeableConcept>,
-  pub(crate) form: Option<CodeableConcept>,
+pub struct MedicationRaw {
+  pub(crate) id: Option<String>,
+  pub(crate) meta: Option<Box<dyn Meta>>,
+  pub(crate) text: Option<Box<dyn Narrative>>,
+  pub(crate) code: Option<Box<dyn CodeableConcept>>,
+  pub(crate) form: Option<Box<dyn CodeableConcept>>,
   pub(crate) status: Option<String>,
-  pub(crate) amount: Option<Ratio>,
-  pub(crate) identifier: Vector<Identifier>,
-  pub(crate) manufacturer: Option<Box<Reference>>,
+  pub(crate) amount: Option<Box<dyn Ratio>>,
+  pub(crate) language: Option<String>,
+  pub(crate) contained: Vector<Box<dyn Resource>>,
+  pub(crate) extension: Vector<Box<dyn Extension>>,
+  pub(crate) identifier: Vector<Box<dyn Identifier>>,
+  pub(crate) manufacturer: Option<Box<dyn Reference>>,
+  pub(crate) implicitRules: Option<String>,
+  pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
   pub(crate) batch: Option<Medication_Batch>,
   pub(crate) ingredient: Vector<Medication_Ingredient>,
 }
+
+pub trait Medication : DomainResource {
+  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn form(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn status(&self) -> &Option<String>;
+  fn amount(&self) -> &Option<Box<dyn Ratio>>;
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
+  fn manufacturer(&self) -> &Option<Box<dyn Reference>>;
+  fn batch(&self) -> &Option<Medication_Batch>;
+  fn ingredient(&self) -> &Vector<Medication_Ingredient>;
+}
+
+dyn_clone::clone_trait_object!(Medication);
+
+impl FHIRObject for MedicationRaw {
+}
+
+impl Resource for MedicationRaw {
+  fn id(&self) -> &Option<String> { &self.id }
+  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
+  fn language(&self) -> &Option<String> { &self.language }
+  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+}
+
+
+impl DomainResource for MedicationRaw {
+  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
+  fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
+  fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
+}
+
+
+impl Medication for MedicationRaw {
+  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn form(&self) -> &Option<Box<dyn CodeableConcept>> { &self.form }
+  fn status(&self) -> &Option<String> { &self.status }
+  fn amount(&self) -> &Option<Box<dyn Ratio>> { &self.amount }
+  fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
+  fn manufacturer(&self) -> &Option<Box<dyn Reference>> { &self.manufacturer }
+  fn batch(&self) -> &Option<Medication_Batch> { &self.batch }
+  fn ingredient(&self) -> &Vector<Medication_Ingredient> { &self.ingredient }
+}
+
