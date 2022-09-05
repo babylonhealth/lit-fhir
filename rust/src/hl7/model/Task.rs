@@ -51,7 +51,7 @@ pub struct Task_Restriction {
 #[derive(Clone, Debug)]
 pub struct TaskRaw {
   pub(crate) id: Option<String>,
-  pub(crate) for: Option<Box<dyn Reference>>,
+  pub(crate) _for: Option<Box<dyn Reference>>,
   pub(crate) meta: Option<Box<dyn Meta>>,
   pub(crate) text: Option<Box<dyn Narrative>>,
   pub(crate) code: Option<Box<dyn CodeableConcept>>,
@@ -92,7 +92,7 @@ pub struct TaskRaw {
 }
 
 pub trait Task : DomainResource {
-  fn for(&self) -> &Option<Box<dyn Reference>>;
+  fn _for(&self) -> &Option<Box<dyn Reference>>;
   fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn focus(&self) -> &Option<Box<dyn Reference>>;
@@ -147,7 +147,7 @@ impl DomainResource for TaskRaw {
 
 
 impl Task for TaskRaw {
-  fn for(&self) -> &Option<Box<dyn Reference>> { &self.for }
+  fn _for(&self) -> &Option<Box<dyn Reference>> { &self._for }
   fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn focus(&self) -> &Option<Box<dyn Reference>> { &self.focus }

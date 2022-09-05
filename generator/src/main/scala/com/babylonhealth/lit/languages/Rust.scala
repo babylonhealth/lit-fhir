@@ -21,8 +21,8 @@ object Rust {
     case _                => "?"
   }
   def toRustName(s: String): String = s match {
-    case x @ ("type" | "use") => s"_$x"
-    case x                    => x
+    case x @ ("abstract" | "for" | "ref" | "type" | "use") => s"_$x"
+    case x                                                 => x
   }
   def toRustClassName(s: String): String = s match {
     case "Element"    => "FHIRElement"
@@ -210,4 +210,12 @@ object Rust {
     Seq(ClassGenInfo(classBody, traitName, topLevelClass.targetDir))
   }
 
+  def genModRS(pkg: String, classes: Iterable[String]): Seq[ClassGenInfo] = {
+    val allClasses = (classes.map(toRustClassName) ++ (if (pkg == "core") Seq("FHIRObject") else Nil)).toSeq.sorted
+    val body =
+      s"""#![allow(non_snake_case)]
+         |
+         |${allClasses.map(c => s"pub mod $c;").mkString("\n")}""".stripMargin
+    Seq(ClassGenInfo(body, "mod", pkg))
+  }
 }

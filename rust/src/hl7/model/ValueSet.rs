@@ -25,7 +25,7 @@ pub struct ValueSet_Expansion_Contains {
   pub(crate) system: Option<String>,
   pub(crate) version: Option<String>,
   pub(crate) display: Option<String>,
-  pub(crate) abstract: Option<bool>,
+  pub(crate) _abstract: Option<bool>,
   pub(crate) inactive: Option<bool>,
   pub(crate) contains: Vector<Box<dyn ValueSet_Expansion_Contains>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,

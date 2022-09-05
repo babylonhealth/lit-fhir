@@ -18,7 +18,7 @@ use crate::hl7::model::Narrative::Narrative;
 #[derive(Clone, Debug)]
 pub struct DocumentManifest_Related {
   pub(crate) id: Option<String>,
-  pub(crate) ref: Option<Box<dyn Reference>>,
+  pub(crate) _ref: Option<Box<dyn Reference>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) identifier: Option<Box<dyn Identifier>>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,

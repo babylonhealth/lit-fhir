@@ -74,7 +74,7 @@ pub struct StructureDefinitionRaw {
   pub(crate) purpose: Option<String>,
   pub(crate) keyword: Vector<Box<dyn Coding>>,
   pub(crate) language: Option<String>,
-  pub(crate) abstract: bool,
+  pub(crate) _abstract: bool,
   pub(crate) contained: Vector<Box<dyn Resource>>,
   pub(crate) extension: Vector<Box<dyn Extension>>,
   pub(crate) publisher: Option<String>,
@@ -108,7 +108,7 @@ pub trait StructureDefinition : DomainResource {
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
   fn purpose(&self) -> &Option<String>;
   fn keyword(&self) -> &Vector<Box<dyn Coding>>;
-  fn abstract(&self) -> &bool;
+  fn _abstract(&self) -> &bool;
   fn publisher(&self) -> &Option<String>;
   fn copyright(&self) -> &Option<String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
@@ -159,7 +159,7 @@ impl StructureDefinition for StructureDefinitionRaw {
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
   fn purpose(&self) -> &Option<String> { &self.purpose }
   fn keyword(&self) -> &Vector<Box<dyn Coding>> { &self.keyword }
-  fn abstract(&self) -> &bool { &self.abstract }
+  fn _abstract(&self) -> &bool { &self._abstract }
   fn publisher(&self) -> &Option<String> { &self.publisher }
   fn copyright(&self) -> &Option<String> { &self.copyright }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
