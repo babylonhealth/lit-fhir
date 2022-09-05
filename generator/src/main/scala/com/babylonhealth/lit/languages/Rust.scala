@@ -2,7 +2,7 @@ package com.babylonhealth.lit.languages
 
 import com.babylonhealth.lit.Cardinality.{ AtLeastOne, Many, One, Optional, Zero }
 import com.babylonhealth.lit.ElementTreee.{ isPrimitiveSuffix, unionDeclaringPackages }
-import com.babylonhealth.lit.{ BaseField, ClassGenInfo, ElementTreee, TopLevelClass }
+import com.babylonhealth.lit.{ BaseField, Cardinality, ClassGenInfo, ElementTreee, TopLevelClass }
 
 case class Import(pkg: String, name: String, `enum`: Boolean) {
   val parentName: String = name.split('_').head
@@ -126,6 +126,10 @@ object Rust {
         Seq(Import(unionDeclaringPackages(uname), uname, true))
     }
 
+  def zeroValue(c: Cardinality): String = c match {
+    case Optional => "Option::None"
+    case _        => "Vector::new()"
+  }
   def genRustForClass(topLevelClass: TopLevelClass, getDeclaringPkgForType: Map[String, String]): Seq[ClassGenInfo] = {
     def definedHere(i: Import): Boolean = i.parentName == toRustClassName(topLevelClass.className)
 
@@ -153,16 +157,23 @@ object Rust {
     val structuralClasses =
       if (topLevelClass.isProfile) ""
       else topLevelClass.fields.map(genStructuralClass(_, s"${traitName}_")).filter(_.nonEmpty).mkString("\n")
-    def impls(implFor: TopLevelClass): Seq[String] = {
+    def impls(implFor: TopLevelClass, removedFields: Seq[BaseField] = Nil): Seq[String] = {
       val implTraitName = toRustClassName(implFor.className)
       val (refinedFields, rest) = implFor.parentClass match {
-        case None => implFor.fields -> Nil
+        case None => implFor.fields.map(_ -> None) -> Nil
         case Some(nextParent: TopLevelClass) =>
           val parentFields = nextParent.fields
-          val newFields    = implFor.fields.filter(f => parentFields.find(_.name == f.name).forall(_.types != f.types))
-          newFields -> impls(nextParent)
+          val newFields = implFor.fields.filter(f =>
+            !removedFields.exists(_.name == f.name) && parentFields.find(_.name == f.name).forall(_.types != f.types))
+          val (usedRemoved, unusedRemoved) = removedFields.partition(rf => implFor.fields.exists(_.name == rf.name))
+          val removedFieldsWithDefaults    = usedRemoved.map(pf => pf -> Option(zeroValue(pf.cardinality)))
+          val nextRemovedFields = nextParent.fields.filter(pf =>
+            !implFor.fields.exists(_.name == pf.name) || implFor.fields
+              .find(_.name == pf.name)
+              .exists(_.cardinality == Zero && pf.cardinality != Zero))
+          (newFields.map(_ -> None) ++ removedFieldsWithDefaults) -> impls(nextParent, unusedRemoved ++ nextRemovedFields)
       }
-      val fnImpls = refinedFields.map(asImpl(_)).mkString("\n  ")
+      val fnImpls = refinedFields.map((asImpl _).tupled).mkString("\n  ")
       rest :+
       s"""impl $implTraitName for ${traitName}Raw {
          |  $fnImpls

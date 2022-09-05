@@ -21,7 +21,7 @@ pub struct SimpleQuantityRaw {
 }
 
 pub trait SimpleQuantity : Quantity {
-
+  
 }
 
 dyn_clone::clone_trait_object!(SimpleQuantity);
@@ -40,11 +40,11 @@ impl Quantity for SimpleQuantityRaw {
   fn code(&self) -> &Option<String> { &self.code }
   fn value(&self) -> &Option<BigDecimal> { &self.value }
   fn system(&self) -> &Option<String> { &self.system }
-  fn comparator(&self) -> &Option<String> { &Option::None } // TODO: Generate this one
+  fn comparator(&self) -> &Option<String> { &Option::None }
 }
 
 
 impl SimpleQuantity for SimpleQuantityRaw {
-
+  
 }
 
