@@ -179,7 +179,7 @@ lazy val fhirpath = project
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-parse"    % "0.3.8",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j"      % "slf4j-api"     % "1.7.36",
+      "org.slf4j"      % "slf4j-api"     % "2.0.0",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
