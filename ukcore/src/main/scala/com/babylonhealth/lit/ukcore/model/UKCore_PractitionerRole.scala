@@ -1,0 +1,389 @@
+package com.babylonhealth.lit.ukcore.model
+
+import java.time.{ LocalDate, LocalTime, ZonedDateTime }
+import java.util.UUID
+
+import scala.collection.immutable.TreeMap
+import scala.util.{ Success, Try }
+
+import io.circe.{ Decoder, HCursor }
+
+import com.babylonhealth.lit.core._
+import com.babylonhealth.lit.core.BaseFieldDecoders._
+import com.babylonhealth.lit.core.UnionAliases._
+import com.babylonhealth.lit.core.ChoiceImplicits._
+import com.babylonhealth.lit.core.TagSummoners.lTagOf
+import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
+import com.babylonhealth.lit.core.model._
+import com.babylonhealth.lit.hl7.model._
+import com.babylonhealth.lit.core.UnionAliases._
+import com.babylonhealth.lit.hl7.UnionAliases._
+import com.babylonhealth.lit.core.LANGUAGES
+import com.babylonhealth.lit.{ core, hl7, ukcore }
+import com.babylonhealth.lit.macros.POJOBoilerplate
+
+object UKCore_PractitionerRole extends CompanionFor[UKCore_PractitionerRole] {
+  implicit def summonObjectAndCompanionUKCore_PractitionerRole_2115418529(
+      o: UKCore_PractitionerRole): ObjectAndCompanion[UKCore_PractitionerRole, UKCore_PractitionerRole.type] =
+    ObjectAndCompanion(o, this)
+  override type ResourceType = PractitionerRole
+  override type ParentType   = PractitionerRole
+  override val baseType: CompanionFor[ResourceType] = PractitionerRole
+  override val parentType: CompanionFor[ParentType] = PractitionerRole
+  override val profileUrl: Option[String]           = Some("https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole")
+  def apply(
+      id: Option[String] = None,
+      meta: Option[Meta] = Some(
+        new Meta(profile = LitSeq("https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"))),
+      text: Option[Narrative] = None,
+      code: LitSeq[CodeableConcept] = LitSeq.empty,
+      active: Option[Boolean] = None,
+      period: Option[Period] = None,
+      telecom: LitSeq[ContactPoint] = LitSeq.empty,
+      language: Option[LANGUAGES] = None,
+      contained: LitSeq[Resource] = LitSeq.empty,
+      extension: LitSeq[Extension] = LitSeq.empty,
+      specialty: LitSeq[CodeableConcept] = LitSeq.empty,
+      implicitRules: Option[UriStr] = None,
+      modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      identifier: LitSeq[Identifier] = LitSeq.empty,
+      availabilityExceptions: Option[String] = None,
+      location: LitSeq[Reference] = LitSeq.empty,
+      endpoint: LitSeq[Reference] = LitSeq.empty,
+      notAvailable: LitSeq[PractitionerRole.NotAvailable] = LitSeq.empty,
+      availableTime: LitSeq[PractitionerRole.AvailableTime] = LitSeq.empty,
+      practitioner: Option[Reference] = None,
+      organization: Option[Reference] = None,
+      healthcareService: LitSeq[Reference] = LitSeq.empty,
+      primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+  ): UKCore_PractitionerRole = new UKCore_PractitionerRole(
+    id,
+    meta,
+    text,
+    code,
+    active,
+    period,
+    telecom,
+    language,
+    contained,
+    extension,
+    specialty,
+    implicitRules,
+    modifierExtension,
+    identifier,
+    availabilityExceptions,
+    location,
+    endpoint,
+    notAvailable,
+    availableTime,
+    practitioner,
+    organization,
+    healthcareService,
+    primitiveAttributes = primitiveAttributes
+  )
+  val id: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+  val meta: FHIRComponentFieldMeta[Option[Meta]] =
+    FHIRComponentFieldMeta("meta", lTagOf[Option[Meta]], false, lTagOf[Meta])
+  val text: FHIRComponentFieldMeta[Option[Narrative]] =
+    FHIRComponentFieldMeta("text", lTagOf[Option[Narrative]], false, lTagOf[Narrative])
+  val code: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
+    FHIRComponentFieldMeta("code", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val active: FHIRComponentFieldMeta[Option[Boolean]] =
+    FHIRComponentFieldMeta("active", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
+  val period: FHIRComponentFieldMeta[Option[Period]] =
+    FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
+  val telecom: FHIRComponentFieldMeta[LitSeq[ContactPoint]] =
+    FHIRComponentFieldMeta("telecom", lTagOf[LitSeq[ContactPoint]], false, lTagOf[ContactPoint])
+  val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
+    FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
+  val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
+    FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
+  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val specialty: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
+    FHIRComponentFieldMeta("specialty", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
+    FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
+  val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+    FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
+    FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
+  val availabilityExceptions: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("availabilityExceptions", lTagOf[Option[String]], false, lTagOf[String])
+  val location: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("location", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val endpoint: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("endpoint", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val notAvailable: FHIRComponentFieldMeta[LitSeq[PractitionerRole.NotAvailable]] =
+    FHIRComponentFieldMeta(
+      "notAvailable",
+      lTagOf[LitSeq[PractitionerRole.NotAvailable]],
+      false,
+      lTagOf[PractitionerRole.NotAvailable])
+  val availableTime: FHIRComponentFieldMeta[LitSeq[PractitionerRole.AvailableTime]] =
+    FHIRComponentFieldMeta(
+      "availableTime",
+      lTagOf[LitSeq[PractitionerRole.AvailableTime]],
+      false,
+      lTagOf[PractitionerRole.AvailableTime])
+  val practitioner: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("practitioner", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val organization: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("organization", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val healthcareService: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("healthcareService", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
+    id,
+    meta,
+    text,
+    code,
+    active,
+    period,
+    telecom,
+    language,
+    contained,
+    extension,
+    specialty,
+    implicitRules,
+    modifierExtension,
+    identifier,
+    availabilityExceptions,
+    location,
+    endpoint,
+    notAvailable,
+    availableTime,
+    practitioner,
+    organization,
+    healthcareService
+  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[LitSeq[CodeableConcept]](code, t.code),
+      FHIRComponentField[Option[Boolean]](active, t.active),
+      FHIRComponentField[Option[Period]](period, t.period),
+      FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[CodeableConcept]](specialty, t.specialty),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[String]](availabilityExceptions, t.availabilityExceptions),
+      FHIRComponentField[LitSeq[Reference]](location, t.location),
+      FHIRComponentField[LitSeq[Reference]](endpoint, t.endpoint),
+      FHIRComponentField[LitSeq[PractitionerRole.NotAvailable]](notAvailable, t.notAvailable),
+      FHIRComponentField[LitSeq[PractitionerRole.AvailableTime]](availableTime, t.availableTime),
+      FHIRComponentField[Option[Reference]](practitioner, t.practitioner),
+      FHIRComponentField[Option[Reference]](organization, t.organization),
+      FHIRComponentField[LitSeq[Reference]](healthcareService, t.healthcareService)
+    ))
+  override def fields(t: UKCore_PractitionerRole): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
+  def extractId(t: UKCore_PractitionerRole): Option[String]                                    = t.id
+  def extractMeta(t: UKCore_PractitionerRole): Option[Meta]                                    = t.meta
+  def extractText(t: UKCore_PractitionerRole): Option[Narrative]                               = t.text
+  def extractCode(t: UKCore_PractitionerRole): LitSeq[CodeableConcept]                         = t.code
+  def extractActive(t: UKCore_PractitionerRole): Option[Boolean]                               = t.active
+  def extractPeriod(t: UKCore_PractitionerRole): Option[Period]                                = t.period
+  def extractTelecom(t: UKCore_PractitionerRole): LitSeq[ContactPoint]                         = t.telecom
+  def extractLanguage(t: UKCore_PractitionerRole): Option[LANGUAGES]                           = t.language
+  def extractContained(t: UKCore_PractitionerRole): LitSeq[Resource]                           = t.contained
+  def extractExtension(t: UKCore_PractitionerRole): LitSeq[Extension]                          = t.extension
+  def extractSpecialty(t: UKCore_PractitionerRole): LitSeq[CodeableConcept]                    = t.specialty
+  def extractImplicitRules(t: UKCore_PractitionerRole): Option[UriStr]                         = t.implicitRules
+  def extractModifierExtension(t: UKCore_PractitionerRole): LitSeq[Extension]                  = t.modifierExtension
+  def extractIdentifier(t: UKCore_PractitionerRole): LitSeq[Identifier]                        = t.identifier
+  def extractAvailabilityExceptions(t: UKCore_PractitionerRole): Option[String]                = t.availabilityExceptions
+  def extractLocation(t: UKCore_PractitionerRole): LitSeq[Reference]                           = t.location
+  def extractEndpoint(t: UKCore_PractitionerRole): LitSeq[Reference]                           = t.endpoint
+  def extractNotAvailable(t: UKCore_PractitionerRole): LitSeq[PractitionerRole.NotAvailable]   = t.notAvailable
+  def extractAvailableTime(t: UKCore_PractitionerRole): LitSeq[PractitionerRole.AvailableTime] = t.availableTime
+  def extractPractitioner(t: UKCore_PractitionerRole): Option[Reference]                       = t.practitioner
+  def extractOrganization(t: UKCore_PractitionerRole): Option[Reference]                       = t.organization
+  def extractHealthcareService(t: UKCore_PractitionerRole): LitSeq[Reference]                  = t.healthcareService
+  override val thisName: String                                                                = "UKCore_PractitionerRole"
+  override val searchParams: Map[String, UKCore_PractitionerRole => Seq[Any]]                  = PractitionerRole.searchParams
+  def unapply(
+      o: UKCore_PractitionerRole): Option[(Option[String], Option[Meta], Option[Narrative], LitSeq[CodeableConcept], Option[Boolean], Option[Period], LitSeq[ContactPoint], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], LitSeq[CodeableConcept], Option[UriStr], LitSeq[Extension], LitSeq[Identifier], Option[String], LitSeq[Reference], LitSeq[Reference], LitSeq[PractitionerRole.NotAvailable], LitSeq[PractitionerRole.AvailableTime], Option[Reference], Option[Reference], LitSeq[Reference])] =
+    Some(
+      (
+        o.id,
+        o.meta,
+        o.text,
+        o.code,
+        o.active,
+        o.period,
+        o.telecom,
+        o.language,
+        o.contained,
+        o.extension,
+        o.specialty,
+        o.implicitRules,
+        o.modifierExtension,
+        o.identifier,
+        o.availabilityExceptions,
+        o.location,
+        o.endpoint,
+        o.notAvailable,
+        o.availableTime,
+        o.practitioner,
+        o.organization,
+        o.healthcareService))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[UKCore_PractitionerRole] =
+    checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+      Try(
+        new UKCore_PractitionerRole(
+          cursor.decodeAs[Option[String]]("id", Some(None)),
+          cursor.decodeAs[Option[Meta]]("meta", Some(None)),
+          cursor.decodeAs[Option[Narrative]]("text", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableConcept]]("code", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Boolean]]("active", Some(None)),
+          cursor.decodeAs[Option[Period]]("period", Some(None)),
+          cursor.decodeAs[LitSeq[ContactPoint]]("telecom", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
+          cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[CodeableConcept]]("specialty", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
+          cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[String]]("availabilityExceptions", Some(None)),
+          cursor.decodeAs[LitSeq[Reference]]("location", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Reference]]("endpoint", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[PractitionerRole.NotAvailable]]("notAvailable", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[PractitionerRole.AvailableTime]]("availableTime", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Reference]]("practitioner", Some(None)),
+          cursor.decodeAs[Option[Reference]]("organization", Some(None)),
+          cursor.decodeAs[LitSeq[Reference]]("healthcareService", Some(LitSeq.empty)),
+          decodeAttributes(cursor)
+        )
+      ))
+}
+
+/** Defines the UK Core constraints and extensions on the PractitionerRole resource for the minimal set of data to query and
+  * retrieve practitioner role information.
+  *
+  * Subclass of [[hl7.model.PractitionerRole]] (A specific set of Roles/Locations/specialties/services that a practitioner may
+  * perform at an organization for a period of time.)
+  *
+  * @constructor
+  *   Inherits all params from parent.
+  * @param id
+  *   \- The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param meta
+  *   \- The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
+  * @param text
+  *   \- A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
+  * @param code
+  *   \- Roles which this practitioner is authorized to perform for the organization.
+  * @param active
+  *   \- Whether this practitioner role record is in active use.
+  * @param period
+  *   \- The period during which the person is authorized to act as a practitioner in these role(s) for the organization.
+  * @param telecom
+  *   \- Contact details that are specific to the role/location/service.
+  * @param language
+  *   \- The base language in which the resource is written.
+  * @param contained
+  *   \- These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
+  * @param specialty
+  *   \- Specific specialty of the practitioner.
+  * @param implicitRules
+  *   \- A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
+  * @param modifierExtension
+  *   \- May be used to represent additional information that is not part of the basic definition of the resource and that
+  *   modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants.
+  *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
+  *   strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an
+  *   extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications
+  *   processing a resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any
+  *   elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param identifier
+  *   \- An identifier that applies to this person in this role.
+  * @param availabilityExceptions
+  *   \- A description of site availability exceptions, e.g. public holiday availability. Succinctly describing all possible
+  *   exceptions to normal site availability as details in the available Times and not available Times.
+  * @param location
+  *   \- The location(s) at which this practitioner provides care.
+  * @param endpoint
+  *   \- Technical endpoints providing access to services operated for the practitioner with this role.
+  * @param notAvailable
+  *   \- The practitioner is not available or performing this role during this period of time due to the provided reason.
+  * @param availableTime
+  *   \- A collection of times the practitioner is available or performing this role at the location and/or healthcareservice.
+  * @param practitioner
+  *   \- Practitioner that is able to provide the defined services for the organization.
+  * @param organization
+  *   \- The organization where the Practitioner performs the roles associated.
+  * @param healthcareService
+  *   \- The list of healthcare services that this worker provides for this role's Organization/Location(s).
+  */
+@POJOBoilerplate
+class UKCore_PractitionerRole(
+    override val id: Option[String] = None,
+    override val meta: Option[Meta] = Some(
+      new Meta(profile = LitSeq("https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"))),
+    override val text: Option[Narrative] = None,
+    override val code: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val active: Option[Boolean] = None,
+    override val period: Option[Period] = None,
+    override val telecom: LitSeq[ContactPoint] = LitSeq.empty,
+    override val language: Option[LANGUAGES] = None,
+    override val contained: LitSeq[Resource] = LitSeq.empty,
+    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val specialty: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val implicitRules: Option[UriStr] = None,
+    override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val availabilityExceptions: Option[String] = None,
+    override val location: LitSeq[Reference] = LitSeq.empty,
+    override val endpoint: LitSeq[Reference] = LitSeq.empty,
+    override val notAvailable: LitSeq[PractitionerRole.NotAvailable] = LitSeq.empty,
+    override val availableTime: LitSeq[PractitionerRole.AvailableTime] = LitSeq.empty,
+    override val practitioner: Option[Reference] = None,
+    override val organization: Option[Reference] = None,
+    override val healthcareService: LitSeq[Reference] = LitSeq.empty,
+    override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+) extends PractitionerRole(
+      id = id,
+      meta = meta,
+      text = text,
+      code = code,
+      active = active,
+      period = period,
+      telecom = telecom,
+      language = language,
+      location = location,
+      endpoint = endpoint,
+      contained = contained,
+      extension = extension,
+      specialty = specialty,
+      identifier = identifier,
+      practitioner = practitioner,
+      organization = organization,
+      implicitRules = implicitRules,
+      modifierExtension = modifierExtension,
+      healthcareService = healthcareService,
+      availabilityExceptions = availabilityExceptions,
+      notAvailable = notAvailable,
+      availableTime = availableTime,
+      primitiveAttributes = primitiveAttributes
+    ) {
+  override val thisTypeName: String = "PractitionerRole"
+}
