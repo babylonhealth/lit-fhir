@@ -149,5 +149,5 @@ pub mod UnionAliases;
 pub mod ValueSet;
 pub mod VerificationResult;
 pub mod VisionPrescription;
-// pub mod shareablecodesystem;
+pub mod shareablecodesystem;
 // pub mod shareablevalueset;

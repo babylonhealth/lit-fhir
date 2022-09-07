@@ -118,24 +118,24 @@ pub struct CodeSystemRaw {
 }
 
 pub trait CodeSystem : DomainResource {
-  fn url(&self) -> &Option<String>;
-  fn name(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
+  fn name(&self) -> Option<&String>;
   fn date(&self) -> &Option<DateTime<FixedOffset>>;
   fn title(&self) -> &Option<String>;
   fn count(&self) -> &Option<u32>;
   fn status(&self) -> &String;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
   fn purpose(&self) -> &Option<String>;
   fn content(&self) -> &String;
   fn valueSet(&self) -> &Option<String>;
-  fn publisher(&self) -> &Option<String>;
+  fn publisher(&self) -> Option<&String>;
   fn copyright(&self) -> &Option<String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn description(&self) -> &Option<String>;
+  fn description(&self) -> Option<&String>;
   fn supplements(&self) -> &Option<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn caseSensitive(&self) -> &Option<bool>;
   fn compositional(&self) -> &Option<bool>;
@@ -168,24 +168,24 @@ impl DomainResource for CodeSystemRaw {
 
 
 impl CodeSystem for CodeSystemRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
   fn title(&self) -> &Option<String> { &self.title }
   fn count(&self) -> &Option<u32> { &self.count }
   fn status(&self) -> &String { &self.status }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
   fn purpose(&self) -> &Option<String> { &self.purpose }
   fn content(&self) -> &String { &self.content }
   fn valueSet(&self) -> &Option<String> { &self.valueSet }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
   fn copyright(&self) -> &Option<String> { &self.copyright }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn supplements(&self) -> &Option<String> { &self.supplements }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn caseSensitive(&self) -> &Option<bool> { &self.caseSensitive }
   fn compositional(&self) -> &Option<bool> { &self.compositional }

@@ -1,3 +1,7 @@
+#![feature(label_break_value)]
+
+use std::borrow::Borrow;
+use std::option;
 use bigdecimal::BigDecimal;
 use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
@@ -14,10 +18,9 @@ use crate::core::model::Identifier::Identifier;
 use crate::core::model::Meta::Meta;
 use crate::core::model::Resource::Resource;
 use crate::core::model::UsageContext::UsageContext;
-use crate::hl7::model::CodeSystem::CodeSystem;
+use crate::hl7::model::CodeSystem::{CodeSystem, CodeSystem_Concept, CodeSystem_Filter, CodeSystem_Property};
 use crate::hl7::model::DomainResource::DomainResource;
 use crate::hl7::model::Narrative::Narrative;
-
 
 
 #[derive(Clone, Debug)]
@@ -53,19 +56,16 @@ pub struct shareablecodesystemRaw {
   pub(crate) versionNeeded: Option<bool>,
   pub(crate) hierarchyMeaning: Option<String>,
   pub(crate) modifierExtension: Vector<Box<dyn Extension>>,
-  pub(crate) filter: Vector<Box<shareablecodesystem_Filter>>,
-  pub(crate) property: Vector<Box<shareablecodesystem_Property>>,
-  pub(crate) concept: Vector<Box<shareablecodesystem_Concept>>,
+  pub(crate) filter: Vector<Box<CodeSystem_Filter>>,
+  pub(crate) property: Vector<Box<CodeSystem_Property>>,
+  pub(crate) concept: Vector<Box<CodeSystem_Concept>>,
 }
 
-pub trait shareablecodesystem : CodeSystem {
-  
-}
+pub trait shareablecodesystem: CodeSystem {}
 
 dyn_clone::clone_trait_object!(shareablecodesystem);
 
-impl FHIRObject for shareablecodesystemRaw {
-}
+impl FHIRObject for shareablecodesystemRaw {}
 
 impl Resource for shareablecodesystemRaw {
   fn id(&self) -> &Option<String> { &self.id }
@@ -84,24 +84,24 @@ impl DomainResource for shareablecodesystemRaw {
 
 
 impl CodeSystem for shareablecodesystemRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn url(&self) -> Option<&String> { Some(&self.url) }
+  fn name(&self) -> Option<&String> { Some(&self.name) }
   fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
   fn title(&self) -> &Option<String> { &self.title }
   fn count(&self) -> &Option<u32> { &self.count }
   fn status(&self) -> &String { &self.status }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { Some(&self.version) }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
   fn purpose(&self) -> &Option<String> { &self.purpose }
   fn content(&self) -> &String { &self.content }
   fn valueSet(&self) -> &Option<String> { &self.valueSet }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
+  fn publisher(&self) -> Option<&String> { Some(&self.publisher) }
   fn copyright(&self) -> &Option<String> { &self.copyright }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn description(&self) -> Option<&String> { Some(&self.description) }
   fn supplements(&self) -> &Option<String> { &self.supplements }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn experimental(&self) -> Option<&bool> { Some(&self.experimental) }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn caseSensitive(&self) -> &Option<bool> { &self.caseSensitive }
   fn compositional(&self) -> &Option<bool> { &self.compositional }
@@ -113,7 +113,5 @@ impl CodeSystem for shareablecodesystemRaw {
 }
 
 
-impl shareablecodesystem for shareablecodesystemRaw {
-  
-}
+impl shareablecodesystem for shareablecodesystemRaw {}
 
