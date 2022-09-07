@@ -73,21 +73,21 @@ pub struct MedicinalProductAuthorizationRaw {
 }
 
 pub trait MedicinalProductAuthorization : DomainResource {
-  fn status(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn holder(&self) -> &Option<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn status(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn holder(&self) -> Option<&Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn country(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn regulator(&self) -> &Option<Box<dyn Reference>>;
+  fn regulator(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn statusDate(&self) -> &Option<DateTime<FixedOffset>>;
-  fn legalBasis(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn restoreDate(&self) -> &Option<DateTime<FixedOffset>>;
+  fn statusDate(&self) -> Option<&DateTime<FixedOffset>>;
+  fn legalBasis(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn restoreDate(&self) -> Option<&DateTime<FixedOffset>>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn validityPeriod(&self) -> &Option<Box<dyn Period>>;
-  fn dataExclusivityPeriod(&self) -> &Option<Box<dyn Period>>;
-  fn internationalBirthDate(&self) -> &Option<DateTime<FixedOffset>>;
-  fn dateOfFirstAuthorization(&self) -> &Option<DateTime<FixedOffset>>;
-  fn procedure(&self) -> &Option<Box<MedicinalProductAuthorization_Procedure>>;
+  fn validityPeriod(&self) -> Option<&Box<dyn Period>>;
+  fn dataExclusivityPeriod(&self) -> Option<&Box<dyn Period>>;
+  fn internationalBirthDate(&self) -> Option<&DateTime<FixedOffset>>;
+  fn dateOfFirstAuthorization(&self) -> Option<&DateTime<FixedOffset>>;
+  fn procedure(&self) -> Option<&Box<MedicinalProductAuthorization_Procedure>>;
   fn jurisdictionalAuthorization(&self) -> &Vector<Box<MedicinalProductAuthorization_JurisdictionalAuthorization>>;
 }
 
@@ -97,15 +97,15 @@ impl FHIRObject for MedicinalProductAuthorizationRaw {
 }
 
 impl Resource for MedicinalProductAuthorizationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductAuthorizationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -113,21 +113,21 @@ impl DomainResource for MedicinalProductAuthorizationRaw {
 
 
 impl MedicinalProductAuthorization for MedicinalProductAuthorizationRaw {
-  fn status(&self) -> &Option<Box<dyn CodeableConcept>> { &self.status }
-  fn holder(&self) -> &Option<Box<dyn Reference>> { &self.holder }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn status(&self) -> Option<&Box<dyn CodeableConcept>> { self.status.as_ref() }
+  fn holder(&self) -> Option<&Box<dyn Reference>> { self.holder.as_ref() }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn country(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.country }
-  fn regulator(&self) -> &Option<Box<dyn Reference>> { &self.regulator }
+  fn regulator(&self) -> Option<&Box<dyn Reference>> { self.regulator.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn statusDate(&self) -> &Option<DateTime<FixedOffset>> { &self.statusDate }
-  fn legalBasis(&self) -> &Option<Box<dyn CodeableConcept>> { &self.legalBasis }
-  fn restoreDate(&self) -> &Option<DateTime<FixedOffset>> { &self.restoreDate }
+  fn statusDate(&self) -> Option<&DateTime<FixedOffset>> { self.statusDate.as_ref() }
+  fn legalBasis(&self) -> Option<&Box<dyn CodeableConcept>> { self.legalBasis.as_ref() }
+  fn restoreDate(&self) -> Option<&DateTime<FixedOffset>> { self.restoreDate.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn validityPeriod(&self) -> &Option<Box<dyn Period>> { &self.validityPeriod }
-  fn dataExclusivityPeriod(&self) -> &Option<Box<dyn Period>> { &self.dataExclusivityPeriod }
-  fn internationalBirthDate(&self) -> &Option<DateTime<FixedOffset>> { &self.internationalBirthDate }
-  fn dateOfFirstAuthorization(&self) -> &Option<DateTime<FixedOffset>> { &self.dateOfFirstAuthorization }
-  fn procedure(&self) -> &Option<Box<MedicinalProductAuthorization_Procedure>> { &self.procedure }
+  fn validityPeriod(&self) -> Option<&Box<dyn Period>> { self.validityPeriod.as_ref() }
+  fn dataExclusivityPeriod(&self) -> Option<&Box<dyn Period>> { self.dataExclusivityPeriod.as_ref() }
+  fn internationalBirthDate(&self) -> Option<&DateTime<FixedOffset>> { self.internationalBirthDate.as_ref() }
+  fn dateOfFirstAuthorization(&self) -> Option<&DateTime<FixedOffset>> { self.dateOfFirstAuthorization.as_ref() }
+  fn procedure(&self) -> Option<&Box<MedicinalProductAuthorization_Procedure>> { self.procedure.as_ref() }
   fn jurisdictionalAuthorization(&self) -> &Vector<Box<MedicinalProductAuthorization_JurisdictionalAuthorization>> { &self.jurisdictionalAuthorization }
 }
 

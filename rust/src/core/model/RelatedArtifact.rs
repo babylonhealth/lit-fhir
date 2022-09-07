@@ -27,13 +27,13 @@ pub struct RelatedArtifactRaw {
 }
 
 pub trait RelatedArtifact : FHIRElement {
-  fn url(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
   fn _type(&self) -> &String;
-  fn label(&self) -> &Option<String>;
-  fn display(&self) -> &Option<String>;
-  fn citation(&self) -> &Option<String>;
-  fn document(&self) -> &Option<Box<dyn Attachment>>;
-  fn resource(&self) -> &Option<String>;
+  fn label(&self) -> Option<&String>;
+  fn display(&self) -> Option<&String>;
+  fn citation(&self) -> Option<&String>;
+  fn document(&self) -> Option<&Box<dyn Attachment>>;
+  fn resource(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(RelatedArtifact);
@@ -42,18 +42,18 @@ impl FHIRObject for RelatedArtifactRaw {
 }
 
 impl FHIRElement for RelatedArtifactRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl RelatedArtifact for RelatedArtifactRaw {
-  fn url(&self) -> &Option<String> { &self.url }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
   fn _type(&self) -> &String { &self._type }
-  fn label(&self) -> &Option<String> { &self.label }
-  fn display(&self) -> &Option<String> { &self.display }
-  fn citation(&self) -> &Option<String> { &self.citation }
-  fn document(&self) -> &Option<Box<dyn Attachment>> { &self.document }
-  fn resource(&self) -> &Option<String> { &self.resource }
+  fn label(&self) -> Option<&String> { self.label.as_ref() }
+  fn display(&self) -> Option<&String> { self.display.as_ref() }
+  fn citation(&self) -> Option<&String> { self.citation.as_ref() }
+  fn document(&self) -> Option<&Box<dyn Attachment>> { self.document.as_ref() }
+  fn resource(&self) -> Option<&String> { self.resource.as_ref() }
 }
 

@@ -93,10 +93,10 @@ pub struct BundleRaw {
 
 pub trait Bundle : Resource {
   fn _type(&self) -> &String;
-  fn total(&self) -> &Option<u32>;
-  fn timestamp(&self) -> &Option<DateTime<FixedOffset>>;
-  fn signature(&self) -> &Option<Box<dyn Signature>>;
-  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn total(&self) -> Option<&u32>;
+  fn timestamp(&self) -> Option<&DateTime<FixedOffset>>;
+  fn signature(&self) -> Option<&Box<dyn Signature>>;
+  fn identifier(&self) -> Option<&Box<dyn Identifier>>;
   fn link(&self) -> &Vector<Box<Bundle_Link>>;
   fn entry(&self) -> &Vector<Box<Bundle_Entry>>;
 }
@@ -107,19 +107,19 @@ impl FHIRObject for BundleRaw {
 }
 
 impl Resource for BundleRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl Bundle for BundleRaw {
   fn _type(&self) -> &String { &self._type }
-  fn total(&self) -> &Option<u32> { &self.total }
-  fn timestamp(&self) -> &Option<DateTime<FixedOffset>> { &self.timestamp }
-  fn signature(&self) -> &Option<Box<dyn Signature>> { &self.signature }
-  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
+  fn total(&self) -> Option<&u32> { self.total.as_ref() }
+  fn timestamp(&self) -> Option<&DateTime<FixedOffset>> { self.timestamp.as_ref() }
+  fn signature(&self) -> Option<&Box<dyn Signature>> { self.signature.as_ref() }
+  fn identifier(&self) -> Option<&Box<dyn Identifier>> { self.identifier.as_ref() }
   fn link(&self) -> &Vector<Box<Bundle_Link>> { &self.link }
   fn entry(&self) -> &Vector<Box<Bundle_Entry>> { &self.entry }
 }

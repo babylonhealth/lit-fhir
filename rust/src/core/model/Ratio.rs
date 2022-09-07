@@ -22,8 +22,8 @@ pub struct RatioRaw {
 }
 
 pub trait Ratio : FHIRElement {
-  fn numerator(&self) -> &Option<Box<dyn Quantity>>;
-  fn denominator(&self) -> &Option<Box<dyn Quantity>>;
+  fn numerator(&self) -> Option<&Box<dyn Quantity>>;
+  fn denominator(&self) -> Option<&Box<dyn Quantity>>;
 }
 
 dyn_clone::clone_trait_object!(Ratio);
@@ -32,13 +32,13 @@ impl FHIRObject for RatioRaw {
 }
 
 impl FHIRElement for RatioRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Ratio for RatioRaw {
-  fn numerator(&self) -> &Option<Box<dyn Quantity>> { &self.numerator }
-  fn denominator(&self) -> &Option<Box<dyn Quantity>> { &self.denominator }
+  fn numerator(&self) -> Option<&Box<dyn Quantity>> { self.numerator.as_ref() }
+  fn denominator(&self) -> Option<&Box<dyn Quantity>> { self.denominator.as_ref() }
 }
 

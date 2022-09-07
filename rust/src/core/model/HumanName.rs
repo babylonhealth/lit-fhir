@@ -27,13 +27,13 @@ pub struct HumanNameRaw {
 }
 
 pub trait HumanName : FHIRElement {
-  fn _use(&self) -> &Option<String>;
-  fn text(&self) -> &Option<String>;
+  fn _use(&self) -> Option<&String>;
+  fn text(&self) -> Option<&String>;
   fn given(&self) -> &Vector<String>;
-  fn family(&self) -> &Option<String>;
+  fn family(&self) -> Option<&String>;
   fn prefix(&self) -> &Vector<String>;
   fn suffix(&self) -> &Vector<String>;
-  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
 }
 
 dyn_clone::clone_trait_object!(HumanName);
@@ -42,18 +42,18 @@ impl FHIRObject for HumanNameRaw {
 }
 
 impl FHIRElement for HumanNameRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl HumanName for HumanNameRaw {
-  fn _use(&self) -> &Option<String> { &self._use }
-  fn text(&self) -> &Option<String> { &self.text }
+  fn _use(&self) -> Option<&String> { self._use.as_ref() }
+  fn text(&self) -> Option<&String> { self.text.as_ref() }
   fn given(&self) -> &Vector<String> { &self.given }
-  fn family(&self) -> &Option<String> { &self.family }
+  fn family(&self) -> Option<&String> { self.family.as_ref() }
   fn prefix(&self) -> &Vector<String> { &self.prefix }
   fn suffix(&self) -> &Vector<String> { &self.suffix }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
 }
 

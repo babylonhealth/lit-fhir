@@ -41,13 +41,13 @@ pub struct ScheduleRaw {
 
 pub trait Schedule : DomainResource {
   fn actor(&self) -> &Vector<Box<dyn Reference>>;
-  fn active(&self) -> &Option<bool>;
-  fn comment(&self) -> &Option<String>;
+  fn active(&self) -> Option<&bool>;
+  fn comment(&self) -> Option<&String>;
   fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn serviceType(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn serviceCategory(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn planningHorizon(&self) -> &Option<Box<dyn Period>>;
+  fn planningHorizon(&self) -> Option<&Box<dyn Period>>;
 }
 
 dyn_clone::clone_trait_object!(Schedule);
@@ -56,15 +56,15 @@ impl FHIRObject for ScheduleRaw {
 }
 
 impl Resource for ScheduleRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ScheduleRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -73,12 +73,12 @@ impl DomainResource for ScheduleRaw {
 
 impl Schedule for ScheduleRaw {
   fn actor(&self) -> &Vector<Box<dyn Reference>> { &self.actor }
-  fn active(&self) -> &Option<bool> { &self.active }
-  fn comment(&self) -> &Option<String> { &self.comment }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
+  fn comment(&self) -> Option<&String> { self.comment.as_ref() }
   fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.specialty }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn serviceType(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.serviceType }
   fn serviceCategory(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.serviceCategory }
-  fn planningHorizon(&self) -> &Option<Box<dyn Period>> { &self.planningHorizon }
+  fn planningHorizon(&self) -> Option<&Box<dyn Period>> { self.planningHorizon.as_ref() }
 }
 

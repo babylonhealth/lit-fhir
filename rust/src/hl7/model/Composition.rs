@@ -102,12 +102,12 @@ pub trait Composition : DomainResource {
   fn title(&self) -> &String;
   fn status(&self) -> &String;
   fn author(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn custodian(&self) -> &Option<Box<dyn Reference>>;
-  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn confidentiality(&self) -> &Option<String>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn custodian(&self) -> Option<&Box<dyn Reference>>;
+  fn identifier(&self) -> Option<&Box<dyn Identifier>>;
+  fn confidentiality(&self) -> Option<&String>;
   fn event(&self) -> &Vector<Box<Composition_Event>>;
   fn section(&self) -> &Vector<Box<Composition_Section>>;
   fn attester(&self) -> &Vector<Box<Composition_Attester>>;
@@ -120,15 +120,15 @@ impl FHIRObject for CompositionRaw {
 }
 
 impl Resource for CompositionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CompositionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -141,12 +141,12 @@ impl Composition for CompositionRaw {
   fn title(&self) -> &String { &self.title }
   fn status(&self) -> &String { &self.status }
   fn author(&self) -> &Vector<Box<dyn Reference>> { &self.author }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn custodian(&self) -> &Option<Box<dyn Reference>> { &self.custodian }
-  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
-  fn confidentiality(&self) -> &Option<String> { &self.confidentiality }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn custodian(&self) -> Option<&Box<dyn Reference>> { self.custodian.as_ref() }
+  fn identifier(&self) -> Option<&Box<dyn Identifier>> { self.identifier.as_ref() }
+  fn confidentiality(&self) -> Option<&String> { self.confidentiality.as_ref() }
   fn event(&self) -> &Vector<Box<Composition_Event>> { &self.event }
   fn section(&self) -> &Vector<Box<Composition_Section>> { &self.section }
   fn attester(&self) -> &Vector<Box<Composition_Attester>> { &self.attester }

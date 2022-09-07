@@ -46,17 +46,17 @@ pub struct OrganizationAffiliationRaw {
 
 pub trait OrganizationAffiliation : DomainResource {
   fn code(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn active(&self) -> &Option<bool>;
-  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn active(&self) -> Option<&bool>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
   fn network(&self) -> &Vector<Box<dyn Reference>>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn location(&self) -> &Vector<Box<dyn Reference>>;
   fn endpoint(&self) -> &Vector<Box<dyn Reference>>;
   fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn organization(&self) -> &Option<Box<dyn Reference>>;
+  fn organization(&self) -> Option<&Box<dyn Reference>>;
   fn healthcareService(&self) -> &Vector<Box<dyn Reference>>;
-  fn participatingOrganization(&self) -> &Option<Box<dyn Reference>>;
+  fn participatingOrganization(&self) -> Option<&Box<dyn Reference>>;
 }
 
 dyn_clone::clone_trait_object!(OrganizationAffiliation);
@@ -65,15 +65,15 @@ impl FHIRObject for OrganizationAffiliationRaw {
 }
 
 impl Resource for OrganizationAffiliationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for OrganizationAffiliationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -82,16 +82,16 @@ impl DomainResource for OrganizationAffiliationRaw {
 
 impl OrganizationAffiliation for OrganizationAffiliationRaw {
   fn code(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.code }
-  fn active(&self) -> &Option<bool> { &self.active }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
   fn network(&self) -> &Vector<Box<dyn Reference>> { &self.network }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn location(&self) -> &Vector<Box<dyn Reference>> { &self.location }
   fn endpoint(&self) -> &Vector<Box<dyn Reference>> { &self.endpoint }
   fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.specialty }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn organization(&self) -> &Option<Box<dyn Reference>> { &self.organization }
+  fn organization(&self) -> Option<&Box<dyn Reference>> { self.organization.as_ref() }
   fn healthcareService(&self) -> &Vector<Box<dyn Reference>> { &self.healthcareService }
-  fn participatingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.participatingOrganization }
+  fn participatingOrganization(&self) -> Option<&Box<dyn Reference>> { self.participatingOrganization.as_ref() }
 }
 

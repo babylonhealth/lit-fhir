@@ -34,17 +34,17 @@ impl FHIRObject for AgeRaw {
 }
 
 impl FHIRElement for AgeRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Quantity for AgeRaw {
-  fn unit(&self) -> &Option<String> { &self.unit }
-  fn code(&self) -> &Option<String> { &self.code }
-  fn value(&self) -> &Option<BigDecimal> { &self.value }
-  fn system(&self) -> &Option<String> { &self.system }
-  fn comparator(&self) -> &Option<String> { &self.comparator }
+  fn unit(&self) -> Option<&String> { self.unit.as_ref() }
+  fn code(&self) -> Option<&String> { self.code.as_ref() }
+  fn value(&self) -> Option<&BigDecimal> { self.value.as_ref() }
+  fn system(&self) -> Option<&String> { self.system.as_ref() }
+  fn comparator(&self) -> Option<&String> { self.comparator.as_ref() }
 }
 
 

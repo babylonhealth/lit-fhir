@@ -50,19 +50,19 @@ pub struct DosageRaw {
 }
 
 pub trait Dosage : BackboneElement {
-  fn text(&self) -> &Option<String>;
-  fn site(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn route(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn timing(&self) -> &Option<Box<dyn Timing>>;
-  fn method(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn sequence(&self) -> &Option<i32>;
-  fn asNeeded(&self) -> &Option<UnionBooleanOrCodeableConcept>;
-  fn maxDosePerPeriod(&self) -> &Option<Box<dyn Ratio>>;
-  fn patientInstruction(&self) -> &Option<String>;
-  fn maxDosePerLifetime(&self) -> &Option<Box<dyn Quantity>>;
+  fn text(&self) -> Option<&String>;
+  fn site(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn route(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn timing(&self) -> Option<&Box<dyn Timing>>;
+  fn method(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn sequence(&self) -> Option<&i32>;
+  fn asNeeded(&self) -> Option<&UnionBooleanOrCodeableConcept>;
+  fn maxDosePerPeriod(&self) -> Option<&Box<dyn Ratio>>;
+  fn patientInstruction(&self) -> Option<&String>;
+  fn maxDosePerLifetime(&self) -> Option<&Box<dyn Quantity>>;
   fn additionalInstruction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn doseAndRate(&self) -> &Vector<Box<Dosage_DoseAndRate>>;
-  fn maxDosePerAdministration(&self) -> &Option<Box<dyn Quantity>>;
+  fn maxDosePerAdministration(&self) -> Option<&Box<dyn Quantity>>;
 }
 
 dyn_clone::clone_trait_object!(Dosage);
@@ -71,7 +71,7 @@ impl FHIRObject for DosageRaw {
 }
 
 impl FHIRElement for DosageRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
@@ -82,18 +82,18 @@ impl BackboneElement for DosageRaw {
 
 
 impl Dosage for DosageRaw {
-  fn text(&self) -> &Option<String> { &self.text }
-  fn site(&self) -> &Option<Box<dyn CodeableConcept>> { &self.site }
-  fn route(&self) -> &Option<Box<dyn CodeableConcept>> { &self.route }
-  fn timing(&self) -> &Option<Box<dyn Timing>> { &self.timing }
-  fn method(&self) -> &Option<Box<dyn CodeableConcept>> { &self.method }
-  fn sequence(&self) -> &Option<i32> { &self.sequence }
-  fn asNeeded(&self) -> &Option<UnionBooleanOrCodeableConcept> { &self.asNeeded }
-  fn maxDosePerPeriod(&self) -> &Option<Box<dyn Ratio>> { &self.maxDosePerPeriod }
-  fn patientInstruction(&self) -> &Option<String> { &self.patientInstruction }
-  fn maxDosePerLifetime(&self) -> &Option<Box<dyn Quantity>> { &self.maxDosePerLifetime }
+  fn text(&self) -> Option<&String> { self.text.as_ref() }
+  fn site(&self) -> Option<&Box<dyn CodeableConcept>> { self.site.as_ref() }
+  fn route(&self) -> Option<&Box<dyn CodeableConcept>> { self.route.as_ref() }
+  fn timing(&self) -> Option<&Box<dyn Timing>> { self.timing.as_ref() }
+  fn method(&self) -> Option<&Box<dyn CodeableConcept>> { self.method.as_ref() }
+  fn sequence(&self) -> Option<&i32> { self.sequence.as_ref() }
+  fn asNeeded(&self) -> Option<&UnionBooleanOrCodeableConcept> { self.asNeeded.as_ref() }
+  fn maxDosePerPeriod(&self) -> Option<&Box<dyn Ratio>> { self.maxDosePerPeriod.as_ref() }
+  fn patientInstruction(&self) -> Option<&String> { self.patientInstruction.as_ref() }
+  fn maxDosePerLifetime(&self) -> Option<&Box<dyn Quantity>> { self.maxDosePerLifetime.as_ref() }
   fn additionalInstruction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.additionalInstruction }
   fn doseAndRate(&self) -> &Vector<Box<Dosage_DoseAndRate>> { &self.doseAndRate }
-  fn maxDosePerAdministration(&self) -> &Option<Box<dyn Quantity>> { &self.maxDosePerAdministration }
+  fn maxDosePerAdministration(&self) -> Option<&Box<dyn Quantity>> { self.maxDosePerAdministration.as_ref() }
 }
 

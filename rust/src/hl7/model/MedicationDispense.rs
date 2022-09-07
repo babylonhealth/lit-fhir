@@ -80,30 +80,30 @@ pub struct MedicationDispenseRaw {
 }
 
 pub trait MedicationDispense : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
-  fn context(&self) -> &Option<Box<dyn Reference>>;
-  fn category(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
-  fn quantity(&self) -> &Option<Box<dyn Quantity>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
+  fn context(&self) -> Option<&Box<dyn Reference>>;
+  fn category(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
+  fn quantity(&self) -> Option<&Box<dyn Quantity>>;
   fn receiver(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn daysSupply(&self) -> &Option<Box<dyn Quantity>>;
-  fn destination(&self) -> &Option<Box<dyn Reference>>;
-  fn whenPrepared(&self) -> &Option<DateTime<FixedOffset>>;
+  fn daysSupply(&self) -> Option<&Box<dyn Quantity>>;
+  fn destination(&self) -> Option<&Box<dyn Reference>>;
+  fn whenPrepared(&self) -> Option<&DateTime<FixedOffset>>;
   fn eventHistory(&self) -> &Vector<Box<dyn Reference>>;
   fn medication(&self) -> &UnionCodeableConceptOrReference;
   fn detectedIssue(&self) -> &Vector<Box<dyn Reference>>;
-  fn whenHandedOver(&self) -> &Option<DateTime<FixedOffset>>;
-  fn statusReason(&self) -> &Option<UnionCodeableConceptOrReference>;
+  fn whenHandedOver(&self) -> Option<&DateTime<FixedOffset>>;
+  fn statusReason(&self) -> Option<&UnionCodeableConceptOrReference>;
   fn dosageInstruction(&self) -> &Vector<Box<dyn Dosage>>;
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
   fn authorizingPrescription(&self) -> &Vector<Box<dyn Reference>>;
   fn performer(&self) -> &Vector<Box<MedicationDispense_Performer>>;
-  fn substitution(&self) -> &Option<Box<MedicationDispense_Substitution>>;
+  fn substitution(&self) -> Option<&Box<MedicationDispense_Substitution>>;
 }
 
 dyn_clone::clone_trait_object!(MedicationDispense);
@@ -112,15 +112,15 @@ impl FHIRObject for MedicationDispenseRaw {
 }
 
 impl Resource for MedicationDispenseRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicationDispenseRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -128,29 +128,29 @@ impl DomainResource for MedicationDispenseRaw {
 
 
 impl MedicationDispense for MedicationDispenseRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
   fn status(&self) -> &String { &self.status }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
-  fn context(&self) -> &Option<Box<dyn Reference>> { &self.context }
-  fn category(&self) -> &Option<Box<dyn CodeableConcept>> { &self.category }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
-  fn quantity(&self) -> &Option<Box<dyn Quantity>> { &self.quantity }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
+  fn context(&self) -> Option<&Box<dyn Reference>> { self.context.as_ref() }
+  fn category(&self) -> Option<&Box<dyn CodeableConcept>> { self.category.as_ref() }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
+  fn quantity(&self) -> Option<&Box<dyn Quantity>> { self.quantity.as_ref() }
   fn receiver(&self) -> &Vector<Box<dyn Reference>> { &self.receiver }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn daysSupply(&self) -> &Option<Box<dyn Quantity>> { &self.daysSupply }
-  fn destination(&self) -> &Option<Box<dyn Reference>> { &self.destination }
-  fn whenPrepared(&self) -> &Option<DateTime<FixedOffset>> { &self.whenPrepared }
+  fn daysSupply(&self) -> Option<&Box<dyn Quantity>> { self.daysSupply.as_ref() }
+  fn destination(&self) -> Option<&Box<dyn Reference>> { self.destination.as_ref() }
+  fn whenPrepared(&self) -> Option<&DateTime<FixedOffset>> { self.whenPrepared.as_ref() }
   fn eventHistory(&self) -> &Vector<Box<dyn Reference>> { &self.eventHistory }
   fn medication(&self) -> &UnionCodeableConceptOrReference { &self.medication }
   fn detectedIssue(&self) -> &Vector<Box<dyn Reference>> { &self.detectedIssue }
-  fn whenHandedOver(&self) -> &Option<DateTime<FixedOffset>> { &self.whenHandedOver }
-  fn statusReason(&self) -> &Option<UnionCodeableConceptOrReference> { &self.statusReason }
+  fn whenHandedOver(&self) -> Option<&DateTime<FixedOffset>> { self.whenHandedOver.as_ref() }
+  fn statusReason(&self) -> Option<&UnionCodeableConceptOrReference> { self.statusReason.as_ref() }
   fn dosageInstruction(&self) -> &Vector<Box<dyn Dosage>> { &self.dosageInstruction }
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
   fn authorizingPrescription(&self) -> &Vector<Box<dyn Reference>> { &self.authorizingPrescription }
   fn performer(&self) -> &Vector<Box<MedicationDispense_Performer>> { &self.performer }
-  fn substitution(&self) -> &Option<Box<MedicationDispense_Substitution>> { &self.substitution }
+  fn substitution(&self) -> Option<&Box<MedicationDispense_Substitution>> { self.substitution.as_ref() }
 }
 

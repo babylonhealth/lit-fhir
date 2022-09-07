@@ -119,22 +119,22 @@ pub struct DeviceDefinitionRaw {
 }
 
 pub trait DeviceDefinition : DomainResource {
-  fn url(&self) -> &Option<String>;
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn url(&self) -> Option<&String>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn owner(&self) -> &Option<Box<dyn Reference>>;
+  fn owner(&self) -> Option<&Box<dyn Reference>>;
   fn safety(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn version(&self) -> &Vector<String>;
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>>;
-  fn quantity(&self) -> &Option<Box<dyn Quantity>>;
+  fn quantity(&self) -> Option<&Box<dyn Quantity>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn modelNumber(&self) -> &Option<String>;
+  fn modelNumber(&self) -> Option<&String>;
   fn languageCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn parentDevice(&self) -> &Option<Box<dyn Reference>>;
-  fn manufacturer(&self) -> &Option<UnionReferenceOrString>;
+  fn parentDevice(&self) -> Option<&Box<dyn Reference>>;
+  fn manufacturer(&self) -> Option<&UnionReferenceOrString>;
   fn shelfLifeStorage(&self) -> &Vector<String>;
-  fn onlineInformation(&self) -> &Option<String>;
-  fn physicalCharacteristics(&self) -> &Option<String>;
+  fn onlineInformation(&self) -> Option<&String>;
+  fn physicalCharacteristics(&self) -> Option<&String>;
   fn property(&self) -> &Vector<Box<DeviceDefinition_Property>>;
   fn deviceName(&self) -> &Vector<Box<DeviceDefinition_DeviceName>>;
   fn capability(&self) -> &Vector<Box<DeviceDefinition_Capability>>;
@@ -149,15 +149,15 @@ impl FHIRObject for DeviceDefinitionRaw {
 }
 
 impl Resource for DeviceDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DeviceDefinitionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -165,22 +165,22 @@ impl DomainResource for DeviceDefinitionRaw {
 
 
 impl DeviceDefinition for DeviceDefinitionRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn owner(&self) -> &Option<Box<dyn Reference>> { &self.owner }
+  fn owner(&self) -> Option<&Box<dyn Reference>> { self.owner.as_ref() }
   fn safety(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.safety }
   fn version(&self) -> &Vector<String> { &self.version }
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>> { &self.contact }
-  fn quantity(&self) -> &Option<Box<dyn Quantity>> { &self.quantity }
+  fn quantity(&self) -> Option<&Box<dyn Quantity>> { self.quantity.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn modelNumber(&self) -> &Option<String> { &self.modelNumber }
+  fn modelNumber(&self) -> Option<&String> { self.modelNumber.as_ref() }
   fn languageCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.languageCode }
-  fn parentDevice(&self) -> &Option<Box<dyn Reference>> { &self.parentDevice }
-  fn manufacturer(&self) -> &Option<UnionReferenceOrString> { &self.manufacturer }
+  fn parentDevice(&self) -> Option<&Box<dyn Reference>> { self.parentDevice.as_ref() }
+  fn manufacturer(&self) -> Option<&UnionReferenceOrString> { self.manufacturer.as_ref() }
   fn shelfLifeStorage(&self) -> &Vector<String> { &self.shelfLifeStorage }
-  fn onlineInformation(&self) -> &Option<String> { &self.onlineInformation }
-  fn physicalCharacteristics(&self) -> &Option<String> { &self.physicalCharacteristics }
+  fn onlineInformation(&self) -> Option<&String> { self.onlineInformation.as_ref() }
+  fn physicalCharacteristics(&self) -> Option<&String> { self.physicalCharacteristics.as_ref() }
   fn property(&self) -> &Vector<Box<DeviceDefinition_Property>> { &self.property }
   fn deviceName(&self) -> &Vector<Box<DeviceDefinition_DeviceName>> { &self.deviceName }
   fn capability(&self) -> &Vector<Box<DeviceDefinition_Capability>> { &self.capability }

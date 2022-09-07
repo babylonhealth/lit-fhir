@@ -48,14 +48,14 @@ pub struct DeviceUseStatementRaw {
 pub trait DeviceUseStatement : DomainResource {
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn status(&self) -> &String;
-  fn source(&self) -> &Option<Box<dyn Reference>>;
+  fn source(&self) -> Option<&Box<dyn Reference>>;
   fn device(&self) -> &Box<dyn Reference>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
   fn subject(&self) -> &Box<dyn Reference>;
-  fn bodySite(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn timing(&self) -> &Option<UnionDateTimeOrPeriodOrTiming>;
+  fn bodySite(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn timing(&self) -> Option<&UnionDateTimeOrPeriodOrTiming>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn recordedOn(&self) -> &Option<DateTime<FixedOffset>>;
+  fn recordedOn(&self) -> Option<&DateTime<FixedOffset>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn derivedFrom(&self) -> &Vector<Box<dyn Reference>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
@@ -67,15 +67,15 @@ impl FHIRObject for DeviceUseStatementRaw {
 }
 
 impl Resource for DeviceUseStatementRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DeviceUseStatementRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -85,14 +85,14 @@ impl DomainResource for DeviceUseStatementRaw {
 impl DeviceUseStatement for DeviceUseStatementRaw {
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn status(&self) -> &String { &self.status }
-  fn source(&self) -> &Option<Box<dyn Reference>> { &self.source }
+  fn source(&self) -> Option<&Box<dyn Reference>> { self.source.as_ref() }
   fn device(&self) -> &Box<dyn Reference> { &self.device }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
-  fn bodySite(&self) -> &Option<Box<dyn CodeableConcept>> { &self.bodySite }
-  fn timing(&self) -> &Option<UnionDateTimeOrPeriodOrTiming> { &self.timing }
+  fn bodySite(&self) -> Option<&Box<dyn CodeableConcept>> { self.bodySite.as_ref() }
+  fn timing(&self) -> Option<&UnionDateTimeOrPeriodOrTiming> { self.timing.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn recordedOn(&self) -> &Option<DateTime<FixedOffset>> { &self.recordedOn }
+  fn recordedOn(&self) -> Option<&DateTime<FixedOffset>> { self.recordedOn.as_ref() }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn derivedFrom(&self) -> &Vector<Box<dyn Reference>> { &self.derivedFrom }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }

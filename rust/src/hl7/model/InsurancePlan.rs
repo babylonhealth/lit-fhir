@@ -149,16 +149,16 @@ pub struct InsurancePlanRaw {
 
 pub trait InsurancePlan : DomainResource {
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn name(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
   fn alias(&self) -> &Vector<String>;
-  fn status(&self) -> &Option<String>;
-  fn period(&self) -> &Option<Box<dyn Period>>;
-  fn ownedBy(&self) -> &Option<Box<dyn Reference>>;
+  fn status(&self) -> Option<&String>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
+  fn ownedBy(&self) -> Option<&Box<dyn Reference>>;
   fn network(&self) -> &Vector<Box<dyn Reference>>;
   fn endpoint(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn coverageArea(&self) -> &Vector<Box<dyn Reference>>;
-  fn administeredBy(&self) -> &Option<Box<dyn Reference>>;
+  fn administeredBy(&self) -> Option<&Box<dyn Reference>>;
   fn contact(&self) -> &Vector<Box<InsurancePlan_Contact>>;
   fn coverage(&self) -> &Vector<Box<InsurancePlan_Coverage>>;
   fn plan(&self) -> &Vector<Box<InsurancePlan_Plan>>;
@@ -170,15 +170,15 @@ impl FHIRObject for InsurancePlanRaw {
 }
 
 impl Resource for InsurancePlanRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for InsurancePlanRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -187,16 +187,16 @@ impl DomainResource for InsurancePlanRaw {
 
 impl InsurancePlan for InsurancePlanRaw {
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>> { &self._type }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn alias(&self) -> &Vector<String> { &self.alias }
-  fn status(&self) -> &Option<String> { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
-  fn ownedBy(&self) -> &Option<Box<dyn Reference>> { &self.ownedBy }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
+  fn ownedBy(&self) -> Option<&Box<dyn Reference>> { self.ownedBy.as_ref() }
   fn network(&self) -> &Vector<Box<dyn Reference>> { &self.network }
   fn endpoint(&self) -> &Vector<Box<dyn Reference>> { &self.endpoint }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn coverageArea(&self) -> &Vector<Box<dyn Reference>> { &self.coverageArea }
-  fn administeredBy(&self) -> &Option<Box<dyn Reference>> { &self.administeredBy }
+  fn administeredBy(&self) -> Option<&Box<dyn Reference>> { self.administeredBy.as_ref() }
   fn contact(&self) -> &Vector<Box<InsurancePlan_Contact>> { &self.contact }
   fn coverage(&self) -> &Vector<Box<InsurancePlan_Coverage>> { &self.coverage }
   fn plan(&self) -> &Vector<Box<InsurancePlan_Plan>> { &self.plan }

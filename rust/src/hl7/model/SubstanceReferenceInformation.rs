@@ -86,7 +86,7 @@ pub struct SubstanceReferenceInformationRaw {
 }
 
 pub trait SubstanceReferenceInformation : DomainResource {
-  fn comment(&self) -> &Option<String>;
+  fn comment(&self) -> Option<&String>;
   fn gene(&self) -> &Vector<Box<SubstanceReferenceInformation_Gene>>;
   fn target(&self) -> &Vector<Box<SubstanceReferenceInformation_Target>>;
   fn geneElement(&self) -> &Vector<Box<SubstanceReferenceInformation_GeneElement>>;
@@ -99,15 +99,15 @@ impl FHIRObject for SubstanceReferenceInformationRaw {
 }
 
 impl Resource for SubstanceReferenceInformationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SubstanceReferenceInformationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -115,7 +115,7 @@ impl DomainResource for SubstanceReferenceInformationRaw {
 
 
 impl SubstanceReferenceInformation for SubstanceReferenceInformationRaw {
-  fn comment(&self) -> &Option<String> { &self.comment }
+  fn comment(&self) -> Option<&String> { self.comment.as_ref() }
   fn gene(&self) -> &Vector<Box<SubstanceReferenceInformation_Gene>> { &self.gene }
   fn target(&self) -> &Vector<Box<SubstanceReferenceInformation_Target>> { &self.target }
   fn geneElement(&self) -> &Vector<Box<SubstanceReferenceInformation_GeneElement>> { &self.geneElement }

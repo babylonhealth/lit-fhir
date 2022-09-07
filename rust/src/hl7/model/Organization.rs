@@ -56,10 +56,10 @@ pub struct OrganizationRaw {
 
 pub trait Organization : DomainResource {
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn name(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
   fn alias(&self) -> &Vector<String>;
-  fn active(&self) -> &Option<bool>;
-  fn partOf(&self) -> &Option<Box<dyn Reference>>;
+  fn active(&self) -> Option<&bool>;
+  fn partOf(&self) -> Option<&Box<dyn Reference>>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &Vector<Box<dyn Address>>;
   fn endpoint(&self) -> &Vector<Box<dyn Reference>>;
@@ -73,15 +73,15 @@ impl FHIRObject for OrganizationRaw {
 }
 
 impl Resource for OrganizationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for OrganizationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -90,10 +90,10 @@ impl DomainResource for OrganizationRaw {
 
 impl Organization for OrganizationRaw {
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>> { &self._type }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn alias(&self) -> &Vector<String> { &self.alias }
-  fn active(&self) -> &Option<bool> { &self.active }
-  fn partOf(&self) -> &Option<Box<dyn Reference>> { &self.partOf }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
+  fn partOf(&self) -> Option<&Box<dyn Reference>> { self.partOf.as_ref() }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
   fn endpoint(&self) -> &Vector<Box<dyn Reference>> { &self.endpoint }

@@ -45,14 +45,14 @@ pub trait Slot : DomainResource {
   fn end(&self) -> &DateTime<FixedOffset>;
   fn start(&self) -> &DateTime<FixedOffset>;
   fn status(&self) -> &String;
-  fn comment(&self) -> &Option<String>;
+  fn comment(&self) -> Option<&String>;
   fn schedule(&self) -> &Box<dyn Reference>;
   fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn overbooked(&self) -> &Option<bool>;
+  fn overbooked(&self) -> Option<&bool>;
   fn serviceType(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn serviceCategory(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn appointmentType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn appointmentType(&self) -> Option<&Box<dyn CodeableConcept>>;
 }
 
 dyn_clone::clone_trait_object!(Slot);
@@ -61,15 +61,15 @@ impl FHIRObject for SlotRaw {
 }
 
 impl Resource for SlotRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SlotRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -80,13 +80,13 @@ impl Slot for SlotRaw {
   fn end(&self) -> &DateTime<FixedOffset> { &self.end }
   fn start(&self) -> &DateTime<FixedOffset> { &self.start }
   fn status(&self) -> &String { &self.status }
-  fn comment(&self) -> &Option<String> { &self.comment }
+  fn comment(&self) -> Option<&String> { self.comment.as_ref() }
   fn schedule(&self) -> &Box<dyn Reference> { &self.schedule }
   fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.specialty }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn overbooked(&self) -> &Option<bool> { &self.overbooked }
+  fn overbooked(&self) -> Option<&bool> { self.overbooked.as_ref() }
   fn serviceType(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.serviceType }
   fn serviceCategory(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.serviceCategory }
-  fn appointmentType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.appointmentType }
+  fn appointmentType(&self) -> Option<&Box<dyn CodeableConcept>> { self.appointmentType.as_ref() }
 }
 

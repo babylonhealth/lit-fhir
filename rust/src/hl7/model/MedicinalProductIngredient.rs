@@ -86,10 +86,10 @@ pub struct MedicinalProductIngredientRaw {
 
 pub trait MedicinalProductIngredient : DomainResource {
   fn role(&self) -> &Box<dyn CodeableConcept>;
-  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn identifier(&self) -> Option<&Box<dyn Identifier>>;
   fn manufacturer(&self) -> &Vector<Box<dyn Reference>>;
-  fn allergenicIndicator(&self) -> &Option<bool>;
-  fn substance(&self) -> &Option<Box<MedicinalProductIngredient_Substance>>;
+  fn allergenicIndicator(&self) -> Option<&bool>;
+  fn substance(&self) -> Option<&Box<MedicinalProductIngredient_Substance>>;
   fn specifiedSubstance(&self) -> &Vector<Box<MedicinalProductIngredient_SpecifiedSubstance>>;
 }
 
@@ -99,15 +99,15 @@ impl FHIRObject for MedicinalProductIngredientRaw {
 }
 
 impl Resource for MedicinalProductIngredientRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductIngredientRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -116,10 +116,10 @@ impl DomainResource for MedicinalProductIngredientRaw {
 
 impl MedicinalProductIngredient for MedicinalProductIngredientRaw {
   fn role(&self) -> &Box<dyn CodeableConcept> { &self.role }
-  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
+  fn identifier(&self) -> Option<&Box<dyn Identifier>> { self.identifier.as_ref() }
   fn manufacturer(&self) -> &Vector<Box<dyn Reference>> { &self.manufacturer }
-  fn allergenicIndicator(&self) -> &Option<bool> { &self.allergenicIndicator }
-  fn substance(&self) -> &Option<Box<MedicinalProductIngredient_Substance>> { &self.substance }
+  fn allergenicIndicator(&self) -> Option<&bool> { self.allergenicIndicator.as_ref() }
+  fn substance(&self) -> Option<&Box<MedicinalProductIngredient_Substance>> { self.substance.as_ref() }
   fn specifiedSubstance(&self) -> &Vector<Box<MedicinalProductIngredient_SpecifiedSubstance>> { &self.specifiedSubstance }
 }
 

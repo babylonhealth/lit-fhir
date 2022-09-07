@@ -45,9 +45,9 @@ pub struct EndpointRaw {
 }
 
 pub trait Endpoint : DomainResource {
-  fn name(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
   fn status(&self) -> &String;
-  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
   fn header(&self) -> &Vector<String>;
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &String;
@@ -55,7 +55,7 @@ pub trait Endpoint : DomainResource {
   fn payloadType(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn connectionType(&self) -> &Box<dyn Coding>;
   fn payloadMimeType(&self) -> &Vector<String>;
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>>;
 }
 
 dyn_clone::clone_trait_object!(Endpoint);
@@ -64,15 +64,15 @@ impl FHIRObject for EndpointRaw {
 }
 
 impl Resource for EndpointRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for EndpointRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -80,9 +80,9 @@ impl DomainResource for EndpointRaw {
 
 
 impl Endpoint for EndpointRaw {
-  fn name(&self) -> &Option<String> { &self.name }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
   fn header(&self) -> &Vector<String> { &self.header }
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>> { &self.contact }
   fn address(&self) -> &String { &self.address }
@@ -90,6 +90,6 @@ impl Endpoint for EndpointRaw {
   fn payloadType(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.payloadType }
   fn connectionType(&self) -> &Box<dyn Coding> { &self.connectionType }
   fn payloadMimeType(&self) -> &Vector<String> { &self.payloadMimeType }
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>> { self.managingOrganization.as_ref() }
 }
 

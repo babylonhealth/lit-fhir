@@ -63,21 +63,21 @@ pub struct AllergyIntoleranceRaw {
 }
 
 pub trait AllergyIntolerance : DomainResource {
-  fn _type(&self) -> &Option<String>;
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&String>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn patient(&self) -> &Box<dyn Reference>;
   fn category(&self) -> &Vector<String>;
-  fn onset(&self) -> &Option<Union01474038381>;
-  fn recorder(&self) -> &Option<Box<dyn Reference>>;
-  fn asserter(&self) -> &Option<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn onset(&self) -> Option<&Union01474038381>;
+  fn recorder(&self) -> Option<&Box<dyn Reference>>;
+  fn asserter(&self) -> Option<&Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn criticality(&self) -> &Option<String>;
-  fn recordedDate(&self) -> &Option<DateTime<FixedOffset>>;
-  fn clinicalStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn lastOccurrence(&self) -> &Option<DateTime<FixedOffset>>;
-  fn verificationStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn criticality(&self) -> Option<&String>;
+  fn recordedDate(&self) -> Option<&DateTime<FixedOffset>>;
+  fn clinicalStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn lastOccurrence(&self) -> Option<&DateTime<FixedOffset>>;
+  fn verificationStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn reaction(&self) -> &Vector<Box<AllergyIntolerance_Reaction>>;
 }
 
@@ -87,15 +87,15 @@ impl FHIRObject for AllergyIntoleranceRaw {
 }
 
 impl Resource for AllergyIntoleranceRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for AllergyIntoleranceRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -103,21 +103,21 @@ impl DomainResource for AllergyIntoleranceRaw {
 
 
 impl AllergyIntolerance for AllergyIntoleranceRaw {
-  fn _type(&self) -> &Option<String> { &self._type }
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn _type(&self) -> Option<&String> { self._type.as_ref() }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn category(&self) -> &Vector<String> { &self.category }
-  fn onset(&self) -> &Option<Union01474038381> { &self.onset }
-  fn recorder(&self) -> &Option<Box<dyn Reference>> { &self.recorder }
-  fn asserter(&self) -> &Option<Box<dyn Reference>> { &self.asserter }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn onset(&self) -> Option<&Union01474038381> { self.onset.as_ref() }
+  fn recorder(&self) -> Option<&Box<dyn Reference>> { self.recorder.as_ref() }
+  fn asserter(&self) -> Option<&Box<dyn Reference>> { self.asserter.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn criticality(&self) -> &Option<String> { &self.criticality }
-  fn recordedDate(&self) -> &Option<DateTime<FixedOffset>> { &self.recordedDate }
-  fn clinicalStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.clinicalStatus }
-  fn lastOccurrence(&self) -> &Option<DateTime<FixedOffset>> { &self.lastOccurrence }
-  fn verificationStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.verificationStatus }
+  fn criticality(&self) -> Option<&String> { self.criticality.as_ref() }
+  fn recordedDate(&self) -> Option<&DateTime<FixedOffset>> { self.recordedDate.as_ref() }
+  fn clinicalStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.clinicalStatus.as_ref() }
+  fn lastOccurrence(&self) -> Option<&DateTime<FixedOffset>> { self.lastOccurrence.as_ref() }
+  fn verificationStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.verificationStatus.as_ref() }
   fn reaction(&self) -> &Vector<Box<AllergyIntolerance_Reaction>> { &self.reaction }
 }
 

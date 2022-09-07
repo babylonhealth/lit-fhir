@@ -100,7 +100,7 @@ pub struct CoverageEligibilityResponseRaw {
 }
 
 pub trait CoverageEligibilityResponse : DomainResource {
-  fn form(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn form(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn status(&self) -> &String;
   fn purpose(&self) -> &Vector<String>;
   fn patient(&self) -> &Box<dyn Reference>;
@@ -108,11 +108,11 @@ pub trait CoverageEligibilityResponse : DomainResource {
   fn request(&self) -> &Box<dyn Reference>;
   fn outcome(&self) -> &String;
   fn insurer(&self) -> &Box<dyn Reference>;
-  fn requestor(&self) -> &Option<Box<dyn Reference>>;
+  fn requestor(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn preAuthRef(&self) -> &Option<String>;
-  fn serviced(&self) -> &Option<UnionDateOrPeriod>;
-  fn disposition(&self) -> &Option<String>;
+  fn preAuthRef(&self) -> Option<&String>;
+  fn serviced(&self) -> Option<&UnionDateOrPeriod>;
+  fn disposition(&self) -> Option<&String>;
   fn error(&self) -> &Vector<Box<CoverageEligibilityResponse_Error>>;
   fn insurance(&self) -> &Vector<Box<CoverageEligibilityResponse_Insurance>>;
 }
@@ -123,15 +123,15 @@ impl FHIRObject for CoverageEligibilityResponseRaw {
 }
 
 impl Resource for CoverageEligibilityResponseRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CoverageEligibilityResponseRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -139,7 +139,7 @@ impl DomainResource for CoverageEligibilityResponseRaw {
 
 
 impl CoverageEligibilityResponse for CoverageEligibilityResponseRaw {
-  fn form(&self) -> &Option<Box<dyn CodeableConcept>> { &self.form }
+  fn form(&self) -> Option<&Box<dyn CodeableConcept>> { self.form.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn purpose(&self) -> &Vector<String> { &self.purpose }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
@@ -147,11 +147,11 @@ impl CoverageEligibilityResponse for CoverageEligibilityResponseRaw {
   fn request(&self) -> &Box<dyn Reference> { &self.request }
   fn outcome(&self) -> &String { &self.outcome }
   fn insurer(&self) -> &Box<dyn Reference> { &self.insurer }
-  fn requestor(&self) -> &Option<Box<dyn Reference>> { &self.requestor }
+  fn requestor(&self) -> Option<&Box<dyn Reference>> { self.requestor.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn preAuthRef(&self) -> &Option<String> { &self.preAuthRef }
-  fn serviced(&self) -> &Option<UnionDateOrPeriod> { &self.serviced }
-  fn disposition(&self) -> &Option<String> { &self.disposition }
+  fn preAuthRef(&self) -> Option<&String> { self.preAuthRef.as_ref() }
+  fn serviced(&self) -> Option<&UnionDateOrPeriod> { self.serviced.as_ref() }
+  fn disposition(&self) -> Option<&String> { self.disposition.as_ref() }
   fn error(&self) -> &Vector<Box<CoverageEligibilityResponse_Error>> { &self.error }
   fn insurance(&self) -> &Vector<Box<CoverageEligibilityResponse_Insurance>> { &self.insurance }
 }

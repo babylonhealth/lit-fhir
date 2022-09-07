@@ -184,24 +184,24 @@ pub struct ImplementationGuideRaw {
 pub trait ImplementationGuide : DomainResource {
   fn url(&self) -> &String;
   fn name(&self) -> &String;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
-  fn title(&self) -> &Option<String>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
+  fn title(&self) -> Option<&String>;
   fn status(&self) -> &String;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn license(&self) -> &Option<String>;
-  fn publisher(&self) -> &Option<String>;
-  fn copyright(&self) -> &Option<String>;
+  fn license(&self) -> Option<&String>;
+  fn publisher(&self) -> Option<&String>;
+  fn copyright(&self) -> Option<&String>;
   fn packageId(&self) -> &String;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn description(&self) -> &Option<String>;
+  fn description(&self) -> Option<&String>;
   fn fhirVersion(&self) -> &Vector<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn global(&self) -> &Vector<Box<ImplementationGuide_Global>>;
   fn dependsOn(&self) -> &Vector<Box<ImplementationGuide_DependsOn>>;
-  fn manifest(&self) -> &Option<Box<ImplementationGuide_Manifest>>;
-  fn definition(&self) -> &Option<Box<ImplementationGuide_Definition>>;
+  fn manifest(&self) -> Option<&Box<ImplementationGuide_Manifest>>;
+  fn definition(&self) -> Option<&Box<ImplementationGuide_Definition>>;
 }
 
 dyn_clone::clone_trait_object!(ImplementationGuide);
@@ -210,15 +210,15 @@ impl FHIRObject for ImplementationGuideRaw {
 }
 
 impl Resource for ImplementationGuideRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ImplementationGuideRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -228,23 +228,23 @@ impl DomainResource for ImplementationGuideRaw {
 impl ImplementationGuide for ImplementationGuideRaw {
   fn url(&self) -> &String { &self.url }
   fn name(&self) -> &String { &self.name }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
-  fn title(&self) -> &Option<String> { &self.title }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn license(&self) -> &Option<String> { &self.license }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
-  fn copyright(&self) -> &Option<String> { &self.copyright }
+  fn license(&self) -> Option<&String> { self.license.as_ref() }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
+  fn copyright(&self) -> Option<&String> { self.copyright.as_ref() }
   fn packageId(&self) -> &String { &self.packageId }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn fhirVersion(&self) -> &Vector<String> { &self.fhirVersion }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn global(&self) -> &Vector<Box<ImplementationGuide_Global>> { &self.global }
   fn dependsOn(&self) -> &Vector<Box<ImplementationGuide_DependsOn>> { &self.dependsOn }
-  fn manifest(&self) -> &Option<Box<ImplementationGuide_Manifest>> { &self.manifest }
-  fn definition(&self) -> &Option<Box<ImplementationGuide_Definition>> { &self.definition }
+  fn manifest(&self) -> Option<&Box<ImplementationGuide_Manifest>> { self.manifest.as_ref() }
+  fn definition(&self) -> Option<&Box<ImplementationGuide_Definition>> { self.definition.as_ref() }
 }
 

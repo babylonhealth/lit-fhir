@@ -24,11 +24,11 @@ pub struct ExpressionRaw {
 }
 
 pub trait Expression : FHIRElement {
-  fn name(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
   fn language(&self) -> &String;
-  fn reference(&self) -> &Option<String>;
-  fn expression(&self) -> &Option<String>;
-  fn description(&self) -> &Option<String>;
+  fn reference(&self) -> Option<&String>;
+  fn expression(&self) -> Option<&String>;
+  fn description(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(Expression);
@@ -37,16 +37,16 @@ impl FHIRObject for ExpressionRaw {
 }
 
 impl FHIRElement for ExpressionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Expression for ExpressionRaw {
-  fn name(&self) -> &Option<String> { &self.name }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn language(&self) -> &String { &self.language }
-  fn reference(&self) -> &Option<String> { &self.reference }
-  fn expression(&self) -> &Option<String> { &self.expression }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn reference(&self) -> Option<&String> { self.reference.as_ref() }
+  fn expression(&self) -> Option<&String> { self.expression.as_ref() }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
 }
 

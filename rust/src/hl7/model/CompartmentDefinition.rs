@@ -56,17 +56,17 @@ pub struct CompartmentDefinitionRaw {
 pub trait CompartmentDefinition : DomainResource {
   fn url(&self) -> &String;
   fn name(&self) -> &String;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn code(&self) -> &String;
   fn status(&self) -> &String;
   fn search(&self) -> &bool;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn purpose(&self) -> &Option<String>;
-  fn publisher(&self) -> &Option<String>;
+  fn purpose(&self) -> Option<&String>;
+  fn publisher(&self) -> Option<&String>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn description(&self) -> &Option<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn description(&self) -> Option<&String>;
+  fn experimental(&self) -> Option<&bool>;
   fn resource(&self) -> &Vector<Box<CompartmentDefinition_Resource>>;
 }
 
@@ -76,15 +76,15 @@ impl FHIRObject for CompartmentDefinitionRaw {
 }
 
 impl Resource for CompartmentDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CompartmentDefinitionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -94,17 +94,17 @@ impl DomainResource for CompartmentDefinitionRaw {
 impl CompartmentDefinition for CompartmentDefinitionRaw {
   fn url(&self) -> &String { &self.url }
   fn name(&self) -> &String { &self.name }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn code(&self) -> &String { &self.code }
   fn status(&self) -> &String { &self.status }
   fn search(&self) -> &bool { &self.search }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn resource(&self) -> &Vector<Box<CompartmentDefinition_Resource>> { &self.resource }
 }
 

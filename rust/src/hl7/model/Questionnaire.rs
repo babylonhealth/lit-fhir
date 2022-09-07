@@ -113,27 +113,27 @@ pub struct QuestionnaireRaw {
 }
 
 pub trait Questionnaire : DomainResource {
-  fn url(&self) -> &Option<String>;
-  fn name(&self) -> &Option<String>;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn url(&self) -> Option<&String>;
+  fn name(&self) -> Option<&String>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn code(&self) -> &Vector<Box<dyn Coding>>;
-  fn title(&self) -> &Option<String>;
+  fn title(&self) -> Option<&String>;
   fn status(&self) -> &String;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn purpose(&self) -> &Option<String>;
-  fn publisher(&self) -> &Option<String>;
-  fn copyright(&self) -> &Option<String>;
+  fn purpose(&self) -> Option<&String>;
+  fn publisher(&self) -> Option<&String>;
+  fn copyright(&self) -> Option<&String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
   fn derivedFrom(&self) -> &Vector<String>;
   fn subjectType(&self) -> &Vector<String>;
-  fn description(&self) -> &Option<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn description(&self) -> Option<&String>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<LocalDate>;
-  fn lastReviewDate(&self) -> &Option<LocalDate>;
-  fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
+  fn approvalDate(&self) -> Option<&LocalDate>;
+  fn lastReviewDate(&self) -> Option<&LocalDate>;
+  fn effectivePeriod(&self) -> Option<&Box<dyn Period>>;
   fn item(&self) -> &Vector<Box<Questionnaire_Item>>;
 }
 
@@ -143,15 +143,15 @@ impl FHIRObject for QuestionnaireRaw {
 }
 
 impl Resource for QuestionnaireRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for QuestionnaireRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -159,27 +159,27 @@ impl DomainResource for QuestionnaireRaw {
 
 
 impl Questionnaire for QuestionnaireRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn name(&self) -> &Option<String> { &self.name }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn code(&self) -> &Vector<Box<dyn Coding>> { &self.code }
-  fn title(&self) -> &Option<String> { &self.title }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
-  fn copyright(&self) -> &Option<String> { &self.copyright }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
+  fn copyright(&self) -> Option<&String> { self.copyright.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
   fn derivedFrom(&self) -> &Vector<String> { &self.derivedFrom }
   fn subjectType(&self) -> &Vector<String> { &self.subjectType }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
-  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
-  fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
+  fn approvalDate(&self) -> Option<&LocalDate> { self.approvalDate.as_ref() }
+  fn lastReviewDate(&self) -> Option<&LocalDate> { self.lastReviewDate.as_ref() }
+  fn effectivePeriod(&self) -> Option<&Box<dyn Period>> { self.effectivePeriod.as_ref() }
   fn item(&self) -> &Vector<Box<Questionnaire_Item>> { &self.item }
 }
 

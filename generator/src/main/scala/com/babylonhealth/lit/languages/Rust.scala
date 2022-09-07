@@ -33,7 +33,7 @@ object Rust {
     case "Parameters" => "FHIRParameters"
     case x            => x
   }
-  def tpe(f: BaseField): String = {
+  def structType(f: BaseField): String = {
     val isDyn  = !f.isGenerated && f.isBuildableFHIRType
     val str    = rawType(f)
     def rawTpe = if (str.contains('_')) s"Box<$str>" else if (isDyn) s"Box<dyn $str>" else str
@@ -41,6 +41,16 @@ object Rust {
       case One               => rawTpe
       case AtLeastOne | Many => s"Vector<$rawTpe>"
       case Optional          => s"Option<$rawTpe>"
+    }
+  }
+  def traitType(f: BaseField): String = {
+    val isDyn  = !f.isGenerated && f.isBuildableFHIRType
+    val str    = rawType(f)
+    def rawTpe = if (str.contains('_')) s"Box<$str>" else if (isDyn) s"Box<dyn $str>" else str
+    f.cardinality match {
+      case One               => s"&$rawTpe"
+      case AtLeastOne | Many => s"&Vector<$rawTpe>"
+      case Optional          => s"Option<&$rawTpe>"
     }
   }
   def rawType(f: BaseField): String = {
@@ -72,22 +82,24 @@ object Rust {
 
     if (f.types.size > 1) ElementTreee.getUnionAlias(pkg = f.pkg, s = f.types, field = f) else toRustType(f.types.head)
   }
-  def asStructParam(f: BaseField): String = tpe(f) match {
+  def asStructParam(f: BaseField): String = structType(f) match {
     case "Reference"         => s"pub(crate) ${toRustName(f.noParensName)}: Box<Reference>,"
     case "Option<Reference>" => s"pub(crate) ${toRustName(f.noParensName)}: Option<Box<Reference>>,"
     case rn                  => s"pub(crate) ${toRustName(f.noParensName)}: $rn,"
   }
-  def asTraitFn(f: BaseField): String = tpe(f) match {
-    case "Reference"         => s"fn ${toRustName(f.noParensName)}(&self) -> &Box<Reference>;"
-    case "Option<Reference>" => s"fn ${toRustName(f.noParensName)}(&self) -> &Option<Box<Reference>>;"
-    case rn                  => s"fn ${toRustName(f.noParensName)}(&self) -> &$rn;"
+  def asTraitFn(f: BaseField): String = traitType(f) match {
+//    case "Reference"         => s"fn ${toRustName(f.noParensName)}(&self) -> &Box<Reference>;"
+//    case "Option<Reference>" => s"fn ${toRustName(f.noParensName)}(&self) -> &Option<Box<Reference>>;"
+    case rn => s"fn ${toRustName(f.noParensName)}(&self) -> $rn;"
   }
   def asImpl(f: BaseField, constValue: Option[String] = None): String = {
-    val value = constValue getOrElse s"self.${toRustName(f.noParensName)}"
-    tpe(f) match {
-      case "Reference"         => s"fn ${toRustName(f.noParensName)}(&self) -> &Box<Reference> { &$value }"
-      case "Option<Reference>" => s"fn ${toRustName(f.noParensName)}(&self) -> &Option<Box<Reference>> { &$value }"
-      case rn                  => s"fn ${toRustName(f.noParensName)}(&self) -> &$rn { &$value }"
+    val suffix = if (f.cardinality == Optional) ".as_ref()" else ""
+    val prefix = if (f.cardinality == Optional) "" else "&"
+    val value  = constValue getOrElse s"${prefix}self.${toRustName(f.noParensName)}$suffix"
+    traitType(f) match {
+//      case "Reference"         => s"fn ${toRustName(f.noParensName)}(&self) -> &Box<Reference> { &$value }"
+//      case "Option<Reference>" => s"fn ${toRustName(f.noParensName)}(&self) -> &Option<Box<Reference>> { &$value }"
+      case rn => s"fn ${toRustName(f.noParensName)}(&self) -> $rn { $value }"
     }
   }
   def genStructuralClass(field: BaseField, prefix: String): String =

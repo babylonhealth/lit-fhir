@@ -27,11 +27,11 @@ pub struct MetaRaw {
 
 pub trait Meta : FHIRElement {
   fn tag(&self) -> &Vector<Box<dyn Coding>>;
-  fn source(&self) -> &Option<String>;
+  fn source(&self) -> Option<&String>;
   fn profile(&self) -> &Vector<String>;
   fn security(&self) -> &Vector<Box<dyn Coding>>;
-  fn versionId(&self) -> &Option<String>;
-  fn lastUpdated(&self) -> &Option<DateTime<FixedOffset>>;
+  fn versionId(&self) -> Option<&String>;
+  fn lastUpdated(&self) -> Option<&DateTime<FixedOffset>>;
 }
 
 dyn_clone::clone_trait_object!(Meta);
@@ -40,17 +40,17 @@ impl FHIRObject for MetaRaw {
 }
 
 impl FHIRElement for MetaRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Meta for MetaRaw {
   fn tag(&self) -> &Vector<Box<dyn Coding>> { &self.tag }
-  fn source(&self) -> &Option<String> { &self.source }
+  fn source(&self) -> Option<&String> { self.source.as_ref() }
   fn profile(&self) -> &Vector<String> { &self.profile }
   fn security(&self) -> &Vector<Box<dyn Coding>> { &self.security }
-  fn versionId(&self) -> &Option<String> { &self.versionId }
-  fn lastUpdated(&self) -> &Option<DateTime<FixedOffset>> { &self.lastUpdated }
+  fn versionId(&self) -> Option<&String> { self.versionId.as_ref() }
+  fn lastUpdated(&self) -> Option<&DateTime<FixedOffset>> { self.lastUpdated.as_ref() }
 }
 

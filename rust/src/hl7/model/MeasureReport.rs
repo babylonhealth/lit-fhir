@@ -109,15 +109,15 @@ pub struct MeasureReportRaw {
 
 pub trait MeasureReport : DomainResource {
   fn _type(&self) -> &String;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn status(&self) -> &String;
   fn period(&self) -> &Box<dyn Period>;
   fn measure(&self) -> &String;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
-  fn reporter(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
+  fn reporter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn evaluatedResource(&self) -> &Vector<Box<dyn Reference>>;
-  fn improvementNotation(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn improvementNotation(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn group(&self) -> &Vector<Box<MeasureReport_Group>>;
 }
 
@@ -127,15 +127,15 @@ impl FHIRObject for MeasureReportRaw {
 }
 
 impl Resource for MeasureReportRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MeasureReportRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -144,15 +144,15 @@ impl DomainResource for MeasureReportRaw {
 
 impl MeasureReport for MeasureReportRaw {
   fn _type(&self) -> &String { &self._type }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn period(&self) -> &Box<dyn Period> { &self.period }
   fn measure(&self) -> &String { &self.measure }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
-  fn reporter(&self) -> &Option<Box<dyn Reference>> { &self.reporter }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
+  fn reporter(&self) -> Option<&Box<dyn Reference>> { self.reporter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn evaluatedResource(&self) -> &Vector<Box<dyn Reference>> { &self.evaluatedResource }
-  fn improvementNotation(&self) -> &Option<Box<dyn CodeableConcept>> { &self.improvementNotation }
+  fn improvementNotation(&self) -> Option<&Box<dyn CodeableConcept>> { self.improvementNotation.as_ref() }
   fn group(&self) -> &Vector<Box<MeasureReport_Group>> { &self.group }
 }
 

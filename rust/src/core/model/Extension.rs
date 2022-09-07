@@ -22,7 +22,7 @@ pub struct ExtensionRaw {
 
 pub trait Extension : FHIRElement {
   fn url(&self) -> &String;
-  fn value(&self) -> &Option<UnionAll>;
+  fn value(&self) -> Option<&UnionAll>;
 }
 
 dyn_clone::clone_trait_object!(Extension);
@@ -31,13 +31,13 @@ impl FHIRObject for ExtensionRaw {
 }
 
 impl FHIRElement for ExtensionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Extension for ExtensionRaw {
   fn url(&self) -> &String { &self.url }
-  fn value(&self) -> &Option<UnionAll> { &self.value }
+  fn value(&self) -> Option<&UnionAll> { self.value.as_ref() }
 }
 

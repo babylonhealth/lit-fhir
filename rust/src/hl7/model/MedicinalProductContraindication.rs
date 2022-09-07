@@ -48,10 +48,10 @@ pub struct MedicinalProductContraindicationRaw {
 
 pub trait MedicinalProductContraindication : DomainResource {
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
-  fn disease(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn disease(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn population(&self) -> &Vector<String>;
   fn comorbidity(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn diseaseStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn diseaseStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn therapeuticIndication(&self) -> &Vector<Box<dyn Reference>>;
   fn otherTherapy(&self) -> &Vector<Box<MedicinalProductContraindication_OtherTherapy>>;
 }
@@ -62,15 +62,15 @@ impl FHIRObject for MedicinalProductContraindicationRaw {
 }
 
 impl Resource for MedicinalProductContraindicationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductContraindicationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -79,10 +79,10 @@ impl DomainResource for MedicinalProductContraindicationRaw {
 
 impl MedicinalProductContraindication for MedicinalProductContraindicationRaw {
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
-  fn disease(&self) -> &Option<Box<dyn CodeableConcept>> { &self.disease }
+  fn disease(&self) -> Option<&Box<dyn CodeableConcept>> { self.disease.as_ref() }
   fn population(&self) -> &Vector<String> { &self.population }
   fn comorbidity(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.comorbidity }
-  fn diseaseStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.diseaseStatus }
+  fn diseaseStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.diseaseStatus.as_ref() }
   fn therapeuticIndication(&self) -> &Vector<Box<dyn Reference>> { &self.therapeuticIndication }
   fn otherTherapy(&self) -> &Vector<Box<MedicinalProductContraindication_OtherTherapy>> { &self.otherTherapy }
 }

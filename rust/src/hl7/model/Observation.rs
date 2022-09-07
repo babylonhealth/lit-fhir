@@ -91,23 +91,23 @@ pub trait Observation : DomainResource {
   fn focus(&self) -> &Vector<Box<dyn Reference>>;
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn issued(&self) -> &Option<DateTime<FixedOffset>>;
-  fn method(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn device(&self) -> &Option<Box<dyn Reference>>;
+  fn issued(&self) -> Option<&DateTime<FixedOffset>>;
+  fn method(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn device(&self) -> Option<&Box<dyn Reference>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn value(&self) -> &Option<Union02118820890>;
-  fn bodySite(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn specimen(&self) -> &Option<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn value(&self) -> Option<&Union02118820890>;
+  fn bodySite(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn specimen(&self) -> Option<&Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn performer(&self) -> &Vector<Box<dyn Reference>>;
   fn hasMember(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn derivedFrom(&self) -> &Vector<Box<dyn Reference>>;
-  fn effective(&self) -> &Option<Union00107722725>;
+  fn effective(&self) -> Option<&Union00107722725>;
   fn interpretation(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn dataAbsentReason(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn dataAbsentReason(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn component(&self) -> &Vector<Box<Observation_Component>>;
   fn referenceRange(&self) -> &Vector<Box<Observation_ReferenceRange>>;
 }
@@ -118,15 +118,15 @@ impl FHIRObject for ObservationRaw {
 }
 
 impl Resource for ObservationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ObservationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -139,23 +139,23 @@ impl Observation for ObservationRaw {
   fn focus(&self) -> &Vector<Box<dyn Reference>> { &self.focus }
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
   fn status(&self) -> &String { &self.status }
-  fn issued(&self) -> &Option<DateTime<FixedOffset>> { &self.issued }
-  fn method(&self) -> &Option<Box<dyn CodeableConcept>> { &self.method }
-  fn device(&self) -> &Option<Box<dyn Reference>> { &self.device }
+  fn issued(&self) -> Option<&DateTime<FixedOffset>> { self.issued.as_ref() }
+  fn method(&self) -> Option<&Box<dyn CodeableConcept>> { self.method.as_ref() }
+  fn device(&self) -> Option<&Box<dyn Reference>> { self.device.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn value(&self) -> &Option<Union02118820890> { &self.value }
-  fn bodySite(&self) -> &Option<Box<dyn CodeableConcept>> { &self.bodySite }
-  fn specimen(&self) -> &Option<Box<dyn Reference>> { &self.specimen }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn value(&self) -> Option<&Union02118820890> { self.value.as_ref() }
+  fn bodySite(&self) -> Option<&Box<dyn CodeableConcept>> { self.bodySite.as_ref() }
+  fn specimen(&self) -> Option<&Box<dyn Reference>> { self.specimen.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn performer(&self) -> &Vector<Box<dyn Reference>> { &self.performer }
   fn hasMember(&self) -> &Vector<Box<dyn Reference>> { &self.hasMember }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn derivedFrom(&self) -> &Vector<Box<dyn Reference>> { &self.derivedFrom }
-  fn effective(&self) -> &Option<Union00107722725> { &self.effective }
+  fn effective(&self) -> Option<&Union00107722725> { self.effective.as_ref() }
   fn interpretation(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.interpretation }
-  fn dataAbsentReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.dataAbsentReason }
+  fn dataAbsentReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.dataAbsentReason.as_ref() }
   fn component(&self) -> &Vector<Box<Observation_Component>> { &self.component }
   fn referenceRange(&self) -> &Vector<Box<Observation_ReferenceRange>> { &self.referenceRange }
 }

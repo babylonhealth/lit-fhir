@@ -27,14 +27,14 @@ pub struct AttachmentRaw {
 }
 
 pub trait Attachment : FHIRElement {
-  fn url(&self) -> &Option<String>;
-  fn data(&self) -> &Option<String>;
-  fn size(&self) -> &Option<u32>;
-  fn hash(&self) -> &Option<String>;
-  fn title(&self) -> &Option<String>;
-  fn language(&self) -> &Option<String>;
-  fn creation(&self) -> &Option<DateTime<FixedOffset>>;
-  fn contentType(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
+  fn data(&self) -> Option<&String>;
+  fn size(&self) -> Option<&u32>;
+  fn hash(&self) -> Option<&String>;
+  fn title(&self) -> Option<&String>;
+  fn language(&self) -> Option<&String>;
+  fn creation(&self) -> Option<&DateTime<FixedOffset>>;
+  fn contentType(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(Attachment);
@@ -43,19 +43,19 @@ impl FHIRObject for AttachmentRaw {
 }
 
 impl FHIRElement for AttachmentRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Attachment for AttachmentRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn data(&self) -> &Option<String> { &self.data }
-  fn size(&self) -> &Option<u32> { &self.size }
-  fn hash(&self) -> &Option<String> { &self.hash }
-  fn title(&self) -> &Option<String> { &self.title }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn creation(&self) -> &Option<DateTime<FixedOffset>> { &self.creation }
-  fn contentType(&self) -> &Option<String> { &self.contentType }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
+  fn data(&self) -> Option<&String> { self.data.as_ref() }
+  fn size(&self) -> Option<&u32> { self.size.as_ref() }
+  fn hash(&self) -> Option<&String> { self.hash.as_ref() }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn creation(&self) -> Option<&DateTime<FixedOffset>> { self.creation.as_ref() }
+  fn contentType(&self) -> Option<&String> { self.contentType.as_ref() }
 }
 

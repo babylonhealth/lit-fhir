@@ -22,7 +22,7 @@ pub struct CodeableConceptRaw {
 }
 
 pub trait CodeableConcept : FHIRElement {
-  fn text(&self) -> &Option<String>;
+  fn text(&self) -> Option<&String>;
   fn coding(&self) -> &Vector<Box<dyn Coding>>;
 }
 
@@ -32,13 +32,13 @@ impl FHIRObject for CodeableConceptRaw {
 }
 
 impl FHIRElement for CodeableConceptRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl CodeableConcept for CodeableConceptRaw {
-  fn text(&self) -> &Option<String> { &self.text }
+  fn text(&self) -> Option<&String> { self.text.as_ref() }
   fn coding(&self) -> &Vector<Box<dyn Coding>> { &self.coding }
 }
 

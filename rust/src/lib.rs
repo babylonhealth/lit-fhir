@@ -132,7 +132,7 @@ pub fn test_subtyping_stuff() -> Result<(), LitError> {
     }
     fn printASimpleQuantity(q: &impl SimpleQuantity) {
         println!("{:?}", q);
-        println!("{:?}", &q.id());
+        println!("{:?}", &q.id().unwrap());
     }
     printAQuantity(&sq);
     println!("C!!");

@@ -83,9 +83,9 @@ pub trait MedicationAdministration : DomainResource {
   fn status(&self) -> &String;
   fn device(&self) -> &Vector<Box<dyn Reference>>;
   fn subject(&self) -> &Box<dyn Reference>;
-  fn context(&self) -> &Option<Box<dyn Reference>>;
-  fn request(&self) -> &Option<Box<dyn Reference>>;
-  fn category(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn context(&self) -> Option<&Box<dyn Reference>>;
+  fn request(&self) -> Option<&Box<dyn Reference>>;
+  fn category(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn instantiates(&self) -> &Vector<String>;
@@ -95,7 +95,7 @@ pub trait MedicationAdministration : DomainResource {
   fn medication(&self) -> &UnionCodeableConceptOrReference;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
-  fn dosage(&self) -> &Option<Box<MedicationAdministration_Dosage>>;
+  fn dosage(&self) -> Option<&Box<MedicationAdministration_Dosage>>;
   fn performer(&self) -> &Vector<Box<MedicationAdministration_Performer>>;
 }
 
@@ -105,15 +105,15 @@ impl FHIRObject for MedicationAdministrationRaw {
 }
 
 impl Resource for MedicationAdministrationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicationAdministrationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -126,9 +126,9 @@ impl MedicationAdministration for MedicationAdministrationRaw {
   fn status(&self) -> &String { &self.status }
   fn device(&self) -> &Vector<Box<dyn Reference>> { &self.device }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
-  fn context(&self) -> &Option<Box<dyn Reference>> { &self.context }
-  fn request(&self) -> &Option<Box<dyn Reference>> { &self.request }
-  fn category(&self) -> &Option<Box<dyn CodeableConcept>> { &self.category }
+  fn context(&self) -> Option<&Box<dyn Reference>> { self.context.as_ref() }
+  fn request(&self) -> Option<&Box<dyn Reference>> { self.request.as_ref() }
+  fn category(&self) -> Option<&Box<dyn CodeableConcept>> { self.category.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn instantiates(&self) -> &Vector<String> { &self.instantiates }
@@ -138,7 +138,7 @@ impl MedicationAdministration for MedicationAdministrationRaw {
   fn medication(&self) -> &UnionCodeableConceptOrReference { &self.medication }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
-  fn dosage(&self) -> &Option<Box<MedicationAdministration_Dosage>> { &self.dosage }
+  fn dosage(&self) -> Option<&Box<MedicationAdministration_Dosage>> { self.dosage.as_ref() }
   fn performer(&self) -> &Vector<Box<MedicationAdministration_Performer>> { &self.performer }
 }
 

@@ -47,8 +47,8 @@ pub struct SubscriptionRaw {
 }
 
 pub trait Subscription : DomainResource {
-  fn end(&self) -> &Option<DateTime<FixedOffset>>;
-  fn error(&self) -> &Option<String>;
+  fn end(&self) -> Option<&DateTime<FixedOffset>>;
+  fn error(&self) -> Option<&String>;
   fn status(&self) -> &String;
   fn reason(&self) -> &String;
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>>;
@@ -62,15 +62,15 @@ impl FHIRObject for SubscriptionRaw {
 }
 
 impl Resource for SubscriptionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SubscriptionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -78,8 +78,8 @@ impl DomainResource for SubscriptionRaw {
 
 
 impl Subscription for SubscriptionRaw {
-  fn end(&self) -> &Option<DateTime<FixedOffset>> { &self.end }
-  fn error(&self) -> &Option<String> { &self.error }
+  fn end(&self) -> Option<&DateTime<FixedOffset>> { self.end.as_ref() }
+  fn error(&self) -> Option<&String> { self.error.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn reason(&self) -> &String { &self.reason }
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>> { &self.contact }

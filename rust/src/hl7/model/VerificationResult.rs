@@ -87,20 +87,20 @@ pub struct VerificationResultRaw {
 }
 
 pub trait VerificationResult : DomainResource {
-  fn need(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn need(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn target(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn frequency(&self) -> &Option<Box<dyn Timing>>;
-  fn statusDate(&self) -> &Option<DateTime<FixedOffset>>;
-  fn lastPerformed(&self) -> &Option<DateTime<FixedOffset>>;
-  fn nextScheduled(&self) -> &Option<LocalDate>;
-  fn failureAction(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn frequency(&self) -> Option<&Box<dyn Timing>>;
+  fn statusDate(&self) -> Option<&DateTime<FixedOffset>>;
+  fn lastPerformed(&self) -> Option<&DateTime<FixedOffset>>;
+  fn nextScheduled(&self) -> Option<&LocalDate>;
+  fn failureAction(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn targetLocation(&self) -> &Vector<String>;
-  fn validationType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn validationType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn validationProcess(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn validator(&self) -> &Vector<Box<VerificationResult_Validator>>;
   fn primarySource(&self) -> &Vector<Box<VerificationResult_PrimarySource>>;
-  fn attestation(&self) -> &Option<Box<VerificationResult_Attestation>>;
+  fn attestation(&self) -> Option<&Box<VerificationResult_Attestation>>;
 }
 
 dyn_clone::clone_trait_object!(VerificationResult);
@@ -109,15 +109,15 @@ impl FHIRObject for VerificationResultRaw {
 }
 
 impl Resource for VerificationResultRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for VerificationResultRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -125,19 +125,19 @@ impl DomainResource for VerificationResultRaw {
 
 
 impl VerificationResult for VerificationResultRaw {
-  fn need(&self) -> &Option<Box<dyn CodeableConcept>> { &self.need }
+  fn need(&self) -> Option<&Box<dyn CodeableConcept>> { self.need.as_ref() }
   fn target(&self) -> &Vector<Box<dyn Reference>> { &self.target }
   fn status(&self) -> &String { &self.status }
-  fn frequency(&self) -> &Option<Box<dyn Timing>> { &self.frequency }
-  fn statusDate(&self) -> &Option<DateTime<FixedOffset>> { &self.statusDate }
-  fn lastPerformed(&self) -> &Option<DateTime<FixedOffset>> { &self.lastPerformed }
-  fn nextScheduled(&self) -> &Option<LocalDate> { &self.nextScheduled }
-  fn failureAction(&self) -> &Option<Box<dyn CodeableConcept>> { &self.failureAction }
+  fn frequency(&self) -> Option<&Box<dyn Timing>> { self.frequency.as_ref() }
+  fn statusDate(&self) -> Option<&DateTime<FixedOffset>> { self.statusDate.as_ref() }
+  fn lastPerformed(&self) -> Option<&DateTime<FixedOffset>> { self.lastPerformed.as_ref() }
+  fn nextScheduled(&self) -> Option<&LocalDate> { self.nextScheduled.as_ref() }
+  fn failureAction(&self) -> Option<&Box<dyn CodeableConcept>> { self.failureAction.as_ref() }
   fn targetLocation(&self) -> &Vector<String> { &self.targetLocation }
-  fn validationType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.validationType }
+  fn validationType(&self) -> Option<&Box<dyn CodeableConcept>> { self.validationType.as_ref() }
   fn validationProcess(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.validationProcess }
   fn validator(&self) -> &Vector<Box<VerificationResult_Validator>> { &self.validator }
   fn primarySource(&self) -> &Vector<Box<VerificationResult_PrimarySource>> { &self.primarySource }
-  fn attestation(&self) -> &Option<Box<VerificationResult_Attestation>> { &self.attestation }
+  fn attestation(&self) -> Option<&Box<VerificationResult_Attestation>> { self.attestation.as_ref() }
 }
 

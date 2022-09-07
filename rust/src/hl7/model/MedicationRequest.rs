@@ -110,32 +110,32 @@ pub trait MedicationRequest : DomainResource {
   fn subject(&self) -> &Box<dyn Reference>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn priority(&self) -> &Option<String>;
-  fn recorder(&self) -> &Option<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn requester(&self) -> &Option<Box<dyn Reference>>;
-  fn performer(&self) -> &Option<Box<dyn Reference>>;
+  fn priority(&self) -> Option<&String>;
+  fn recorder(&self) -> Option<&Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn requester(&self) -> Option<&Box<dyn Reference>>;
+  fn performer(&self) -> Option<&Box<dyn Reference>>;
   fn insurance(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>>;
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn reported(&self) -> &Option<UnionBooleanOrReference>;
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn doNotPerform(&self) -> &Option<bool>;
+  fn reported(&self) -> Option<&UnionBooleanOrReference>;
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn doNotPerform(&self) -> Option<&bool>;
   fn eventHistory(&self) -> &Vector<Box<dyn Reference>>;
   fn medication(&self) -> &UnionCodeableConceptOrReference;
-  fn performerType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn performerType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn detectedIssue(&self) -> &Vector<Box<dyn Reference>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesUri(&self) -> &Vector<String>;
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn dosageInstruction(&self) -> &Vector<Box<dyn Dosage>>;
-  fn priorPrescription(&self) -> &Option<Box<dyn Reference>>;
-  fn courseOfTherapyType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn priorPrescription(&self) -> Option<&Box<dyn Reference>>;
+  fn courseOfTherapyType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
-  fn substitution(&self) -> &Option<Box<MedicationRequest_Substitution>>;
-  fn dispenseRequest(&self) -> &Option<Box<MedicationRequest_DispenseRequest>>;
+  fn substitution(&self) -> Option<&Box<MedicationRequest_Substitution>>;
+  fn dispenseRequest(&self) -> Option<&Box<MedicationRequest_DispenseRequest>>;
 }
 
 dyn_clone::clone_trait_object!(MedicationRequest);
@@ -144,15 +144,15 @@ impl FHIRObject for MedicationRequestRaw {
 }
 
 impl Resource for MedicationRequestRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicationRequestRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -166,31 +166,31 @@ impl MedicationRequest for MedicationRequestRaw {
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn priority(&self) -> &Option<String> { &self.priority }
-  fn recorder(&self) -> &Option<Box<dyn Reference>> { &self.recorder }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn requester(&self) -> &Option<Box<dyn Reference>> { &self.requester }
-  fn performer(&self) -> &Option<Box<dyn Reference>> { &self.performer }
+  fn priority(&self) -> Option<&String> { self.priority.as_ref() }
+  fn recorder(&self) -> Option<&Box<dyn Reference>> { self.recorder.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn requester(&self) -> Option<&Box<dyn Reference>> { self.requester.as_ref() }
+  fn performer(&self) -> Option<&Box<dyn Reference>> { self.performer.as_ref() }
   fn insurance(&self) -> &Vector<Box<dyn Reference>> { &self.insurance }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>> { &self.authoredOn }
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>> { self.authoredOn.as_ref() }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn reported(&self) -> &Option<UnionBooleanOrReference> { &self.reported }
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.statusReason }
-  fn doNotPerform(&self) -> &Option<bool> { &self.doNotPerform }
+  fn reported(&self) -> Option<&UnionBooleanOrReference> { self.reported.as_ref() }
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.statusReason.as_ref() }
+  fn doNotPerform(&self) -> Option<&bool> { self.doNotPerform.as_ref() }
   fn eventHistory(&self) -> &Vector<Box<dyn Reference>> { &self.eventHistory }
   fn medication(&self) -> &UnionCodeableConceptOrReference { &self.medication }
-  fn performerType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.performerType }
+  fn performerType(&self) -> Option<&Box<dyn CodeableConcept>> { self.performerType.as_ref() }
   fn detectedIssue(&self) -> &Vector<Box<dyn Reference>> { &self.detectedIssue }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.groupIdentifier }
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.groupIdentifier.as_ref() }
   fn dosageInstruction(&self) -> &Vector<Box<dyn Dosage>> { &self.dosageInstruction }
-  fn priorPrescription(&self) -> &Option<Box<dyn Reference>> { &self.priorPrescription }
-  fn courseOfTherapyType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.courseOfTherapyType }
+  fn priorPrescription(&self) -> Option<&Box<dyn Reference>> { self.priorPrescription.as_ref() }
+  fn courseOfTherapyType(&self) -> Option<&Box<dyn CodeableConcept>> { self.courseOfTherapyType.as_ref() }
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
-  fn substitution(&self) -> &Option<Box<MedicationRequest_Substitution>> { &self.substitution }
-  fn dispenseRequest(&self) -> &Option<Box<MedicationRequest_DispenseRequest>> { &self.dispenseRequest }
+  fn substitution(&self) -> Option<&Box<MedicationRequest_Substitution>> { self.substitution.as_ref() }
+  fn dispenseRequest(&self) -> Option<&Box<MedicationRequest_DispenseRequest>> { self.dispenseRequest.as_ref() }
 }
 

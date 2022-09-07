@@ -129,9 +129,9 @@ pub trait NutritionOrder : DomainResource {
   fn status(&self) -> &String;
   fn intent(&self) -> &String;
   fn patient(&self) -> &Box<dyn Reference>;
-  fn orderer(&self) -> &Option<Box<dyn Reference>>;
+  fn orderer(&self) -> Option<&Box<dyn Reference>>;
   fn dateTime(&self) -> &DateTime<FixedOffset>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn instantiates(&self) -> &Vector<String>;
   fn instantiatesUri(&self) -> &Vector<String>;
@@ -140,8 +140,8 @@ pub trait NutritionOrder : DomainResource {
   fn instantiatesCanonical(&self) -> &Vector<String>;
   fn foodPreferenceModifier(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn supplement(&self) -> &Vector<Box<NutritionOrder_Supplement>>;
-  fn oralDiet(&self) -> &Option<Box<NutritionOrder_OralDiet>>;
-  fn enteralFormula(&self) -> &Option<Box<NutritionOrder_EnteralFormula>>;
+  fn oralDiet(&self) -> Option<&Box<NutritionOrder_OralDiet>>;
+  fn enteralFormula(&self) -> Option<&Box<NutritionOrder_EnteralFormula>>;
 }
 
 dyn_clone::clone_trait_object!(NutritionOrder);
@@ -150,15 +150,15 @@ impl FHIRObject for NutritionOrderRaw {
 }
 
 impl Resource for NutritionOrderRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for NutritionOrderRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -170,9 +170,9 @@ impl NutritionOrder for NutritionOrderRaw {
   fn status(&self) -> &String { &self.status }
   fn intent(&self) -> &String { &self.intent }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
-  fn orderer(&self) -> &Option<Box<dyn Reference>> { &self.orderer }
+  fn orderer(&self) -> Option<&Box<dyn Reference>> { self.orderer.as_ref() }
   fn dateTime(&self) -> &DateTime<FixedOffset> { &self.dateTime }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn instantiates(&self) -> &Vector<String> { &self.instantiates }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }
@@ -181,7 +181,7 @@ impl NutritionOrder for NutritionOrderRaw {
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
   fn foodPreferenceModifier(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.foodPreferenceModifier }
   fn supplement(&self) -> &Vector<Box<NutritionOrder_Supplement>> { &self.supplement }
-  fn oralDiet(&self) -> &Option<Box<NutritionOrder_OralDiet>> { &self.oralDiet }
-  fn enteralFormula(&self) -> &Option<Box<NutritionOrder_EnteralFormula>> { &self.enteralFormula }
+  fn oralDiet(&self) -> Option<&Box<NutritionOrder_OralDiet>> { self.oralDiet.as_ref() }
+  fn enteralFormula(&self) -> Option<&Box<NutritionOrder_EnteralFormula>> { self.enteralFormula.as_ref() }
 }
 

@@ -59,13 +59,13 @@ pub struct RelatedPersonRaw {
 pub trait RelatedPerson : DomainResource {
   fn name(&self) -> &Vector<Box<dyn HumanName>>;
   fn photo(&self) -> &Vector<Box<dyn Attachment>>;
-  fn active(&self) -> &Option<bool>;
-  fn gender(&self) -> &Option<String>;
-  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn active(&self) -> Option<&bool>;
+  fn gender(&self) -> Option<&String>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
   fn patient(&self) -> &Box<dyn Reference>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &Vector<Box<dyn Address>>;
-  fn birthDate(&self) -> &Option<LocalDate>;
+  fn birthDate(&self) -> Option<&LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn relationship(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn communication(&self) -> &Vector<Box<RelatedPerson_Communication>>;
@@ -77,15 +77,15 @@ impl FHIRObject for RelatedPersonRaw {
 }
 
 impl Resource for RelatedPersonRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for RelatedPersonRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -95,13 +95,13 @@ impl DomainResource for RelatedPersonRaw {
 impl RelatedPerson for RelatedPersonRaw {
   fn name(&self) -> &Vector<Box<dyn HumanName>> { &self.name }
   fn photo(&self) -> &Vector<Box<dyn Attachment>> { &self.photo }
-  fn active(&self) -> &Option<bool> { &self.active }
-  fn gender(&self) -> &Option<String> { &self.gender }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
+  fn gender(&self) -> Option<&String> { self.gender.as_ref() }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
-  fn birthDate(&self) -> &Option<LocalDate> { &self.birthDate }
+  fn birthDate(&self) -> Option<&LocalDate> { self.birthDate.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn relationship(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.relationship }
   fn communication(&self) -> &Vector<Box<RelatedPerson_Communication>> { &self.communication }

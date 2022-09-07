@@ -21,8 +21,8 @@ pub struct MoneyRaw {
 }
 
 pub trait Money : FHIRElement {
-  fn value(&self) -> &Option<BigDecimal>;
-  fn currency(&self) -> &Option<String>;
+  fn value(&self) -> Option<&BigDecimal>;
+  fn currency(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(Money);
@@ -31,13 +31,13 @@ impl FHIRObject for MoneyRaw {
 }
 
 impl FHIRElement for MoneyRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Money for MoneyRaw {
-  fn value(&self) -> &Option<BigDecimal> { &self.value }
-  fn currency(&self) -> &Option<String> { &self.currency }
+  fn value(&self) -> Option<&BigDecimal> { self.value.as_ref() }
+  fn currency(&self) -> Option<&String> { self.currency.as_ref() }
 }
 

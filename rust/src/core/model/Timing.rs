@@ -47,9 +47,9 @@ pub struct TimingRaw {
 }
 
 pub trait Timing : BackboneElement {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn event(&self) -> &Vector<DateTime<FixedOffset>>;
-  fn repeat(&self) -> &Option<Box<Timing_Repeat>>;
+  fn repeat(&self) -> Option<&Box<Timing_Repeat>>;
 }
 
 dyn_clone::clone_trait_object!(Timing);
@@ -58,7 +58,7 @@ impl FHIRObject for TimingRaw {
 }
 
 impl FHIRElement for TimingRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
@@ -69,8 +69,8 @@ impl BackboneElement for TimingRaw {
 
 
 impl Timing for TimingRaw {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
   fn event(&self) -> &Vector<DateTime<FixedOffset>> { &self.event }
-  fn repeat(&self) -> &Option<Box<Timing_Repeat>> { &self.repeat }
+  fn repeat(&self) -> Option<&Box<Timing_Repeat>> { self.repeat.as_ref() }
 }
 

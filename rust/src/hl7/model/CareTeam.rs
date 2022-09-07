@@ -58,14 +58,14 @@ pub struct CareTeamRaw {
 }
 
 pub trait CareTeam : DomainResource {
-  fn name(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn status(&self) -> &Option<String>;
-  fn period(&self) -> &Option<Box<dyn Period>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn status(&self) -> Option<&String>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
@@ -79,15 +79,15 @@ impl FHIRObject for CareTeamRaw {
 }
 
 impl Resource for CareTeamRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CareTeamRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -95,14 +95,14 @@ impl DomainResource for CareTeamRaw {
 
 
 impl CareTeam for CareTeamRaw {
-  fn name(&self) -> &Option<String> { &self.name }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn status(&self) -> &Option<String> { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }

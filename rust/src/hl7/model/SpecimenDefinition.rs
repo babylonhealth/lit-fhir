@@ -92,10 +92,10 @@ pub struct SpecimenDefinitionRaw {
 }
 
 pub trait SpecimenDefinition : DomainResource {
-  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn timeAspect(&self) -> &Option<String>;
+  fn identifier(&self) -> Option<&Box<dyn Identifier>>;
+  fn timeAspect(&self) -> Option<&String>;
   fn collection(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn typeCollected(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn typeCollected(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn patientPreparation(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn typeTested(&self) -> &Vector<Box<SpecimenDefinition_TypeTested>>;
 }
@@ -106,15 +106,15 @@ impl FHIRObject for SpecimenDefinitionRaw {
 }
 
 impl Resource for SpecimenDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SpecimenDefinitionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -122,10 +122,10 @@ impl DomainResource for SpecimenDefinitionRaw {
 
 
 impl SpecimenDefinition for SpecimenDefinitionRaw {
-  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
-  fn timeAspect(&self) -> &Option<String> { &self.timeAspect }
+  fn identifier(&self) -> Option<&Box<dyn Identifier>> { self.identifier.as_ref() }
+  fn timeAspect(&self) -> Option<&String> { self.timeAspect.as_ref() }
   fn collection(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.collection }
-  fn typeCollected(&self) -> &Option<Box<dyn CodeableConcept>> { &self.typeCollected }
+  fn typeCollected(&self) -> Option<&Box<dyn CodeableConcept>> { self.typeCollected.as_ref() }
   fn patientPreparation(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.patientPreparation }
   fn typeTested(&self) -> &Vector<Box<SpecimenDefinition_TypeTested>> { &self.typeTested }
 }

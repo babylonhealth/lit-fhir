@@ -41,12 +41,12 @@ pub struct BodyStructureRaw {
 
 pub trait BodyStructure : DomainResource {
   fn image(&self) -> &Vector<Box<dyn Attachment>>;
-  fn active(&self) -> &Option<bool>;
+  fn active(&self) -> Option<&bool>;
   fn patient(&self) -> &Box<dyn Reference>;
-  fn location(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn location(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn morphology(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn description(&self) -> &Option<String>;
+  fn morphology(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn description(&self) -> Option<&String>;
   fn locationQualifier(&self) -> &Vector<Box<dyn CodeableConcept>>;
 }
 
@@ -56,15 +56,15 @@ impl FHIRObject for BodyStructureRaw {
 }
 
 impl Resource for BodyStructureRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for BodyStructureRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -73,12 +73,12 @@ impl DomainResource for BodyStructureRaw {
 
 impl BodyStructure for BodyStructureRaw {
   fn image(&self) -> &Vector<Box<dyn Attachment>> { &self.image }
-  fn active(&self) -> &Option<bool> { &self.active }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
-  fn location(&self) -> &Option<Box<dyn CodeableConcept>> { &self.location }
+  fn location(&self) -> Option<&Box<dyn CodeableConcept>> { self.location.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn morphology(&self) -> &Option<Box<dyn CodeableConcept>> { &self.morphology }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn morphology(&self) -> Option<&Box<dyn CodeableConcept>> { self.morphology.as_ref() }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn locationQualifier(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.locationQualifier }
 }
 

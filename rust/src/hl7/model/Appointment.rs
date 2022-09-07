@@ -66,26 +66,26 @@ pub struct AppointmentRaw {
 }
 
 pub trait Appointment : DomainResource {
-  fn end(&self) -> &Option<DateTime<FixedOffset>>;
+  fn end(&self) -> Option<&DateTime<FixedOffset>>;
   fn slot(&self) -> &Vector<Box<dyn Reference>>;
-  fn start(&self) -> &Option<DateTime<FixedOffset>>;
+  fn start(&self) -> Option<&DateTime<FixedOffset>>;
   fn status(&self) -> &String;
-  fn created(&self) -> &Option<DateTime<FixedOffset>>;
-  fn comment(&self) -> &Option<String>;
+  fn created(&self) -> Option<&DateTime<FixedOffset>>;
+  fn comment(&self) -> Option<&String>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn priority(&self) -> &Option<u32>;
+  fn priority(&self) -> Option<&u32>;
   fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn serviceType(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn description(&self) -> &Option<String>;
+  fn description(&self) -> Option<&String>;
   fn serviceCategory(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn appointmentType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn appointmentType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn minutesDuration(&self) -> &Option<u32>;
+  fn minutesDuration(&self) -> Option<&u32>;
   fn requestedPeriod(&self) -> &Vector<Box<dyn Period>>;
-  fn cancelationReason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn patientInstruction(&self) -> &Option<String>;
+  fn cancelationReason(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn patientInstruction(&self) -> Option<&String>;
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>>;
   fn participant(&self) -> &Vector<Box<Appointment_Participant>>;
 }
@@ -96,15 +96,15 @@ impl FHIRObject for AppointmentRaw {
 }
 
 impl Resource for AppointmentRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for AppointmentRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -112,26 +112,26 @@ impl DomainResource for AppointmentRaw {
 
 
 impl Appointment for AppointmentRaw {
-  fn end(&self) -> &Option<DateTime<FixedOffset>> { &self.end }
+  fn end(&self) -> Option<&DateTime<FixedOffset>> { self.end.as_ref() }
   fn slot(&self) -> &Vector<Box<dyn Reference>> { &self.slot }
-  fn start(&self) -> &Option<DateTime<FixedOffset>> { &self.start }
+  fn start(&self) -> Option<&DateTime<FixedOffset>> { self.start.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn created(&self) -> &Option<DateTime<FixedOffset>> { &self.created }
-  fn comment(&self) -> &Option<String> { &self.comment }
+  fn created(&self) -> Option<&DateTime<FixedOffset>> { self.created.as_ref() }
+  fn comment(&self) -> Option<&String> { self.comment.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn priority(&self) -> &Option<u32> { &self.priority }
+  fn priority(&self) -> Option<&u32> { self.priority.as_ref() }
   fn specialty(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.specialty }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn serviceType(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.serviceType }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn serviceCategory(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.serviceCategory }
-  fn appointmentType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.appointmentType }
+  fn appointmentType(&self) -> Option<&Box<dyn CodeableConcept>> { self.appointmentType.as_ref() }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
-  fn minutesDuration(&self) -> &Option<u32> { &self.minutesDuration }
+  fn minutesDuration(&self) -> Option<&u32> { self.minutesDuration.as_ref() }
   fn requestedPeriod(&self) -> &Vector<Box<dyn Period>> { &self.requestedPeriod }
-  fn cancelationReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.cancelationReason }
-  fn patientInstruction(&self) -> &Option<String> { &self.patientInstruction }
+  fn cancelationReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.cancelationReason.as_ref() }
+  fn patientInstruction(&self) -> Option<&String> { self.patientInstruction.as_ref() }
   fn supportingInformation(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInformation }
   fn participant(&self) -> &Vector<Box<Appointment_Participant>> { &self.participant }
 }

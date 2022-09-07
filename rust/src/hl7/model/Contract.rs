@@ -290,38 +290,38 @@ pub struct ContractRaw {
 }
 
 pub trait Contract : DomainResource {
-  fn url(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
   fn site(&self) -> &Vector<Box<dyn Reference>>;
-  fn name(&self) -> &Option<String>;
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn title(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn title(&self) -> Option<&String>;
   fn alias(&self) -> &Vector<String>;
-  fn scope(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn status(&self) -> &Option<String>;
-  fn issued(&self) -> &Option<DateTime<FixedOffset>>;
+  fn scope(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn status(&self) -> Option<&String>;
+  fn issued(&self) -> Option<&DateTime<FixedOffset>>;
   fn domain(&self) -> &Vector<Box<dyn Reference>>;
-  fn author(&self) -> &Option<Box<dyn Reference>>;
-  fn version(&self) -> &Option<String>;
-  fn applies(&self) -> &Option<Box<dyn Period>>;
+  fn author(&self) -> Option<&Box<dyn Reference>>;
+  fn version(&self) -> Option<&String>;
+  fn applies(&self) -> Option<&Box<dyn Period>>;
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
   fn subType(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn subtitle(&self) -> &Option<String>;
-  fn topic(&self) -> &Option<UnionCodeableConceptOrReference>;
+  fn subtitle(&self) -> Option<&String>;
+  fn topic(&self) -> Option<&UnionCodeableConceptOrReference>;
   fn authority(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn legalState(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn expirationType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn legalState(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn expirationType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>>;
-  fn instantiatesUri(&self) -> &Option<String>;
+  fn instantiatesUri(&self) -> Option<&String>;
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>>;
-  fn contentDerivative(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn legallyBinding(&self) -> &Option<UnionAttachmentOrReference>;
-  fn instantiatesCanonical(&self) -> &Option<Box<dyn Reference>>;
+  fn contentDerivative(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn legallyBinding(&self) -> Option<&UnionAttachmentOrReference>;
+  fn instantiatesCanonical(&self) -> Option<&Box<dyn Reference>>;
   fn rule(&self) -> &Vector<Box<Contract_Rule>>;
   fn legal(&self) -> &Vector<Box<Contract_Legal>>;
   fn signer(&self) -> &Vector<Box<Contract_Signer>>;
   fn friendly(&self) -> &Vector<Box<Contract_Friendly>>;
-  fn contentDefinition(&self) -> &Option<Box<Contract_ContentDefinition>>;
+  fn contentDefinition(&self) -> Option<&Box<Contract_ContentDefinition>>;
   fn term(&self) -> &Vector<Box<Contract_Term>>;
 }
 
@@ -331,15 +331,15 @@ impl FHIRObject for ContractRaw {
 }
 
 impl Resource for ContractRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ContractRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -347,38 +347,38 @@ impl DomainResource for ContractRaw {
 
 
 impl Contract for ContractRaw {
-  fn url(&self) -> &Option<String> { &self.url }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
   fn site(&self) -> &Vector<Box<dyn Reference>> { &self.site }
-  fn name(&self) -> &Option<String> { &self.name }
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn title(&self) -> &Option<String> { &self.title }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
   fn alias(&self) -> &Vector<String> { &self.alias }
-  fn scope(&self) -> &Option<Box<dyn CodeableConcept>> { &self.scope }
-  fn status(&self) -> &Option<String> { &self.status }
-  fn issued(&self) -> &Option<DateTime<FixedOffset>> { &self.issued }
+  fn scope(&self) -> Option<&Box<dyn CodeableConcept>> { self.scope.as_ref() }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn issued(&self) -> Option<&DateTime<FixedOffset>> { self.issued.as_ref() }
   fn domain(&self) -> &Vector<Box<dyn Reference>> { &self.domain }
-  fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
-  fn version(&self) -> &Option<String> { &self.version }
-  fn applies(&self) -> &Option<Box<dyn Period>> { &self.applies }
+  fn author(&self) -> Option<&Box<dyn Reference>> { self.author.as_ref() }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
+  fn applies(&self) -> Option<&Box<dyn Period>> { self.applies.as_ref() }
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
   fn subType(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.subType }
-  fn subtitle(&self) -> &Option<String> { &self.subtitle }
-  fn topic(&self) -> &Option<UnionCodeableConceptOrReference> { &self.topic }
+  fn subtitle(&self) -> Option<&String> { self.subtitle.as_ref() }
+  fn topic(&self) -> Option<&UnionCodeableConceptOrReference> { self.topic.as_ref() }
   fn authority(&self) -> &Vector<Box<dyn Reference>> { &self.authority }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn legalState(&self) -> &Option<Box<dyn CodeableConcept>> { &self.legalState }
-  fn expirationType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.expirationType }
+  fn legalState(&self) -> Option<&Box<dyn CodeableConcept>> { self.legalState.as_ref() }
+  fn expirationType(&self) -> Option<&Box<dyn CodeableConcept>> { self.expirationType.as_ref() }
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInfo }
-  fn instantiatesUri(&self) -> &Option<String> { &self.instantiatesUri }
+  fn instantiatesUri(&self) -> Option<&String> { self.instantiatesUri.as_ref() }
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>> { &self.relevantHistory }
-  fn contentDerivative(&self) -> &Option<Box<dyn CodeableConcept>> { &self.contentDerivative }
-  fn legallyBinding(&self) -> &Option<UnionAttachmentOrReference> { &self.legallyBinding }
-  fn instantiatesCanonical(&self) -> &Option<Box<dyn Reference>> { &self.instantiatesCanonical }
+  fn contentDerivative(&self) -> Option<&Box<dyn CodeableConcept>> { self.contentDerivative.as_ref() }
+  fn legallyBinding(&self) -> Option<&UnionAttachmentOrReference> { self.legallyBinding.as_ref() }
+  fn instantiatesCanonical(&self) -> Option<&Box<dyn Reference>> { self.instantiatesCanonical.as_ref() }
   fn rule(&self) -> &Vector<Box<Contract_Rule>> { &self.rule }
   fn legal(&self) -> &Vector<Box<Contract_Legal>> { &self.legal }
   fn signer(&self) -> &Vector<Box<Contract_Signer>> { &self.signer }
   fn friendly(&self) -> &Vector<Box<Contract_Friendly>> { &self.friendly }
-  fn contentDefinition(&self) -> &Option<Box<Contract_ContentDefinition>> { &self.contentDefinition }
+  fn contentDefinition(&self) -> Option<&Box<Contract_ContentDefinition>> { self.contentDefinition.as_ref() }
   fn term(&self) -> &Vector<Box<Contract_Term>> { &self.term }
 }
 

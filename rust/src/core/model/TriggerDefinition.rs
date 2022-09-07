@@ -28,10 +28,10 @@ pub struct TriggerDefinitionRaw {
 
 pub trait TriggerDefinition : FHIRElement {
   fn _type(&self) -> &String;
-  fn name(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
   fn data(&self) -> &Vector<Box<dyn DataRequirement>>;
-  fn timing(&self) -> &Option<Union01658422381>;
-  fn condition(&self) -> &Option<Box<dyn Expression>>;
+  fn timing(&self) -> Option<&Union01658422381>;
+  fn condition(&self) -> Option<&Box<dyn Expression>>;
 }
 
 dyn_clone::clone_trait_object!(TriggerDefinition);
@@ -40,16 +40,16 @@ impl FHIRObject for TriggerDefinitionRaw {
 }
 
 impl FHIRElement for TriggerDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl TriggerDefinition for TriggerDefinitionRaw {
   fn _type(&self) -> &String { &self._type }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn data(&self) -> &Vector<Box<dyn DataRequirement>> { &self.data }
-  fn timing(&self) -> &Option<Union01658422381> { &self.timing }
-  fn condition(&self) -> &Option<Box<dyn Expression>> { &self.condition }
+  fn timing(&self) -> Option<&Union01658422381> { self.timing.as_ref() }
+  fn condition(&self) -> Option<&Box<dyn Expression>> { self.condition.as_ref() }
 }
 

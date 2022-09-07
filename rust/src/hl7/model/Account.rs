@@ -63,15 +63,15 @@ pub struct AccountRaw {
 }
 
 pub trait Account : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn name(&self) -> &Option<String>;
-  fn owner(&self) -> &Option<Box<dyn Reference>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn name(&self) -> Option<&String>;
+  fn owner(&self) -> Option<&Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn partOf(&self) -> &Option<Box<dyn Reference>>;
+  fn partOf(&self) -> Option<&Box<dyn Reference>>;
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn description(&self) -> &Option<String>;
-  fn servicePeriod(&self) -> &Option<Box<dyn Period>>;
+  fn description(&self) -> Option<&String>;
+  fn servicePeriod(&self) -> Option<&Box<dyn Period>>;
   fn coverage(&self) -> &Vector<Box<Account_Coverage>>;
   fn guarantor(&self) -> &Vector<Box<Account_Guarantor>>;
 }
@@ -82,15 +82,15 @@ impl FHIRObject for AccountRaw {
 }
 
 impl Resource for AccountRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for AccountRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -98,15 +98,15 @@ impl DomainResource for AccountRaw {
 
 
 impl Account for AccountRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn name(&self) -> &Option<String> { &self.name }
-  fn owner(&self) -> &Option<Box<dyn Reference>> { &self.owner }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
+  fn owner(&self) -> Option<&Box<dyn Reference>> { self.owner.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn partOf(&self) -> &Option<Box<dyn Reference>> { &self.partOf }
+  fn partOf(&self) -> Option<&Box<dyn Reference>> { self.partOf.as_ref() }
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn servicePeriod(&self) -> &Option<Box<dyn Period>> { &self.servicePeriod }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn servicePeriod(&self) -> Option<&Box<dyn Period>> { self.servicePeriod.as_ref() }
   fn coverage(&self) -> &Vector<Box<Account_Coverage>> { &self.coverage }
   fn guarantor(&self) -> &Vector<Box<Account_Guarantor>> { &self.guarantor }
 }

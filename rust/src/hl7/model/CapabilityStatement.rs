@@ -220,30 +220,30 @@ pub struct CapabilityStatementRaw {
 }
 
 pub trait CapabilityStatement : DomainResource {
-  fn url(&self) -> &Option<String>;
-  fn name(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
+  fn name(&self) -> Option<&String>;
   fn date(&self) -> &DateTime<FixedOffset>;
   fn kind(&self) -> &String;
-  fn title(&self) -> &Option<String>;
+  fn title(&self) -> Option<&String>;
   fn status(&self) -> &String;
   fn format(&self) -> &Vector<String>;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn purpose(&self) -> &Option<String>;
+  fn purpose(&self) -> Option<&String>;
   fn imports(&self) -> &Vector<String>;
-  fn publisher(&self) -> &Option<String>;
-  fn copyright(&self) -> &Option<String>;
+  fn publisher(&self) -> Option<&String>;
+  fn copyright(&self) -> Option<&String>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn description(&self) -> &Option<String>;
+  fn description(&self) -> Option<&String>;
   fn fhirVersion(&self) -> &String;
   fn patchFormat(&self) -> &Vector<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn instantiates(&self) -> &Vector<String>;
   fn implementationGuide(&self) -> &Vector<String>;
-  fn software(&self) -> &Option<Box<CapabilityStatement_Software>>;
+  fn software(&self) -> Option<&Box<CapabilityStatement_Software>>;
   fn document(&self) -> &Vector<Box<CapabilityStatement_Document>>;
-  fn implementation(&self) -> &Option<Box<CapabilityStatement_Implementation>>;
+  fn implementation(&self) -> Option<&Box<CapabilityStatement_Implementation>>;
   fn rest(&self) -> &Vector<Box<CapabilityStatement_Rest>>;
   fn messaging(&self) -> &Vector<Box<CapabilityStatement_Messaging>>;
 }
@@ -254,15 +254,15 @@ impl FHIRObject for CapabilityStatementRaw {
 }
 
 impl Resource for CapabilityStatementRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CapabilityStatementRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -270,30 +270,30 @@ impl DomainResource for CapabilityStatementRaw {
 
 
 impl CapabilityStatement for CapabilityStatementRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn date(&self) -> &DateTime<FixedOffset> { &self.date }
   fn kind(&self) -> &String { &self.kind }
-  fn title(&self) -> &Option<String> { &self.title }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn format(&self) -> &Vector<String> { &self.format }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
   fn imports(&self) -> &Vector<String> { &self.imports }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
-  fn copyright(&self) -> &Option<String> { &self.copyright }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
+  fn copyright(&self) -> Option<&String> { self.copyright.as_ref() }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn fhirVersion(&self) -> &String { &self.fhirVersion }
   fn patchFormat(&self) -> &Vector<String> { &self.patchFormat }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn instantiates(&self) -> &Vector<String> { &self.instantiates }
   fn implementationGuide(&self) -> &Vector<String> { &self.implementationGuide }
-  fn software(&self) -> &Option<Box<CapabilityStatement_Software>> { &self.software }
+  fn software(&self) -> Option<&Box<CapabilityStatement_Software>> { self.software.as_ref() }
   fn document(&self) -> &Vector<Box<CapabilityStatement_Document>> { &self.document }
-  fn implementation(&self) -> &Option<Box<CapabilityStatement_Implementation>> { &self.implementation }
+  fn implementation(&self) -> Option<&Box<CapabilityStatement_Implementation>> { self.implementation.as_ref() }
   fn rest(&self) -> &Vector<Box<CapabilityStatement_Rest>> { &self.rest }
   fn messaging(&self) -> &Vector<Box<CapabilityStatement_Messaging>> { &self.messaging }
 }

@@ -162,21 +162,21 @@ pub struct MolecularSequenceRaw {
 }
 
 pub trait MolecularSequence : DomainResource {
-  fn _type(&self) -> &Option<String>;
-  fn device(&self) -> &Option<Box<dyn Reference>>;
-  fn patient(&self) -> &Option<Box<dyn Reference>>;
+  fn _type(&self) -> Option<&String>;
+  fn device(&self) -> Option<&Box<dyn Reference>>;
+  fn patient(&self) -> Option<&Box<dyn Reference>>;
   fn pointer(&self) -> &Vector<Box<dyn Reference>>;
-  fn specimen(&self) -> &Option<Box<dyn Reference>>;
-  fn quantity(&self) -> &Option<Box<dyn Quantity>>;
-  fn performer(&self) -> &Option<Box<dyn Reference>>;
+  fn specimen(&self) -> Option<&Box<dyn Reference>>;
+  fn quantity(&self) -> Option<&Box<dyn Quantity>>;
+  fn performer(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn observedSeq(&self) -> &Option<String>;
-  fn readCoverage(&self) -> &Option<i32>;
+  fn observedSeq(&self) -> Option<&String>;
+  fn readCoverage(&self) -> Option<&i32>;
   fn coordinateSystem(&self) -> &i32;
   fn variant(&self) -> &Vector<Box<MolecularSequence_Variant>>;
   fn repository(&self) -> &Vector<Box<MolecularSequence_Repository>>;
   fn quality(&self) -> &Vector<Box<MolecularSequence_Quality>>;
-  fn referenceSeq(&self) -> &Option<Box<MolecularSequence_ReferenceSeq>>;
+  fn referenceSeq(&self) -> Option<&Box<MolecularSequence_ReferenceSeq>>;
   fn structureVariant(&self) -> &Vector<Box<MolecularSequence_StructureVariant>>;
 }
 
@@ -186,15 +186,15 @@ impl FHIRObject for MolecularSequenceRaw {
 }
 
 impl Resource for MolecularSequenceRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MolecularSequenceRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -202,21 +202,21 @@ impl DomainResource for MolecularSequenceRaw {
 
 
 impl MolecularSequence for MolecularSequenceRaw {
-  fn _type(&self) -> &Option<String> { &self._type }
-  fn device(&self) -> &Option<Box<dyn Reference>> { &self.device }
-  fn patient(&self) -> &Option<Box<dyn Reference>> { &self.patient }
+  fn _type(&self) -> Option<&String> { self._type.as_ref() }
+  fn device(&self) -> Option<&Box<dyn Reference>> { self.device.as_ref() }
+  fn patient(&self) -> Option<&Box<dyn Reference>> { self.patient.as_ref() }
   fn pointer(&self) -> &Vector<Box<dyn Reference>> { &self.pointer }
-  fn specimen(&self) -> &Option<Box<dyn Reference>> { &self.specimen }
-  fn quantity(&self) -> &Option<Box<dyn Quantity>> { &self.quantity }
-  fn performer(&self) -> &Option<Box<dyn Reference>> { &self.performer }
+  fn specimen(&self) -> Option<&Box<dyn Reference>> { self.specimen.as_ref() }
+  fn quantity(&self) -> Option<&Box<dyn Quantity>> { self.quantity.as_ref() }
+  fn performer(&self) -> Option<&Box<dyn Reference>> { self.performer.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn observedSeq(&self) -> &Option<String> { &self.observedSeq }
-  fn readCoverage(&self) -> &Option<i32> { &self.readCoverage }
+  fn observedSeq(&self) -> Option<&String> { self.observedSeq.as_ref() }
+  fn readCoverage(&self) -> Option<&i32> { self.readCoverage.as_ref() }
   fn coordinateSystem(&self) -> &i32 { &self.coordinateSystem }
   fn variant(&self) -> &Vector<Box<MolecularSequence_Variant>> { &self.variant }
   fn repository(&self) -> &Vector<Box<MolecularSequence_Repository>> { &self.repository }
   fn quality(&self) -> &Vector<Box<MolecularSequence_Quality>> { &self.quality }
-  fn referenceSeq(&self) -> &Option<Box<MolecularSequence_ReferenceSeq>> { &self.referenceSeq }
+  fn referenceSeq(&self) -> Option<&Box<MolecularSequence_ReferenceSeq>> { self.referenceSeq.as_ref() }
   fn structureVariant(&self) -> &Vector<Box<MolecularSequence_StructureVariant>> { &self.structureVariant }
 }
 

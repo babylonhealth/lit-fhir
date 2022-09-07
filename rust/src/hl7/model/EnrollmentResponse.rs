@@ -38,14 +38,14 @@ pub struct EnrollmentResponseRaw {
 }
 
 pub trait EnrollmentResponse : DomainResource {
-  fn status(&self) -> &Option<String>;
-  fn request(&self) -> &Option<Box<dyn Reference>>;
-  fn outcome(&self) -> &Option<String>;
-  fn created(&self) -> &Option<DateTime<FixedOffset>>;
+  fn status(&self) -> Option<&String>;
+  fn request(&self) -> Option<&Box<dyn Reference>>;
+  fn outcome(&self) -> Option<&String>;
+  fn created(&self) -> Option<&DateTime<FixedOffset>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn disposition(&self) -> &Option<String>;
-  fn organization(&self) -> &Option<Box<dyn Reference>>;
-  fn requestProvider(&self) -> &Option<Box<dyn Reference>>;
+  fn disposition(&self) -> Option<&String>;
+  fn organization(&self) -> Option<&Box<dyn Reference>>;
+  fn requestProvider(&self) -> Option<&Box<dyn Reference>>;
 }
 
 dyn_clone::clone_trait_object!(EnrollmentResponse);
@@ -54,15 +54,15 @@ impl FHIRObject for EnrollmentResponseRaw {
 }
 
 impl Resource for EnrollmentResponseRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for EnrollmentResponseRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -70,13 +70,13 @@ impl DomainResource for EnrollmentResponseRaw {
 
 
 impl EnrollmentResponse for EnrollmentResponseRaw {
-  fn status(&self) -> &Option<String> { &self.status }
-  fn request(&self) -> &Option<Box<dyn Reference>> { &self.request }
-  fn outcome(&self) -> &Option<String> { &self.outcome }
-  fn created(&self) -> &Option<DateTime<FixedOffset>> { &self.created }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn request(&self) -> Option<&Box<dyn Reference>> { self.request.as_ref() }
+  fn outcome(&self) -> Option<&String> { self.outcome.as_ref() }
+  fn created(&self) -> Option<&DateTime<FixedOffset>> { self.created.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn disposition(&self) -> &Option<String> { &self.disposition }
-  fn organization(&self) -> &Option<Box<dyn Reference>> { &self.organization }
-  fn requestProvider(&self) -> &Option<Box<dyn Reference>> { &self.requestProvider }
+  fn disposition(&self) -> Option<&String> { self.disposition.as_ref() }
+  fn organization(&self) -> Option<&Box<dyn Reference>> { self.organization.as_ref() }
+  fn requestProvider(&self) -> Option<&Box<dyn Reference>> { self.requestProvider.as_ref() }
 }
 

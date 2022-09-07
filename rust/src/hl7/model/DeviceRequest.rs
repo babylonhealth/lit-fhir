@@ -69,25 +69,25 @@ pub struct DeviceRequestRaw {
 
 pub trait DeviceRequest : DomainResource {
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn status(&self) -> &Option<String>;
+  fn status(&self) -> Option<&String>;
   fn intent(&self) -> &String;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
   fn code(&self) -> &UnionCodeableConceptOrReference;
   fn subject(&self) -> &Box<dyn Reference>;
-  fn priority(&self) -> &Option<String>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn requester(&self) -> &Option<Box<dyn Reference>>;
-  fn performer(&self) -> &Option<Box<dyn Reference>>;
+  fn priority(&self) -> Option<&String>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn requester(&self) -> Option<&Box<dyn Reference>>;
+  fn performer(&self) -> Option<&Box<dyn Reference>>;
   fn insurance(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>>;
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn priorRequest(&self) -> &Vector<Box<dyn Reference>>;
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming>;
-  fn performerType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriodOrTiming>;
+  fn performerType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesUri(&self) -> &Vector<String>;
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
@@ -100,15 +100,15 @@ impl FHIRObject for DeviceRequestRaw {
 }
 
 impl Resource for DeviceRequestRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DeviceRequestRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -117,25 +117,25 @@ impl DomainResource for DeviceRequestRaw {
 
 impl DeviceRequest for DeviceRequestRaw {
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn status(&self) -> &Option<String> { &self.status }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
   fn intent(&self) -> &String { &self.intent }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
   fn code(&self) -> &UnionCodeableConceptOrReference { &self.code }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
-  fn priority(&self) -> &Option<String> { &self.priority }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn requester(&self) -> &Option<Box<dyn Reference>> { &self.requester }
-  fn performer(&self) -> &Option<Box<dyn Reference>> { &self.performer }
+  fn priority(&self) -> Option<&String> { self.priority.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn requester(&self) -> Option<&Box<dyn Reference>> { self.requester.as_ref() }
+  fn performer(&self) -> Option<&Box<dyn Reference>> { self.performer.as_ref() }
   fn insurance(&self) -> &Vector<Box<dyn Reference>> { &self.insurance }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>> { &self.authoredOn }
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>> { self.authoredOn.as_ref() }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn priorRequest(&self) -> &Vector<Box<dyn Reference>> { &self.priorRequest }
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming> { &self.occurrence }
-  fn performerType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.performerType }
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriodOrTiming> { self.occurrence.as_ref() }
+  fn performerType(&self) -> Option<&Box<dyn CodeableConcept>> { self.performerType.as_ref() }
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInfo }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.groupIdentifier }
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.groupIdentifier.as_ref() }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>> { &self.relevantHistory }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }

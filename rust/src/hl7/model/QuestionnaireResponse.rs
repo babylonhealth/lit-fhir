@@ -65,14 +65,14 @@ pub struct QuestionnaireResponseRaw {
 pub trait QuestionnaireResponse : DomainResource {
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn author(&self) -> &Option<Box<dyn Reference>>;
-  fn source(&self) -> &Option<Box<dyn Reference>>;
+  fn author(&self) -> Option<&Box<dyn Reference>>;
+  fn source(&self) -> Option<&Box<dyn Reference>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
-  fn authored(&self) -> &Option<DateTime<FixedOffset>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn questionnaire(&self) -> &Option<String>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
+  fn authored(&self) -> Option<&DateTime<FixedOffset>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn identifier(&self) -> Option<&Box<dyn Identifier>>;
+  fn questionnaire(&self) -> Option<&String>;
   fn item(&self) -> &Vector<Box<QuestionnaireResponse_Item>>;
 }
 
@@ -82,15 +82,15 @@ impl FHIRObject for QuestionnaireResponseRaw {
 }
 
 impl Resource for QuestionnaireResponseRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for QuestionnaireResponseRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -100,14 +100,14 @@ impl DomainResource for QuestionnaireResponseRaw {
 impl QuestionnaireResponse for QuestionnaireResponseRaw {
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
   fn status(&self) -> &String { &self.status }
-  fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
-  fn source(&self) -> &Option<Box<dyn Reference>> { &self.source }
+  fn author(&self) -> Option<&Box<dyn Reference>> { self.author.as_ref() }
+  fn source(&self) -> Option<&Box<dyn Reference>> { self.source.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
-  fn authored(&self) -> &Option<DateTime<FixedOffset>> { &self.authored }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
-  fn questionnaire(&self) -> &Option<String> { &self.questionnaire }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
+  fn authored(&self) -> Option<&DateTime<FixedOffset>> { self.authored.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn identifier(&self) -> Option<&Box<dyn Identifier>> { self.identifier.as_ref() }
+  fn questionnaire(&self) -> Option<&String> { self.questionnaire.as_ref() }
   fn item(&self) -> &Vector<Box<QuestionnaireResponse_Item>> { &self.item }
 }
 

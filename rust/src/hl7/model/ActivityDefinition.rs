@@ -105,46 +105,46 @@ pub struct ActivityDefinitionRaw {
 }
 
 pub trait ActivityDefinition : DomainResource {
-  fn url(&self) -> &Option<String>;
-  fn name(&self) -> &Option<String>;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
-  fn kind(&self) -> &Option<String>;
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn title(&self) -> &Option<String>;
-  fn usage(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
+  fn name(&self) -> Option<&String>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
+  fn kind(&self) -> Option<&String>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn title(&self) -> Option<&String>;
+  fn usage(&self) -> Option<&String>;
   fn topic(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn status(&self) -> &String;
   fn author(&self) -> &Vector<Box<dyn ContactDetail>>;
   fn editor(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn intent(&self) -> &Option<String>;
+  fn intent(&self) -> Option<&String>;
   fn dosage(&self) -> &Vector<Box<dyn Dosage>>;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn purpose(&self) -> &Option<String>;
+  fn purpose(&self) -> Option<&String>;
   fn library(&self) -> &Vector<String>;
-  fn profile(&self) -> &Option<String>;
-  fn subtitle(&self) -> &Option<String>;
+  fn profile(&self) -> Option<&String>;
+  fn subtitle(&self) -> Option<&String>;
   fn reviewer(&self) -> &Vector<Box<dyn ContactDetail>>;
   fn endorser(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn priority(&self) -> &Option<String>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
-  fn quantity(&self) -> &Option<Box<dyn Quantity>>;
+  fn priority(&self) -> Option<&String>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
+  fn quantity(&self) -> Option<&Box<dyn Quantity>>;
   fn bodySite(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn publisher(&self) -> &Option<String>;
-  fn copyright(&self) -> &Option<String>;
-  fn timing(&self) -> &Option<Union01405873694>;
-  fn transform(&self) -> &Option<String>;
+  fn publisher(&self) -> Option<&String>;
+  fn copyright(&self) -> Option<&String>;
+  fn timing(&self) -> Option<&Union01405873694>;
+  fn transform(&self) -> Option<&String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn subject(&self) -> &Option<UnionCodeableConceptOrReference>;
+  fn subject(&self) -> Option<&UnionCodeableConceptOrReference>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn product(&self) -> &Option<UnionCodeableConceptOrReference>;
-  fn description(&self) -> &Option<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn product(&self) -> Option<&UnionCodeableConceptOrReference>;
+  fn description(&self) -> Option<&String>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn approvalDate(&self) -> &Option<LocalDate>;
-  fn doNotPerform(&self) -> &Option<bool>;
-  fn lastReviewDate(&self) -> &Option<LocalDate>;
-  fn effectivePeriod(&self) -> &Option<Box<dyn Period>>;
+  fn approvalDate(&self) -> Option<&LocalDate>;
+  fn doNotPerform(&self) -> Option<&bool>;
+  fn lastReviewDate(&self) -> Option<&LocalDate>;
+  fn effectivePeriod(&self) -> Option<&Box<dyn Period>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
   fn specimenRequirement(&self) -> &Vector<Box<dyn Reference>>;
   fn observationRequirement(&self) -> &Vector<Box<dyn Reference>>;
@@ -159,15 +159,15 @@ impl FHIRObject for ActivityDefinitionRaw {
 }
 
 impl Resource for ActivityDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ActivityDefinitionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -175,46 +175,46 @@ impl DomainResource for ActivityDefinitionRaw {
 
 
 impl ActivityDefinition for ActivityDefinitionRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn name(&self) -> &Option<String> { &self.name }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
-  fn kind(&self) -> &Option<String> { &self.kind }
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
-  fn title(&self) -> &Option<String> { &self.title }
-  fn usage(&self) -> &Option<String> { &self.usage }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
+  fn kind(&self) -> Option<&String> { self.kind.as_ref() }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
+  fn usage(&self) -> Option<&String> { self.usage.as_ref() }
   fn topic(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.topic }
   fn status(&self) -> &String { &self.status }
   fn author(&self) -> &Vector<Box<dyn ContactDetail>> { &self.author }
   fn editor(&self) -> &Vector<Box<dyn ContactDetail>> { &self.editor }
-  fn intent(&self) -> &Option<String> { &self.intent }
+  fn intent(&self) -> Option<&String> { self.intent.as_ref() }
   fn dosage(&self) -> &Vector<Box<dyn Dosage>> { &self.dosage }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
   fn library(&self) -> &Vector<String> { &self.library }
-  fn profile(&self) -> &Option<String> { &self.profile }
-  fn subtitle(&self) -> &Option<String> { &self.subtitle }
+  fn profile(&self) -> Option<&String> { self.profile.as_ref() }
+  fn subtitle(&self) -> Option<&String> { self.subtitle.as_ref() }
   fn reviewer(&self) -> &Vector<Box<dyn ContactDetail>> { &self.reviewer }
   fn endorser(&self) -> &Vector<Box<dyn ContactDetail>> { &self.endorser }
-  fn priority(&self) -> &Option<String> { &self.priority }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
-  fn quantity(&self) -> &Option<Box<dyn Quantity>> { &self.quantity }
+  fn priority(&self) -> Option<&String> { self.priority.as_ref() }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
+  fn quantity(&self) -> Option<&Box<dyn Quantity>> { self.quantity.as_ref() }
   fn bodySite(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.bodySite }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
-  fn copyright(&self) -> &Option<String> { &self.copyright }
-  fn timing(&self) -> &Option<Union01405873694> { &self.timing }
-  fn transform(&self) -> &Option<String> { &self.transform }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
+  fn copyright(&self) -> Option<&String> { self.copyright.as_ref() }
+  fn timing(&self) -> Option<&Union01405873694> { self.timing.as_ref() }
+  fn transform(&self) -> Option<&String> { self.transform.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn subject(&self) -> &Option<UnionCodeableConceptOrReference> { &self.subject }
+  fn subject(&self) -> Option<&UnionCodeableConceptOrReference> { self.subject.as_ref() }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn product(&self) -> &Option<UnionCodeableConceptOrReference> { &self.product }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn product(&self) -> Option<&UnionCodeableConceptOrReference> { self.product.as_ref() }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn approvalDate(&self) -> &Option<LocalDate> { &self.approvalDate }
-  fn doNotPerform(&self) -> &Option<bool> { &self.doNotPerform }
-  fn lastReviewDate(&self) -> &Option<LocalDate> { &self.lastReviewDate }
-  fn effectivePeriod(&self) -> &Option<Box<dyn Period>> { &self.effectivePeriod }
+  fn approvalDate(&self) -> Option<&LocalDate> { self.approvalDate.as_ref() }
+  fn doNotPerform(&self) -> Option<&bool> { self.doNotPerform.as_ref() }
+  fn lastReviewDate(&self) -> Option<&LocalDate> { self.lastReviewDate.as_ref() }
+  fn effectivePeriod(&self) -> Option<&Box<dyn Period>> { self.effectivePeriod.as_ref() }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
   fn specimenRequirement(&self) -> &Vector<Box<dyn Reference>> { &self.specimenRequirement }
   fn observationRequirement(&self) -> &Vector<Box<dyn Reference>> { &self.observationRequirement }

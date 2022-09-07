@@ -73,18 +73,18 @@ pub struct ObservationDefinitionRaw {
 
 pub trait ObservationDefinition : DomainResource {
   fn code(&self) -> &Box<dyn CodeableConcept>;
-  fn method(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn method(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn permittedDataType(&self) -> &Vector<String>;
-  fn validCodedValueSet(&self) -> &Option<Box<dyn Reference>>;
-  fn preferredReportName(&self) -> &Option<String>;
-  fn normalCodedValueSet(&self) -> &Option<Box<dyn Reference>>;
-  fn abnormalCodedValueSet(&self) -> &Option<Box<dyn Reference>>;
-  fn criticalCodedValueSet(&self) -> &Option<Box<dyn Reference>>;
-  fn multipleResultsAllowed(&self) -> &Option<bool>;
+  fn validCodedValueSet(&self) -> Option<&Box<dyn Reference>>;
+  fn preferredReportName(&self) -> Option<&String>;
+  fn normalCodedValueSet(&self) -> Option<&Box<dyn Reference>>;
+  fn abnormalCodedValueSet(&self) -> Option<&Box<dyn Reference>>;
+  fn criticalCodedValueSet(&self) -> Option<&Box<dyn Reference>>;
+  fn multipleResultsAllowed(&self) -> Option<&bool>;
   fn qualifiedInterval(&self) -> &Vector<Box<ObservationDefinition_QualifiedInterval>>;
-  fn quantitativeDetails(&self) -> &Option<Box<ObservationDefinition_QuantitativeDetails>>;
+  fn quantitativeDetails(&self) -> Option<&Box<ObservationDefinition_QuantitativeDetails>>;
 }
 
 dyn_clone::clone_trait_object!(ObservationDefinition);
@@ -93,15 +93,15 @@ impl FHIRObject for ObservationDefinitionRaw {
 }
 
 impl Resource for ObservationDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ObservationDefinitionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -110,17 +110,17 @@ impl DomainResource for ObservationDefinitionRaw {
 
 impl ObservationDefinition for ObservationDefinitionRaw {
   fn code(&self) -> &Box<dyn CodeableConcept> { &self.code }
-  fn method(&self) -> &Option<Box<dyn CodeableConcept>> { &self.method }
+  fn method(&self) -> Option<&Box<dyn CodeableConcept>> { self.method.as_ref() }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn permittedDataType(&self) -> &Vector<String> { &self.permittedDataType }
-  fn validCodedValueSet(&self) -> &Option<Box<dyn Reference>> { &self.validCodedValueSet }
-  fn preferredReportName(&self) -> &Option<String> { &self.preferredReportName }
-  fn normalCodedValueSet(&self) -> &Option<Box<dyn Reference>> { &self.normalCodedValueSet }
-  fn abnormalCodedValueSet(&self) -> &Option<Box<dyn Reference>> { &self.abnormalCodedValueSet }
-  fn criticalCodedValueSet(&self) -> &Option<Box<dyn Reference>> { &self.criticalCodedValueSet }
-  fn multipleResultsAllowed(&self) -> &Option<bool> { &self.multipleResultsAllowed }
+  fn validCodedValueSet(&self) -> Option<&Box<dyn Reference>> { self.validCodedValueSet.as_ref() }
+  fn preferredReportName(&self) -> Option<&String> { self.preferredReportName.as_ref() }
+  fn normalCodedValueSet(&self) -> Option<&Box<dyn Reference>> { self.normalCodedValueSet.as_ref() }
+  fn abnormalCodedValueSet(&self) -> Option<&Box<dyn Reference>> { self.abnormalCodedValueSet.as_ref() }
+  fn criticalCodedValueSet(&self) -> Option<&Box<dyn Reference>> { self.criticalCodedValueSet.as_ref() }
+  fn multipleResultsAllowed(&self) -> Option<&bool> { self.multipleResultsAllowed.as_ref() }
   fn qualifiedInterval(&self) -> &Vector<Box<ObservationDefinition_QualifiedInterval>> { &self.qualifiedInterval }
-  fn quantitativeDetails(&self) -> &Option<Box<ObservationDefinition_QuantitativeDetails>> { &self.quantitativeDetails }
+  fn quantitativeDetails(&self) -> Option<&Box<ObservationDefinition_QuantitativeDetails>> { self.quantitativeDetails.as_ref() }
 }
 

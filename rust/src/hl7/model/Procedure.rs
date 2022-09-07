@@ -81,26 +81,26 @@ pub struct ProcedureRaw {
 }
 
 pub trait Procedure : DomainResource {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
   fn report(&self) -> &Vector<Box<dyn Reference>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
   fn subject(&self) -> &Box<dyn Reference>;
-  fn outcome(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn category(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn recorder(&self) -> &Option<Box<dyn Reference>>;
-  fn asserter(&self) -> &Option<Box<dyn Reference>>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
+  fn outcome(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn category(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn recorder(&self) -> Option<&Box<dyn Reference>>;
+  fn asserter(&self) -> Option<&Box<dyn Reference>>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
   fn bodySite(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn followUp(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn usedCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn performed(&self) -> &Option<Union01474038381>;
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn performed(&self) -> Option<&Union01474038381>;
   fn complication(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn usedReference(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesUri(&self) -> &Vector<String>;
@@ -117,15 +117,15 @@ impl FHIRObject for ProcedureRaw {
 }
 
 impl Resource for ProcedureRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ProcedureRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -133,26 +133,26 @@ impl DomainResource for ProcedureRaw {
 
 
 impl Procedure for ProcedureRaw {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
   fn status(&self) -> &String { &self.status }
   fn report(&self) -> &Vector<Box<dyn Reference>> { &self.report }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
-  fn outcome(&self) -> &Option<Box<dyn CodeableConcept>> { &self.outcome }
-  fn category(&self) -> &Option<Box<dyn CodeableConcept>> { &self.category }
-  fn recorder(&self) -> &Option<Box<dyn Reference>> { &self.recorder }
-  fn asserter(&self) -> &Option<Box<dyn Reference>> { &self.asserter }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
+  fn outcome(&self) -> Option<&Box<dyn CodeableConcept>> { self.outcome.as_ref() }
+  fn category(&self) -> Option<&Box<dyn CodeableConcept>> { self.category.as_ref() }
+  fn recorder(&self) -> Option<&Box<dyn Reference>> { self.recorder.as_ref() }
+  fn asserter(&self) -> Option<&Box<dyn Reference>> { self.asserter.as_ref() }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
   fn bodySite(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.bodySite }
   fn followUp(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.followUp }
   fn usedCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.usedCode }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.statusReason }
-  fn performed(&self) -> &Option<Union01474038381> { &self.performed }
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.statusReason.as_ref() }
+  fn performed(&self) -> Option<&Union01474038381> { self.performed.as_ref() }
   fn complication(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.complication }
   fn usedReference(&self) -> &Vector<Box<dyn Reference>> { &self.usedReference }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }

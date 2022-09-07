@@ -108,17 +108,17 @@ pub struct ConsentRaw {
 pub trait Consent : DomainResource {
   fn scope(&self) -> &Box<dyn CodeableConcept>;
   fn status(&self) -> &String;
-  fn patient(&self) -> &Option<Box<dyn Reference>>;
+  fn patient(&self) -> Option<&Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn dateTime(&self) -> &Option<DateTime<FixedOffset>>;
+  fn dateTime(&self) -> Option<&DateTime<FixedOffset>>;
   fn performer(&self) -> &Vector<Box<dyn Reference>>;
-  fn source(&self) -> &Option<UnionAttachmentOrReference>;
+  fn source(&self) -> Option<&UnionAttachmentOrReference>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn policyRule(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn policyRule(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn organization(&self) -> &Vector<Box<dyn Reference>>;
   fn policy(&self) -> &Vector<Box<Consent_Policy>>;
   fn verification(&self) -> &Vector<Box<Consent_Verification>>;
-  fn provision(&self) -> &Option<Box<Consent_Provision>>;
+  fn provision(&self) -> Option<&Box<Consent_Provision>>;
 }
 
 dyn_clone::clone_trait_object!(Consent);
@@ -127,15 +127,15 @@ impl FHIRObject for ConsentRaw {
 }
 
 impl Resource for ConsentRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ConsentRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -145,16 +145,16 @@ impl DomainResource for ConsentRaw {
 impl Consent for ConsentRaw {
   fn scope(&self) -> &Box<dyn CodeableConcept> { &self.scope }
   fn status(&self) -> &String { &self.status }
-  fn patient(&self) -> &Option<Box<dyn Reference>> { &self.patient }
+  fn patient(&self) -> Option<&Box<dyn Reference>> { self.patient.as_ref() }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn dateTime(&self) -> &Option<DateTime<FixedOffset>> { &self.dateTime }
+  fn dateTime(&self) -> Option<&DateTime<FixedOffset>> { self.dateTime.as_ref() }
   fn performer(&self) -> &Vector<Box<dyn Reference>> { &self.performer }
-  fn source(&self) -> &Option<UnionAttachmentOrReference> { &self.source }
+  fn source(&self) -> Option<&UnionAttachmentOrReference> { self.source.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn policyRule(&self) -> &Option<Box<dyn CodeableConcept>> { &self.policyRule }
+  fn policyRule(&self) -> Option<&Box<dyn CodeableConcept>> { self.policyRule.as_ref() }
   fn organization(&self) -> &Vector<Box<dyn Reference>> { &self.organization }
   fn policy(&self) -> &Vector<Box<Consent_Policy>> { &self.policy }
   fn verification(&self) -> &Vector<Box<Consent_Verification>> { &self.verification }
-  fn provision(&self) -> &Option<Box<Consent_Provision>> { &self.provision }
+  fn provision(&self) -> Option<&Box<Consent_Provision>> { self.provision.as_ref() }
 }
 

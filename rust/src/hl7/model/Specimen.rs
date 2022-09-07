@@ -90,18 +90,18 @@ pub struct SpecimenRaw {
 }
 
 pub trait Specimen : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn status(&self) -> &Option<String>;
+  fn status(&self) -> Option<&String>;
   fn parent(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn request(&self) -> &Vector<Box<dyn Reference>>;
   fn condition(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn receivedTime(&self) -> &Option<DateTime<FixedOffset>>;
-  fn accessionIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn receivedTime(&self) -> Option<&DateTime<FixedOffset>>;
+  fn accessionIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn container(&self) -> &Vector<Box<Specimen_Container>>;
-  fn collection(&self) -> &Option<Box<Specimen_Collection>>;
+  fn collection(&self) -> Option<&Box<Specimen_Collection>>;
   fn processing(&self) -> &Vector<Box<Specimen_Processing>>;
 }
 
@@ -111,15 +111,15 @@ impl FHIRObject for SpecimenRaw {
 }
 
 impl Resource for SpecimenRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SpecimenRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -127,18 +127,18 @@ impl DomainResource for SpecimenRaw {
 
 
 impl Specimen for SpecimenRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn status(&self) -> &Option<String> { &self.status }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
   fn parent(&self) -> &Vector<Box<dyn Reference>> { &self.parent }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn request(&self) -> &Vector<Box<dyn Reference>> { &self.request }
   fn condition(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.condition }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn receivedTime(&self) -> &Option<DateTime<FixedOffset>> { &self.receivedTime }
-  fn accessionIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.accessionIdentifier }
+  fn receivedTime(&self) -> Option<&DateTime<FixedOffset>> { self.receivedTime.as_ref() }
+  fn accessionIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.accessionIdentifier.as_ref() }
   fn container(&self) -> &Vector<Box<Specimen_Container>> { &self.container }
-  fn collection(&self) -> &Option<Box<Specimen_Collection>> { &self.collection }
+  fn collection(&self) -> Option<&Box<Specimen_Collection>> { self.collection.as_ref() }
   fn processing(&self) -> &Vector<Box<Specimen_Processing>> { &self.processing }
 }
 

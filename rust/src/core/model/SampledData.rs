@@ -27,12 +27,12 @@ pub struct SampledDataRaw {
 }
 
 pub trait SampledData : FHIRElement {
-  fn data(&self) -> &Option<String>;
+  fn data(&self) -> Option<&String>;
   fn origin(&self) -> &Box<dyn Quantity>;
   fn period(&self) -> &BigDecimal;
-  fn factor(&self) -> &Option<BigDecimal>;
-  fn lowerLimit(&self) -> &Option<BigDecimal>;
-  fn upperLimit(&self) -> &Option<BigDecimal>;
+  fn factor(&self) -> Option<&BigDecimal>;
+  fn lowerLimit(&self) -> Option<&BigDecimal>;
+  fn upperLimit(&self) -> Option<&BigDecimal>;
   fn dimensions(&self) -> &u32;
 }
 
@@ -42,18 +42,18 @@ impl FHIRObject for SampledDataRaw {
 }
 
 impl FHIRElement for SampledDataRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl SampledData for SampledDataRaw {
-  fn data(&self) -> &Option<String> { &self.data }
+  fn data(&self) -> Option<&String> { self.data.as_ref() }
   fn origin(&self) -> &Box<dyn Quantity> { &self.origin }
   fn period(&self) -> &BigDecimal { &self.period }
-  fn factor(&self) -> &Option<BigDecimal> { &self.factor }
-  fn lowerLimit(&self) -> &Option<BigDecimal> { &self.lowerLimit }
-  fn upperLimit(&self) -> &Option<BigDecimal> { &self.upperLimit }
+  fn factor(&self) -> Option<&BigDecimal> { self.factor.as_ref() }
+  fn lowerLimit(&self) -> Option<&BigDecimal> { self.lowerLimit.as_ref() }
+  fn upperLimit(&self) -> Option<&BigDecimal> { self.upperLimit.as_ref() }
   fn dimensions(&self) -> &u32 { &self.dimensions }
 }
 

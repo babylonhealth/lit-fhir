@@ -20,10 +20,10 @@ pub struct ResourceRaw {
 }
 
 pub trait Resource : FHIRObject {
-  fn id(&self) -> &Option<String>;
-  fn meta(&self) -> &Option<Box<dyn Meta>>;
-  fn language(&self) -> &Option<String>;
-  fn implicitRules(&self) -> &Option<String>;
+  fn id(&self) -> Option<&String>;
+  fn meta(&self) -> Option<&Box<dyn Meta>>;
+  fn language(&self) -> Option<&String>;
+  fn implicitRules(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(Resource);
@@ -32,9 +32,9 @@ impl FHIRObject for ResourceRaw {
 }
 
 impl Resource for ResourceRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 

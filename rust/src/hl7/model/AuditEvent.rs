@@ -109,12 +109,12 @@ pub struct AuditEventRaw {
 
 pub trait AuditEvent : DomainResource {
   fn _type(&self) -> &Box<dyn Coding>;
-  fn action(&self) -> &Option<String>;
-  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn action(&self) -> Option<&String>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
   fn subtype(&self) -> &Vector<Box<dyn Coding>>;
-  fn outcome(&self) -> &Option<String>;
+  fn outcome(&self) -> Option<&String>;
   fn recorded(&self) -> &DateTime<FixedOffset>;
-  fn outcomeDesc(&self) -> &Option<String>;
+  fn outcomeDesc(&self) -> Option<&String>;
   fn purposeOfEvent(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn source(&self) -> &Box<AuditEvent_Source>;
   fn agent(&self) -> &Vector<Box<AuditEvent_Agent>>;
@@ -127,15 +127,15 @@ impl FHIRObject for AuditEventRaw {
 }
 
 impl Resource for AuditEventRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for AuditEventRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -144,12 +144,12 @@ impl DomainResource for AuditEventRaw {
 
 impl AuditEvent for AuditEventRaw {
   fn _type(&self) -> &Box<dyn Coding> { &self._type }
-  fn action(&self) -> &Option<String> { &self.action }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn action(&self) -> Option<&String> { self.action.as_ref() }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
   fn subtype(&self) -> &Vector<Box<dyn Coding>> { &self.subtype }
-  fn outcome(&self) -> &Option<String> { &self.outcome }
+  fn outcome(&self) -> Option<&String> { self.outcome.as_ref() }
   fn recorded(&self) -> &DateTime<FixedOffset> { &self.recorded }
-  fn outcomeDesc(&self) -> &Option<String> { &self.outcomeDesc }
+  fn outcomeDesc(&self) -> Option<&String> { self.outcomeDesc.as_ref() }
   fn purposeOfEvent(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.purposeOfEvent }
   fn source(&self) -> &Box<AuditEvent_Source> { &self.source }
   fn agent(&self) -> &Vector<Box<AuditEvent_Agent>> { &self.agent }

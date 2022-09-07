@@ -97,22 +97,22 @@ pub trait ImagingStudy : DomainResource {
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn status(&self) -> &String;
   fn subject(&self) -> &Box<dyn Reference>;
-  fn started(&self) -> &Option<DateTime<FixedOffset>>;
+  fn started(&self) -> Option<&DateTime<FixedOffset>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
   fn modality(&self) -> &Vector<Box<dyn Coding>>;
-  fn referrer(&self) -> &Option<Box<dyn Reference>>;
+  fn referrer(&self) -> Option<&Box<dyn Reference>>;
   fn endpoint(&self) -> &Vector<Box<dyn Reference>>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn interpreter(&self) -> &Vector<Box<dyn Reference>>;
-  fn description(&self) -> &Option<String>;
+  fn description(&self) -> Option<&String>;
   fn procedureCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn numberOfSeries(&self) -> &Option<u32>;
+  fn numberOfSeries(&self) -> Option<&u32>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn numberOfInstances(&self) -> &Option<u32>;
-  fn procedureReference(&self) -> &Option<Box<dyn Reference>>;
+  fn numberOfInstances(&self) -> Option<&u32>;
+  fn procedureReference(&self) -> Option<&Box<dyn Reference>>;
   fn series(&self) -> &Vector<Box<ImagingStudy_Series>>;
 }
 
@@ -122,15 +122,15 @@ impl FHIRObject for ImagingStudyRaw {
 }
 
 impl Resource for ImagingStudyRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ImagingStudyRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -141,22 +141,22 @@ impl ImagingStudy for ImagingStudyRaw {
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn status(&self) -> &String { &self.status }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
-  fn started(&self) -> &Option<DateTime<FixedOffset>> { &self.started }
+  fn started(&self) -> Option<&DateTime<FixedOffset>> { self.started.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
   fn modality(&self) -> &Vector<Box<dyn Coding>> { &self.modality }
-  fn referrer(&self) -> &Option<Box<dyn Reference>> { &self.referrer }
+  fn referrer(&self) -> Option<&Box<dyn Reference>> { self.referrer.as_ref() }
   fn endpoint(&self) -> &Vector<Box<dyn Reference>> { &self.endpoint }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn interpreter(&self) -> &Vector<Box<dyn Reference>> { &self.interpreter }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn procedureCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.procedureCode }
-  fn numberOfSeries(&self) -> &Option<u32> { &self.numberOfSeries }
+  fn numberOfSeries(&self) -> Option<&u32> { self.numberOfSeries.as_ref() }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
-  fn numberOfInstances(&self) -> &Option<u32> { &self.numberOfInstances }
-  fn procedureReference(&self) -> &Option<Box<dyn Reference>> { &self.procedureReference }
+  fn numberOfInstances(&self) -> Option<&u32> { self.numberOfInstances.as_ref() }
+  fn procedureReference(&self) -> Option<&Box<dyn Reference>> { self.procedureReference.as_ref() }
   fn series(&self) -> &Vector<Box<ImagingStudy_Series>> { &self.series }
 }
 

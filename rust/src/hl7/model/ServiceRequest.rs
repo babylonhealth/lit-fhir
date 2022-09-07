@@ -68,7 +68,7 @@ pub struct ServiceRequestRaw {
 }
 
 pub trait ServiceRequest : DomainResource {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn status(&self) -> &String;
   fn intent(&self) -> &String;
@@ -76,30 +76,30 @@ pub trait ServiceRequest : DomainResource {
   fn subject(&self) -> &Box<dyn Reference>;
   fn replaces(&self) -> &Vector<Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn priority(&self) -> &Option<String>;
+  fn priority(&self) -> Option<&String>;
   fn specimen(&self) -> &Vector<Box<dyn Reference>>;
   fn bodySite(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn requester(&self) -> &Option<Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn requester(&self) -> Option<&Box<dyn Reference>>;
   fn performer(&self) -> &Vector<Box<dyn Reference>>;
   fn insurance(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>>;
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn requisition(&self) -> &Option<Box<dyn Identifier>>;
+  fn requisition(&self) -> Option<&Box<dyn Identifier>>;
   fn orderDetail(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn quantity(&self) -> &Option<UnionQuantityOrRangeOrRatio>;
-  fn asNeeded(&self) -> &Option<UnionBooleanOrCodeableConcept>;
-  fn doNotPerform(&self) -> &Option<bool>;
+  fn quantity(&self) -> Option<&UnionQuantityOrRangeOrRatio>;
+  fn asNeeded(&self) -> Option<&UnionBooleanOrCodeableConcept>;
+  fn doNotPerform(&self) -> Option<&bool>;
   fn locationCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming>;
-  fn performerType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriodOrTiming>;
+  fn performerType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesUri(&self) -> &Vector<String>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>>;
   fn locationReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn patientInstruction(&self) -> &Option<String>;
+  fn patientInstruction(&self) -> Option<&String>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
 }
 
@@ -109,15 +109,15 @@ impl FHIRObject for ServiceRequestRaw {
 }
 
 impl Resource for ServiceRequestRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ServiceRequestRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -125,7 +125,7 @@ impl DomainResource for ServiceRequestRaw {
 
 
 impl ServiceRequest for ServiceRequestRaw {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn status(&self) -> &String { &self.status }
   fn intent(&self) -> &String { &self.intent }
@@ -133,30 +133,30 @@ impl ServiceRequest for ServiceRequestRaw {
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
   fn replaces(&self) -> &Vector<Box<dyn Reference>> { &self.replaces }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn priority(&self) -> &Option<String> { &self.priority }
+  fn priority(&self) -> Option<&String> { self.priority.as_ref() }
   fn specimen(&self) -> &Vector<Box<dyn Reference>> { &self.specimen }
   fn bodySite(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.bodySite }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn requester(&self) -> &Option<Box<dyn Reference>> { &self.requester }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn requester(&self) -> Option<&Box<dyn Reference>> { self.requester.as_ref() }
   fn performer(&self) -> &Vector<Box<dyn Reference>> { &self.performer }
   fn insurance(&self) -> &Vector<Box<dyn Reference>> { &self.insurance }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>> { &self.authoredOn }
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>> { self.authoredOn.as_ref() }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn requisition(&self) -> &Option<Box<dyn Identifier>> { &self.requisition }
+  fn requisition(&self) -> Option<&Box<dyn Identifier>> { self.requisition.as_ref() }
   fn orderDetail(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.orderDetail }
-  fn quantity(&self) -> &Option<UnionQuantityOrRangeOrRatio> { &self.quantity }
-  fn asNeeded(&self) -> &Option<UnionBooleanOrCodeableConcept> { &self.asNeeded }
-  fn doNotPerform(&self) -> &Option<bool> { &self.doNotPerform }
+  fn quantity(&self) -> Option<&UnionQuantityOrRangeOrRatio> { self.quantity.as_ref() }
+  fn asNeeded(&self) -> Option<&UnionBooleanOrCodeableConcept> { self.asNeeded.as_ref() }
+  fn doNotPerform(&self) -> Option<&bool> { self.doNotPerform.as_ref() }
   fn locationCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.locationCode }
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming> { &self.occurrence }
-  fn performerType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.performerType }
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriodOrTiming> { self.occurrence.as_ref() }
+  fn performerType(&self) -> Option<&Box<dyn CodeableConcept>> { self.performerType.as_ref() }
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInfo }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>> { &self.relevantHistory }
   fn locationReference(&self) -> &Vector<Box<dyn Reference>> { &self.locationReference }
-  fn patientInstruction(&self) -> &Option<String> { &self.patientInstruction }
+  fn patientInstruction(&self) -> Option<&String> { self.patientInstruction.as_ref() }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
 }
 

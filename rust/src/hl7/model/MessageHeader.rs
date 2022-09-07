@@ -79,15 +79,15 @@ pub struct MessageHeaderRaw {
 
 pub trait MessageHeader : DomainResource {
   fn focus(&self) -> &Vector<Box<dyn Reference>>;
-  fn sender(&self) -> &Option<Box<dyn Reference>>;
-  fn author(&self) -> &Option<Box<dyn Reference>>;
-  fn reason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn enterer(&self) -> &Option<Box<dyn Reference>>;
+  fn sender(&self) -> Option<&Box<dyn Reference>>;
+  fn author(&self) -> Option<&Box<dyn Reference>>;
+  fn reason(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn enterer(&self) -> Option<&Box<dyn Reference>>;
   fn event(&self) -> &UnionCodingOrUri;
-  fn definition(&self) -> &Option<String>;
-  fn responsible(&self) -> &Option<Box<dyn Reference>>;
+  fn definition(&self) -> Option<&String>;
+  fn responsible(&self) -> Option<&Box<dyn Reference>>;
   fn source(&self) -> &Box<MessageHeader_Source>;
-  fn response(&self) -> &Option<Box<MessageHeader_Response>>;
+  fn response(&self) -> Option<&Box<MessageHeader_Response>>;
   fn destination(&self) -> &Vector<Box<MessageHeader_Destination>>;
 }
 
@@ -97,15 +97,15 @@ impl FHIRObject for MessageHeaderRaw {
 }
 
 impl Resource for MessageHeaderRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MessageHeaderRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -114,15 +114,15 @@ impl DomainResource for MessageHeaderRaw {
 
 impl MessageHeader for MessageHeaderRaw {
   fn focus(&self) -> &Vector<Box<dyn Reference>> { &self.focus }
-  fn sender(&self) -> &Option<Box<dyn Reference>> { &self.sender }
-  fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
-  fn reason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.reason }
-  fn enterer(&self) -> &Option<Box<dyn Reference>> { &self.enterer }
+  fn sender(&self) -> Option<&Box<dyn Reference>> { self.sender.as_ref() }
+  fn author(&self) -> Option<&Box<dyn Reference>> { self.author.as_ref() }
+  fn reason(&self) -> Option<&Box<dyn CodeableConcept>> { self.reason.as_ref() }
+  fn enterer(&self) -> Option<&Box<dyn Reference>> { self.enterer.as_ref() }
   fn event(&self) -> &UnionCodingOrUri { &self.event }
-  fn definition(&self) -> &Option<String> { &self.definition }
-  fn responsible(&self) -> &Option<Box<dyn Reference>> { &self.responsible }
+  fn definition(&self) -> Option<&String> { self.definition.as_ref() }
+  fn responsible(&self) -> Option<&Box<dyn Reference>> { self.responsible.as_ref() }
   fn source(&self) -> &Box<MessageHeader_Source> { &self.source }
-  fn response(&self) -> &Option<Box<MessageHeader_Response>> { &self.response }
+  fn response(&self) -> Option<&Box<MessageHeader_Response>> { self.response.as_ref() }
   fn destination(&self) -> &Vector<Box<MessageHeader_Destination>> { &self.destination }
 }
 

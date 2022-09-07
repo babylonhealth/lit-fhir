@@ -67,13 +67,13 @@ pub trait EpisodeOfCare : DomainResource {
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn team(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
   fn patient(&self) -> &Box<dyn Reference>;
   fn account(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn careManager(&self) -> &Option<Box<dyn Reference>>;
+  fn careManager(&self) -> Option<&Box<dyn Reference>>;
   fn referralRequest(&self) -> &Vector<Box<dyn Reference>>;
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>>;
   fn diagnosis(&self) -> &Vector<Box<EpisodeOfCare_Diagnosis>>;
   fn statusHistory(&self) -> &Vector<Box<EpisodeOfCare_StatusHistory>>;
 }
@@ -84,15 +84,15 @@ impl FHIRObject for EpisodeOfCareRaw {
 }
 
 impl Resource for EpisodeOfCareRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for EpisodeOfCareRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -103,13 +103,13 @@ impl EpisodeOfCare for EpisodeOfCareRaw {
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>> { &self._type }
   fn team(&self) -> &Vector<Box<dyn Reference>> { &self.team }
   fn status(&self) -> &String { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn account(&self) -> &Vector<Box<dyn Reference>> { &self.account }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn careManager(&self) -> &Option<Box<dyn Reference>> { &self.careManager }
+  fn careManager(&self) -> Option<&Box<dyn Reference>> { self.careManager.as_ref() }
   fn referralRequest(&self) -> &Vector<Box<dyn Reference>> { &self.referralRequest }
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>> { self.managingOrganization.as_ref() }
   fn diagnosis(&self) -> &Vector<Box<EpisodeOfCare_Diagnosis>> { &self.diagnosis }
   fn statusHistory(&self) -> &Vector<Box<EpisodeOfCare_StatusHistory>> { &self.statusHistory }
 }

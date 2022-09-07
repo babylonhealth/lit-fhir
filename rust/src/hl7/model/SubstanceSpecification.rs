@@ -190,25 +190,25 @@ pub struct SubstanceSpecificationRaw {
 }
 
 pub trait SubstanceSpecification : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn status(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn domain(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn status(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn domain(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn source(&self) -> &Vector<Box<dyn Reference>>;
-  fn comment(&self) -> &Option<String>;
-  fn polymer(&self) -> &Option<Box<dyn Reference>>;
-  fn protein(&self) -> &Option<Box<dyn Reference>>;
-  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn description(&self) -> &Option<String>;
-  fn nucleicAcid(&self) -> &Option<Box<dyn Reference>>;
-  fn sourceMaterial(&self) -> &Option<Box<dyn Reference>>;
+  fn comment(&self) -> Option<&String>;
+  fn polymer(&self) -> Option<&Box<dyn Reference>>;
+  fn protein(&self) -> Option<&Box<dyn Reference>>;
+  fn identifier(&self) -> Option<&Box<dyn Identifier>>;
+  fn description(&self) -> Option<&String>;
+  fn nucleicAcid(&self) -> Option<&Box<dyn Reference>>;
+  fn sourceMaterial(&self) -> Option<&Box<dyn Reference>>;
   fn molecularWeight(&self) -> &Vector<Box<SubstanceSpecification_Structure_Isotope_MolecularWeight>>;
-  fn referenceInformation(&self) -> &Option<Box<dyn Reference>>;
+  fn referenceInformation(&self) -> Option<&Box<dyn Reference>>;
   fn code(&self) -> &Vector<String>;
   fn moiety(&self) -> &Vector<Box<SubstanceSpecification_Moiety>>;
   fn property(&self) -> &Vector<Box<SubstanceSpecification_Property>>;
   fn name(&self) -> &Vector<Box<SubstanceSpecification_Name>>;
   fn relationship(&self) -> &Vector<Box<SubstanceSpecification_Relationship>>;
-  fn structure(&self) -> &Option<Box<SubstanceSpecification_Structure>>;
+  fn structure(&self) -> Option<&Box<SubstanceSpecification_Structure>>;
 }
 
 dyn_clone::clone_trait_object!(SubstanceSpecification);
@@ -217,15 +217,15 @@ impl FHIRObject for SubstanceSpecificationRaw {
 }
 
 impl Resource for SubstanceSpecificationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SubstanceSpecificationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -233,24 +233,24 @@ impl DomainResource for SubstanceSpecificationRaw {
 
 
 impl SubstanceSpecification for SubstanceSpecificationRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn status(&self) -> &Option<Box<dyn CodeableConcept>> { &self.status }
-  fn domain(&self) -> &Option<Box<dyn CodeableConcept>> { &self.domain }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn status(&self) -> Option<&Box<dyn CodeableConcept>> { self.status.as_ref() }
+  fn domain(&self) -> Option<&Box<dyn CodeableConcept>> { self.domain.as_ref() }
   fn source(&self) -> &Vector<Box<dyn Reference>> { &self.source }
-  fn comment(&self) -> &Option<String> { &self.comment }
-  fn polymer(&self) -> &Option<Box<dyn Reference>> { &self.polymer }
-  fn protein(&self) -> &Option<Box<dyn Reference>> { &self.protein }
-  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn nucleicAcid(&self) -> &Option<Box<dyn Reference>> { &self.nucleicAcid }
-  fn sourceMaterial(&self) -> &Option<Box<dyn Reference>> { &self.sourceMaterial }
+  fn comment(&self) -> Option<&String> { self.comment.as_ref() }
+  fn polymer(&self) -> Option<&Box<dyn Reference>> { self.polymer.as_ref() }
+  fn protein(&self) -> Option<&Box<dyn Reference>> { self.protein.as_ref() }
+  fn identifier(&self) -> Option<&Box<dyn Identifier>> { self.identifier.as_ref() }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn nucleicAcid(&self) -> Option<&Box<dyn Reference>> { self.nucleicAcid.as_ref() }
+  fn sourceMaterial(&self) -> Option<&Box<dyn Reference>> { self.sourceMaterial.as_ref() }
   fn molecularWeight(&self) -> &Vector<Box<SubstanceSpecification_Structure_Isotope_MolecularWeight>> { &self.molecularWeight }
-  fn referenceInformation(&self) -> &Option<Box<dyn Reference>> { &self.referenceInformation }
+  fn referenceInformation(&self) -> Option<&Box<dyn Reference>> { self.referenceInformation.as_ref() }
   fn code(&self) -> &Vector<String> { &self.code }
   fn moiety(&self) -> &Vector<Box<SubstanceSpecification_Moiety>> { &self.moiety }
   fn property(&self) -> &Vector<Box<SubstanceSpecification_Property>> { &self.property }
   fn name(&self) -> &Vector<Box<SubstanceSpecification_Name>> { &self.name }
   fn relationship(&self) -> &Vector<Box<SubstanceSpecification_Relationship>> { &self.relationship }
-  fn structure(&self) -> &Option<Box<SubstanceSpecification_Structure>> { &self.structure }
+  fn structure(&self) -> Option<&Box<SubstanceSpecification_Structure>> { self.structure.as_ref() }
 }
 

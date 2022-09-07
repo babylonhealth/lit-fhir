@@ -68,10 +68,10 @@ pub trait Provenance : DomainResource {
   fn policy(&self) -> &Vector<String>;
   fn reason(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn recorded(&self) -> &DateTime<FixedOffset>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
-  fn activity(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
+  fn activity(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn signature(&self) -> &Vector<Box<dyn Signature>>;
-  fn occurred(&self) -> &Option<UnionDateTimeOrPeriod>;
+  fn occurred(&self) -> Option<&UnionDateTimeOrPeriod>;
   fn agent(&self) -> &Vector<Box<Provenance_Agent>>;
   fn entity(&self) -> &Vector<Box<Provenance_Entity>>;
 }
@@ -82,15 +82,15 @@ impl FHIRObject for ProvenanceRaw {
 }
 
 impl Resource for ProvenanceRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ProvenanceRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -102,10 +102,10 @@ impl Provenance for ProvenanceRaw {
   fn policy(&self) -> &Vector<String> { &self.policy }
   fn reason(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reason }
   fn recorded(&self) -> &DateTime<FixedOffset> { &self.recorded }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
-  fn activity(&self) -> &Option<Box<dyn CodeableConcept>> { &self.activity }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
+  fn activity(&self) -> Option<&Box<dyn CodeableConcept>> { self.activity.as_ref() }
   fn signature(&self) -> &Vector<Box<dyn Signature>> { &self.signature }
-  fn occurred(&self) -> &Option<UnionDateTimeOrPeriod> { &self.occurred }
+  fn occurred(&self) -> Option<&UnionDateTimeOrPeriod> { self.occurred.as_ref() }
   fn agent(&self) -> &Vector<Box<Provenance_Agent>> { &self.agent }
   fn entity(&self) -> &Vector<Box<Provenance_Entity>> { &self.entity }
 }

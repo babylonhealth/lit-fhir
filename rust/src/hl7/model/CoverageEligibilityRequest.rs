@@ -100,13 +100,13 @@ pub trait CoverageEligibilityRequest : DomainResource {
   fn purpose(&self) -> &Vector<String>;
   fn patient(&self) -> &Box<dyn Reference>;
   fn created(&self) -> &DateTime<FixedOffset>;
-  fn enterer(&self) -> &Option<Box<dyn Reference>>;
+  fn enterer(&self) -> Option<&Box<dyn Reference>>;
   fn insurer(&self) -> &Box<dyn Reference>;
-  fn priority(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn provider(&self) -> &Option<Box<dyn Reference>>;
-  fn facility(&self) -> &Option<Box<dyn Reference>>;
+  fn priority(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn provider(&self) -> Option<&Box<dyn Reference>>;
+  fn facility(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn serviced(&self) -> &Option<UnionDateOrPeriod>;
+  fn serviced(&self) -> Option<&UnionDateOrPeriod>;
   fn insurance(&self) -> &Vector<Box<CoverageEligibilityRequest_Insurance>>;
   fn supportingInfo(&self) -> &Vector<Box<CoverageEligibilityRequest_SupportingInfo>>;
   fn item(&self) -> &Vector<Box<CoverageEligibilityRequest_Item>>;
@@ -118,15 +118,15 @@ impl FHIRObject for CoverageEligibilityRequestRaw {
 }
 
 impl Resource for CoverageEligibilityRequestRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CoverageEligibilityRequestRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -138,13 +138,13 @@ impl CoverageEligibilityRequest for CoverageEligibilityRequestRaw {
   fn purpose(&self) -> &Vector<String> { &self.purpose }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn created(&self) -> &DateTime<FixedOffset> { &self.created }
-  fn enterer(&self) -> &Option<Box<dyn Reference>> { &self.enterer }
+  fn enterer(&self) -> Option<&Box<dyn Reference>> { self.enterer.as_ref() }
   fn insurer(&self) -> &Box<dyn Reference> { &self.insurer }
-  fn priority(&self) -> &Option<Box<dyn CodeableConcept>> { &self.priority }
-  fn provider(&self) -> &Option<Box<dyn Reference>> { &self.provider }
-  fn facility(&self) -> &Option<Box<dyn Reference>> { &self.facility }
+  fn priority(&self) -> Option<&Box<dyn CodeableConcept>> { self.priority.as_ref() }
+  fn provider(&self) -> Option<&Box<dyn Reference>> { self.provider.as_ref() }
+  fn facility(&self) -> Option<&Box<dyn Reference>> { self.facility.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn serviced(&self) -> &Option<UnionDateOrPeriod> { &self.serviced }
+  fn serviced(&self) -> Option<&UnionDateOrPeriod> { self.serviced.as_ref() }
   fn insurance(&self) -> &Vector<Box<CoverageEligibilityRequest_Insurance>> { &self.insurance }
   fn supportingInfo(&self) -> &Vector<Box<CoverageEligibilityRequest_SupportingInfo>> { &self.supportingInfo }
   fn item(&self) -> &Vector<Box<CoverageEligibilityRequest_Item>> { &self.item }

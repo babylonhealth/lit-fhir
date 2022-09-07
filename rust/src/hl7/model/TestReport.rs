@@ -129,18 +129,18 @@ pub struct TestReportRaw {
 }
 
 pub trait TestReport : DomainResource {
-  fn name(&self) -> &Option<String>;
-  fn score(&self) -> &Option<BigDecimal>;
+  fn name(&self) -> Option<&String>;
+  fn score(&self) -> Option<&BigDecimal>;
   fn status(&self) -> &String;
   fn result(&self) -> &String;
-  fn tester(&self) -> &Option<String>;
-  fn issued(&self) -> &Option<DateTime<FixedOffset>>;
-  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn tester(&self) -> Option<&String>;
+  fn issued(&self) -> Option<&DateTime<FixedOffset>>;
+  fn identifier(&self) -> Option<&Box<dyn Identifier>>;
   fn testScript(&self) -> &Box<dyn Reference>;
   fn participant(&self) -> &Vector<Box<TestReport_Participant>>;
   fn test(&self) -> &Vector<Box<TestReport_Test>>;
-  fn teardown(&self) -> &Option<Box<TestReport_Teardown>>;
-  fn setup(&self) -> &Option<Box<TestReport_Setup>>;
+  fn teardown(&self) -> Option<&Box<TestReport_Teardown>>;
+  fn setup(&self) -> Option<&Box<TestReport_Setup>>;
 }
 
 dyn_clone::clone_trait_object!(TestReport);
@@ -149,15 +149,15 @@ impl FHIRObject for TestReportRaw {
 }
 
 impl Resource for TestReportRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for TestReportRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -165,17 +165,17 @@ impl DomainResource for TestReportRaw {
 
 
 impl TestReport for TestReportRaw {
-  fn name(&self) -> &Option<String> { &self.name }
-  fn score(&self) -> &Option<BigDecimal> { &self.score }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
+  fn score(&self) -> Option<&BigDecimal> { self.score.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn result(&self) -> &String { &self.result }
-  fn tester(&self) -> &Option<String> { &self.tester }
-  fn issued(&self) -> &Option<DateTime<FixedOffset>> { &self.issued }
-  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
+  fn tester(&self) -> Option<&String> { self.tester.as_ref() }
+  fn issued(&self) -> Option<&DateTime<FixedOffset>> { self.issued.as_ref() }
+  fn identifier(&self) -> Option<&Box<dyn Identifier>> { self.identifier.as_ref() }
   fn testScript(&self) -> &Box<dyn Reference> { &self.testScript }
   fn participant(&self) -> &Vector<Box<TestReport_Participant>> { &self.participant }
   fn test(&self) -> &Vector<Box<TestReport_Test>> { &self.test }
-  fn teardown(&self) -> &Option<Box<TestReport_Teardown>> { &self.teardown }
-  fn setup(&self) -> &Option<Box<TestReport_Setup>> { &self.setup }
+  fn teardown(&self) -> Option<&Box<TestReport_Teardown>> { self.teardown.as_ref() }
+  fn setup(&self) -> Option<&Box<TestReport_Setup>> { self.setup.as_ref() }
 }
 

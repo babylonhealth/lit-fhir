@@ -71,22 +71,22 @@ pub struct AdverseEventRaw {
 }
 
 pub trait AdverseEvent : DomainResource {
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
-  fn event(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
+  fn event(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn study(&self) -> &Vector<Box<dyn Reference>>;
   fn subject(&self) -> &Box<dyn Reference>;
-  fn outcome(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn outcome(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn detected(&self) -> &Option<DateTime<FixedOffset>>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
-  fn severity(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn recorder(&self) -> &Option<Box<dyn Reference>>;
+  fn detected(&self) -> Option<&DateTime<FixedOffset>>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
+  fn severity(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn recorder(&self) -> Option<&Box<dyn Reference>>;
   fn actuality(&self) -> &String;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn identifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn seriousness(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn identifier(&self) -> Option<&Box<dyn Identifier>>;
+  fn seriousness(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn contributor(&self) -> &Vector<Box<dyn Reference>>;
-  fn recordedDate(&self) -> &Option<DateTime<FixedOffset>>;
+  fn recordedDate(&self) -> Option<&DateTime<FixedOffset>>;
   fn referenceDocument(&self) -> &Vector<Box<dyn Reference>>;
   fn resultingCondition(&self) -> &Vector<Box<dyn Reference>>;
   fn subjectMedicalHistory(&self) -> &Vector<Box<dyn Reference>>;
@@ -99,15 +99,15 @@ impl FHIRObject for AdverseEventRaw {
 }
 
 impl Resource for AdverseEventRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for AdverseEventRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -115,22 +115,22 @@ impl DomainResource for AdverseEventRaw {
 
 
 impl AdverseEvent for AdverseEventRaw {
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
-  fn event(&self) -> &Option<Box<dyn CodeableConcept>> { &self.event }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
+  fn event(&self) -> Option<&Box<dyn CodeableConcept>> { self.event.as_ref() }
   fn study(&self) -> &Vector<Box<dyn Reference>> { &self.study }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
-  fn outcome(&self) -> &Option<Box<dyn CodeableConcept>> { &self.outcome }
+  fn outcome(&self) -> Option<&Box<dyn CodeableConcept>> { self.outcome.as_ref() }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn detected(&self) -> &Option<DateTime<FixedOffset>> { &self.detected }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
-  fn severity(&self) -> &Option<Box<dyn CodeableConcept>> { &self.severity }
-  fn recorder(&self) -> &Option<Box<dyn Reference>> { &self.recorder }
+  fn detected(&self) -> Option<&DateTime<FixedOffset>> { self.detected.as_ref() }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
+  fn severity(&self) -> Option<&Box<dyn CodeableConcept>> { self.severity.as_ref() }
+  fn recorder(&self) -> Option<&Box<dyn Reference>> { self.recorder.as_ref() }
   fn actuality(&self) -> &String { &self.actuality }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn identifier(&self) -> &Option<Box<dyn Identifier>> { &self.identifier }
-  fn seriousness(&self) -> &Option<Box<dyn CodeableConcept>> { &self.seriousness }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn identifier(&self) -> Option<&Box<dyn Identifier>> { self.identifier.as_ref() }
+  fn seriousness(&self) -> Option<&Box<dyn CodeableConcept>> { self.seriousness.as_ref() }
   fn contributor(&self) -> &Vector<Box<dyn Reference>> { &self.contributor }
-  fn recordedDate(&self) -> &Option<DateTime<FixedOffset>> { &self.recordedDate }
+  fn recordedDate(&self) -> Option<&DateTime<FixedOffset>> { self.recordedDate.as_ref() }
   fn referenceDocument(&self) -> &Vector<Box<dyn Reference>> { &self.referenceDocument }
   fn resultingCondition(&self) -> &Vector<Box<dyn Reference>> { &self.resultingCondition }
   fn subjectMedicalHistory(&self) -> &Vector<Box<dyn Reference>> { &self.subjectMedicalHistory }

@@ -90,17 +90,17 @@ pub struct PatientRaw {
 pub trait Patient : DomainResource {
   fn name(&self) -> &Vector<Box<dyn HumanName>>;
   fn photo(&self) -> &Vector<Box<dyn Attachment>>;
-  fn active(&self) -> &Option<bool>;
-  fn gender(&self) -> &Option<String>;
+  fn active(&self) -> Option<&bool>;
+  fn gender(&self) -> Option<&String>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &Vector<Box<dyn Address>>;
-  fn birthDate(&self) -> &Option<LocalDate>;
+  fn birthDate(&self) -> Option<&LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn deceased(&self) -> &Option<UnionBooleanOrDateTime>;
-  fn maritalStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn multipleBirth(&self) -> &Option<UnionBooleanOrInteger>;
+  fn deceased(&self) -> Option<&UnionBooleanOrDateTime>;
+  fn maritalStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn multipleBirth(&self) -> Option<&UnionBooleanOrInteger>;
   fn generalPractitioner(&self) -> &Vector<Box<dyn Reference>>;
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>>;
   fn link(&self) -> &Vector<Box<Patient_Link>>;
   fn contact(&self) -> &Vector<Box<Patient_Contact>>;
   fn communication(&self) -> &Vector<Box<Patient_Communication>>;
@@ -112,15 +112,15 @@ impl FHIRObject for PatientRaw {
 }
 
 impl Resource for PatientRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for PatientRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -130,17 +130,17 @@ impl DomainResource for PatientRaw {
 impl Patient for PatientRaw {
   fn name(&self) -> &Vector<Box<dyn HumanName>> { &self.name }
   fn photo(&self) -> &Vector<Box<dyn Attachment>> { &self.photo }
-  fn active(&self) -> &Option<bool> { &self.active }
-  fn gender(&self) -> &Option<String> { &self.gender }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
+  fn gender(&self) -> Option<&String> { self.gender.as_ref() }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
-  fn birthDate(&self) -> &Option<LocalDate> { &self.birthDate }
+  fn birthDate(&self) -> Option<&LocalDate> { self.birthDate.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn deceased(&self) -> &Option<UnionBooleanOrDateTime> { &self.deceased }
-  fn maritalStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.maritalStatus }
-  fn multipleBirth(&self) -> &Option<UnionBooleanOrInteger> { &self.multipleBirth }
+  fn deceased(&self) -> Option<&UnionBooleanOrDateTime> { self.deceased.as_ref() }
+  fn maritalStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.maritalStatus.as_ref() }
+  fn multipleBirth(&self) -> Option<&UnionBooleanOrInteger> { self.multipleBirth.as_ref() }
   fn generalPractitioner(&self) -> &Vector<Box<dyn Reference>> { &self.generalPractitioner }
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>> { self.managingOrganization.as_ref() }
   fn link(&self) -> &Vector<Box<Patient_Link>> { &self.link }
   fn contact(&self) -> &Vector<Box<Patient_Contact>> { &self.contact }
   fn communication(&self) -> &Vector<Box<Patient_Communication>> { &self.communication }

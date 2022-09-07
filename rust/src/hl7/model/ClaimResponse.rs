@@ -229,27 +229,27 @@ pub struct ClaimResponseRaw {
 pub trait ClaimResponse : DomainResource {
   fn _use(&self) -> &String;
   fn _type(&self) -> &Box<dyn CodeableConcept>;
-  fn form(&self) -> &Option<Box<dyn Attachment>>;
+  fn form(&self) -> Option<&Box<dyn Attachment>>;
   fn status(&self) -> &String;
-  fn subType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn subType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn patient(&self) -> &Box<dyn Reference>;
   fn created(&self) -> &DateTime<FixedOffset>;
   fn insurer(&self) -> &Box<dyn Reference>;
-  fn request(&self) -> &Option<Box<dyn Reference>>;
+  fn request(&self) -> Option<&Box<dyn Reference>>;
   fn outcome(&self) -> &String;
-  fn formCode(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn requestor(&self) -> &Option<Box<dyn Reference>>;
-  fn payeeType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn formCode(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn requestor(&self) -> Option<&Box<dyn Reference>>;
+  fn payeeType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn preAuthRef(&self) -> &Option<String>;
-  fn disposition(&self) -> &Option<String>;
+  fn preAuthRef(&self) -> Option<&String>;
+  fn disposition(&self) -> Option<&String>;
   fn adjudication(&self) -> &Vector<Box<ClaimResponse_Item_Adjudication>>;
-  fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn preAuthPeriod(&self) -> &Option<Box<dyn Period>>;
+  fn fundsReserve(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn preAuthPeriod(&self) -> Option<&Box<dyn Period>>;
   fn communicationRequest(&self) -> &Vector<Box<dyn Reference>>;
   fn total(&self) -> &Vector<Box<ClaimResponse_Total>>;
   fn error(&self) -> &Vector<Box<ClaimResponse_Error>>;
-  fn payment(&self) -> &Option<Box<ClaimResponse_Payment>>;
+  fn payment(&self) -> Option<&Box<ClaimResponse_Payment>>;
   fn processNote(&self) -> &Vector<Box<ClaimResponse_ProcessNote>>;
   fn insurance(&self) -> &Vector<Box<ClaimResponse_Insurance>>;
   fn item(&self) -> &Vector<Box<ClaimResponse_Item>>;
@@ -262,15 +262,15 @@ impl FHIRObject for ClaimResponseRaw {
 }
 
 impl Resource for ClaimResponseRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ClaimResponseRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -280,27 +280,27 @@ impl DomainResource for ClaimResponseRaw {
 impl ClaimResponse for ClaimResponseRaw {
   fn _use(&self) -> &String { &self._use }
   fn _type(&self) -> &Box<dyn CodeableConcept> { &self._type }
-  fn form(&self) -> &Option<Box<dyn Attachment>> { &self.form }
+  fn form(&self) -> Option<&Box<dyn Attachment>> { self.form.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn subType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.subType }
+  fn subType(&self) -> Option<&Box<dyn CodeableConcept>> { self.subType.as_ref() }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn created(&self) -> &DateTime<FixedOffset> { &self.created }
   fn insurer(&self) -> &Box<dyn Reference> { &self.insurer }
-  fn request(&self) -> &Option<Box<dyn Reference>> { &self.request }
+  fn request(&self) -> Option<&Box<dyn Reference>> { self.request.as_ref() }
   fn outcome(&self) -> &String { &self.outcome }
-  fn formCode(&self) -> &Option<Box<dyn CodeableConcept>> { &self.formCode }
-  fn requestor(&self) -> &Option<Box<dyn Reference>> { &self.requestor }
-  fn payeeType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.payeeType }
+  fn formCode(&self) -> Option<&Box<dyn CodeableConcept>> { self.formCode.as_ref() }
+  fn requestor(&self) -> Option<&Box<dyn Reference>> { self.requestor.as_ref() }
+  fn payeeType(&self) -> Option<&Box<dyn CodeableConcept>> { self.payeeType.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn preAuthRef(&self) -> &Option<String> { &self.preAuthRef }
-  fn disposition(&self) -> &Option<String> { &self.disposition }
+  fn preAuthRef(&self) -> Option<&String> { self.preAuthRef.as_ref() }
+  fn disposition(&self) -> Option<&String> { self.disposition.as_ref() }
   fn adjudication(&self) -> &Vector<Box<ClaimResponse_Item_Adjudication>> { &self.adjudication }
-  fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundsReserve }
-  fn preAuthPeriod(&self) -> &Option<Box<dyn Period>> { &self.preAuthPeriod }
+  fn fundsReserve(&self) -> Option<&Box<dyn CodeableConcept>> { self.fundsReserve.as_ref() }
+  fn preAuthPeriod(&self) -> Option<&Box<dyn Period>> { self.preAuthPeriod.as_ref() }
   fn communicationRequest(&self) -> &Vector<Box<dyn Reference>> { &self.communicationRequest }
   fn total(&self) -> &Vector<Box<ClaimResponse_Total>> { &self.total }
   fn error(&self) -> &Vector<Box<ClaimResponse_Error>> { &self.error }
-  fn payment(&self) -> &Option<Box<ClaimResponse_Payment>> { &self.payment }
+  fn payment(&self) -> Option<&Box<ClaimResponse_Payment>> { self.payment.as_ref() }
   fn processNote(&self) -> &Vector<Box<ClaimResponse_ProcessNote>> { &self.processNote }
   fn insurance(&self) -> &Vector<Box<ClaimResponse_Insurance>> { &self.insurance }
   fn item(&self) -> &Vector<Box<ClaimResponse_Item>> { &self.item }

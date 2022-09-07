@@ -52,17 +52,17 @@ pub struct DocumentManifestRaw {
 }
 
 pub trait DocumentManifest : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn status(&self) -> &String;
   fn author(&self) -> &Vector<Box<dyn Reference>>;
-  fn source(&self) -> &Option<String>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
-  fn created(&self) -> &Option<DateTime<FixedOffset>>;
+  fn source(&self) -> Option<&String>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
+  fn created(&self) -> Option<&DateTime<FixedOffset>>;
   fn content(&self) -> &Vector<Box<dyn Reference>>;
   fn recipient(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn description(&self) -> &Option<String>;
-  fn masterIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn description(&self) -> Option<&String>;
+  fn masterIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn related(&self) -> &Vector<Box<DocumentManifest_Related>>;
 }
 
@@ -72,15 +72,15 @@ impl FHIRObject for DocumentManifestRaw {
 }
 
 impl Resource for DocumentManifestRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DocumentManifestRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -88,17 +88,17 @@ impl DomainResource for DocumentManifestRaw {
 
 
 impl DocumentManifest for DocumentManifestRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn author(&self) -> &Vector<Box<dyn Reference>> { &self.author }
-  fn source(&self) -> &Option<String> { &self.source }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
-  fn created(&self) -> &Option<DateTime<FixedOffset>> { &self.created }
+  fn source(&self) -> Option<&String> { self.source.as_ref() }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
+  fn created(&self) -> Option<&DateTime<FixedOffset>> { self.created.as_ref() }
   fn content(&self) -> &Vector<Box<dyn Reference>> { &self.content }
   fn recipient(&self) -> &Vector<Box<dyn Reference>> { &self.recipient }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn masterIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.masterIdentifier }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn masterIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.masterIdentifier.as_ref() }
   fn related(&self) -> &Vector<Box<DocumentManifest_Related>> { &self.related }
 }
 

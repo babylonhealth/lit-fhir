@@ -25,9 +25,9 @@ pub struct BinaryRaw {
 }
 
 pub trait Binary : Resource {
-  fn data(&self) -> &Option<String>;
+  fn data(&self) -> Option<&String>;
   fn contentType(&self) -> &String;
-  fn securityContext(&self) -> &Option<Box<dyn Reference>>;
+  fn securityContext(&self) -> Option<&Box<dyn Reference>>;
 }
 
 dyn_clone::clone_trait_object!(Binary);
@@ -36,16 +36,16 @@ impl FHIRObject for BinaryRaw {
 }
 
 impl Resource for BinaryRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl Binary for BinaryRaw {
-  fn data(&self) -> &Option<String> { &self.data }
+  fn data(&self) -> Option<&String> { self.data.as_ref() }
   fn contentType(&self) -> &String { &self.contentType }
-  fn securityContext(&self) -> &Option<Box<dyn Reference>> { &self.securityContext }
+  fn securityContext(&self) -> Option<&Box<dyn Reference>> { self.securityContext.as_ref() }
 }
 

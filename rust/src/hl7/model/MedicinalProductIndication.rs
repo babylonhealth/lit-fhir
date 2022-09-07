@@ -51,13 +51,13 @@ pub struct MedicinalProductIndicationRaw {
 
 pub trait MedicinalProductIndication : DomainResource {
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
-  fn duration(&self) -> &Option<Box<dyn Quantity>>;
+  fn duration(&self) -> Option<&Box<dyn Quantity>>;
   fn population(&self) -> &Vector<String>;
   fn comorbidity(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn diseaseStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn intendedEffect(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn diseaseStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn intendedEffect(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn undesirableEffect(&self) -> &Vector<Box<dyn Reference>>;
-  fn diseaseSymptomProcedure(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn diseaseSymptomProcedure(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn otherTherapy(&self) -> &Vector<Box<MedicinalProductIndication_OtherTherapy>>;
 }
 
@@ -67,15 +67,15 @@ impl FHIRObject for MedicinalProductIndicationRaw {
 }
 
 impl Resource for MedicinalProductIndicationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductIndicationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -84,13 +84,13 @@ impl DomainResource for MedicinalProductIndicationRaw {
 
 impl MedicinalProductIndication for MedicinalProductIndicationRaw {
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
-  fn duration(&self) -> &Option<Box<dyn Quantity>> { &self.duration }
+  fn duration(&self) -> Option<&Box<dyn Quantity>> { self.duration.as_ref() }
   fn population(&self) -> &Vector<String> { &self.population }
   fn comorbidity(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.comorbidity }
-  fn diseaseStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.diseaseStatus }
-  fn intendedEffect(&self) -> &Option<Box<dyn CodeableConcept>> { &self.intendedEffect }
+  fn diseaseStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.diseaseStatus.as_ref() }
+  fn intendedEffect(&self) -> Option<&Box<dyn CodeableConcept>> { self.intendedEffect.as_ref() }
   fn undesirableEffect(&self) -> &Vector<Box<dyn Reference>> { &self.undesirableEffect }
-  fn diseaseSymptomProcedure(&self) -> &Option<Box<dyn CodeableConcept>> { &self.diseaseSymptomProcedure }
+  fn diseaseSymptomProcedure(&self) -> Option<&Box<dyn CodeableConcept>> { self.diseaseSymptomProcedure.as_ref() }
   fn otherTherapy(&self) -> &Vector<Box<MedicinalProductIndication_OtherTherapy>> { &self.otherTherapy }
 }
 

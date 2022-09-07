@@ -101,8 +101,8 @@ pub struct SubstancePolymerRaw {
 }
 
 pub trait SubstancePolymer : DomainResource {
-  fn class(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn geometry(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn class(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn geometry(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn modification(&self) -> &Vector<String>;
   fn copolymerConnectivity(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn monomerSet(&self) -> &Vector<Box<SubstancePolymer_MonomerSet>>;
@@ -115,15 +115,15 @@ impl FHIRObject for SubstancePolymerRaw {
 }
 
 impl Resource for SubstancePolymerRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SubstancePolymerRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -131,8 +131,8 @@ impl DomainResource for SubstancePolymerRaw {
 
 
 impl SubstancePolymer for SubstancePolymerRaw {
-  fn class(&self) -> &Option<Box<dyn CodeableConcept>> { &self.class }
-  fn geometry(&self) -> &Option<Box<dyn CodeableConcept>> { &self.geometry }
+  fn class(&self) -> Option<&Box<dyn CodeableConcept>> { self.class.as_ref() }
+  fn geometry(&self) -> Option<&Box<dyn CodeableConcept>> { self.geometry.as_ref() }
   fn modification(&self) -> &Vector<String> { &self.modification }
   fn copolymerConnectivity(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.copolymerConnectivity }
   fn monomerSet(&self) -> &Vector<Box<SubstancePolymer_MonomerSet>> { &self.monomerSet }

@@ -41,8 +41,8 @@ pub struct LinkageRaw {
 }
 
 pub trait Linkage : DomainResource {
-  fn active(&self) -> &Option<bool>;
-  fn author(&self) -> &Option<Box<dyn Reference>>;
+  fn active(&self) -> Option<&bool>;
+  fn author(&self) -> Option<&Box<dyn Reference>>;
   fn item(&self) -> &Vector<Box<Linkage_Item>>;
 }
 
@@ -52,15 +52,15 @@ impl FHIRObject for LinkageRaw {
 }
 
 impl Resource for LinkageRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for LinkageRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -68,8 +68,8 @@ impl DomainResource for LinkageRaw {
 
 
 impl Linkage for LinkageRaw {
-  fn active(&self) -> &Option<bool> { &self.active }
-  fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
+  fn author(&self) -> Option<&Box<dyn Reference>> { self.author.as_ref() }
   fn item(&self) -> &Vector<Box<Linkage_Item>> { &self.item }
 }
 

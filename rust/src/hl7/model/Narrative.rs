@@ -31,7 +31,7 @@ impl FHIRObject for NarrativeRaw {
 }
 
 impl FHIRElement for NarrativeRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 

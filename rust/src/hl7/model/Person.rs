@@ -54,14 +54,14 @@ pub struct PersonRaw {
 
 pub trait Person : DomainResource {
   fn name(&self) -> &Vector<Box<dyn HumanName>>;
-  fn photo(&self) -> &Option<Box<dyn Attachment>>;
-  fn gender(&self) -> &Option<String>;
-  fn active(&self) -> &Option<bool>;
+  fn photo(&self) -> Option<&Box<dyn Attachment>>;
+  fn gender(&self) -> Option<&String>;
+  fn active(&self) -> Option<&bool>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
   fn address(&self) -> &Vector<Box<dyn Address>>;
-  fn birthDate(&self) -> &Option<LocalDate>;
+  fn birthDate(&self) -> Option<&LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>>;
   fn link(&self) -> &Vector<Box<Person_Link>>;
 }
 
@@ -71,15 +71,15 @@ impl FHIRObject for PersonRaw {
 }
 
 impl Resource for PersonRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for PersonRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -88,14 +88,14 @@ impl DomainResource for PersonRaw {
 
 impl Person for PersonRaw {
   fn name(&self) -> &Vector<Box<dyn HumanName>> { &self.name }
-  fn photo(&self) -> &Option<Box<dyn Attachment>> { &self.photo }
-  fn gender(&self) -> &Option<String> { &self.gender }
-  fn active(&self) -> &Option<bool> { &self.active }
+  fn photo(&self) -> Option<&Box<dyn Attachment>> { self.photo.as_ref() }
+  fn gender(&self) -> Option<&String> { self.gender.as_ref() }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
   fn address(&self) -> &Vector<Box<dyn Address>> { &self.address }
-  fn birthDate(&self) -> &Option<LocalDate> { &self.birthDate }
+  fn birthDate(&self) -> Option<&LocalDate> { self.birthDate.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>> { self.managingOrganization.as_ref() }
   fn link(&self) -> &Vector<Box<Person_Link>> { &self.link }
 }
 

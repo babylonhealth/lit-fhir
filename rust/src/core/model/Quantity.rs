@@ -24,11 +24,11 @@ pub struct QuantityRaw {
 }
 
 pub trait Quantity : FHIRElement {
-  fn unit(&self) -> &Option<String>;
-  fn code(&self) -> &Option<String>;
-  fn value(&self) -> &Option<BigDecimal>;
-  fn system(&self) -> &Option<String>;
-  fn comparator(&self) -> &Option<String>;
+  fn unit(&self) -> Option<&String>;
+  fn code(&self) -> Option<&String>;
+  fn value(&self) -> Option<&BigDecimal>;
+  fn system(&self) -> Option<&String>;
+  fn comparator(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(Quantity);
@@ -37,16 +37,16 @@ impl FHIRObject for QuantityRaw {
 }
 
 impl FHIRElement for QuantityRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Quantity for QuantityRaw {
-  fn unit(&self) -> &Option<String> { &self.unit }
-  fn code(&self) -> &Option<String> { &self.code }
-  fn value(&self) -> &Option<BigDecimal> { &self.value }
-  fn system(&self) -> &Option<String> { &self.system }
-  fn comparator(&self) -> &Option<String> { &self.comparator }
+  fn unit(&self) -> Option<&String> { self.unit.as_ref() }
+  fn code(&self) -> Option<&String> { self.code.as_ref() }
+  fn value(&self) -> Option<&BigDecimal> { self.value.as_ref() }
+  fn system(&self) -> Option<&String> { self.system.as_ref() }
+  fn comparator(&self) -> Option<&String> { self.comparator.as_ref() }
 }
 

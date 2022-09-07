@@ -64,16 +64,16 @@ pub struct DetectedIssueRaw {
 }
 
 pub trait DetectedIssue : DomainResource {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn status(&self) -> &String;
-  fn author(&self) -> &Option<Box<dyn Reference>>;
-  fn detail(&self) -> &Option<String>;
-  fn patient(&self) -> &Option<Box<dyn Reference>>;
-  fn severity(&self) -> &Option<String>;
-  fn reference(&self) -> &Option<String>;
+  fn author(&self) -> Option<&Box<dyn Reference>>;
+  fn detail(&self) -> Option<&String>;
+  fn patient(&self) -> Option<&Box<dyn Reference>>;
+  fn severity(&self) -> Option<&String>;
+  fn reference(&self) -> Option<&String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn implicated(&self) -> &Vector<Box<dyn Reference>>;
-  fn identified(&self) -> &Option<UnionDateTimeOrPeriod>;
+  fn identified(&self) -> Option<&UnionDateTimeOrPeriod>;
   fn evidence(&self) -> &Vector<Box<DetectedIssue_Evidence>>;
   fn mitigation(&self) -> &Vector<Box<DetectedIssue_Mitigation>>;
 }
@@ -84,15 +84,15 @@ impl FHIRObject for DetectedIssueRaw {
 }
 
 impl Resource for DetectedIssueRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DetectedIssueRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -100,16 +100,16 @@ impl DomainResource for DetectedIssueRaw {
 
 
 impl DetectedIssue for DetectedIssueRaw {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
-  fn detail(&self) -> &Option<String> { &self.detail }
-  fn patient(&self) -> &Option<Box<dyn Reference>> { &self.patient }
-  fn severity(&self) -> &Option<String> { &self.severity }
-  fn reference(&self) -> &Option<String> { &self.reference }
+  fn author(&self) -> Option<&Box<dyn Reference>> { self.author.as_ref() }
+  fn detail(&self) -> Option<&String> { self.detail.as_ref() }
+  fn patient(&self) -> Option<&Box<dyn Reference>> { self.patient.as_ref() }
+  fn severity(&self) -> Option<&String> { self.severity.as_ref() }
+  fn reference(&self) -> Option<&String> { self.reference.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn implicated(&self) -> &Vector<Box<dyn Reference>> { &self.implicated }
-  fn identified(&self) -> &Option<UnionDateTimeOrPeriod> { &self.identified }
+  fn identified(&self) -> Option<&UnionDateTimeOrPeriod> { self.identified.as_ref() }
   fn evidence(&self) -> &Vector<Box<DetectedIssue_Evidence>> { &self.evidence }
   fn mitigation(&self) -> &Vector<Box<DetectedIssue_Mitigation>> { &self.mitigation }
 }

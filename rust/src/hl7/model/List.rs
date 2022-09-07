@@ -57,17 +57,17 @@ pub struct ListRaw {
 
 pub trait List : DomainResource {
   fn mode(&self) -> &String;
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn title(&self) -> &Option<String>;
+  fn title(&self) -> Option<&String>;
   fn status(&self) -> &String;
-  fn source(&self) -> &Option<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn orderedBy(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn source(&self) -> Option<&Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn orderedBy(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn emptyReason(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn emptyReason(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn entry(&self) -> &Vector<Box<List_Entry>>;
 }
 
@@ -77,15 +77,15 @@ impl FHIRObject for ListRaw {
 }
 
 impl Resource for ListRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ListRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -94,17 +94,17 @@ impl DomainResource for ListRaw {
 
 impl List for ListRaw {
   fn mode(&self) -> &String { &self.mode }
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn title(&self) -> &Option<String> { &self.title }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn source(&self) -> &Option<Box<dyn Reference>> { &self.source }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn orderedBy(&self) -> &Option<Box<dyn CodeableConcept>> { &self.orderedBy }
+  fn source(&self) -> Option<&Box<dyn Reference>> { self.source.as_ref() }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn orderedBy(&self) -> Option<&Box<dyn CodeableConcept>> { self.orderedBy.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn emptyReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.emptyReason }
+  fn emptyReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.emptyReason.as_ref() }
   fn entry(&self) -> &Vector<Box<List_Entry>> { &self.entry }
 }
 

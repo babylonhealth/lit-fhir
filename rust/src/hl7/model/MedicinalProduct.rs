@@ -113,8 +113,8 @@ pub struct MedicinalProductRaw {
 }
 
 pub trait MedicinalProduct : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn domain(&self) -> &Option<Box<dyn Coding>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn domain(&self) -> Option<&Box<dyn Coding>>;
   fn contact(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn masterFile(&self) -> &Vector<Box<dyn Reference>>;
@@ -123,13 +123,13 @@ pub trait MedicinalProduct : DomainResource {
   fn specialMeasures(&self) -> &Vector<String>;
   fn marketingStatus(&self) -> &Vector<String>;
   fn attachedDocument(&self) -> &Vector<Box<dyn Reference>>;
-  fn legalStatusOfSupply(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn legalStatusOfSupply(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn productClassification(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn pharmaceuticalProduct(&self) -> &Vector<Box<dyn Reference>>;
-  fn paediatricUseIndicator(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn paediatricUseIndicator(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn packagedMedicinalProduct(&self) -> &Vector<Box<dyn Reference>>;
-  fn additionalMonitoringIndicator(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn combinedPharmaceuticalDoseForm(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn additionalMonitoringIndicator(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn combinedPharmaceuticalDoseForm(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn specialDesignation(&self) -> &Vector<Box<MedicinalProduct_SpecialDesignation>>;
   fn name(&self) -> &Vector<Box<MedicinalProduct_Name>>;
   fn manufacturingBusinessOperation(&self) -> &Vector<Box<MedicinalProduct_ManufacturingBusinessOperation>>;
@@ -141,15 +141,15 @@ impl FHIRObject for MedicinalProductRaw {
 }
 
 impl Resource for MedicinalProductRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -157,8 +157,8 @@ impl DomainResource for MedicinalProductRaw {
 
 
 impl MedicinalProduct for MedicinalProductRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn domain(&self) -> &Option<Box<dyn Coding>> { &self.domain }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn domain(&self) -> Option<&Box<dyn Coding>> { self.domain.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn Reference>> { &self.contact }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn masterFile(&self) -> &Vector<Box<dyn Reference>> { &self.masterFile }
@@ -167,13 +167,13 @@ impl MedicinalProduct for MedicinalProductRaw {
   fn specialMeasures(&self) -> &Vector<String> { &self.specialMeasures }
   fn marketingStatus(&self) -> &Vector<String> { &self.marketingStatus }
   fn attachedDocument(&self) -> &Vector<Box<dyn Reference>> { &self.attachedDocument }
-  fn legalStatusOfSupply(&self) -> &Option<Box<dyn CodeableConcept>> { &self.legalStatusOfSupply }
+  fn legalStatusOfSupply(&self) -> Option<&Box<dyn CodeableConcept>> { self.legalStatusOfSupply.as_ref() }
   fn productClassification(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.productClassification }
   fn pharmaceuticalProduct(&self) -> &Vector<Box<dyn Reference>> { &self.pharmaceuticalProduct }
-  fn paediatricUseIndicator(&self) -> &Option<Box<dyn CodeableConcept>> { &self.paediatricUseIndicator }
+  fn paediatricUseIndicator(&self) -> Option<&Box<dyn CodeableConcept>> { self.paediatricUseIndicator.as_ref() }
   fn packagedMedicinalProduct(&self) -> &Vector<Box<dyn Reference>> { &self.packagedMedicinalProduct }
-  fn additionalMonitoringIndicator(&self) -> &Option<Box<dyn CodeableConcept>> { &self.additionalMonitoringIndicator }
-  fn combinedPharmaceuticalDoseForm(&self) -> &Option<Box<dyn CodeableConcept>> { &self.combinedPharmaceuticalDoseForm }
+  fn additionalMonitoringIndicator(&self) -> Option<&Box<dyn CodeableConcept>> { self.additionalMonitoringIndicator.as_ref() }
+  fn combinedPharmaceuticalDoseForm(&self) -> Option<&Box<dyn CodeableConcept>> { self.combinedPharmaceuticalDoseForm.as_ref() }
   fn specialDesignation(&self) -> &Vector<Box<MedicinalProduct_SpecialDesignation>> { &self.specialDesignation }
   fn name(&self) -> &Vector<Box<MedicinalProduct_Name>> { &self.name }
   fn manufacturingBusinessOperation(&self) -> &Vector<Box<MedicinalProduct_ManufacturingBusinessOperation>> { &self.manufacturingBusinessOperation }

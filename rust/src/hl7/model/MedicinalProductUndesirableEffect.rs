@@ -37,9 +37,9 @@ pub struct MedicinalProductUndesirableEffectRaw {
 pub trait MedicinalProductUndesirableEffect : DomainResource {
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
   fn population(&self) -> &Vector<String>;
-  fn classification(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn frequencyOfOccurrence(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn symptomConditionEffect(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn classification(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn frequencyOfOccurrence(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn symptomConditionEffect(&self) -> Option<&Box<dyn CodeableConcept>>;
 }
 
 dyn_clone::clone_trait_object!(MedicinalProductUndesirableEffect);
@@ -48,15 +48,15 @@ impl FHIRObject for MedicinalProductUndesirableEffectRaw {
 }
 
 impl Resource for MedicinalProductUndesirableEffectRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductUndesirableEffectRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -66,8 +66,8 @@ impl DomainResource for MedicinalProductUndesirableEffectRaw {
 impl MedicinalProductUndesirableEffect for MedicinalProductUndesirableEffectRaw {
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
   fn population(&self) -> &Vector<String> { &self.population }
-  fn classification(&self) -> &Option<Box<dyn CodeableConcept>> { &self.classification }
-  fn frequencyOfOccurrence(&self) -> &Option<Box<dyn CodeableConcept>> { &self.frequencyOfOccurrence }
-  fn symptomConditionEffect(&self) -> &Option<Box<dyn CodeableConcept>> { &self.symptomConditionEffect }
+  fn classification(&self) -> Option<&Box<dyn CodeableConcept>> { self.classification.as_ref() }
+  fn frequencyOfOccurrence(&self) -> Option<&Box<dyn CodeableConcept>> { self.frequencyOfOccurrence.as_ref() }
+  fn symptomConditionEffect(&self) -> Option<&Box<dyn CodeableConcept>> { self.symptomConditionEffect.as_ref() }
 }
 

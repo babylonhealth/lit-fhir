@@ -27,12 +27,12 @@ pub struct ParameterDefinitionRaw {
 
 pub trait ParameterDefinition : FHIRElement {
   fn _use(&self) -> &String;
-  fn min(&self) -> &Option<i32>;
-  fn max(&self) -> &Option<String>;
-  fn name(&self) -> &Option<String>;
+  fn min(&self) -> Option<&i32>;
+  fn max(&self) -> Option<&String>;
+  fn name(&self) -> Option<&String>;
   fn _type(&self) -> &String;
-  fn profile(&self) -> &Option<String>;
-  fn documentation(&self) -> &Option<String>;
+  fn profile(&self) -> Option<&String>;
+  fn documentation(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(ParameterDefinition);
@@ -41,18 +41,18 @@ impl FHIRObject for ParameterDefinitionRaw {
 }
 
 impl FHIRElement for ParameterDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl ParameterDefinition for ParameterDefinitionRaw {
   fn _use(&self) -> &String { &self._use }
-  fn min(&self) -> &Option<i32> { &self.min }
-  fn max(&self) -> &Option<String> { &self.max }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn min(&self) -> Option<&i32> { self.min.as_ref() }
+  fn max(&self) -> Option<&String> { self.max.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn _type(&self) -> &String { &self._type }
-  fn profile(&self) -> &Option<String> { &self.profile }
-  fn documentation(&self) -> &Option<String> { &self.documentation }
+  fn profile(&self) -> Option<&String> { self.profile.as_ref() }
+  fn documentation(&self) -> Option<&String> { self.documentation.as_ref() }
 }
 

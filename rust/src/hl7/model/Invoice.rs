@@ -81,19 +81,19 @@ pub struct InvoiceRaw {
 }
 
 pub trait Invoice : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn status(&self) -> &String;
-  fn issuer(&self) -> &Option<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
-  fn account(&self) -> &Option<Box<dyn Reference>>;
-  fn totalNet(&self) -> &Option<Box<dyn Money>>;
-  fn recipient(&self) -> &Option<Box<dyn Reference>>;
+  fn issuer(&self) -> Option<&Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
+  fn account(&self) -> Option<&Box<dyn Reference>>;
+  fn totalNet(&self) -> Option<&Box<dyn Money>>;
+  fn recipient(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn totalGross(&self) -> &Option<Box<dyn Money>>;
-  fn paymentTerms(&self) -> &Option<String>;
-  fn cancelledReason(&self) -> &Option<String>;
+  fn totalGross(&self) -> Option<&Box<dyn Money>>;
+  fn paymentTerms(&self) -> Option<&String>;
+  fn cancelledReason(&self) -> Option<&String>;
   fn totalPriceComponent(&self) -> &Vector<Box<Invoice_LineItem_PriceComponent>>;
   fn participant(&self) -> &Vector<Box<Invoice_Participant>>;
   fn lineItem(&self) -> &Vector<Box<Invoice_LineItem>>;
@@ -105,15 +105,15 @@ impl FHIRObject for InvoiceRaw {
 }
 
 impl Resource for InvoiceRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for InvoiceRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -121,19 +121,19 @@ impl DomainResource for InvoiceRaw {
 
 
 impl Invoice for InvoiceRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn status(&self) -> &String { &self.status }
-  fn issuer(&self) -> &Option<Box<dyn Reference>> { &self.issuer }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
-  fn account(&self) -> &Option<Box<dyn Reference>> { &self.account }
-  fn totalNet(&self) -> &Option<Box<dyn Money>> { &self.totalNet }
-  fn recipient(&self) -> &Option<Box<dyn Reference>> { &self.recipient }
+  fn issuer(&self) -> Option<&Box<dyn Reference>> { self.issuer.as_ref() }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
+  fn account(&self) -> Option<&Box<dyn Reference>> { self.account.as_ref() }
+  fn totalNet(&self) -> Option<&Box<dyn Money>> { self.totalNet.as_ref() }
+  fn recipient(&self) -> Option<&Box<dyn Reference>> { self.recipient.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn totalGross(&self) -> &Option<Box<dyn Money>> { &self.totalGross }
-  fn paymentTerms(&self) -> &Option<String> { &self.paymentTerms }
-  fn cancelledReason(&self) -> &Option<String> { &self.cancelledReason }
+  fn totalGross(&self) -> Option<&Box<dyn Money>> { self.totalGross.as_ref() }
+  fn paymentTerms(&self) -> Option<&String> { self.paymentTerms.as_ref() }
+  fn cancelledReason(&self) -> Option<&String> { self.cancelledReason.as_ref() }
   fn totalPriceComponent(&self) -> &Vector<Box<Invoice_LineItem_PriceComponent>> { &self.totalPriceComponent }
   fn participant(&self) -> &Vector<Box<Invoice_Participant>> { &self.participant }
   fn lineItem(&self) -> &Vector<Box<Invoice_LineItem>> { &self.lineItem }

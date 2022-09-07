@@ -31,10 +31,10 @@ pub trait Signature : FHIRElement {
   fn who(&self) -> &Box<dyn Reference>;
   fn _type(&self) -> &Vector<Box<dyn Coding>>;
   fn when(&self) -> &DateTime<FixedOffset>;
-  fn data(&self) -> &Option<String>;
-  fn sigFormat(&self) -> &Option<String>;
-  fn onBehalfOf(&self) -> &Option<Box<dyn Reference>>;
-  fn targetFormat(&self) -> &Option<String>;
+  fn data(&self) -> Option<&String>;
+  fn sigFormat(&self) -> Option<&String>;
+  fn onBehalfOf(&self) -> Option<&Box<dyn Reference>>;
+  fn targetFormat(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(Signature);
@@ -43,7 +43,7 @@ impl FHIRObject for SignatureRaw {
 }
 
 impl FHIRElement for SignatureRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
@@ -52,9 +52,9 @@ impl Signature for SignatureRaw {
   fn who(&self) -> &Box<dyn Reference> { &self.who }
   fn _type(&self) -> &Vector<Box<dyn Coding>> { &self._type }
   fn when(&self) -> &DateTime<FixedOffset> { &self.when }
-  fn data(&self) -> &Option<String> { &self.data }
-  fn sigFormat(&self) -> &Option<String> { &self.sigFormat }
-  fn onBehalfOf(&self) -> &Option<Box<dyn Reference>> { &self.onBehalfOf }
-  fn targetFormat(&self) -> &Option<String> { &self.targetFormat }
+  fn data(&self) -> Option<&String> { self.data.as_ref() }
+  fn sigFormat(&self) -> Option<&String> { self.sigFormat.as_ref() }
+  fn onBehalfOf(&self) -> Option<&Box<dyn Reference>> { self.onBehalfOf.as_ref() }
+  fn targetFormat(&self) -> Option<&String> { self.targetFormat.as_ref() }
 }
 

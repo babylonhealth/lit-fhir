@@ -22,7 +22,7 @@ pub struct ContactDetailRaw {
 }
 
 pub trait ContactDetail : FHIRElement {
-  fn name(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
 }
 
@@ -32,13 +32,13 @@ impl FHIRObject for ContactDetailRaw {
 }
 
 impl FHIRElement for ContactDetailRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl ContactDetail for ContactDetailRaw {
-  fn name(&self) -> &Option<String> { &self.name }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
 }
 

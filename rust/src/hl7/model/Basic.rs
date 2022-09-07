@@ -37,9 +37,9 @@ pub struct BasicRaw {
 
 pub trait Basic : DomainResource {
   fn code(&self) -> &Box<dyn CodeableConcept>;
-  fn author(&self) -> &Option<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
-  fn created(&self) -> &Option<LocalDate>;
+  fn author(&self) -> Option<&Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
+  fn created(&self) -> Option<&LocalDate>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
 }
 
@@ -49,15 +49,15 @@ impl FHIRObject for BasicRaw {
 }
 
 impl Resource for BasicRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for BasicRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -66,9 +66,9 @@ impl DomainResource for BasicRaw {
 
 impl Basic for BasicRaw {
   fn code(&self) -> &Box<dyn CodeableConcept> { &self.code }
-  fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
-  fn created(&self) -> &Option<LocalDate> { &self.created }
+  fn author(&self) -> Option<&Box<dyn Reference>> { self.author.as_ref() }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
+  fn created(&self) -> Option<&LocalDate> { self.created.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
 }
 

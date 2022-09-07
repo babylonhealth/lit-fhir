@@ -108,27 +108,27 @@ pub struct ImmunizationRaw {
 }
 
 pub trait Immunization : DomainResource {
-  fn site(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn site(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn route(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn route(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn status(&self) -> &String;
   fn patient(&self) -> &Box<dyn Reference>;
-  fn recorded(&self) -> &Option<DateTime<FixedOffset>>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn lotNumber(&self) -> &Option<String>;
+  fn recorded(&self) -> Option<&DateTime<FixedOffset>>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn lotNumber(&self) -> Option<&String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn vaccineCode(&self) -> &Box<dyn CodeableConcept>;
-  fn isSubpotent(&self) -> &Option<bool>;
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn reportOrigin(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn manufacturer(&self) -> &Option<Box<dyn Reference>>;
-  fn doseQuantity(&self) -> &Option<Box<dyn Quantity>>;
+  fn isSubpotent(&self) -> Option<&bool>;
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn reportOrigin(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn manufacturer(&self) -> Option<&Box<dyn Reference>>;
+  fn doseQuantity(&self) -> Option<&Box<dyn Quantity>>;
   fn occurrence(&self) -> &UnionDateTimeOrString;
-  fn primarySource(&self) -> &Option<bool>;
-  fn fundingSource(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn expirationDate(&self) -> &Option<LocalDate>;
+  fn primarySource(&self) -> Option<&bool>;
+  fn fundingSource(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn expirationDate(&self) -> Option<&LocalDate>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn subpotentReason(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn programEligibility(&self) -> &Vector<Box<dyn CodeableConcept>>;
@@ -144,15 +144,15 @@ impl FHIRObject for ImmunizationRaw {
 }
 
 impl Resource for ImmunizationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ImmunizationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -160,27 +160,27 @@ impl DomainResource for ImmunizationRaw {
 
 
 impl Immunization for ImmunizationRaw {
-  fn site(&self) -> &Option<Box<dyn CodeableConcept>> { &self.site }
+  fn site(&self) -> Option<&Box<dyn CodeableConcept>> { self.site.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn route(&self) -> &Option<Box<dyn CodeableConcept>> { &self.route }
+  fn route(&self) -> Option<&Box<dyn CodeableConcept>> { self.route.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
-  fn recorded(&self) -> &Option<DateTime<FixedOffset>> { &self.recorded }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn lotNumber(&self) -> &Option<String> { &self.lotNumber }
+  fn recorded(&self) -> Option<&DateTime<FixedOffset>> { self.recorded.as_ref() }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn lotNumber(&self) -> Option<&String> { self.lotNumber.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn vaccineCode(&self) -> &Box<dyn CodeableConcept> { &self.vaccineCode }
-  fn isSubpotent(&self) -> &Option<bool> { &self.isSubpotent }
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.statusReason }
-  fn reportOrigin(&self) -> &Option<Box<dyn CodeableConcept>> { &self.reportOrigin }
-  fn manufacturer(&self) -> &Option<Box<dyn Reference>> { &self.manufacturer }
-  fn doseQuantity(&self) -> &Option<Box<dyn Quantity>> { &self.doseQuantity }
+  fn isSubpotent(&self) -> Option<&bool> { self.isSubpotent.as_ref() }
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.statusReason.as_ref() }
+  fn reportOrigin(&self) -> Option<&Box<dyn CodeableConcept>> { self.reportOrigin.as_ref() }
+  fn manufacturer(&self) -> Option<&Box<dyn Reference>> { self.manufacturer.as_ref() }
+  fn doseQuantity(&self) -> Option<&Box<dyn Quantity>> { self.doseQuantity.as_ref() }
   fn occurrence(&self) -> &UnionDateTimeOrString { &self.occurrence }
-  fn primarySource(&self) -> &Option<bool> { &self.primarySource }
-  fn fundingSource(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundingSource }
-  fn expirationDate(&self) -> &Option<LocalDate> { &self.expirationDate }
+  fn primarySource(&self) -> Option<&bool> { self.primarySource.as_ref() }
+  fn fundingSource(&self) -> Option<&Box<dyn CodeableConcept>> { self.fundingSource.as_ref() }
+  fn expirationDate(&self) -> Option<&LocalDate> { self.expirationDate.as_ref() }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn subpotentReason(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.subpotentReason }
   fn programEligibility(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.programEligibility }

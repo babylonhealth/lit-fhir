@@ -97,22 +97,22 @@ pub struct CarePlanRaw {
 pub trait CarePlan : DomainResource {
   fn goal(&self) -> &Vector<Box<dyn Reference>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn title(&self) -> &Option<String>;
+  fn title(&self) -> Option<&String>;
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
   fn intent(&self) -> &String;
-  fn period(&self) -> &Option<Box<dyn Period>>;
-  fn author(&self) -> &Option<Box<dyn Reference>>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
+  fn author(&self) -> Option<&Box<dyn Reference>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
   fn subject(&self) -> &Box<dyn Reference>;
-  fn created(&self) -> &Option<DateTime<FixedOffset>>;
+  fn created(&self) -> Option<&DateTime<FixedOffset>>;
   fn replaces(&self) -> &Vector<Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn careTeam(&self) -> &Vector<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn addresses(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn description(&self) -> &Option<String>;
+  fn description(&self) -> Option<&String>;
   fn contributor(&self) -> &Vector<Box<dyn Reference>>;
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesUri(&self) -> &Vector<String>;
@@ -126,15 +126,15 @@ impl FHIRObject for CarePlanRaw {
 }
 
 impl Resource for CarePlanRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CarePlanRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -144,22 +144,22 @@ impl DomainResource for CarePlanRaw {
 impl CarePlan for CarePlanRaw {
   fn goal(&self) -> &Vector<Box<dyn Reference>> { &self.goal }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn title(&self) -> &Option<String> { &self.title }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
   fn status(&self) -> &String { &self.status }
   fn intent(&self) -> &String { &self.intent }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
-  fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
+  fn author(&self) -> Option<&Box<dyn Reference>> { self.author.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
-  fn created(&self) -> &Option<DateTime<FixedOffset>> { &self.created }
+  fn created(&self) -> Option<&DateTime<FixedOffset>> { self.created.as_ref() }
   fn replaces(&self) -> &Vector<Box<dyn Reference>> { &self.replaces }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
   fn careTeam(&self) -> &Vector<Box<dyn Reference>> { &self.careTeam }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn addresses(&self) -> &Vector<Box<dyn Reference>> { &self.addresses }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn contributor(&self) -> &Vector<Box<dyn Reference>> { &self.contributor }
   fn supportingInfo(&self) -> &Vector<Box<dyn Reference>> { &self.supportingInfo }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }

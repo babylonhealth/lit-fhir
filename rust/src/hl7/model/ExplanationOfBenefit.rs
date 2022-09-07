@@ -387,39 +387,39 @@ pub struct ExplanationOfBenefitRaw {
 pub trait ExplanationOfBenefit : DomainResource {
   fn _use(&self) -> &String;
   fn _type(&self) -> &Box<dyn CodeableConcept>;
-  fn form(&self) -> &Option<Box<dyn Attachment>>;
-  fn claim(&self) -> &Option<Box<dyn Reference>>;
+  fn form(&self) -> Option<&Box<dyn Attachment>>;
+  fn claim(&self) -> Option<&Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn subType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn subType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn patient(&self) -> &Box<dyn Reference>;
   fn created(&self) -> &DateTime<FixedOffset>;
-  fn enterer(&self) -> &Option<Box<dyn Reference>>;
+  fn enterer(&self) -> Option<&Box<dyn Reference>>;
   fn insurer(&self) -> &Box<dyn Reference>;
   fn outcome(&self) -> &String;
   fn provider(&self) -> &Box<dyn Reference>;
-  fn priority(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn referral(&self) -> &Option<Box<dyn Reference>>;
-  fn facility(&self) -> &Option<Box<dyn Reference>>;
-  fn formCode(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn priority(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn referral(&self) -> Option<&Box<dyn Reference>>;
+  fn facility(&self) -> Option<&Box<dyn Reference>>;
+  fn formCode(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn preAuthRef(&self) -> &Vector<String>;
-  fn precedence(&self) -> &Option<u32>;
-  fn disposition(&self) -> &Option<String>;
-  fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn prescription(&self) -> &Option<Box<dyn Reference>>;
+  fn precedence(&self) -> Option<&u32>;
+  fn disposition(&self) -> Option<&String>;
+  fn fundsReserve(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn prescription(&self) -> Option<&Box<dyn Reference>>;
   fn adjudication(&self) -> &Vector<Box<ExplanationOfBenefit_Item_Adjudication>>;
-  fn claimResponse(&self) -> &Option<Box<dyn Reference>>;
-  fn benefitPeriod(&self) -> &Option<Box<dyn Period>>;
-  fn billablePeriod(&self) -> &Option<Box<dyn Period>>;
+  fn claimResponse(&self) -> Option<&Box<dyn Reference>>;
+  fn benefitPeriod(&self) -> Option<&Box<dyn Period>>;
+  fn billablePeriod(&self) -> Option<&Box<dyn Period>>;
   fn preAuthRefPeriod(&self) -> &Vector<Box<dyn Period>>;
-  fn originalPrescription(&self) -> &Option<Box<dyn Reference>>;
-  fn fundsReserveRequested(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn payee(&self) -> &Option<Box<ExplanationOfBenefit_Payee>>;
+  fn originalPrescription(&self) -> Option<&Box<dyn Reference>>;
+  fn fundsReserveRequested(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn payee(&self) -> Option<&Box<ExplanationOfBenefit_Payee>>;
   fn total(&self) -> &Vector<Box<ExplanationOfBenefit_Total>>;
   fn related(&self) -> &Vector<Box<ExplanationOfBenefit_Related>>;
-  fn payment(&self) -> &Option<Box<ExplanationOfBenefit_Payment>>;
+  fn payment(&self) -> Option<&Box<ExplanationOfBenefit_Payment>>;
   fn careTeam(&self) -> &Vector<Box<ExplanationOfBenefit_CareTeam>>;
-  fn accident(&self) -> &Option<Box<ExplanationOfBenefit_Accident>>;
+  fn accident(&self) -> Option<&Box<ExplanationOfBenefit_Accident>>;
   fn diagnosis(&self) -> &Vector<Box<ExplanationOfBenefit_Diagnosis>>;
   fn procedure(&self) -> &Vector<Box<ExplanationOfBenefit_Procedure>>;
   fn insurance(&self) -> &Vector<Box<ExplanationOfBenefit_Insurance>>;
@@ -436,15 +436,15 @@ impl FHIRObject for ExplanationOfBenefitRaw {
 }
 
 impl Resource for ExplanationOfBenefitRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ExplanationOfBenefitRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -454,39 +454,39 @@ impl DomainResource for ExplanationOfBenefitRaw {
 impl ExplanationOfBenefit for ExplanationOfBenefitRaw {
   fn _use(&self) -> &String { &self._use }
   fn _type(&self) -> &Box<dyn CodeableConcept> { &self._type }
-  fn form(&self) -> &Option<Box<dyn Attachment>> { &self.form }
-  fn claim(&self) -> &Option<Box<dyn Reference>> { &self.claim }
+  fn form(&self) -> Option<&Box<dyn Attachment>> { self.form.as_ref() }
+  fn claim(&self) -> Option<&Box<dyn Reference>> { self.claim.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn subType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.subType }
+  fn subType(&self) -> Option<&Box<dyn CodeableConcept>> { self.subType.as_ref() }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn created(&self) -> &DateTime<FixedOffset> { &self.created }
-  fn enterer(&self) -> &Option<Box<dyn Reference>> { &self.enterer }
+  fn enterer(&self) -> Option<&Box<dyn Reference>> { self.enterer.as_ref() }
   fn insurer(&self) -> &Box<dyn Reference> { &self.insurer }
   fn outcome(&self) -> &String { &self.outcome }
   fn provider(&self) -> &Box<dyn Reference> { &self.provider }
-  fn priority(&self) -> &Option<Box<dyn CodeableConcept>> { &self.priority }
-  fn referral(&self) -> &Option<Box<dyn Reference>> { &self.referral }
-  fn facility(&self) -> &Option<Box<dyn Reference>> { &self.facility }
-  fn formCode(&self) -> &Option<Box<dyn CodeableConcept>> { &self.formCode }
+  fn priority(&self) -> Option<&Box<dyn CodeableConcept>> { self.priority.as_ref() }
+  fn referral(&self) -> Option<&Box<dyn Reference>> { self.referral.as_ref() }
+  fn facility(&self) -> Option<&Box<dyn Reference>> { self.facility.as_ref() }
+  fn formCode(&self) -> Option<&Box<dyn CodeableConcept>> { self.formCode.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn preAuthRef(&self) -> &Vector<String> { &self.preAuthRef }
-  fn precedence(&self) -> &Option<u32> { &self.precedence }
-  fn disposition(&self) -> &Option<String> { &self.disposition }
-  fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundsReserve }
-  fn prescription(&self) -> &Option<Box<dyn Reference>> { &self.prescription }
+  fn precedence(&self) -> Option<&u32> { self.precedence.as_ref() }
+  fn disposition(&self) -> Option<&String> { self.disposition.as_ref() }
+  fn fundsReserve(&self) -> Option<&Box<dyn CodeableConcept>> { self.fundsReserve.as_ref() }
+  fn prescription(&self) -> Option<&Box<dyn Reference>> { self.prescription.as_ref() }
   fn adjudication(&self) -> &Vector<Box<ExplanationOfBenefit_Item_Adjudication>> { &self.adjudication }
-  fn claimResponse(&self) -> &Option<Box<dyn Reference>> { &self.claimResponse }
-  fn benefitPeriod(&self) -> &Option<Box<dyn Period>> { &self.benefitPeriod }
-  fn billablePeriod(&self) -> &Option<Box<dyn Period>> { &self.billablePeriod }
+  fn claimResponse(&self) -> Option<&Box<dyn Reference>> { self.claimResponse.as_ref() }
+  fn benefitPeriod(&self) -> Option<&Box<dyn Period>> { self.benefitPeriod.as_ref() }
+  fn billablePeriod(&self) -> Option<&Box<dyn Period>> { self.billablePeriod.as_ref() }
   fn preAuthRefPeriod(&self) -> &Vector<Box<dyn Period>> { &self.preAuthRefPeriod }
-  fn originalPrescription(&self) -> &Option<Box<dyn Reference>> { &self.originalPrescription }
-  fn fundsReserveRequested(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundsReserveRequested }
-  fn payee(&self) -> &Option<Box<ExplanationOfBenefit_Payee>> { &self.payee }
+  fn originalPrescription(&self) -> Option<&Box<dyn Reference>> { self.originalPrescription.as_ref() }
+  fn fundsReserveRequested(&self) -> Option<&Box<dyn CodeableConcept>> { self.fundsReserveRequested.as_ref() }
+  fn payee(&self) -> Option<&Box<ExplanationOfBenefit_Payee>> { self.payee.as_ref() }
   fn total(&self) -> &Vector<Box<ExplanationOfBenefit_Total>> { &self.total }
   fn related(&self) -> &Vector<Box<ExplanationOfBenefit_Related>> { &self.related }
-  fn payment(&self) -> &Option<Box<ExplanationOfBenefit_Payment>> { &self.payment }
+  fn payment(&self) -> Option<&Box<ExplanationOfBenefit_Payment>> { self.payment.as_ref() }
   fn careTeam(&self) -> &Vector<Box<ExplanationOfBenefit_CareTeam>> { &self.careTeam }
-  fn accident(&self) -> &Option<Box<ExplanationOfBenefit_Accident>> { &self.accident }
+  fn accident(&self) -> Option<&Box<ExplanationOfBenefit_Accident>> { self.accident.as_ref() }
   fn diagnosis(&self) -> &Vector<Box<ExplanationOfBenefit_Diagnosis>> { &self.diagnosis }
   fn procedure(&self) -> &Vector<Box<ExplanationOfBenefit_Procedure>> { &self.procedure }
   fn insurance(&self) -> &Vector<Box<ExplanationOfBenefit_Insurance>> { &self.insurance }

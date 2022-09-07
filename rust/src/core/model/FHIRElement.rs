@@ -18,7 +18,7 @@ pub struct FHIRElementRaw {
 }
 
 pub trait FHIRElement : FHIRObject {
-  fn id(&self) -> &Option<String>;
+  fn id(&self) -> Option<&String>;
   fn extension(&self) -> &Vector<Box<dyn Extension>>;
 }
 
@@ -28,7 +28,7 @@ impl FHIRObject for FHIRElementRaw {
 }
 
 impl FHIRElement for FHIRElementRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 

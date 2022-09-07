@@ -51,19 +51,19 @@ pub struct GuidanceResponseRaw {
 pub trait GuidanceResponse : DomainResource {
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn status(&self) -> &String;
-  fn result(&self) -> &Option<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn result(&self) -> Option<&Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn module(&self) -> &UnionCanonicalOrCodeableConceptOrUri;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn performer(&self) -> &Option<Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn performer(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn dataRequirement(&self) -> &Vector<Box<dyn DataRequirement>>;
-  fn outputParameters(&self) -> &Option<Box<dyn Reference>>;
-  fn requestIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn outputParameters(&self) -> Option<&Box<dyn Reference>>;
+  fn requestIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn evaluationMessage(&self) -> &Vector<Box<dyn Reference>>;
-  fn occurrenceDateTime(&self) -> &Option<DateTime<FixedOffset>>;
+  fn occurrenceDateTime(&self) -> Option<&DateTime<FixedOffset>>;
 }
 
 dyn_clone::clone_trait_object!(GuidanceResponse);
@@ -72,15 +72,15 @@ impl FHIRObject for GuidanceResponseRaw {
 }
 
 impl Resource for GuidanceResponseRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for GuidanceResponseRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -90,18 +90,18 @@ impl DomainResource for GuidanceResponseRaw {
 impl GuidanceResponse for GuidanceResponseRaw {
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn status(&self) -> &String { &self.status }
-  fn result(&self) -> &Option<Box<dyn Reference>> { &self.result }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn result(&self) -> Option<&Box<dyn Reference>> { self.result.as_ref() }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn module(&self) -> &UnionCanonicalOrCodeableConceptOrUri { &self.module }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn performer(&self) -> &Option<Box<dyn Reference>> { &self.performer }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn performer(&self) -> Option<&Box<dyn Reference>> { self.performer.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn dataRequirement(&self) -> &Vector<Box<dyn DataRequirement>> { &self.dataRequirement }
-  fn outputParameters(&self) -> &Option<Box<dyn Reference>> { &self.outputParameters }
-  fn requestIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.requestIdentifier }
+  fn outputParameters(&self) -> Option<&Box<dyn Reference>> { self.outputParameters.as_ref() }
+  fn requestIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.requestIdentifier.as_ref() }
   fn evaluationMessage(&self) -> &Vector<Box<dyn Reference>> { &self.evaluationMessage }
-  fn occurrenceDateTime(&self) -> &Option<DateTime<FixedOffset>> { &self.occurrenceDateTime }
+  fn occurrenceDateTime(&self) -> Option<&DateTime<FixedOffset>> { self.occurrenceDateTime.as_ref() }
 }
 

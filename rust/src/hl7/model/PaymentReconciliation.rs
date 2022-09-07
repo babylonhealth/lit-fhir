@@ -76,18 +76,18 @@ pub struct PaymentReconciliationRaw {
 
 pub trait PaymentReconciliation : DomainResource {
   fn status(&self) -> &String;
-  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
   fn created(&self) -> &DateTime<FixedOffset>;
-  fn request(&self) -> &Option<Box<dyn Reference>>;
-  fn outcome(&self) -> &Option<String>;
-  fn formCode(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn requestor(&self) -> &Option<Box<dyn Reference>>;
+  fn request(&self) -> Option<&Box<dyn Reference>>;
+  fn outcome(&self) -> Option<&String>;
+  fn formCode(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn requestor(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn disposition(&self) -> &Option<String>;
+  fn disposition(&self) -> Option<&String>;
   fn paymentDate(&self) -> &LocalDate;
-  fn paymentIssuer(&self) -> &Option<Box<dyn Reference>>;
+  fn paymentIssuer(&self) -> Option<&Box<dyn Reference>>;
   fn paymentAmount(&self) -> &Box<dyn Money>;
-  fn paymentIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn paymentIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn detail(&self) -> &Vector<Box<PaymentReconciliation_Detail>>;
   fn processNote(&self) -> &Vector<Box<PaymentReconciliation_ProcessNote>>;
 }
@@ -98,15 +98,15 @@ impl FHIRObject for PaymentReconciliationRaw {
 }
 
 impl Resource for PaymentReconciliationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for PaymentReconciliationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -115,18 +115,18 @@ impl DomainResource for PaymentReconciliationRaw {
 
 impl PaymentReconciliation for PaymentReconciliationRaw {
   fn status(&self) -> &String { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
   fn created(&self) -> &DateTime<FixedOffset> { &self.created }
-  fn request(&self) -> &Option<Box<dyn Reference>> { &self.request }
-  fn outcome(&self) -> &Option<String> { &self.outcome }
-  fn formCode(&self) -> &Option<Box<dyn CodeableConcept>> { &self.formCode }
-  fn requestor(&self) -> &Option<Box<dyn Reference>> { &self.requestor }
+  fn request(&self) -> Option<&Box<dyn Reference>> { self.request.as_ref() }
+  fn outcome(&self) -> Option<&String> { self.outcome.as_ref() }
+  fn formCode(&self) -> Option<&Box<dyn CodeableConcept>> { self.formCode.as_ref() }
+  fn requestor(&self) -> Option<&Box<dyn Reference>> { self.requestor.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn disposition(&self) -> &Option<String> { &self.disposition }
+  fn disposition(&self) -> Option<&String> { self.disposition.as_ref() }
   fn paymentDate(&self) -> &LocalDate { &self.paymentDate }
-  fn paymentIssuer(&self) -> &Option<Box<dyn Reference>> { &self.paymentIssuer }
+  fn paymentIssuer(&self) -> Option<&Box<dyn Reference>> { self.paymentIssuer.as_ref() }
   fn paymentAmount(&self) -> &Box<dyn Money> { &self.paymentAmount }
-  fn paymentIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.paymentIdentifier }
+  fn paymentIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.paymentIdentifier.as_ref() }
   fn detail(&self) -> &Vector<Box<PaymentReconciliation_Detail>> { &self.detail }
   fn processNote(&self) -> &Vector<Box<PaymentReconciliation_ProcessNote>> { &self.processNote }
 }

@@ -1,7 +1,3 @@
-#![feature(label_break_value)]
-
-use std::borrow::Borrow;
-use std::option;
 use bigdecimal::BigDecimal;
 use bytes::Bytes;
 use chrono::{DateTime, FixedOffset};
@@ -68,15 +64,15 @@ dyn_clone::clone_trait_object!(shareablecodesystem);
 impl FHIRObject for shareablecodesystemRaw {}
 
 impl Resource for shareablecodesystemRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for shareablecodesystemRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -86,27 +82,27 @@ impl DomainResource for shareablecodesystemRaw {
 impl CodeSystem for shareablecodesystemRaw {
   fn url(&self) -> Option<&String> { Some(&self.url) }
   fn name(&self) -> Option<&String> { Some(&self.name) }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
-  fn title(&self) -> &Option<String> { &self.title }
-  fn count(&self) -> &Option<u32> { &self.count }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
+  fn count(&self) -> Option<&u32> { self.count.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn version(&self) -> Option<&String> { Some(&self.version) }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
   fn content(&self) -> &String { &self.content }
-  fn valueSet(&self) -> &Option<String> { &self.valueSet }
+  fn valueSet(&self) -> Option<&String> { self.valueSet.as_ref() }
   fn publisher(&self) -> Option<&String> { Some(&self.publisher) }
-  fn copyright(&self) -> &Option<String> { &self.copyright }
+  fn copyright(&self) -> Option<&String> { self.copyright.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
   fn description(&self) -> Option<&String> { Some(&self.description) }
-  fn supplements(&self) -> &Option<String> { &self.supplements }
+  fn supplements(&self) -> Option<&String> { self.supplements.as_ref() }
   fn experimental(&self) -> Option<&bool> { Some(&self.experimental) }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn caseSensitive(&self) -> &Option<bool> { &self.caseSensitive }
-  fn compositional(&self) -> &Option<bool> { &self.compositional }
-  fn versionNeeded(&self) -> &Option<bool> { &self.versionNeeded }
-  fn hierarchyMeaning(&self) -> &Option<String> { &self.hierarchyMeaning }
+  fn caseSensitive(&self) -> Option<&bool> { self.caseSensitive.as_ref() }
+  fn compositional(&self) -> Option<&bool> { self.compositional.as_ref() }
+  fn versionNeeded(&self) -> Option<&bool> { self.versionNeeded.as_ref() }
+  fn hierarchyMeaning(&self) -> Option<&String> { self.hierarchyMeaning.as_ref() }
   fn filter(&self) -> &Vector<Box<CodeSystem_Filter>> { &self.filter }
   fn property(&self) -> &Vector<Box<CodeSystem_Property>> { &self.property }
   fn concept(&self) -> &Vector<Box<CodeSystem_Concept>> { &self.concept }

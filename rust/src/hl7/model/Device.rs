@@ -115,27 +115,27 @@ pub struct DeviceRaw {
 }
 
 pub trait Device : DomainResource {
-  fn url(&self) -> &Option<String>;
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn url(&self) -> Option<&String>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn owner(&self) -> &Option<Box<dyn Reference>>;
-  fn status(&self) -> &Option<String>;
+  fn owner(&self) -> Option<&Box<dyn Reference>>;
+  fn status(&self) -> Option<&String>;
   fn safety(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn parent(&self) -> &Option<Box<dyn Reference>>;
-  fn patient(&self) -> &Option<Box<dyn Reference>>;
+  fn parent(&self) -> Option<&Box<dyn Reference>>;
+  fn patient(&self) -> Option<&Box<dyn Reference>>;
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
-  fn lotNumber(&self) -> &Option<String>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
+  fn lotNumber(&self) -> Option<&String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn definition(&self) -> &Option<Box<dyn Reference>>;
-  fn partNumber(&self) -> &Option<String>;
-  fn modelNumber(&self) -> &Option<String>;
+  fn definition(&self) -> Option<&Box<dyn Reference>>;
+  fn partNumber(&self) -> Option<&String>;
+  fn modelNumber(&self) -> Option<&String>;
   fn statusReason(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn manufacturer(&self) -> &Option<String>;
-  fn serialNumber(&self) -> &Option<String>;
-  fn expirationDate(&self) -> &Option<DateTime<FixedOffset>>;
-  fn manufactureDate(&self) -> &Option<DateTime<FixedOffset>>;
-  fn distinctIdentifier(&self) -> &Option<String>;
+  fn manufacturer(&self) -> Option<&String>;
+  fn serialNumber(&self) -> Option<&String>;
+  fn expirationDate(&self) -> Option<&DateTime<FixedOffset>>;
+  fn manufactureDate(&self) -> Option<&DateTime<FixedOffset>>;
+  fn distinctIdentifier(&self) -> Option<&String>;
   fn version(&self) -> &Vector<Box<Device_Version>>;
   fn property(&self) -> &Vector<Box<Device_Property>>;
   fn udiCarrier(&self) -> &Vector<Box<Device_UdiCarrier>>;
@@ -149,15 +149,15 @@ impl FHIRObject for DeviceRaw {
 }
 
 impl Resource for DeviceRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DeviceRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -165,27 +165,27 @@ impl DomainResource for DeviceRaw {
 
 
 impl Device for DeviceRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn owner(&self) -> &Option<Box<dyn Reference>> { &self.owner }
-  fn status(&self) -> &Option<String> { &self.status }
+  fn owner(&self) -> Option<&Box<dyn Reference>> { self.owner.as_ref() }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
   fn safety(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.safety }
-  fn parent(&self) -> &Option<Box<dyn Reference>> { &self.parent }
-  fn patient(&self) -> &Option<Box<dyn Reference>> { &self.patient }
+  fn parent(&self) -> Option<&Box<dyn Reference>> { self.parent.as_ref() }
+  fn patient(&self) -> Option<&Box<dyn Reference>> { self.patient.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactPoint>> { &self.contact }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
-  fn lotNumber(&self) -> &Option<String> { &self.lotNumber }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
+  fn lotNumber(&self) -> Option<&String> { self.lotNumber.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn definition(&self) -> &Option<Box<dyn Reference>> { &self.definition }
-  fn partNumber(&self) -> &Option<String> { &self.partNumber }
-  fn modelNumber(&self) -> &Option<String> { &self.modelNumber }
+  fn definition(&self) -> Option<&Box<dyn Reference>> { self.definition.as_ref() }
+  fn partNumber(&self) -> Option<&String> { self.partNumber.as_ref() }
+  fn modelNumber(&self) -> Option<&String> { self.modelNumber.as_ref() }
   fn statusReason(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.statusReason }
-  fn manufacturer(&self) -> &Option<String> { &self.manufacturer }
-  fn serialNumber(&self) -> &Option<String> { &self.serialNumber }
-  fn expirationDate(&self) -> &Option<DateTime<FixedOffset>> { &self.expirationDate }
-  fn manufactureDate(&self) -> &Option<DateTime<FixedOffset>> { &self.manufactureDate }
-  fn distinctIdentifier(&self) -> &Option<String> { &self.distinctIdentifier }
+  fn manufacturer(&self) -> Option<&String> { self.manufacturer.as_ref() }
+  fn serialNumber(&self) -> Option<&String> { self.serialNumber.as_ref() }
+  fn expirationDate(&self) -> Option<&DateTime<FixedOffset>> { self.expirationDate.as_ref() }
+  fn manufactureDate(&self) -> Option<&DateTime<FixedOffset>> { self.manufactureDate.as_ref() }
+  fn distinctIdentifier(&self) -> Option<&String> { self.distinctIdentifier.as_ref() }
   fn version(&self) -> &Vector<Box<Device_Version>> { &self.version }
   fn property(&self) -> &Vector<Box<Device_Property>> { &self.property }
   fn udiCarrier(&self) -> &Vector<Box<Device_UdiCarrier>> { &self.udiCarrier }

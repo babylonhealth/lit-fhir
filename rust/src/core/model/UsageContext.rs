@@ -33,7 +33,7 @@ impl FHIRObject for UsageContextRaw {
 }
 
 impl FHIRElement for UsageContextRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 

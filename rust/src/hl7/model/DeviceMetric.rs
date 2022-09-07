@@ -53,14 +53,14 @@ pub struct DeviceMetricRaw {
 
 pub trait DeviceMetric : DomainResource {
   fn _type(&self) -> &Box<dyn CodeableConcept>;
-  fn unit(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn color(&self) -> &Option<String>;
-  fn source(&self) -> &Option<Box<dyn Reference>>;
-  fn parent(&self) -> &Option<Box<dyn Reference>>;
+  fn unit(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn color(&self) -> Option<&String>;
+  fn source(&self) -> Option<&Box<dyn Reference>>;
+  fn parent(&self) -> Option<&Box<dyn Reference>>;
   fn category(&self) -> &String;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn operationalStatus(&self) -> &Option<String>;
-  fn measurementPeriod(&self) -> &Option<Box<dyn Timing>>;
+  fn operationalStatus(&self) -> Option<&String>;
+  fn measurementPeriod(&self) -> Option<&Box<dyn Timing>>;
   fn calibration(&self) -> &Vector<Box<DeviceMetric_Calibration>>;
 }
 
@@ -70,15 +70,15 @@ impl FHIRObject for DeviceMetricRaw {
 }
 
 impl Resource for DeviceMetricRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DeviceMetricRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -87,14 +87,14 @@ impl DomainResource for DeviceMetricRaw {
 
 impl DeviceMetric for DeviceMetricRaw {
   fn _type(&self) -> &Box<dyn CodeableConcept> { &self._type }
-  fn unit(&self) -> &Option<Box<dyn CodeableConcept>> { &self.unit }
-  fn color(&self) -> &Option<String> { &self.color }
-  fn source(&self) -> &Option<Box<dyn Reference>> { &self.source }
-  fn parent(&self) -> &Option<Box<dyn Reference>> { &self.parent }
+  fn unit(&self) -> Option<&Box<dyn CodeableConcept>> { self.unit.as_ref() }
+  fn color(&self) -> Option<&String> { self.color.as_ref() }
+  fn source(&self) -> Option<&Box<dyn Reference>> { self.source.as_ref() }
+  fn parent(&self) -> Option<&Box<dyn Reference>> { self.parent.as_ref() }
   fn category(&self) -> &String { &self.category }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn operationalStatus(&self) -> &Option<String> { &self.operationalStatus }
-  fn measurementPeriod(&self) -> &Option<Box<dyn Timing>> { &self.measurementPeriod }
+  fn operationalStatus(&self) -> Option<&String> { self.operationalStatus.as_ref() }
+  fn measurementPeriod(&self) -> Option<&Box<dyn Timing>> { self.measurementPeriod.as_ref() }
   fn calibration(&self) -> &Vector<Box<DeviceMetric_Calibration>> { &self.calibration }
 }
 

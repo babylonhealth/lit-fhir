@@ -54,17 +54,17 @@ pub struct SupplyDeliveryRaw {
 }
 
 pub trait SupplyDelivery : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
-  fn status(&self) -> &Option<String>;
+  fn status(&self) -> Option<&String>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn patient(&self) -> &Option<Box<dyn Reference>>;
-  fn supplier(&self) -> &Option<Box<dyn Reference>>;
+  fn patient(&self) -> Option<&Box<dyn Reference>>;
+  fn supplier(&self) -> Option<&Box<dyn Reference>>;
   fn receiver(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn destination(&self) -> &Option<Box<dyn Reference>>;
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming>;
-  fn suppliedItem(&self) -> &Option<Box<SupplyDelivery_SuppliedItem>>;
+  fn destination(&self) -> Option<&Box<dyn Reference>>;
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriodOrTiming>;
+  fn suppliedItem(&self) -> Option<&Box<SupplyDelivery_SuppliedItem>>;
 }
 
 dyn_clone::clone_trait_object!(SupplyDelivery);
@@ -73,15 +73,15 @@ impl FHIRObject for SupplyDeliveryRaw {
 }
 
 impl Resource for SupplyDeliveryRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SupplyDeliveryRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -89,16 +89,16 @@ impl DomainResource for SupplyDeliveryRaw {
 
 
 impl SupplyDelivery for SupplyDeliveryRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
-  fn status(&self) -> &Option<String> { &self.status }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn patient(&self) -> &Option<Box<dyn Reference>> { &self.patient }
-  fn supplier(&self) -> &Option<Box<dyn Reference>> { &self.supplier }
+  fn patient(&self) -> Option<&Box<dyn Reference>> { self.patient.as_ref() }
+  fn supplier(&self) -> Option<&Box<dyn Reference>> { self.supplier.as_ref() }
   fn receiver(&self) -> &Vector<Box<dyn Reference>> { &self.receiver }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn destination(&self) -> &Option<Box<dyn Reference>> { &self.destination }
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming> { &self.occurrence }
-  fn suppliedItem(&self) -> &Option<Box<SupplyDelivery_SuppliedItem>> { &self.suppliedItem }
+  fn destination(&self) -> Option<&Box<dyn Reference>> { self.destination.as_ref() }
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriodOrTiming> { self.occurrence.as_ref() }
+  fn suppliedItem(&self) -> Option<&Box<SupplyDelivery_SuppliedItem>> { self.suppliedItem.as_ref() }
 }
 

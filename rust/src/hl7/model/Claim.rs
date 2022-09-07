@@ -233,26 +233,26 @@ pub struct ClaimRaw {
 pub trait Claim : DomainResource {
   fn _use(&self) -> &String;
   fn _type(&self) -> &Box<dyn CodeableConcept>;
-  fn total(&self) -> &Option<Box<dyn Money>>;
+  fn total(&self) -> Option<&Box<dyn Money>>;
   fn status(&self) -> &String;
-  fn subType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn subType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn patient(&self) -> &Box<dyn Reference>;
   fn created(&self) -> &DateTime<FixedOffset>;
-  fn enterer(&self) -> &Option<Box<dyn Reference>>;
-  fn insurer(&self) -> &Option<Box<dyn Reference>>;
+  fn enterer(&self) -> Option<&Box<dyn Reference>>;
+  fn insurer(&self) -> Option<&Box<dyn Reference>>;
   fn provider(&self) -> &Box<dyn Reference>;
   fn priority(&self) -> &Box<dyn CodeableConcept>;
-  fn referral(&self) -> &Option<Box<dyn Reference>>;
-  fn facility(&self) -> &Option<Box<dyn Reference>>;
+  fn referral(&self) -> Option<&Box<dyn Reference>>;
+  fn facility(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn prescription(&self) -> &Option<Box<dyn Reference>>;
-  fn billablePeriod(&self) -> &Option<Box<dyn Period>>;
-  fn originalPrescription(&self) -> &Option<Box<dyn Reference>>;
-  fn payee(&self) -> &Option<Box<Claim_Payee>>;
+  fn fundsReserve(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn prescription(&self) -> Option<&Box<dyn Reference>>;
+  fn billablePeriod(&self) -> Option<&Box<dyn Period>>;
+  fn originalPrescription(&self) -> Option<&Box<dyn Reference>>;
+  fn payee(&self) -> Option<&Box<Claim_Payee>>;
   fn related(&self) -> &Vector<Box<Claim_Related>>;
   fn careTeam(&self) -> &Vector<Box<Claim_CareTeam>>;
-  fn accident(&self) -> &Option<Box<Claim_Accident>>;
+  fn accident(&self) -> Option<&Box<Claim_Accident>>;
   fn diagnosis(&self) -> &Vector<Box<Claim_Diagnosis>>;
   fn procedure(&self) -> &Vector<Box<Claim_Procedure>>;
   fn insurance(&self) -> &Vector<Box<Claim_Insurance>>;
@@ -266,15 +266,15 @@ impl FHIRObject for ClaimRaw {
 }
 
 impl Resource for ClaimRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ClaimRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -284,26 +284,26 @@ impl DomainResource for ClaimRaw {
 impl Claim for ClaimRaw {
   fn _use(&self) -> &String { &self._use }
   fn _type(&self) -> &Box<dyn CodeableConcept> { &self._type }
-  fn total(&self) -> &Option<Box<dyn Money>> { &self.total }
+  fn total(&self) -> Option<&Box<dyn Money>> { self.total.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn subType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.subType }
+  fn subType(&self) -> Option<&Box<dyn CodeableConcept>> { self.subType.as_ref() }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
   fn created(&self) -> &DateTime<FixedOffset> { &self.created }
-  fn enterer(&self) -> &Option<Box<dyn Reference>> { &self.enterer }
-  fn insurer(&self) -> &Option<Box<dyn Reference>> { &self.insurer }
+  fn enterer(&self) -> Option<&Box<dyn Reference>> { self.enterer.as_ref() }
+  fn insurer(&self) -> Option<&Box<dyn Reference>> { self.insurer.as_ref() }
   fn provider(&self) -> &Box<dyn Reference> { &self.provider }
   fn priority(&self) -> &Box<dyn CodeableConcept> { &self.priority }
-  fn referral(&self) -> &Option<Box<dyn Reference>> { &self.referral }
-  fn facility(&self) -> &Option<Box<dyn Reference>> { &self.facility }
+  fn referral(&self) -> Option<&Box<dyn Reference>> { self.referral.as_ref() }
+  fn facility(&self) -> Option<&Box<dyn Reference>> { self.facility.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn fundsReserve(&self) -> &Option<Box<dyn CodeableConcept>> { &self.fundsReserve }
-  fn prescription(&self) -> &Option<Box<dyn Reference>> { &self.prescription }
-  fn billablePeriod(&self) -> &Option<Box<dyn Period>> { &self.billablePeriod }
-  fn originalPrescription(&self) -> &Option<Box<dyn Reference>> { &self.originalPrescription }
-  fn payee(&self) -> &Option<Box<Claim_Payee>> { &self.payee }
+  fn fundsReserve(&self) -> Option<&Box<dyn CodeableConcept>> { self.fundsReserve.as_ref() }
+  fn prescription(&self) -> Option<&Box<dyn Reference>> { self.prescription.as_ref() }
+  fn billablePeriod(&self) -> Option<&Box<dyn Period>> { self.billablePeriod.as_ref() }
+  fn originalPrescription(&self) -> Option<&Box<dyn Reference>> { self.originalPrescription.as_ref() }
+  fn payee(&self) -> Option<&Box<Claim_Payee>> { self.payee.as_ref() }
   fn related(&self) -> &Vector<Box<Claim_Related>> { &self.related }
   fn careTeam(&self) -> &Vector<Box<Claim_CareTeam>> { &self.careTeam }
-  fn accident(&self) -> &Option<Box<Claim_Accident>> { &self.accident }
+  fn accident(&self) -> Option<&Box<Claim_Accident>> { self.accident.as_ref() }
   fn diagnosis(&self) -> &Vector<Box<Claim_Diagnosis>> { &self.diagnosis }
   fn procedure(&self) -> &Vector<Box<Claim_Procedure>> { &self.procedure }
   fn insurance(&self) -> &Vector<Box<Claim_Insurance>> { &self.insurance }

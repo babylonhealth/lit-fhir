@@ -72,11 +72,11 @@ pub struct MedicinalProductPackagedRaw {
 pub trait MedicinalProductPackaged : DomainResource {
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn description(&self) -> &Option<String>;
+  fn description(&self) -> Option<&String>;
   fn manufacturer(&self) -> &Vector<Box<dyn Reference>>;
   fn marketingStatus(&self) -> &Vector<String>;
-  fn legalStatusOfSupply(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn marketingAuthorization(&self) -> &Option<Box<dyn Reference>>;
+  fn legalStatusOfSupply(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn marketingAuthorization(&self) -> Option<&Box<dyn Reference>>;
   fn batchIdentifier(&self) -> &Vector<Box<MedicinalProductPackaged_BatchIdentifier>>;
   fn packageItem(&self) -> &Vector<Box<MedicinalProductPackaged_PackageItem>>;
 }
@@ -87,15 +87,15 @@ impl FHIRObject for MedicinalProductPackagedRaw {
 }
 
 impl Resource for MedicinalProductPackagedRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductPackagedRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -105,11 +105,11 @@ impl DomainResource for MedicinalProductPackagedRaw {
 impl MedicinalProductPackaged for MedicinalProductPackagedRaw {
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn manufacturer(&self) -> &Vector<Box<dyn Reference>> { &self.manufacturer }
   fn marketingStatus(&self) -> &Vector<String> { &self.marketingStatus }
-  fn legalStatusOfSupply(&self) -> &Option<Box<dyn CodeableConcept>> { &self.legalStatusOfSupply }
-  fn marketingAuthorization(&self) -> &Option<Box<dyn Reference>> { &self.marketingAuthorization }
+  fn legalStatusOfSupply(&self) -> Option<&Box<dyn CodeableConcept>> { self.legalStatusOfSupply.as_ref() }
+  fn marketingAuthorization(&self) -> Option<&Box<dyn Reference>> { self.marketingAuthorization.as_ref() }
   fn batchIdentifier(&self) -> &Vector<Box<MedicinalProductPackaged_BatchIdentifier>> { &self.batchIdentifier }
   fn packageItem(&self) -> &Vector<Box<MedicinalProductPackaged_PackageItem>> { &self.packageItem }
 }

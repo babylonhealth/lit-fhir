@@ -73,22 +73,22 @@ pub struct LocationRaw {
 }
 
 pub trait Location : DomainResource {
-  fn name(&self) -> &Option<String>;
-  fn mode(&self) -> &Option<String>;
+  fn name(&self) -> Option<&String>;
+  fn mode(&self) -> Option<&String>;
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn alias(&self) -> &Vector<String>;
-  fn status(&self) -> &Option<String>;
-  fn partOf(&self) -> &Option<Box<dyn Reference>>;
+  fn status(&self) -> Option<&String>;
+  fn partOf(&self) -> Option<&Box<dyn Reference>>;
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>>;
-  fn address(&self) -> &Option<Box<dyn Address>>;
+  fn address(&self) -> Option<&Box<dyn Address>>;
   fn endpoint(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn description(&self) -> &Option<String>;
-  fn physicalType(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn operationalStatus(&self) -> &Option<Box<dyn Coding>>;
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>>;
-  fn availabilityExceptions(&self) -> &Option<String>;
-  fn position(&self) -> &Option<Box<Location_Position>>;
+  fn description(&self) -> Option<&String>;
+  fn physicalType(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn operationalStatus(&self) -> Option<&Box<dyn Coding>>;
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>>;
+  fn availabilityExceptions(&self) -> Option<&String>;
+  fn position(&self) -> Option<&Box<Location_Position>>;
   fn hoursOfOperation(&self) -> &Vector<Box<Location_HoursOfOperation>>;
 }
 
@@ -98,15 +98,15 @@ impl FHIRObject for LocationRaw {
 }
 
 impl Resource for LocationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for LocationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -114,22 +114,22 @@ impl DomainResource for LocationRaw {
 
 
 impl Location for LocationRaw {
-  fn name(&self) -> &Option<String> { &self.name }
-  fn mode(&self) -> &Option<String> { &self.mode }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
+  fn mode(&self) -> Option<&String> { self.mode.as_ref() }
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>> { &self._type }
   fn alias(&self) -> &Vector<String> { &self.alias }
-  fn status(&self) -> &Option<String> { &self.status }
-  fn partOf(&self) -> &Option<Box<dyn Reference>> { &self.partOf }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn partOf(&self) -> Option<&Box<dyn Reference>> { self.partOf.as_ref() }
   fn telecom(&self) -> &Vector<Box<dyn ContactPoint>> { &self.telecom }
-  fn address(&self) -> &Option<Box<dyn Address>> { &self.address }
+  fn address(&self) -> Option<&Box<dyn Address>> { self.address.as_ref() }
   fn endpoint(&self) -> &Vector<Box<dyn Reference>> { &self.endpoint }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn physicalType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.physicalType }
-  fn operationalStatus(&self) -> &Option<Box<dyn Coding>> { &self.operationalStatus }
-  fn managingOrganization(&self) -> &Option<Box<dyn Reference>> { &self.managingOrganization }
-  fn availabilityExceptions(&self) -> &Option<String> { &self.availabilityExceptions }
-  fn position(&self) -> &Option<Box<Location_Position>> { &self.position }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn physicalType(&self) -> Option<&Box<dyn CodeableConcept>> { self.physicalType.as_ref() }
+  fn operationalStatus(&self) -> Option<&Box<dyn Coding>> { self.operationalStatus.as_ref() }
+  fn managingOrganization(&self) -> Option<&Box<dyn Reference>> { self.managingOrganization.as_ref() }
+  fn availabilityExceptions(&self) -> Option<&String> { self.availabilityExceptions.as_ref() }
+  fn position(&self) -> Option<&Box<Location_Position>> { self.position.as_ref() }
   fn hoursOfOperation(&self) -> &Vector<Box<Location_HoursOfOperation>> { &self.hoursOfOperation }
 }
 

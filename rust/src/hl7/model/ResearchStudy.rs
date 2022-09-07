@@ -81,26 +81,26 @@ pub struct ResearchStudyRaw {
 pub trait ResearchStudy : DomainResource {
   fn site(&self) -> &Vector<Box<dyn Reference>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn title(&self) -> &Option<String>;
-  fn phase(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn title(&self) -> Option<&String>;
+  fn phase(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn focus(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn period(&self) -> &Option<Box<dyn Period>>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
   fn keyword(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn sponsor(&self) -> &Option<Box<dyn Reference>>;
+  fn sponsor(&self) -> Option<&Box<dyn Reference>>;
   fn protocol(&self) -> &Vector<Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn location(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn condition(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn enrollment(&self) -> &Vector<Box<dyn Reference>>;
-  fn description(&self) -> &Option<String>;
-  fn reasonStopped(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn description(&self) -> Option<&String>;
+  fn reasonStopped(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>>;
-  fn primaryPurposeType(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn principalInvestigator(&self) -> &Option<Box<dyn Reference>>;
+  fn primaryPurposeType(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn principalInvestigator(&self) -> Option<&Box<dyn Reference>>;
   fn arm(&self) -> &Vector<Box<ResearchStudy_Arm>>;
   fn objective(&self) -> &Vector<Box<ResearchStudy_Objective>>;
 }
@@ -111,15 +111,15 @@ impl FHIRObject for ResearchStudyRaw {
 }
 
 impl Resource for ResearchStudyRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ResearchStudyRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -129,26 +129,26 @@ impl DomainResource for ResearchStudyRaw {
 impl ResearchStudy for ResearchStudyRaw {
   fn site(&self) -> &Vector<Box<dyn Reference>> { &self.site }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn title(&self) -> &Option<String> { &self.title }
-  fn phase(&self) -> &Option<Box<dyn CodeableConcept>> { &self.phase }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
+  fn phase(&self) -> Option<&Box<dyn CodeableConcept>> { self.phase.as_ref() }
   fn focus(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.focus }
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
   fn status(&self) -> &String { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
   fn keyword(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.keyword }
-  fn sponsor(&self) -> &Option<Box<dyn Reference>> { &self.sponsor }
+  fn sponsor(&self) -> Option<&Box<dyn Reference>> { self.sponsor.as_ref() }
   fn protocol(&self) -> &Vector<Box<dyn Reference>> { &self.protocol }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
   fn location(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.location }
   fn condition(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.condition }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn enrollment(&self) -> &Vector<Box<dyn Reference>> { &self.enrollment }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn reasonStopped(&self) -> &Option<Box<dyn CodeableConcept>> { &self.reasonStopped }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn reasonStopped(&self) -> Option<&Box<dyn CodeableConcept>> { self.reasonStopped.as_ref() }
   fn relatedArtifact(&self) -> &Vector<Box<dyn RelatedArtifact>> { &self.relatedArtifact }
-  fn primaryPurposeType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.primaryPurposeType }
-  fn principalInvestigator(&self) -> &Option<Box<dyn Reference>> { &self.principalInvestigator }
+  fn primaryPurposeType(&self) -> Option<&Box<dyn CodeableConcept>> { self.primaryPurposeType.as_ref() }
+  fn principalInvestigator(&self) -> Option<&Box<dyn Reference>> { self.principalInvestigator.as_ref() }
   fn arm(&self) -> &Vector<Box<ResearchStudy_Arm>> { &self.arm }
   fn objective(&self) -> &Vector<Box<ResearchStudy_Objective>> { &self.objective }
 }

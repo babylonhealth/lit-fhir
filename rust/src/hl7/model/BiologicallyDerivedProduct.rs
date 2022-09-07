@@ -88,17 +88,17 @@ pub struct BiologicallyDerivedProductRaw {
 }
 
 pub trait BiologicallyDerivedProduct : DomainResource {
-  fn status(&self) -> &Option<String>;
+  fn status(&self) -> Option<&String>;
   fn parent(&self) -> &Vector<Box<dyn Reference>>;
   fn request(&self) -> &Vector<Box<dyn Reference>>;
-  fn quantity(&self) -> &Option<i32>;
+  fn quantity(&self) -> Option<&i32>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn productCode(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn productCategory(&self) -> &Option<String>;
+  fn productCode(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn productCategory(&self) -> Option<&String>;
   fn storage(&self) -> &Vector<Box<BiologicallyDerivedProduct_Storage>>;
-  fn collection(&self) -> &Option<Box<BiologicallyDerivedProduct_Collection>>;
+  fn collection(&self) -> Option<&Box<BiologicallyDerivedProduct_Collection>>;
   fn processing(&self) -> &Vector<Box<BiologicallyDerivedProduct_Processing>>;
-  fn manipulation(&self) -> &Option<Box<BiologicallyDerivedProduct_Manipulation>>;
+  fn manipulation(&self) -> Option<&Box<BiologicallyDerivedProduct_Manipulation>>;
 }
 
 dyn_clone::clone_trait_object!(BiologicallyDerivedProduct);
@@ -107,15 +107,15 @@ impl FHIRObject for BiologicallyDerivedProductRaw {
 }
 
 impl Resource for BiologicallyDerivedProductRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for BiologicallyDerivedProductRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -123,16 +123,16 @@ impl DomainResource for BiologicallyDerivedProductRaw {
 
 
 impl BiologicallyDerivedProduct for BiologicallyDerivedProductRaw {
-  fn status(&self) -> &Option<String> { &self.status }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
   fn parent(&self) -> &Vector<Box<dyn Reference>> { &self.parent }
   fn request(&self) -> &Vector<Box<dyn Reference>> { &self.request }
-  fn quantity(&self) -> &Option<i32> { &self.quantity }
+  fn quantity(&self) -> Option<&i32> { self.quantity.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn productCode(&self) -> &Option<Box<dyn CodeableConcept>> { &self.productCode }
-  fn productCategory(&self) -> &Option<String> { &self.productCategory }
+  fn productCode(&self) -> Option<&Box<dyn CodeableConcept>> { self.productCode.as_ref() }
+  fn productCategory(&self) -> Option<&String> { self.productCategory.as_ref() }
   fn storage(&self) -> &Vector<Box<BiologicallyDerivedProduct_Storage>> { &self.storage }
-  fn collection(&self) -> &Option<Box<BiologicallyDerivedProduct_Collection>> { &self.collection }
+  fn collection(&self) -> Option<&Box<BiologicallyDerivedProduct_Collection>> { self.collection.as_ref() }
   fn processing(&self) -> &Vector<Box<BiologicallyDerivedProduct_Processing>> { &self.processing }
-  fn manipulation(&self) -> &Option<Box<BiologicallyDerivedProduct_Manipulation>> { &self.manipulation }
+  fn manipulation(&self) -> Option<&Box<BiologicallyDerivedProduct_Manipulation>> { self.manipulation.as_ref() }
 }
 

@@ -68,28 +68,28 @@ pub struct SearchParameterRaw {
 pub trait SearchParameter : DomainResource {
   fn url(&self) -> &String;
   fn name(&self) -> &String;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn code(&self) -> &String;
   fn base(&self) -> &Vector<String>;
   fn _type(&self) -> &String;
-  fn xpath(&self) -> &Option<String>;
+  fn xpath(&self) -> Option<&String>;
   fn chain(&self) -> &Vector<String>;
   fn status(&self) -> &String;
   fn target(&self) -> &Vector<String>;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn purpose(&self) -> &Option<String>;
+  fn purpose(&self) -> Option<&String>;
   fn modifier(&self) -> &Vector<String>;
-  fn publisher(&self) -> &Option<String>;
+  fn publisher(&self) -> Option<&String>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn expression(&self) -> &Option<String>;
-  fn xpathUsage(&self) -> &Option<String>;
-  fn multipleOr(&self) -> &Option<bool>;
+  fn expression(&self) -> Option<&String>;
+  fn xpathUsage(&self) -> Option<&String>;
+  fn multipleOr(&self) -> Option<&bool>;
   fn comparator(&self) -> &Vector<String>;
-  fn derivedFrom(&self) -> &Option<String>;
+  fn derivedFrom(&self) -> Option<&String>;
   fn description(&self) -> &String;
-  fn multipleAnd(&self) -> &Option<bool>;
-  fn experimental(&self) -> &Option<bool>;
+  fn multipleAnd(&self) -> Option<&bool>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn component(&self) -> &Vector<Box<SearchParameter_Component>>;
 }
@@ -100,15 +100,15 @@ impl FHIRObject for SearchParameterRaw {
 }
 
 impl Resource for SearchParameterRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SearchParameterRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -118,28 +118,28 @@ impl DomainResource for SearchParameterRaw {
 impl SearchParameter for SearchParameterRaw {
   fn url(&self) -> &String { &self.url }
   fn name(&self) -> &String { &self.name }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn code(&self) -> &String { &self.code }
   fn base(&self) -> &Vector<String> { &self.base }
   fn _type(&self) -> &String { &self._type }
-  fn xpath(&self) -> &Option<String> { &self.xpath }
+  fn xpath(&self) -> Option<&String> { self.xpath.as_ref() }
   fn chain(&self) -> &Vector<String> { &self.chain }
   fn status(&self) -> &String { &self.status }
   fn target(&self) -> &Vector<String> { &self.target }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
   fn modifier(&self) -> &Vector<String> { &self.modifier }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn expression(&self) -> &Option<String> { &self.expression }
-  fn xpathUsage(&self) -> &Option<String> { &self.xpathUsage }
-  fn multipleOr(&self) -> &Option<bool> { &self.multipleOr }
+  fn expression(&self) -> Option<&String> { self.expression.as_ref() }
+  fn xpathUsage(&self) -> Option<&String> { self.xpathUsage.as_ref() }
+  fn multipleOr(&self) -> Option<&bool> { self.multipleOr.as_ref() }
   fn comparator(&self) -> &Vector<String> { &self.comparator }
-  fn derivedFrom(&self) -> &Option<String> { &self.derivedFrom }
+  fn derivedFrom(&self) -> Option<&String> { self.derivedFrom.as_ref() }
   fn description(&self) -> &String { &self.description }
-  fn multipleAnd(&self) -> &Option<bool> { &self.multipleAnd }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn multipleAnd(&self) -> Option<&bool> { self.multipleAnd.as_ref() }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn component(&self) -> &Vector<Box<SearchParameter_Component>> { &self.component }
 }

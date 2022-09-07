@@ -62,17 +62,17 @@ pub struct DiagnosticReportRaw {
 pub trait DiagnosticReport : DomainResource {
   fn code(&self) -> &Box<dyn CodeableConcept>;
   fn status(&self) -> &String;
-  fn issued(&self) -> &Option<DateTime<FixedOffset>>;
+  fn issued(&self) -> Option<&DateTime<FixedOffset>>;
   fn result(&self) -> &Vector<Box<dyn Reference>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn specimen(&self) -> &Vector<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn performer(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn conclusion(&self) -> &Option<String>;
-  fn effective(&self) -> &Option<UnionDateTimeOrPeriod>;
+  fn conclusion(&self) -> Option<&String>;
+  fn effective(&self) -> Option<&UnionDateTimeOrPeriod>;
   fn imagingStudy(&self) -> &Vector<Box<dyn Reference>>;
   fn presentedForm(&self) -> &Vector<Box<dyn Attachment>>;
   fn conclusionCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
@@ -86,15 +86,15 @@ impl FHIRObject for DiagnosticReportRaw {
 }
 
 impl Resource for DiagnosticReportRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DiagnosticReportRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -104,17 +104,17 @@ impl DomainResource for DiagnosticReportRaw {
 impl DiagnosticReport for DiagnosticReportRaw {
   fn code(&self) -> &Box<dyn CodeableConcept> { &self.code }
   fn status(&self) -> &String { &self.status }
-  fn issued(&self) -> &Option<DateTime<FixedOffset>> { &self.issued }
+  fn issued(&self) -> Option<&DateTime<FixedOffset>> { self.issued.as_ref() }
   fn result(&self) -> &Vector<Box<dyn Reference>> { &self.result }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
   fn specimen(&self) -> &Vector<Box<dyn Reference>> { &self.specimen }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn performer(&self) -> &Vector<Box<dyn Reference>> { &self.performer }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn conclusion(&self) -> &Option<String> { &self.conclusion }
-  fn effective(&self) -> &Option<UnionDateTimeOrPeriod> { &self.effective }
+  fn conclusion(&self) -> Option<&String> { self.conclusion.as_ref() }
+  fn effective(&self) -> Option<&UnionDateTimeOrPeriod> { self.effective.as_ref() }
   fn imagingStudy(&self) -> &Vector<Box<dyn Reference>> { &self.imagingStudy }
   fn presentedForm(&self) -> &Vector<Box<dyn Attachment>> { &self.presentedForm }
   fn conclusionCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.conclusionCode }

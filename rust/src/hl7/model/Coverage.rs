@@ -80,21 +80,21 @@ pub struct CoverageRaw {
 }
 
 pub trait Coverage : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn payor(&self) -> &Vector<Box<dyn Reference>>;
-  fn order(&self) -> &Option<u32>;
+  fn order(&self) -> Option<&u32>;
   fn status(&self) -> &String;
-  fn period(&self) -> &Option<Box<dyn Period>>;
-  fn network(&self) -> &Option<String>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
+  fn network(&self) -> Option<&String>;
   fn contract(&self) -> &Vector<Box<dyn Reference>>;
-  fn dependent(&self) -> &Option<String>;
+  fn dependent(&self) -> Option<&String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn subscriber(&self) -> &Option<Box<dyn Reference>>;
+  fn subscriber(&self) -> Option<&Box<dyn Reference>>;
   fn beneficiary(&self) -> &Box<dyn Reference>;
-  fn subrogation(&self) -> &Option<bool>;
-  fn policyHolder(&self) -> &Option<Box<dyn Reference>>;
-  fn subscriberId(&self) -> &Option<String>;
-  fn relationship(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn subrogation(&self) -> Option<&bool>;
+  fn policyHolder(&self) -> Option<&Box<dyn Reference>>;
+  fn subscriberId(&self) -> Option<&String>;
+  fn relationship(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn class(&self) -> &Vector<Box<Coverage_Class>>;
   fn costToBeneficiary(&self) -> &Vector<Box<Coverage_CostToBeneficiary>>;
 }
@@ -105,15 +105,15 @@ impl FHIRObject for CoverageRaw {
 }
 
 impl Resource for CoverageRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CoverageRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -121,21 +121,21 @@ impl DomainResource for CoverageRaw {
 
 
 impl Coverage for CoverageRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
   fn payor(&self) -> &Vector<Box<dyn Reference>> { &self.payor }
-  fn order(&self) -> &Option<u32> { &self.order }
+  fn order(&self) -> Option<&u32> { self.order.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
-  fn network(&self) -> &Option<String> { &self.network }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
+  fn network(&self) -> Option<&String> { self.network.as_ref() }
   fn contract(&self) -> &Vector<Box<dyn Reference>> { &self.contract }
-  fn dependent(&self) -> &Option<String> { &self.dependent }
+  fn dependent(&self) -> Option<&String> { self.dependent.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn subscriber(&self) -> &Option<Box<dyn Reference>> { &self.subscriber }
+  fn subscriber(&self) -> Option<&Box<dyn Reference>> { self.subscriber.as_ref() }
   fn beneficiary(&self) -> &Box<dyn Reference> { &self.beneficiary }
-  fn subrogation(&self) -> &Option<bool> { &self.subrogation }
-  fn policyHolder(&self) -> &Option<Box<dyn Reference>> { &self.policyHolder }
-  fn subscriberId(&self) -> &Option<String> { &self.subscriberId }
-  fn relationship(&self) -> &Option<Box<dyn CodeableConcept>> { &self.relationship }
+  fn subrogation(&self) -> Option<&bool> { self.subrogation.as_ref() }
+  fn policyHolder(&self) -> Option<&Box<dyn Reference>> { self.policyHolder.as_ref() }
+  fn subscriberId(&self) -> Option<&String> { self.subscriberId.as_ref() }
+  fn relationship(&self) -> Option<&Box<dyn CodeableConcept>> { self.relationship.as_ref() }
   fn class(&self) -> &Vector<Box<Coverage_Class>> { &self.class }
   fn costToBeneficiary(&self) -> &Vector<Box<Coverage_CostToBeneficiary>> { &self.costToBeneficiary }
 }

@@ -21,8 +21,8 @@ pub struct PeriodRaw {
 }
 
 pub trait Period : FHIRElement {
-  fn end(&self) -> &Option<DateTime<FixedOffset>>;
-  fn start(&self) -> &Option<DateTime<FixedOffset>>;
+  fn end(&self) -> Option<&DateTime<FixedOffset>>;
+  fn start(&self) -> Option<&DateTime<FixedOffset>>;
 }
 
 dyn_clone::clone_trait_object!(Period);
@@ -31,13 +31,13 @@ impl FHIRObject for PeriodRaw {
 }
 
 impl FHIRElement for PeriodRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Period for PeriodRaw {
-  fn end(&self) -> &Option<DateTime<FixedOffset>> { &self.end }
-  fn start(&self) -> &Option<DateTime<FixedOffset>> { &self.start }
+  fn end(&self) -> Option<&DateTime<FixedOffset>> { self.end.as_ref() }
+  fn start(&self) -> Option<&DateTime<FixedOffset>> { self.start.as_ref() }
 }
 

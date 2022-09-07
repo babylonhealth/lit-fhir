@@ -156,29 +156,29 @@ pub struct TerminologyCapabilitiesRaw {
 }
 
 pub trait TerminologyCapabilities : DomainResource {
-  fn url(&self) -> &Option<String>;
-  fn name(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
+  fn name(&self) -> Option<&String>;
   fn date(&self) -> &DateTime<FixedOffset>;
   fn kind(&self) -> &String;
-  fn title(&self) -> &Option<String>;
+  fn title(&self) -> Option<&String>;
   fn status(&self) -> &String;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn purpose(&self) -> &Option<String>;
-  fn publisher(&self) -> &Option<String>;
-  fn copyright(&self) -> &Option<String>;
+  fn purpose(&self) -> Option<&String>;
+  fn publisher(&self) -> Option<&String>;
+  fn copyright(&self) -> Option<&String>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn lockedDate(&self) -> &Option<bool>;
-  fn codeSearch(&self) -> &Option<String>;
-  fn description(&self) -> &Option<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn lockedDate(&self) -> Option<&bool>;
+  fn codeSearch(&self) -> Option<&String>;
+  fn description(&self) -> Option<&String>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn closure(&self) -> &Option<Box<TerminologyCapabilities_Closure>>;
-  fn software(&self) -> &Option<Box<TerminologyCapabilities_Software>>;
-  fn translation(&self) -> &Option<Box<TerminologyCapabilities_Translation>>;
-  fn validateCode(&self) -> &Option<Box<TerminologyCapabilities_ValidateCode>>;
-  fn implementation(&self) -> &Option<Box<TerminologyCapabilities_Implementation>>;
-  fn expansion(&self) -> &Option<Box<TerminologyCapabilities_Expansion>>;
+  fn closure(&self) -> Option<&Box<TerminologyCapabilities_Closure>>;
+  fn software(&self) -> Option<&Box<TerminologyCapabilities_Software>>;
+  fn translation(&self) -> Option<&Box<TerminologyCapabilities_Translation>>;
+  fn validateCode(&self) -> Option<&Box<TerminologyCapabilities_ValidateCode>>;
+  fn implementation(&self) -> Option<&Box<TerminologyCapabilities_Implementation>>;
+  fn expansion(&self) -> Option<&Box<TerminologyCapabilities_Expansion>>;
   fn codeSystem(&self) -> &Vector<Box<TerminologyCapabilities_CodeSystem>>;
 }
 
@@ -188,15 +188,15 @@ impl FHIRObject for TerminologyCapabilitiesRaw {
 }
 
 impl Resource for TerminologyCapabilitiesRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for TerminologyCapabilitiesRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -204,29 +204,29 @@ impl DomainResource for TerminologyCapabilitiesRaw {
 
 
 impl TerminologyCapabilities for TerminologyCapabilitiesRaw {
-  fn url(&self) -> &Option<String> { &self.url }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn date(&self) -> &DateTime<FixedOffset> { &self.date }
   fn kind(&self) -> &String { &self.kind }
-  fn title(&self) -> &Option<String> { &self.title }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
   fn status(&self) -> &String { &self.status }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
-  fn copyright(&self) -> &Option<String> { &self.copyright }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
+  fn copyright(&self) -> Option<&String> { self.copyright.as_ref() }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn lockedDate(&self) -> &Option<bool> { &self.lockedDate }
-  fn codeSearch(&self) -> &Option<String> { &self.codeSearch }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn lockedDate(&self) -> Option<&bool> { self.lockedDate.as_ref() }
+  fn codeSearch(&self) -> Option<&String> { self.codeSearch.as_ref() }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn closure(&self) -> &Option<Box<TerminologyCapabilities_Closure>> { &self.closure }
-  fn software(&self) -> &Option<Box<TerminologyCapabilities_Software>> { &self.software }
-  fn translation(&self) -> &Option<Box<TerminologyCapabilities_Translation>> { &self.translation }
-  fn validateCode(&self) -> &Option<Box<TerminologyCapabilities_ValidateCode>> { &self.validateCode }
-  fn implementation(&self) -> &Option<Box<TerminologyCapabilities_Implementation>> { &self.implementation }
-  fn expansion(&self) -> &Option<Box<TerminologyCapabilities_Expansion>> { &self.expansion }
+  fn closure(&self) -> Option<&Box<TerminologyCapabilities_Closure>> { self.closure.as_ref() }
+  fn software(&self) -> Option<&Box<TerminologyCapabilities_Software>> { self.software.as_ref() }
+  fn translation(&self) -> Option<&Box<TerminologyCapabilities_Translation>> { self.translation.as_ref() }
+  fn validateCode(&self) -> Option<&Box<TerminologyCapabilities_ValidateCode>> { self.validateCode.as_ref() }
+  fn implementation(&self) -> Option<&Box<TerminologyCapabilities_Implementation>> { self.implementation.as_ref() }
+  fn expansion(&self) -> Option<&Box<TerminologyCapabilities_Expansion>> { self.expansion.as_ref() }
   fn codeSystem(&self) -> &Vector<Box<TerminologyCapabilities_CodeSystem>> { &self.codeSystem }
 }
 

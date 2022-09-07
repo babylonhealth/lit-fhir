@@ -68,22 +68,22 @@ pub trait CommunicationRequest : DomainResource {
   fn about(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
   fn medium(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn sender(&self) -> &Option<Box<dyn Reference>>;
+  fn sender(&self) -> Option<&Box<dyn Reference>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn replaces(&self) -> &Vector<Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn priority(&self) -> &Option<String>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn requester(&self) -> &Option<Box<dyn Reference>>;
+  fn priority(&self) -> Option<&String>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn requester(&self) -> Option<&Box<dyn Reference>>;
   fn recipient(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>>;
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn doNotPerform(&self) -> &Option<bool>;
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriod>;
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn doNotPerform(&self) -> Option<&bool>;
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriod>;
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn payload(&self) -> &Vector<Box<CommunicationRequest_Payload>>;
 }
@@ -94,15 +94,15 @@ impl FHIRObject for CommunicationRequestRaw {
 }
 
 impl Resource for CommunicationRequestRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CommunicationRequestRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -114,22 +114,22 @@ impl CommunicationRequest for CommunicationRequestRaw {
   fn about(&self) -> &Vector<Box<dyn Reference>> { &self.about }
   fn status(&self) -> &String { &self.status }
   fn medium(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.medium }
-  fn sender(&self) -> &Option<Box<dyn Reference>> { &self.sender }
+  fn sender(&self) -> Option<&Box<dyn Reference>> { self.sender.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn replaces(&self) -> &Vector<Box<dyn Reference>> { &self.replaces }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn priority(&self) -> &Option<String> { &self.priority }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn requester(&self) -> &Option<Box<dyn Reference>> { &self.requester }
+  fn priority(&self) -> Option<&String> { self.priority.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn requester(&self) -> Option<&Box<dyn Reference>> { self.requester.as_ref() }
   fn recipient(&self) -> &Vector<Box<dyn Reference>> { &self.recipient }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>> { &self.authoredOn }
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>> { self.authoredOn.as_ref() }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.statusReason }
-  fn doNotPerform(&self) -> &Option<bool> { &self.doNotPerform }
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriod> { &self.occurrence }
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.groupIdentifier }
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.statusReason.as_ref() }
+  fn doNotPerform(&self) -> Option<&bool> { self.doNotPerform.as_ref() }
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriod> { self.occurrence.as_ref() }
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.groupIdentifier.as_ref() }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn payload(&self) -> &Vector<Box<CommunicationRequest_Payload>> { &self.payload }
 }

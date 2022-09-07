@@ -61,13 +61,13 @@ pub struct MedicationRaw {
 }
 
 pub trait Medication : DomainResource {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn form(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn status(&self) -> &Option<String>;
-  fn amount(&self) -> &Option<Box<dyn Ratio>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn form(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn status(&self) -> Option<&String>;
+  fn amount(&self) -> Option<&Box<dyn Ratio>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn manufacturer(&self) -> &Option<Box<dyn Reference>>;
-  fn batch(&self) -> &Option<Box<Medication_Batch>>;
+  fn manufacturer(&self) -> Option<&Box<dyn Reference>>;
+  fn batch(&self) -> Option<&Box<Medication_Batch>>;
   fn ingredient(&self) -> &Vector<Box<Medication_Ingredient>>;
 }
 
@@ -77,15 +77,15 @@ impl FHIRObject for MedicationRaw {
 }
 
 impl Resource for MedicationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicationRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -93,13 +93,13 @@ impl DomainResource for MedicationRaw {
 
 
 impl Medication for MedicationRaw {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
-  fn form(&self) -> &Option<Box<dyn CodeableConcept>> { &self.form }
-  fn status(&self) -> &Option<String> { &self.status }
-  fn amount(&self) -> &Option<Box<dyn Ratio>> { &self.amount }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
+  fn form(&self) -> Option<&Box<dyn CodeableConcept>> { self.form.as_ref() }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn amount(&self) -> Option<&Box<dyn Ratio>> { self.amount.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn manufacturer(&self) -> &Option<Box<dyn Reference>> { &self.manufacturer }
-  fn batch(&self) -> &Option<Box<Medication_Batch>> { &self.batch }
+  fn manufacturer(&self) -> Option<&Box<dyn Reference>> { self.manufacturer.as_ref() }
+  fn batch(&self) -> Option<&Box<Medication_Batch>> { self.batch.as_ref() }
   fn ingredient(&self) -> &Vector<Box<Medication_Ingredient>> { &self.ingredient }
 }
 

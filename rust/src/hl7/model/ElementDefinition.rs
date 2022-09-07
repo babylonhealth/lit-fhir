@@ -142,40 +142,40 @@ pub struct ElementDefinitionRaw {
 }
 
 pub trait ElementDefinition : BackboneElement {
-  fn min(&self) -> &Option<u32>;
-  fn max(&self) -> &Option<String>;
+  fn min(&self) -> Option<&u32>;
+  fn max(&self) -> Option<&String>;
   fn path(&self) -> &String;
   fn code(&self) -> &Vector<Box<dyn Coding>>;
-  fn label(&self) -> &Option<String>;
-  fn short(&self) -> &Option<String>;
+  fn label(&self) -> Option<&String>;
+  fn short(&self) -> Option<&String>;
   fn alias(&self) -> &Vector<String>;
-  fn comment(&self) -> &Option<String>;
-  fn fixed(&self) -> &Option<UnionAll>;
-  fn sliceName(&self) -> &Option<String>;
-  fn maxLength(&self) -> &Option<i32>;
+  fn comment(&self) -> Option<&String>;
+  fn fixed(&self) -> Option<&UnionAll>;
+  fn sliceName(&self) -> Option<&String>;
+  fn maxLength(&self) -> Option<&i32>;
   fn condition(&self) -> &Vector<String>;
-  fn isSummary(&self) -> &Option<bool>;
-  fn definition(&self) -> &Option<String>;
-  fn pattern(&self) -> &Option<UnionAll>;
-  fn isModifier(&self) -> &Option<bool>;
-  fn minValue(&self) -> &Option<Union01480857620>;
-  fn maxValue(&self) -> &Option<Union01480857620>;
-  fn mustSupport(&self) -> &Option<bool>;
-  fn requirements(&self) -> &Option<String>;
-  fn orderMeaning(&self) -> &Option<String>;
+  fn isSummary(&self) -> Option<&bool>;
+  fn definition(&self) -> Option<&String>;
+  fn pattern(&self) -> Option<&UnionAll>;
+  fn isModifier(&self) -> Option<&bool>;
+  fn minValue(&self) -> Option<&Union01480857620>;
+  fn maxValue(&self) -> Option<&Union01480857620>;
+  fn mustSupport(&self) -> Option<&bool>;
+  fn requirements(&self) -> Option<&String>;
+  fn orderMeaning(&self) -> Option<&String>;
   fn representation(&self) -> &Vector<String>;
-  fn base(&self) -> &Option<Box<ElementDefinition_Base>>;
-  fn defaultValue(&self) -> &Option<UnionAll>;
-  fn contentReference(&self) -> &Option<String>;
-  fn isModifierReason(&self) -> &Option<String>;
+  fn base(&self) -> Option<&Box<ElementDefinition_Base>>;
+  fn defaultValue(&self) -> Option<&UnionAll>;
+  fn contentReference(&self) -> Option<&String>;
+  fn isModifierReason(&self) -> Option<&String>;
   fn example(&self) -> &Vector<Box<ElementDefinition_Example>>;
   fn mapping(&self) -> &Vector<Box<ElementDefinition_Mapping>>;
   fn _type(&self) -> &Vector<Box<ElementDefinition_Type>>;
-  fn meaningWhenMissing(&self) -> &Option<String>;
-  fn sliceIsConstraining(&self) -> &Option<bool>;
-  fn binding(&self) -> &Option<Box<ElementDefinition_Binding>>;
+  fn meaningWhenMissing(&self) -> Option<&String>;
+  fn sliceIsConstraining(&self) -> Option<&bool>;
+  fn binding(&self) -> Option<&Box<ElementDefinition_Binding>>;
   fn constraint(&self) -> &Vector<Box<ElementDefinition_Constraint>>;
-  fn slicing(&self) -> &Option<Box<ElementDefinition_Slicing>>;
+  fn slicing(&self) -> Option<&Box<ElementDefinition_Slicing>>;
 }
 
 dyn_clone::clone_trait_object!(ElementDefinition);
@@ -184,7 +184,7 @@ impl FHIRObject for ElementDefinitionRaw {
 }
 
 impl FHIRElement for ElementDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
@@ -195,39 +195,39 @@ impl BackboneElement for ElementDefinitionRaw {
 
 
 impl ElementDefinition for ElementDefinitionRaw {
-  fn min(&self) -> &Option<u32> { &self.min }
-  fn max(&self) -> &Option<String> { &self.max }
+  fn min(&self) -> Option<&u32> { self.min.as_ref() }
+  fn max(&self) -> Option<&String> { self.max.as_ref() }
   fn path(&self) -> &String { &self.path }
   fn code(&self) -> &Vector<Box<dyn Coding>> { &self.code }
-  fn label(&self) -> &Option<String> { &self.label }
-  fn short(&self) -> &Option<String> { &self.short }
+  fn label(&self) -> Option<&String> { self.label.as_ref() }
+  fn short(&self) -> Option<&String> { self.short.as_ref() }
   fn alias(&self) -> &Vector<String> { &self.alias }
-  fn comment(&self) -> &Option<String> { &self.comment }
-  fn fixed(&self) -> &Option<UnionAll> { &self.fixed }
-  fn sliceName(&self) -> &Option<String> { &self.sliceName }
-  fn maxLength(&self) -> &Option<i32> { &self.maxLength }
+  fn comment(&self) -> Option<&String> { self.comment.as_ref() }
+  fn fixed(&self) -> Option<&UnionAll> { self.fixed.as_ref() }
+  fn sliceName(&self) -> Option<&String> { self.sliceName.as_ref() }
+  fn maxLength(&self) -> Option<&i32> { self.maxLength.as_ref() }
   fn condition(&self) -> &Vector<String> { &self.condition }
-  fn isSummary(&self) -> &Option<bool> { &self.isSummary }
-  fn definition(&self) -> &Option<String> { &self.definition }
-  fn pattern(&self) -> &Option<UnionAll> { &self.pattern }
-  fn isModifier(&self) -> &Option<bool> { &self.isModifier }
-  fn minValue(&self) -> &Option<Union01480857620> { &self.minValue }
-  fn maxValue(&self) -> &Option<Union01480857620> { &self.maxValue }
-  fn mustSupport(&self) -> &Option<bool> { &self.mustSupport }
-  fn requirements(&self) -> &Option<String> { &self.requirements }
-  fn orderMeaning(&self) -> &Option<String> { &self.orderMeaning }
+  fn isSummary(&self) -> Option<&bool> { self.isSummary.as_ref() }
+  fn definition(&self) -> Option<&String> { self.definition.as_ref() }
+  fn pattern(&self) -> Option<&UnionAll> { self.pattern.as_ref() }
+  fn isModifier(&self) -> Option<&bool> { self.isModifier.as_ref() }
+  fn minValue(&self) -> Option<&Union01480857620> { self.minValue.as_ref() }
+  fn maxValue(&self) -> Option<&Union01480857620> { self.maxValue.as_ref() }
+  fn mustSupport(&self) -> Option<&bool> { self.mustSupport.as_ref() }
+  fn requirements(&self) -> Option<&String> { self.requirements.as_ref() }
+  fn orderMeaning(&self) -> Option<&String> { self.orderMeaning.as_ref() }
   fn representation(&self) -> &Vector<String> { &self.representation }
-  fn base(&self) -> &Option<Box<ElementDefinition_Base>> { &self.base }
-  fn defaultValue(&self) -> &Option<UnionAll> { &self.defaultValue }
-  fn contentReference(&self) -> &Option<String> { &self.contentReference }
-  fn isModifierReason(&self) -> &Option<String> { &self.isModifierReason }
+  fn base(&self) -> Option<&Box<ElementDefinition_Base>> { self.base.as_ref() }
+  fn defaultValue(&self) -> Option<&UnionAll> { self.defaultValue.as_ref() }
+  fn contentReference(&self) -> Option<&String> { self.contentReference.as_ref() }
+  fn isModifierReason(&self) -> Option<&String> { self.isModifierReason.as_ref() }
   fn example(&self) -> &Vector<Box<ElementDefinition_Example>> { &self.example }
   fn mapping(&self) -> &Vector<Box<ElementDefinition_Mapping>> { &self.mapping }
   fn _type(&self) -> &Vector<Box<ElementDefinition_Type>> { &self._type }
-  fn meaningWhenMissing(&self) -> &Option<String> { &self.meaningWhenMissing }
-  fn sliceIsConstraining(&self) -> &Option<bool> { &self.sliceIsConstraining }
-  fn binding(&self) -> &Option<Box<ElementDefinition_Binding>> { &self.binding }
+  fn meaningWhenMissing(&self) -> Option<&String> { self.meaningWhenMissing.as_ref() }
+  fn sliceIsConstraining(&self) -> Option<&bool> { self.sliceIsConstraining.as_ref() }
+  fn binding(&self) -> Option<&Box<ElementDefinition_Binding>> { self.binding.as_ref() }
   fn constraint(&self) -> &Vector<Box<ElementDefinition_Constraint>> { &self.constraint }
-  fn slicing(&self) -> &Option<Box<ElementDefinition_Slicing>> { &self.slicing }
+  fn slicing(&self) -> Option<&Box<ElementDefinition_Slicing>> { self.slicing.as_ref() }
 }
 

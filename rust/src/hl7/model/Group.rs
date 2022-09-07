@@ -66,13 +66,13 @@ pub struct GroupRaw {
 
 pub trait Group : DomainResource {
   fn _type(&self) -> &String;
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn name(&self) -> &Option<String>;
-  fn active(&self) -> &Option<bool>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn name(&self) -> Option<&String>;
+  fn active(&self) -> Option<&bool>;
   fn actual(&self) -> &bool;
-  fn quantity(&self) -> &Option<u32>;
+  fn quantity(&self) -> Option<&u32>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn managingEntity(&self) -> &Option<Box<dyn Reference>>;
+  fn managingEntity(&self) -> Option<&Box<dyn Reference>>;
   fn member(&self) -> &Vector<Box<Group_Member>>;
   fn characteristic(&self) -> &Vector<Box<Group_Characteristic>>;
 }
@@ -83,15 +83,15 @@ impl FHIRObject for GroupRaw {
 }
 
 impl Resource for GroupRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for GroupRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -100,13 +100,13 @@ impl DomainResource for GroupRaw {
 
 impl Group for GroupRaw {
   fn _type(&self) -> &String { &self._type }
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
-  fn name(&self) -> &Option<String> { &self.name }
-  fn active(&self) -> &Option<bool> { &self.active }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
+  fn active(&self) -> Option<&bool> { self.active.as_ref() }
   fn actual(&self) -> &bool { &self.actual }
-  fn quantity(&self) -> &Option<u32> { &self.quantity }
+  fn quantity(&self) -> Option<&u32> { self.quantity.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn managingEntity(&self) -> &Option<Box<dyn Reference>> { &self.managingEntity }
+  fn managingEntity(&self) -> Option<&Box<dyn Reference>> { self.managingEntity.as_ref() }
   fn member(&self) -> &Vector<Box<Group_Member>> { &self.member }
   fn characteristic(&self) -> &Vector<Box<Group_Characteristic>> { &self.characteristic }
 }

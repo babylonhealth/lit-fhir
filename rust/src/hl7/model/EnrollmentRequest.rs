@@ -37,12 +37,12 @@ pub struct EnrollmentRequestRaw {
 }
 
 pub trait EnrollmentRequest : DomainResource {
-  fn status(&self) -> &Option<String>;
-  fn created(&self) -> &Option<DateTime<FixedOffset>>;
-  fn insurer(&self) -> &Option<Box<dyn Reference>>;
-  fn provider(&self) -> &Option<Box<dyn Reference>>;
-  fn coverage(&self) -> &Option<Box<dyn Reference>>;
-  fn candidate(&self) -> &Option<Box<dyn Reference>>;
+  fn status(&self) -> Option<&String>;
+  fn created(&self) -> Option<&DateTime<FixedOffset>>;
+  fn insurer(&self) -> Option<&Box<dyn Reference>>;
+  fn provider(&self) -> Option<&Box<dyn Reference>>;
+  fn coverage(&self) -> Option<&Box<dyn Reference>>;
+  fn candidate(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
 }
 
@@ -52,15 +52,15 @@ impl FHIRObject for EnrollmentRequestRaw {
 }
 
 impl Resource for EnrollmentRequestRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for EnrollmentRequestRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -68,12 +68,12 @@ impl DomainResource for EnrollmentRequestRaw {
 
 
 impl EnrollmentRequest for EnrollmentRequestRaw {
-  fn status(&self) -> &Option<String> { &self.status }
-  fn created(&self) -> &Option<DateTime<FixedOffset>> { &self.created }
-  fn insurer(&self) -> &Option<Box<dyn Reference>> { &self.insurer }
-  fn provider(&self) -> &Option<Box<dyn Reference>> { &self.provider }
-  fn coverage(&self) -> &Option<Box<dyn Reference>> { &self.coverage }
-  fn candidate(&self) -> &Option<Box<dyn Reference>> { &self.candidate }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn created(&self) -> Option<&DateTime<FixedOffset>> { self.created.as_ref() }
+  fn insurer(&self) -> Option<&Box<dyn Reference>> { self.insurer.as_ref() }
+  fn provider(&self) -> Option<&Box<dyn Reference>> { self.provider.as_ref() }
+  fn coverage(&self) -> Option<&Box<dyn Reference>> { self.coverage.as_ref() }
+  fn candidate(&self) -> Option<&Box<dyn Reference>> { self.candidate.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
 }
 

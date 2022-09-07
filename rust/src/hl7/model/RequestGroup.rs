@@ -101,21 +101,21 @@ pub struct RequestGroupRaw {
 }
 
 pub trait RequestGroup : DomainResource {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn status(&self) -> &String;
   fn intent(&self) -> &String;
-  fn author(&self) -> &Option<Box<dyn Reference>>;
+  fn author(&self) -> Option<&Box<dyn Reference>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn replaces(&self) -> &Vector<Box<dyn Reference>>;
-  fn priority(&self) -> &Option<String>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn priority(&self) -> Option<&String>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>>;
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn instantiatesUri(&self) -> &Vector<String>;
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
   fn action(&self) -> &Vector<Box<RequestGroup_Action>>;
@@ -127,15 +127,15 @@ impl FHIRObject for RequestGroupRaw {
 }
 
 impl Resource for RequestGroupRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for RequestGroupRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -143,21 +143,21 @@ impl DomainResource for RequestGroupRaw {
 
 
 impl RequestGroup for RequestGroupRaw {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn status(&self) -> &String { &self.status }
   fn intent(&self) -> &String { &self.intent }
-  fn author(&self) -> &Option<Box<dyn Reference>> { &self.author }
+  fn author(&self) -> Option<&Box<dyn Reference>> { self.author.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn replaces(&self) -> &Vector<Box<dyn Reference>> { &self.replaces }
-  fn priority(&self) -> &Option<String> { &self.priority }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn priority(&self) -> Option<&String> { self.priority.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>> { &self.authoredOn }
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>> { self.authoredOn.as_ref() }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.groupIdentifier }
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.groupIdentifier.as_ref() }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
   fn action(&self) -> &Vector<Box<RequestGroup_Action>> { &self.action }

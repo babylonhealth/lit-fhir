@@ -64,18 +64,18 @@ pub trait Goal : DomainResource {
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn subject(&self) -> &Box<dyn Reference>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn priority(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn start(&self) -> &Option<UnionCodeableConceptOrDate>;
+  fn priority(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn start(&self) -> Option<&UnionCodeableConceptOrDate>;
   fn addresses(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn statusDate(&self) -> &Option<LocalDate>;
+  fn statusDate(&self) -> Option<&LocalDate>;
   fn description(&self) -> &Box<dyn CodeableConcept>;
-  fn expressedBy(&self) -> &Option<Box<dyn Reference>>;
+  fn expressedBy(&self) -> Option<&Box<dyn Reference>>;
   fn outcomeCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn statusReason(&self) -> &Option<String>;
+  fn statusReason(&self) -> Option<&String>;
   fn lifecycleStatus(&self) -> &String;
   fn outcomeReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn achievementStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn achievementStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn target(&self) -> &Vector<Box<Goal_Target>>;
 }
 
@@ -85,15 +85,15 @@ impl FHIRObject for GoalRaw {
 }
 
 impl Resource for GoalRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for GoalRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -104,18 +104,18 @@ impl Goal for GoalRaw {
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn priority(&self) -> &Option<Box<dyn CodeableConcept>> { &self.priority }
-  fn start(&self) -> &Option<UnionCodeableConceptOrDate> { &self.start }
+  fn priority(&self) -> Option<&Box<dyn CodeableConcept>> { self.priority.as_ref() }
+  fn start(&self) -> Option<&UnionCodeableConceptOrDate> { self.start.as_ref() }
   fn addresses(&self) -> &Vector<Box<dyn Reference>> { &self.addresses }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn statusDate(&self) -> &Option<LocalDate> { &self.statusDate }
+  fn statusDate(&self) -> Option<&LocalDate> { self.statusDate.as_ref() }
   fn description(&self) -> &Box<dyn CodeableConcept> { &self.description }
-  fn expressedBy(&self) -> &Option<Box<dyn Reference>> { &self.expressedBy }
+  fn expressedBy(&self) -> Option<&Box<dyn Reference>> { self.expressedBy.as_ref() }
   fn outcomeCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.outcomeCode }
-  fn statusReason(&self) -> &Option<String> { &self.statusReason }
+  fn statusReason(&self) -> Option<&String> { self.statusReason.as_ref() }
   fn lifecycleStatus(&self) -> &String { &self.lifecycleStatus }
   fn outcomeReference(&self) -> &Vector<Box<dyn Reference>> { &self.outcomeReference }
-  fn achievementStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.achievementStatus }
+  fn achievementStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.achievementStatus.as_ref() }
   fn target(&self) -> &Vector<Box<Goal_Target>> { &self.target }
 }
 

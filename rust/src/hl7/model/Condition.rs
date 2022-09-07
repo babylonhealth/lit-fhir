@@ -70,21 +70,21 @@ pub struct ConditionRaw {
 }
 
 pub trait Condition : DomainResource {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn subject(&self) -> &Box<dyn Reference>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn severity(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn severity(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn bodySite(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn onset(&self) -> &Option<Union01474038381>;
-  fn recorder(&self) -> &Option<Box<dyn Reference>>;
-  fn asserter(&self) -> &Option<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn onset(&self) -> Option<&Union01474038381>;
+  fn recorder(&self) -> Option<&Box<dyn Reference>>;
+  fn asserter(&self) -> Option<&Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn abatement(&self) -> &Option<Union01474038381>;
-  fn recordedDate(&self) -> &Option<DateTime<FixedOffset>>;
-  fn clinicalStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn verificationStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn abatement(&self) -> Option<&Union01474038381>;
+  fn recordedDate(&self) -> Option<&DateTime<FixedOffset>>;
+  fn clinicalStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn verificationStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn stage(&self) -> &Vector<Box<Condition_Stage>>;
   fn evidence(&self) -> &Vector<Box<Condition_Evidence>>;
 }
@@ -95,15 +95,15 @@ impl FHIRObject for ConditionRaw {
 }
 
 impl Resource for ConditionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ConditionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -111,21 +111,21 @@ impl DomainResource for ConditionRaw {
 
 
 impl Condition for ConditionRaw {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn subject(&self) -> &Box<dyn Reference> { &self.subject }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn severity(&self) -> &Option<Box<dyn CodeableConcept>> { &self.severity }
+  fn severity(&self) -> Option<&Box<dyn CodeableConcept>> { self.severity.as_ref() }
   fn bodySite(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.bodySite }
-  fn onset(&self) -> &Option<Union01474038381> { &self.onset }
-  fn recorder(&self) -> &Option<Box<dyn Reference>> { &self.recorder }
-  fn asserter(&self) -> &Option<Box<dyn Reference>> { &self.asserter }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn onset(&self) -> Option<&Union01474038381> { self.onset.as_ref() }
+  fn recorder(&self) -> Option<&Box<dyn Reference>> { self.recorder.as_ref() }
+  fn asserter(&self) -> Option<&Box<dyn Reference>> { self.asserter.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn abatement(&self) -> &Option<Union01474038381> { &self.abatement }
-  fn recordedDate(&self) -> &Option<DateTime<FixedOffset>> { &self.recordedDate }
-  fn clinicalStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.clinicalStatus }
-  fn verificationStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.verificationStatus }
+  fn abatement(&self) -> Option<&Union01474038381> { self.abatement.as_ref() }
+  fn recordedDate(&self) -> Option<&DateTime<FixedOffset>> { self.recordedDate.as_ref() }
+  fn clinicalStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.clinicalStatus.as_ref() }
+  fn verificationStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.verificationStatus.as_ref() }
   fn stage(&self) -> &Vector<Box<Condition_Stage>> { &self.stage }
   fn evidence(&self) -> &Vector<Box<Condition_Evidence>> { &self.evidence }
 }

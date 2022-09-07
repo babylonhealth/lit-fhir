@@ -87,7 +87,7 @@ pub trait MedicinalProductPharmaceutical : DomainResource {
   fn device(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn ingredient(&self) -> &Vector<Box<dyn Reference>>;
-  fn unitOfPresentation(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn unitOfPresentation(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn administrableDoseForm(&self) -> &Box<dyn CodeableConcept>;
   fn characteristics(&self) -> &Vector<Box<MedicinalProductPharmaceutical_Characteristics>>;
   fn routeOfAdministration(&self) -> &Vector<Box<MedicinalProductPharmaceutical_RouteOfAdministration>>;
@@ -99,15 +99,15 @@ impl FHIRObject for MedicinalProductPharmaceuticalRaw {
 }
 
 impl Resource for MedicinalProductPharmaceuticalRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductPharmaceuticalRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -118,7 +118,7 @@ impl MedicinalProductPharmaceutical for MedicinalProductPharmaceuticalRaw {
   fn device(&self) -> &Vector<Box<dyn Reference>> { &self.device }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn ingredient(&self) -> &Vector<Box<dyn Reference>> { &self.ingredient }
-  fn unitOfPresentation(&self) -> &Option<Box<dyn CodeableConcept>> { &self.unitOfPresentation }
+  fn unitOfPresentation(&self) -> Option<&Box<dyn CodeableConcept>> { self.unitOfPresentation.as_ref() }
   fn administrableDoseForm(&self) -> &Box<dyn CodeableConcept> { &self.administrableDoseForm }
   fn characteristics(&self) -> &Vector<Box<MedicinalProductPharmaceutical_Characteristics>> { &self.characteristics }
   fn routeOfAdministration(&self) -> &Vector<Box<MedicinalProductPharmaceutical_RouteOfAdministration>> { &self.routeOfAdministration }

@@ -60,9 +60,9 @@ pub struct DataRequirementRaw {
 
 pub trait DataRequirement : FHIRElement {
   fn _type(&self) -> &String;
-  fn limit(&self) -> &Option<u32>;
+  fn limit(&self) -> Option<&u32>;
   fn profile(&self) -> &Vector<String>;
-  fn subject(&self) -> &Option<UnionCodeableConceptOrReference>;
+  fn subject(&self) -> Option<&UnionCodeableConceptOrReference>;
   fn mustSupport(&self) -> &Vector<String>;
   fn sort(&self) -> &Vector<Box<DataRequirement_Sort>>;
   fn codeFilter(&self) -> &Vector<Box<DataRequirement_CodeFilter>>;
@@ -75,16 +75,16 @@ impl FHIRObject for DataRequirementRaw {
 }
 
 impl FHIRElement for DataRequirementRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl DataRequirement for DataRequirementRaw {
   fn _type(&self) -> &String { &self._type }
-  fn limit(&self) -> &Option<u32> { &self.limit }
+  fn limit(&self) -> Option<&u32> { self.limit.as_ref() }
   fn profile(&self) -> &Vector<String> { &self.profile }
-  fn subject(&self) -> &Option<UnionCodeableConceptOrReference> { &self.subject }
+  fn subject(&self) -> Option<&UnionCodeableConceptOrReference> { self.subject.as_ref() }
   fn mustSupport(&self) -> &Vector<String> { &self.mustSupport }
   fn sort(&self) -> &Vector<Box<DataRequirement_Sort>> { &self.sort }
   fn codeFilter(&self) -> &Vector<Box<DataRequirement_CodeFilter>> { &self.codeFilter }

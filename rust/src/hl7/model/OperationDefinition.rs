@@ -105,30 +105,30 @@ pub struct OperationDefinitionRaw {
 }
 
 pub trait OperationDefinition : DomainResource {
-  fn url(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
   fn name(&self) -> &String;
   fn kind(&self) -> &String;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn code(&self) -> &String;
-  fn base(&self) -> &Option<String>;
+  fn base(&self) -> Option<&String>;
   fn _type(&self) -> &bool;
-  fn title(&self) -> &Option<String>;
+  fn title(&self) -> Option<&String>;
   fn status(&self) -> &String;
   fn system(&self) -> &bool;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn purpose(&self) -> &Option<String>;
-  fn comment(&self) -> &Option<String>;
+  fn purpose(&self) -> Option<&String>;
+  fn comment(&self) -> Option<&String>;
   fn resource(&self) -> &Vector<String>;
   fn instance(&self) -> &bool;
-  fn publisher(&self) -> &Option<String>;
+  fn publisher(&self) -> Option<&String>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn description(&self) -> &Option<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn description(&self) -> Option<&String>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn affectsState(&self) -> &Option<bool>;
-  fn inputProfile(&self) -> &Option<String>;
-  fn outputProfile(&self) -> &Option<String>;
+  fn affectsState(&self) -> Option<&bool>;
+  fn inputProfile(&self) -> Option<&String>;
+  fn outputProfile(&self) -> Option<&String>;
   fn overload(&self) -> &Vector<Box<OperationDefinition_Overload>>;
   fn parameter(&self) -> &Vector<Box<OperationDefinition_Parameter>>;
 }
@@ -139,15 +139,15 @@ impl FHIRObject for OperationDefinitionRaw {
 }
 
 impl Resource for OperationDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for OperationDefinitionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -155,30 +155,30 @@ impl DomainResource for OperationDefinitionRaw {
 
 
 impl OperationDefinition for OperationDefinitionRaw {
-  fn url(&self) -> &Option<String> { &self.url }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
   fn name(&self) -> &String { &self.name }
   fn kind(&self) -> &String { &self.kind }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn code(&self) -> &String { &self.code }
-  fn base(&self) -> &Option<String> { &self.base }
+  fn base(&self) -> Option<&String> { self.base.as_ref() }
   fn _type(&self) -> &bool { &self._type }
-  fn title(&self) -> &Option<String> { &self.title }
+  fn title(&self) -> Option<&String> { self.title.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn system(&self) -> &bool { &self.system }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
-  fn comment(&self) -> &Option<String> { &self.comment }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
+  fn comment(&self) -> Option<&String> { self.comment.as_ref() }
   fn resource(&self) -> &Vector<String> { &self.resource }
   fn instance(&self) -> &bool { &self.instance }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
-  fn affectsState(&self) -> &Option<bool> { &self.affectsState }
-  fn inputProfile(&self) -> &Option<String> { &self.inputProfile }
-  fn outputProfile(&self) -> &Option<String> { &self.outputProfile }
+  fn affectsState(&self) -> Option<&bool> { self.affectsState.as_ref() }
+  fn inputProfile(&self) -> Option<&String> { self.inputProfile.as_ref() }
+  fn outputProfile(&self) -> Option<&String> { self.outputProfile.as_ref() }
   fn overload(&self) -> &Vector<Box<OperationDefinition_Overload>> { &self.overload }
   fn parameter(&self) -> &Vector<Box<OperationDefinition_Parameter>> { &self.parameter }
 }

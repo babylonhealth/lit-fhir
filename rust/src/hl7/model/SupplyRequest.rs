@@ -59,19 +59,19 @@ pub struct SupplyRequestRaw {
 }
 
 pub trait SupplyRequest : DomainResource {
-  fn status(&self) -> &Option<String>;
+  fn status(&self) -> Option<&String>;
   fn item(&self) -> &UnionCodeableConceptOrReference;
-  fn category(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn priority(&self) -> &Option<String>;
+  fn category(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn priority(&self) -> Option<&String>;
   fn quantity(&self) -> &Box<dyn Quantity>;
   fn supplier(&self) -> &Vector<Box<dyn Reference>>;
-  fn requester(&self) -> &Option<Box<dyn Reference>>;
-  fn deliverTo(&self) -> &Option<Box<dyn Reference>>;
+  fn requester(&self) -> Option<&Box<dyn Reference>>;
+  fn deliverTo(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>>;
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn deliverFrom(&self) -> &Option<Box<dyn Reference>>;
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming>;
+  fn deliverFrom(&self) -> Option<&Box<dyn Reference>>;
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriodOrTiming>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
   fn parameter(&self) -> &Vector<Box<SupplyRequest_Parameter>>;
 }
@@ -82,15 +82,15 @@ impl FHIRObject for SupplyRequestRaw {
 }
 
 impl Resource for SupplyRequestRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for SupplyRequestRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -98,19 +98,19 @@ impl DomainResource for SupplyRequestRaw {
 
 
 impl SupplyRequest for SupplyRequestRaw {
-  fn status(&self) -> &Option<String> { &self.status }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
   fn item(&self) -> &UnionCodeableConceptOrReference { &self.item }
-  fn category(&self) -> &Option<Box<dyn CodeableConcept>> { &self.category }
-  fn priority(&self) -> &Option<String> { &self.priority }
+  fn category(&self) -> Option<&Box<dyn CodeableConcept>> { self.category.as_ref() }
+  fn priority(&self) -> Option<&String> { self.priority.as_ref() }
   fn quantity(&self) -> &Box<dyn Quantity> { &self.quantity }
   fn supplier(&self) -> &Vector<Box<dyn Reference>> { &self.supplier }
-  fn requester(&self) -> &Option<Box<dyn Reference>> { &self.requester }
-  fn deliverTo(&self) -> &Option<Box<dyn Reference>> { &self.deliverTo }
+  fn requester(&self) -> Option<&Box<dyn Reference>> { self.requester.as_ref() }
+  fn deliverTo(&self) -> Option<&Box<dyn Reference>> { self.deliverTo.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>> { &self.authoredOn }
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>> { self.authoredOn.as_ref() }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn deliverFrom(&self) -> &Option<Box<dyn Reference>> { &self.deliverFrom }
-  fn occurrence(&self) -> &Option<UnionDateTimeOrPeriodOrTiming> { &self.occurrence }
+  fn deliverFrom(&self) -> Option<&Box<dyn Reference>> { self.deliverFrom.as_ref() }
+  fn occurrence(&self) -> Option<&UnionDateTimeOrPeriodOrTiming> { self.occurrence.as_ref() }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
   fn parameter(&self) -> &Vector<Box<SupplyRequest_Parameter>> { &self.parameter }
 }

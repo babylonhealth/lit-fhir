@@ -83,19 +83,19 @@ pub struct GraphDefinitionRaw {
 }
 
 pub trait GraphDefinition : DomainResource {
-  fn url(&self) -> &Option<String>;
+  fn url(&self) -> Option<&String>;
   fn name(&self) -> &String;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn start(&self) -> &String;
   fn status(&self) -> &String;
-  fn version(&self) -> &Option<String>;
+  fn version(&self) -> Option<&String>;
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>>;
-  fn purpose(&self) -> &Option<String>;
-  fn profile(&self) -> &Option<String>;
-  fn publisher(&self) -> &Option<String>;
+  fn purpose(&self) -> Option<&String>;
+  fn profile(&self) -> Option<&String>;
+  fn publisher(&self) -> Option<&String>;
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>>;
-  fn description(&self) -> &Option<String>;
-  fn experimental(&self) -> &Option<bool>;
+  fn description(&self) -> Option<&String>;
+  fn experimental(&self) -> Option<&bool>;
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn link(&self) -> &Vector<Box<GraphDefinition_Link>>;
 }
@@ -106,15 +106,15 @@ impl FHIRObject for GraphDefinitionRaw {
 }
 
 impl Resource for GraphDefinitionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for GraphDefinitionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -122,19 +122,19 @@ impl DomainResource for GraphDefinitionRaw {
 
 
 impl GraphDefinition for GraphDefinitionRaw {
-  fn url(&self) -> &Option<String> { &self.url }
+  fn url(&self) -> Option<&String> { self.url.as_ref() }
   fn name(&self) -> &String { &self.name }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn start(&self) -> &String { &self.start }
   fn status(&self) -> &String { &self.status }
-  fn version(&self) -> &Option<String> { &self.version }
+  fn version(&self) -> Option<&String> { self.version.as_ref() }
   fn contact(&self) -> &Vector<Box<dyn ContactDetail>> { &self.contact }
-  fn purpose(&self) -> &Option<String> { &self.purpose }
-  fn profile(&self) -> &Option<String> { &self.profile }
-  fn publisher(&self) -> &Option<String> { &self.publisher }
+  fn purpose(&self) -> Option<&String> { self.purpose.as_ref() }
+  fn profile(&self) -> Option<&String> { self.profile.as_ref() }
+  fn publisher(&self) -> Option<&String> { self.publisher.as_ref() }
   fn useContext(&self) -> &Vector<Box<dyn UsageContext>> { &self.useContext }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn experimental(&self) -> &Option<bool> { &self.experimental }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn experimental(&self) -> Option<&bool> { self.experimental.as_ref() }
   fn jurisdiction(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.jurisdiction }
   fn link(&self) -> &Vector<Box<GraphDefinition_Link>> { &self.link }
 }

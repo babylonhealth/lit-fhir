@@ -44,18 +44,18 @@ pub struct PaymentNoticeRaw {
 }
 
 pub trait PaymentNotice : DomainResource {
-  fn payee(&self) -> &Option<Box<dyn Reference>>;
+  fn payee(&self) -> Option<&Box<dyn Reference>>;
   fn status(&self) -> &String;
   fn amount(&self) -> &Box<dyn Money>;
-  fn request(&self) -> &Option<Box<dyn Reference>>;
+  fn request(&self) -> Option<&Box<dyn Reference>>;
   fn created(&self) -> &DateTime<FixedOffset>;
   fn payment(&self) -> &Box<dyn Reference>;
-  fn response(&self) -> &Option<Box<dyn Reference>>;
-  fn provider(&self) -> &Option<Box<dyn Reference>>;
+  fn response(&self) -> Option<&Box<dyn Reference>>;
+  fn provider(&self) -> Option<&Box<dyn Reference>>;
   fn recipient(&self) -> &Box<dyn Reference>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn paymentDate(&self) -> &Option<LocalDate>;
-  fn paymentStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn paymentDate(&self) -> Option<&LocalDate>;
+  fn paymentStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
 }
 
 dyn_clone::clone_trait_object!(PaymentNotice);
@@ -64,15 +64,15 @@ impl FHIRObject for PaymentNoticeRaw {
 }
 
 impl Resource for PaymentNoticeRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for PaymentNoticeRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -80,17 +80,17 @@ impl DomainResource for PaymentNoticeRaw {
 
 
 impl PaymentNotice for PaymentNoticeRaw {
-  fn payee(&self) -> &Option<Box<dyn Reference>> { &self.payee }
+  fn payee(&self) -> Option<&Box<dyn Reference>> { self.payee.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn amount(&self) -> &Box<dyn Money> { &self.amount }
-  fn request(&self) -> &Option<Box<dyn Reference>> { &self.request }
+  fn request(&self) -> Option<&Box<dyn Reference>> { self.request.as_ref() }
   fn created(&self) -> &DateTime<FixedOffset> { &self.created }
   fn payment(&self) -> &Box<dyn Reference> { &self.payment }
-  fn response(&self) -> &Option<Box<dyn Reference>> { &self.response }
-  fn provider(&self) -> &Option<Box<dyn Reference>> { &self.provider }
+  fn response(&self) -> Option<&Box<dyn Reference>> { self.response.as_ref() }
+  fn provider(&self) -> Option<&Box<dyn Reference>> { self.provider.as_ref() }
   fn recipient(&self) -> &Box<dyn Reference> { &self.recipient }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn paymentDate(&self) -> &Option<LocalDate> { &self.paymentDate }
-  fn paymentStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.paymentStatus }
+  fn paymentDate(&self) -> Option<&LocalDate> { self.paymentDate.as_ref() }
+  fn paymentStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.paymentStatus.as_ref() }
 }
 

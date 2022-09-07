@@ -66,22 +66,22 @@ pub struct FamilyMemberHistoryRaw {
 }
 
 pub trait FamilyMemberHistory : DomainResource {
-  fn sex(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
-  fn name(&self) -> &Option<String>;
+  fn sex(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
+  fn name(&self) -> Option<&String>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
   fn status(&self) -> &String;
-  fn age(&self) -> &Option<UnionAgeOrRangeOrString>;
+  fn age(&self) -> Option<&UnionAgeOrRangeOrString>;
   fn patient(&self) -> &Box<dyn Reference>;
-  fn born(&self) -> &Option<UnionDateOrPeriodOrString>;
+  fn born(&self) -> Option<&UnionDateOrPeriodOrString>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn deceased(&self) -> &Option<Union00659500323>;
+  fn deceased(&self) -> Option<&Union00659500323>;
   fn relationship(&self) -> &Box<dyn CodeableConcept>;
-  fn estimatedAge(&self) -> &Option<bool>;
+  fn estimatedAge(&self) -> Option<&bool>;
   fn instantiatesUri(&self) -> &Vector<String>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn dataAbsentReason(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn dataAbsentReason(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn instantiatesCanonical(&self) -> &Vector<String>;
   fn condition(&self) -> &Vector<Box<FamilyMemberHistory_Condition>>;
 }
@@ -92,15 +92,15 @@ impl FHIRObject for FamilyMemberHistoryRaw {
 }
 
 impl Resource for FamilyMemberHistoryRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for FamilyMemberHistoryRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -108,22 +108,22 @@ impl DomainResource for FamilyMemberHistoryRaw {
 
 
 impl FamilyMemberHistory for FamilyMemberHistoryRaw {
-  fn sex(&self) -> &Option<Box<dyn CodeableConcept>> { &self.sex }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
-  fn name(&self) -> &Option<String> { &self.name }
+  fn sex(&self) -> Option<&Box<dyn CodeableConcept>> { self.sex.as_ref() }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
+  fn name(&self) -> Option<&String> { self.name.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
   fn status(&self) -> &String { &self.status }
-  fn age(&self) -> &Option<UnionAgeOrRangeOrString> { &self.age }
+  fn age(&self) -> Option<&UnionAgeOrRangeOrString> { self.age.as_ref() }
   fn patient(&self) -> &Box<dyn Reference> { &self.patient }
-  fn born(&self) -> &Option<UnionDateOrPeriodOrString> { &self.born }
+  fn born(&self) -> Option<&UnionDateOrPeriodOrString> { self.born.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn deceased(&self) -> &Option<Union00659500323> { &self.deceased }
+  fn deceased(&self) -> Option<&Union00659500323> { self.deceased.as_ref() }
   fn relationship(&self) -> &Box<dyn CodeableConcept> { &self.relationship }
-  fn estimatedAge(&self) -> &Option<bool> { &self.estimatedAge }
+  fn estimatedAge(&self) -> Option<&bool> { self.estimatedAge.as_ref() }
   fn instantiatesUri(&self) -> &Vector<String> { &self.instantiatesUri }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
-  fn dataAbsentReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.dataAbsentReason }
+  fn dataAbsentReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.dataAbsentReason.as_ref() }
   fn instantiatesCanonical(&self) -> &Vector<String> { &self.instantiatesCanonical }
   fn condition(&self) -> &Vector<Box<FamilyMemberHistory_Condition>> { &self.condition }
 }

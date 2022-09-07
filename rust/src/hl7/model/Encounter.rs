@@ -130,26 +130,26 @@ pub trait Encounter : DomainResource {
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn class(&self) -> &Box<dyn Coding>;
   fn status(&self) -> &String;
-  fn period(&self) -> &Option<Box<dyn Period>>;
-  fn length(&self) -> &Option<Box<dyn Duration>>;
-  fn partOf(&self) -> &Option<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
+  fn length(&self) -> Option<&Box<dyn Duration>>;
+  fn partOf(&self) -> Option<&Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
   fn account(&self) -> &Vector<Box<dyn Reference>>;
-  fn priority(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn priority(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn serviceType(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn serviceType(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn appointment(&self) -> &Vector<Box<dyn Reference>>;
   fn episodeOfCare(&self) -> &Vector<Box<dyn Reference>>;
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>>;
-  fn serviceProvider(&self) -> &Option<Box<dyn Reference>>;
+  fn serviceProvider(&self) -> Option<&Box<dyn Reference>>;
   fn location(&self) -> &Vector<Box<Encounter_Location>>;
   fn diagnosis(&self) -> &Vector<Box<Encounter_Diagnosis>>;
   fn participant(&self) -> &Vector<Box<Encounter_Participant>>;
   fn classHistory(&self) -> &Vector<Box<Encounter_ClassHistory>>;
   fn statusHistory(&self) -> &Vector<Box<Encounter_StatusHistory>>;
-  fn hospitalization(&self) -> &Option<Box<Encounter_Hospitalization>>;
+  fn hospitalization(&self) -> Option<&Box<Encounter_Hospitalization>>;
 }
 
 dyn_clone::clone_trait_object!(Encounter);
@@ -158,15 +158,15 @@ impl FHIRObject for EncounterRaw {
 }
 
 impl Resource for EncounterRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for EncounterRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -177,25 +177,25 @@ impl Encounter for EncounterRaw {
   fn _type(&self) -> &Vector<Box<dyn CodeableConcept>> { &self._type }
   fn class(&self) -> &Box<dyn Coding> { &self.class }
   fn status(&self) -> &String { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
-  fn length(&self) -> &Option<Box<dyn Duration>> { &self.length }
-  fn partOf(&self) -> &Option<Box<dyn Reference>> { &self.partOf }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
+  fn length(&self) -> Option<&Box<dyn Duration>> { self.length.as_ref() }
+  fn partOf(&self) -> Option<&Box<dyn Reference>> { self.partOf.as_ref() }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
   fn account(&self) -> &Vector<Box<dyn Reference>> { &self.account }
-  fn priority(&self) -> &Option<Box<dyn CodeableConcept>> { &self.priority }
+  fn priority(&self) -> Option<&Box<dyn CodeableConcept>> { self.priority.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn serviceType(&self) -> &Option<Box<dyn CodeableConcept>> { &self.serviceType }
+  fn serviceType(&self) -> Option<&Box<dyn CodeableConcept>> { self.serviceType.as_ref() }
   fn appointment(&self) -> &Vector<Box<dyn Reference>> { &self.appointment }
   fn episodeOfCare(&self) -> &Vector<Box<dyn Reference>> { &self.episodeOfCare }
   fn reasonReference(&self) -> &Vector<Box<dyn Reference>> { &self.reasonReference }
-  fn serviceProvider(&self) -> &Option<Box<dyn Reference>> { &self.serviceProvider }
+  fn serviceProvider(&self) -> Option<&Box<dyn Reference>> { self.serviceProvider.as_ref() }
   fn location(&self) -> &Vector<Box<Encounter_Location>> { &self.location }
   fn diagnosis(&self) -> &Vector<Box<Encounter_Diagnosis>> { &self.diagnosis }
   fn participant(&self) -> &Vector<Box<Encounter_Participant>> { &self.participant }
   fn classHistory(&self) -> &Vector<Box<Encounter_ClassHistory>> { &self.classHistory }
   fn statusHistory(&self) -> &Vector<Box<Encounter_StatusHistory>> { &self.statusHistory }
-  fn hospitalization(&self) -> &Option<Box<Encounter_Hospitalization>> { &self.hospitalization }
+  fn hospitalization(&self) -> Option<&Box<Encounter_Hospitalization>> { self.hospitalization.as_ref() }
 }
 

@@ -46,12 +46,12 @@ pub struct MedicinalProductInteractionRaw {
 }
 
 pub trait MedicinalProductInteraction : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn effect(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn effect(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn subject(&self) -> &Vector<Box<dyn Reference>>;
-  fn incidence(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn management(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn description(&self) -> &Option<String>;
+  fn incidence(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn management(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn description(&self) -> Option<&String>;
   fn interactant(&self) -> &Vector<Box<MedicinalProductInteraction_Interactant>>;
 }
 
@@ -61,15 +61,15 @@ impl FHIRObject for MedicinalProductInteractionRaw {
 }
 
 impl Resource for MedicinalProductInteractionRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicinalProductInteractionRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -77,12 +77,12 @@ impl DomainResource for MedicinalProductInteractionRaw {
 
 
 impl MedicinalProductInteraction for MedicinalProductInteractionRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn effect(&self) -> &Option<Box<dyn CodeableConcept>> { &self.effect }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn effect(&self) -> Option<&Box<dyn CodeableConcept>> { self.effect.as_ref() }
   fn subject(&self) -> &Vector<Box<dyn Reference>> { &self.subject }
-  fn incidence(&self) -> &Option<Box<dyn CodeableConcept>> { &self.incidence }
-  fn management(&self) -> &Option<Box<dyn CodeableConcept>> { &self.management }
-  fn description(&self) -> &Option<String> { &self.description }
+  fn incidence(&self) -> Option<&Box<dyn CodeableConcept>> { self.incidence.as_ref() }
+  fn management(&self) -> Option<&Box<dyn CodeableConcept>> { self.management.as_ref() }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
   fn interactant(&self) -> &Vector<Box<MedicinalProductInteraction_Interactant>> { &self.interactant }
 }
 

@@ -95,37 +95,37 @@ pub struct TaskRaw {
 }
 
 pub trait Task : DomainResource {
-  fn _for(&self) -> &Option<Box<dyn Reference>>;
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _for(&self) -> Option<&Box<dyn Reference>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn focus(&self) -> &Option<Box<dyn Reference>>;
-  fn owner(&self) -> &Option<Box<dyn Reference>>;
+  fn focus(&self) -> Option<&Box<dyn Reference>>;
+  fn owner(&self) -> Option<&Box<dyn Reference>>;
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
   fn intent(&self) -> &String;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn priority(&self) -> &Option<String>;
-  fn location(&self) -> &Option<Box<dyn Reference>>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
-  fn requester(&self) -> &Option<Box<dyn Reference>>;
+  fn priority(&self) -> Option<&String>;
+  fn location(&self) -> Option<&Box<dyn Reference>>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
+  fn requester(&self) -> Option<&Box<dyn Reference>>;
   fn insurance(&self) -> &Vector<Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>>;
-  fn reasonCode(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn description(&self) -> &Option<String>;
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn lastModified(&self) -> &Option<DateTime<FixedOffset>>;
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>>;
+  fn reasonCode(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn description(&self) -> Option<&String>;
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn lastModified(&self) -> Option<&DateTime<FixedOffset>>;
   fn performerType(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn businessStatus(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn instantiatesUri(&self) -> &Option<String>;
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>>;
-  fn executionPeriod(&self) -> &Option<Box<dyn Period>>;
-  fn reasonReference(&self) -> &Option<Box<dyn Reference>>;
+  fn businessStatus(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn instantiatesUri(&self) -> Option<&String>;
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>>;
+  fn executionPeriod(&self) -> Option<&Box<dyn Period>>;
+  fn reasonReference(&self) -> Option<&Box<dyn Reference>>;
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>>;
-  fn instantiatesCanonical(&self) -> &Option<String>;
+  fn instantiatesCanonical(&self) -> Option<&String>;
   fn input(&self) -> &Vector<Box<Task_Input>>;
   fn output(&self) -> &Vector<Box<Task_Output>>;
-  fn restriction(&self) -> &Option<Box<Task_Restriction>>;
+  fn restriction(&self) -> Option<&Box<Task_Restriction>>;
 }
 
 dyn_clone::clone_trait_object!(Task);
@@ -134,15 +134,15 @@ impl FHIRObject for TaskRaw {
 }
 
 impl Resource for TaskRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for TaskRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -150,36 +150,36 @@ impl DomainResource for TaskRaw {
 
 
 impl Task for TaskRaw {
-  fn _for(&self) -> &Option<Box<dyn Reference>> { &self._for }
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
+  fn _for(&self) -> Option<&Box<dyn Reference>> { self._for.as_ref() }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn focus(&self) -> &Option<Box<dyn Reference>> { &self.focus }
-  fn owner(&self) -> &Option<Box<dyn Reference>> { &self.owner }
+  fn focus(&self) -> Option<&Box<dyn Reference>> { self.focus.as_ref() }
+  fn owner(&self) -> Option<&Box<dyn Reference>> { self.owner.as_ref() }
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
   fn status(&self) -> &String { &self.status }
   fn intent(&self) -> &String { &self.intent }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn priority(&self) -> &Option<String> { &self.priority }
-  fn location(&self) -> &Option<Box<dyn Reference>> { &self.location }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
-  fn requester(&self) -> &Option<Box<dyn Reference>> { &self.requester }
+  fn priority(&self) -> Option<&String> { self.priority.as_ref() }
+  fn location(&self) -> Option<&Box<dyn Reference>> { self.location.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
+  fn requester(&self) -> Option<&Box<dyn Reference>> { self.requester.as_ref() }
   fn insurance(&self) -> &Vector<Box<dyn Reference>> { &self.insurance }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn authoredOn(&self) -> &Option<DateTime<FixedOffset>> { &self.authoredOn }
-  fn reasonCode(&self) -> &Option<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn statusReason(&self) -> &Option<Box<dyn CodeableConcept>> { &self.statusReason }
-  fn lastModified(&self) -> &Option<DateTime<FixedOffset>> { &self.lastModified }
+  fn authoredOn(&self) -> Option<&DateTime<FixedOffset>> { self.authoredOn.as_ref() }
+  fn reasonCode(&self) -> Option<&Box<dyn CodeableConcept>> { self.reasonCode.as_ref() }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn statusReason(&self) -> Option<&Box<dyn CodeableConcept>> { self.statusReason.as_ref() }
+  fn lastModified(&self) -> Option<&DateTime<FixedOffset>> { self.lastModified.as_ref() }
   fn performerType(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.performerType }
-  fn businessStatus(&self) -> &Option<Box<dyn CodeableConcept>> { &self.businessStatus }
-  fn instantiatesUri(&self) -> &Option<String> { &self.instantiatesUri }
-  fn groupIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.groupIdentifier }
-  fn executionPeriod(&self) -> &Option<Box<dyn Period>> { &self.executionPeriod }
-  fn reasonReference(&self) -> &Option<Box<dyn Reference>> { &self.reasonReference }
+  fn businessStatus(&self) -> Option<&Box<dyn CodeableConcept>> { self.businessStatus.as_ref() }
+  fn instantiatesUri(&self) -> Option<&String> { self.instantiatesUri.as_ref() }
+  fn groupIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.groupIdentifier.as_ref() }
+  fn executionPeriod(&self) -> Option<&Box<dyn Period>> { self.executionPeriod.as_ref() }
+  fn reasonReference(&self) -> Option<&Box<dyn Reference>> { self.reasonReference.as_ref() }
   fn relevantHistory(&self) -> &Vector<Box<dyn Reference>> { &self.relevantHistory }
-  fn instantiatesCanonical(&self) -> &Option<String> { &self.instantiatesCanonical }
+  fn instantiatesCanonical(&self) -> Option<&String> { self.instantiatesCanonical.as_ref() }
   fn input(&self) -> &Vector<Box<Task_Input>> { &self.input }
   fn output(&self) -> &Vector<Box<Task_Output>> { &self.output }
-  fn restriction(&self) -> &Option<Box<Task_Restriction>> { &self.restriction }
+  fn restriction(&self) -> Option<&Box<Task_Restriction>> { self.restriction.as_ref() }
 }
 

@@ -23,9 +23,9 @@ pub struct AnnotationRaw {
 }
 
 pub trait Annotation : FHIRElement {
-  fn time(&self) -> &Option<DateTime<FixedOffset>>;
+  fn time(&self) -> Option<&DateTime<FixedOffset>>;
   fn text(&self) -> &String;
-  fn author(&self) -> &Option<UnionReferenceOrString>;
+  fn author(&self) -> Option<&UnionReferenceOrString>;
 }
 
 dyn_clone::clone_trait_object!(Annotation);
@@ -34,14 +34,14 @@ impl FHIRObject for AnnotationRaw {
 }
 
 impl FHIRElement for AnnotationRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Annotation for AnnotationRaw {
-  fn time(&self) -> &Option<DateTime<FixedOffset>> { &self.time }
+  fn time(&self) -> Option<&DateTime<FixedOffset>> { self.time.as_ref() }
   fn text(&self) -> &String { &self.text }
-  fn author(&self) -> &Option<UnionReferenceOrString> { &self.author }
+  fn author(&self) -> Option<&UnionReferenceOrString> { self.author.as_ref() }
 }
 

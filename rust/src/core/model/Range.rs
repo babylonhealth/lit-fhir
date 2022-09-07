@@ -22,8 +22,8 @@ pub struct RangeRaw {
 }
 
 pub trait Range : FHIRElement {
-  fn low(&self) -> &Option<Box<dyn Quantity>>;
-  fn high(&self) -> &Option<Box<dyn Quantity>>;
+  fn low(&self) -> Option<&Box<dyn Quantity>>;
+  fn high(&self) -> Option<&Box<dyn Quantity>>;
 }
 
 dyn_clone::clone_trait_object!(Range);
@@ -32,13 +32,13 @@ impl FHIRObject for RangeRaw {
 }
 
 impl FHIRElement for RangeRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Range for RangeRaw {
-  fn low(&self) -> &Option<Box<dyn Quantity>> { &self.low }
-  fn high(&self) -> &Option<Box<dyn Quantity>> { &self.high }
+  fn low(&self) -> Option<&Box<dyn Quantity>> { self.low.as_ref() }
+  fn high(&self) -> Option<&Box<dyn Quantity>> { self.high.as_ref() }
 }
 

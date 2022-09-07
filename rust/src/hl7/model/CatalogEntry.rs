@@ -54,15 +54,15 @@ pub struct CatalogEntryRaw {
 }
 
 pub trait CatalogEntry : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn status(&self) -> &Option<String>;
-  fn validTo(&self) -> &Option<DateTime<FixedOffset>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn status(&self) -> Option<&String>;
+  fn validTo(&self) -> Option<&DateTime<FixedOffset>>;
   fn orderable(&self) -> &bool;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn lastUpdated(&self) -> &Option<DateTime<FixedOffset>>;
+  fn lastUpdated(&self) -> Option<&DateTime<FixedOffset>>;
   fn referencedItem(&self) -> &Box<dyn Reference>;
   fn classification(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn validityPeriod(&self) -> &Option<Box<dyn Period>>;
+  fn validityPeriod(&self) -> Option<&Box<dyn Period>>;
   fn additionalIdentifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn additionalCharacteristic(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn additionalClassification(&self) -> &Vector<Box<dyn CodeableConcept>>;
@@ -75,15 +75,15 @@ impl FHIRObject for CatalogEntryRaw {
 }
 
 impl Resource for CatalogEntryRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for CatalogEntryRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -91,15 +91,15 @@ impl DomainResource for CatalogEntryRaw {
 
 
 impl CatalogEntry for CatalogEntryRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn status(&self) -> &Option<String> { &self.status }
-  fn validTo(&self) -> &Option<DateTime<FixedOffset>> { &self.validTo }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn validTo(&self) -> Option<&DateTime<FixedOffset>> { self.validTo.as_ref() }
   fn orderable(&self) -> &bool { &self.orderable }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn lastUpdated(&self) -> &Option<DateTime<FixedOffset>> { &self.lastUpdated }
+  fn lastUpdated(&self) -> Option<&DateTime<FixedOffset>> { self.lastUpdated.as_ref() }
   fn referencedItem(&self) -> &Box<dyn Reference> { &self.referencedItem }
   fn classification(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.classification }
-  fn validityPeriod(&self) -> &Option<Box<dyn Period>> { &self.validityPeriod }
+  fn validityPeriod(&self) -> Option<&Box<dyn Period>> { self.validityPeriod.as_ref() }
   fn additionalIdentifier(&self) -> &Vector<Box<dyn Identifier>> { &self.additionalIdentifier }
   fn additionalCharacteristic(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.additionalCharacteristic }
   fn additionalClassification(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.additionalClassification }

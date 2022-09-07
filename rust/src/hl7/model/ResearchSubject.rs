@@ -41,12 +41,12 @@ pub struct ResearchSubjectRaw {
 pub trait ResearchSubject : DomainResource {
   fn study(&self) -> &Box<dyn Reference>;
   fn status(&self) -> &String;
-  fn period(&self) -> &Option<Box<dyn Period>>;
-  fn consent(&self) -> &Option<Box<dyn Reference>>;
-  fn actualArm(&self) -> &Option<String>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
+  fn consent(&self) -> Option<&Box<dyn Reference>>;
+  fn actualArm(&self) -> Option<&String>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
   fn individual(&self) -> &Box<dyn Reference>;
-  fn assignedArm(&self) -> &Option<String>;
+  fn assignedArm(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(ResearchSubject);
@@ -55,15 +55,15 @@ impl FHIRObject for ResearchSubjectRaw {
 }
 
 impl Resource for ResearchSubjectRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for ResearchSubjectRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -73,11 +73,11 @@ impl DomainResource for ResearchSubjectRaw {
 impl ResearchSubject for ResearchSubjectRaw {
   fn study(&self) -> &Box<dyn Reference> { &self.study }
   fn status(&self) -> &String { &self.status }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
-  fn consent(&self) -> &Option<Box<dyn Reference>> { &self.consent }
-  fn actualArm(&self) -> &Option<String> { &self.actualArm }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
+  fn consent(&self) -> Option<&Box<dyn Reference>> { self.consent.as_ref() }
+  fn actualArm(&self) -> Option<&String> { self.actualArm.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
   fn individual(&self) -> &Box<dyn Reference> { &self.individual }
-  fn assignedArm(&self) -> &Option<String> { &self.assignedArm }
+  fn assignedArm(&self) -> Option<&String> { self.assignedArm.as_ref() }
 }
 

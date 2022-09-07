@@ -28,12 +28,12 @@ pub struct IdentifierRaw {
 }
 
 pub trait Identifier : FHIRElement {
-  fn _use(&self) -> &Option<String>;
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn value(&self) -> &Option<String>;
-  fn system(&self) -> &Option<String>;
-  fn period(&self) -> &Option<Box<dyn Period>>;
-  fn assigner(&self) -> &Option<Box<dyn Reference>>;
+  fn _use(&self) -> Option<&String>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn value(&self) -> Option<&String>;
+  fn system(&self) -> Option<&String>;
+  fn period(&self) -> Option<&Box<dyn Period>>;
+  fn assigner(&self) -> Option<&Box<dyn Reference>>;
 }
 
 dyn_clone::clone_trait_object!(Identifier);
@@ -42,17 +42,17 @@ impl FHIRObject for IdentifierRaw {
 }
 
 impl FHIRElement for IdentifierRaw {
-  fn id(&self) -> &Option<String> { &self.id }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
 }
 
 
 impl Identifier for IdentifierRaw {
-  fn _use(&self) -> &Option<String> { &self._use }
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn value(&self) -> &Option<String> { &self.value }
-  fn system(&self) -> &Option<String> { &self.system }
-  fn period(&self) -> &Option<Box<dyn Period>> { &self.period }
-  fn assigner(&self) -> &Option<Box<dyn Reference>> { &self.assigner }
+  fn _use(&self) -> Option<&String> { self._use.as_ref() }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn value(&self) -> Option<&String> { self.value.as_ref() }
+  fn system(&self) -> Option<&String> { self.system.as_ref() }
+  fn period(&self) -> Option<&Box<dyn Period>> { self.period.as_ref() }
+  fn assigner(&self) -> Option<&Box<dyn Reference>> { self.assigner.as_ref() }
 }
 

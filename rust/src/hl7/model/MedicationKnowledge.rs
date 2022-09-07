@@ -225,21 +225,21 @@ pub struct MedicationKnowledgeRaw {
 }
 
 pub trait MedicationKnowledge : DomainResource {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn status(&self) -> &Option<String>;
-  fn amount(&self) -> &Option<Box<dyn Quantity>>;
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn status(&self) -> Option<&String>;
+  fn amount(&self) -> Option<&Box<dyn Quantity>>;
   fn synonym(&self) -> &Vector<String>;
-  fn doseForm(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn doseForm(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn productType(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn manufacturer(&self) -> &Option<Box<dyn Reference>>;
+  fn manufacturer(&self) -> Option<&Box<dyn Reference>>;
   fn intendedRoute(&self) -> &Vector<Box<dyn CodeableConcept>>;
   fn contraindication(&self) -> &Vector<Box<dyn Reference>>;
   fn associatedMedication(&self) -> &Vector<Box<dyn Reference>>;
-  fn preparationInstruction(&self) -> &Option<String>;
+  fn preparationInstruction(&self) -> Option<&String>;
   fn cost(&self) -> &Vector<Box<MedicationKnowledge_Cost>>;
   fn kinetics(&self) -> &Vector<Box<MedicationKnowledge_Kinetics>>;
   fn monograph(&self) -> &Vector<Box<MedicationKnowledge_Monograph>>;
-  fn packaging(&self) -> &Option<Box<MedicationKnowledge_Packaging>>;
+  fn packaging(&self) -> Option<&Box<MedicationKnowledge_Packaging>>;
   fn ingredient(&self) -> &Vector<Box<MedicationKnowledge_Ingredient>>;
   fn monitoringProgram(&self) -> &Vector<Box<MedicationKnowledge_MonitoringProgram>>;
   fn drugCharacteristic(&self) -> &Vector<Box<MedicationKnowledge_DrugCharacteristic>>;
@@ -255,15 +255,15 @@ impl FHIRObject for MedicationKnowledgeRaw {
 }
 
 impl Resource for MedicationKnowledgeRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MedicationKnowledgeRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -271,21 +271,21 @@ impl DomainResource for MedicationKnowledgeRaw {
 
 
 impl MedicationKnowledge for MedicationKnowledgeRaw {
-  fn code(&self) -> &Option<Box<dyn CodeableConcept>> { &self.code }
-  fn status(&self) -> &Option<String> { &self.status }
-  fn amount(&self) -> &Option<Box<dyn Quantity>> { &self.amount }
+  fn code(&self) -> Option<&Box<dyn CodeableConcept>> { self.code.as_ref() }
+  fn status(&self) -> Option<&String> { self.status.as_ref() }
+  fn amount(&self) -> Option<&Box<dyn Quantity>> { self.amount.as_ref() }
   fn synonym(&self) -> &Vector<String> { &self.synonym }
-  fn doseForm(&self) -> &Option<Box<dyn CodeableConcept>> { &self.doseForm }
+  fn doseForm(&self) -> Option<&Box<dyn CodeableConcept>> { self.doseForm.as_ref() }
   fn productType(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.productType }
-  fn manufacturer(&self) -> &Option<Box<dyn Reference>> { &self.manufacturer }
+  fn manufacturer(&self) -> Option<&Box<dyn Reference>> { self.manufacturer.as_ref() }
   fn intendedRoute(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.intendedRoute }
   fn contraindication(&self) -> &Vector<Box<dyn Reference>> { &self.contraindication }
   fn associatedMedication(&self) -> &Vector<Box<dyn Reference>> { &self.associatedMedication }
-  fn preparationInstruction(&self) -> &Option<String> { &self.preparationInstruction }
+  fn preparationInstruction(&self) -> Option<&String> { self.preparationInstruction.as_ref() }
   fn cost(&self) -> &Vector<Box<MedicationKnowledge_Cost>> { &self.cost }
   fn kinetics(&self) -> &Vector<Box<MedicationKnowledge_Kinetics>> { &self.kinetics }
   fn monograph(&self) -> &Vector<Box<MedicationKnowledge_Monograph>> { &self.monograph }
-  fn packaging(&self) -> &Option<Box<MedicationKnowledge_Packaging>> { &self.packaging }
+  fn packaging(&self) -> Option<&Box<MedicationKnowledge_Packaging>> { self.packaging.as_ref() }
   fn ingredient(&self) -> &Vector<Box<MedicationKnowledge_Ingredient>> { &self.ingredient }
   fn monitoringProgram(&self) -> &Vector<Box<MedicationKnowledge_MonitoringProgram>> { &self.monitoringProgram }
   fn drugCharacteristic(&self) -> &Vector<Box<MedicationKnowledge_DrugCharacteristic>> { &self.drugCharacteristic }

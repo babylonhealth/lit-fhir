@@ -84,21 +84,21 @@ pub struct DocumentReferenceRaw {
 }
 
 pub trait DocumentReference : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn date(&self) -> &Option<DateTime<FixedOffset>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn date(&self) -> Option<&DateTime<FixedOffset>>;
   fn status(&self) -> &String;
   fn author(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn docStatus(&self) -> &Option<String>;
-  fn custodian(&self) -> &Option<Box<dyn Reference>>;
+  fn docStatus(&self) -> Option<&String>;
+  fn custodian(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn description(&self) -> &Option<String>;
-  fn authenticator(&self) -> &Option<Box<dyn Reference>>;
+  fn description(&self) -> Option<&String>;
+  fn authenticator(&self) -> Option<&Box<dyn Reference>>;
   fn securityLabel(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn masterIdentifier(&self) -> &Option<Box<dyn Identifier>>;
+  fn masterIdentifier(&self) -> Option<&Box<dyn Identifier>>;
   fn content(&self) -> &Vector<Box<DocumentReference_Content>>;
-  fn context(&self) -> &Option<Box<DocumentReference_Context>>;
+  fn context(&self) -> Option<&Box<DocumentReference_Context>>;
   fn relatesTo(&self) -> &Vector<Box<DocumentReference_RelatesTo>>;
 }
 
@@ -108,15 +108,15 @@ impl FHIRObject for DocumentReferenceRaw {
 }
 
 impl Resource for DocumentReferenceRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for DocumentReferenceRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -124,21 +124,21 @@ impl DomainResource for DocumentReferenceRaw {
 
 
 impl DocumentReference for DocumentReferenceRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn date(&self) -> &Option<DateTime<FixedOffset>> { &self.date }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn date(&self) -> Option<&DateTime<FixedOffset>> { self.date.as_ref() }
   fn status(&self) -> &String { &self.status }
   fn author(&self) -> &Vector<Box<dyn Reference>> { &self.author }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn category(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.category }
-  fn docStatus(&self) -> &Option<String> { &self.docStatus }
-  fn custodian(&self) -> &Option<Box<dyn Reference>> { &self.custodian }
+  fn docStatus(&self) -> Option<&String> { self.docStatus.as_ref() }
+  fn custodian(&self) -> Option<&Box<dyn Reference>> { self.custodian.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn description(&self) -> &Option<String> { &self.description }
-  fn authenticator(&self) -> &Option<Box<dyn Reference>> { &self.authenticator }
+  fn description(&self) -> Option<&String> { self.description.as_ref() }
+  fn authenticator(&self) -> Option<&Box<dyn Reference>> { self.authenticator.as_ref() }
   fn securityLabel(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.securityLabel }
-  fn masterIdentifier(&self) -> &Option<Box<dyn Identifier>> { &self.masterIdentifier }
+  fn masterIdentifier(&self) -> Option<&Box<dyn Identifier>> { self.masterIdentifier.as_ref() }
   fn content(&self) -> &Vector<Box<DocumentReference_Content>> { &self.content }
-  fn context(&self) -> &Option<Box<DocumentReference_Context>> { &self.context }
+  fn context(&self) -> Option<&Box<DocumentReference_Context>> { self.context.as_ref() }
   fn relatesTo(&self) -> &Vector<Box<DocumentReference_RelatesTo>> { &self.relatesTo }
 }
 

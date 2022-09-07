@@ -56,28 +56,28 @@ pub struct MediaRaw {
 }
 
 pub trait Media : DomainResource {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn view(&self) -> &Option<Box<dyn CodeableConcept>>;
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn view(&self) -> Option<&Box<dyn CodeableConcept>>;
   fn note(&self) -> &Vector<Box<dyn Annotation>>;
-  fn width(&self) -> &Option<u32>;
+  fn width(&self) -> Option<&u32>;
   fn partOf(&self) -> &Vector<Box<dyn Reference>>;
   fn status(&self) -> &String;
-  fn issued(&self) -> &Option<DateTime<FixedOffset>>;
-  fn device(&self) -> &Option<Box<dyn Reference>>;
-  fn height(&self) -> &Option<u32>;
-  fn frames(&self) -> &Option<u32>;
+  fn issued(&self) -> Option<&DateTime<FixedOffset>>;
+  fn device(&self) -> Option<&Box<dyn Reference>>;
+  fn height(&self) -> Option<&u32>;
+  fn frames(&self) -> Option<&u32>;
   fn basedOn(&self) -> &Vector<Box<dyn Reference>>;
-  fn subject(&self) -> &Option<Box<dyn Reference>>;
+  fn subject(&self) -> Option<&Box<dyn Reference>>;
   fn content(&self) -> &Box<dyn Attachment>;
-  fn modality(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn operator(&self) -> &Option<Box<dyn Reference>>;
-  fn bodySite(&self) -> &Option<Box<dyn CodeableConcept>>;
-  fn duration(&self) -> &Option<BigDecimal>;
-  fn encounter(&self) -> &Option<Box<dyn Reference>>;
+  fn modality(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn operator(&self) -> Option<&Box<dyn Reference>>;
+  fn bodySite(&self) -> Option<&Box<dyn CodeableConcept>>;
+  fn duration(&self) -> Option<&BigDecimal>;
+  fn encounter(&self) -> Option<&Box<dyn Reference>>;
   fn identifier(&self) -> &Vector<Box<dyn Identifier>>;
-  fn created(&self) -> &Option<UnionDateTimeOrPeriod>;
+  fn created(&self) -> Option<&UnionDateTimeOrPeriod>;
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>>;
-  fn deviceName(&self) -> &Option<String>;
+  fn deviceName(&self) -> Option<&String>;
 }
 
 dyn_clone::clone_trait_object!(Media);
@@ -86,15 +86,15 @@ impl FHIRObject for MediaRaw {
 }
 
 impl Resource for MediaRaw {
-  fn id(&self) -> &Option<String> { &self.id }
-  fn meta(&self) -> &Option<Box<dyn Meta>> { &self.meta }
-  fn language(&self) -> &Option<String> { &self.language }
-  fn implicitRules(&self) -> &Option<String> { &self.implicitRules }
+  fn id(&self) -> Option<&String> { self.id.as_ref() }
+  fn meta(&self) -> Option<&Box<dyn Meta>> { self.meta.as_ref() }
+  fn language(&self) -> Option<&String> { self.language.as_ref() }
+  fn implicitRules(&self) -> Option<&String> { self.implicitRules.as_ref() }
 }
 
 
 impl DomainResource for MediaRaw {
-  fn text(&self) -> &Option<Box<dyn Narrative>> { &self.text }
+  fn text(&self) -> Option<&Box<dyn Narrative>> { self.text.as_ref() }
   fn contained(&self) -> &Vector<Box<dyn Resource>> { &self.contained }
   fn extension(&self) -> &Vector<Box<dyn Extension>> { &self.extension }
   fn modifierExtension(&self) -> &Vector<Box<dyn Extension>> { &self.modifierExtension }
@@ -102,27 +102,27 @@ impl DomainResource for MediaRaw {
 
 
 impl Media for MediaRaw {
-  fn _type(&self) -> &Option<Box<dyn CodeableConcept>> { &self._type }
-  fn view(&self) -> &Option<Box<dyn CodeableConcept>> { &self.view }
+  fn _type(&self) -> Option<&Box<dyn CodeableConcept>> { self._type.as_ref() }
+  fn view(&self) -> Option<&Box<dyn CodeableConcept>> { self.view.as_ref() }
   fn note(&self) -> &Vector<Box<dyn Annotation>> { &self.note }
-  fn width(&self) -> &Option<u32> { &self.width }
+  fn width(&self) -> Option<&u32> { self.width.as_ref() }
   fn partOf(&self) -> &Vector<Box<dyn Reference>> { &self.partOf }
   fn status(&self) -> &String { &self.status }
-  fn issued(&self) -> &Option<DateTime<FixedOffset>> { &self.issued }
-  fn device(&self) -> &Option<Box<dyn Reference>> { &self.device }
-  fn height(&self) -> &Option<u32> { &self.height }
-  fn frames(&self) -> &Option<u32> { &self.frames }
+  fn issued(&self) -> Option<&DateTime<FixedOffset>> { self.issued.as_ref() }
+  fn device(&self) -> Option<&Box<dyn Reference>> { self.device.as_ref() }
+  fn height(&self) -> Option<&u32> { self.height.as_ref() }
+  fn frames(&self) -> Option<&u32> { self.frames.as_ref() }
   fn basedOn(&self) -> &Vector<Box<dyn Reference>> { &self.basedOn }
-  fn subject(&self) -> &Option<Box<dyn Reference>> { &self.subject }
+  fn subject(&self) -> Option<&Box<dyn Reference>> { self.subject.as_ref() }
   fn content(&self) -> &Box<dyn Attachment> { &self.content }
-  fn modality(&self) -> &Option<Box<dyn CodeableConcept>> { &self.modality }
-  fn operator(&self) -> &Option<Box<dyn Reference>> { &self.operator }
-  fn bodySite(&self) -> &Option<Box<dyn CodeableConcept>> { &self.bodySite }
-  fn duration(&self) -> &Option<BigDecimal> { &self.duration }
-  fn encounter(&self) -> &Option<Box<dyn Reference>> { &self.encounter }
+  fn modality(&self) -> Option<&Box<dyn CodeableConcept>> { self.modality.as_ref() }
+  fn operator(&self) -> Option<&Box<dyn Reference>> { self.operator.as_ref() }
+  fn bodySite(&self) -> Option<&Box<dyn CodeableConcept>> { self.bodySite.as_ref() }
+  fn duration(&self) -> Option<&BigDecimal> { self.duration.as_ref() }
+  fn encounter(&self) -> Option<&Box<dyn Reference>> { self.encounter.as_ref() }
   fn identifier(&self) -> &Vector<Box<dyn Identifier>> { &self.identifier }
-  fn created(&self) -> &Option<UnionDateTimeOrPeriod> { &self.created }
+  fn created(&self) -> Option<&UnionDateTimeOrPeriod> { self.created.as_ref() }
   fn reasonCode(&self) -> &Vector<Box<dyn CodeableConcept>> { &self.reasonCode }
-  fn deviceName(&self) -> &Option<String> { &self.deviceName }
+  fn deviceName(&self) -> Option<&String> { self.deviceName.as_ref() }
 }
 
