@@ -221,7 +221,7 @@ lazy val coreJava = project
       "org.projectlombok" % "lombok"            % V.lombok,
       "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
-      "org.junit.jupiter" % "junit-jupiter"     % "5.9.0" % Test
+      "org.junit.jupiter" % "junit-jupiter"     % "5.9.1" % Test
     )
   )
   .dependsOn(core)
@@ -248,7 +248,7 @@ lazy val uscoreJava = project
   .settings(libraryDependencies ++= Seq(
     "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
     "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
-    "org.junit.jupiter" % "junit-jupiter"     % "5.9.0"                          % Test
+    "org.junit.jupiter" % "junit-jupiter"     % "5.9.1"                          % Test
   ))
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
   .enablePlugins(JupiterPlugin)
@@ -260,7 +260,7 @@ lazy val ukcoreJava = project
   .settings(libraryDependencies ++= Seq(
     "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
     "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
-    "org.junit.jupiter" % "junit-jupiter"     % "5.9.0"                          % Test
+    "org.junit.jupiter" % "junit-jupiter"     % "5.9.1"                          % Test
   ))
   .dependsOn(core, hl7, ukcore, coreJava, hl7Java)
   .enablePlugins(JupiterPlugin)
