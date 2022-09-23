@@ -13,14 +13,14 @@ inThisBuild(
     sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
   ))
 
-val scala2Version = "2.13.8"
+val scala2Version = "2.13.9"
 val scala3Version = "3.2.0"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
 
 val V = new {
-  val circe                  = "0.14.1"
+  val circe                  = "0.14.3"
   val enumeratum             = "1.7.0"
   val googleFHIR             = "0.6.1"
   val izumiReflect           = "2.2.0"
