@@ -32,6 +32,10 @@ case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor
     o.updateFromField[Option[T], O](fieldSelection(c))(_ map fn)
   def updateAll[T](fieldSelection: C => FHIRComponentFieldMeta[LitSeq[T]])(fn: T => T): O =
     o.updateFromField[LitSeq[T], O](fieldSelection(c))(_ map fn)
+  // bit sad that we have to have this, but wildcard types don't seem to work on the updateAll signature
+  // - can we make FHIRComponentFieldMeta's type param covariant..?
+  def updateNonEmpty[T](fieldSelection: C => FHIRComponentFieldMeta[NonEmptyLitSeq[T]])(fn: T => T): O =
+    o.updateFromField[NonEmptyLitSeq[T], O](fieldSelection(c))(_ map fn)
   // primitive element field manipulation (could/should require that the type param T of the field isn't a FHIRObject...)
   def updateExtensions(field: C => FHIRComponentFieldMeta[_])(update: LitSeq[Extension] => LitSeq[Extension]): O =
     o.extensions.update(field(c))(update)
