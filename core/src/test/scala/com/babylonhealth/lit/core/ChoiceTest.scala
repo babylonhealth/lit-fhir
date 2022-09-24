@@ -8,7 +8,7 @@ import com.babylonhealth.lit.core.{ Code, toCode }
 import com.babylonhealth.lit.core.model.Extension
 
 class ChoiceTest extends AnyFreeSpec with Matchers {
-  "can extract the value from a choice if it matchers" in {
+  "can extract the value from a choice if it matches" in {
     val code: Extension.ValueChoice = choice("code": Code)
     val extractedCode = code.as[Code]
     extractedCode shouldEqual Some("code": Code)
