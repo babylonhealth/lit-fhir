@@ -93,7 +93,7 @@ class FauxLensTest extends AnyFreeSpec with Matchers {
       Signature(who = Reference(reference = Some("one")), `type` = LitSeq(Coding(id = Some("id"))), when = now)
     val expected =
       Signature(who = Reference(reference = Some("one")), `type` = LitSeq(Coding(id = Some("another id"))), when = now)
-    val modified = signature.updateNonEmpty(_.`type`)(_.updateIfExists(_.id) {
+    val modified = signature.updateAll(_.`type`)(_.updateIfExists(_.id) {
       case "id" => "another id"
       case x    => x
     })
