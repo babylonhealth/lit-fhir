@@ -57,6 +57,7 @@ trait ETypeWithFallback[A <: ToCodingAble](implicit aClassTag: ClassTag[A]) exte
   def fallback(s: String): A
   override lazy val namesToValuesMap: Map[String, A] = values.map(x => x.name -> x).toMap.withDefault(fallback)
 
-  override def withNameInsensitiveOption(name: String): Option[A] = Some(withName(name))
-  override def withNameInsensitive(name: String): A               = withName(name)
+  override def withNameInsensitiveOption(name: String): Option[A] =
+    super.withNameInsensitiveOption(name) orElse Some(withName(name))
+  override def withNameInsensitive(name: String): A = withNameInsensitiveOption(name).get
 }
