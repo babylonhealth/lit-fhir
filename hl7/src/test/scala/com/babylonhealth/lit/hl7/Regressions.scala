@@ -2,8 +2,6 @@ package com.babylonhealth.lit.hl7
 
 import java.time.ZonedDateTime
 
-import scala.util.Failure
-
 import io.circe.{ DecodingFailure, Json }
 import io.circe.parser.decode
 import org.scalatest.freespec.AnyFreeSpec
@@ -29,7 +27,7 @@ class Regressions extends AnyFreeSpec with Matchers {
                                  |  }
                                  |""".stripMargin)
     res.isLeft shouldEqual true
-    res.left.get.getMessage should startWith("Expected an array")
+    res.left.get.getMessage should include("expecting array")
   }
   "resource with invalid extension in quantity should throw on decode" in {
     val res = decode[Resource]("""{
@@ -61,7 +59,7 @@ class Regressions extends AnyFreeSpec with Matchers {
                                  |}
                                  |""".stripMargin)
     res.isLeft shouldEqual true
-    res.left.get.getMessage should include("Expected an array")
+    res.left.get.getMessage should include("expecting array")
   }
   "resource with extension-as-an-object in quantity should decode if flexibleCardinality=true" in {
     implicit val params: DecoderParams = DecoderParams(flexibleCardinality = true)

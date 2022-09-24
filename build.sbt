@@ -13,19 +13,19 @@ inThisBuild(
     sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
   ))
 
-val scala2Version = "2.13.8"
+val scala2Version = "2.13.9"
 val scala3Version = "3.2.0"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
 
 val V = new {
-  val circe                  = "0.14.1"
+  val circe                  = "0.14.3"
   val enumeratum             = "1.7.0"
   val googleFHIR             = "0.6.1"
   val izumiReflect           = "2.2.0"
   val jsonassert             = "1.5.1"
-  val jUnit                  = "5.9.0"
+  val jUnit                  = "5.9.1"
   val litVersionForGenerator = "0.14.13"
   val logback                = "1.4.1"
   val lombok                 = "1.18.24"
@@ -179,7 +179,7 @@ lazy val fhirpath = project
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-parse"    % "0.3.8",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j"      % "slf4j-api"     % "2.0.0",
+      "org.slf4j"      % "slf4j-api"     % "2.0.2",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
@@ -221,7 +221,7 @@ lazy val coreJava = project
       "org.projectlombok" % "lombok"            % V.lombok,
       "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
-      "org.junit.jupiter" % "junit-jupiter"     % "5.9.0" % Test
+      "org.junit.jupiter" % "junit-jupiter"     % "5.9.1" % Test
     )
   )
   .dependsOn(core)
@@ -248,7 +248,7 @@ lazy val uscoreJava = project
   .settings(libraryDependencies ++= Seq(
     "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
     "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
-    "org.junit.jupiter" % "junit-jupiter"     % "5.9.0"                          % Test
+    "org.junit.jupiter" % "junit-jupiter"     % "5.9.1"                          % Test
   ))
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
   .enablePlugins(JupiterPlugin)
@@ -260,7 +260,7 @@ lazy val ukcoreJava = project
   .settings(libraryDependencies ++= Seq(
     "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
     "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
-    "org.junit.jupiter" % "junit-jupiter"     % "5.9.0"                          % Test
+    "org.junit.jupiter" % "junit-jupiter"     % "5.9.1"                          % Test
   ))
   .dependsOn(core, hl7, ukcore, coreJava, hl7Java)
   .enablePlugins(JupiterPlugin)

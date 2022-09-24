@@ -1,5 +1,7 @@
 package com.babylonhealth.lit.hl7
 
+import java.time.ZonedDateTime
+
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -82,6 +84,18 @@ class FauxLensTest extends AnyFreeSpec with Matchers {
       case o: Observation =>
         o.updateIfExists(_.subject)(s => s.set(_.reference)(Some(s"fooooo/${s.id.get}")).set(_.id)(None))
       case x => x
+    })
+    modified shouldEqual expected
+  }
+  "updateAll works for NonEmptyLitSeq" in {
+    val now = ZonedDateTime.now()
+    val signature =
+      Signature(who = Reference(reference = Some("one")), `type` = LitSeq(Coding(id = Some("id"))), when = now)
+    val expected =
+      Signature(who = Reference(reference = Some("one")), `type` = LitSeq(Coding(id = Some("another id"))), when = now)
+    val modified = signature.updateAll(_.`type`)(_.updateIfExists(_.id) {
+      case "id" => "another id"
+      case x    => x
     })
     modified shouldEqual expected
   }
