@@ -17,8 +17,8 @@ object ChoiceImplicits {
   def choiceFromEnum[U >: Code: LTag, S <: EnumBase: LTag](t: S): Choice[U] =
     Choice.fromValAndSuffix[U, Code](t.name, "Code")
 
-  implicit class WrappedChoice[U](val ref: Choice[U]) {
-    def as[Sub <: U](implicit tt: LTag[Sub]): Option[Sub] = {
+  extension [T <: Choice[_]](ref: T) {
+    def as[Sub <: ref.Union](implicit tt: LTag[Sub]): Option[Sub] = {
       if (ref.elTT.tag =:= tt.tag) Some(ref.value.asInstanceOf[Sub])
       else None
     }
