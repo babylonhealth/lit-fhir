@@ -250,62 +250,62 @@ object UKCore_RelatedPerson extends CompanionFor[UKCore_RelatedPerson] {
   * @constructor
   *   Inherits all params from parent.
   * @param id
-  *   \- The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   \- The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
-  *   not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *     not always be associated with version changes to the resource.
   * @param text
-  *   \- A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
-  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
-  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
-  *   represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *     resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail
+  *     to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should
+  *     be represented in the narrative to ensure clinical safety.
   * @param name
-  *   \- A name associated with the person.
+  *   - A name associated with the person.
   * @param photo
-  *   \- Image of the person.
+  *   - Image of the person.
   * @param active
-  *   \- Whether this related person record is in active use.
+  *   - Whether this related person record is in active use.
   * @param gender
-  *   \- Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.
+  *   - Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.
   * @param period
-  *   \- The period of time during which this relationship is or was active. If there are no dates defined, then the interval is
-  *   unknown.
+  *   - The period of time during which this relationship is or was active. If there are no dates defined, then the interval is
+  *     unknown.
   * @param patient
-  *   \- The patient this person is related to.
+  *   - The patient this person is related to.
   * @param telecom
-  *   \- A contact detail for the person, e.g. a telephone number or an email address.
+  *   - A contact detail for the person, e.g. a telephone number or an email address.
   * @param address
-  *   \- Address where the related person can be contacted or visited.
+  *   - Address where the related person can be contacted or visited.
   * @param language
-  *   \- The base language in which the resource is written.
+  *   - The base language in which the resource is written.
   * @param contained
-  *   \- These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *     identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   \- May be used to represent additional information that is not part of the basic definition of the resource. To make the use
-  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *   of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *     of the extension.
   * @param birthDate
-  *   \- The date on which the related person was born.
+  *   - The date on which the related person was born.
   * @param relationship
-  *   \- The nature of the relationship between a patient and the related person.
+  *   - The nature of the relationship between a patient and the related person.
   * @param implicitRules
-  *   \- A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
-  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
-  *   other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *     processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *     other profiles etc.
   * @param modifierExtension
-  *   \- May be used to represent additional information that is not part of the basic definition of the resource and that
-  *   modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants.
-  *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
-  *   strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an
-  *   extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications
-  *   processing a resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any
-  *   elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *     the understanding of the element that contains it and/or the understanding of the containing element's descendants.
+  *     Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
+  *     strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an
+  *     extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications
+  *     processing a resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of
+  *     any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param identifier
-  *   \- Identifier for a person within a particular scope.
+  *   - Identifier for a person within a particular scope.
   * @param communication
-  *   \- A language which may be used to communicate with about the patient's health.
+  *   - A language which may be used to communicate with about the patient's health.
   */
 @POJOBoilerplate
 class UKCore_RelatedPerson(
