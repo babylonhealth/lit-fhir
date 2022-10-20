@@ -1,5 +1,26 @@
 package com.babylonhealth.lit.uscore_java;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.babylonhealth.lit.core.FHIRDateTime;
+import com.babylonhealth.lit.core_java.LitUtils;
+import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.codes.Languages;
+import com.babylonhealth.lit.hl7.model.Account;
+import com.babylonhealth.lit.hl7.model.Bundle;
+import com.babylonhealth.lit.hl7.model.Observation;
+import com.babylonhealth.lit.hl7.model.Patient;
+import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.hl7_java.codes.AdministrativeGender;
+import com.babylonhealth.lit.hl7_java.codes.BundleType;
+import com.babylonhealth.lit.hl7_java.codes.HttpVerb;
+import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.builders.BmiBuilder;
+import com.babylonhealth.lit.uscore.model.*;
+import com.babylonhealth.lit.uscore_java.builders.Pediatric_bmi_for_ageBuilder;
+import com.babylonhealth.lit.uscore_java.builders.Us_core_organizationBuilder;
+import com.babylonhealth.lit.uscore_java.builders.Us_core_patientBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -9,36 +30,10 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Scanner;
-
-import com.babylonhealth.lit.core.model.Quantity;
-import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.hl7.model.Account;
-import com.babylonhealth.lit.hl7.model.Bundle;
-import com.babylonhealth.lit.hl7.model.Observation;
-import com.babylonhealth.lit.hl7.model.Patient;
-import com.babylonhealth.lit.hl7_java.builders.*;
-import com.babylonhealth.lit.hl7_java.codes.AdministrativeGender;
-import com.babylonhealth.lit.hl7_java.model.Unions;
-import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.usbase_java.builders.BmiBuilder;
-import com.babylonhealth.lit.uscore_java.builders.Pediatric_bmi_for_ageBuilder;
-import com.babylonhealth.lit.uscore_java.builders.Us_core_organizationBuilder;
-import com.babylonhealth.lit.uscore_java.builders.Us_core_patientBuilder;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import scala.Option;
 import scala.math.BigDecimal;
-
-import com.babylonhealth.lit.core.FHIRDateTime;
-import com.babylonhealth.lit.uscore.model.*;
-import com.babylonhealth.lit.core_java.builders.*;
-import com.babylonhealth.lit.hl7_java.codes.BundleType;
-import com.babylonhealth.lit.hl7_java.codes.HttpVerb;
-import com.babylonhealth.lit.core_java.codes.Languages;
-import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class JavaUsageOfLit {
   public static String toString(InputStream is) {

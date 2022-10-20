@@ -1,5 +1,7 @@
 package com.babylonhealth.lit.uscore_java.examples;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.babylonhealth.lit.core.FHIRDateTime;
 import com.babylonhealth.lit.core.model.Resource;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -11,16 +13,13 @@ import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
 import com.babylonhealth.lit.uscore.model.Us_core_pulse_oximetry;
 import com.babylonhealth.lit.uscore.model.Us_core_pulse_oximetry$;
 import com.babylonhealth.lit.uscore_java.builders.Us_core_pulse_oximetryBuilder;
-import org.junit.jupiter.api.Test;
-import org.skyscreamer.jsonassert.JSONAssert;
-import scala.math.BigDecimal;
-
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
+import scala.math.BigDecimal;
 
 public class Pulse_oximetryExampleTest {
 

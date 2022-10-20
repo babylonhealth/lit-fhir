@@ -1,23 +1,22 @@
 package com.babylonhealth.lit.uscore_java;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.babylonhealth.lit.core.EncoderParams;
 import com.babylonhealth.lit.core.FhirDecodeError;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.LitUtils;
 import com.babylonhealth.lit.core_java.builders.HumanNameBuilder;
-import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.IdentifierBuilder;
+import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.hl7_java.builders.PatientBuilder;
 import com.babylonhealth.lit.hl7_java.codes.AdministrativeGender;
 import com.babylonhealth.lit.uscore.model.Us_core_patient;
 import com.babylonhealth.lit.uscore_java.builders.Us_core_patientBuilder;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LitUtilsTest {
 
