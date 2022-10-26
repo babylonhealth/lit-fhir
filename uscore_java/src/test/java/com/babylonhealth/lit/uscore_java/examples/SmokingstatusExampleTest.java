@@ -1,5 +1,7 @@
 package com.babylonhealth.lit.uscore_java.examples;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.babylonhealth.lit.core.model.Resource;
 import com.babylonhealth.lit.core_java.LitUtils;
 import com.babylonhealth.lit.core_java.builders.CodeableConceptBuilder;
@@ -8,14 +10,11 @@ import com.babylonhealth.lit.core_java.builders.ReferenceBuilder;
 import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
 import com.babylonhealth.lit.uscore.model.Us_core_smokingstatus;
 import com.babylonhealth.lit.uscore_java.builders.Us_core_smokingstatusBuilder;
-import org.junit.jupiter.api.Test;
-import org.skyscreamer.jsonassert.JSONAssert;
-
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 public class SmokingstatusExampleTest {
 
