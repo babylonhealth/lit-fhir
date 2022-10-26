@@ -1,18 +1,13 @@
 package com.babylonhealth.lit.core_java;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import io.circe.Error;
-import io.circe.Error$;
-import scala.None$;
-import scala.Option;
-import scala.collection.immutable.Map;
-import scala.collection.immutable.TreeMap;
-import scala.jdk.javaapi.CollectionConverters;
-
 import com.babylonhealth.lit.core.*;
 import com.babylonhealth.lit.core.model.*;
+import java.util.HashSet;
+import java.util.Set;
+import scala.None$;
+import scala.Option;
+import scala.collection.immutable.TreeMap;
+import scala.jdk.javaapi.CollectionConverters;
 
 public class LitUtils {
   public static TreeMap<FHIRComponentFieldMeta<?>, PrimitiveElementInfo> emptyMetaElMap() {

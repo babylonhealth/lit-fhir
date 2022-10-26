@@ -1,13 +1,12 @@
 package com.babylonhealth.lit.uscore_java.examples;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.babylonhealth.lit.core.LitSeq;
 import com.babylonhealth.lit.core.LitSeq$;
 import com.babylonhealth.lit.core.NonEmptyLitSeq;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class SequenceTest {
   @Test

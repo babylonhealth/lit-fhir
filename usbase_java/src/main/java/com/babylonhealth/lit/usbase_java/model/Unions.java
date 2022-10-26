@@ -1,20 +1,15 @@
 package com.babylonhealth.lit.usbase_java.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
-import java.util.UUID;
-
-import scala.math.BigDecimal;
-
-import izumi.reflect.macrortti.LTag;
-
 import com.babylonhealth.lit.core.$bslash$div;
-import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.*;
+import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.usbase.UnionAliases;
 import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import izumi.reflect.macrortti.LTag;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import scala.math.BigDecimal;
 
 public class Unions {
   public static class ChoiceDurationOrPeriod extends Choice<$bslash$div<Duration, Period>> {
