@@ -14,7 +14,7 @@ inThisBuild(
   ))
 
 val scala2Version = "2.13.10"
-val scala3Version = "3.2.0"
+val scala3Version = "3.2.1"
 val crossVersions = Seq(scala2Version, scala3Version)
 
 def isScala2(version: String) = version startsWith "2"
