@@ -98,6 +98,18 @@ build-all-class-models:
 	sbt $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
 	sbt scalafmtAll
 
+build-hl7-typescript-models:
+	sbt 'project generator' 'run "generate" \
+		--javaPackageSuffix=_java \
+		--excludeJVM \
+		--typescriptDir="./generated_typescript"'
+
+build-hl7-rust-models:
+	sbt 'project generator' 'run "generate" \
+		--javaPackageSuffix=_java \
+		--excludeJVM \
+		--rustDir="./rust"'
+
 clean-target:
 	rm -rf target/ */target
 
@@ -153,3 +165,6 @@ find-weird-ones:
 
 gen-uk-snapshots:
 	docker run --rm -v $${PWD}/fhir/fhir.r4.ukcore.stu1:/gen -v $${PWD}/fhir/hl7.fhir.r4.core/:/hl7 $(HYDRA_DOCKER) snapshot -s /gen -h hl7
+
+test-rust:
+	cd rust && cargo test -- --nocapture

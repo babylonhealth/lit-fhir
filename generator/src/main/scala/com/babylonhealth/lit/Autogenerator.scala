@@ -13,7 +13,7 @@ import com.babylonhealth.lit.ElementTreee._
 import com.babylonhealth.lit.core.serdes.objectDecoder
 import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.hl7.model.{ ElementDefinition, StructureDefinition }
-import com.babylonhealth.lit.languages.{ JavaGenerator, ScalaCodegen, TypescriptCodegen }
+import com.babylonhealth.lit.languages.{ JavaGenerator, Rust, ScalaCodegen, TypescriptCodegen }
 
 trait FHIRFetcher {}
 
@@ -264,14 +264,30 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       }
     }
 
-    AllGeneratedFiles(scalaClassGenInfo, javaClassGenInfo, typescriptClassGenInfo)
+    val rustClassGenInfo: Option[Seq[ClassGenInfo]] = args.rustDir.map { o =>
+      def getDeclaringPkgForType: Map[String, String] = topLevelClasses.classes.map { case (name, ps) => name -> ps.keys.head }
+      topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
+        m.flatMap { case (p, k) =>
+          try Rust.genRustForClass(k, getDeclaringPkgForType)
+          catch {
+            case NonFatal(ex) =>
+              log.error(s"Unable to gen Rust file for $p.$o", ex)
+              Nil
+          }
+        }.toSeq
+      } ++
+      Rust.genUnionFiles(args.moduleDependencies, ElementTreee.getUnionTypes) ++
+      getDeclaringPkgForType.groupMap(_._2)(_._1).flatMap((Rust.genModRS _).tupled)
+    }
+
+    AllGeneratedFiles(scalaClassGenInfo, javaClassGenInfo, typescriptClassGenInfo, rustClassGenInfo)
   }
   def generateAndWriteOutput(
       args: MainArgs,
       extensions: Map[String, Seq[ClassGenInfo]],
       fetchValueSet: (String, BINDING_STRENGTH) => Option[CodeValueSet]): Unit = {
     println("Trying to generate files")
-    val AllGeneratedFiles(scalaClassGenInfo, javaClassGenInfo, typescriptClassGenInfo) =
+    val AllGeneratedFiles(scalaClassGenInfo, javaClassGenInfo, typescriptClassGenInfo, rustClassGenInfo) =
       getStrings(args, extensions, fetchValueSet)
     def javaOutputLocation(pkg: String): Option[String] =
       args.javaPackageSuffix.map(j => s"./$pkg$j/src/main/java/com/babylonhealth/lit/$pkg$j")
@@ -279,33 +295,40 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       javaOutputLocation(pkg).toSeq.flatMap(dir => Seq(s"$dir/builders", s"$dir/codes", s"$dir/model"))
     println("Successfully generated files")
     if (!args.dryRun) { // create the directories fresh
-      scalaClassGenInfo
-        .map(_.pkg)
-        .distinct
-        .foreach { p =>
-          emptyCreate(s"$p/src/main/scala/com/babylonhealth/lit/$p/model")
-          emptyCreate(s"$p/src/main/scala-2/com/babylonhealth/lit/$p/model")
-          emptyCreate(s"$p/src/main/scala-3/com/babylonhealth/lit/$p/model")
-          javaOutputLocations(p).foreach(emptyCreate)
+      if (!args.excludeJVM) {
+        scalaClassGenInfo
+          .map(_.pkg)
+          .distinct
+          .foreach { p =>
+            emptyCreate(s"$p/src/main/scala/com/babylonhealth/lit/$p/model")
+            emptyCreate(s"$p/src/main/scala-2/com/babylonhealth/lit/$p/model")
+            emptyCreate(s"$p/src/main/scala-3/com/babylonhealth/lit/$p/model")
+            javaOutputLocations(p).foreach(emptyCreate)
+          }
+        scalaClassGenInfo foreach { case ClassGenInfo(fc, fileName, pkg, targetVersion) =>
+          val scalaDir = targetVersion
+            .map { case ScalaTarget.Scala2 => "scala-2"; case ScalaTarget.Scala3 => "scala-3" }
+            .getOrElse("scala")
+          write(s"$pkg/src/main/$scalaDir/com/babylonhealth/lit/$pkg/model/$fileName.scala", fc)
         }
-      scalaClassGenInfo foreach { case ClassGenInfo(fc, fileName, pkg, targetVersion) =>
-        val scalaDir = targetVersion
-          .map { case ScalaTarget.Scala2 => "scala-2"; case ScalaTarget.Scala3 => "scala-3" }
-          .getOrElse("scala")
-        write(s"$pkg/src/main/$scalaDir/com/babylonhealth/lit/$pkg/model/$fileName.scala", fc)
-      }
-      javaClassGenInfo.toSeq.flatMap(_.builders) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
-        write(s"${javaOutputLocation(pkg).get}/builders/$fileName.java", fc)
-      }
-      javaClassGenInfo.toSeq.flatMap(_.codes) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
-        write(s"${javaOutputLocation(pkg).get}/codes/$fileName.java", fc)
-      }
-      javaClassGenInfo.toSeq.flatMap(_.model) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
-        write(s"${javaOutputLocation(pkg).get}/model/$fileName.java", fc)
+        javaClassGenInfo.toSeq.flatMap(_.builders) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
+          write(s"${javaOutputLocation(pkg).get}/builders/$fileName.java", fc)
+        }
+        javaClassGenInfo.toSeq.flatMap(_.codes) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
+          write(s"${javaOutputLocation(pkg).get}/codes/$fileName.java", fc)
+        }
+        javaClassGenInfo.toSeq.flatMap(_.model) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
+          write(s"${javaOutputLocation(pkg).get}/model/$fileName.java", fc)
+        }
       }
       if (typescriptClassGenInfo.nonEmpty) new File(args.typescriptDir.get).mkdirs()
       typescriptClassGenInfo.foreach(c =>
         write(s"${args.typescriptDir.get}/DomainModel.ts", c.map(_.fileContents).mkString("\n\n")))
+      if (rustClassGenInfo.nonEmpty)
+        rustClassGenInfo.toSeq
+          .flatMap(_.map(_.pkg).distinct)
+          .foreach(p => new File(s"${args.rustDir.get}/src/$p/model").mkdirs())
+      rustClassGenInfo.foreach(_.foreach(c => write(s"${args.rustDir.get}/src/${c.pkg}/model/${c.fileName}.rs", c.fileContents)))
     }
   }
 }
