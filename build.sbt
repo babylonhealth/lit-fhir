@@ -177,7 +177,7 @@ lazy val fhirpath = project
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations", "-deprecation")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-parse"    % "0.3.8",
+      "org.typelevel" %% "cats-parse"    % "0.3.9",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
       "org.slf4j"      % "slf4j-api"     % "2.0.3",
       // Test
