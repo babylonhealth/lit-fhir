@@ -149,7 +149,7 @@ So, constructors and collections are (to some degree) more helpful than in the o
 <img width="437" alt="period-address-lit" src="https://user-images.githubusercontent.com/13655521/231153786-caf0d3a3-02c0-4b18-9361-6f536a8f18ba.png">
 
 
-We should be able to do a bit better here, and have the IDE/compile explicitly tell us that we’re missing a witness for the underlying type of FHIRDateTime \/ Period but that is sadly something we haven’t figured out how to render at present - even the compiler error is Cannot prove that com.babylonhealth.lit.core.model.Address is a viable type for union com.babylonhealth.lit.hl7.UnionAliases.Union\_0934386166, whereas ideally we would want that union type to be dealiased before being displayed. Nonetheless, the essential information that *something is wrong* is being propagated directly to the developer as they work, and the underlying required type is discoverable with a few clicks through the source code.
+We should be able to do a bit better here, and have the IDE/compiler explicitly tell us that we’re missing a witness for the underlying type of FHIRDateTime \/ Period but that is sadly something we haven’t figured out how to render at present - even the compiler error is Cannot prove that com.babylonhealth.lit.core.model.Address is a viable type for union com.babylonhealth.lit.hl7.UnionAliases.Union\_0934386166, whereas ideally we would want that union type to be dealiased before being displayed. Nonetheless, the essential information that *something is wrong* is being propagated directly to the developer as they work, and the underlying required type is discoverable with a few clicks through the source code.
 
 Now we’ve gone down into some detail here, but the primary difference between Lit and both of the other two libraries is simply this: neither of those libraries will refuse to deal with incomplete (that is, syntactically invalid) objects *at any point* - they will serialize, deserialize, create and mutate objects that lack required fields quite happily. And this is something that might not outrage us at all, if we remember that with both libraries we’re working in the world of mutability - and with the implication that, at any time, an object may be only partially constructed. This is, however, behaviour that’s contrary to the design choices that we were making with our own offering.
 
@@ -220,9 +220,6 @@ Extract all Coding objects from a resource
 def extractAllCodings[T <: Resource](r: T): LitSeq[Coding] = r.nodalGetByClass(classOf[Coding])
 ```
 
-Anyway of getting some numbers here? In comparison to HAPI for example?
-
-Could link to the CI performance regression tests here
 
 
 **Performance**
