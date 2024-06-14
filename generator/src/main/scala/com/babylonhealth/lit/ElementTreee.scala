@@ -20,6 +20,7 @@ object ElementTreee extends Commonish with Logging {
 
   private val unionTypes                                     = TrieMap[String, (Seq[String], Seq[String])]()
   def getUnionTypes: Map[String, (Seq[String], Seq[String])] = unionTypes.toMap
+  lazy val unionDeclaringPackages: Map[String, String]       = unionTypes.view.mapValues { case (pkgs, _) => pkgs.head }.toMap
 
   def lookupSuffixByType(t: String): String                                = inverseTypeLookup(t).capitalize
   def getUnionAlias(pkg: String, s: Seq[String], field: BaseField): String = getUnionAlias(pkg, s, field.className, field.name)
